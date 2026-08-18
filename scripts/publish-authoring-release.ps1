@@ -46,8 +46,11 @@ try {
     if ($release.tagName -cne $tag -or -not $release.isDraft) { throw 'existing Release must be the exact Draft tag' }
     if ($release.targetCommitish -and $release.targetCommitish -cne $manifest.sourceCommit) { throw "Release target $($release.targetCommitish) differs from manifest sourceCommit" }
 
-    $expectedNames = @('authoring-release-manifest.json', 'SHA256SUMS') + @($manifest.releaseAssets.name)
-    $existingNames = @($release.assets.name)
+    # 以顯式管線取名稱：對空集合做成員列舉（$release.assets.name）會回傳 $null，
+    # 經 @() 包裝後變成「含一個 $null 的一元素陣列」，使剛建立、尚無 asset 的 Draft
+    # 誤觸下方的 unexpected asset 檢查而永遠走不到上傳迴圈。
+    $expectedNames = @('authoring-release-manifest.json', 'SHA256SUMS') + @($manifest.releaseAssets | ForEach-Object { $_.name })
+    $existingNames = @($release.assets | ForEach-Object { $_.name })
     foreach ($name in $existingNames) {
         if ($expectedNames -cnotcontains $name) { throw "Draft contains unexpected asset: $name" }
     }
