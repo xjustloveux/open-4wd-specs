@@ -21,6 +21,10 @@ use_directory_urls: false
 theme:
   name: material
   language: zh-TW
+  # Material 未指定 font 時預設從 Google Fonts 取 Roboto，會讓每個讀者的 IP 送往第三方，
+  # 且離線開檔時必然失敗——與自架 mermaid 的理由相同，也與 資安規範.md §5「runtime 原則上
+  # 無第三方 script／CSS；確需引入時 SRI 與 CSP 白名單缺一不可」一致。改用系統字型堆疊。
+  font: false
   favicon: assets/open4wd-favicon.png
   logo: assets/open4wd-favicon.png
   features:

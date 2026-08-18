@@ -1,6 +1,13 @@
 import assert from "node:assert/strict";
 import { createHash } from "node:crypto";
-import { mkdtemp, mkdir, readFile, readdir, writeFile } from "node:fs/promises";
+import {
+  mkdtemp,
+  mkdir,
+  readFile,
+  readdir,
+  rm,
+  writeFile,
+} from "node:fs/promises";
 import { tmpdir } from "node:os";
 import { join, resolve } from "node:path";
 import test from "node:test";
@@ -127,6 +134,52 @@ test("verify rejects changed assets", async () => {
   );
 });
 
+test("verify tolerates publish sidecars but still rejects unknown files", async () => {
+  const { temporary, input, sourceManifest } = await fixture();
+  const output = join(temporary, "output");
+  await prepareAuthoringRelease({
+    inputDirectory: input,
+    outputDirectory: output,
+    sourceSha: SHA,
+    sourceManifest,
+  });
+
+  // 發布腳本自己會在 bundle 內留下 receipt 與回讀副本；兩者不是 Release 產物，
+  // 但先前被當成「多出來的檔案」而讓第二趟（複核後發布）無法通過驗證。
+  await writeFile(
+    join(output, "publish-receipt.json"),
+    `${JSON.stringify({ schemaVersion: 1, published: false })}\n`,
+  );
+  await mkdir(join(output, ".readback"), { recursive: true });
+  await writeFile(join(output, ".readback", "sport.glb"), Buffer.from("copy"));
+  await mkdir(join(output, ".readback-previous"), { recursive: true });
+  await verifyPreparedAuthoringRelease(output);
+
+  await writeFile(join(output, "stray.bin"), Buffer.from("unexpected"));
+  await assert.rejects(verifyPreparedAuthoringRelease(output), (error) => {
+    assert.match(error.message, /asset set mismatch/u);
+    assert.match(error.message, /stray\.bin/u);
+    return true;
+  });
+});
+
+test("verify names the missing asset instead of failing opaquely", async () => {
+  const { temporary, input, sourceManifest } = await fixture();
+  const output = join(temporary, "output");
+  await prepareAuthoringRelease({
+    inputDirectory: input,
+    outputDirectory: output,
+    sourceSha: SHA,
+    sourceManifest,
+  });
+  await rm(join(output, "sport.glb"));
+  await assert.rejects(verifyPreparedAuthoringRelease(output), (error) => {
+    assert.match(error.message, /asset set mismatch/u);
+    assert.match(error.message, /sport\.glb/u);
+    return true;
+  });
+});
+
 test("verify rejects a release manifest whose GLB identity binding is missing", async () => {
   const { temporary, input, sourceManifest } = await fixture();
   const output = join(temporary, "output");
@@ -202,6 +255,7 @@ test("tracked BAT entrypoints remain thin and never mutate Git or install tools"
   for (const [name, target] of [
     ["prepare-authoring-release.bat", "prepare-authoring-release.ps1"],
     ["publish-authoring-release.bat", "publish-authoring-release.ps1"],
+    ["confirm-authoring-release.bat", "publish-authoring-release.ps1"],
   ]) {
     const content = await readFile(join(root, name), "utf8");
     assert.match(content, new RegExp(target.replaceAll(".", "\\."), "u"));
@@ -227,6 +281,14 @@ test("publish script uses Draft, readback and exact confirmation gates", async (
   // 一元素陣列，會讓「剛建立、尚無 asset 的 Draft」誤觸 unexpected asset 檢查而無法上傳。
   assert.doesNotMatch(content, /@\(\$\w+\.(?:assets|releaseAssets)\.name\)/u);
   assert.match(content, /\$release\.assets \| ForEach-Object \{ \$_\.name \}/u);
+  // 數 GB 的傳輸必須看得出進度:逐檔序號、gh 輸出不被捕獲、上一輪回讀自動清除。
+  assert.match(content, /function Invoke-Streamed/u);
+  assert.match(content, /Invoke-Streamed gh @\('release', 'upload'/u);
+  assert.match(content, /Invoke-Streamed gh @\('release', 'download'/u);
+  assert.match(content, /\[\{0\}\/\{1\}\] 上傳/u);
+  assert.match(content, /\[\{0\}\/\{1\}\] 比對通過/u);
+  assert.match(content, /清除上一輪回讀副本/u);
+  assert.doesNotMatch(content, /readback directory already exists/u);
   assert.doesNotMatch(
     content,
     /(?:npm|pnpm|pip) install|git (?:add|commit|push|tag)|GH_TOKEN|PRIVATE_KEY/iu,
@@ -296,6 +358,7 @@ test("operator documentation records backup retention, readback and superseding 
   assert.match(operations, /release-input/u);
   assert.match(operations, /prepare-authoring-release\.bat/u);
   assert.match(operations, /publish-authoring-release\.bat/u);
+  assert.match(operations, /confirm-authoring-release\.bat/u);
   assert.match(operations, /下載回讀/u);
   assert.match(operations, /備份/u);
   assert.match(operations, /失敗|復原/u);

@@ -35,6 +35,10 @@ Release 解開至未追蹤的 `.graphify-releases/run-*/<repo>/`；每次 refres
 cache。沒有遠端成品時，本機建站仍可讀 sibling `graphify-out`；只有 `graph.json` 而沒有 Graphify
 HTML 的 repo 也會產生本機搜尋頁，不再靜默消失。
 
+Graphify 產生的互動圖頁引用 CDN 上的繪圖函式庫，站台不接受任何外部資源（[資安規範.md §5](../資安規範.md)）。
+建站時該引用一律改寫為站內自架副本；本地副本缺席時，該 repo 的圖降級為內建檢視器並在狀態列標明，
+而非帶著外連上站。未知來源的外部引用直接讓建置失敗，不靜默放行。
+
 ## 2. GitHub App 最小權限設定
 
 GitHub App 只用來在來源 Release 成功後喚醒 specs；它不讀來源 repo，也不攜帶圖譜資料。

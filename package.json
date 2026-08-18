@@ -41,6 +41,7 @@
     "markdownlint-cli2": "0.23.2",
     "mermaid": "11.16.0",
     "textlint": "15.7.1",
+    "vis-network": "9.1.6",
     "zhlint": "0.8.2"
   }
 }

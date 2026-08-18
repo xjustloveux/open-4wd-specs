@@ -17,6 +17,7 @@ import {
   rel,
   walkMd,
 } from './lib.mjs';
+import { VENDORED_GRAPH_LIBRARIES, hardenGraphHtml, requiredGraphLibraries } from './graph-html-hardening.mjs';
 import { collectReferencedSiteAssets } from './site-assets.mjs';
 import { stageMarkdownAliases } from './site-markdown-aliases.mjs';
 import { stageAllowlistedSourceFiles } from './site-source-files.mjs';
@@ -154,6 +155,15 @@ copy(
 // ---------- ② graphify 圖產物 ----------
 const graphRoot = path.join(STAGE, 'graph');
 fs.mkdirSync(graphRoot, { recursive: true });
+// Graphify 互動頁依賴的函式庫比照 mermaid 自架。有 node_modules 副本才納入；缺席時
+// 下方會把該 repo 的圖降級為內建檢視器，任何情況都不讓站台留下 CDN 引用。
+const stagedGraphLibraries = new Set();
+for (const library of VENDORED_GRAPH_LIBRARIES) {
+  const source = path.join(REPO_ROOT, 'node_modules', ...library.modulePath);
+  if (!fs.existsSync(source)) continue;
+  copy(source, path.join(STAGE, 'assets', library.asset));
+  stagedGraphLibraries.add(library.id);
+}
 const graphRows = [];
 let releaseStatus = new Map();
 const releaseStatusPath = path.join(GRAPH_RELEASE_CACHE, 'status.json');
@@ -198,13 +208,43 @@ for (const repo of GRAPH_REPOS) {
     summary = graphSummary(graphPath);
     const drill = path.join(out, 'drill');
     if (fs.existsSync(drill) && fs.existsSync(path.join(drill, 'index.html'))) {
-      for (const name of fs.readdirSync(drill)) if (name.endsWith('.html')) copy(path.join(drill, name), path.join(dest, name));
-      entry = 'index.html';
-      status = '本機 sibling';
+      // Graphify 的互動頁引用 CDN 上的 vis-network。有本地副本才複製並改寫為站內路徑；
+      // 沒有就降級成內建檢視器——寧可少一層互動，也不讓站台出現外部資源。
+      const pages = fs.readdirSync(drill).filter(name => name.endsWith('.html'));
+      const needed = new Set(pages.flatMap(name => requiredGraphLibraries(fs.readFileSync(path.join(drill, name), 'utf8'))));
+      const missing = [...needed].filter(id => !stagedGraphLibraries.has(id));
+      if (missing.length === 0) {
+        for (const name of pages) {
+          const hardened = hardenGraphHtml(fs.readFileSync(path.join(drill, name), 'utf8'), '../../assets/');
+          fs.mkdirSync(dest, { recursive: true });
+          fs.writeFileSync(path.join(dest, name), hardened.html, 'utf8');
+        }
+        entry = 'index.html';
+        status = '本機 sibling';
+      } else {
+        summary = graphSummary(graphPath);
+        fs.mkdirSync(dest, { recursive: true });
+        if (fs.existsSync(graphPath)) copy(graphPath, path.join(dest, 'graph.json'));
+        localViewer(dest, repo, summary);
+        entry = 'index.html';
+        status = `本機 sibling（互動圖降級：缺 ${missing.join('、')} 本地副本）`;
+      }
     } else if (fs.existsSync(path.join(out, 'graph.html'))) {
-      copy(path.join(out, 'graph.html'), path.join(dest, 'graph.html'));
-      entry = 'graph.html';
-      status = '本機 sibling';
+      // 單檔版的圖頁與 drill 版引用同一批 CDN 函式庫，硬化與降級規則必須一致。
+      const source = fs.readFileSync(path.join(out, 'graph.html'), 'utf8');
+      const missing = requiredGraphLibraries(source).filter(id => !stagedGraphLibraries.has(id));
+      fs.mkdirSync(dest, { recursive: true });
+      if (missing.length === 0) {
+        fs.writeFileSync(path.join(dest, 'graph.html'), hardenGraphHtml(source, '../../assets/').html, 'utf8');
+        entry = 'graph.html';
+        status = '本機 sibling';
+      } else {
+        summary = graphSummary(graphPath);
+        if (fs.existsSync(graphPath)) copy(graphPath, path.join(dest, 'graph.json'));
+        localViewer(dest, repo, summary);
+        entry = 'index.html';
+        status = `本機 sibling（互動圖降級：缺 ${missing.join('、')} 本地副本）`;
+      }
     } else if (fs.existsSync(graphPath)) {
       copy(graphPath, path.join(dest, 'graph.json'));
       localViewer(dest, repo, summary);

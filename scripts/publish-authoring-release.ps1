@@ -6,6 +6,11 @@ param(
 )
 
 $ErrorActionPreference = 'Stop'
+# 先擋掉缺確認值的發布請求:後續的 bundle 驗證與下載回讀都要處理數 GB,
+# 沒有理由讓一個必然失敗的參數組合先花掉那些時間。
+if ($Publish -and [string]::IsNullOrWhiteSpace($ConfirmImmutablePublish)) {
+    throw 'immutable publication requires -ConfirmImmutablePublish <exact-tag>'
+}
 $repositoryRoot = Split-Path -Parent $PSScriptRoot
 if ([string]::IsNullOrWhiteSpace($BundleDirectory)) { $BundleDirectory = Join-Path $repositoryRoot 'release-output' }
 $bundle = (Resolve-Path -LiteralPath $BundleDirectory).Path
@@ -15,6 +20,19 @@ function Invoke-Checked {
     $result = & $Program @Arguments
     if ($LASTEXITCODE -ne 0) { throw "$Program exited with code $LASTEXITCODE" }
     return $result
+}
+
+# 上傳／下載動輒數 GB。Invoke-Checked 會吃掉輸出，執行者看不出是在傳輸還是卡住，
+# 因此傳輸類指令改用不捕獲輸出的版本，讓 gh 自己的進度直接寫到主控台。
+function Invoke-Streamed {
+    param([Parameter(Mandatory)][string]$Program, [Parameter(Mandatory)][string[]]$Arguments)
+    & $Program @Arguments
+    if ($LASTEXITCODE -ne 0) { throw "$Program exited with code $LASTEXITCODE" }
+}
+
+function Write-Phase {
+    param([Parameter(Mandatory)][string]$Message)
+    Write-Host ('[{0}] {1}' -f (Get-Date).ToString('HH:mm:ss'), $Message)
 }
 
 function Get-GitHubRepository {
@@ -54,24 +72,44 @@ try {
     foreach ($name in $existingNames) {
         if ($expectedNames -cnotcontains $name) { throw "Draft contains unexpected asset: $name" }
     }
-    foreach ($name in $expectedNames) {
-        if ($existingNames -cnotcontains $name) { Invoke-Checked gh @('release', 'upload', $tag, (Join-Path $bundle $name), '--repo', $repository) | Out-Host }
+    $pendingNames = @($expectedNames | Where-Object { $existingNames -cnotcontains $_ })
+    if ($pendingNames.Count -eq 0) { Write-Phase "Draft 已含全部 $($expectedNames.Count) 個 asset,略過上傳。" }
+    else {
+        $pendingBytes = ($pendingNames | ForEach-Object { (Get-Item -LiteralPath (Join-Path $bundle $_)).Length } | Measure-Object -Sum).Sum
+        Write-Phase ('上傳 {0} 個 asset,共 {1:N2} GB。' -f $pendingNames.Count, ($pendingBytes / 1GB))
+        $uploaded = 0
+        foreach ($name in $pendingNames) {
+            $uploaded++
+            $size = (Get-Item -LiteralPath (Join-Path $bundle $name)).Length
+            Write-Phase ('  [{0}/{1}] 上傳 {2}（{3:N1} MB）' -f $uploaded, $pendingNames.Count, $name, ($size / 1MB))
+            Invoke-Streamed gh @('release', 'upload', $tag, (Join-Path $bundle $name), '--repo', $repository)
+        }
     }
 
+    # 每一趟都必須做全新回讀,舊副本不得充當本次證據;但它同時是數 GB 的可重建衍生物,
+    # 保留只會累積磁碟並讓人反覆手動搬移,因此直接清除並明示。
     $readback = Join-Path $bundle '.readback'
-    if (Test-Path -LiteralPath $readback) { throw "readback directory already exists; inspect or move it before retrying: $readback" }
+    if (Test-Path -LiteralPath $readback) {
+        Write-Phase "清除上一輪回讀副本:$readback"
+        Remove-Item -LiteralPath $readback -Recurse -Force
+    }
     New-Item -ItemType Directory -Path $readback | Out-Null
-    Invoke-Checked gh @('release', 'download', $tag, '--repo', $repository, '--dir', $readback) | Out-Host
+    Write-Phase ('下載回讀 {0} 個 asset 以逐檔比對…' -f $expectedNames.Count)
+    Invoke-Streamed gh @('release', 'download', $tag, '--repo', $repository, '--dir', $readback)
+    $compared = 0
     foreach ($name in $expectedNames) {
+        $compared++
         $localPath = Join-Path $bundle $name
         $remotePath = Join-Path $readback $name
         if (-not (Test-Path -LiteralPath $remotePath -PathType Leaf)) { throw "download readback is missing: $name" }
         if ((Get-FileHash -Algorithm SHA256 -LiteralPath $localPath).Hash -cne (Get-FileHash -Algorithm SHA256 -LiteralPath $remotePath).Hash) { throw "download readback differs: $name" }
+        Write-Phase ('  [{0}/{1}] 比對通過 {2}' -f $compared, $expectedNames.Count, $name)
     }
 
     $receipt = [ordered]@{ schemaVersion = 1; repository = $repository; tag = $tag; sourceCommit = $manifest.sourceCommit; draftReadbackVerifiedAt = [DateTimeOffset]::UtcNow.ToString('o'); published = $false }
     if ($Publish) {
         if ($ConfirmImmutablePublish -cne $tag) { throw "immutable publication requires -ConfirmImmutablePublish '$tag'" }
+        Write-Phase "發布為 immutable Release（不可逆）:$tag"
         Invoke-Checked gh @('release', 'edit', $tag, '--repo', $repository, '--draft=false', '--latest=false') | Out-Host
         $receipt.published = $true
         $receipt.publishedAt = [DateTimeOffset]::UtcNow.ToString('o')
