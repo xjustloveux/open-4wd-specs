@@ -1,0 +1,8 @@
+{
+  "upstream": "https://raw.githubusercontent.com/fxsjy/jieba/237dc6625e5c65d7a2714ffdfa5238dba5cae7d4/extra_dict/dict.txt.big",
+  "commit": "237dc6625e5c65d7a2714ffdfa5238dba5cae7d4",
+  "sha256": "b16011275c42955ccd81fc1adecc93a59dbb7926af69d93fc95d4943d40f6aad",
+  "license": "MIT",
+  "copyright": "Copyright (c) 2013 Sun Junyi",
+  "licenseFile": "dict.txt.big.LICENSE"
+}

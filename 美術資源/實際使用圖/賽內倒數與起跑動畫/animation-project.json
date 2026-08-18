@@ -1,0 +1,38 @@
+{
+  "canvas": [512, 512],
+  "frameDurationMs": 90,
+  "webp": {
+    "quality": 78,
+    "method": 6,
+    "loop": 1
+  },
+  "digit": {
+    "frames": [
+      { "scale": 0.72, "opacity": 0.0, "brightness": 0.9 },
+      { "scale": 0.88, "opacity": 0.62, "brightness": 1.0 },
+      { "scale": 1.06, "opacity": 1.0, "brightness": 1.12 },
+      { "scale": 1.02, "opacity": 1.0, "brightness": 1.04 },
+      { "scale": 1.0, "opacity": 1.0, "brightness": 1.0 },
+      { "scale": 1.0, "opacity": 1.0, "brightness": 1.0 },
+      { "scale": 1.0, "opacity": 1.0, "brightness": 1.0 },
+      { "scale": 1.0, "opacity": 1.0, "brightness": 1.0 },
+      { "scale": 0.99, "opacity": 1.0, "brightness": 0.98 },
+      { "scale": 0.98, "opacity": 0.94, "brightness": 0.96 }
+    ],
+    "staticFrame": 4
+  },
+  "start": {
+    "sourceMode": "sequence",
+    "frames": [
+      { "scale": 1.0, "opacity": 1.0, "brightness": 1.0 },
+      { "scale": 1.0, "opacity": 1.0, "brightness": 1.0 },
+      { "scale": 1.0, "opacity": 1.0, "brightness": 1.0 },
+      { "scale": 1.0, "opacity": 1.0, "brightness": 1.0 },
+      { "scale": 1.0, "opacity": 1.0, "brightness": 1.0 },
+      { "scale": 1.0, "opacity": 1.0, "brightness": 1.0 },
+      { "scale": 1.0, "opacity": 1.0, "brightness": 1.0 },
+      { "scale": 1.0, "opacity": 1.0, "brightness": 1.0 }
+    ],
+    "staticFrame": 5
+  }
+}

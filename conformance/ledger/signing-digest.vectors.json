@@ -1,0 +1,139 @@
+{
+  "family": "ledger/signing-digest",
+  "spec": [
+    "資料系統.md",
+    "程式架構/ledger-admission.md"
+  ],
+  "formatVersion": 1,
+  "encoding": {
+    "bytes": "hex-lower",
+    "bigint": "decimal-string"
+  },
+  "generatedBy": "open-4wd@0.0.0",
+  "vectors": [
+    {
+      "name": "flat-and-nested-fields",
+      "input": {
+        "ledgerAddress": "/orbitdb/zdpuAw6ZdQ6cEFTCgmCf1LYAwP7VweSF8fzMN4Kzw22k1Hk8x",
+        "event": {
+          "type": "conformance-demo",
+          "arena": "alpha",
+          "count": 7,
+          "enabled": true,
+          "tags": [
+            "x",
+            "y"
+          ],
+          "nested": {
+            "a": 1,
+            "b": "two"
+          }
+        }
+      },
+      "expected": {
+        "digestHex": "5059448a7f0b4c963185bf39f6ea01eeaef84b561f1cf13315b5c6a178eab7de"
+      }
+    },
+    {
+      "name": "key-order-invariance",
+      "input": {
+        "ledgerAddress": "/orbitdb/zdpuAw6ZdQ6cEFTCgmCf1LYAwP7VweSF8fzMN4Kzw22k1Hk8x",
+        "event": {
+          "type": "conformance-order",
+          "first": 1,
+          "second": "b",
+          "third": [
+            3
+          ]
+        },
+        "eventReordered": {
+          "third": [
+            3
+          ],
+          "second": "b",
+          "first": 1,
+          "type": "conformance-order"
+        }
+      },
+      "expected": {
+        "digestHex": "01319b433749e77eb3b84d30683a0f3fc35e45f2b41b0002661642d1986c71fe"
+      }
+    },
+    {
+      "name": "signature-fields-stripped",
+      "input": {
+        "ledgerAddress": "/orbitdb/zdpuAw6ZdQ6cEFTCgmCf1LYAwP7VweSF8fzMN4Kzw22k1Hk8x",
+        "event": {
+          "type": "conformance-signed",
+          "payload": "body",
+          "signature": "deadbeef",
+          "signatures": [
+            {
+              "signer": "peer-alpha",
+              "signature": "beef"
+            }
+          ]
+        },
+        "eventUnsigned": {
+          "type": "conformance-signed",
+          "payload": "body"
+        }
+      },
+      "expected": {
+        "digestHex": "fae6364c3ab843bfbfe5932aa9402a9aef899adf33e4efba0da5b6eab88cfa48"
+      }
+    },
+    {
+      "name": "bigint-safe-int-equivalence",
+      "input": {
+        "ledgerAddress": "/orbitdb/zdpuAw6ZdQ6cEFTCgmCf1LYAwP7VweSF8fzMN4Kzw22k1Hk8x",
+        "event": {
+          "type": "conformance-amount",
+          "amountMinor": "5"
+        },
+        "bigintPaths": [
+          "amountMinor"
+        ],
+        "eventNumberForm": {
+          "type": "conformance-amount",
+          "amountMinor": 5
+        }
+      },
+      "expected": {
+        "digestHex": "2668edec6d6108a0547fd3767bf4c754bd55814bd09fca1db334fc8659ef200b"
+      }
+    },
+    {
+      "name": "bigint-beyond-safe-range",
+      "input": {
+        "ledgerAddress": "/orbitdb/zdpuAw6ZdQ6cEFTCgmCf1LYAwP7VweSF8fzMN4Kzw22k1Hk8x",
+        "event": {
+          "type": "conformance-amount",
+          "amountMinor": "9007199254740993"
+        },
+        "bigintPaths": [
+          "amountMinor"
+        ]
+      },
+      "expected": {
+        "digestHex": "2e2bd07f5b405d51f820f7502f6f0fc2bb39d4f20c60d9be1f79492814796274"
+      }
+    },
+    {
+      "name": "bytes-field",
+      "input": {
+        "ledgerAddress": "/orbitdb/zdpuAw6ZdQ6cEFTCgmCf1LYAwP7VweSF8fzMN4Kzw22k1Hk8x",
+        "event": {
+          "type": "conformance-bytes",
+          "blob": "00ff10"
+        },
+        "bytesPaths": [
+          "blob"
+        ]
+      },
+      "expected": {
+        "digestHex": "88636161c7ad7609baec0a8a0ac99763691799a323f469e3220ea6895ad118e0"
+      }
+    }
+  ]
+}

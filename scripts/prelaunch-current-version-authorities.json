@@ -1,0 +1,154 @@
+{
+  "schemaVersion": 1,
+  "authorities": [
+    {
+      "id": "sanitizer-security-canon",
+      "file": "資安規範.md",
+      "pattern": "SANITIZE_WORKER_VERSION[^\\n]*['\"]v(\\d+)['\"]"
+    },
+    {
+      "id": "sanitizer-parameters-canon",
+      "file": "程式參數/protocol.md",
+      "pattern": "SANITIZE_WORKER_VERSION[^\\n]*['\"]v(\\d+)['\"]"
+    },
+    {
+      "id": "sanitizer-architecture-canon",
+      "file": "程式架構/security.md",
+      "pattern": "SANITIZE_WORKER_VERSION[^\\n]*['\"]v(\\d+)['\"]"
+    },
+    {
+      "id": "signaling-deployment-canon",
+      "file": "部署資訊/open-4wd-signaling.md",
+      "pattern": "scoped Signaling v(\\d+)"
+    },
+    {
+      "id": "signaling-architecture-canon",
+      "file": "程式架構/signaling-service.md",
+      "pattern": "Signaling v(\\d+)"
+    },
+    {
+      "id": "pinning-receipt-canon",
+      "file": "部署資訊/open-4wd-pinning.md",
+      "pattern": "version-(\\d+) receipt"
+    },
+    {
+      "id": "asset-schema-current",
+      "file": "版本規範.md",
+      "pattern": "\\\"open4wd_version\\\":\\s*(\\d+),\\s*// pre-launch 唯一支援的 per-type schema marker"
+    },
+    {
+      "id": "physics-manifest-current",
+      "file": "程式架構/builtin-assets.md",
+      "pattern": "Pre-launch current builtin 與 PhysicsManifest 基線維持 v(\\d+)"
+    },
+    {
+      "id": "saved-state-current",
+      "file": "程式參數/network.md",
+      "pattern": "PROTOCOL_VERSION_CURRENT[^\\n]*['\"](\\d+)\\.0\\.0['\"]"
+    },
+    {
+      "id": "builtin-assets-current",
+      "file": "程式參數/network.md",
+      "pattern": "BUILTIN_ASSETS_VERSION_CURRENT[^\\n]*\\|\\s*(\\d+)\\s*\\|"
+    },
+    {
+      "id": "checkpoint-current",
+      "file": "程式架構/ledger-checkpoint.md",
+      "pattern": "checkpoint_version:\\s*(\\d+);"
+    },
+    {
+      "id": "unified-db-current",
+      "file": "程式架構/pwa-offline.md",
+      "pattern": "indexedDB\\.open\\(UNIFIED_DB_NAME='open-4wd', UNIFIED_DB_VERSION=(\\d+)\\)"
+    }
+  ],
+  "forbiddenCurrentLabels": [
+    {
+      "id": "determinism-fixture-public-version-label",
+      "file": "程式架構/testing.md",
+      "pattern": "canonical-two-car-v[2-9][0-9]*"
+    },
+    {
+      "id": "active-scoped-signaling-v2-plus",
+      "file": "部署資訊/open-4wd-signaling.md",
+      "pattern": "(?:scoped signed|scoped Signaling) v(?:[2-9]|[1-9][0-9]+)"
+    },
+    {
+      "id": "active-physics-manifest-v2-plus",
+      "file": "程式架構/builtin-assets.md",
+      "pattern": "Pre-launch current builtin 與 PhysicsManifest 基線維持 v(?:[2-9]|[1-9][0-9]+)"
+    },
+    {
+      "id": "active-saved-state-v2-plus",
+      "file": "程式參數/network.md",
+      "pattern": "PROTOCOL_VERSION_CURRENT[^\\n]*['\"](?:[2-9]|[1-9][0-9]+)\\.0\\.0['\"]"
+    },
+    {
+      "id": "active-builtin-assets-v2-plus",
+      "file": "程式參數/network.md",
+      "pattern": "BUILTIN_ASSETS_VERSION_CURRENT[^\\n]*\\|\\s*(?:[2-9]|[1-9][0-9]+)\\s*\\|"
+    },
+    {
+      "id": "active-checkpoint-v2-plus",
+      "file": "程式架構/ledger-checkpoint.md",
+      "pattern": "checkpoint_version:\\s*(?:[2-9]|[1-9][0-9]+);"
+    },
+    {
+      "id": "active-unified-db-v2-plus",
+      "file": "程式架構/pwa-offline.md",
+      "pattern": "indexedDB\\.open\\(UNIFIED_DB_NAME='open-4wd', UNIFIED_DB_VERSION=(?:[2-9]|[1-9][0-9]+)\\)"
+    }
+  ],
+  "activeCanonCorpus": {
+    "excludePrefixes": ["decisions/", "歷史記錄/"],
+    "excludeFiles": ["歷史記錄.md"],
+    "thirdPartyAllowlist": [
+      {
+        "id": "uuid-v4",
+        "pattern": "\\bUUID v4\\b"
+      },
+      {
+        "id": "circuit-relay-v2",
+        "pattern": "\\bCircuit Relay v2\\b"
+      }
+    ],
+    "forbiddenLabels": [
+      {
+        "id": "corpus-physics-manifest-v2-plus",
+        "pattern": "\\bPhysicsManifest\\s+v(?:[2-9]|[1-9][0-9]+)\\b"
+      },
+      {
+        "id": "corpus-saved-state-v2-plus",
+        "pattern": "\\bSavedState\\s+v(?:[2-9]|[1-9][0-9]+)\\b"
+      },
+      {
+        "id": "corpus-asset-schema-v2-plus",
+        "pattern": "`?open4wd_version`?\\s*(?:=|:|v)\\s*(?:[2-9]|[1-9][0-9]+)\\b"
+      },
+      {
+        "id": "corpus-builtin-assets-v2-plus",
+        "pattern": "`?builtin_assets_version`?\\s*(?:=|:|v)\\s*(?:[2-9]|[1-9][0-9]+)\\b"
+      },
+      {
+        "id": "corpus-unified-db-v2-plus",
+        "pattern": "\\bUNIFIED_DB_VERSION\\s*(?:=|:)\\s*(?:[2-9]|[1-9][0-9]+)\\b"
+      },
+      {
+        "id": "corpus-checkpoint-v2-plus",
+        "pattern": "\\bcheckpoint(?:_version)?\\s*(?:=|:|v)\\s*(?:[2-9]|[1-9][0-9]+)\\b"
+      },
+      {
+        "id": "corpus-receipt-v2-plus",
+        "pattern": "(?:\\breceipt\\s+v(?:[2-9]|[1-9][0-9]+)\\b|\\bversion-(?:[2-9]|[1-9][0-9]+) receipt\\b)"
+      },
+      {
+        "id": "corpus-sanitizer-v2-plus",
+        "pattern": "\\bSANITIZE_WORKER_VERSION\\b[^\\n]*['\"]v(?:[2-9]|[1-9][0-9]+)['\"]"
+      },
+      {
+        "id": "corpus-signaling-v2-plus",
+        "pattern": "\\b(?:scoped signed|scoped Signaling) v(?:[2-9]|[1-9][0-9]+)\\b"
+      }
+    ]
+  }
+}

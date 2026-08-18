@@ -1,0 +1,74 @@
+# MkDocs 站點設定（本機建置用；部署閘在 specs 轉 public 與其 release checks）。
+# canonical origin 已由 decisions/D-20260727-02 定案；不等待 main repo 轉 public，寫入設定只固定產物契約，
+# 不代表 DNS、Pages 或公開站點已啟用。
+site_name: Open4WD 規格文檔
+site_description: Open4WD spec corpus — canon、決策記錄與知識圖導航
+site_url: https://docs.open4wd.org/
+
+# corpus 住 repo 根是刻意的（搬進 docs/ 會打斷入站連結、牴觸 D-20260722-02 的檔名穩定性），
+# 但 MkDocs 拒絕 docs_dir 為設定檔的父目錄，因此改由 scripts/build-site.mjs 依 frontmatter
+# 白名單把 corpus 複製進 .site-src/（原目錄結構原樣保留，相對連結因此仍然成立）。
+# .site-src/ 與 site/ 皆為衍生物、已 gitignore；重跑建置腳本即可重生。
+docs_dir: .site-src
+site_dir: site
+
+# 產出扁平的 <名稱>.html 而非 <名稱>/index.html。理由是本站的第一用途是「本機開檔檢視」，
+# 而 file:// 不會替目錄自動找 index，目錄式 URL 會逼使用者每頁多點一次。
+# 代價是公開後 URL 帶 .html 後綴——但 D-20260722-02 已接受中文檔名的 percent-encoded URL，
+# URL 美觀本就不是本 corpus 的取捨重點，一致性優先於後綴。
+use_directory_urls: false
+
+theme:
+  name: material
+  language: zh-TW
+  favicon: assets/open4wd-favicon.png
+  logo: assets/open4wd-favicon.png
+  features:
+    - navigation.top
+    - search.highlight
+    - content.code.copy
+
+markdown_extensions:
+  # 中文錨點必須與 GitHub 規則對齊，否則 corpus 內 592 條帶錨連結在站上全斷。
+  # 驗收基準＝scripts/lib.mjs 的 slugify()（check:refs 用的同一支）。
+  - toc:
+      permalink: true
+      slugify: !!python/object/apply:pymdownx.slugs.slugify {kwds: {case: lower}}
+  # 流程/ 底下 26 張 Mermaid 圖（2026-07-22 定案）靠這條渲染。
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          # 刻意不用 class: mermaid——Material 的 bundle 會認領該 class 並自行改寫元素，
+          # 與自架的渲染流程搶同一批節點，導致兩邊都拿到中間狀態而產出錯誤圖。
+          # 換一個它不認得的 class，渲染由 assets/mermaid-init.js 全權負責。
+          class: mermaid-diagram
+          format: !!python/name:pymdownx.superfences.fence_code_format
+  - admonition
+  - attr_list
+  - md_in_html
+  - tables
+
+# 自架 mermaid：Material 的 bundle 僅在 window.mermaid 未定義時才從 unpkg 動態載入，
+# 先載這份即接管。由 scripts/build-site.mjs 自 node_modules/mermaid 複製（版本鎖在
+# package.json，exact pin）——不掛 CDN 才能離線看圖、且渲染結果不會隨浮動大版本改變。
+extra_javascript:
+  - assets/mermaid.min.js
+  - assets/mermaid-init.js
+
+extra_css:
+  - assets/site.css
+
+extra:
+  # 移除頁尾的「Made with Material for MkDocs」標示。Material 為 MIT 授權，
+  # 官方以此設定支援移除該行；本站頁尾不放任何內容，連帶避開它與 sticky 側欄的重疊。
+  generator: false
+
+plugins:
+  - search:
+      # Material 僅在 jieba 可用時做中文詞組切分；主詞典固定為繁體支援較佳的
+      # 官方 dict.txt.big，user dictionary 只補 repo 專有的漢字詞組。
+      jieba_dict: scripts/search-dictionaries/dict.txt.big
+      jieba_dict_user: scripts/search-dictionaries/open4wd.txt
+      # 保留零寬空白分隔，讓 Jieba 插入的詞界進入客戶端索引；Han-to-Han
+      # fallback 仍涵蓋未分詞或非 Jieba 建置的既有產物。
+      separator: '[\s​\-_,:!=\[\]()"`/]+|\.(?!\d)|&[lg]t;|(?!\b)(?=[A-Z][a-z])|　|(?<=[一-鿿])(?=[一-鿿])'

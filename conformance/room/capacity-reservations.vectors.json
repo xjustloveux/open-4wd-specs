@@ -1,0 +1,48 @@
+{
+  "family": "room/capacity-reservations",
+  "spec": [
+    "程式架構/matchmaking.md",
+    "decisions/D-20260802-06-active加reserved原子容量.md"
+  ],
+  "formatVersion": 1,
+  "encoding": {
+    "bytes": "hex-lower",
+    "bigint": "decimal-string"
+  },
+  "generatedBy": "open-4wd@0.0.0",
+  "vectors": [
+    {
+      "name": "pending-last-slot-blocks-concurrent-peer",
+      "input": {
+        "capacity": 1
+      },
+      "expected": {
+        "firstReserved": true,
+        "occupiedCount": 1,
+        "secondReserved": false
+      }
+    },
+    {
+      "name": "failed-open-releases-slot",
+      "input": {
+        "capacity": 1
+      },
+      "expected": {
+        "occupiedCount": 1,
+        "secondReserved": true
+      }
+    },
+    {
+      "name": "active-peer-may-reconnect-at-full-capacity",
+      "input": {
+        "capacity": 1
+      },
+      "expected": {
+        "activeCount": 1,
+        "occupiedCount": 1,
+        "reconnectReserved": true,
+        "newcomerReserved": false
+      }
+    }
+  ]
+}

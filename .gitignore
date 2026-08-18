@@ -1,0 +1,53 @@
+Thumbs.db
+.DS_Store
+desktop.ini
+
+# IDE / local agent state
+.idea/
+.vscode/
+/.superpowers/
+/docs/superpowers/
+
+# 本機 agent workflow 接線：.claude/.agents 下的 skill 目錄是指向工作區 open-4wd-workflow
+# repo 的 Windows junction，Git on Windows 會當一般目錄走訪——未忽略即整包外部檔案入庫。
+# 規則放這裡而非 .git/info/exclude：後者不隨 clone 移動，.git 一旦重建即失效。
+/AGENTS.override.md
+/CLAUDE.local.md
+/.agents/skills/open-4wd-workflow/
+/.agents/skills/graphify/
+/.claude/skills/open-4wd-workflow/
+
+# 通用機密／本機設定樣式：本 repo 不應存在這類檔案，規則只為擋下誤 add。
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.p12
+*.pfx
+.claude/settings.local.json
+.mcp.local.json
+
+# Python bytecode cache
+__pycache__/
+*.py[cod]
+
+# Node（lint 工具鏈；pnpm-lock.yaml 刻意入 repo——資安規範 §6 lockfile 鐵則）
+node_modules/
+
+# MkDocs 本機建置：暫存輸入樹與站台產物皆為衍生物，重跑 scripts/build-site.mjs 即可重生
+/.venv/
+/.site-src/
+/site/
+/mkdocs.build.yml
+
+# Browser test output (intentional reference screenshots remain tracked)
+**/.playwright-output/
+**/test-results/
+**/playwright-report/
+*.log
+
+# Release-first authoring：本機投遞與可重建封裝均不進 Git。
+/release-input/
+/release-output/
+/.graphify-releases/

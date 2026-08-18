@@ -1,0 +1,55 @@
+name: Documentation or specification issue
+description: Report an incorrect, unclear, or conflicting Open4WD rule
+title: "[Docs]: "
+labels:
+  - type/bug
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for improving the Open4WD corpus. This is a solo hobby project, so acknowledgement and follow-up may take several days. Use the main repository Discussions for general questions. For vulnerabilities, follow the main repository's SECURITY.md (mirrored in this corpus by 資安規範.md §10.1); never put vulnerability details in a public issue.
+  - type: input
+    id: document
+    attributes:
+      label: Document
+      description: Provide the repository-relative document path.
+      placeholder: path/to/document.md
+    validations:
+      required: true
+  - type: input
+    id: section_or_rule
+    attributes:
+      label: Section or rule ID
+      description: Identify the heading, anchor, rule ID, or line range.
+    validations:
+      required: true
+  - type: textarea
+    id: current_text
+    attributes:
+      label: Incorrect or unclear text
+      description: Quote only the minimum relevant text and explain what is wrong or conflicting.
+    validations:
+      required: true
+  - type: textarea
+    id: expected_text
+    attributes:
+      label: Expected wording or rule
+      description: Describe the corrected meaning or proposed wording.
+    validations:
+      required: true
+  - type: textarea
+    id: impact
+    attributes:
+      label: Impact
+      description: Explain which implementation, reader, or cross-reference is affected.
+    validations:
+      required: true
+  - type: checkboxes
+    id: confirmations
+    attributes:
+      label: Confirmation
+      options:
+        - label: I searched the corpus and existing issues for the same discrepancy.
+          required: true
+        - label: This report contains no secrets, private data, or undisclosed security vulnerability details.
+          required: true

@@ -1,0 +1,108 @@
+# 文檔 CI：依文檔工程.md 執行 lint、引用、生成物與規則契約檢查。
+# 豁免政策：history 類文件豁免術語 lint／出站引用驗證；結構 lint 照跑。
+name: docs-ci
+
+on:
+  push:
+    # 本地現行分支為 master；若發佈時改名 main 亦涵蓋
+    branches: [main, master]
+  pull_request:
+  workflow_dispatch:
+
+concurrency:
+  group: docs-ci-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  checks:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          fetch-depth: 0
+          lfs: false
+
+      # pnpm 版本讀 package.json 的 packageManager 欄（單一版本權威）
+      - uses: pnpm/action-setup@0977fd99725f1db4007ccb2928dbb4e90d06cc86 # v6.0.10
+
+      - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
+        with:
+          node-version: 24
+          cache: pnpm
+
+      # docs:bootstrap（uv sync --locked --python 3.12 --no-python-downloads）需要 uv 與 Python 3.12：
+      # GitHub 的 ubuntu 映像不含 uv、系統 Python 版本會隨映像升級漂移，兩者都明確安裝、不靠映像預設。
+      - uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97 # v7.0.0
+        with:
+          python-version: "3.12"
+
+      - uses: astral-sh/setup-uv@20cfd1bf945f4377ade1205e4dbc17946fc9a30d # v10.0.1
+
+      - id: install
+        name: 安裝依賴（frozen lockfile）
+        run: pnpm install --frozen-lockfile
+
+      - name: Pre-launch 自有 current 版本（check:prelaunch-versions）
+        if: ${{ !cancelled() && steps.install.outcome == 'success' }}
+        run: pnpm check:prelaunch-versions
+
+      - name: Conformance metadata／家族索引（check:conformance）
+        if: ${{ !cancelled() && steps.install.outcome == 'success' }}
+        run: pnpm check:conformance
+
+      - id: docs-bootstrap
+        name: 依 uv.lock 建立 Python 文檔環境
+        if: ${{ !cancelled() && steps.install.outcome == 'success' }}
+        run: pnpm docs:bootstrap
+
+      # 與 package.json 的 check 聚合保持同序；各步獨立跑完，任一失敗＝job 紅燈。
+      - name: 文檔工具鏈測試（test:docs）
+        if: ${{ !cancelled() && steps.install.outcome == 'success' && steps.docs-bootstrap.outcome == 'success' }}
+        run: pnpm test:docs
+
+      - name: GitHub Actions immutable pin（check:workflows）
+        if: ${{ !cancelled() && steps.install.outcome == 'success' }}
+        run: pnpm check:workflows
+
+      - name: markdown 結構 lint（markdownlint-cli2）
+        if: ${{ !cancelled() && steps.install.outcome == 'success' }}
+        run: pnpm lint:md
+
+      - name: 術語鐵則（textlint o4-terms）
+        if: ${{ !cancelled() && steps.install.outcome == 'success' }}
+        run: pnpm lint:terms
+
+      - name: 中英排版（zhlint --strict）
+        if: ${{ !cancelled() && steps.install.outcome == 'success' }}
+        run: pnpm lint:zh:strict
+
+      - name: § 引用／連結／錨點完整性（check:refs）
+        if: ${{ !cancelled() && steps.install.outcome == 'success' }}
+        run: pnpm check:refs
+
+      - name: 歷史記錄生成凍結（check:history）
+        if: ${{ !cancelled() && steps.install.outcome == 'success' }}
+        run: pnpm check:history
+
+      - name: 決策檔 frontmatter／status 鏈／索引（check:decisions）
+        if: ${{ !cancelled() && steps.install.outcome == 'success' }}
+        run: pnpm check:decisions
+
+      - name: corpus frontmatter（check:frontmatter）
+        if: ${{ !cancelled() && steps.install.outcome == 'success' }}
+        run: pnpm check:frontmatter
+
+      - name: 生成式索引凍結（check:docs）
+        if: ${{ !cancelled() && steps.install.outcome == 'success' }}
+        run: pnpm check:docs
+
+      - name: 規則 ID registry（check:rules）
+        if: ${{ !cancelled() && steps.install.outcome == 'success' }}
+        run: pnpm check:rules
+
+      - name: Mermaid 語法（check:mermaid）
+        if: ${{ !cancelled() && steps.install.outcome == 'success' }}
+        run: pnpm check:mermaid

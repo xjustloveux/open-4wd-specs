@@ -1,0 +1,4313 @@
+{
+  "generatedBy": "rules:generate",
+  "counts": {
+    "LEDGER": 98,
+    "ECON": 53,
+    "MOD": 57,
+    "PHYS": 1,
+    "TRACK": 1,
+    "PART": 1,
+    "UGC": 5,
+    "VERSION": 0,
+    "SEC": 0
+  },
+  "rules": [
+    {
+      "id": "ECON-R-001",
+      "kind": "invariant",
+      "requiredLayers": [
+        "schema-static"
+      ],
+      "implementationRepos": [
+        "open-4wd"
+      ],
+      "testContracts": {
+        "schema-static": "econ-r-001-schema-static"
+      },
+      "anchor": {
+        "file": "經濟系統.md",
+        "line": 27,
+        "excerpt": "- 金額：整數 `bigint` minor units（1 幣 = 100 minor units，最小 0.01 幣）"
+      },
+      "refs": []
+    },
+    {
+      "id": "ECON-R-002",
+      "kind": "invariant",
+      "requiredLayers": [
+        "service"
+      ],
+      "implementationRepos": [
+        "open-4wd"
+      ],
+      "testContracts": {
+        "service": "econ-r-002-service"
+      },
+      "anchor": {
+        "file": "經濟系統.md",
+        "line": 28,
+        "excerpt": "- 評分（rating）：整數 × 100（0–500，跨 peer 共識安全）"
+      },
+      "refs": []
+    },
+    {
+      "id": "ECON-R-003",
+      "kind": "derive",
+      "requiredLayers": [
+        "service"
+      ],
+      "implementationRepos": [
+        "open-4wd"
+      ],
+      "testContracts": {
+        "service": "econ-r-003-service"
+      },
+      "anchor": {
+        "file": "經濟系統.md",
+        "line": 33,
+        "excerpt": "- **整除尾數抹零**：所有鑄幣公式採 bigint 整除，截斷小數**不發給任何人**、不累加滯留池、不補給冠軍（[算式表.md §13](算式表.md)）"
+      },
+      "refs": [
+        {
+          "file": "賽內機制.md",
+          "line": 267
+        }
+      ]
+    },
+    {
+      "id": "ECON-R-004",
+      "kind": "behavior",
+      "requiredLayers": [
+        "fold"
+      ],
+      "implementationRepos": [
+        "open-4wd"
+      ],
+      "testContracts": {
+        "fold": "econ-r-004-fold"
+      },
+      "anchor": {
+        "file": "經濟系統.md",
+        "line": 40,
+        "excerpt": "- 黑名單作品的歷史 royalty → 不回收（既得權益保護）"
+      },
+      "refs": []
+    },
+    {
+      "id": "ECON-R-005",
+      "kind": "invariant",
+      "requiredLayers": [
+        "fold"
+      ],
+      "implementationRepos": [
+        "open-4wd"
+      ],
+      "testContracts": {
+        "fold": "econ-r-005-fold"
+      },
+      "anchor": {
+        "file": "經濟系統.md",
+        "line": 52,
+        "excerpt": "現行鑄幣來源只包含玩家行為驅動的比賽獎金與創作回饋金："
+      },
+      "refs": []
+    },
+    {
+      "id": "ECON-R-006",
+      "kind": "derive",
+      "requiredLayers": [
+        "fold"
+      ],
+      "implementationRepos": [
+        "open-4wd"
+      ],
+      "testContracts": {
+        "fold": "econ-r-006-fold"
+      },
+      "anchor": {
+        "file": "經濟系統.md",
+        "line": 88,
+        "excerpt": "每筆 mint 事件處理**之前**必須先呼叫 `checkMonthRollover`，避免「同筆事件在月初邊界前後 derive 結果不同」造成共識破壞："
+      },
+      "refs": []
+    },
+    {
+      "id": "ECON-R-007",
+      "kind": "derive",
+      "requiredLayers": [
+        "fold"
+      ],
+      "implementationRepos": [
+        "open-4wd"
+      ],
+      "testContracts": {
+        "fold": "econ-r-007-fold"
+      },
+      "anchor": {
+        "file": "經濟系統.md",
+        "line": 104,
+        "excerpt": "**事件溯源層面**：不寫獨立的「month-reset」事件；由 derived state 推導時純函數判定跨月。`computeMatchSettleme"
+      },
+      "refs": []
+    },
+    {
+      "id": "ECON-R-008",
+      "kind": "derive",
+      "requiredLayers": [
+        "service",
+        "fold"
+      ],
+      "implementationRepos": [
+        "open-4wd"
+      ],
+      "testContracts": {
+        "service": "econ-r-008-service",
+        "fold": "econ-r-008-fold"
+      },
+      "anchor": {
+        "file": "經濟系統.md",
+        "line": 118,
+        "excerpt": "同一完賽者組合的鑄幣資格採 rolling 24h、最多 5 場 match 的窗口。"
+      },
+      "refs": []
+    },
+    {
+      "id": "ECON-R-009",
+      "kind": "derive",
+      "requiredLayers": [
+        "service",
+        "fold"
+      ],
+      "implementationRepos": [
+        "open-4wd"
+      ],
+      "testContracts": {
+        "service": "econ-r-009-service",
+        "fold": "econ-r-009-fold"
+      },
+      "anchor": {
+        "file": "經濟系統.md",
+        "line": 120,
+        "excerpt": "組合身分以 sorted 完賽者 PeerIds 推導的 `comboHash` 決定；第 6 場起整場不鑄（獎金與 royalty 皆停、usage 統計不記"
+      },
+      "refs": []
+    },
+    {
+      "id": "ECON-R-010",
+      "kind": "invariant",
+      "requiredLayers": [
+        "fold"
+      ],
+      "implementationRepos": [
+        "open-4wd"
+      ],
+      "testContracts": {
+        "fold": "econ-r-010-fold"
+      },
+      "anchor": {
+        "file": "經濟系統.md",
+        "line": 126,
+        "excerpt": "防止固定 8 人圈刷無限獎金；K=5 計數 = 窗內**合格場**數（不合格場不佔窗）。"
+      },
+      "refs": []
+    },
+    {
+      "id": "ECON-R-011",
+      "kind": "derive",
+      "requiredLayers": [
+        "service",
+        "fold"
+      ],
+      "implementationRepos": [
+        "open-4wd"
+      ],
+      "testContracts": {
+        "service": "econ-r-011-service",
+        "fold": "econ-r-011-fold"
+      },
+      "anchor": {
+        "file": "經濟系統.md",
+        "line": 132,
+        "excerpt": "- 同一玩家 rolling 24h 內**領過比賽獎金**的 match 數 ≥ `player_prized_matches_per_day`（20，`ma"
+      },
+      "refs": []
+    },
+    {
+      "id": "ECON-R-012",
+      "kind": "derive",
+      "requiredLayers": [
+        "service",
+        "fold"
+      ],
+      "implementationRepos": [
+        "open-4wd"
+      ],
+      "testContracts": {
+        "service": "econ-r-012-service",
+        "fold": "econ-r-012-fold"
+      },
+      "anchor": {
+        "file": "經濟系統.md",
+        "line": 138,
+        "excerpt": "**完賽人數（finisherCount）**：完成整場比賽（N 回合）仍在場、未異常斷線、未主動棄賽者。比賽獎金與創作回饋金公式中的玩家數一律指 finish"
+      },
+      "refs": []
+    },
+    {
+      "id": "ECON-R-013",
+      "kind": "behavior",
+      "requiredLayers": [
+        "service",
+        "fold"
+      ],
+      "implementationRepos": [
+        "open-4wd"
+      ],
+      "testContracts": {
+        "service": "econ-r-013-service",
+        "fold": "econ-r-013-fold"
+      },
+      "anchor": {
+        "file": "經濟系統.md",
+        "line": 142,
+        "excerpt": "| 異常斷線者 / 主動棄賽者                  | **forfeit**：不計入 finisherCount、不發任何獎金；名次仍列「最後完"
+      },
+      "refs": []
+    },
+    {
+      "id": "ECON-R-014",
+      "kind": "derive",
+      "requiredLayers": [
+        "service"
+      ],
+      "implementationRepos": [
+        "open-4wd"
+      ],
+      "testContracts": {
+        "service": "econ-r-014-service"
+      },
+      "anchor": {
+        "file": "經濟系統.md",
+        "line": 143,
+        "excerpt": "| **finisherCount < 3** | **整場經濟 void**：`matchPrizes = []`、`royalties = []` 全空（含"
+      },
+      "refs": []
+    },
+    {
+      "id": "ECON-R-015",
+      "kind": "derive",
+      "requiredLayers": [
+        "fold"
+      ],
+      "implementationRepos": [
+        "open-4wd"
+      ],
+      "testContracts": {
+        "fold": "econ-r-015-fold"
+      },
+      "anchor": {
+        "file": "經濟系統.md",
+        "line": 145,
+        "excerpt": "經濟 void 場仍套用斷線 −5，但不發完賽或連勝信譽加分（void 場不具競技意義；[信譽系統.md §2.2](信譽系統.md)）。"
+      },
+      "refs": []
+    },
+    {
+      "id": "ECON-R-016",
+      "kind": "derive",
+      "requiredLayers": [
+        "service",
+        "fold"
+      ],
+      "implementationRepos": [
+        "open-4wd"
+      ],
+      "testContracts": {
+        "service": "econ-r-016-service",
+        "fold": "econ-r-016-fold"
+      },
+      "anchor": {
+        "file": "經濟系統.md",
+        "line": 147,
+        "excerpt": "**場級鑄幣資格（`mintEligible`）**：`finisherCount ≥ 3`、每回合 inline anchor 皆非 null，**且**同 "
+      },
+      "refs": []
+    },
+    {
+      "id": "ECON-R-017",
+      "kind": "behavior",
+      "requiredLayers": [
+        "fold"
+      ],
+      "implementationRepos": [
+        "open-4wd"
+      ],
+      "testContracts": {
+        "fold": "econ-r-017-fold"
+      },
+      "anchor": {
+        "file": "經濟系統.md",
+        "line": 149,
+        "excerpt": "**劃界**：信譽的比賽加分閘 ＝`finisherCount ≥ 3`（**不含 K=5**、與鑄幣資格刻意不同）——同組合第 6 場仍是真比賽、完賽 +1 "
+      },
+      "refs": []
+    },
+    {
+      "id": "ECON-R-018",
+      "kind": "derive",
+      "requiredLayers": [
+        "service"
+      ],
+      "implementationRepos": [
+        "open-4wd"
+      ],
+      "testContracts": {
+        "service": "econ-r-018-service"
+      },
+      "anchor": {
+        "file": "經濟系統.md",
+        "line": 162,
+        "excerpt": "讓「受眾少但精緻」的創作有體面回饋。倍率隨 rating **線性連續**遞增、無邊界跳變，整數量化（回傳 ×100）："
+      },
+      "refs": []
+    },
+    {
+      "id": "ECON-R-019",
+      "kind": "derive",
+      "requiredLayers": [
+        "service",
+        "fold"
+      ],
+      "implementationRepos": [
+        "open-4wd"
+      ],
+      "testContracts": {
+        "service": "econ-r-019-service",
+        "fold": "econ-r-019-fold"
+      },
+      "anchor": {
+        "file": "經濟系統.md",
+        "line": 168,
+        "excerpt": "同 `(cid, player)` 24h 內只算 1 次 royalty，避免重複使用刷量。去重窗錨定「上次實際鑄出 royalty」的時間；窗內繼續使用仍照"
+      },
+      "refs": []
+    },
+    {
+      "id": "ECON-R-020",
+      "kind": "derive",
+      "requiredLayers": [
+        "service",
+        "fold"
+      ],
+      "implementationRepos": [
+        "open-4wd"
+      ],
+      "testContracts": {
+        "service": "econ-r-020-service",
+        "fold": "econ-r-020-fold"
+      },
+      "anchor": {
+        "file": "經濟系統.md",
+        "line": 174,
+        "excerpt": "每筆 royalty 拆 3 層（依 fork 衍生樹）："
+      },
+      "refs": []
+    },
+    {
+      "id": "ECON-R-021",
+      "kind": "invariant",
+      "requiredLayers": [
+        "schema-static",
+        "fold"
+      ],
+      "implementationRepos": [
+        "open-4wd"
+      ],
+      "testContracts": {
+        "schema-static": "econ-r-021-schema-static",
+        "fold": "econ-r-021-fold"
+      },
+      "anchor": {
+        "file": "經濟系統.md",
+        "line": 186,
+        "excerpt": "`currentTierPct + parentTierPct + grandparentTierPct = 100`（**pct 整數**、不變式檢查——共識"
+      },
+      "refs": [
+        {
+          "file": "資料系統.md",
+          "line": 324
+        }
+      ]
+    },
+    {
+      "id": "ECON-R-022",
+      "kind": "invariant",
+      "requiredLayers": [
+        "schema-static"
+      ],
+      "implementationRepos": [
+        "open-4wd"
+      ],
+      "testContracts": {
+        "schema-static": "econ-r-022-schema-static"
+      },
+      "anchor": {
+        "file": "經濟系統.md",
+        "line": 188,
+        "excerpt": "缺層份額（無 parent / grandparent）與整除殘留一律**歸當前創作者**——原創（無血緣）作品實拿 100%（無公共池機制；[程式架構/eco"
+      },
+      "refs": []
+    },
+    {
+      "id": "ECON-R-023",
+      "kind": "behavior",
+      "requiredLayers": [
+        "fold"
+      ],
+      "implementationRepos": [
+        "open-4wd"
+      ],
+      "testContracts": {
+        "fold": "econ-r-023-fold"
+      },
+      "anchor": {
+        "file": "經濟系統.md",
+        "line": 194,
+        "excerpt": "- 版本後繼邊**不新增分潤層、不算衍生**（fork 樹深度與三層比例不受影響）。"
+      },
+      "refs": []
+    },
+    {
+      "id": "ECON-R-024",
+      "kind": "derive",
+      "requiredLayers": [
+        "fold"
+      ],
+      "implementationRepos": [
+        "open-4wd"
+      ],
+      "testContracts": {
+        "fold": "econ-r-024-fold"
+      },
+      "anchor": {
+        "file": "經濟系統.md",
+        "line": 208,
+        "excerpt": "| 上鏈零件                | 50                                       | 每次都收費、無首次免費  "
+      },
+      "refs": []
+    },
+    {
+      "id": "ECON-R-025",
+      "kind": "reject",
+      "requiredLayers": [
+        "admission"
+      ],
+      "implementationRepos": [
+        "open-4wd"
+      ],
+      "testContracts": {
+        "admission": "econ-r-025-admission"
+      },
+      "anchor": {
+        "file": "經濟系統.md",
+        "line": 212,
+        "excerpt": "| **schema 版本後繼升級** | **0**                                    | **升級通道僅限跨破壞牆、恆免"
+      },
+      "refs": []
+    },
+    {
+      "id": "ECON-R-026",
+      "kind": "reject",
+      "requiredLayers": [
+        "service",
+        "fold"
+      ],
+      "implementationRepos": [
+        "open-4wd"
+      ],
+      "testContracts": {
+        "service": "econ-r-026-service",
+        "fold": "econ-r-026-fold"
+      },
+      "anchor": {
+        "file": "經濟系統.md",
+        "line": 213,
+        "excerpt": "| 擴充正式車位            | 1000 扁平                                | **無上限**（純消耗入口）、不可"
+      },
+      "refs": []
+    },
+    {
+      "id": "ECON-R-027",
+      "kind": "reject",
+      "requiredLayers": [
+        "service",
+        "admission",
+        "fold"
+      ],
+      "implementationRepos": [
+        "open-4wd"
+      ],
+      "testContracts": {
+        "service": "econ-r-027-service",
+        "admission": "econ-r-027-admission",
+        "fold": "econ-r-027-fold"
+      },
+      "anchor": {
+        "file": "經濟系統.md",
+        "line": 214,
+        "excerpt": "| UGC 贊助 burn           | ≥ `max(1, sponsorship.min_amount_minor)` | target 必須已有"
+      },
+      "refs": []
+    },
+    {
+      "id": "ECON-R-028",
+      "kind": "behavior",
+      "requiredLayers": [
+        "fold"
+      ],
+      "implementationRepos": [
+        "open-4wd"
+      ],
+      "testContracts": {
+        "fold": "econ-r-028-fold"
+      },
+      "anchor": {
+        "file": "經濟系統.md",
+        "line": 236,
+        "excerpt": "新玩家的啟動資源採首次上鏈負資產，不採鑄幣：每個 PeerId **一生一次**，首次 `UgcUploadEvent` 燒上鏈費時即使餘額不足也放行，餘額允許"
+      },
+      "refs": []
+    },
+    {
+      "id": "ECON-R-029",
+      "kind": "invariant",
+      "requiredLayers": [
+        "fold"
+      ],
+      "implementationRepos": [
+        "open-4wd"
+      ],
+      "testContracts": {
+        "fold": "econ-r-029-fold"
+      },
+      "anchor": {
+        "file": "經濟系統.md",
+        "line": 259,
+        "excerpt": "`state.firstUploadDebtUsed.has(peerId)` 為 DerivedState 快取，純函數可由任何 peer 重算驗證。其他燒幣"
+      },
+      "refs": []
+    },
+    {
+      "id": "ECON-R-030",
+      "kind": "derive",
+      "requiredLayers": [
+        "service"
+      ],
+      "implementationRepos": [
+        "open-4wd"
+      ],
+      "testContracts": {
+        "service": "econ-r-030-service"
+      },
+      "anchor": {
+        "file": "算式表.md",
+        "line": 533,
+        "excerpt": "月度派發係數只依 `softCap` 與 `monthMinted` 的整數公式計算："
+      },
+      "refs": []
+    },
+    {
+      "id": "ECON-R-031",
+      "kind": "derive",
+      "requiredLayers": [
+        "service"
+      ],
+      "implementationRepos": [
+        "open-4wd"
+      ],
+      "testContracts": {
+        "service": "econ-r-031-service"
+      },
+      "anchor": {
+        "file": "算式表.md",
+        "line": 548,
+        "excerpt": "比賽獎金依總名次、完賽人數、月度係數與治理參數決定："
+      },
+      "refs": []
+    },
+    {
+      "id": "ECON-R-032",
+      "kind": "derive",
+      "requiredLayers": [
+        "service"
+      ],
+      "implementationRepos": [
+        "open-4wd"
+      ],
+      "testContracts": {
+        "service": "econ-r-032-service"
+      },
+      "anchor": {
+        "file": "算式表.md",
+        "line": 558,
+        "excerpt": "`rank` = **總名次**（N 回合積分加總後的最終名次，見 [§20.1](#201-多回合積分與總名次)）；獎金 per-match 發一次（非每回合"
+      },
+      "refs": []
+    },
+    {
+      "id": "ECON-R-033",
+      "kind": "derive",
+      "requiredLayers": [
+        "service"
+      ],
+      "implementationRepos": [
+        "open-4wd"
+      ],
+      "testContracts": {
+        "service": "econ-r-033-service"
+      },
+      "anchor": {
+        "file": "算式表.md",
+        "line": 577,
+        "excerpt": "單一 UGC 的回饋金由評分、利基加成、月度係數與基礎額共同決定："
+      },
+      "refs": []
+    },
+    {
+      "id": "ECON-R-034",
+      "kind": "derive",
+      "requiredLayers": [
+        "service"
+      ],
+      "implementationRepos": [
+        "open-4wd"
+      ],
+      "testContracts": {
+        "service": "econ-r-034-service"
+      },
+      "anchor": {
+        "file": "算式表.md",
+        "line": 642,
+        "excerpt": "UGC 評分投票權重依投票者信譽分成 0.5、1.0、1.5 三級："
+      },
+      "refs": []
+    },
+    {
+      "id": "ECON-R-035",
+      "kind": "derive",
+      "requiredLayers": [
+        "service"
+      ],
+      "implementationRepos": [
+        "open-4wd"
+      ],
+      "testContracts": {
+        "service": "econ-r-035-service"
+      },
+      "anchor": {
+        "file": "算式表.md",
+        "line": 652,
+        "excerpt": "UGC 評分依票數選用隱式 fallback、Bayesian 拉中性或明確票均值："
+      },
+      "refs": []
+    },
+    {
+      "id": "ECON-R-036",
+      "kind": "invariant",
+      "requiredLayers": [
+        "service"
+      ],
+      "implementationRepos": [
+        "open-4wd"
+      ],
+      "testContracts": {
+        "service": "econ-r-036-service"
+      },
+      "anchor": {
+        "file": "算式表.md",
+        "line": 666,
+        "excerpt": "**隱式 fallback（整數查表）**：浮點 `log10` 跨硬體不一致會炸毀 consensus derive，故隱式評分採整數查表："
+      },
+      "refs": []
+    },
+    {
+      "id": "ECON-R-037",
+      "kind": "invariant",
+      "requiredLayers": [
+        "admission"
+      ],
+      "implementationRepos": [
+        "open-4wd"
+      ],
+      "testContracts": {
+        "admission": "econ-r-037-admission"
+      },
+      "anchor": {
+        "file": "程式架構/economy.md",
+        "line": 17,
+        "excerpt": "economy 無獨立鑄幣事件；`MatchResultEvent` 也不攜帶 match-prize / royalty。完賽者多簽只背書比賽事實，fold "
+      },
+      "refs": []
+    },
+    {
+      "id": "ECON-R-038",
+      "kind": "behavior",
+      "requiredLayers": [
+        "fold"
+      ],
+      "implementationRepos": [
+        "open-4wd"
+      ],
+      "testContracts": {
+        "fold": "econ-r-038-fold"
+      },
+      "anchor": {
+        "file": "程式架構/economy.md",
+        "line": 22,
+        "excerpt": "| `UgcForkEvent` | 血緣宣告（衍生樹索引）                   | **免費**——fork 流程寫 upload＋fork "
+      },
+      "refs": []
+    },
+    {
+      "id": "ECON-R-039",
+      "kind": "behavior",
+      "requiredLayers": [
+        "fold"
+      ],
+      "implementationRepos": [
+        "open-4wd"
+      ],
+      "testContracts": {
+        "fold": "econ-r-039-fold"
+      },
+      "anchor": {
+        "file": "程式架構/economy.md",
+        "line": 28,
+        "excerpt": "〔LEDGER-R-060〕 事件按 ledger 總序依序套用；rolling window、月 rollover、信譽與結算時序一律使用套用前 `state"
+      },
+      "refs": []
+    },
+    {
+      "id": "ECON-R-040",
+      "kind": "reject",
+      "requiredLayers": [
+        "fold"
+      ],
+      "implementationRepos": [
+        "open-4wd"
+      ],
+      "testContracts": {
+        "fold": "econ-r-040-fold"
+      },
+      "anchor": {
+        "file": "程式架構/economy.md",
+        "line": 134,
+        "excerpt": "- 付費事件冒名、餘額不足、跳級、費率不符或內容重播時，fold 必須 deterministic no-op，不得扣錯付款人或重複入帳。`ugc-sponso"
+      },
+      "refs": []
+    },
+    {
+      "id": "ECON-R-041",
+      "kind": "reject",
+      "requiredLayers": [
+        "fold"
+      ],
+      "implementationRepos": [
+        "open-4wd"
+      ],
+      "testContracts": {
+        "fold": "econ-r-041-fold"
+      },
+      "anchor": {
+        "file": "程式架構/economy.md",
+        "line": 135,
+        "excerpt": "- slot、sponsor 與 maintenance 的 burn amount 必須符合各自治理現值／最低額；零額、負額與低報不得藉 `subBalanc"
+      },
+      "refs": []
+    },
+    {
+      "id": "ECON-R-042",
+      "kind": "reject",
+      "requiredLayers": [
+        "fold"
+      ],
+      "implementationRepos": [
+        "open-4wd"
+      ],
+      "testContracts": {
+        "fold": "econ-r-042-fold"
+      },
+      "anchor": {
+        "file": "程式架構/economy.md",
+        "line": 136,
+        "excerpt": "- `match-result` 已存在相同 matchId 時 fold no-op；事件不能攜帶 payout，因此不存在「簽過的任意金額」可被 reduc"
+      },
+      "refs": [
+        {
+          "file": "程式架構/ledger.md",
+          "line": 123
+        }
+      ]
+    },
+    {
+      "id": "ECON-R-043",
+      "kind": "reject",
+      "requiredLayers": [
+        "fold"
+      ],
+      "implementationRepos": [
+        "open-4wd"
+      ],
+      "testContracts": {
+        "fold": "econ-r-043-fold"
+      },
+      "anchor": {
+        "file": "程式架構/economy.md",
+        "line": 137,
+        "excerpt": "- 月 rollover 後以 `monthMinted + incomingMint` 檢查 `month_hard_cap_minor`；超過即整場 out"
+      },
+      "refs": [
+        {
+          "file": "程式架構/ledger.md",
+          "line": 123
+        }
+      ]
+    },
+    {
+      "id": "ECON-R-044",
+      "kind": "derive",
+      "requiredLayers": [
+        "service"
+      ],
+      "implementationRepos": [
+        "open-4wd"
+      ],
+      "testContracts": {
+        "service": "econ-r-044-service"
+      },
+      "anchor": {
+        "file": "程式架構/economy.md",
+        "line": 138,
+        "excerpt": "- royalty 產生必須排除黑名單、退役與相似度審查中的 CID，並以 `(cid, triggerPlayer)` 的上次實際發放時間套用去重窗。"
+      },
+      "refs": []
+    },
+    {
+      "id": "ECON-R-045",
+      "kind": "invariant",
+      "requiredLayers": [
+        "service"
+      ],
+      "implementationRepos": [
+        "open-4wd"
+      ],
+      "testContracts": {
+        "service": "econ-r-045-service"
+      },
+      "anchor": {
+        "file": "程式架構/economy.md",
+        "line": 141,
+        "excerpt": "- **GC**：讀點自帶窗過濾 ＋ 同 key append 時就地裁剪（`appendRecentMatchCombo` 等）；帳本檢查點時另對 `rece"
+      },
+      "refs": []
+    },
+    {
+      "id": "ECON-R-046",
+      "kind": "derive",
+      "requiredLayers": [
+        "service"
+      ],
+      "implementationRepos": [
+        "open-4wd"
+      ],
+      "testContracts": {
+        "service": "econ-r-046-service"
+      },
+      "anchor": {
+        "file": "程式架構/economy.md",
+        "line": 166,
+        "excerpt": "結算必須排除黑名單、退役或仍處於 pending 狀態的 UGC 回饋金。"
+      },
+      "refs": []
+    },
+    {
+      "id": "ECON-R-047",
+      "kind": "derive",
+      "requiredLayers": [
+        "service"
+      ],
+      "implementationRepos": [
+        "open-4wd"
+      ],
+      "testContracts": {
+        "service": "econ-r-047-service"
+      },
+      "anchor": {
+        "file": "程式架構/economy.md",
+        "line": 168,
+        "excerpt": "settlement 不在 P2P 訊息或 `MatchResultEvent` 內傳輸。每個 peer 在 canonical fold 的相同事件位置，使用"
+      },
+      "refs": []
+    },
+    {
+      "id": "ECON-R-048",
+      "kind": "reject",
+      "requiredLayers": [
+        "service",
+        "admission"
+      ],
+      "implementationRepos": [
+        "open-4wd"
+      ],
+      "testContracts": {
+        "service": "econ-r-048-service",
+        "admission": "econ-r-048-admission"
+      },
+      "anchor": {
+        "file": "程式架構/economy.md",
+        "line": 272,
+        "excerpt": "`MatchResultEvent` 只承載可驗證的 match facts，不承載 wire settlement。完賽者在簽章前驗證 match facts"
+      },
+      "refs": [
+        {
+          "file": "程式架構/ledger-settlement.md",
+          "line": 115
+        }
+      ]
+    },
+    {
+      "id": "ECON-R-049",
+      "kind": "behavior",
+      "requiredLayers": [
+        "service"
+      ],
+      "implementationRepos": [
+        "open-4wd"
+      ],
+      "testContracts": {
+        "service": "econ-r-049-service"
+      },
+      "anchor": {
+        "file": "程式架構/economy.md",
+        "line": 314,
+        "excerpt": "> 分潤跟血緣、與祖先可用性狀態正交（退役 / 黑名單 / unusable / yanked 的祖先仍照分；見 [版權.md §3.4](../版權.md)）"
+      },
+      "refs": []
+    },
+    {
+      "id": "ECON-R-050",
+      "kind": "invariant",
+      "requiredLayers": [
+        "service"
+      ],
+      "implementationRepos": [
+        "open-4wd"
+      ],
+      "testContracts": {
+        "service": "econ-r-050-service"
+      },
+      "anchor": {
+        "file": "程式架構/economy.md",
+        "line": 358,
+        "excerpt": "`addBalance` / `subBalance`（ReadonlyMap 不可變更新）、`appendRecentMatchCombo`（24h 視窗過濾"
+      },
+      "refs": []
+    },
+    {
+      "id": "ECON-R-051",
+      "kind": "reject",
+      "requiredLayers": [
+        "schema-static"
+      ],
+      "implementationRepos": [
+        "open-4wd"
+      ],
+      "testContracts": {
+        "schema-static": "econ-r-051-schema-static"
+      },
+      "anchor": {
+        "file": "程式架構/economy.md",
+        "line": 374,
+        "excerpt": "- `month_soft_cap_minor`／`month_hard_cap_minor`、`match_prize`（base_amount、rank_m"
+      },
+      "refs": []
+    },
+    {
+      "id": "ECON-R-052",
+      "kind": "derive",
+      "requiredLayers": [
+        "fold"
+      ],
+      "implementationRepos": [
+        "open-4wd"
+      ],
+      "testContracts": {
+        "fold": "econ-r-052-fold"
+      },
+      "anchor": {
+        "file": "算式表.md",
+        "line": 692,
+        "excerpt": "8 人 FFA 用 TrueSkill 成對近似多人更新（μ, σ 演化）。**rating 屬共識 derive**（`MatchDerivedState`、"
+      },
+      "refs": []
+    },
+    {
+      "id": "ECON-R-053",
+      "kind": "derive",
+      "requiredLayers": [
+        "service",
+        "fold"
+      ],
+      "implementationRepos": [
+        "open-4wd"
+      ],
+      "testContracts": {
+        "service": "econ-r-053-service",
+        "fold": "econ-r-053-fold"
+      },
+      "anchor": {
+        "file": "程式架構/economy.md",
+        "line": 360,
+        "excerpt": "月流水與創作者收益是 fold 時同步維護的衍生讀模型，不得在 provider 掃描 raw log 重建：`monthlyFlowsByMonth: Map"
+      },
+      "refs": []
+    },
+    {
+      "id": "LEDGER-R-001",
+      "kind": "reject",
+      "requiredLayers": [
+        "service"
+      ],
+      "implementationRepos": [
+        "open-4wd"
+      ],
+      "testContracts": {
+        "service": "ledger-r-001-service"
+      },
+      "anchor": {
+        "file": "資料系統.md",
+        "line": 26,
+        "excerpt": "- **位址錨**：官方 ledger 的 OrbitDB 位址（`LEDGER_DB_ADDRESS`，build 注入，[protocol.md §5](程"
+      },
+      "refs": []
+    },
+    {
+      "id": "LEDGER-R-002",
+      "kind": "reject",
+      "requiredLayers": [
+        "admission"
+      ],
+      "implementationRepos": [
+        "open-4wd"
+      ],
+      "testContracts": {
+        "admission": "ledger-r-002-admission"
+      },
+      "anchor": {
+        "file": "資料系統.md",
+        "line": 49,
+        "excerpt": "資產引用另分三類前綴（`builtin:<type>-<id>` 公版 / `local:<uuid>` 本機測試資產（**永不可用於上鏈賽**）/ 一般 IP"
+      },
+      "refs": []
+    },
+    {
+      "id": "LEDGER-R-003",
+      "kind": "reject",
+      "requiredLayers": [
+        "admission",
+        "fold"
+      ],
+      "implementationRepos": [
+        "open-4wd"
+      ],
+      "testContracts": {
+        "admission": "ledger-r-003-admission",
+        "fold": "ledger-r-003-fold"
+      },
+      "anchor": {
+        "file": "資料系統.md",
+        "line": 87,
+        "excerpt": "> **多簽事件例外**：`MatchResultEvent` / `RaceConsensusAnchorEvent` / `ConfigUpdateEven"
+      },
+      "refs": []
+    },
+    {
+      "id": "LEDGER-R-004",
+      "kind": "behavior",
+      "requiredLayers": [
+        "service"
+      ],
+      "implementationRepos": [
+        "open-4wd"
+      ],
+      "testContracts": {
+        "service": "ledger-r-004-service"
+      },
+      "anchor": {
+        "file": "資料系統.md",
+        "line": 109,
+        "excerpt": "> **B 軸版本閘門使用房間 pin 的已驗 `LedgerCheckpointEvent`**：host 開房時 pin 已同步的最新帳本檢查點 CID，所"
+      },
+      "refs": []
+    },
+    {
+      "id": "LEDGER-R-005",
+      "kind": "derive",
+      "requiredLayers": [
+        "fold"
+      ],
+      "implementationRepos": [
+        "open-4wd"
+      ],
+      "testContracts": {
+        "fold": "ledger-r-005-fold"
+      },
+      "anchor": {
+        "file": "資料系統.md",
+        "line": 116,
+        "excerpt": "- fork record 的 `parent` / `ancestors` 釘**具體 CID**；解析 royalty 收受者與 fork 樹位置時，先把該"
+      },
+      "refs": []
+    },
+    {
+      "id": "LEDGER-R-006",
+      "kind": "invariant",
+      "requiredLayers": [
+        "service"
+      ],
+      "implementationRepos": [
+        "open-4wd"
+      ],
+      "testContracts": {
+        "service": "ledger-r-006-service"
+      },
+      "anchor": {
+        "file": "資料系統.md",
+        "line": 122,
+        "excerpt": "跨 peer 共識必須完全一致："
+      },
+      "refs": [
+        {
+          "file": "經濟系統.md",
+          "line": 30
+        }
+      ]
+    },
+    {
+      "id": "LEDGER-R-007",
+      "kind": "behavior",
+      "requiredLayers": [
+        "runtime"
+      ],
+      "implementationRepos": [
+        "open-4wd"
+      ],
+      "testContracts": {
+        "runtime": "ledger-r-007-runtime"
+      },
+      "anchor": {
+        "file": "資料系統.md",
+        "line": 135,
+        "excerpt": "- 每 120 frame 的 ephemeral checksum 投票只做 desync 偵測，不寫 ledger。正式錨只在每回合終局建立一張 `Race"
+      },
+      "refs": []
+    },
+    {
+      "id": "LEDGER-R-008",
+      "kind": "reject",
+      "requiredLayers": [
+        "runtime"
+      ],
+      "implementationRepos": [
+        "open-4wd"
+      ],
+      "testContracts": {
+        "runtime": "ledger-r-008-runtime"
+      },
+      "anchor": {
+        "file": "資料系統.md",
+        "line": 137,
+        "excerpt": "- 每個 peer 對同一 `(matchId, roundIndex)` 最多簽一份 anchor，不論 frame 或 checksum。signer 只在"
+      },
+      "refs": []
+    },
+    {
+      "id": "LEDGER-R-009",
+      "kind": "reject",
+      "requiredLayers": [
+        "admission"
+      ],
+      "implementationRepos": [
+        "open-4wd"
+      ],
+      "testContracts": {
+        "admission": "ledger-r-009-admission"
+      },
+      "anchor": {
+        "file": "資料系統.md",
+        "line": 139,
+        "excerpt": "- `MatchResultEvent.rounds[].terminalFrame` 是 tail 驗證基準；`roundAnchors` 長度必須等於回合數"
+      },
+      "refs": []
+    },
+    {
+      "id": "LEDGER-R-010",
+      "kind": "behavior",
+      "requiredLayers": [
+        "admission"
+      ],
+      "implementationRepos": [
+        "open-4wd"
+      ],
+      "testContracts": {
+        "admission": "ledger-r-010-admission"
+      },
+      "anchor": {
+        "file": "資料系統.md",
+        "line": 147,
+        "excerpt": "同一回合若只出現一張達 quorum 的證書即採該證書；bounded 收集窗結束仍無證書則該回合錨缺失，允許非鑄幣 MatchResult，但不得鑄幣。"
+      },
+      "refs": []
+    },
+    {
+      "id": "LEDGER-R-011",
+      "kind": "reject",
+      "requiredLayers": [
+        "admission",
+        "runtime"
+      ],
+      "implementationRepos": [
+        "open-4wd"
+      ],
+      "testContracts": {
+        "admission": "ledger-r-011-admission",
+        "runtime": "ledger-r-011-runtime"
+      },
+      "anchor": {
+        "file": "資料系統.md",
+        "line": 149,
+        "excerpt": "同一 `(matchId, roundIndex)` 出現兩張不同的完整有效證書時，保存兩張原始證書與重疊簽署者於 `RaceAbortEvidenceEven"
+      },
+      "refs": []
+    },
+    {
+      "id": "LEDGER-R-012",
+      "kind": "behavior",
+      "requiredLayers": [
+        "fold"
+      ],
+      "implementationRepos": [
+        "open-4wd"
+      ],
+      "testContracts": {
+        "fold": "ledger-r-012-fold"
+      },
+      "anchor": {
+        "file": "資料系統.md",
+        "line": 183,
+        "excerpt": "| **Apply 階段**（套用 match-result 事件時） | **一律放進 `hot.match.recentMatches`**，不在此階段判斷"
+      },
+      "refs": []
+    },
+    {
+      "id": "LEDGER-R-013",
+      "kind": "reject",
+      "requiredLayers": [
+        "admission"
+      ],
+      "implementationRepos": [
+        "open-4wd"
+      ],
+      "testContracts": {
+        "admission": "ledger-r-013-admission"
+      },
+      "anchor": {
+        "file": "資料系統.md",
+        "line": 227,
+        "excerpt": "所有 P2P 訊息帶 `timestamp` + `nonce`："
+      },
+      "refs": []
+    },
+    {
+      "id": "LEDGER-R-014",
+      "kind": "reject",
+      "requiredLayers": [
+        "fold"
+      ],
+      "implementationRepos": [
+        "open-4wd"
+      ],
+      "testContracts": {
+        "fold": "ledger-r-014-fold"
+      },
+      "anchor": {
+        "file": "資料系統.md",
+        "line": 257,
+        "excerpt": "- **手動**（創作者意志 / 非違規下架）：**創作者本人**付費寫一筆 `UgcMaintenanceEvent`（`reason: 'retire'`）"
+      },
+      "refs": []
+    },
+    {
+      "id": "LEDGER-R-015",
+      "kind": "behavior",
+      "requiredLayers": [
+        "service"
+      ],
+      "implementationRepos": [
+        "open-4wd"
+      ],
+      "testContracts": {
+        "service": "ledger-r-015-service"
+      },
+      "anchor": {
+        "file": "資料系統.md",
+        "line": 259,
+        "excerpt": "退役效果：既有 royalty 不回收（既得權益）、後續使用不算 royalty、仍可觀看但 loadout 阻擋、pinning 自動 unpin、保留歷史僅"
+      },
+      "refs": []
+    },
+    {
+      "id": "LEDGER-R-016",
+      "kind": "derive",
+      "requiredLayers": [
+        "service"
+      ],
+      "implementationRepos": [
+        "open-4wd"
+      ],
+      "testContracts": {
+        "service": "ledger-r-016-service"
+      },
+      "anchor": {
+        "file": "資料系統.md",
+        "line": 285,
+        "excerpt": "`deriveStateAt` 供 checkpoint review、復原稽核與診斷使用；B 軸房間閘直接讀已驗 pinned checkpoint，matc"
+      },
+      "refs": []
+    },
+    {
+      "id": "LEDGER-R-017",
+      "kind": "invariant",
+      "requiredLayers": [
+        "runtime"
+      ],
+      "implementationRepos": [
+        "open-4wd"
+      ],
+      "testContracts": {
+        "runtime": "ledger-r-017-runtime"
+      },
+      "anchor": {
+        "file": "資料系統.md",
+        "line": 304,
+        "excerpt": "| 超越函數禁入共識 | 浮點 `log10` 等跨硬體 libm 不一致——一律整數預算表（隱式評分查表 [算式表.md §19](算式表.md)、仲裁 `w"
+      },
+      "refs": []
+    },
+    {
+      "id": "LEDGER-R-018",
+      "kind": "behavior",
+      "requiredLayers": [
+        "service"
+      ],
+      "implementationRepos": [
+        "open-4wd"
+      ],
+      "testContracts": {
+        "service": "ledger-r-018-service"
+      },
+      "anchor": {
+        "file": "資料系統.md",
+        "line": 308,
+        "excerpt": "| derive 規則變更  | 隨 `derive_logic` major 出貨（同 major 全網同規則，[版本規範.md §5](版本規範.md)）；"
+      },
+      "refs": [
+        {
+          "file": "經濟系統.md",
+          "line": 47
+        }
+      ]
+    },
+    {
+      "id": "LEDGER-R-019",
+      "kind": "invariant",
+      "requiredLayers": [
+        "fold"
+      ],
+      "implementationRepos": [
+        "open-4wd"
+      ],
+      "testContracts": {
+        "fold": "ledger-r-019-fold"
+      },
+      "anchor": {
+        "file": "資料系統.md",
+        "line": 318,
+        "excerpt": "`totalMinted` 必須等於產出型與補助型鑄幣總和。"
+      },
+      "refs": []
+    },
+    {
+      "id": "LEDGER-R-020",
+      "kind": "invariant",
+      "requiredLayers": [
+        "fold"
+      ],
+      "implementationRepos": [
+        "open-4wd"
+      ],
+      "testContracts": {
+        "fold": "ledger-r-020-fold"
+      },
+      "anchor": {
+        "file": "資料系統.md",
+        "line": 320,
+        "excerpt": "`monthMinted` 只累計當月產出型鑄幣，並依月份邊界重置。"
+      },
+      "refs": []
+    },
+    {
+      "id": "LEDGER-R-021",
+      "kind": "invariant",
+      "requiredLayers": [
+        "fold"
+      ],
+      "implementationRepos": [
+        "open-4wd"
+      ],
+      "testContracts": {
+        "fold": "ledger-r-021-fold"
+      },
+      "anchor": {
+        "file": "資料系統.md",
+        "line": 322,
+        "excerpt": "每個 peer 的餘額不得低於零，唯一例外是首次上鏈負資產不得低於該次上鏈費。"
+      },
+      "refs": []
+    },
+    {
+      "id": "LEDGER-R-022",
+      "kind": "reject",
+      "requiredLayers": [
+        "service"
+      ],
+      "implementationRepos": [
+        "open-4wd"
+      ],
+      "testContracts": {
+        "service": "ledger-r-022-service"
+      },
+      "anchor": {
+        "file": "程式架構/ledger-admission.md",
+        "line": 18,
+        "excerpt": "**部署身分**：`open4wd-ledger` 是只供明確 genesis 建立時使用的 database name，`LEDGER_DB_ADDRESS`"
+      },
+      "refs": []
+    },
+    {
+      "id": "LEDGER-R-023",
+      "kind": "reject",
+      "requiredLayers": [
+        "admission"
+      ],
+      "implementationRepos": [
+        "open-4wd"
+      ],
+      "testContracts": {
+        "admission": "ledger-r-023-admission"
+      },
+      "anchor": {
+        "file": "程式架構/ledger-admission.md",
+        "line": 102,
+        "excerpt": "**`timestamp` 收件驗證**：新事件**首次廣播**收件時，`|event.timestamp − 收件端本地時鐘| ≤ P2P_MESSAGE_T"
+      },
+      "refs": []
+    },
+    {
+      "id": "LEDGER-R-024",
+      "kind": "invariant",
+      "requiredLayers": [
+        "service"
+      ],
+      "implementationRepos": [
+        "open-4wd"
+      ],
+      "testContracts": {
+        "service": "ledger-r-024-service"
+      },
+      "anchor": {
+        "file": "程式架構/ledger-admission.md",
+        "line": 106,
+        "excerpt": "跨 peer 須產生**位元組完全一致**的序列化（否則驗簽失敗）："
+      },
+      "refs": []
+    },
+    {
+      "id": "LEDGER-R-025",
+      "kind": "reject",
+      "requiredLayers": [
+        "admission"
+      ],
+      "implementationRepos": [
+        "open-4wd"
+      ],
+      "testContracts": {
+        "admission": "ledger-r-025-admission"
+      },
+      "anchor": {
+        "file": "程式架構/ledger-admission.md",
+        "line": 131,
+        "excerpt": "封閉目錄內 21 種事件型別中，20 種永久事件一律使用同一套 entry-level Admission v1，**不由治理者逐筆核准或簽署**。事件完成原有"
+      },
+      "refs": []
+    },
+    {
+      "id": "LEDGER-R-026",
+      "kind": "invariant",
+      "requiredLayers": [
+        "admission"
+      ],
+      "implementationRepos": [
+        "open-4wd"
+      ],
+      "testContracts": {
+        "admission": "ledger-r-026-admission"
+      },
+      "anchor": {
+        "file": "程式架構/ledger-admission.md",
+        "line": 143,
+        "excerpt": "Admission v1 的 hash domain、shape 與難度是 protocol 常數，不是 `economy_config` 或動態 diffic"
+      },
+      "refs": []
+    },
+    {
+      "id": "LEDGER-R-027",
+      "kind": "reject",
+      "requiredLayers": [
+        "admission",
+        "fold"
+      ],
+      "implementationRepos": [
+        "open-4wd"
+      ],
+      "testContracts": {
+        "admission": "ledger-r-027-admission",
+        "fold": "ledger-r-027-fold"
+      },
+      "anchor": {
+        "file": "程式架構/ledger-admission.md",
+        "line": 156,
+        "excerpt": "`matchId` 必須綁定 `ranking ∪ disconnects` 的 original active roster、`startedAt`、`mat"
+      },
+      "refs": []
+    },
+    {
+      "id": "LEDGER-R-028",
+      "kind": "reject",
+      "requiredLayers": [
+        "admission"
+      ],
+      "implementationRepos": [
+        "open-4wd"
+      ],
+      "testContracts": {
+        "admission": "ledger-r-028-admission"
+      },
+      "anchor": {
+        "file": "程式架構/ledger-admission.md",
+        "line": 158,
+        "excerpt": "每位 original active roster 成員都必須有有效的 `loadoutSignatures` 參與證明。"
+      },
+      "refs": []
+    },
+    {
+      "id": "LEDGER-R-029",
+      "kind": "reject",
+      "requiredLayers": [
+        "admission"
+      ],
+      "implementationRepos": [
+        "open-4wd"
+      ],
+      "testContracts": {
+        "admission": "ledger-r-029-admission"
+      },
+      "anchor": {
+        "file": "程式架構/ledger-admission.md",
+        "line": 160,
+        "excerpt": "外層 `MatchResultEvent` 必須由 original active roster 的嚴格多數簽署，且 signer 只能是非 forfeit 完"
+      },
+      "refs": [
+        {
+          "file": "經濟系統.md",
+          "line": 41
+        }
+      ]
+    },
+    {
+      "id": "LEDGER-R-030",
+      "kind": "reject",
+      "requiredLayers": [
+        "admission"
+      ],
+      "implementationRepos": [
+        "open-4wd"
+      ],
+      "testContracts": {
+        "admission": "ledger-r-030-admission"
+      },
+      "anchor": {
+        "file": "程式架構/ledger-admission.md",
+        "line": 162,
+        "excerpt": "`roundAnchors` 必須與 rounds 等長；每個非 null inline anchor 都要驗 match／round、120-frame ta"
+      },
+      "refs": [
+        {
+          "file": "經濟系統.md",
+          "line": 272
+        }
+      ]
+    },
+    {
+      "id": "LEDGER-R-031",
+      "kind": "reject",
+      "requiredLayers": [
+        "admission"
+      ],
+      "implementationRepos": [
+        "open-4wd"
+      ],
+      "testContracts": {
+        "admission": "ledger-r-031-admission"
+      },
+      "anchor": {
+        "file": "程式架構/ledger-admission.md",
+        "line": 164,
+        "excerpt": "`MatchResultEvent` 的時間必須滿足 `startedAt <= finishedAt <= event.timestamp`。"
+      },
+      "refs": []
+    },
+    {
+      "id": "LEDGER-R-032",
+      "kind": "reject",
+      "requiredLayers": [
+        "admission"
+      ],
+      "implementationRepos": [
+        "open-4wd"
+      ],
+      "testContracts": {
+        "admission": "ledger-r-032-admission"
+      },
+      "anchor": {
+        "file": "程式架構/ledger-admission.md",
+        "line": 172,
+        "excerpt": "**未啟用保留案：`asset-version-upgrade`**。下列六條只保留未來設計脈絡；此型別列在 21 型別事件目錄供設計追蹤，但不在現行 20 型"
+      },
+      "refs": [
+        {
+          "file": "資料系統.md",
+          "line": 77
+        }
+      ]
+    },
+    {
+      "id": "LEDGER-R-033",
+      "kind": "invariant",
+      "requiredLayers": [
+        "service"
+      ],
+      "implementationRepos": [
+        "open-4wd"
+      ],
+      "testContracts": {
+        "service": "ledger-r-033-service"
+      },
+      "anchor": {
+        "file": "程式架構/ledger-checkpoint.md",
+        "line": 15,
+        "excerpt": "`matchRecords` 隨比賽數線性增長（大型社群一年可達 ~180 GB）；其餘欄位 MB-GB 量級。故 match 記錄按 **quarter 自然"
+      },
+      "refs": []
+    },
+    {
+      "id": "LEDGER-R-034",
+      "kind": "derive",
+      "requiredLayers": [
+        "service"
+      ],
+      "implementationRepos": [
+        "open-4wd"
+      ],
+      "testContracts": {
+        "service": "ledger-r-034-service"
+      },
+      "anchor": {
+        "file": "程式架構/ledger-checkpoint.md",
+        "line": 116,
+        "excerpt": "`AssetVersionDerivedState.minSupportedByType` 依每個 asset type 的破壞牆推導：跨越牆 V 的不同創作者"
+      },
+      "refs": [
+        {
+          "file": "程式架構/ledger-checkpoint.md",
+          "line": 104
+        }
+      ]
+    },
+    {
+      "id": "LEDGER-R-035",
+      "kind": "invariant",
+      "requiredLayers": [
+        "service"
+      ],
+      "implementationRepos": [
+        "open-4wd"
+      ],
+      "testContracts": {
+        "service": "ledger-r-035-service"
+      },
+      "anchor": {
+        "file": "程式架構/ledger-checkpoint.md",
+        "line": 167,
+        "excerpt": "冷分區鍵固定使用事件 timestamp 的 UTC 年份與季度，hot window 也依同一函式切分："
+      },
+      "refs": []
+    },
+    {
+      "id": "LEDGER-R-036",
+      "kind": "behavior",
+      "requiredLayers": [
+        "service"
+      ],
+      "implementationRepos": [
+        "open-4wd"
+      ],
+      "testContracts": {
+        "service": "ledger-r-036-service"
+      },
+      "anchor": {
+        "file": "程式架構/ledger-checkpoint.md",
+        "line": 187,
+        "excerpt": "> **帳本檢查點 ≠ 回合共識錨**：本節是**全網 ledger 狀態整併**機制（治理 signer set：初期 `N=1 → quorum 1`；`N"
+      },
+      "refs": []
+    },
+    {
+      "id": "LEDGER-R-037",
+      "kind": "reject",
+      "requiredLayers": [
+        "schema-static"
+      ],
+      "implementationRepos": [
+        "open-4wd"
+      ],
+      "testContracts": {
+        "schema-static": "ledger-r-037-schema-static"
+      },
+      "anchor": {
+        "file": "程式架構/ledger-checkpoint.md",
+        "line": 212,
+        "excerpt": "- **公開凍結前的 exact v1 baseline**：只接受上列 exact closed shape；`checkpoint_version: 0`／"
+      },
+      "refs": []
+    },
+    {
+      "id": "LEDGER-R-038",
+      "kind": "behavior",
+      "requiredLayers": [
+        "service"
+      ],
+      "implementationRepos": [
+        "open-4wd"
+      ],
+      "testContracts": {
+        "service": "ledger-r-038-service"
+      },
+      "anchor": {
+        "file": "程式架構/ledger-checkpoint.md",
+        "line": 211,
+        "excerpt": "- **提案觸發**：任一治理 signer 見「本地時鐘 − 上一檢查點 timestamp ≥ `LEDGER_CHECKPOINT_INTERVAL_HO"
+      },
+      "refs": []
+    },
+    {
+      "id": "LEDGER-R-039",
+      "kind": "reject",
+      "requiredLayers": [
+        "service"
+      ],
+      "implementationRepos": [
+        "open-4wd"
+      ],
+      "testContracts": {
+        "service": "ledger-r-039-service"
+      },
+      "anchor": {
+        "file": "程式架構/ledger-checkpoint.md",
+        "line": 215,
+        "excerpt": "- `reviewAndSign`：驗 proposer 簽章 → 驗 head-set frontier 與前一 frontier 雙向連續 → 以完整 DA"
+      },
+      "refs": []
+    },
+    {
+      "id": "LEDGER-R-040",
+      "kind": "invariant",
+      "requiredLayers": [
+        "service"
+      ],
+      "implementationRepos": [
+        "open-4wd"
+      ],
+      "testContracts": {
+        "service": "ledger-r-040-service"
+      },
+      "anchor": {
+        "file": "程式架構/ledger-checkpoint.md",
+        "line": 217,
+        "excerpt": "- **CheckpointStore control envelope**：`{ version, revision, latest, effective, "
+      },
+      "refs": []
+    },
+    {
+      "id": "LEDGER-R-041",
+      "kind": "behavior",
+      "requiredLayers": [
+        "service"
+      ],
+      "implementationRepos": [
+        "open-4wd"
+      ],
+      "testContracts": {
+        "service": "ledger-r-041-service"
+      },
+      "anchor": {
+        "file": "程式架構/ledger-checkpoint.md",
+        "line": 218,
+        "excerpt": "- **遠端 adoption 與啟動 watermark**：live `LedgerCheckpointEvent` 與 open 時的 historica"
+      },
+      "refs": []
+    },
+    {
+      "id": "LEDGER-R-042",
+      "kind": "reject",
+      "requiredLayers": [
+        "service"
+      ],
+      "implementationRepos": [
+        "open-4wd"
+      ],
+      "testContracts": {
+        "service": "ledger-r-042-service"
+      },
+      "anchor": {
+        "file": "程式架構/ledger-checkpoint.md",
+        "line": 219,
+        "excerpt": "- **同 previous sibling quarantine**：若兩個不同 checkpoint CID 都完整有效且 `previous_checkp"
+      },
+      "refs": []
+    },
+    {
+      "id": "LEDGER-R-043",
+      "kind": "invariant",
+      "requiredLayers": [
+        "service"
+      ],
+      "implementationRepos": [
+        "open-4wd"
+      ],
+      "testContracts": {
+        "service": "ledger-r-043-service"
+      },
+      "anchor": {
+        "file": "程式架構/ledger-checkpoint.md",
+        "line": 220,
+        "excerpt": "- **crash redo 與 pre-open reconciliation**：跨 Orbit log／CheckpointStore 不宣稱單一 tra"
+      },
+      "refs": []
+    },
+    {
+      "id": "LEDGER-R-044",
+      "kind": "invariant",
+      "requiredLayers": [
+        "service"
+      ],
+      "implementationRepos": [
+        "open-4wd"
+      ],
+      "testContracts": {
+        "service": "ledger-r-044-service"
+      },
+      "anchor": {
+        "file": "程式架構/ledger-checkpoint.md",
+        "line": 228,
+        "excerpt": "- Orbit entry 使用獨立 IndexedDB blockstore `open4wd/ledger/entries`；不得與 Helia/Bitsw"
+      },
+      "refs": []
+    },
+    {
+      "id": "LEDGER-R-045",
+      "kind": "reject",
+      "requiredLayers": [
+        "service"
+      ],
+      "implementationRepos": [
+        "open-4wd"
+      ],
+      "testContracts": {
+        "service": "ledger-r-045-service"
+      },
+      "anchor": {
+        "file": "程式架構/ledger-checkpoint.md",
+        "line": 230,
+        "excerpt": "- remote join 必須接到目前任一 head 或 finalized checkpoint boundary；isolated fork 拒絕。hea"
+      },
+      "refs": []
+    },
+    {
+      "id": "LEDGER-R-046",
+      "kind": "reject",
+      "requiredLayers": [
+        "admission"
+      ],
+      "implementationRepos": [
+        "open-4wd"
+      ],
+      "testContracts": {
+        "admission": "ledger-r-046-admission"
+      },
+      "anchor": {
+        "file": "程式架構/ledger-checkpoint.md",
+        "line": 231,
+        "excerpt": "- remote join 與 local `commitPrepared(finalEntryBytes, cid)` 都先經 canonical Admis"
+      },
+      "refs": []
+    },
+    {
+      "id": "LEDGER-R-047",
+      "kind": "invariant",
+      "requiredLayers": [
+        "service"
+      ],
+      "implementationRepos": [
+        "open-4wd"
+      ],
+      "testContracts": {
+        "service": "ledger-r-047-service"
+      },
+      "anchor": {
+        "file": "程式架構/ledger-checkpoint.md",
+        "line": 232,
+        "excerpt": "- quota eviction 只刪 finalized-checkpoint-covered entry，且呼叫專屬 entry blockstore 的真"
+      },
+      "refs": []
+    },
+    {
+      "id": "LEDGER-R-048",
+      "kind": "behavior",
+      "requiredLayers": [
+        "service"
+      ],
+      "implementationRepos": [
+        "open-4wd"
+      ],
+      "testContracts": {
+        "service": "ledger-r-048-service"
+      },
+      "anchor": {
+        "file": "程式架構/ledger-checkpoint.md",
+        "line": 234,
+        "excerpt": "- `syncFromCheckpoint`：取 effective latest checkpoint（無則從 genesis/log 重建）→ 載已驗 de"
+      },
+      "refs": []
+    },
+    {
+      "id": "LEDGER-R-049",
+      "kind": "reject",
+      "requiredLayers": [
+        "service"
+      ],
+      "implementationRepos": [
+        "open-4wd"
+      ],
+      "testContracts": {
+        "service": "ledger-r-049-service"
+      },
+      "anchor": {
+        "file": "程式架構/ledger-checkpoint.md",
+        "line": 235,
+        "excerpt": "- **accepted／pending／notified 分離**：只有 decode 成功、非 checkpoint、未來時戳排除、所有 timeless "
+      },
+      "refs": []
+    },
+    {
+      "id": "LEDGER-R-050",
+      "kind": "invariant",
+      "requiredLayers": [
+        "service",
+        "fold"
+      ],
+      "implementationRepos": [
+        "open-4wd"
+      ],
+      "testContracts": {
+        "service": "ledger-r-050-service",
+        "fold": "ledger-r-050-fold"
+      },
+      "anchor": {
+        "file": "程式架構/ledger-checkpoint.md",
+        "line": 237,
+        "excerpt": "- **Orbit multi-head 與 full-DAG fold**：所有已連到任一 verified head／checkpoint boundary"
+      },
+      "refs": []
+    },
+    {
+      "id": "LEDGER-R-051",
+      "kind": "invariant",
+      "requiredLayers": [
+        "service"
+      ],
+      "implementationRepos": [
+        "open-4wd"
+      ],
+      "testContracts": {
+        "service": "ledger-r-051-service"
+      },
+      "anchor": {
+        "file": "程式架構/ledger-settlement.md",
+        "line": 113,
+        "excerpt": "**可簽章欄位一律 plain `Record` / array——dag-cbor 對 JS `Map` 往返不對稱**（decode 回 plain obj"
+      },
+      "refs": []
+    },
+    {
+      "id": "LEDGER-R-052",
+      "kind": "behavior",
+      "requiredLayers": [
+        "service"
+      ],
+      "implementationRepos": [
+        "open-4wd"
+      ],
+      "testContracts": {
+        "service": "ledger-r-052-service"
+      },
+      "anchor": {
+        "file": "程式架構/ledger-settlement.md",
+        "line": 148,
+        "excerpt": "完賽 → 主 peer 組裝自包含 match-facts candidate → 完賽者各自核對 → `⌊N/2⌋+1` 簽章 → 寫 ledger。cand"
+      },
+      "refs": []
+    },
+    {
+      "id": "LEDGER-R-053",
+      "kind": "derive",
+      "requiredLayers": [
+        "service"
+      ],
+      "implementationRepos": [
+        "open-4wd"
+      ],
+      "testContracts": {
+        "service": "ledger-r-053-service"
+      },
+      "anchor": {
+        "file": "程式架構/ledger-settlement.md",
+        "line": 141,
+        "excerpt": "- `builtin:*` 過濾 → 公版不算 UGC 使用、不觸發 royalty；`local:*` 過濾 → defense in depth（不該出現在"
+      },
+      "refs": []
+    },
+    {
+      "id": "LEDGER-R-054",
+      "kind": "invariant",
+      "requiredLayers": [
+        "fold"
+      ],
+      "implementationRepos": [
+        "open-4wd"
+      ],
+      "testContracts": {
+        "fold": "ledger-r-054-fold"
+      },
+      "anchor": {
+        "file": "程式架構/ledger.md",
+        "line": 107,
+        "excerpt": "> **不變式**：所有 time-based derive 規則（退役判定、24h 覆蓋防抖、cold 切分、pendingReports expire）**"
+      },
+      "refs": []
+    },
+    {
+      "id": "LEDGER-R-055",
+      "kind": "invariant",
+      "requiredLayers": [
+        "service"
+      ],
+      "implementationRepos": [
+        "open-4wd"
+      ],
+      "testContracts": {
+        "service": "ledger-r-055-service"
+      },
+      "anchor": {
+        "file": "程式架構/ledger.md",
+        "line": 82,
+        "excerpt": "`registeredAt` 與 `lastEventAt` 只能由 canonical fold 的共識時鐘推導，自報 timestamp 不得倒填。"
+      },
+      "refs": [
+        {
+          "file": "信譽系統.md",
+          "line": 124
+        }
+      ]
+    },
+    {
+      "id": "LEDGER-R-056",
+      "kind": "invariant",
+      "requiredLayers": [
+        "fold"
+      ],
+      "implementationRepos": [
+        "open-4wd"
+      ],
+      "testContracts": {
+        "fold": "ledger-r-056-fold"
+      },
+      "anchor": {
+        "file": "程式架構/ledger.md",
+        "line": 84,
+        "excerpt": "多簽事件的 publisher `peerId` 不代表被簽署者身分，不得寫入其 `registeredAt` 或 `lastEventAt`。"
+      },
+      "refs": []
+    },
+    {
+      "id": "LEDGER-R-057",
+      "kind": "invariant",
+      "requiredLayers": [
+        "admission",
+        "fold"
+      ],
+      "implementationRepos": [
+        "open-4wd"
+      ],
+      "testContracts": {
+        "admission": "ledger-r-057-admission",
+        "fold": "ledger-r-057-fold"
+      },
+      "anchor": {
+        "file": "程式架構/ledger.md",
+        "line": 111,
+        "excerpt": "log 的 access controller 為 `write:['*']`，任何 peer 都可用舊時戳條目繞過 live ±30 秒檢查。凡「錯誤事件被 "
+      },
+      "refs": []
+    },
+    {
+      "id": "LEDGER-R-058",
+      "kind": "invariant",
+      "requiredLayers": [
+        "fold"
+      ],
+      "implementationRepos": [
+        "open-4wd"
+      ],
+      "testContracts": {
+        "fold": "ledger-r-058-fold"
+      },
+      "anchor": {
+        "file": "程式架構/ledger.md",
+        "line": 113,
+        "excerpt": "**Admission 不取代業務冪等**：完全相同的 final entry 由 CID 去重，同一 proof 也不能跨 clock／parents／Orb"
+      },
+      "refs": []
+    },
+    {
+      "id": "LEDGER-R-059",
+      "kind": "reject",
+      "requiredLayers": [
+        "fold"
+      ],
+      "implementationRepos": [
+        "open-4wd"
+      ],
+      "testContracts": {
+        "fold": "ledger-r-059-fold"
+      },
+      "anchor": {
+        "file": "程式架構/ledger.md",
+        "line": 117,
+        "excerpt": "**fold 迴圈前置時鐘防毒閘**：fold 於 reducer 之前一律排除**未來時戳**（`event.timestamp > fold 時鐘`）條目—"
+      },
+      "refs": []
+    },
+    {
+      "id": "LEDGER-R-060",
+      "kind": "reject",
+      "requiredLayers": [
+        "fold"
+      ],
+      "implementationRepos": [
+        "open-4wd"
+      ],
+      "testContracts": {
+        "fold": "ledger-r-060-fold"
+      },
+      "anchor": {
+        "file": "程式架構/ledger.md",
+        "line": 123,
+        "excerpt": "| 〔ECON-R-043〕 〔ECON-R-042〕 `match-result`（economy） | timeless 自包含驗證：matchId/gri"
+      },
+      "refs": [
+        {
+          "file": "程式架構/economy.md",
+          "line": 28
+        }
+      ]
+    },
+    {
+      "id": "LEDGER-R-061",
+      "kind": "invariant",
+      "requiredLayers": [
+        "fold"
+      ],
+      "implementationRepos": [
+        "open-4wd"
+      ],
+      "testContracts": {
+        "fold": "ledger-r-061-fold"
+      },
+      "anchor": {
+        "file": "程式架構/ledger.md",
+        "line": 124,
+        "excerpt": "| `ugc-upload`（economy 費）                              | `cid` record 已存在＝已收過費、重"
+      },
+      "refs": []
+    },
+    {
+      "id": "LEDGER-R-062",
+      "kind": "reject",
+      "requiredLayers": [
+        "fold"
+      ],
+      "implementationRepos": [
+        "open-4wd"
+      ],
+      "testContracts": {
+        "fold": "ledger-r-062-fold"
+      },
+      "anchor": {
+        "file": "程式架構/ledger.md",
+        "line": 125,
+        "excerpt": "| `slot-purchase`（economy）                              | `payer === peerId`（冒名守"
+      },
+      "refs": []
+    },
+    {
+      "id": "LEDGER-R-063",
+      "kind": "reject",
+      "requiredLayers": [
+        "fold"
+      ],
+      "implementationRepos": [
+        "open-4wd"
+      ],
+      "testContracts": {
+        "fold": "ledger-r-063-fold"
+      },
+      "anchor": {
+        "file": "程式架構/ledger.md",
+        "line": 126,
+        "excerpt": "| `ugc-sponsor-burn`（economy）                           | `paymentIntentDigest` "
+      },
+      "refs": []
+    },
+    {
+      "id": "LEDGER-R-064",
+      "kind": "reject",
+      "requiredLayers": [
+        "fold"
+      ],
+      "implementationRepos": [
+        "open-4wd"
+      ],
+      "testContracts": {
+        "fold": "ledger-r-064-fold"
+      },
+      "anchor": {
+        "file": "程式架構/ledger.md",
+        "line": 127,
+        "excerpt": "| `ugc-maintenance`（economy）                            | `paymentIntentDigest` "
+      },
+      "refs": []
+    },
+    {
+      "id": "LEDGER-R-065",
+      "kind": "reject",
+      "requiredLayers": [
+        "admission",
+        "fold"
+      ],
+      "implementationRepos": [
+        "open-4wd"
+      ],
+      "testContracts": {
+        "admission": "ledger-r-065-admission",
+        "fold": "ledger-r-065-fold"
+      },
+      "anchor": {
+        "file": "程式架構/ledger.md",
+        "line": 128,
+        "excerpt": "| `config-update`（economy 治理）                         | `prevEpoch === state.eco"
+      },
+      "refs": []
+    },
+    {
+      "id": "LEDGER-R-066",
+      "kind": "reject",
+      "requiredLayers": [
+        "admission",
+        "fold"
+      ],
+      "implementationRepos": [
+        "open-4wd"
+      ],
+      "testContracts": {
+        "admission": "ledger-r-066-admission",
+        "fold": "ledger-r-066-fold"
+      },
+      "anchor": {
+        "file": "程式架構/ledger.md",
+        "line": 130,
+        "excerpt": "| `blacklist-cid`（anti-piracy）                          | 須存在一筆 `result === 'pas"
+      },
+      "refs": []
+    },
+    {
+      "id": "LEDGER-R-067",
+      "kind": "reject",
+      "requiredLayers": [
+        "fold"
+      ],
+      "implementationRepos": [
+        "open-4wd"
+      ],
+      "testContracts": {
+        "fold": "ledger-r-067-fold"
+      },
+      "anchor": {
+        "file": "程式架構/ledger.md",
+        "line": 131,
+        "excerpt": "| `report`（moderation）                                  | `targetKind ∈ {cid, pe"
+      },
+      "refs": []
+    },
+    {
+      "id": "LEDGER-R-068",
+      "kind": "invariant",
+      "requiredLayers": [
+        "fold"
+      ],
+      "implementationRepos": [
+        "open-4wd"
+      ],
+      "testContracts": {
+        "fold": "ledger-r-068-fold"
+      },
+      "anchor": {
+        "file": "程式架構/ledger.md",
+        "line": 133,
+        "excerpt": "**畸形事件 fold 韌性**：fold 迴圈對每筆事件的 applier 呼叫包 try/catch——applier 拋錯（欄位缺失 ／ 型別違規 ／ 簽"
+      },
+      "refs": []
+    },
+    {
+      "id": "LEDGER-R-069",
+      "kind": "derive",
+      "requiredLayers": [
+        "service"
+      ],
+      "implementationRepos": [
+        "open-4wd"
+      ],
+      "testContracts": {
+        "service": "ledger-r-069-service"
+      },
+      "anchor": {
+        "file": "程式架構/ledger.md",
+        "line": 137,
+        "excerpt": "退役判定**完全自動、純 derive、不寫事件**；pinning service 看到 `retired: true` 自動 unpin。"
+      },
+      "refs": []
+    },
+    {
+      "id": "LEDGER-R-070",
+      "kind": "reject",
+      "requiredLayers": [
+        "fold"
+      ],
+      "implementationRepos": [
+        "open-4wd"
+      ],
+      "testContracts": {
+        "fold": "ledger-r-070-fold"
+      },
+      "anchor": {
+        "file": "程式架構/ledger.md",
+        "line": 177,
+        "excerpt": "apply 時：扣 payer `burnAmount`（**費率收口**：必須 ＝`state.economyConfig.ugc_lifecycle.mai"
+      },
+      "refs": []
+    },
+    {
+      "id": "LEDGER-R-071",
+      "kind": "reject",
+      "requiredLayers": [
+        "admission",
+        "fold"
+      ],
+      "implementationRepos": [
+        "open-4wd"
+      ],
+      "testContracts": {
+        "admission": "ledger-r-071-admission",
+        "fold": "ledger-r-071-fold"
+      },
+      "anchor": {
+        "file": "程式架構/ledger.md",
+        "line": 183,
+        "excerpt": "**簽章與上鏈形（實作即權威，src/economy/governance.ts）**：提案流程定稿 `timestamp`／`peerId`（提案者）後，各 "
+      },
+      "refs": []
+    },
+    {
+      "id": "LEDGER-R-072",
+      "kind": "behavior",
+      "requiredLayers": [
+        "admission"
+      ],
+      "implementationRepos": [
+        "open-4wd"
+      ],
+      "testContracts": {
+        "admission": "ledger-r-072-admission"
+      },
+      "anchor": {
+        "file": "程式架構/ledger.md",
+        "line": 198,
+        "excerpt": "不影響玩家信譽，純供開發者調查 desync。寫入者 ＝ 被踢者本人（自報其觀測的 hash 票面；無法強制他人為調查記錄簽章）——無 state reduce"
+      },
+      "refs": []
+    },
+    {
+      "id": "LEDGER-R-073",
+      "kind": "behavior",
+      "requiredLayers": [
+        "service"
+      ],
+      "implementationRepos": [
+        "open-4wd"
+      ],
+      "testContracts": {
+        "service": "ledger-r-073-service"
+      },
+      "anchor": {
+        "file": "程式架構/ledger.md",
+        "line": 202,
+        "excerpt": "OrbitDB log append-only 永久累積；客戶端不必本地保留已被 finalized checkpoint 覆蓋的事件。runtime 使用 w"
+      },
+      "refs": []
+    },
+    {
+      "id": "LEDGER-R-074",
+      "kind": "reject",
+      "requiredLayers": [
+        "admission"
+      ],
+      "implementationRepos": [
+        "open-4wd"
+      ],
+      "testContracts": {
+        "admission": "ledger-r-074-admission"
+      },
+      "anchor": {
+        "file": "程式架構/ledger.md",
+        "line": 221,
+        "excerpt": "- persistence admission 使用 `open4wd-ledger` custom access-controller：manifest `w"
+      },
+      "refs": []
+    },
+    {
+      "id": "LEDGER-R-075",
+      "kind": "invariant",
+      "requiredLayers": [
+        "service"
+      ],
+      "implementationRepos": [
+        "open-4wd"
+      ],
+      "testContracts": {
+        "service": "ledger-r-075-service"
+      },
+      "anchor": {
+        "file": "程式架構/ledger.md",
+        "line": 220,
+        "excerpt": "- **Checkpoint + 簽章永遠保留**（獨立 `LevelStorage`、不走 LRU），否則新玩家無法驗 derived state。"
+      },
+      "refs": []
+    },
+    {
+      "id": "LEDGER-R-076",
+      "kind": "invariant",
+      "requiredLayers": [
+        "service"
+      ],
+      "implementationRepos": [
+        "open-4wd"
+      ],
+      "testContracts": {
+        "service": "ledger-r-076-service"
+      },
+      "anchor": {
+        "file": "程式架構/ledger.md",
+        "line": 218,
+        "excerpt": "- finalized checkpoint 完整驗簽後先 prepare boundary；content-addressed artifacts 與唯一宣告"
+      },
+      "refs": []
+    },
+    {
+      "id": "LEDGER-R-077",
+      "kind": "behavior",
+      "requiredLayers": [
+        "service"
+      ],
+      "implementationRepos": [
+        "open-4wd"
+      ],
+      "testContracts": {
+        "service": "ledger-r-077-service"
+      },
+      "anchor": {
+        "file": "程式架構/ledger.md",
+        "line": 227,
+        "excerpt": "這是**成本與損害上限**，不是絕對阻擋大型攻擊者：有足夠 CPU／ 裝置的攻擊者仍可為大量不同 entry 逐筆付費；本機 quota 滿載會 fail-cl"
+      },
+      "refs": []
+    },
+    {
+      "id": "LEDGER-R-078",
+      "kind": "behavior",
+      "requiredLayers": [
+        "service"
+      ],
+      "implementationRepos": [
+        "open-4wd"
+      ],
+      "testContracts": {
+        "service": "ledger-r-078-service"
+      },
+      "anchor": {
+        "file": "程式架構/ledger.md",
+        "line": 271,
+        "excerpt": "`getDerivedState`、`getMatchRecord`、`getMatchFromPartition`、`getRecentMatchesForP"
+      },
+      "refs": []
+    },
+    {
+      "id": "LEDGER-R-079",
+      "kind": "behavior",
+      "requiredLayers": [
+        "runtime"
+      ],
+      "implementationRepos": [
+        "open-4wd"
+      ],
+      "testContracts": {
+        "runtime": "ledger-r-079-runtime"
+      },
+      "anchor": {
+        "file": "賽內機制.md",
+        "line": 119,
+        "excerpt": "- checksum 等待容差 30 frame（0.5 秒）：逾窗未到 = 該輪缺席、不阻塞多數決；mismatch 不觸發 rollback、僅累積 des"
+      },
+      "refs": []
+    },
+    {
+      "id": "LEDGER-R-080",
+      "kind": "invariant",
+      "requiredLayers": [
+        "runtime"
+      ],
+      "implementationRepos": [
+        "open-4wd"
+      ],
+      "testContracts": {
+        "runtime": "ledger-r-080-runtime"
+      },
+      "anchor": {
+        "file": "賽內機制.md",
+        "line": 125,
+        "excerpt": "跨 peer 物理運算結果**必須完全一致**："
+      },
+      "refs": []
+    },
+    {
+      "id": "LEDGER-R-081",
+      "kind": "behavior",
+      "requiredLayers": [
+        "runtime"
+      ],
+      "implementationRepos": [
+        "open-4wd"
+      ],
+      "testContracts": {
+        "runtime": "ledger-r-081-runtime"
+      },
+      "anchor": {
+        "file": "賽內機制.md",
+        "line": 231,
+        "excerpt": "| 完成該回合 `lap_count` 圈 | 玩家進入該回合「已完賽」狀態；其他玩家繼續 |"
+      },
+      "refs": []
+    },
+    {
+      "id": "LEDGER-R-082",
+      "kind": "derive",
+      "requiredLayers": [
+        "runtime"
+      ],
+      "implementationRepos": [
+        "open-4wd"
+      ],
+      "testContracts": {
+        "runtime": "ledger-r-082-runtime"
+      },
+      "anchor": {
+        "file": "賽內機制.md",
+        "line": 237,
+        "excerpt": "回合結束 → 先分①已完賽、②未完賽存活、③未完賽失能（battery／motor `functionalDisabled` 或 chassis `physic"
+      },
+      "refs": []
+    },
+    {
+      "id": "LEDGER-R-083",
+      "kind": "behavior",
+      "requiredLayers": [
+        "runtime"
+      ],
+      "implementationRepos": [
+        "open-4wd"
+      ],
+      "testContracts": {
+        "runtime": "ledger-r-083-runtime"
+      },
+      "anchor": {
+        "file": "賽內機制.md",
+        "line": 245,
+        "excerpt": "| 新車初始狀態 | 載入下一回合的車即全新（fatigue 0 / temperature ambient / battery 滿 / 彈藥滿 / broke"
+      },
+      "refs": []
+    },
+    {
+      "id": "LEDGER-R-084",
+      "kind": "derive",
+      "requiredLayers": [
+        "service"
+      ],
+      "implementationRepos": [
+        "open-4wd"
+      ],
+      "testContracts": {
+        "service": "ledger-r-084-service"
+      },
+      "anchor": {
+        "file": "賽內機制.md",
+        "line": 252,
+        "excerpt": "1. **總名次**：N 回合積分加總由高到低；tiebreak 總完成時間（DNF 回合計該回合時限）→ PeerId lexicographic（[算式表."
+      },
+      "refs": []
+    },
+    {
+      "id": "LEDGER-R-085",
+      "kind": "behavior",
+      "requiredLayers": [
+        "runtime"
+      ],
+      "implementationRepos": [
+        "open-4wd"
+      ],
+      "testContracts": {
+        "runtime": "ledger-r-085-runtime"
+      },
+      "anchor": {
+        "file": "賽內機制.md",
+        "line": 261,
+        "excerpt": "- 所有完賽者只核對 match facts（rounds、ranking、loadouts、grid proof、inline anchors、disconn"
+      },
+      "refs": []
+    },
+    {
+      "id": "LEDGER-R-086",
+      "kind": "behavior",
+      "requiredLayers": [
+        "runtime"
+      ],
+      "implementationRepos": [
+        "open-4wd"
+      ],
+      "testContracts": {
+        "runtime": "ledger-r-086-runtime"
+      },
+      "anchor": {
+        "file": "賽內機制.md",
+        "line": 291,
+        "excerpt": "| 賽中網路斷線 | race-mesh 獨立 generation 先走 15s 重連窗；GO 後逾時僅原 active roster 嚴格多數側可形成 ne"
+      },
+      "refs": []
+    },
+    {
+      "id": "LEDGER-R-087",
+      "kind": "reject",
+      "requiredLayers": [
+        "runtime"
+      ],
+      "implementationRepos": [
+        "open-4wd"
+      ],
+      "testContracts": {
+        "runtime": "ledger-r-087-runtime"
+      },
+      "anchor": {
+        "file": "賽內機制.md",
+        "line": 304,
+        "excerpt": "| Input 偽造／畸形 | Race Sign Key 簽章／回合隔離；每幀最多 4 個不重複 skill，Event／Hold 型態與本回合 loadou"
+      },
+      "refs": []
+    },
+    {
+      "id": "LEDGER-R-088",
+      "kind": "reject",
+      "requiredLayers": [
+        "runtime"
+      ],
+      "implementationRepos": [
+        "open-4wd"
+      ],
+      "testContracts": {
+        "runtime": "ledger-r-088-runtime"
+      },
+      "anchor": {
+        "file": "賽內機制.md",
+        "line": 305,
+        "excerpt": "| 同幀 equivocation | `(peer, frame)` 首個 signed 值鎖定；本端觀測到第二個相異值立即 fail-closed；跨 Da"
+      },
+      "refs": []
+    },
+    {
+      "id": "LEDGER-R-089",
+      "kind": "reject",
+      "requiredLayers": [
+        "runtime"
+      ],
+      "implementationRepos": [
+        "open-4wd"
+      ],
+      "testContracts": {
+        "runtime": "ledger-r-089-runtime"
+      },
+      "anchor": {
+        "file": "賽內機制.md",
+        "line": 308,
+        "excerpt": "| 抄近路 / 跳關 | Checkpoint 須依序點亮才算完賽 / 計圈；所有 peer deterministic 重算驗證 |"
+      },
+      "refs": []
+    },
+    {
+      "id": "LEDGER-R-090",
+      "kind": "reject",
+      "requiredLayers": [
+        "service"
+      ],
+      "implementationRepos": [
+        "open-4wd-pinning"
+      ],
+      "testContracts": {
+        "service": "ledger-r-090-service"
+      },
+      "anchor": {
+        "file": "程式架構/ledger-admission.md",
+        "line": 20,
+        "excerpt": "**一次性 genesis 邊界**：正式 `open4wd-ledger` 只能由 pinning repo 的獨立 one-shot operator 在專"
+      },
+      "refs": []
+    },
+    {
+      "id": "LEDGER-R-091",
+      "kind": "invariant",
+      "requiredLayers": [
+        "service"
+      ],
+      "implementationRepos": [
+        "open-4wd"
+      ],
+      "testContracts": {
+        "service": "ledger-r-091-service"
+      },
+      "anchor": {
+        "file": "資料系統.md",
+        "line": 27,
+        "excerpt": "- **單一 chain identity**：`chainId` 固定等於 canonical"
+      },
+      "refs": [
+        {
+          "file": "經濟系統.md",
+          "line": 31
+        }
+      ]
+    },
+    {
+      "id": "LEDGER-R-092",
+      "kind": "invariant",
+      "requiredLayers": [
+        "service"
+      ],
+      "implementationRepos": [
+        "open-4wd"
+      ],
+      "testContracts": {
+        "service": "ledger-r-092-service"
+      },
+      "anchor": {
+        "file": "資料系統.md",
+        "line": 32,
+        "excerpt": "- **本機 mutable state 分鏈**：checkpoint IndexedDB 名稱與 control"
+      },
+      "refs": []
+    },
+    {
+      "id": "LEDGER-R-093",
+      "kind": "invariant",
+      "requiredLayers": [
+        "service"
+      ],
+      "implementationRepos": [
+        "open-4wd"
+      ],
+      "testContracts": {
+        "service": "ledger-r-093-service"
+      },
+      "anchor": {
+        "file": "程式架構/ledger-admission.md",
+        "line": 125,
+        "excerpt": "`ledgerSigningDigest` 是 ledger-only API，與通用"
+      },
+      "refs": []
+    },
+    {
+      "id": "LEDGER-R-094",
+      "kind": "reject",
+      "requiredLayers": [
+        "admission"
+      ],
+      "implementationRepos": [
+        "open-4wd"
+      ],
+      "testContracts": {
+        "admission": "ledger-r-094-admission"
+      },
+      "anchor": {
+        "file": "資料系統.md",
+        "line": 51,
+        "excerpt": "**內容 codec 必須與 bytes 語意一致**：UGC GLB 依 canonical UnixFS profile"
+      },
+      "refs": []
+    },
+    {
+      "id": "LEDGER-R-095",
+      "kind": "reject",
+      "requiredLayers": [
+        "admission",
+        "fold"
+      ],
+      "implementationRepos": [
+        "open-4wd"
+      ],
+      "testContracts": {
+        "admission": "ledger-r-095-admission",
+        "fold": "ledger-r-095-fold"
+      },
+      "anchor": {
+        "file": "程式架構/ledger-admission.md",
+        "line": 166,
+        "excerpt": "voluntary removal 不得縮小 MatchResult quorum；門檻仍以 original active roster 計算。"
+      },
+      "refs": [
+        {
+          "file": "流程/比賽結算.md",
+          "line": 106
+        }
+      ]
+    },
+    {
+      "id": "LEDGER-R-096",
+      "kind": "invariant",
+      "requiredLayers": [
+        "fold"
+      ],
+      "implementationRepos": [
+        "open-4wd"
+      ],
+      "testContracts": {
+        "fold": "ledger-r-096-fold"
+      },
+      "anchor": {
+        "file": "程式架構/ledger-checkpoint.md",
+        "line": 100,
+        "excerpt": "`processedDisconnectEffects` 以 `(matchId, peerId)` 作持久冪等鍵，`match-result` 與本人自簽 `"
+      },
+      "refs": [
+        {
+          "file": "程式架構/ledger-checkpoint.md",
+          "line": 97
+        }
+      ]
+    },
+    {
+      "id": "LEDGER-R-097",
+      "kind": "invariant",
+      "requiredLayers": [
+        "admission"
+      ],
+      "implementationRepos": [
+        "open-4wd"
+      ],
+      "testContracts": {
+        "admission": "ledger-r-097-admission"
+      },
+      "anchor": {
+        "file": "程式架構/ledger-admission.md",
+        "line": 145,
+        "excerpt": "`ugc-upload` 的內容 admission 與 entry PoW admission 是不同層。事件 metadata 必須精確帶 `physics"
+      },
+      "refs": []
+    },
+    {
+      "id": "LEDGER-R-098",
+      "kind": "reject",
+      "requiredLayers": [
+        "service"
+      ],
+      "implementationRepos": [
+        "open-4wd"
+      ],
+      "testContracts": {
+        "service": "ledger-r-098-service"
+      },
+      "anchor": {
+        "file": "資料系統.md",
+        "line": 344,
+        "excerpt": "3. 建新 OrbitDB log（**新位址**）；ordinary genesis 與 rebirth genesis 互斥，rebirth 缺任一 pro"
+      },
+      "refs": [
+        {
+          "file": "程式架構/ledger-checkpoint.md",
+          "line": 222
+        }
+      ]
+    },
+    {
+      "id": "MOD-R-001",
+      "kind": "invariant",
+      "requiredLayers": [
+        "fold"
+      ],
+      "implementationRepos": [
+        "open-4wd"
+      ],
+      "testContracts": {
+        "fold": "mod-r-001-fold"
+      },
+      "anchor": {
+        "file": "信譽系統.md",
+        "line": 30,
+        "excerpt": "初始 500，clamp 到 [0, 1000]。純函數可重現（[算式表.md §16](算式表.md)）。"
+      },
+      "refs": [
+        {
+          "file": "算式表.md",
+          "line": 606
+        },
+        {
+          "file": "資料系統.md",
+          "line": 324
+        }
+      ]
+    },
+    {
+      "id": "MOD-R-002",
+      "kind": "derive",
+      "requiredLayers": [
+        "fold"
+      ],
+      "implementationRepos": [
+        "open-4wd"
+      ],
+      "testContracts": {
+        "fold": "mod-r-002-fold"
+      },
+      "anchor": {
+        "file": "信譽系統.md",
+        "line": 36,
+        "excerpt": "| UGC 被使用達門檻（每 100 次）                           | +5   | `floor(stats.totalUses "
+      },
+      "refs": []
+    },
+    {
+      "id": "MOD-R-003",
+      "kind": "derive",
+      "requiredLayers": [
+        "fold"
+      ],
+      "implementationRepos": [
+        "open-4wd"
+      ],
+      "testContracts": {
+        "fold": "mod-r-003-fold"
+      },
+      "anchor": {
+        "file": "信譽系統.md",
+        "line": 37,
+        "excerpt": "| 完賽（每場）                                            | +1   | 該場 `ranking` 中非斷線者（"
+      },
+      "refs": []
+    },
+    {
+      "id": "MOD-R-004",
+      "kind": "derive",
+      "requiredLayers": [
+        "fold"
+      ],
+      "implementationRepos": [
+        "open-4wd"
+      ],
+      "testContracts": {
+        "fold": "mod-r-004-fold"
+      },
+      "anchor": {
+        "file": "信譽系統.md",
+        "line": 38,
+        "excerpt": "| 連勝獎勵（連勝 5 場）                                   | +5   | **冠軍定義**：`recentMatche"
+      },
+      "refs": []
+    },
+    {
+      "id": "MOD-R-005",
+      "kind": "derive",
+      "requiredLayers": [
+        "fold"
+      ],
+      "implementationRepos": [
+        "open-4wd"
+      ],
+      "testContracts": {
+        "fold": "mod-r-005-fold"
+      },
+      "anchor": {
+        "file": "信譽系統.md",
+        "line": 39,
+        "excerpt": "| 檢舉成立（檢舉者領）                                    | +10  | 該檢舉案最終仲裁通過             "
+      },
+      "refs": []
+    },
+    {
+      "id": "MOD-R-006",
+      "kind": "derive",
+      "requiredLayers": [
+        "fold"
+      ],
+      "implementationRepos": [
+        "open-4wd"
+      ],
+      "testContracts": {
+        "fold": "mod-r-006-fold"
+      },
+      "anchor": {
+        "file": "信譽系統.md",
+        "line": 40,
+        "excerpt": "| 創作獲得高評分（每個 voteCount ≥ 10 且 ≥ 4.5 ★ 的 UGC） | +20  | per-CID，`awardedCids` 去重防重"
+      },
+      "refs": []
+    },
+    {
+      "id": "MOD-R-007",
+      "kind": "invariant",
+      "requiredLayers": [
+        "fold"
+      ],
+      "implementationRepos": [
+        "open-4wd"
+      ],
+      "testContracts": {
+        "fold": "mod-r-007-fold"
+      },
+      "anchor": {
+        "file": "信譽系統.md",
+        "line": 42,
+        "excerpt": "**比賽加分日額**：同一玩家 rolling 24h 內比賽來源加分（完賽 +1、連勝 +5）合計 ≤ `REPUTATION_MATCH_GAIN_DAIL"
+      },
+      "refs": []
+    },
+    {
+      "id": "MOD-R-008",
+      "kind": "derive",
+      "requiredLayers": [
+        "fold"
+      ],
+      "implementationRepos": [
+        "open-4wd"
+      ],
+      "testContracts": {
+        "fold": "mod-r-008-fold"
+      },
+      "anchor": {
+        "file": "信譽系統.md",
+        "line": 48,
+        "excerpt": "| UGC 被檢舉成立（內容不當 / 其他，每件）                                                       "
+      },
+      "refs": []
+    },
+    {
+      "id": "MOD-R-009",
+      "kind": "derive",
+      "requiredLayers": [
+        "fold"
+      ],
+      "implementationRepos": [
+        "open-4wd"
+      ],
+      "testContracts": {
+        "fold": "mod-r-009-fold"
+      },
+      "anchor": {
+        "file": "信譽系統.md",
+        "line": 50,
+        "excerpt": "| GO 後主動離場／異常斷線（每次）——主動離場由本人單簽 `RaceLeaveEvent` 立即推導；異常斷線由合法 `MatchResultEvent.d"
+      },
+      "refs": [
+        {
+          "file": "賽內機制.md",
+          "line": 294
+        }
+      ]
+    },
+    {
+      "id": "MOD-R-010",
+      "kind": "derive",
+      "requiredLayers": [
+        "service"
+      ],
+      "implementationRepos": [
+        "open-4wd"
+      ],
+      "testContracts": {
+        "service": "mod-r-010-service"
+      },
+      "anchor": {
+        "file": "信譽系統.md",
+        "line": 58,
+        "excerpt": "仲裁投票權重由信譽分數的固定對數曲線決定："
+      },
+      "refs": [
+        {
+          "file": "程式架構/reputation.md",
+          "line": 298
+        },
+        {
+          "file": "算式表.md",
+          "line": 620
+        }
+      ]
+    },
+    {
+      "id": "MOD-R-011",
+      "kind": "derive",
+      "requiredLayers": [
+        "fold"
+      ],
+      "implementationRepos": [
+        "open-4wd"
+      ],
+      "testContracts": {
+        "fold": "mod-r-011-fold"
+      },
+      "anchor": {
+        "file": "信譽系統.md",
+        "line": 75,
+        "excerpt": "檢舉一律走**純仲裁**：隨機抽合格仲裁者 → 加權投票（weight = log10(rep + 10)）通過 > 60% → 定罪（UGC 下架 ＋ 作者扣"
+      },
+      "refs": []
+    },
+    {
+      "id": "MOD-R-012",
+      "kind": "derive",
+      "requiredLayers": [
+        "service"
+      ],
+      "implementationRepos": [
+        "open-4wd"
+      ],
+      "testContracts": {
+        "service": "mod-r-012-service"
+      },
+      "anchor": {
+        "file": "信譽系統.md",
+        "line": 122,
+        "excerpt": "| 註冊 < 7 天 | 信譽下限保護為 400（唯一新手保護條款） |"
+      },
+      "refs": []
+    },
+    {
+      "id": "MOD-R-013",
+      "kind": "derive",
+      "requiredLayers": [
+        "fold"
+      ],
+      "implementationRepos": [
+        "open-4wd"
+      ],
+      "testContracts": {
+        "fold": "mod-r-013-fold"
+      },
+      "anchor": {
+        "file": "信譽系統.md",
+        "line": 134,
+        "excerpt": "`checkMaliciousReporter` 同時滿足以下三條件才扣分："
+      },
+      "refs": []
+    },
+    {
+      "id": "MOD-R-014",
+      "kind": "invariant",
+      "requiredLayers": [
+        "service"
+      ],
+      "implementationRepos": [
+        "open-4wd"
+      ],
+      "testContracts": {
+        "service": "mod-r-014-service"
+      },
+      "anchor": {
+        "file": "信譽系統.md",
+        "line": 203,
+        "excerpt": "- **不動信譽、不動帳本**：信譽是帳本 derive，若吃隨版本變動的 client 清單會造成跨 peer derive 分叉。版權的信譽懲罰只走鏈上檢舉"
+      },
+      "refs": []
+    },
+    {
+      "id": "MOD-R-015",
+      "kind": "derive",
+      "requiredLayers": [
+        "service"
+      ],
+      "implementationRepos": [
+        "open-4wd"
+      ],
+      "testContracts": {
+        "service": "mod-r-015-service"
+      },
+      "anchor": {
+        "file": "信譽系統.md",
+        "line": 209,
+        "excerpt": "合格仲裁者需**同時**滿足以下四條件："
+      },
+      "refs": []
+    },
+    {
+      "id": "MOD-R-016",
+      "kind": "reject",
+      "requiredLayers": [
+        "service",
+        "admission"
+      ],
+      "implementationRepos": [
+        "open-4wd"
+      ],
+      "testContracts": {
+        "service": "mod-r-016-service",
+        "admission": "mod-r-016-admission"
+      },
+      "anchor": {
+        "file": "信譽系統.md",
+        "line": 220,
+        "excerpt": "另有**逐案過濾**（池資格之外）：**兩造本人**（檢舉者 / 被檢舉玩家 / 被檢舉 UGC 的作者）不入該案面板；與檢舉者 / 責任人 24h 內共賽者不"
+      },
+      "refs": []
+    },
+    {
+      "id": "MOD-R-017",
+      "kind": "derive",
+      "requiredLayers": [
+        "service"
+      ],
+      "implementationRepos": [
+        "open-4wd"
+      ],
+      "testContracts": {
+        "service": "mod-r-017-service"
+      },
+      "anchor": {
+        "file": "信譽系統.md",
+        "line": 226,
+        "excerpt": "- 隨機抽 **7 位**合格仲裁者（`ARBITRATION_PANEL_SIZE`，[protocol.md §5](程式參數/protocol.md#5-"
+      },
+      "refs": []
+    },
+    {
+      "id": "MOD-R-018",
+      "kind": "invariant",
+      "requiredLayers": [
+        "fold"
+      ],
+      "implementationRepos": [
+        "open-4wd"
+      ],
+      "testContracts": {
+        "fold": "mod-r-018-fold"
+      },
+      "anchor": {
+        "file": "信譽系統.md",
+        "line": 254,
+        "excerpt": "信譽不開獨立 ledger 事件，分數與 delta 都由已驗來源事件純推導、可重現。"
+      },
+      "refs": []
+    },
+    {
+      "id": "MOD-R-019",
+      "kind": "behavior",
+      "requiredLayers": [
+        "service"
+      ],
+      "implementationRepos": [
+        "open-4wd"
+      ],
+      "testContracts": {
+        "service": "mod-r-019-service"
+      },
+      "anchor": {
+        "file": "程式架構/moderation.md",
+        "line": 17,
+        "excerpt": "`report` 事件必須通過固定 schema 與 target kind 驗證，合法事件才可進入檢舉狀態："
+      },
+      "refs": []
+    },
+    {
+      "id": "MOD-R-020",
+      "kind": "derive",
+      "requiredLayers": [
+        "service"
+      ],
+      "implementationRepos": [
+        "open-4wd"
+      ],
+      "testContracts": {
+        "service": "mod-r-020-service"
+      },
+      "anchor": {
+        "file": "程式架構/moderation.md",
+        "line": 118,
+        "excerpt": "未結案的 `report` 事件放在 `pendingReports`，**滿 90 天仍未結案 → derive 時自動視為過期**（不再列入、不再可觸發新仲"
+      },
+      "refs": []
+    },
+    {
+      "id": "MOD-R-021",
+      "kind": "derive",
+      "requiredLayers": [
+        "service",
+        "fold"
+      ],
+      "implementationRepos": [
+        "open-4wd"
+      ],
+      "testContracts": {
+        "service": "mod-r-021-service",
+        "fold": "mod-r-021-fold"
+      },
+      "anchor": {
+        "file": "程式架構/moderation.md",
+        "line": 144,
+        "excerpt": "撤回資格由檢舉時間與 fold 位置共識時鐘推導，撤回窗在仲裁抽籤前。"
+      },
+      "refs": []
+    },
+    {
+      "id": "MOD-R-022",
+      "kind": "reject",
+      "requiredLayers": [
+        "fold"
+      ],
+      "implementationRepos": [
+        "open-4wd"
+      ],
+      "testContracts": {
+        "fold": "mod-r-022-fold"
+      },
+      "anchor": {
+        "file": "程式架構/moderation.md",
+        "line": 146,
+        "excerpt": "`consensusNow >= 檢舉 + 24h` 時必須拒絕撤回，事件自報 timestamp 不得繞過窗界。"
+      },
+      "refs": []
+    },
+    {
+      "id": "MOD-R-023",
+      "kind": "reject",
+      "requiredLayers": [
+        "fold"
+      ],
+      "implementationRepos": [
+        "open-4wd"
+      ],
+      "testContracts": {
+        "fold": "mod-r-023-fold"
+      },
+      "anchor": {
+        "file": "程式架構/moderation.md",
+        "line": 148,
+        "excerpt": "窗內撤回不進準確率且允許同對象重新檢舉；抽籤後不得撤回。"
+      },
+      "refs": []
+    },
+    {
+      "id": "MOD-R-024",
+      "kind": "reject",
+      "requiredLayers": [
+        "service"
+      ],
+      "implementationRepos": [
+        "open-4wd"
+      ],
+      "testContracts": {
+        "service": "mod-r-024-service"
+      },
+      "anchor": {
+        "file": "程式架構/moderation.md",
+        "line": 173,
+        "excerpt": "已終局下架、退役、進入安全港或不存在的 CID 不得再次成為有效檢舉目標。"
+      },
+      "refs": []
+    },
+    {
+      "id": "MOD-R-025",
+      "kind": "reject",
+      "requiredLayers": [
+        "service"
+      ],
+      "implementationRepos": [
+        "open-4wd"
+      ],
+      "testContracts": {
+        "service": "mod-r-025-service"
+      },
+      "anchor": {
+        "file": "程式架構/moderation.md",
+        "line": 175,
+        "excerpt": "同一對象已有進行中或未過期終局案件時，必須序列化並拒絕重複檢舉。"
+      },
+      "refs": []
+    },
+    {
+      "id": "MOD-R-026",
+      "kind": "reject",
+      "requiredLayers": [
+        "service"
+      ],
+      "implementationRepos": [
+        "open-4wd"
+      ],
+      "testContracts": {
+        "service": "mod-r-026-service"
+      },
+      "anchor": {
+        "file": "程式架構/moderation.md",
+        "line": 177,
+        "excerpt": "檢舉者超過 rolling 窗口額度時必須拒絕新案。"
+      },
+      "refs": []
+    },
+    {
+      "id": "MOD-R-027",
+      "kind": "reject",
+      "requiredLayers": [
+        "service"
+      ],
+      "implementationRepos": [
+        "open-4wd"
+      ],
+      "testContracts": {
+        "service": "mod-r-027-service"
+      },
+      "anchor": {
+        "file": "程式架構/moderation.md",
+        "line": 179,
+        "excerpt": "檢舉理由與 target kind 的非法組合必須在表單服務層拒絕。"
+      },
+      "refs": []
+    },
+    {
+      "id": "MOD-R-028",
+      "kind": "derive",
+      "requiredLayers": [
+        "service"
+      ],
+      "implementationRepos": [
+        "open-4wd"
+      ],
+      "testContracts": {
+        "service": "mod-r-028-service"
+      },
+      "anchor": {
+        "file": "程式架構/moderation.md",
+        "line": 261,
+        "excerpt": "仲裁面板必須以 `hash(reportId + 抽籤檢查點 timestamp)` 對 canonical 合格池決定性抽選 7 人。"
+      },
+      "refs": []
+    },
+    {
+      "id": "MOD-R-029",
+      "kind": "invariant",
+      "requiredLayers": [
+        "service"
+      ],
+      "implementationRepos": [
+        "open-4wd"
+      ],
+      "testContracts": {
+        "service": "mod-r-029-service"
+      },
+      "anchor": {
+        "file": "程式架構/moderation.md",
+        "line": 263,
+        "excerpt": "仲裁資格與投票 weight 一律取該輪抽籤檢查點的 `DerivedState` 快照，投票期間的信譽變動不得改變本案。"
+      },
+      "refs": []
+    },
+    {
+      "id": "MOD-R-030",
+      "kind": "derive",
+      "requiredLayers": [
+        "service"
+      ],
+      "implementationRepos": [
+        "open-4wd"
+      ],
+      "testContracts": {
+        "service": "mod-r-030-service"
+      },
+      "anchor": {
+        "file": "程式架構/moderation.md",
+        "line": 269,
+        "excerpt": "**票集合（tally 的輸入，全網同規則、決定性）**："
+      },
+      "refs": []
+    },
+    {
+      "id": "MOD-R-031",
+      "kind": "reject",
+      "requiredLayers": [
+        "admission"
+      ],
+      "implementationRepos": [
+        "open-4wd"
+      ],
+      "testContracts": {
+        "admission": "mod-r-031-admission"
+      },
+      "anchor": {
+        "file": "程式架構/moderation.md",
+        "line": 276,
+        "excerpt": "`arbitration-vote` admission 必須排除檢舉者與責任人兩造的票。"
+      },
+      "refs": []
+    },
+    {
+      "id": "MOD-R-032",
+      "kind": "reject",
+      "requiredLayers": [
+        "admission"
+      ],
+      "implementationRepos": [
+        "open-4wd"
+      ],
+      "testContracts": {
+        "admission": "mod-r-032-admission"
+      },
+      "anchor": {
+        "file": "程式架構/moderation.md",
+        "line": 278,
+        "excerpt": "`arbitration-vote` admission 必須拒絕抽籤下界前、明確超出容許上界或已撤回案件的票。"
+      },
+      "refs": []
+    },
+    {
+      "id": "MOD-R-033",
+      "kind": "derive",
+      "requiredLayers": [
+        "service"
+      ],
+      "implementationRepos": [
+        "open-4wd"
+      ],
+      "testContracts": {
+        "service": "mod-r-033-service"
+      },
+      "anchor": {
+        "file": "程式架構/moderation.md",
+        "line": 306,
+        "excerpt": "**投票期滿** = 抽籤點起首個 timestamp ≥ 抽籤點 + `ARBITRATION_VOTE_WINDOW_HOURS`（72，待 playtes"
+      },
+      "refs": []
+    },
+    {
+      "id": "MOD-R-034",
+      "kind": "invariant",
+      "requiredLayers": [
+        "service"
+      ],
+      "implementationRepos": [
+        "open-4wd"
+      ],
+      "testContracts": {
+        "service": "mod-r-034-service"
+      },
+      "anchor": {
+        "file": "程式架構/moderation.md",
+        "line": 308,
+        "excerpt": "Quorum 固定為 4 張有效票；pass 與 reject 計入，棄權不計。"
+      },
+      "refs": []
+    },
+    {
+      "id": "MOD-R-035",
+      "kind": "derive",
+      "requiredLayers": [
+        "service"
+      ],
+      "implementationRepos": [
+        "open-4wd"
+      ],
+      "testContracts": {
+        "service": "mod-r-035-service"
+      },
+      "anchor": {
+        "file": "程式架構/moderation.md",
+        "line": 310,
+        "excerpt": "達 quorum 後以整數權重計票，pass 權重必須嚴格大於有效票總權重的 60% 才通過。"
+      },
+      "refs": []
+    },
+    {
+      "id": "MOD-R-036",
+      "kind": "derive",
+      "requiredLayers": [
+        "fold"
+      ],
+      "implementationRepos": [
+        "open-4wd"
+      ],
+      "testContracts": {
+        "fold": "mod-r-036-fold"
+      },
+      "anchor": {
+        "file": "程式架構/moderation.md",
+        "line": 316,
+        "excerpt": "罰則**依檢舉類型、不依 target 種類**（數值權威 [信譽系統.md §2.3](../信譽系統.md)；derive 函式見 [reputation."
+      },
+      "refs": []
+    },
+    {
+      "id": "MOD-R-037",
+      "kind": "derive",
+      "requiredLayers": [
+        "fold"
+      ],
+      "implementationRepos": [
+        "open-4wd"
+      ],
+      "testContracts": {
+        "fold": "mod-r-037-fold"
+      },
+      "anchor": {
+        "file": "程式架構/moderation.md",
+        "line": 335,
+        "excerpt": "同一責任人累積三次仲裁定罪後，必須由 fold 決定性推導為永久全域玩家黑名單："
+      },
+      "refs": []
+    },
+    {
+      "id": "MOD-R-038",
+      "kind": "reject",
+      "requiredLayers": [
+        "admission",
+        "fold"
+      ],
+      "implementationRepos": [
+        "open-4wd"
+      ],
+      "testContracts": {
+        "admission": "mod-r-038-admission",
+        "fold": "mod-r-038-fold"
+      },
+      "anchor": {
+        "file": "程式架構/moderation.md",
+        "line": 355,
+        "excerpt": "`ArbitrationResultEvent` / `BlacklistEvent` **任一 peer 可寫**（無指定寫入者——通常由期滿檢查點的 pro"
+      },
+      "refs": []
+    },
+    {
+      "id": "MOD-R-039",
+      "kind": "reject",
+      "requiredLayers": [
+        "admission",
+        "fold"
+      ],
+      "implementationRepos": [
+        "open-4wd"
+      ],
+      "testContracts": {
+        "admission": "mod-r-039-admission",
+        "fold": "mod-r-039-fold"
+      },
+      "anchor": {
+        "file": "程式架構/moderation.md",
+        "line": 359,
+        "excerpt": "1. `reportEventId` 指向存在且**未撤回、尚無結果**的開放案錨（canonical caseId 反查）；**事件內案錨摘要（caseKin"
+      },
+      "refs": []
+    },
+    {
+      "id": "MOD-R-040",
+      "kind": "reject",
+      "requiredLayers": [
+        "admission",
+        "fold"
+      ],
+      "implementationRepos": [
+        "open-4wd"
+      ],
+      "testContracts": {
+        "admission": "mod-r-040-admission",
+        "fold": "mod-r-040-fold"
+      },
+      "anchor": {
+        "file": "程式架構/moderation.md",
+        "line": 360,
+        "excerpt": "2. `timestamp` ≥ **程序下界**（面板案 ≥ 案錨 ＋ 抽籤延遲 ＋ 投票窗；池不足流局 ≥ 案錨 ＋ 抽籤延遲——與 fold 恆驗同式，硬"
+      },
+      "refs": []
+    },
+    {
+      "id": "MOD-R-041",
+      "kind": "reject",
+      "requiredLayers": [
+        "admission",
+        "fold"
+      ],
+      "implementationRepos": [
+        "open-4wd"
+      ],
+      "testContracts": {
+        "admission": "mod-r-041-admission",
+        "fold": "mod-r-041-fold"
+      },
+      "anchor": {
+        "file": "程式架構/moderation.md",
+        "line": 361,
+        "excerpt": "3. `arbiters` **長度合法**（面板案 = `ARBITRATION_PANEL_SIZE`(7)；池不足流局 = `[]`）"
+      },
+      "refs": []
+    },
+    {
+      "id": "MOD-R-042",
+      "kind": "reject",
+      "requiredLayers": [
+        "admission",
+        "fold"
+      ],
+      "implementationRepos": [
+        "open-4wd"
+      ],
+      "testContracts": {
+        "admission": "mod-r-042-admission",
+        "fold": "mod-r-042-fold"
+      },
+      "anchor": {
+        "file": "程式架構/moderation.md",
+        "line": 362,
+        "excerpt": "4. **panel-signature-set**：≥ quorum 面板 attestation——distinct、∈ `arbiters`、非兩造、簽章"
+      },
+      "refs": []
+    },
+    {
+      "id": "MOD-R-043",
+      "kind": "reject",
+      "requiredLayers": [
+        "admission",
+        "fold"
+      ],
+      "implementationRepos": [
+        "open-4wd"
+      ],
+      "testContracts": {
+        "admission": "mod-r-043-admission",
+        "fold": "mod-r-043-fold"
+      },
+      "anchor": {
+        "file": "程式架構/moderation.md",
+        "line": 363,
+        "excerpt": "5. 同 `reportEventId` 已有結果事件 → 拒收（**首筆有效**；並行寫入的競合由 ledger fork resolution 收斂，[le"
+      },
+      "refs": []
+    },
+    {
+      "id": "MOD-R-044",
+      "kind": "reject",
+      "requiredLayers": [
+        "admission",
+        "fold"
+      ],
+      "implementationRepos": [
+        "open-4wd"
+      ],
+      "testContracts": {
+        "admission": "mod-r-044-admission",
+        "fold": "mod-r-044-fold"
+      },
+      "anchor": {
+        "file": "程式架構/moderation.md",
+        "line": 365,
+        "excerpt": "`BlacklistEvent`：`triggeredBy` 必須指向 `result: 'pass'` 且 `targetKind: 'cid'` 的結果事件"
+      },
+      "refs": []
+    },
+    {
+      "id": "MOD-R-045",
+      "kind": "invariant",
+      "requiredLayers": [
+        "admission",
+        "fold"
+      ],
+      "implementationRepos": [
+        "open-4wd"
+      ],
+      "testContracts": {
+        "admission": "mod-r-045-admission",
+        "fold": "mod-r-045-fold"
+      },
+      "anchor": {
+        "file": "程式架構/moderation.md",
+        "line": 371,
+        "excerpt": "> - **digest**＝`signingDigest({type:'arbitration-result-attest', reportEventId, "
+      },
+      "refs": []
+    },
+    {
+      "id": "MOD-R-046",
+      "kind": "reject",
+      "requiredLayers": [
+        "fold"
+      ],
+      "implementationRepos": [
+        "open-4wd"
+      ],
+      "testContracts": {
+        "fold": "mod-r-046-fold"
+      },
+      "anchor": {
+        "file": "程式架構/moderation.md",
+        "line": 373,
+        "excerpt": "> - **fold 驗**：面板案（pass／reject／ 票不足流局）＝`arbiters.length = 7`、簽章集 ≥ quorum(4)——di"
+      },
+      "refs": [
+        {
+          "file": "程式架構/ledger.md",
+          "line": 129
+        }
+      ]
+    },
+    {
+      "id": "MOD-R-047",
+      "kind": "behavior",
+      "requiredLayers": [
+        "fold"
+      ],
+      "implementationRepos": [
+        "open-4wd"
+      ],
+      "testContracts": {
+        "fold": "mod-r-047-fold"
+      },
+      "anchor": {
+        "file": "程式架構/moderation.md",
+        "line": 383,
+        "excerpt": "- **案錨 = 含 `similarityMatches` 宣告的 `UgcUploadEvent`**（**在鏈上**；無 `ReportEvent`、無檢"
+      },
+      "refs": []
+    },
+    {
+      "id": "MOD-R-048",
+      "kind": "behavior",
+      "requiredLayers": [
+        "admission",
+        "fold"
+      ],
+      "implementationRepos": [
+        "open-4wd"
+      ],
+      "testContracts": {
+        "admission": "mod-r-048-admission",
+        "fold": "mod-r-048-fold"
+      },
+      "anchor": {
+        "file": "程式架構/moderation.md",
+        "line": 385,
+        "excerpt": "- **結果**：`pass`（判抄）→ pending CID 寫 `BlacklistEvent` 下架、**不扣信譽**（灰區撞衫可能），並累積該上傳者的"
+      },
+      "refs": []
+    },
+    {
+      "id": "MOD-R-049",
+      "kind": "invariant",
+      "requiredLayers": [
+        "fold"
+      ],
+      "implementationRepos": [
+        "open-4wd"
+      ],
+      "testContracts": {
+        "fold": "mod-r-049-fold"
+      },
+      "anchor": {
+        "file": "程式架構/moderation.md",
+        "line": 394,
+        "excerpt": "| 既有玩家餘額 | **不變動**（過去鑄幣保留）                                          |"
+      },
+      "refs": []
+    },
+    {
+      "id": "MOD-R-050",
+      "kind": "behavior",
+      "requiredLayers": [
+        "service"
+      ],
+      "implementationRepos": [
+        "open-4wd"
+      ],
+      "testContracts": {
+        "service": "mod-r-050-service"
+      },
+      "anchor": {
+        "file": "程式架構/moderation.md",
+        "line": 416,
+        "excerpt": "| A 黑名單後 B 仍被使用 | B 的 royalty 照舊（B 作者 70% + A 作者 20%，即使 A 在黑名單）                 "
+      },
+      "refs": []
+    },
+    {
+      "id": "MOD-R-051",
+      "kind": "behavior",
+      "requiredLayers": [
+        "service"
+      ],
+      "implementationRepos": [
+        "open-4wd"
+      ],
+      "testContracts": {
+        "service": "mod-r-051-service"
+      },
+      "anchor": {
+        "file": "程式架構/moderation.md",
+        "line": 424,
+        "excerpt": "`canUseUgc` 必須分別以 `blacklisted` 或 `retired` 原因拒絕不可用內容，且不承載 UI 文案："
+      },
+      "refs": []
+    },
+    {
+      "id": "MOD-R-052",
+      "kind": "reject",
+      "requiredLayers": [
+        "service"
+      ],
+      "implementationRepos": [
+        "open-4wd"
+      ],
+      "testContracts": {
+        "service": "mod-r-052-service"
+      },
+      "anchor": {
+        "file": "程式架構/moderation.md",
+        "line": 490,
+        "excerpt": "| 復活 | 不能（事件溯源）                   | 可（付續租費 → `UgcMaintenanceEvent`）         |"
+      },
+      "refs": []
+    },
+    {
+      "id": "MOD-R-053",
+      "kind": "derive",
+      "requiredLayers": [
+        "fold"
+      ],
+      "implementationRepos": [
+        "open-4wd"
+      ],
+      "testContracts": {
+        "fold": "mod-r-053-fold"
+      },
+      "anchor": {
+        "file": "程式架構/reputation.md",
+        "line": 55,
+        "excerpt": "規則查詢必須使用專用持久索引；UI 的最近 100 筆 history 淘汰不得改變共識結果："
+      },
+      "refs": []
+    },
+    {
+      "id": "MOD-R-054",
+      "kind": "behavior",
+      "requiredLayers": [
+        "service"
+      ],
+      "implementationRepos": [
+        "open-4wd"
+      ],
+      "testContracts": {
+        "service": "mod-r-054-service"
+      },
+      "anchor": {
+        "file": "程式架構/reputation.md",
+        "line": 122,
+        "excerpt": "**讀點契約**（[信譽系統.md §4.1](../信譽系統.md)）：仲裁資格與 weight（`now` = 抽籤檢查點 timestamp）、UGC 評"
+      },
+      "refs": []
+    },
+    {
+      "id": "MOD-R-055",
+      "kind": "derive",
+      "requiredLayers": [
+        "fold"
+      ],
+      "implementationRepos": [
+        "open-4wd"
+      ],
+      "testContracts": {
+        "fold": "mod-r-055-fold"
+      },
+      "anchor": {
+        "file": "程式架構/reputation.md",
+        "line": 130,
+        "excerpt": "MatchResult fold 必須共同推導完賽、連勝、斷線信譽 delta，並套用 24h 比賽加分上限："
+      },
+      "refs": []
+    },
+    {
+      "id": "MOD-R-056",
+      "kind": "derive",
+      "requiredLayers": [
+        "fold"
+      ],
+      "implementationRepos": [
+        "open-4wd"
+      ],
+      "testContracts": {
+        "fold": "mod-r-056-fold"
+      },
+      "anchor": {
+        "file": "程式架構/reputation.md",
+        "line": 223,
+        "excerpt": "對齊 [信譽系統.md §4.3](../信譽系統.md)：樣本足夠 + 準確率低 + 無前科保護，三條件**同時**滿足才 −30。"
+      },
+      "refs": []
+    },
+    {
+      "id": "MOD-R-057",
+      "kind": "derive",
+      "requiredLayers": [
+        "fold"
+      ],
+      "implementationRepos": [
+        "open-4wd"
+      ],
+      "testContracts": {
+        "fold": "mod-r-057-fold"
+      },
+      "anchor": {
+        "file": "程式架構/reputation.md",
+        "line": 252,
+        "excerpt": "對齊 [信譽系統.md §2.3 / §5.3](../信譽系統.md)。「其他」型無專屬 reason，**借對象所屬桶的標籤**（對 UGC → `ugc-"
+      },
+      "refs": []
+    },
+    {
+      "id": "PART-R-001",
+      "kind": "reject",
+      "requiredLayers": [
+        "finalizer",
+        "admission",
+        "runtime"
+      ],
+      "implementationRepos": [
+        "open-4wd"
+      ],
+      "testContracts": {
+        "finalizer": "part-r-001-finalizer",
+        "admission": "part-r-001-admission",
+        "runtime": "part-r-001-runtime"
+      },
+      "anchor": {
+        "file": "建模參數/零件與共用介面.md",
+        "line": 75,
+        "excerpt": "Battery 的 `configured_output_w` 必須大於 0，且不得超過實際 canonical 幾何"
+      },
+      "refs": []
+    },
+    {
+      "id": "PHYS-R-001",
+      "kind": "reject",
+      "requiredLayers": [
+        "finalizer",
+        "admission",
+        "runtime"
+      ],
+      "implementationRepos": [
+        "open-4wd"
+      ],
+      "testContracts": {
+        "finalizer": "phys-r-001-finalizer",
+        "admission": "phys-r-001-admission",
+        "runtime": "phys-r-001-runtime"
+      },
+      "anchor": {
+        "file": "建模參數/零件與共用介面.md",
+        "line": 100,
+        "excerpt": "每個 `allocation_pct` 必須為 1–100 整數，同一 chip 全槽總和不得超過 100；"
+      },
+      "refs": []
+    },
+    {
+      "id": "TRACK-R-001",
+      "kind": "reject",
+      "requiredLayers": [
+        "finalizer",
+        "admission",
+        "runtime"
+      ],
+      "implementationRepos": [
+        "open-4wd"
+      ],
+      "testContracts": {
+        "finalizer": "track-r-001-finalizer",
+        "admission": "track-r-001-admission",
+        "runtime": "track-r-001-runtime"
+      },
+      "anchor": {
+        "file": "建模參數/場地.md",
+        "line": 19,
+        "excerpt": "場地的 route／checkpoint／empty 關聯、lap mode、重力／磁源、天氣、材質、"
+      },
+      "refs": []
+    },
+    {
+      "id": "UGC-R-001",
+      "kind": "reject",
+      "requiredLayers": [
+        "schema-static"
+      ],
+      "implementationRepos": [
+        "open-4wd"
+      ],
+      "testContracts": {
+        "schema-static": "ugc-r-001-schema-static"
+      },
+      "anchor": {
+        "file": "版權.md",
+        "line": 37,
+        "excerpt": "Fork 同意不是逐作品可變選項：metadata 不提供 `allowFork` 或事後關閉事件。上傳者若不接受"
+      },
+      "refs": []
+    },
+    {
+      "id": "UGC-R-002",
+      "kind": "reject",
+      "requiredLayers": [
+        "admission"
+      ],
+      "implementationRepos": [
+        "open-4wd"
+      ],
+      "testContracts": {
+        "admission": "ugc-r-002-admission"
+      },
+      "anchor": {
+        "file": "版權.md",
+        "line": 121,
+        "excerpt": "修改幅度 < 10% 拒收（避免「微改重發」洗 royalty）。"
+      },
+      "refs": []
+    },
+    {
+      "id": "UGC-R-003",
+      "kind": "behavior",
+      "requiredLayers": [
+        "service"
+      ],
+      "implementationRepos": [
+        "open-4wd"
+      ],
+      "testContracts": {
+        "service": "ugc-r-003-service"
+      },
+      "anchor": {
+        "file": "版權.md",
+        "line": 176,
+        "excerpt": "相似度依下表分流："
+      },
+      "refs": []
+    },
+    {
+      "id": "UGC-R-004",
+      "kind": "invariant",
+      "requiredLayers": [
+        "fold"
+      ],
+      "implementationRepos": [
+        "open-4wd"
+      ],
+      "testContracts": {
+        "fold": "ugc-r-004-fold"
+      },
+      "anchor": {
+        "file": "版權.md",
+        "line": 268,
+        "excerpt": "既得權益的單一政策是歷史 royalty 不回收；retire、仲裁下架與 similarity-pending 都只影響後續"
+      },
+      "refs": []
+    },
+    {
+      "id": "UGC-R-005",
+      "kind": "reject",
+      "requiredLayers": [
+        "service"
+      ],
+      "implementationRepos": [
+        "open-4wd"
+      ],
+      "testContracts": {
+        "service": "ugc-r-005-service"
+      },
+      "anchor": {
+        "file": "程式架構/anti-piracy.md",
+        "line": 114,
+        "excerpt": "similarity-pending 必須限制同一上傳者的同時待審量與判抄安全港使用次數，並依作品狀態分層相似度處置。"
+      },
+      "refs": []
+    }
+  ]
+}

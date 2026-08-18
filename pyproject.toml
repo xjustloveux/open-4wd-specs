@@ -1,0 +1,18 @@
+[project]
+name = "open-4wd-specs-docs"
+version = "0.0.0"
+requires-python = "==3.12.*"
+dependencies = [
+  "jieba==0.42.1",
+  "mkdocs==1.6.1",
+  "mkdocs-material==9.7.7",
+  "pymdown-extensions==11.0.1",
+]
+
+[dependency-groups]
+authoring = [
+  "pillow==12.2.0",
+]
+
+[tool.uv]
+package = false

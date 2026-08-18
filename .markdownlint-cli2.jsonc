@@ -1,0 +1,30 @@
+{
+  // markdown 結構 lint；規則契約見文檔工程.md §2
+  "globs": ["**/*.md"],
+  "ignores": [
+    "node_modules/**",
+    ".venv/**",
+    ".site-src/**",
+    "site/**",
+    ".agents/**",
+    ".claude/**",
+    ".superpowers/**",
+    "docs/superpowers/**"
+  ],
+  "config": {
+    "default": true,
+    // 行長不設限——corpus 以長行密度書寫為既定風格
+    "MD013": false,
+    // 同檔重複標題僅限同層級視為錯誤（「步驟細目」等重複節名為刻意結構）
+    "MD024": { "siblings_only": true },
+    // 2.5 分堆裁決（07-24）白名單四條：
+    "MD060": false, // 表格管線空格風格（0.23 新規則）——純排版、零語意
+    "MD025": false, // 多 H1＝刻意文件分部（A 軸/B 軸）；動標題層級會斷既建錨點
+    "MD052": false, // 線框「[選用][詳情]」UI 示意文字誤判 reference link
+    "MD036": false, // 粗體行作段落標語＝既定風格
+    // 表格內 <br> 為 md 表格斷行唯一手段；其餘 inline HTML 仍擋
+    "MD033": { "allowed_elements": ["br"] },
+    // 檔頭多則注記以空行分組＝刻意視覺分隔（合併會改變語意分組），非錯誤
+    "MD028": false
+  }
+}

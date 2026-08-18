@@ -1,0 +1,59 @@
+{
+  "family": "ledger/loadout-signing-message",
+  "spec": [
+    "資料系統.md",
+    "程式架構/ledger-settlement.md"
+  ],
+  "formatVersion": 1,
+  "encoding": {
+    "bytes": "hex-lower",
+    "bigint": "decimal-string"
+  },
+  "generatedBy": "open-4wd@0.0.0",
+  "vectors": [
+    {
+      "name": "builtin-loadout",
+      "input": {
+        "matchId": "7d5fa803e82af9ffe347176c3cf2f558b226fe193d1dd75e885ae84c0e9d07df",
+        "loadout": {
+          "chassis": "builtin:chassis-01",
+          "body": "builtin:body-01",
+          "motor": "builtin:motor-01",
+          "battery": "builtin:battery-01",
+          "tires": {
+            "FL": "builtin:tire-01",
+            "FR": "builtin:tire-01",
+            "RL": "builtin:tire-01",
+            "RR": "builtin:tire-01"
+          },
+          "rollers": {}
+        }
+      },
+      "expected": {
+        "messageHex": "a364747970656d6c6f61646f75742d70726f6f66676c6f61646f7574a664626f64796f6275696c74696e3a626f64792d3031656d6f746f72706275696c74696e3a6d6f746f722d3031657469726573a462464c6f6275696c74696e3a746972652d30316246526f6275696c74696e3a746972652d303162524c6f6275696c74696e3a746972652d30316252526f6275696c74696e3a746972652d30316762617474657279726275696c74696e3a626174746572792d30316763686173736973726275696c74696e3a636861737369732d303167726f6c6c657273a0676d617463684964784037643566613830336538326166396666653334373137366333636632663535386232323666653139336431646437356538383561653834633065396430376466"
+      }
+    },
+    {
+      "name": "match-id-binding",
+      "input": {
+        "matchId": "ad8490c4f5aab0aaa61756206ded4ea2fb1a8d10276715fa0c870f0e0a3f21c7",
+        "loadout": {
+          "chassis": "builtin:chassis-01",
+          "body": "builtin:body-01",
+          "motor": "builtin:motor-01",
+          "battery": "builtin:battery-01",
+          "tires": {
+            "FL": "builtin:tire-01",
+            "FR": "builtin:tire-01",
+            "RL": "builtin:tire-01",
+            "RR": "builtin:tire-01"
+          },
+          "rollers": {}
+        }
+      },
+      "expected": {
+        "messageHex": "a364747970656d6c6f61646f75742d70726f6f66676c6f61646f7574a664626f64796f6275696c74696e3a626f64792d3031656d6f746f72706275696c74696e3a6d6f746f722d3031657469726573a462464c6f6275696c74696e3a746972652d30316246526f6275696c74696e3a746972652d303162524c6f6275696c74696e3a746972652d30316252526f6275696c74696e3a746972652d30316762617474657279726275696c74696e3a626174746572792d30316763686173736973726275696c74696e3a636861737369732d303167726f6c6c657273a0676d617463684964784061643834393063346635616162306161613631373536323036646564346561326662316138643130323736373135666130633837306630653061336632316337"
+      }
+    }
+  ]
+}

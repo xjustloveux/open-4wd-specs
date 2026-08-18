@@ -1,0 +1,13 @@
+node_modules/
+.venv/
+# MkDocs 建置的暫存輸入與產物（corpus 副本，掃它等於重複計數）
+.site-src/
+site/
+# 本機 agent skill junction 不屬於 specs corpus；canonical 內容由 workflow repo 驗證。
+.agents/**
+.claude/**
+.superpowers/**
+# 本機 Superpowers 設計／執行計畫不是 specs corpus，也不得進入發布文檔。
+docs/superpowers/**
+# 歷史／快照類統一策略：歷史記錄合法記載廢除用語，術語規則豁免（結構／排版 lint 照跑）
+歷史記錄.md

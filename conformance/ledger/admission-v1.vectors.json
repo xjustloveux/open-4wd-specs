@@ -1,0 +1,99 @@
+{
+  "family": "ledger/admission-v1",
+  "spec": [
+    "資料系統.md",
+    "程式架構/ledger-admission.md"
+  ],
+  "formatVersion": 1,
+  "encoding": {
+    "bytes": "hex-lower",
+    "bigint": "decimal-string"
+  },
+  "generatedBy": "open-4wd@0.0.0",
+  "vectors": [
+    {
+      "name": "scheme-params",
+      "input": {},
+      "expected": {
+        "version": 1,
+        "baseBits": 18,
+        "sizeUnitBytes": 4096,
+        "maxExtraBits": 4,
+        "nonceBytes": 8
+      }
+    },
+    {
+      "name": "required-bits-ladder",
+      "input": {
+        "sizesBytes": [
+          1,
+          4096,
+          4097,
+          8192,
+          16384,
+          65536,
+          262144
+        ]
+      },
+      "expected": {
+        "bits": [
+          18,
+          18,
+          19,
+          19,
+          20,
+          22,
+          22
+        ]
+      }
+    },
+    {
+      "name": "work-digest-example",
+      "input": {
+        "baseBytesHex": "6f70656e347764",
+        "nonceHex": "0001020304050607"
+      },
+      "expected": {
+        "baseDigestHex": "b8fd6eddb6f886793b75d93d9922362da92e3dd04fca81b49e3791fb14ede4c2",
+        "workDigestHex": "136417e46f18ae4888e18f034a262346104070d5c1a6ff2e0da0ef5e6ee5381c",
+        "requiredBits": 18
+      }
+    },
+    {
+      "name": "leading-zero-bits-table",
+      "input": {
+        "rows": [
+          {
+            "digestHex": "0000ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff",
+            "bits": 16
+          },
+          {
+            "digestHex": "0000ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff",
+            "bits": 17
+          },
+          {
+            "digestHex": "07ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff",
+            "bits": 5
+          },
+          {
+            "digestHex": "07ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff",
+            "bits": 6
+          },
+          {
+            "digestHex": "0000000000000000000000000000000000000000000000000000000000000000",
+            "bits": 256
+          }
+        ]
+      },
+      "expected": {
+        "results": [
+          true,
+          false,
+          true,
+          false,
+          true
+        ]
+      }
+    }
+  ]
+}

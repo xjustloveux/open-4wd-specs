@@ -1,0 +1,35 @@
+{
+  "family": "physics/track-entity-snapshot",
+  "spec": [
+    "零件與場景.md",
+    "算式表.md",
+    "decisions/D-20260811-03-TrackEntity決定性Runtime與預配置碎片池.md",
+    "decisions/D-20260811-06-輪組二元損壞與固定驅動份額.md",
+    "decisions/D-20260814-06-場地碎片統一純視覺.md"
+  ],
+  "formatVersion": 1,
+  "encoding": {
+    "bytes": "hex-lower",
+    "bigint": "decimal-string"
+  },
+  "generatedBy": "open-4wd@0.0.0",
+  "vectors": [
+    {
+      "name": "broken-two-fragment-roundtrip",
+      "expected": {
+        "frame": 15,
+        "snapshotSha256": "3cc03423f83344b4d2498a24ae19604e9fb94d5d7246624c146b5aa6eeb88797",
+        "runtimeStateHash": "59b17ee29714fbc1bf05bbb3ca02d707f7eca552790c9a73bb2f2425b45e345b",
+        "stateHash": "6beb87bc39036f1e93e3ff57ec13bbe39b1856fae46dfe2ec7e0caa53d7014ba",
+        "topology": [
+          {
+            "entityIndex": 0,
+            "colliderCount": 1,
+            "fragmentCount": 0,
+            "activeFragmentCount": 0
+          }
+        ]
+      }
+    }
+  ]
+}
