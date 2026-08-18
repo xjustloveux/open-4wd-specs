@@ -223,6 +223,10 @@ test("publish script uses Draft, readback and exact confirmation gates", async (
   assert.match(content, /'release', 'download'/u);
   assert.match(content, /ConfirmImmutablePublish/u);
   assert.match(content, /'release', 'edit'[\s\S]*'--draft=false'/u);
+  // 空集合的成員列舉（$x.assets.name）在 PowerShell 回傳 $null，@() 包裝後成為含 $null 的
+  // 一元素陣列，會讓「剛建立、尚無 asset 的 Draft」誤觸 unexpected asset 檢查而無法上傳。
+  assert.doesNotMatch(content, /@\(\$\w+\.(?:assets|releaseAssets)\.name\)/u);
+  assert.match(content, /\$release\.assets \| ForEach-Object \{ \$_\.name \}/u);
   assert.doesNotMatch(
     content,
     /(?:npm|pnpm|pip) install|git (?:add|commit|push|tag)|GH_TOKEN|PRIVATE_KEY/iu,
