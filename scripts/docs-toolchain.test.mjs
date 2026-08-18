@@ -1810,6 +1810,25 @@ test("contributor docs do not hard-code validation-chain counts", () => {
   );
 });
 
+test("docs site loads no third-party assets", () => {
+  // 站台是公開可索引 origin,且第一用途是本機開檔檢視:外連字型會把讀者 IP 送往第三方,
+  // 離線時又必然失敗。資安規範 §5 對外部資源要求 SRI 與 CSP 白名單缺一不可,此處兩者皆無。
+  const mkdocs = readFileSync(join(REPO_ROOT, "mkdocs.yml"), "utf8");
+  assert.match(mkdocs, /^\s{2}font: false$/mu);
+  assert.match(mkdocs, /extra_javascript:[\s\S]*assets\/mermaid\.min\.js/u);
+  assert.doesNotMatch(mkdocs, /https:\/\/(?:unpkg\.com|cdn\.jsdelivr\.net)/u);
+
+  // Graphify 的圖頁有兩種形狀（drill 多檔與 graph.html 單檔）,兩條複製路徑都必須先硬化;
+  // 只擋一條等於站上仍留著外連。
+  const build = readFileSync(join(REPO_ROOT, "scripts", "build-site.mjs"), "utf8");
+  assert.match(build, /stagedGraphLibraries/u);
+  assert.match(build, /graph\.html'\), hardenGraphHtml\(/u);
+  assert.match(build, /const hardened = hardenGraphHtml\(/u);
+  // 兩條舊的「原樣複製」路徑都不得復活——那正是外連上站的來源。
+  assert.doesNotMatch(build, /endsWith\('\.html'\)\) copy\(path\.join\(drill/u);
+  assert.doesNotMatch(build, /copy\(path\.join\(out, 'graph\.html'\)/u);
+});
+
 test("Jieba dictionaries are reproducible and project-scoped", () => {
   const pyproject = readFileSync(join(REPO_ROOT, "pyproject.toml"), "utf8");
   assert.match(pyproject, /"jieba==0\.42\.1"/u);
@@ -2059,7 +2078,12 @@ function createStageFixture(
 
   mkdirSync(join(root, "scripts", "site-assets"), { recursive: true });
   mkdirSync(join(root, "node_modules", "mermaid", "dist"), { recursive: true });
-  for (const name of ["build-site.mjs", "history-ledger.mjs", "lib.mjs"]) {
+  for (const name of [
+    "build-site.mjs",
+    "graph-html-hardening.mjs",
+    "history-ledger.mjs",
+    "lib.mjs",
+  ]) {
     copyFileSync(join(REPO_ROOT, "scripts", name), join(root, "scripts", name));
   }
   const assetCollector = join(REPO_ROOT, "scripts", "site-assets.mjs");

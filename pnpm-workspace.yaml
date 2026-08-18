@@ -1,3 +1,7 @@
 packages:
   - .
+allowBuilds:
+  # vis-network 的 postinstall 是 opencollective 募款提示、prepare 是 husky git hook；
+  # 建站只取套件內已預建的 standalone/umd/vis-network.min.js，兩個腳本都不需要。
+  vis-network: false
 verifyDepsBeforeRun: error

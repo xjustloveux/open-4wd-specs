@@ -14,6 +14,9 @@ const SHA = /^[0-9a-f]{40}$/u;
 const SHA256 = /^[0-9a-f]{64}$/u;
 const ASSET_ID = /^builtin:[a-z0-9-]+$/u;
 const RELEASE_ASSET = /^[A-Za-z0-9][A-Za-z0-9._-]*$/u;
+// 發布腳本在 bundle 目錄內產生的旁生檔：本次發布的 receipt，以及下載回讀副本
+// （含被移置一旁的前一輪）。它們既不是 Release 產物，也不該讓 bundle 驗證失敗。
+const PUBLISH_SIDECAR = /^(?:publish-receipt\.json|\.readback(?:-[\w.-]+)?)$/u;
 const DIRECT_EXTENSIONS = new Set([".glb"]);
 const IMAGE_EXTENSIONS = new Set([".png"]);
 const AUDIO_EXTENSIONS = new Set([".wav", ".flac"]);
@@ -132,6 +135,10 @@ function writeZip(entries) {
   end.writeUInt32LE(offset, 16);
   end.writeUInt16LE(0, 20);
   return Buffer.concat([...localParts, centralDirectory, end]);
+}
+
+function isPublishSidecar(name) {
+  return PUBLISH_SIDECAR.test(name);
 }
 
 function validateSourceSha(sourceSha) {
@@ -373,8 +380,18 @@ export async function verifyPreparedAuthoringRelease(outputDirectory) {
     "authoring-release-manifest.json",
     ...manifest.releaseAssets.map(({ name }) => name),
   ].sort();
-  if (JSON.stringify(actual) !== JSON.stringify(expected))
-    throw new Error("prepared release asset set mismatch");
+  // 發布腳本在同一個 bundle 目錄內留下 receipt 與下載回讀副本；它們不是 Release 產物，
+  // 但也不是「多出來的可疑檔案」。若不放行，第二趟（複核後發布）會被自己上一趟的產物擋住。
+  const missing = expected.filter((name) => !actual.includes(name));
+  const unexpected = actual.filter(
+    (name) => !expected.includes(name) && !isPublishSidecar(name),
+  );
+  if (missing.length > 0 || unexpected.length > 0)
+    throw new Error(
+      `prepared release asset set mismatch (missing: ${
+        missing.join(", ") || "none"
+      }; unexpected: ${unexpected.join(", ") || "none"})`,
+    );
   for (const asset of manifest.releaseAssets) {
     const full = join(output, asset.name);
     const info = await stat(full);

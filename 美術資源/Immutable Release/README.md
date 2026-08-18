@@ -56,16 +56,18 @@ release-input/
 ## 第二階段：Draft、下載回讀與不可變發布
 
 1. 先 commit 準備工具與契約，確認工作樹乾淨、HEAD 就是 manifest 的 source commit，並完成 `gh auth login`。
-2. 執行 `publish-authoring-release.bat`。工具驗證 auth／origin／HEAD，建立 exact tag 的 Draft，補傳缺少的 assets，下載回讀每個檔案並逐一比對 SHA-256；它只留下 Draft 與本機 receipt，不會直接發布。
-3. 在 GitHub UI 複核 Draft 名稱、資產、manifest 與 checksum。確認 repository 已啟用 immutable releases。
-4. 以工具顯示的 tag 作逐字確認，再執行：`publish-authoring-release.bat -Publish -ConfirmImmutablePublish '<exact-tag>'`。只有完全相同的確認值才會把已回讀驗證的 Draft 發布。
+2. 執行 `publish-authoring-release.bat`。工具驗證 auth／origin／HEAD，建立 exact tag 的 Draft，補傳缺少的 assets，下載回讀每個檔案並逐一比對 SHA-256；它只留下 Draft 與本機 receipt，不會直接發布。傳輸以逐檔序號與 gh 原生進度顯示，可據此分辨仍在傳輸或已停滯。
+3. 在 GitHub UI 複核 Draft 名稱、資產、manifest 與 checksum。確認 repository 已啟用 immutable releases（只對啟用後發布的 Release 生效）。
+4. 以工具顯示的 tag 作逐字確認，再執行：`confirm-authoring-release.bat <exact-tag>`。只有完全相同的確認值才會把 Draft 發布；該進入點等同 `publish-authoring-release.bat -Publish -ConfirmImmutablePublish '<exact-tag>'`。
+
+第二階段每次執行都重新下載回讀，確保驗證與不可逆發布之間沒有空窗；上一輪的回讀副本由工具自動清除，不需人工搬移。receipt 與回讀副本都留在 `release-output/` 內，且不影響該目錄的 bundle 驗證。
 
 Main 採用時不得只相信 tag 名稱：dependency lock 同時鎖 specs exact commit、
 `authoring-source-<commit 前 12 碼>` tag、source manifest fingerprint／檔案 SHA-256 與 Release
 manifest SHA-256；adoption gate 會重驗 manifest source commit、GLB `assetId` exact join、Release
 asset 集合、size／SHA-256 與 `SHA256SUMS`。任一欄不一致都不得執行 production Editor journey。
 
-上傳或下載回讀失敗時，Draft 保持未發布；保留原始備份與 `release-output/`，檢查網路／權限後重跑。工具拒絕未知 asset、不同 target 或非 Draft，避免接手不相容狀態。`.readback` 已存在時先人工保存或移開，避免舊回讀被誤認為本次證據。
+上傳或下載回讀失敗時，Draft 保持未發布；保留原始備份與 `release-output/`，檢查網路／權限後重跑。工具拒絕未知 asset、不同 target 或非 Draft，避免接手不相容狀態。比對失敗會即刻中止並指名該檔，此時 `.readback` 保留供鑑識；重跑才會清除它。
 
 ## 備份移除門檻
 

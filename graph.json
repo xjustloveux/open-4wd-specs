@@ -11617,6 +11617,10 @@
       "to": "部署資訊/部署實際值與初始拓撲.md"
     },
     {
+      "from": "部署資訊/Graphify Release 聚合.md",
+      "to": "資安規範.md"
+    },
+    {
       "from": "部署資訊/open-4wd-pinning.md",
       "to": "流程/DMCA.md"
     },
