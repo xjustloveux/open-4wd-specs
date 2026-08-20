@@ -160,7 +160,7 @@ flowchart TB
 | [編輯器操作.md](編輯器操作.md) | canon | Stage 2 編輯器互動與 UI 操作（零件＋場地共用、PC／Mobile 雙端） |
 | [資產政策.md](資產政策.md) | canon | 資產生命週期玩家面說明＋廢止材質登記（絕版品模型） |
 
-決策檔 33 筆——見 [decisions/INDEX.md](decisions/INDEX.md)。
+決策檔 34 筆——見 [decisions/INDEX.md](decisions/INDEX.md)。
 
 ### UGC版權依賴圖（1/2）
 
@@ -587,7 +587,7 @@ flowchart TB
 | [部署資訊/open-4wd-turn.md](部署資訊/open-4wd-turn.md) | deploy | TURN 公版模板 repo 規格（coturn、社群營運者自行部署） |
 | [部署資訊/部署實際值與初始拓撲.md](部署資訊/部署實際值與初始拓撲.md) | deploy | 首次公開 trust root 與社群服務拓撲 |
 
-決策檔 69 筆——見 [decisions/INDEX.md](decisions/INDEX.md)。
+決策檔 70 筆——見 [decisions/INDEX.md](decisions/INDEX.md)。
 
 ### 版本部署依賴圖（1/2）
 
@@ -933,7 +933,7 @@ flowchart TB
 | [流程/治理事件.md](流程/治理事件.md) | flow | economy-config 治理多簽變更 |
 | [程式參數/economy-config.md](程式參數/economy-config.md) | registry | OrbitDB 動態治理 economy config |
 
-決策檔 46 筆——見 [decisions/INDEX.md](decisions/INDEX.md)。
+決策檔 48 筆——見 [decisions/INDEX.md](decisions/INDEX.md)。
 
 ```mermaid
 flowchart TB

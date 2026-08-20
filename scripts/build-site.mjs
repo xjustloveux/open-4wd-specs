@@ -303,6 +303,20 @@ for (const asset of ['mermaid-init.js', 'site.css']) {
   copy(path.join(REPO_ROOT, 'scripts', 'site-assets', asset), path.join(STAGE, 'assets', asset));
 }
 
+// robots.txt 住站根而非 assets/。sitemap 位址自 mkdocs.yml 的 site_url 注入，避免與 canonical
+// origin 各寫一份而漂移（同 程式架構/seo.md 第 5 節對主站的 CANONICAL_BASE_URL 注入做法）。
+const siteUrl = (fs.readFileSync(path.join(REPO_ROOT, 'mkdocs.yml'), 'utf8').match(/^site_url:\s*(\S+)\s*$/m) ?? [])[1];
+if (!siteUrl) {
+  console.error('mkdocs.yml 缺 site_url——robots.txt 的 Sitemap 位址無來源');
+  process.exit(1);
+}
+fs.writeFileSync(
+  path.join(STAGE, 'robots.txt'),
+  fs.readFileSync(path.join(REPO_ROOT, 'scripts', 'site-assets', 'robots.txt'), 'utf8')
+    .replaceAll('{SITE_URL}', siteUrl.endsWith('/') ? siteUrl : `${siteUrl}/`),
+  'utf8',
+);
+
 // ---------- ④ 導覽（照 corpus 既有的檔案結構生成） ----------
 // 只解 MkDocs 自動導覽的兩個毛病，不重新分類——corpus 建立時的目錄結構本身就是分類，
 // 細項多的主題早已各自成資料夾。

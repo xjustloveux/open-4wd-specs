@@ -123,11 +123,11 @@ setter 代替。
 | `ci.yml`                | `unit`                  | master push / PR         | os = {ubuntu, macos, windows}，Node 24；依序跑 unit、三段 coverage 與 property tests                                                            |
 | `ci.yml`                | `integration`           | master push / PR         | ubuntu                                                                                                                                          |
 | `ci.yml`                | `e2e`                   | master push / PR         | {ubuntu, macos} × 5 Playwright projects；排除 ubuntu×webkit 與 ubuntu×mobile-safari，其餘 project 依實際 browser engine 安裝                    |
-| `ci.yml`                | `e2e-canonical-assets`  | master push / PR         | ubuntu Chromium、`retries=0`；正式 shipped GLB 的組裝／載入／進賽／local result required profile，任一 required title missing 或 skipped 即失敗 |
+| `ci.yml`                | `e2e-canonical-assets`  | master push / PR         | ubuntu Chromium、`retries=0`；`canonical-assets-prelaunch` 只在 checked-in delivery state 為 deferred 時允許兩個 canonical title 明示 skip；missing 仍失敗 |
 | `nightly.yml`           | `fuzz-performance`      | nightly schedule / 手動  | ubuntu，job `timeout-minutes: 45`；fuzz step `timeout-minutes: 30` 且 `OPEN4WD_FUZZ_PROFILE=nightly`，之後跑 `test:perf`                        |
-| `nightly.yml`           | `canonical-assets-perf` | nightly schedule / 手動  | 重跑 shipped canonical required profile，再跑有界首幀效能採樣；兩個 profile 分開報告 executed／skipped／missing                                 |
+| `nightly.yml`           | `canonical-assets-perf` | nightly schedule / 手動  | `OPEN4WD_BUILTIN_DELIVERY_GATE=strict`；重跑 shipped canonical required profile，再跑有界首幀效能採樣；skipped／missing 失敗                      |
 | `release-readiness.yml` | `release-gate`          | 手動 `workflow_dispatch` | ubuntu；determinism、perf、public deployment/release assets、production build，最後跑五個 Playwright projects                                   |
-| `release-readiness.yml` | `canonical-assets-perf` | 手動 `workflow_dispatch` | `release-gate` 成功後執行與 nightly 相同的 canonical assets／perf profiles                                                                      |
+| `release-readiness.yml` | `canonical-assets-perf` | 手動 `workflow_dispatch` | `release-gate` 成功後以 strict delivery gate 執行與 nightly 相同的 canonical assets／perf profiles                                               |
 
 ### 4.1 Fuzz 執行契約
 
@@ -165,7 +165,7 @@ scripts/import-boundaries.test.mjs             # repository contract tests
 
 `e2e/*.spec.ts` 依證據種類分組，而不是另建一套產品模組樹：app shell／頁面／responsive／accessibility 屬一般跨瀏覽器 UI；`editor-*` 與 `ugc-journey` 屬 Editor／UGC；`full-race-flow`、`race-config` 與 `determinism` 屬賽事行為；`builtin-canonical-*` 與 `builtin-local-*` 驗證 repository 內 shipped canonical GLB；`builtin-authoring`、`editor-real-part-import`、`full-real-local-race` 驗證 specs sibling 或其 immutable Release 的 authoring source。共用載入、session 與證據 helper 放在 `e2e/helpers/` 或同層具名 helper，不以無測試內容的根層 `test/` 目錄表示覆蓋。
 
-`OPEN4WD_E2E_REQUIRED_PROFILE` 是 required coverage 的 fail-closed 選擇器：reporter 會列出 expected title 的 executed／skipped／missing，後兩者任一非空即令整次 run 失敗。`canonical-assets` 已在 Chromium PR job 執行；`canonical-assets-perf` 在 nightly 與 release job 執行。下列舊式 opt-in 旗標只控制特定測試本身，不能取代 required profile：
+`OPEN4WD_E2E_REQUIRED_PROFILE` 是 required coverage 的 fail-closed 選擇器：reporter 會列出 expected title 的 executed／authorized deferred skip／skipped／missing。只有 `canonical-assets-prelaunch` 配合 checked-in `deferred-prelaunch` 可授權兩個 canonical title 的 skip；missing、delivery 已切為 delivered 後的 skip，以及 `canonical-assets`／`canonical-assets-perf` 的任何 skip 都失敗。`OPEN4WD_BUILTIN_DELIVERY_GATE` 只接受未設定／`development`／`strict`；nightly、release 與 asset-ready 固定 strict，未知值 fail closed。下列舊式 opt-in 旗標只控制特定測試本身，不能取代 required profile：
 
 | 旗標                          | 控制 suite／用途                                                                              | 素材／前置                                                                                               | current CI 與 skip 語意                                                                                                                    | target／解除條件                                                            |
 | ----------------------------- | --------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------ | --------------------------------------------------------------------------- |

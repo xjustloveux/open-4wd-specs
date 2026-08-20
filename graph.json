@@ -2332,6 +2332,24 @@
       "summary": null
     },
     {
+      "id": "decisions/D-20260820-01-預發布內建資產延後交付與兩段發布鏈.md",
+      "type": "decision",
+      "domain": [
+        "版本部署",
+        "治理營運",
+        "UGC版權"
+      ],
+      "summary": null
+    },
+    {
+      "id": "decisions/D-20260820-02-Graphify-manifest內容決定化.md",
+      "type": "decision",
+      "domain": [
+        "治理營運"
+      ],
+      "summary": null
+    },
+    {
       "id": "decisions/INDEX.md",
       "type": null,
       "domain": [],
@@ -6690,6 +6708,14 @@
     },
     {
       "from": "decisions/INDEX.md",
+      "to": "decisions/D-20260820-01-預發布內建資產延後交付與兩段發布鏈.md"
+    },
+    {
+      "from": "decisions/INDEX.md",
+      "to": "decisions/D-20260820-02-Graphify-manifest內容決定化.md"
+    },
+    {
+      "from": "decisions/INDEX.md",
       "to": "decisions/README.md"
     },
     {
@@ -7051,6 +7077,10 @@
     {
       "from": "文檔工程.md",
       "to": "decisions/D-20260813-02-規則Owner單一責任契約.md"
+    },
+    {
+      "from": "文檔工程.md",
+      "to": "decisions/D-20260820-02-Graphify-manifest內容決定化.md"
     },
     {
       "from": "文檔工程.md",

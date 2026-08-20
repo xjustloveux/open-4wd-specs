@@ -110,11 +110,19 @@ Disallow: /settings/
 Disallow: /api/
 Sitemap: {CANONICAL_BASE_URL}/sitemap.xml   # build 注入；現行正式值 = https://open4wd.org
 
-User-agent: GPTBot      # AI 爬蟲：依社群決定
-Allow: /
-User-agent: AhrefsBot   # 商業 SEO 工具
+# AI 爬蟲（GPTBot、ClaudeBot 等）不另立群組：依社群決定放行，即與一般爬蟲同一組規則。
+User-agent: AhrefsBot   # 商業 SEO 工具：限速，但路由排除照舊
 Crawl-delay: 10
+Allow: /
+Disallow: /race/
+Disallow: /home
+Disallow: /settings/
+Disallow: /api/
 ```
+
+**群組不繼承**：爬蟲只採用最明確符合的**單一**群組，其餘群組完全不套用。因此具名群組必須逐字
+複述上面四條 `Disallow`，否則替某支爬蟲開一個群組，效果會是讓它繞過路由排除——與「依社群決定」
+的放行意圖相反。只想給予與一般爬蟲相同待遇時，正確作法是**不開群組**，讓它落到 `*`。
 
 ## 6. Angular SSG（prerender）
 

@@ -1821,6 +1821,16 @@ test("docs site loads no third-party assets", () => {
   // Graphify 的圖頁有兩種形狀（drill 多檔與 graph.html 單檔）,兩條複製路徑都必須先硬化;
   // 只擋一條等於站上仍留著外連。
   const build = readFileSync(join(REPO_ROOT, "scripts", "build-site.mjs"), "utf8");
+  // robots.txt 的 Sitemap 位址只能來自 mkdocs.yml 的 site_url,不得另寫一份 origin。
+  const robots = readFileSync(
+    join(REPO_ROOT, "scripts", "site-assets", "robots.txt"),
+    "utf8",
+  );
+  assert.match(robots, /^Sitemap: \{SITE_URL\}sitemap\.xml$/mu);
+  assert.doesNotMatch(robots, /https?:\/\//u);
+  assert.match(build, /replaceAll\('\{SITE_URL\}'/u);
+  assert.match(build, /site_url:\\s\*\(\\S\+\)/u);
+
   assert.match(build, /stagedGraphLibraries/u);
   assert.match(build, /graph\.html'\), hardenGraphHtml\(/u);
   assert.match(build, /const hardened = hardenGraphHtml\(/u);
@@ -2111,6 +2121,12 @@ function createStageFixture(
   writeFileSync(join(root, "scripts", "site-source-files.json"), "[]\n");
   writeFileSync(join(root, "scripts", "site-assets", "mermaid-init.js"), "");
   writeFileSync(join(root, "scripts", "site-assets", "site.css"), "");
+  writeFileSync(
+    join(root, "scripts", "site-assets", "robots.txt"),
+    "User-agent: *\nAllow: /\nSitemap: {SITE_URL}sitemap.xml\n",
+  );
+  // robots.txt 的 Sitemap 位址取自 mkdocs.yml 的 site_url,staging 因此需要真實設定檔。
+  copyFileSync(join(REPO_ROOT, "mkdocs.yml"), join(root, "mkdocs.yml"));
   writeFileSync(
     join(root, "node_modules", "mermaid", "dist", "mermaid.min.js"),
     "",
