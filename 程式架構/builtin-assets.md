@@ -57,11 +57,10 @@ const isBuiltin = (ref: CID | BuiltinId): ref is BuiltinId =>
 
 CI 監看 `assets/builtin/` GLB 烘焙 extras：物理值變動但 PR 未 bump `builtin_assets_version` → build fail（純視覺變動免 bump；偵測 ＝ 比對烘焙 extras）。
 
-Pre-launch current builtin 與 PhysicsManifest 基線維持 v1；27 個公版 GLB 已嵌入完整 current
-PhysicsManifest（場地與車輛純視覺 fragment descriptors＋逐 tire region wear capacity＋能量域熱＋六軸
-aero＋typed weather exposure／track entities＋part collider proxies＋intact collider 六向接觸面積）並同步
-SHA-256／CID／extrasHash provenance。公版 GLB 目前仍是功能／流程用半成品，只驗證契約與 synthetic
-reference，不作平衡基準；專案尚未公開，不保留舊 bytes 相容層，正式公開時才凍結當時 bytes／provenance。
+Pre-launch current builtin 與 PhysicsManifest 基線維持 v1；27 個公版 slot 的本機暫行 bytes 只供
+功能／流程驗證與 synthetic reference，不是正式交付，也不作平衡基準。權利證據未完整前，這些
+bytes 不進公開 Git 歷史。專案尚未公開，不保留舊 bytes 相容層；正式公開時才凍結經 Editor
+產出、strict gate 與人工驗收通過的 bytes／SHA-256／CID／extrasHash／rights provenance。
 
 ## 5. 公版清單（24 零件 + 3 場地）
 
@@ -113,13 +112,19 @@ part 128px／6k、track 256px。兩值只控制 canonical 輸出容量與視覺�
 首次公開前的最終公版須由 production Editor 手動 author／匯出並通過同一套 strict gate；這些替換仍
 維持 v1。本地測試者精確清除 Open4WD asset cache 或使用 `/reset/`，不得用虛增
 `builtin_assets_version` 代替開發期 cache 操作。
+`public/assets/builtin-delivery.json` 是 v1 交付權威：`deferred-prelaunch` 只允許明列的四類
+asset-dependent tests 在 development profile 顯式 skip 並回報 D-20260820-01；`delivered` 才表示
+正式 GLB 已可進入 strict gate。未知、缺失、malformed state，以及不屬於該清單的一般缺檔，一律
+fail closed。狀態切為 `delivered` 前，`public/assets/builtin/PROVENANCE.md` 必須逐項具備生成或取得
+來源、方案與條款證據、輸入素材權利、輸出授權、產出日期與人工核准；placeholder 不算證據，
+實質權利內容由人類審閱。
 `OPEN4WD_BUILTIN_AUTHORING=1` 預設只把測試成品寫到 Playwright `test-results`；只有維護者手動再加
 `OPEN4WD_BUILTIN_WRITE=1` 才可寫入 `public/assets/builtin`。CI、一般驗證與 agent 執行不得自行開啟
 寫入旗標，測試通過也不等於已替換正式公版。
 
 > **CI 機械檢核取代人工授權**：GLB extras 合法（同 UGC Stage 3 validator）、`assets/builtin/` 物理烘焙值變動必 bump `builtin_assets_version`（path-based，比照 [版本規範.md §13](../版本規範.md) 對 material-params 的不變式）。「數值平衡是否合理」屬人類判斷 → PR review（與物理常數同標準）。公版**一致性** enforcement 由 peer 端 `builtin-assets CID 比對` + 配對 `builtin_assets_version` 保證（[版本規範.md §7](../版本規範.md)），不需鏈上事件。
 
-Public 出貨 manifest 每筆必須帶 `sha256`、真實 IPFS `cid`、canonical root `extrasHash` 與等於全局 `BUILTIN_ASSETS_VERSION_CURRENT` 的 `assetsVersion`；runtime fetch 後同時重算 SHA-256 與 CID，任一不符即拒絕使用。GLB 不得引用外部 buffer / image URI，PNG 必須有合法 signature／IHDR／ 尺寸，KTX2 必須有合法 signature／ 尺寸；場地紋理僅允許 KTX2，避免未壓縮 PNG 進入大型場地。`check:release-assets --strict` 會對缺檔、不完整 manifest、bytes／extras／ 版本不匹配全部 fail closed；27 個實體 GLB 未交付前只可在非 strict 開發檢查延後。
+Public 出貨 manifest 每筆必須帶 `sha256`、真實 IPFS `cid`、canonical root `extrasHash` 與等於全局 `BUILTIN_ASSETS_VERSION_CURRENT` 的 `assetsVersion`；runtime fetch 後同時重算 SHA-256 與 CID，任一不符即拒絕使用。GLB 不得引用外部 buffer / image URI，PNG 必須有合法 signature／IHDR／ 尺寸，KTX2 必須有合法 signature／ 尺寸；場地紋理僅允許 KTX2，避免未壓縮 PNG 進入大型場地。`check:release-assets --strict` 會對 deferred state、缺檔、provenance 缺失、不完整 manifest、bytes／extras／版本不匹配全部 fail closed；27 個正式 GLB 未交付前只可由 delivery authority 在非 strict 開發檢查明示延後。
 
 公版設計為「平庸但能跑」基準線（鼓勵改良超越）；調整向後相容（不可移除 / 不可改 ID）。GLB `assets/builtin/{parts,tracks}/`（24+3 檔）**出貨預算分級**：
 

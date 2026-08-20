@@ -1,0 +1,11 @@
+# 由 scripts/build-site.mjs staged；下方 Sitemap 位址於建置時自 mkdocs.yml 的 site_url 注入（單一權威）。
+# 文檔站全站可索引：它就是對外的說明與教學面（專案生命週期.md 第 6 節）。
+# 爬蟲姿態沿用主站 robots 政策（程式架構/seo.md 第 5 節），只少掉 app 專屬的 Disallow 路由。
+# AI 爬蟲（GPTBot、ClaudeBot 等）不另立群組，依社群決定與一般爬蟲同一組規則。
+# 群組不繼承：具名群組只讀自己那組，日後若在 * 加入 Disallow，必須同步複述到下方每個具名群組。
+User-agent: *
+Allow: /
+Sitemap: {SITE_URL}sitemap.xml
+
+User-agent: AhrefsBot
+Crawl-delay: 10
