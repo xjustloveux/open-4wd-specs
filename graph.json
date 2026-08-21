@@ -2350,6 +2350,14 @@
       "summary": null
     },
     {
+      "id": "decisions/D-20260821-01-私有公開CI與Runner分層.md",
+      "type": "decision",
+      "domain": [
+        "版本部署"
+      ],
+      "summary": null
+    },
+    {
       "id": "decisions/INDEX.md",
       "type": null,
       "domain": [],
@@ -6713,6 +6721,10 @@
     {
       "from": "decisions/INDEX.md",
       "to": "decisions/D-20260820-02-Graphify-manifest內容決定化.md"
+    },
+    {
+      "from": "decisions/INDEX.md",
+      "to": "decisions/D-20260821-01-私有公開CI與Runner分層.md"
     },
     {
       "from": "decisions/INDEX.md",
