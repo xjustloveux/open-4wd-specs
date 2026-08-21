@@ -97,7 +97,7 @@ test("pending-work index points to authorities without copying stale canon", () 
   ].map(read).join("\n");
 
   assert.match(pending, /程式參數.*初估/u);
-  assert.match(pending, /專案生命週期.*第 6 步/u);
+  assert.match(pending, /專案生命週期.*第 4 步/u);
   // 現行待辦索引只指向維護者內部 registry，不得帶私有 issue 編號；編號圖例住 歷史記錄.md 檔頭。
   assert.match(pending, /執行追蹤在維護者內部 issue registry/u);
   assert.doesNotMatch(pending, /open-4wd-workflow issue 0\d{5}|\bissue 0\d{5}/u);
@@ -2061,6 +2061,37 @@ test("public specs surfaces declare lifecycle status and keep intake inside the 
   assert.match(contacts, /xjustloveux\/open-4wd-specs\/discussions/u);
   assert.match(contacts, /xjustloveux\/open-4wd-specs\/blob\/master\//u);
   assert.doesNotMatch(contacts, /xjustloveux\/open-4wd(?:\/|$)/u);
+});
+
+test("release lifecycle keeps optional backup outside the public dependency sequence", () => {
+  const lifecycle = readFileSync(
+    join(REPO_ROOT, "專案生命週期.md"),
+    "utf8",
+  );
+  const releaseSection = lifecycle.match(
+    /^## 5\. 首次公開的跨 repo 順序\s*$([\s\S]*?)^## 6\./mu,
+  )?.[1];
+  assert.ok(releaseSection, "缺少首次公開的跨 repo 順序章節");
+
+  const firstStepOffset = releaseSection.search(/^1\. /mu);
+  assert.notEqual(firstStepOffset, -1, "發布順序缺少第一個編號步驟");
+  const preconditions = releaseSection.slice(0, firstStepOffset);
+  const numberedSequence = releaseSection.slice(firstStepOffset);
+  const steps = [...numberedSequence.matchAll(/^\d+\. ([\s\S]*?)(?=^\d+\. |\n`main_source_baseline_sha`)/gmu)].map(
+    ([, step]) => step,
+  );
+
+  assert.match(preconditions, /private source backup/u);
+  assert.match(preconditions, /不是發布.*baseline.*依賴驗證/su);
+  assert.match(steps[0], /`open-4wd-specs`[\s\S]{0,40}轉 public/u);
+  assert.doesNotMatch(numberedSequence, /^\d+\. .*private source backup/mu);
+
+  const baselineFormationSteps = steps
+    .map((step, index) => ({ index, step }))
+    .filter(({ step }) => /形成 `main_source_baseline_sha`/u.test(step));
+  assert.equal(baselineFormationSteps.length, 1);
+  assert.ok(baselineFormationSteps[0].index > 0);
+  assert.match(baselineFormationSteps[0].step, /`open-4wd` 保持 private/u);
 });
 
 function corpusDocument(body, type = "index") {

@@ -43,13 +43,28 @@ graph TB
 
 ```mermaid
 flowchart TD
-    Event{觸發事件}
+    Branch[feature branch push] --> Open{已有 master PR?}
+    Open -->|否| NoCI[不建立 hosted CI]
+    Open -->|開啟或 synchronize| Private[private-auto<br/>GitHub-hosted Linux]
+    Private --> Merge[merge to master]
+    Merge --> Master[private-auto<br/>正式 master commit]
 
-    Event -->|master push / PR| CI[validate + unit + integration + E2E<br/>+ canonical assets gate]
-    Event -->|nightly schedule / 手動| Night[fuzz + performance<br/>+ canonical assets perf]
-    Event -->|workflow_dispatch| Release[determinism + perf + deployment assets<br/>+ production build + E2E]
+    Master -.維護者手動.-> Windows[Windows self-hosted<br/>最新 master]
+    Master -.維護者手動.-> Mac[macOS self-hosted<br/>最新 master]
+    Master -.維護者手動.-> Hosted[hosted-full<br/>完整標準 hosted matrix]
+    Hosted --> Public[repository 轉 public]
+    Public --> PublicAuto[public-auto<br/>完整標準 hosted matrix]
 
-    CI --> Result{結果}
+    PublicAuto --> Result{結果}
+    Private --> Result
+    Master --> Result
+    Windows --> Result
+    Mac --> Result
+    Hosted --> Result
+
+    Event{其他觸發事件}
+    Event -->|nightly schedule / 手動| Night[fuzz + performance<br/>+ canonical assets completion / perf]
+    Event -->|release workflow_dispatch| Release[determinism + perf + deployment assets<br/>+ production build + E2E]
     Night --> Result
     Release --> Result
 
@@ -60,10 +75,14 @@ flowchart TD
     classDef local fill:#e8f3ec,stroke:#3f8f5f,stroke-width:1.4px,color:#173525;
     classDef consensus fill:#fdf3df,stroke:#c08a2d,stroke-width:1.4px,color:#3d2c0d;
     classDef fail fill:#fae9e7,stroke:#b4544a,stroke-width:1.4px,color:#471d18;
+    class NoCI local
     class Pass local
     class Warn consensus
     class Block fail
 ```
+
+實線 branch／PR／master／`public` 路徑只到 GitHub-hosted jobs；Windows 與 macOS self-hosted 節點
+只有維護者手動虛線可達。兩台 runner 離線不影響 `CI / required`、nightly 或 release。
 
 ## 確定性測試流程
 
