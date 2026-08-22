@@ -2358,6 +2358,30 @@
       "summary": null
     },
     {
+      "id": "decisions/D-20260821-02-私有E2E單線與Linux參數契約.md",
+      "type": "decision",
+      "domain": [
+        "版本部署"
+      ],
+      "summary": null
+    },
+    {
+      "id": "decisions/D-20260822-01-人工視覺證據與自動E2E分層.md",
+      "type": "decision",
+      "domain": [
+        "版本部署"
+      ],
+      "summary": null
+    },
+    {
+      "id": "decisions/D-20260822-02-CI測試目錄與Profile執行架構.md",
+      "type": "decision",
+      "domain": [
+        "版本部署"
+      ],
+      "summary": null
+    },
+    {
       "id": "decisions/INDEX.md",
       "type": null,
       "domain": [],
@@ -6725,6 +6749,18 @@
     {
       "from": "decisions/INDEX.md",
       "to": "decisions/D-20260821-01-私有公開CI與Runner分層.md"
+    },
+    {
+      "from": "decisions/INDEX.md",
+      "to": "decisions/D-20260821-02-私有E2E單線與Linux參數契約.md"
+    },
+    {
+      "from": "decisions/INDEX.md",
+      "to": "decisions/D-20260822-01-人工視覺證據與自動E2E分層.md"
+    },
+    {
+      "from": "decisions/INDEX.md",
+      "to": "decisions/D-20260822-02-CI測試目錄與Profile執行架構.md"
     },
     {
       "from": "decisions/INDEX.md",

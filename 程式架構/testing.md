@@ -21,7 +21,7 @@ slug: null
 | -------------- | ---------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
 | Unit           | **Angular unit-test builder + Vitest**（`environment: 'jsdom'`） | `coverage.provider: 'v8'`，門檻見 [§7](#7-coverage-門檻)；測試置於 `src/**/*.spec.ts`                                                                                    |
 | Integration    | Vitest（`environment: 'node'`）                                  | libp2p memory transport 等 Node-only 測試獨立執行、`testTimeout: 60_000`                                                                                                 |
-| E2E            | **Playwright**                                                   | `testDir: './e2e'`、`timeout: 600_000`、`retries: 2`、5 projects（chromium / firefox / webkit / mobile-chrome Pixel 7 / mobile-safari iPhone 14）、reporter line + html + junit + required coverage |
+| E2E            | **Playwright**                                                   | `playwright.config.ts` 收集一般必要 UI；`playwright.specialized.config.ts` 供 catalog 精確執行 canonical／authoring／效能／determinism；一般 `timeout: 120_000`、`retries: 0`、失敗保留 trace、5 projects（chromium / firefox / webkit / mobile-chrome Pixel 7 / mobile-safari iPhone 14） |
 | Property-based | **fast-check**                                                   | Vitest `it(...)` 內以 `fc.assert(fc.property(...))` 執行可重現的不變式測試                                                                                               |
 
 ## 2. 確定性測試 harness
@@ -84,6 +84,14 @@ configuration 以 file replacement 加入 route，production route graph 與所�
 請求都必須帶正確 header；自行開啟瀏覽器、只偽造 global 或錯誤 header 必須得到 401。
 `pnpm build` 在 CSP／precache 後處理前執行 production isolation gate，route、chunk、穩定
 sentinel 任一洩漏都 fail closed。`InputEvent` 型別見 [interfaces.md §3.1](interfaces.md)。
+catalog 的 `determinism` suite 同時執行 `src/testing/determinism/` 與專屬 Playwright 檔，並由
+profile runner 先準備一次 E2E build；Private 日常因其為 required-long 而排除，Public 日常在
+Linux common job 執行一次，full 則依三平台同內容合約執行。
+`unit-core` 排除 property、determinism、fuzz、performance 與 integration 的專屬檔；當 profile
+同時選到 coverage 時，由 coverage supersede `unit-core`，再由各專屬 suite 各跑一次，避免
+Public daily 與 full 把相同測試重複收集。
+profile runner 先依 catalog 順序完成所有不需要 E2E build 的 suite，再建立一次 E2E 產物並依
+原相對順序執行 determinism 與 browser suites；production build 因此不會覆寫待重用的 E2E 產物。
 
 ## 3. 8 人 Mesh connectivity proof
 
@@ -115,32 +123,40 @@ checksum 收斂，也不得宣稱抗損韌性。真正 impairment 測試必須�
 的 transport／proxy 層實際 drop／delay frames，再觀察重連與 checksum，不能用只保存參數的
 setter 代替。
 
-## 4. CI Matrix（`ci.yml`／`platform-self-hosted.yml`／nightly／release）
+## 4. CI test catalog 與 profile matrix
 
-| Workflow                   | Job / mode                                  | 觸發                                   | 矩陣 / 條件                                                                                                                                                                                                    |
-| -------------------------- | ------------------------------------------- | -------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `ci.yml`                   | `policy`                                    | master push／PR、`public`、手動         | 從 event payload 的實際 repository visibility 推導 `private-auto`／`hosted-full`／`public-auto`；未知事件、visibility 或非 default-branch 手動執行 fail closed                                                   |
-| `ci.yml`                   | Linux base jobs                             | 三種 mode                              | `validate`、`unit`、`integration`、Linux `e2e` 與 `e2e-provisional-assets-smoke`；E2E 只在 prerequisites 全綠後啟動，30 分鐘 cap；代表性 canonical smoke 保持 `retries=0`，不包含自然完賽或效能長測試             |
-| `ci.yml`                   | `private-auto`                              | private master PR／push                | 只建立 GitHub-hosted Ubuntu jobs；feature branch 尚未開 PR 前的 push 不觸發，PR open／synchronize 與合併後 master push 各驗一次                                                                                   |
-| `ci.yml`                   | `unit-platform`／`e2e-platform`             | `hosted-full`／`public-auto`            | 標準 hosted Windows／macOS unit、coverage、property；macOS 跑 chromium／firefox／webkit／mobile-chrome／mobile-safari 五個 Playwright projects                                                                   |
-| `ci.yml`                   | `hosted-full`                               | private default branch 手動            | 首次公開前對同一候選 commit 跑完整標準 GitHub-hosted Ubuntu／Windows／macOS 矩陣                                                                                                                                |
-| `ci.yml`                   | `public-auto`                               | `public` event、public master PR／push | repository 公開當下與其後自動跑完整 hosted 矩陣；不需另推 CI 設定 commit                                                                                                                                         |
-| `ci.yml`                   | `CI / required`                             | 每次 `ci.yml`                          | 固定 required check；private mode 要求平台 jobs skipped，full modes 要求所有選定 jobs success                                                                                                                   |
-| `platform-self-hosted.yml` | Windows                                     | default branch 手動                    | `[self-hosted, open4wd-windows]`；unit／coverage／property／determinism 與 chromium／firefox／webkit 桌面 E2E                                                                                                    |
-| `platform-self-hosted.yml` | macOS                                       | default branch 手動                    | `[self-hosted, open4wd-macos]`；unit／coverage／property／determinism 與五個 Playwright projects                                                                                                                 |
-| `nightly.yml`              | `fuzz-performance`                          | nightly schedule／手動                 | Ubuntu；job `timeout-minutes: 45`；fuzz step `timeout-minutes: 30` 且 `OPEN4WD_FUZZ_PROFILE=nightly`，之後跑 `test:perf`                                                                                          |
-| `nightly.yml`              | `canonical-assets-completion`／`-perf`      | nightly schedule／手動                 | Ubuntu Chromium；三個 series shard 完成九組自然完賽，另跑 strict representative assets／有界首幀效能；skipped／missing 失敗                                                                                      |
-| `release-readiness.yml`    | `release-gate`／canonical completion／perf | 手動 `workflow_dispatch`               | Ubuntu；determinism、perf、public deployment/release assets、production build、五個 Playwright projects；之後完成三個 series shard 與 strict canonical perf，任何 skipped／missing 阻擋 release                  |
+`.ci/test-catalog.json` 是 suite ID、命令、scope、necessity、duration、evidence、平台、artifact 與
+受管路徑的唯一機器權威。`resolve-ci-profile.mjs` 依 lifecycle、trigger、platform、stage 產生固定
+順序 plan；workflow 只決定 policy 與 runner placement，不得自行拼 grep、spec 檔名或 eligibility
+旗標。未知輸入、空 plan、重複 ID、full 平台缺口或未分類受管路徑一律 fail closed。
+
+| 入口／profile | 觸發與 runner | 測試政策 |
+| --- | --- | --- |
+| `ci.yml` private core | private master PR／push；GitHub-hosted Linux | `required + short + machine + common` |
+| `ci.yml` private E2E | 同上，與 core 平行；GitHub-hosted Linux | `required + short + machine + Linux platform`；Chromium 與 canonical smoke 共用一次 build |
+| `ci.yml` public common | public master PR／push 與 `public` event；GitHub-hosted Linux | 所有 `required + machine + common`，不以 duration 排除 |
+| `ci.yml` public platform | 同上；GitHub-hosted Ubuntu／Windows／macOS | 各平台所有 `required + machine + platform`，不重複 common suite |
+| `full-manual.yml` | 手動選 Linux hosted、Windows self-hosted 或 macOS self-hosted | 三平台同一 full contract；含 optional、long、authoring 與 human-visual |
+| `release-readiness.yml` | 手動；三個 GitHub-hosted 平台 | 與 manual 完全相同的 full contract，供首次公開前與 release readiness |
+| `CI / required` | 每次 `ci.yml` | 只要求 visibility 選中的 jobs success；selected skipped／cancelled／missing 失敗 |
+
+共用 full workflow 同時接收 lifecycle／trigger 身分：手動 self-hosted 證據標記為
+`private-manual-full`，三平台 hosted readiness 標記為 `release-full`；兩者的 suite IDs 與命令仍
+由 catalog 契約保證完全相同。
+
+Private 與 Public 日常都不選 human-visual。self-hosted runner 不接收 push、PR、schedule 或
+`public` event，離線不影響日常 required check。repository 轉 Public 時直接依 event payload 的
+實際 visibility 切換 policy，不需要再推 CI 設定。
 
 ### 4.1 Fuzz 執行契約
 
-`test:fuzz` 執行 `src/testing/fuzz/**/*.spec.ts` 的 bounded 隨機輸入測試。Nightly 使用固定可回報
-seed 與 30 分鐘 step timeout；任何 assertion 或 timeout 都使 job 失敗。失敗報告必須保存 seed 與
+`test:fuzz` 執行 `src/testing/fuzz/**/*.spec.ts` 的 bounded 隨機輸入測試。它由 full catalog profile
+執行並使用可回報 seed 與具名 timeout；任何 assertion 或 timeout 都使 job 失敗。失敗報告必須保存 seed 與
 最小 counterexample，讓相同輸入可在本機重現；不得把單次未命中視為性質已證明。
 
 shipped canonical 與 authoring source 是兩種不同證據。`public/assets/builtin` 的 24 個 part GLB 與
 3 個 track GLB 可供 checkout 直接驗證成品載入與完整 local-result 旅程；代表性 smoke 不宣稱車輛
-必然抵達終點，nightly／release 的三個 dedicated completion profiles 才要求九組自然完賽。
+必然抵達終點，full contract 的三個 dedicated completion profiles 才要求九組自然完賽。
 Authoring 原始 bytes 由 specs immutable Release 與其 manifest 持有；main recipe
 只以 `sourceAssetId` exact-set join，不重複來源 hash。維護者先離線 deterministic 封裝並審查，
 再建立 Draft、上傳、完整下載回讀，經 exact tag 明確確認後發布。Main 在 specs public 前可使用
@@ -149,11 +165,15 @@ fingerprint／檔案 digest 與 Release manifest digest，從 Release 下載並�
 才執行完整 authoring profile。Canonical 成品始終不得反向替代原始來源；操作與失敗復原見
 [Immutable Release](../美術資源/Immutable%20Release/README.md)。
 
-> **手動平台證據**：Windows／Mac runner 平時可離線，且 self-hosted workflow 永不成為自動
-> required check。維護者啟動單一 runner 後選擇 target，workflow 只接受 default branch 並驗證
-> dispatch 當下最新的 `master` SHA，不提供任意 SHA 輸入；同平台重跑會取消仍 queued／執行中的
-> 舊 run。首次公開前，Windows self-hosted、macOS self-hosted 與 `hosted-full` 必須對同一候選
-> commit 全綠；本機或 Windows 結果不能冒充 GitHub-hosted macOS 證據。
+> **手動平台證據**：Windows／Mac runner 平時可離線，且 `Full / manual` 永不成為自動 required
+> check。維護者啟動單一 runner 後選擇 target；不提供任意 SHA／ref input，同一最新 default-branch
+> revision 可重複執行。首次公開前，Linux hosted、Windows self-hosted、macOS self-hosted full 與
+> 三平台 hosted `Release readiness` 必須對同一候選 commit 全綠；任一平台不能冒充另一平台證據。
+
+> **按需 Linux parity**：Docker Desktop 不需常駐，也不是 pre-push／required CI 前置。只有首次推版、
+> toolchain／shell 參數語意改動或 hosted-only 差異調查時，維護者才手動啟動 Linux container 驗證；
+> 永久防回歸由 catalog、resolver 與 `check:e2e-ci-gates` 拒絕 workflow-local suite 選擇，Docker 結果不替代
+> Windows、macOS 或 GitHub-hosted 候選證據。
 
 ## 5. 測試命名與組織
 
@@ -173,14 +193,39 @@ scripts/import-boundaries.test.mjs             # repository contract tests
 
 `e2e/*.spec.ts` 依證據種類分組，而不是另建一套產品模組樹：app shell／頁面／responsive／accessibility 屬一般跨瀏覽器 UI；`editor-*` 與 `ugc-journey` 屬 Editor／UGC；`full-race-flow`、`race-config` 與 `determinism` 屬賽事行為；`builtin-canonical-*` 與 `builtin-local-*` 驗證 repository 內 shipped canonical GLB；`builtin-authoring`、`editor-real-part-import`、`full-real-local-race` 驗證 specs sibling 或其 immutable Release 的 authoring source。共用載入、session 與證據 helper 放在 `e2e/helpers/` 或同層具名 helper，不以無測試內容的根層 `test/` 目錄表示覆蓋。
 
-`OPEN4WD_E2E_REQUIRED_PROFILE` 是 required coverage 的 fail-closed 選擇器：reporter 會列出 expected title 的 executed／authorized deferred skip／skipped／missing。只有 `provisional-assets-smoke` 配合 checked-in `deferred-prelaunch` 可授權兩個代表 title 的 skip；missing、delivery 已切為 delivered 後的 skip，以及 `canonical-assets`／`canonical-assets-perf`／三個 `canonical-assets-completion-{speed,heavy,control}` profile 的任何 skip 都失敗。九組自然完賽 suite 沒有 dedicated series profile 時一律 skip，避免一般五瀏覽器矩陣重複執行長測試。`OPEN4WD_BUILTIN_DELIVERY_GATE` 只接受未設定／`development`／`strict`；nightly、release 與 asset-ready 固定 strict，未知值 fail closed。下列舊式 opt-in 旗標只控制特定測試本身，不能取代 required profile：
+一般 config 排除所有由 catalog 專屬 suite 擁有的檔案；專屬命令必須指定
+`playwright.specialized.config.ts` 與精確檔案／title。這使 full 仍涵蓋全部有效 suite，但不會由
+一般 browser matrix 重複執行。`issue116-track-probe.spec.ts` 只供帶 prepared source 的歷史本機
+診斷，兩個 CI config 都不把它計為有效 coverage。
+
+### 5.2 視覺證據與自動 gate 分界
+
+判斷依據是測試輸出是否會被機器轉成產品斷言，不是底層有沒有呼叫 browser screenshot API。
+Canvas 非黑畫面／對比、縮圖透明度、元素幾何、必要操作可達性與 document 溢位等可判定的產品
+行為維持自動 CI gate；Playwright `only-on-failure` screenshot 與失敗 trace 也維持自動保存。
+
+只產生成功截圖供人觀看、驗證 viewport evidence helper 本身，或建立完整頁面視覺稽核 inventory
+的案例集中在 `e2e/manual-visual/`。一般 `playwright.config.ts` 永遠排除該目錄；只有 catalog full
+profile 或維護者直接使用 `playwright.manual-visual.config.ts`，並明確設定
+`OPEN4WD_VISUAL_ARTIFACTS=1`，才會收集。`CI` 存在本身不得改變 suite eligibility；它只能調整
+workers、reporter 或診斷等執行細節。`OPEN4WD_RWD_AUDIT_ARTIFACTS=1` 若仍用於混合功能案例的
+附加人工圖，也只能由 catalog runner 設定，不能成為另一套 eligibility 清單。所有人工 artifact
+維持 `retries=0`；workflow 成功只代表 artifact 產生完整，不代表人工核准。
+
+`OPEN4WD_E2E_REQUIRED_PROFILE` 是 runner 根據 catalog 設定的 required coverage 執行細節；reporter
+的 expected titles 也由同一 catalog 讀取，並列出 executed／authorized deferred skip／skipped／
+missing。只有 `provisional-assets-smoke` 配合 `OPEN4WD_BUILTIN_DELIVERY_GATE=development` 可授權兩個代表 title
+的 skip；其他 required profile 的任何 skip／missing 都失敗。九組自然完賽沒有 dedicated series
+profile 時一律 skip，避免一般五瀏覽器矩陣重複執行長測試。`OPEN4WD_BUILTIN_DELIVERY_GATE` 只
+接受未設定／`development`／`strict`；full 與 asset-ready 固定 strict，未知值 fail closed。下列
+執行旗標只能由 catalog plan 設定，不能取代 suite eligibility：
 
 | 旗標                          | 控制 suite／用途                                                                              | 素材／前置                                                                                               | current CI 與 skip 語意                                                                                                                    | target／解除條件                                                            |
 | ----------------------------- | --------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------ | --------------------------------------------------------------------------- |
 | `OPEN4WD_REAL_GLB_TEST=1`     | `editor-real-part-import.spec.ts` 及 `full-real-local-race.spec.ts` 的原始 GLB 匯入與完整旅程 | 本機 specs sibling，或 lock 驗證後的 `O4_AUTHORING_RELEASE_DIR`                                          | 一般 main CI 在 specs public 前未設定，測試明示 `skipped`；不得算 pass。啟用 template 後 required profile 對漏跑 fail closed               | specs public 並取得 immutable commit／Release 後啟用 main adoption workflow |
 | `OPEN4WD_BUILTIN_AUTHORING=1` | `builtin-authoring.spec.ts` 經可見 Editor 控制重新 author selected builtin                    | main recipe＋specs source manifest exact-set；可用 `OPEN4WD_BUILTIN_IDS` 選集合；預設只寫 `test-results` | 一般 main CI 在 specs public 前未設定；availability 與 manifest join 仍必跑；只有維護者手動另設 `OPEN4WD_BUILTIN_WRITE=1` 才可替換正式公版 | 與 `OPEN4WD_REAL_GLB_TEST` 共用 authoring-sources adoption job              |
 | `OPEN4WD_REAL_GLB_RESUME=1`   | `full-real-local-race.spec.ts` 從已保存匯入 checkpoint 續跑；並排除同檔完整重匯旅程           | 先由相同 source GLB 建立 checkpoint                                                                      | CI 未設定，測試明示 `skipped`；`authoring-sources-resume` required profile 已定義但未接 job                                                | 可攜 checkpoint 產製／傳遞流程與 source hash 驗證接入專用或排程 job 後啟用  |
-| `OPEN4WD_RACE_PERF_ONLY=1`    | `full-real-local-race.spec.ts` 只跑 shipped canonical 首幀有界效能採樣，並排除 resume         | repository 內 canonical loadout／track；`OPEN4WD_E2E_REQUIRED_PROFILE=canonical-assets-perf`             | nightly 與 release 的 `canonical-assets-perf` job 已設定；required title skipped／missing 即失敗                                           | 維持效能 job，不混入一般功能矩陣                                            |
+| `OPEN4WD_RACE_PERF_ONLY=1`    | `full-real-local-race.spec.ts` 只跑 shipped canonical 首幀有界效能採樣，並排除 resume         | repository 內 canonical loadout／track；`OPEN4WD_E2E_REQUIRED_PROFILE=canonical-assets-perf`             | full catalog 的 `canonical-performance` suite 設定；required title skipped／missing 即失敗                                                   | 維持 full suite，不混入日常功能矩陣                                         |
 
 這些旗標的 workflow 接線另由 `check:e2e-ci-gates` 驗證；完整正式命令與 job evidence 見 [toolchain.md](toolchain.md)。
 
@@ -236,7 +281,8 @@ namespace。production-owned `AppShellDynamicDeps` 只列 AppShell 實際消費�
 固定毫秒值是**產品診斷目標**，`meetsProductTarget` 必須在效能報表中獨立呈現，但目前不是
 共享 runner 的 hard gate。共享 CI runner 先執行固定 CPU／記憶體校準，再以正規化後相對
 reference 的退化比例判定：超 +10% 警告、超 +25% 阻擋，避免 runner CPU 世代與即時負載
-造成假失敗；release-readiness 必須執行同一 `test:perf` regression gate。只有在 repository
+造成假失敗；`test:unit:performance` 只是 `test:perf` 的相容別名，full catalog 只執行一次；
+release-readiness 必須執行同一 `test:perf` regression gate。只有在 repository
 另行固定並記錄 CPU／OS／runtime／power mode 的參考環境及可重現 runner 後，才能增加
 `meetsProductTarget` hard gate；在此之前不得宣稱固定毫秒值會阻擋 release。
 
