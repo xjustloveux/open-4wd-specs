@@ -1562,7 +1562,8 @@ test("testing and ledger canon describe the live runner and state contracts", ()
 
   assert.doesNotMatch(testing, /@fast-check\/vitest|test\.prop/u);
   assert.match(testing, /fc\.assert\(fc\.property/u);
-  assert.match(testing, /ci\.yml.*nightly\.yml.*release-readiness\.yml/su);
+  assert.match(testing, /\.ci\/test-catalog\.json[\s\S]*ci\.yml[\s\S]*full-manual\.yml[\s\S]*release-readiness\.yml/su);
+  assert.doesNotMatch(testing, /`nightly\.yml`/u);
   assert.doesNotMatch(testing, /fake-indexeddb|`wrtc`|headless gl/u);
   assert.match(
     ledger,

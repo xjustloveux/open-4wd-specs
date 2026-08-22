@@ -45,28 +45,24 @@ graph TB
 flowchart TD
     Branch[feature branch push] --> Open{已有 master PR?}
     Open -->|否| NoCI[不建立 hosted CI]
-    Open -->|開啟或 synchronize| Private[private-auto<br/>GitHub-hosted Linux]
+    Open -->|開啟或 synchronize| Private[Private daily<br/>Linux core 與 Chromium E2E 平行]
     Private --> Merge[merge to master]
-    Merge --> Master[private-auto<br/>正式 master commit]
+    Merge --> Master[Private daily<br/>正式 master commit]
 
-    Master -.維護者手動.-> Windows[Windows self-hosted<br/>最新 master]
-    Master -.維護者手動.-> Mac[macOS self-hosted<br/>最新 master]
-    Master -.維護者手動.-> Hosted[hosted-full<br/>完整標準 hosted matrix]
+    Master -.Full / manual.-> Linux[Linux hosted<br/>統一 full catalog]
+    Master -.Full / manual.-> Windows[Windows self-hosted<br/>統一 full catalog]
+    Master -.Full / manual.-> Mac[macOS self-hosted<br/>統一 full catalog]
+    Master -.Release readiness.-> Hosted[三平台 hosted<br/>統一 full catalog]
     Hosted --> Public[repository 轉 public]
-    Public --> PublicAuto[public-auto<br/>完整標準 hosted matrix]
+    Public --> PublicAuto[Public daily<br/>Linux common + 三平台必要測試]
 
     PublicAuto --> Result{結果}
     Private --> Result
     Master --> Result
+    Linux --> Result
     Windows --> Result
     Mac --> Result
     Hosted --> Result
-
-    Event{其他觸發事件}
-    Event -->|nightly schedule / 手動| Night[fuzz + performance<br/>+ canonical assets completion / perf]
-    Event -->|release workflow_dispatch| Release[determinism + perf + deployment assets<br/>+ production build + E2E]
-    Night --> Result
-    Release --> Result
 
     Result -->|綠| Pass[繼續]
     Result -->|紅| Block[阻擋]
@@ -81,8 +77,15 @@ flowchart TD
     class Block fail
 ```
 
-實線 branch／PR／master／`public` 路徑只到 GitHub-hosted jobs；Windows 與 macOS self-hosted 節點
-只有維護者手動虛線可達。兩台 runner 離線不影響 `CI / required`、nightly 或 release。
+實線 branch／PR／master／`public` 路徑只到 GitHub-hosted daily jobs；Windows 與 macOS
+self-hosted 節點只有維護者手動虛線可達。兩台 runner 離線不影響 `CI / required`。
+Docker Desktop 只在首次推版或 Linux shell／toolchain parity 調查時按需啟動，不是常駐 runner、
+pre-push 或 required check；一般 private 自動 E2E 只跑 Linux Chromium。
+
+一般 CI 只接收會由機器判定產品行為的視覺 gate，以及 Playwright 自動失敗 screenshot／trace。
+成功路徑人工證據、viewport-only helper 契約與完整頁面稽核只由 catalog full profile 或維護者
+明確使用 manual visual config 執行；Private／Public daily 不收集。full 成功只代表 artifact 產生，
+仍須由人觀看與裁決。
 
 ## 確定性測試流程
 
