@@ -34,7 +34,7 @@ slug: null
 
 先在 GKE 建叢集、固定節點外部 IP，並放行 3478 UDP＋TCP、選配 5349 TCP、relay UDP 埠段；
 再 fork → 啟用 Actions → 設上表 → Actions 的 **Deploy operator fork** 按 **Run workflow**。
-流程會渲染 conf、apply ConfigMap／Secret／workload、rollout restart，最後做真 STUN binding 與
+流程會渲染 conf、以 Secret 承載整份 conf 並 apply workload、rollout restart，最後做真 STUN binding 與
 HMAC 短期憑證 TURN allocate smoke。
 
 ## 1. 定位與職責
@@ -57,7 +57,7 @@ open-4wd-turn/
 │   ├── docker-compose.yml        # 單機自架路徑
 │   ├── .env.example              # 變數樣本（樣本值、無真實 secret）
 │   ├── coturn-image.txt          # CI／compose／k8s 共用的上游 image pin
-│   ├── k8s/                      # deployment（hostNetwork）+ configmap + secret + service（UDP）
+│   ├── k8s/                      # deployment（hostNetwork）+ secret（TLS 鍵名形狀樣板）+ service（UDP）
 │   ├── test_security_policy.py   # manifest／coturn 安全政策契約
 │   └── test_workflow_contract.py # CI／deploy workflow 契約
 ├── scripts/                      # comment quality／hook 的本機維護工具
@@ -84,25 +84,25 @@ open-4wd-turn/
 
 公版 repo＝ **零 secrets**（CI 純驗證，[§5](#5-ci公版-repo與營運者-fork-部署)）；下表全屬營運者環境：
 
-| 變數                                     | 位置                  | 說明                                                                                                                                                                      | fork 自架            |
-| ---------------------------------------- | --------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------- |
-| 部署憑證                                 | GitHub secret         | 正式 workflow 主線為 `KUBE_CONFIG`（k8s API 可遠端連）；SSH 節點端與 compose 是營運者自行維護的替代路徑                                                                   | **必改**             |
-| `TURN_SHARED_SECRET`                     | GitHub secret         | **與 `open-4wd-signaling` 同值**（跨 repo 耦合；輪換兩邊同步）；workflow 以 `--from-literal` 注入叢集 Secret——repo 內 `secret.yaml`＝鍵名形狀樣板、**不被 apply**         | 必改                 |
-| `REALM`                                  | GitHub vars           | turn 域名——渲染入 configmap；慣例＝可解析 DNS 名（兼部署後 smoke 連線主機）                                                                                               | 必改                 |
-| `EXTERNAL_IP`                            | GitHub vars           | 節點公網 IP——渲染入 configmap；hostNetwork 下與落點節點綁定（多節點叢集自行加 nodeSelector）                                                                              | 必改                 |
-| `TURN_URLS`                              | GitHub vars           | 配對 signaling 原樣下發給 client 的 `turn:`／`turns:` URL 清單；coturn conf 不讀此欄，但兩端部署值必須一致                                                                | 必改（提供 TURN 時） |
-| `MIN_PORT` / `MAX_PORT`                  | GitHub vars（有預設） | relay 埠段（預設 49152–65535）                                                                                                                                            | 可調                 |
-| `USER_QUOTA` / `TOTAL_QUOTA` / `MAX_BPS` | GitHub vars（有預設） | 配額 / 頻寬帽                                                                                                                                                             | 可調                 |
-| `tls.crt` / `tls.key`                    | 叢集內 Secret（可選） | `turns:` 支援——營運者**手動**加入叢集內 `open4wd-turn-secret`（非 CI 注入；workflow 的 secret 注入不剪除手動加的鍵）；掛載路徑 `/etc/coturn-tls`（[§6](#6-k8s-注意事項)） | 選擇性               |
+| 變數                                     | 位置                  | 說明                                                                                                                                                                                                                                                         | fork 自架            |
+| ---------------------------------------- | --------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | -------------------- |
+| 部署憑證                                 | GitHub secret         | 正式 workflow 主線為 `KUBE_CONFIG`（k8s API 可遠端連）；SSH 節點端與 compose 是營運者自行維護的替代路徑                                                                                                                                                      | **必改**             |
+| `TURN_SHARED_SECRET`                     | GitHub secret         | **與 `open-4wd-signaling` 同值**（跨 repo 耦合；輪換兩邊同步）；隨渲染後 conf（`static-auth-secret`）整份以 Secret `open4wd-turn-conf` 承載、掛成 `/etc/coturn/turnserver.conf`，**不走 ConfigMap**；repo 內 `secret.yaml`＝TLS 鍵名形狀樣板、**不被 apply** | 必改                 |
+| `REALM`                                  | GitHub vars           | turn 域名——渲染入 conf Secret；慣例＝可解析 DNS 名（兼部署後 smoke 連線主機）                                                                                                                                                                                | 必改                 |
+| `EXTERNAL_IP`                            | GitHub vars           | 節點公網 IP——渲染入 conf Secret；hostNetwork 下與落點節點綁定（多節點叢集自行加 nodeSelector）                                                                                                                                                               | 必改                 |
+| `TURN_URLS`                              | GitHub vars           | 配對 signaling 原樣下發給 client 的 `turn:`／`turns:` URL 清單；coturn conf 不讀此欄，但兩端部署值必須一致                                                                                                                                                   | 必改（提供 TURN 時） |
+| `MIN_PORT` / `MAX_PORT`                  | GitHub vars（有預設） | relay 埠段（預設 49152–65535）                                                                                                                                                                                                                               | 可調                 |
+| `USER_QUOTA` / `TOTAL_QUOTA` / `MAX_BPS` | GitHub vars（有預設） | 配額 / 頻寬帽                                                                                                                                                                                                                                                | 可調                 |
+| `tls.crt` / `tls.key`                    | 叢集內 Secret（可選） | `turns:` 支援——營運者**手動**建立／維護叢集內 `open4wd-turn-secret`（workflow 不建立也不 apply 此 Secret）；掛載路徑 `/etc/coturn-tls`（[§6](#6-k8s-注意事項)）                                                                                              | 選擇性               |
 
 必填四鍵（`TURN_SHARED_SECRET`／`REALM`／`EXTERNAL_IP`／`TURN_URLS`）任一缺值 ＝workflow 渲染步驟**直接紅燈**，且 URL 只接受 `turn:`／`turns:`（envsubst 對未設變數靜默代入空字串，故前置 `:?` 硬檢）。
 
 ## 5. CI（公版 repo）與營運者 fork 部署
 
-- **公版 repo CI＝ 純驗證、永不部署**（`.github/workflows/ci.yml`；零 secrets）：① 樣本值渲染與鍵集合比對 ② compose／k8s／deploy workflow YAML 驗證 ③ 真 coturn STUN＋TURN 冒煙。公版 CI 的 `-W` 只傳公開樣本 secret，正式部署不可照抄；外部 actions 一律鎖完整 commit SHA。
+- **公版 repo CI＝ 純驗證、永不部署**（`.github/workflows/ci.yml`；零 secrets）：① 樣本值渲染與鍵集合比對 ② compose／k8s／deploy workflow YAML 驗證 ③ 真 coturn STUN＋TURN 冒煙（smoke 容器以 CLI `--allowed-peer-ip` 為 runner 自身位址開洞，讓 `uclient -y` 的 client-to-client peer 通過正式 conf 的 `denied-peer-ip`；模板與渲染檔不變）。公版 CI 的 `-W` 只傳公開樣本 secret，正式部署不可照抄；外部 actions 一律鎖完整 commit SHA。
 - 註解語言不屬設定或部署契約，不加入公版 CI、YAML／coturn 驗證或營運者 deploy 前置；自然語言說明可用英文或繁中，固定設定語法保持原文。
 - **營運者 fork** 設 `DEPLOY_ENABLED=true` 後才會啟用 dispatch-only deploy job：
-  1. 手動 dispatch → 必填值硬檢（[§4](#4-部署變數與-secrets)）→ `envsubst` 渲染 `turnserver.conf` → configmap 由渲染檔生成 → secret 真值以 `--from-literal` 注入 → apply workload → 顯式 rollout restart（會中斷進行中的中繼會話）。
+  1. 手動 dispatch → 必填值硬檢（[§4](#4-部署變數與-secrets)）→ `envsubst` 渲染 `turnserver.conf` → 渲染檔整份以 Secret `open4wd-turn-conf` 生成（conf 含 shared secret，不走 ConfigMap）→ apply workload → 顯式 rollout restart（會中斷進行中的中繼會話）。
   2. **coturn 用上游官方 image、不自 build**（本 repo 無程式碼可編譯）。
   3. `concurrency` 序列化：同時只跑一份部署、後到排隊不取消（半套 apply 比等待更糟）。
   4. **部署後 smoke**：對 `REALM`（可解析 DNS 名）發 STUN binding request → 收到 `XOR-MAPPED-ADDRESS` 即通過；TURN 依 REST auth 形狀令 `TURN_USER = <now+300>:smoke`，以 `base64(HMAC-SHA1(TURN_SHARED_SECRET, TURN_USER))` 算出 `TURN_CRED`，再執行 `turnutils_uclient -u "$TURN_USER" -w "$TURN_CRED" -y -c "$REALM"` 完成一次 allocate。長期 shared secret 不進命令列。
@@ -111,7 +111,7 @@ open-4wd-turn/
 
 - **`hostNetwork: true`**（或 NodePort UDP range）——TURN relay 需要一段 UDP port，一般 Service 模型不友善；**單 node 單 replica**（port 衝突；deployment＝`Recreate`）。
 - LoadBalancer 對 UDP 的支援視雲商而定；裸機 / VM 直接 hostNetwork 最單純。
-- TLS（`turns:`）憑證掛載路徑 ＝**`/etc/coturn-tls`**——獨立 volume、**不巢於 configMap 唯讀掛載 `/etc/coturn` 內**（巢狀掛載點在唯讀父層可能建不出來）。
+- TLS（`turns:`）憑證掛載路徑 ＝**`/etc/coturn-tls`**——獨立 volume、**不巢於 conf Secret 唯讀掛載 `/etc/coturn` 內**（巢狀掛載點在唯讀父層可能建不出來）。
 - 公版 deploy workflow **不簽發也不續期** `turns:` 憑證；營運者須自行維護簽發、續期、Secret 更新與到期監控。coturn 不保證對掛載檔案無中斷熱載，更新後的 reloader／rollout restart 可能中斷進行中的 relay；應排在低流量窗並由 client 重連驗證。
 - 可與 pinning 節點同機（同 cluster 不同 workload），STUN/TURN 對磁碟零需求。
 

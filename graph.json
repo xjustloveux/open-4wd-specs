@@ -2382,6 +2382,15 @@
       "summary": null
     },
     {
+      "id": "decisions/D-20260823-01-註解hook本機wrapper生成.md",
+      "type": "decision",
+      "domain": [
+        "治理營運",
+        "版本部署"
+      ],
+      "summary": null
+    },
+    {
       "id": "decisions/INDEX.md",
       "type": null,
       "domain": [],
@@ -5587,6 +5596,10 @@
       "to": "decisions/D-20260813-01-註解語言與公開Template-CI劃界.md"
     },
     {
+      "from": "decisions/D-20260815-02-註解品質本機前移與多語PR流程.md",
+      "to": "decisions/D-20260823-01-註解hook本機wrapper生成.md"
+    },
+    {
       "from": "decisions/D-20260816-05-賽事空間音訊正式採HRTF.md",
       "to": "decisions/D-20260809-05-音訊槽位UICue與賽事空間音訊.md"
     },
@@ -5649,6 +5662,10 @@
     {
       "from": "decisions/D-20260817-04-UI常數權威收斂至實際消費端.md",
       "to": "編輯器操作.md"
+    },
+    {
+      "from": "decisions/D-20260823-01-註解hook本機wrapper生成.md",
+      "to": "decisions/D-20260815-02-註解品質本機前移與多語PR流程.md"
     },
     {
       "from": "decisions/INDEX.md",
@@ -6761,6 +6778,10 @@
     {
       "from": "decisions/INDEX.md",
       "to": "decisions/D-20260822-02-CI測試目錄與Profile執行架構.md"
+    },
+    {
+      "from": "decisions/INDEX.md",
+      "to": "decisions/D-20260823-01-註解hook本機wrapper生成.md"
     },
     {
       "from": "decisions/INDEX.md",
@@ -10065,6 +10086,10 @@
     {
       "from": "程式架構/themes.md",
       "to": "程式架構/versioning.md"
+    },
+    {
+      "from": "程式架構/toolchain.md",
+      "to": "decisions/D-20260823-01-註解hook本機wrapper生成.md"
     },
     {
       "from": "程式架構/toolchain.md",

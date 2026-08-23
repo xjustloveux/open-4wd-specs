@@ -21,8 +21,10 @@ slug: null
 
 註解品質另有不納入正式命令 inventory 的回饋層：ESLint 使用同一 AST analyzer；
 `comments:hook:staged` 只讀 Git index blob，`comments:hook:full` 掃全庫；
-`comments:hooks:setup -- <maintainer|contributor>` 與 `comments:hooks:disable` 只修改 repo-local
-Git config，clone／fork 不會自動啟用。workflow issue 的 `處理中 → 已處理` 在任何狀態寫入前，
+`comments:hooks:setup -- <maintainer|contributor>` 與 `comments:hooks:disable` 只在目前 clone 的
+`.git/hooks` 生成或移除帶 Open4WD 標記的 0755 wrapper，並只寫 repo-local profile 設定、不設定
+`core.hooksPath`（[D-20260823-01](../decisions/D-20260823-01-註解hook本機wrapper生成.md)），
+clone／fork 不會自動啟用。workflow issue 的 `處理中 → 已處理` 在任何狀態寫入前，
 依 affected repos 執行 maintainer full gate；失敗時 issue 與 claim 均保持不變。這些 helper 不以
 `check:*` 命名，避免被誤列成可取代 CI 的正式完成證據。
 

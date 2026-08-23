@@ -174,7 +174,7 @@ pnpm dmca:export -- <output-path>
 
 ## 4. CI（公版）與營運者部署
 
-- **公版 repo CI＝test＋ 發佈、永不部署**：push `master` → `pnpm lint` → `pnpm check:types` → `pnpm test`（＋ 整合測試：真 kubo／cluster service containers）→ `pnpm check:vendor -- --local-only`（只驗 MANIFEST 與本機 vendored bytes）→ **只 build `app` image**（kubo / ipfs-cluster 用上游官方 image、manifests 直接引用）→ tag＝ **時間戳 ＋ 短 SHA** → push **GHCR**（public；內建 `GITHUB_TOKEN`）。Main 公開且 provenance 前置成立後，另由 remote provenance gate 比對 immutable 上游 commit 與 npm 帳本套件版本。**actions 一律鎖完整 commit SHA**，禁 tag 或 `@master` 浮動引用。
+- **公版 repo CI＝test＋ 發佈、永不部署**：push `master` → `pnpm lint` → `pnpm check:types` → `pnpm test:scripts`（node:test 腳本契約）→ `pnpm test`（＋ 整合測試：真 kubo／cluster service containers）→ `pnpm check:vendor -- --local-only`（只驗 MANIFEST 與本機 vendored bytes）→ **只 build `app` image**（kubo / ipfs-cluster 用上游官方 image、manifests 直接引用）→ tag＝ **時間戳 ＋ 短 SHA** → push **GHCR**（public；內建 `GITHUB_TOKEN`）。Main 公開且 provenance 前置成立後，另由 remote provenance gate 比對 immutable 上游 commit 與 npm 帳本套件版本。**actions 一律鎖完整 commit SHA**，禁 tag 或 `@master` 浮動引用。
 - 註解語言不屬映像或部署契約，不加入公版 CI、聚合 test、build 或營運者 deploy 前置；英文與繁中皆可，vendored core 保留來源語言。
 - **維運者 fork** 設 `DEPLOY_ENABLED=true` 後才啟用 dispatch-only deploy job：
   1. 手動 dispatch → secrets／公開 trust roots 注入（`AUTHORIZED_SIGNERS` / `GOVERNANCE_SIGNERS` / `CLUSTER_SECRET` → checkout 外的 kustomize render）。
