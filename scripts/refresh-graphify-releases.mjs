@@ -22,7 +22,7 @@ function headers() {
   return result;
 }
 
-function extractStoreZip(bytes) {
+export function extractStoreZip(bytes) {
   const files = new Map();
   let offset = 0;
   while (offset + 4 <= bytes.length && bytes.readUInt32LE(offset) === 0x04034b50) {
@@ -39,15 +39,16 @@ function extractStoreZip(bytes) {
     const dataEnd = dataStart + size;
     if (dataEnd > bytes.length) throw new Error('truncated ZIP member');
     const name = bytes.subarray(nameStart, nameStart + nameLength).toString('utf8').normalize('NFC');
-    if (!['graph.json', 'index.html'].includes(name) || files.has(name)) throw new Error(`unexpected or duplicate site ZIP member: ${name}`);
+    if (!['graph.json', 'index.html', 'viewer-data.js', 'vis-network.min.js'].includes(name) || files.has(name))
+      throw new Error(`unexpected or duplicate site ZIP member: ${name}`);
     files.set(name, bytes.subarray(dataStart, dataEnd));
     offset = dataEnd;
   }
-  if (files.size !== 2) throw new Error('site ZIP must contain exactly graph.json and index.html');
+  if (files.size !== 4) throw new Error('site ZIP must contain exactly graph.json, index.html, viewer-data.js, and vis-network.min.js');
   return files;
 }
 
-function validateManifest(manifest, repository, release) {
+export function validateManifest(manifest, repository, release) {
   const full = `${OWNER}/${repository}`;
   if (manifest?.schemaVersion !== 1 || manifest.repository !== full) throw new Error('manifest repository or schema differs');
   if (!SHA.test(manifest.sourceSha) || manifest.tag !== `graphify-${manifest.sourceSha.slice(0, 12)}` || manifest.tag !== release.tag_name)
@@ -56,10 +57,12 @@ function validateManifest(manifest, repository, release) {
   if (new Date(manifest.generatedAt).toISOString() !== manifest.generatedAt) throw new Error('manifest generatedAt is not canonical');
   if (!Number.isSafeInteger(manifest.graph?.nodes) || manifest.graph.nodes < 0 || !Number.isSafeInteger(manifest.graph?.edges) || manifest.graph.edges < 0)
     throw new Error('manifest graph summary is invalid');
+  const expectedMode = manifest.graph.nodes <= 5_000 ? 'full' : 'community-drill';
+  if (manifest.viewer?.mode !== expectedMode || manifest.viewer?.threshold !== 5_000 || manifest.viewer?.engine !== 'vis-network-9.1.6' || manifest.viewer?.data !== 'viewer-data.js')
+    throw new Error('manifest adaptive viewer contract differs');
   if (!Array.isArray(manifest.assets) || manifest.assets.length !== 1 || manifest.assets[0].name !== 'graphify-site.zip')
     throw new Error('manifest asset contract differs');
-  if (!/^[0-9a-f]{64}$/u.test(manifest.assets[0].sha256))
-    throw new Error('manifest asset digest is invalid');
+  if (!/^[0-9a-f]{64}$/u.test(manifest.assets[0].sha256)) throw new Error('manifest asset digest is invalid');
   if (!Number.isSafeInteger(manifest.assets[0].size) || manifest.assets[0].size < 1) throw new Error('manifest asset size is invalid');
   return manifest;
 }

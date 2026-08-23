@@ -2391,6 +2391,16 @@
       "summary": null
     },
     {
+      "id": "decisions/D-20260824-01-Pre-launch公開Q&A延後至Main.md",
+      "type": "decision",
+      "domain": [
+        "版本部署",
+        "資安",
+        "治理營運"
+      ],
+      "summary": null
+    },
+    {
       "id": "decisions/INDEX.md",
       "type": null,
       "domain": [],
@@ -5668,6 +5678,14 @@
       "to": "decisions/D-20260815-02-註解品質本機前移與多語PR流程.md"
     },
     {
+      "from": "decisions/D-20260824-01-Pre-launch公開Q&A延後至Main.md",
+      "to": "專案生命週期.md"
+    },
+    {
+      "from": "decisions/D-20260824-01-Pre-launch公開Q&A延後至Main.md",
+      "to": "資安規範.md"
+    },
+    {
       "from": "decisions/INDEX.md",
       "to": "decisions/D-20260428-01-初始企劃骨架與模組化規格基線.md"
     },
@@ -6782,6 +6800,10 @@
     {
       "from": "decisions/INDEX.md",
       "to": "decisions/D-20260823-01-註解hook本機wrapper生成.md"
+    },
+    {
+      "from": "decisions/INDEX.md",
+      "to": "decisions/D-20260824-01-Pre-launch公開Q&A延後至Main.md"
     },
     {
       "from": "decisions/INDEX.md",

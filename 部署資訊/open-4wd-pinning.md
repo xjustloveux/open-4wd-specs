@@ -79,6 +79,11 @@ open-4wd-pinning/
 
 無任何 secret；deploy workflow 只是未啟用的機制。CI 以內建 `GITHUB_TOKEN`（`packages: write`）發佈 public image 至 **GHCR**（[§4](#4-ci公版與營運者部署)）——非自設 secret。
 
+GHCR package 的寫入權是逐 repository 授權，而不是只看 workflow 宣告的 `packages: write`。建置時以
+`org.opencontainers.image.source` 標記來源 repository，package 便會連結回該 repo 並繼承其權限。若 package
+早於連結存在（例如 repo 曾刪除重建，或先前推送未帶此標記），推送會以 `denied: permission_denied: write_package`
+失敗——此時二擇一：在該 package 的設定把目前 repository 加為可寫，或刪除該 package 讓下次推版重新建立並連結。
+
 ### 3.2 維運者 fork 與替代自架路徑
 
 | 變數                                                               | 位置                          | 說明                                                                                                                                                                                                  |

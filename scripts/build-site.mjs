@@ -18,6 +18,7 @@ import {
   walkMd,
 } from './lib.mjs';
 import { VENDORED_GRAPH_LIBRARIES, hardenGraphHtml, requiredGraphLibraries } from './graph-html-hardening.mjs';
+import { buildViewerProjection, renderViewerData, renderViewerIndex } from './graphify-viewer.mjs';
 import { collectReferencedSiteAssets } from './site-assets.mjs';
 import { stageMarkdownAliases } from './site-markdown-aliases.mjs';
 import { stageAllowlistedSourceFiles } from './site-source-files.mjs';
@@ -27,6 +28,7 @@ const WORKSPACE = path.resolve(REPO_ROOT, '..');
 const STAGE = path.join(REPO_ROOT, '.site-src');
 const GRAPH_REPOS = ['open-4wd', 'open-4wd-pinning', 'open-4wd-signaling', 'open-4wd-turn'];
 const GRAPH_RELEASE_CACHE = path.join(REPO_ROOT, '.graphify-releases');
+const VIS_NETWORK_SOURCE = path.join(REPO_ROOT, 'node_modules', 'vis-network', 'standalone', 'umd', 'vis-network.min.js');
 const MARKDOWN_STAGE_ALIASES = [
   { source: 'decisions/INDEX.md', stagedPath: 'decisions/decision-index.md' },
 ];
@@ -176,11 +178,23 @@ const graphSummary = graphPath => {
   const graph = JSON.parse(fs.readFileSync(graphPath, 'utf8'));
   return { nodes: graph.nodes?.length ?? null, edges: (graph.links ?? graph.edges)?.length ?? null };
 };
-const localViewer = (dest, repo, summary) => {
-  fs.writeFileSync(path.join(dest, 'index.html'), `<!doctype html><meta charset="utf-8"><title>${repo} Graphify</title>
-<style>body{font:16px system-ui;max-width:70rem;margin:auto;padding:2rem}input{width:100%;padding:.6rem}</style>
-<h1>${repo} knowledge graph</h1><p>${summary.nodes ?? 0} nodes · ${summary.edges ?? 0} edges</p>
-<input id="q" placeholder="Filter node"><ol id="r"></ol><script type="module">const g=await fetch('./graph.json').then(r=>r.json()),q=document.querySelector('#q'),o=document.querySelector('#r');function d(){const t=q.value.toLowerCase();o.replaceChildren(...g.nodes.filter(n=>!t||String(n.label??n.name??n.id).toLowerCase().includes(t)).slice(0,200).map(n=>{const l=document.createElement('li');l.textContent=String(n.label??n.name??n.id);return l}))}q.oninput=d;d()</script>`, 'utf8');
+const localViewer = (dest, repo, graphPath) => {
+  const graph = JSON.parse(fs.readFileSync(graphPath, 'utf8'));
+  const edges = graph.links ?? graph.edges;
+  if (!Array.isArray(graph.nodes) || !Array.isArray(edges)) throw new Error(`${repo} graph.json is invalid`);
+  const repository = `xjustloveux/${repo}`;
+  const projection = buildViewerProjection({ repository, nodes: graph.nodes, edges });
+  fs.writeFileSync(path.join(dest, 'viewer-data.js'), renderViewerData(projection));
+  copy(VIS_NETWORK_SOURCE, path.join(dest, 'vis-network.min.js'));
+  fs.writeFileSync(
+    path.join(dest, 'index.html'),
+    renderViewerIndex({
+      repository,
+      nodeCount: graph.nodes.length,
+      edgeCount: edges.length,
+      mode: projection.mode,
+    }),
+  );
 };
 for (const repo of GRAPH_REPOS) {
   const dest = path.join(graphRoot, repo);
@@ -192,8 +206,14 @@ for (const repo of GRAPH_REPOS) {
   if (remote?.status === 'available') {
     const source = path.resolve(GRAPH_RELEASE_CACHE, remote.siteDirectory);
     const cachePrefix = `${path.resolve(GRAPH_RELEASE_CACHE)}${path.sep}`;
-    if (source.startsWith(cachePrefix) && fs.existsSync(path.join(source, 'index.html')) && fs.existsSync(path.join(source, 'graph.json'))) {
-      for (const name of ['index.html', 'graph.json', 'graphify-manifest.json']) {
+    if (
+      source.startsWith(cachePrefix) &&
+      fs.existsSync(path.join(source, 'index.html')) &&
+      fs.existsSync(path.join(source, 'graph.json')) &&
+      fs.existsSync(path.join(source, 'viewer-data.js')) &&
+      fs.existsSync(path.join(source, 'vis-network.min.js'))
+    ) {
+      for (const name of ['index.html', 'graph.json', 'viewer-data.js', 'vis-network.min.js', 'graphify-manifest.json']) {
         if (fs.existsSync(path.join(source, name))) copy(path.join(source, name), path.join(dest, name));
       }
       entry = 'index.html';
@@ -207,7 +227,12 @@ for (const repo of GRAPH_REPOS) {
     const graphPath = path.join(out, 'graph.json');
     summary = graphSummary(graphPath);
     const drill = path.join(out, 'drill');
-    if (fs.existsSync(drill) && fs.existsSync(path.join(drill, 'index.html'))) {
+    if (fs.existsSync(graphPath)) {
+      copy(graphPath, path.join(dest, 'graph.json'));
+      localViewer(dest, repo, graphPath);
+      entry = 'index.html';
+      status = '本機 sibling';
+    } else if (fs.existsSync(drill) && fs.existsSync(path.join(drill, 'index.html'))) {
       // Graphify 的互動頁引用 CDN 上的 vis-network。有本地副本才複製並改寫為站內路徑；
       // 沒有就降級成內建檢視器——寧可少一層互動，也不讓站台出現外部資源。
       const pages = fs.readdirSync(drill).filter(name => name.endsWith('.html'));
@@ -222,12 +247,7 @@ for (const repo of GRAPH_REPOS) {
         entry = 'index.html';
         status = '本機 sibling';
       } else {
-        summary = graphSummary(graphPath);
-        fs.mkdirSync(dest, { recursive: true });
-        if (fs.existsSync(graphPath)) copy(graphPath, path.join(dest, 'graph.json'));
-        localViewer(dest, repo, summary);
-        entry = 'index.html';
-        status = `本機 sibling（互動圖降級：缺 ${missing.join('、')} 本地副本）`;
+        status = `本機 sibling 無法發布：缺 ${missing.join('、')} 本地副本與 graph.json`;
       }
     } else if (fs.existsSync(path.join(out, 'graph.html'))) {
       // 單檔版的圖頁與 drill 版引用同一批 CDN 函式庫，硬化與降級規則必須一致。
@@ -239,15 +259,11 @@ for (const repo of GRAPH_REPOS) {
         entry = 'graph.html';
         status = '本機 sibling';
       } else {
-        summary = graphSummary(graphPath);
-        if (fs.existsSync(graphPath)) copy(graphPath, path.join(dest, 'graph.json'));
-        localViewer(dest, repo, summary);
-        entry = 'index.html';
-        status = `本機 sibling（互動圖降級：缺 ${missing.join('、')} 本地副本）`;
+        status = `本機 sibling 無法發布：缺 ${missing.join('、')} 本地副本與 graph.json`;
       }
     } else if (fs.existsSync(graphPath)) {
       copy(graphPath, path.join(dest, 'graph.json'));
-      localViewer(dest, repo, summary);
+      localViewer(dest, repo, graphPath);
       entry = 'index.html';
       status = '本機 sibling';
     } else {
@@ -382,7 +398,7 @@ direct(sortPages(graph));
 const pinned = ROOT_LAST.indexOf.bind(ROOT_LAST);
 const rootPages = sortPages(pages).sort((a, b) => {
   const ia = pinned(a.path), ib = pinned(b.path);
-  if (ia < 0 && ib < 0) return 0;                 // 兩者都不釘底＝維持 type 序
+  if (ia < 0 && ib < 0) return 0; // 兩者都不釘底＝維持 type 序
   if (ia < 0) return -1;
   if (ib < 0) return 1;
   return ia - ib;
