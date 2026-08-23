@@ -2260,6 +2260,15 @@ test("site navigation promotes conformance and graph and flattens only singleton
     join(root, "歷史記錄", "2026-08.md"),
     corpusDocument("歷史記錄 · 2026-08", "history"),
   );
+  // 決策檔：選單要讓最新的在最上面，索引與制度說明仍置頂。
+  writeFileSync(
+    join(root, "decisions", "D-20260101-01-舊決策.md"),
+    "# D-20260101-01 舊決策\n",
+  );
+  writeFileSync(
+    join(root, "decisions", "D-20260202-01-新決策.md"),
+    "# D-20260202-01 新決策\n",
+  );
 
   const result = runStage(root);
   assert.equal(result.status, 0, `${result.stdout}\n${result.stderr}`);
@@ -2295,6 +2304,20 @@ test("site navigation promotes conformance and graph and flattens only singleton
   const decisions = navigation.indexOf('  - "決策記錄":');
   const history = navigation.indexOf('  - "歷史記錄":');
   assert.ok(decisions < history, navigation);
+  const decisionIndex = navigation.indexOf('      - "decisions/decision-index.md"');
+  const newerDecision = navigation.indexOf(
+    '      - "decisions/D-20260202-01-新決策.md"',
+  );
+  const olderDecision = navigation.indexOf(
+    '      - "decisions/D-20260101-01-舊決策.md"',
+  );
+  assert.ok(
+    decisions < decisionIndex &&
+      decisionIndex < newerDecision &&
+      newerDecision < olderDecision &&
+      olderDecision < history,
+    navigation,
+  );
   assert.match(navigation, /  - "歷史記錄":\n      - "歷史記錄\.md"\n      - "歷史記錄\/2026-08\.md"\s*$/u);
 });
 

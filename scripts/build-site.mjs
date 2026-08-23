@@ -418,10 +418,10 @@ for (const name of orderedSections.filter(name => name !== '歷史記錄')) appe
 const flat = (title, list) => { if (!list.length) return;
   nav.push(`  - ${q(title)}:`);
   for (const p of list) nav.push(`      - ${q(typeof p === 'string' ? p : p.path)}`); };
-// 決策檔依 id 排序＝時間序，索引與制度說明置頂。
+// 索引與制度說明置頂；決策檔依 id 倒序＝最新的在最上面，讀者不必捲到底才看到新決策。
 flat('決策記錄', [
   ...decisions.filter(p => !/\/D-\d{8}/.test(p.path)).map(p => p.path).sort(),
-  ...decisions.filter(p => /\/D-\d{8}/.test(p.path)).map(p => p.path).sort(),
+  ...decisions.filter(p => /\/D-\d{8}/.test(p.path)).map(p => p.path).sort().reverse(),
 ]);
 if (sections.has('歷史記錄')) appendSection('歷史記錄');
 const buildConfig = path.join(REPO_ROOT, 'mkdocs.build.yml');
