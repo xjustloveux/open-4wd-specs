@@ -102,6 +102,7 @@ test("registry covers every Open4WD-owned pre-launch current baseline family", a
       "saved-state-current",
       "builtin-assets-current",
       "checkpoint-current",
+      "graphify-release-manifest-current",
       "unified-db-current",
     ].filter((id) => !authorityIds.has(id)),
     [],

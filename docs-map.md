@@ -587,7 +587,7 @@ flowchart TB
 | [部署資訊/open-4wd-turn.md](部署資訊/open-4wd-turn.md) | deploy | TURN 公版模板 repo 規格（coturn、社群營運者自行部署） |
 | [部署資訊/部署實際值與初始拓撲.md](部署資訊/部署實際值與初始拓撲.md) | deploy | 首次公開 trust root 與社群服務拓撲 |
 
-決策檔 75 筆——見 [decisions/INDEX.md](decisions/INDEX.md)。
+決策檔 76 筆——見 [decisions/INDEX.md](decisions/INDEX.md)。
 
 ### 版本部署依賴圖（1/2）
 
@@ -684,7 +684,7 @@ flowchart TB
 | [程式架構/security.md](程式架構/security.md) | impl | Sanitize Worker／P2P 驗簽／CSP・SRI／依賴管控 |
 | [資安規範.md](資安規範.md) | meta | UGC sanitize／簽署／CSP／漏洞流程 |
 
-決策檔 42 筆——見 [decisions/INDEX.md](decisions/INDEX.md)。
+決策檔 43 筆——見 [decisions/INDEX.md](decisions/INDEX.md)。
 
 ```mermaid
 flowchart TB
@@ -933,7 +933,7 @@ flowchart TB
 | [流程/治理事件.md](流程/治理事件.md) | flow | economy-config 治理多簽變更 |
 | [程式參數/economy-config.md](程式參數/economy-config.md) | registry | OrbitDB 動態治理 economy config |
 
-決策檔 49 筆——見 [decisions/INDEX.md](decisions/INDEX.md)。
+決策檔 50 筆——見 [decisions/INDEX.md](decisions/INDEX.md)。
 
 ```mermaid
 flowchart TB

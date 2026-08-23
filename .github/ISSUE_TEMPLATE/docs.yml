@@ -7,7 +7,7 @@ body:
   - type: markdown
     attributes:
       value: |
-        Thanks for improving the Open4WD corpus. This is a solo hobby project, so acknowledgement and follow-up may take several days. Use the main repository Discussions for general questions. For vulnerabilities, follow the main repository's SECURITY.md (mirrored in this corpus by 資安規範.md §10.1); never put vulnerability details in a public issue.
+        Thanks for improving the Open4WD corpus. This is a solo hobby project, so acknowledgement and follow-up may take several days. General Q&A is not open during pre-launch. For vulnerabilities, follow 資安規範.md §10.1; never put vulnerability details in a public issue.
   - type: input
     id: document
     attributes:

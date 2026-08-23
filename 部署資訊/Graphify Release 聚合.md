@@ -15,11 +15,23 @@ slug: null
 ## 1. 發布與聚合契約
 
 四個產品 repo 在各自的 upstream CI 成功後，才由 `graphify-release.yml` 對該次 exact source SHA
-執行 Graphify 0.9.25。Release tag 固定為 `graphify-<source SHA 前 12 碼>`，不設為 Latest，且只含：
+執行 Graphify 0.9.25。CI 只重播 repo 已提交的 semantic cache：backend 固定為不可連線的 loopback
+Ollama 位址，輸出只要出現任一 cache miss 就立即失敗，不使用模型 API key，也不把文件／概念節點
+降級成 code-only graph。Release tag 固定為 `graphify-<source SHA 前 12 碼>`，不設為 Latest，且只含：
 
-- `graphify-site.zip`：deterministic store-only ZIP，exactly 包含 `graph.json` 與可搜尋的 `index.html`。
+- `graphify-site.zip`：deterministic store-only ZIP，exactly 包含完整 `graph.json`、互動 `index.html`、
+  可由 `file://` 直接載入的 compact `viewer-data.js` 與自架 `vis-network.min.js`；頁面不需 CDN 或
+  執行期 `fetch`。
 - `graphify-manifest.json`：記錄 repo、完整 source SHA、exact tag、Graphify 版本、canonical 產生時間、
-  node／edge 數，以及 ZIP size 與 SHA-256。
+  node／edge 數、viewer mode／threshold／engine，以及 ZIP size 與 SHA-256。
+
+Pre-launch 的 Graphify Release manifest 固定使用 `schemaVersion=1`；新增 viewer metadata 直接形成
+完整的 current v1 shape，不為尚未正式發布的中間格式製造 v2。
+
+viewer mode 不按 repo 名稱硬編，而由完整圖的 node 數決定：`<= 5000` 為 `full`，在同一互動圖
+呈現全部節點與邊；`> 5000` 為 `community-drill`，先呈現 community overview，選取 community 後在
+同頁進入其完整子圖並可返回。現行資料規模因此是 Main 使用 drill，Pinning、Signaling、TURN 使用
+full；日後規模跨過門檻會自動切換。
 
 發布前會拒絕不在固定四 repo allowlist 的名稱、非相對 source path、`.git`／`.env`／
 `graphify-out` 路徑、常見本機 home path、私鑰或 GitHub token 形狀的內容。Release repository 必須已
@@ -33,11 +45,13 @@ member 驗證的 `graphify-*` Release；不要求四個 repo 彼此或與 specs 
 
 Release 解開至未追蹤的 `.graphify-releases/run-*/<repo>/`；每次 refresh 使用新目錄，不覆寫舊
 cache。沒有遠端成品時，本機建站仍可讀 sibling `graphify-out`；只有 `graph.json` 而沒有 Graphify
-HTML 的 repo 也會產生本機搜尋頁，不再靜默消失。
+HTML 的 repo 也會由同一 adaptive generator 產生 `index.html`、`viewer-data.js` 並複製自架
+`vis-network.min.js`，不再靜默消失或退化為前 200 筆節點清單。
 
-Graphify 產生的互動圖頁引用 CDN 上的繪圖函式庫，站台不接受任何外部資源（[資安規範.md §5](../資安規範.md)）。
-建站時該引用一律改寫為站內自架副本；本地副本缺席時，該 repo 的圖降級為內建檢視器並在狀態列標明，
-而非帶著外連上站。未知來源的外部引用直接讓建置失敗，不靜默放行。
+正式 viewer 使用與 Graphify 原生頁相同的 vis-network 9.1.6 引擎、配色與 forceAtlas2Based 物理
+佈局，但將函式庫納入 immutable ZIP／本機站台，不載入任何外部資源
+（[資安規範.md §5](../資安規範.md)）。沒有 `graph.json` 時才使用 Graphify 原生 HTML hardening；
+原生 HTML 若含未知外部引用仍會讓建置失敗，不靜默放行。
 
 ## 2. GitHub App 最小權限設定
 
@@ -49,10 +63,11 @@ GitHub App 只用來在來源 Release 成功後喚醒 specs；它不讀來源 re
    是 GitHub `repository_dispatch` API 的要求，不代表 App 可修改工作樹。
 3. 安裝 App 時選 **Only select repositories**，只勾 `open-4wd-specs`。不得安裝到四個來源 repo，
    也不得用 All repositories；因此 App token 無法替 specs 取得任何私有來源內容。
-4. 產生 private key。四個來源 repo 各設定 Actions variable
-   `OPEN4WD_GRAPH_APP_ID`，並把 PEM 全文存為 Actions secret
+4. 從 App 的 General 設定複製 Client ID，再產生 private key。四個來源 repo 各設定
+   Actions variable `OPEN4WD_GRAPH_APP_CLIENT_ID`，並把 PEM 全文存為 Actions secret
    `OPEN4WD_GRAPH_APP_PRIVATE_KEY`。若使用帳號／組織層 secret，repository access 必須只限固定
-   四個來源 repo。specs 不保存 App ID 或 private key。
+   四個來源 repo。Client ID 不是數字 App ID，也不是 Client Secret；specs 不保存 Client ID 或
+   private key。
 5. 在來源 repo 手動跑一次 Graphify Release 後，確認 `notify-specs` mint 的 token 只列出 specs
    installation，且 specs 收到 `graphify-release-published` dispatch。dispatch payload 只是喚醒提示；
    refresh 仍從 allowlist 重新取得 Release。
@@ -67,8 +82,9 @@ App 未設定或 token mint／dispatch 失敗時，Release 本身仍成功，通
 
 1. repo 已公開，upstream CI 全綠，且 GitHub immutable releases 已開啟。
 2. 本機 `check-graphify.ps1` 顯示 fresh，query／path／explain 能回答預期的內部關係。
-3. 以相同 prepare script 對 `graphify-out/graph.json` 預演，人工檢查 manifest、source paths、搜尋頁
-   與關鍵字，確認沒有個資、內部基礎設施、憑證、尷尬註記或其他不應公開內容。
+3. 以相同 prepare script 對 `graphify-out/graph.json` 預演，人工檢查 manifest、source paths、
+   adaptive mode、搜尋／縮放／選取／drill 行為與關鍵字，確認沒有個資、內部基礎設施、憑證、
+   尷尬註記或其他不應公開內容。
 4. 手動執行 Graphify Release workflow，下載兩個 assets 回讀 digest、exact SHA 與頁面內容，再確認
    specs refresh 對該 repo 顯示 `available`。
 
@@ -79,7 +95,7 @@ App 未設定或 token mint／dispatch 失敗時，Release 本身仍成功，通
 ## 4. 金鑰輪替、撤銷與故障復原
 
 - 定期輪替：先在 App 產生新 private key，更新固定四 repo 可見的 Actions secret，逐 repo 手動驗證
-  notification，再撤銷舊 key。App ID 不變。
+  notification，再撤銷舊 key。Client ID 不變。
 - 疑似外洩：立即撤銷涉事 key，停用或刪除來源 secret，檢查 App installation 與 audit log；必要時
   suspend／uninstall App。Release refresh 可繼續靠 specs 手動／排程執行。
 - App 權限或安裝範圍誤設：先收回多餘 repo access，再輪替 key。不得用擴大來源 read 權限來解決

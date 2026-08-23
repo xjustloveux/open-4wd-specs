@@ -2040,13 +2040,14 @@ test("SEO and Pages documentation matches generated-route and artifact deploymen
   assert.doesNotMatch(deployment, /Deploy 到 `?gh-pages`? 分支/u);
 });
 
-test("public specs surfaces declare lifecycle status and keep intake inside the specs repo", () => {
+test("public specs surfaces declare lifecycle status without opening pre-launch Q&A", () => {
   const read = (relative) => readFileSync(join(REPO_ROOT, relative), "utf8");
   const readme = read("README.md");
   const about = read("ABOUT.en.md");
   const engineering = read("文檔工程.md");
   const lifecycle = read("專案生命週期.md");
   const contacts = read(".github/ISSUE_TEMPLATE/config.yml");
+  const docsForm = read(".github/ISSUE_TEMPLATE/docs.yml");
 
   assert.match(readme, /開發中.*主遊戲尚未正式公開/su);
   for (const directory of ["decisions/", "conformance/", "歷史記錄/"]) {
@@ -2058,10 +2059,13 @@ test("public specs surfaces declare lifecycle status and keep intake inside the 
   assert.doesNotMatch(about, /static MkDocs site is planned/iu);
   assert.doesNotMatch(engineering, /MkDocs，規劃中/u);
   assert.match(engineering, /本機可建置/u);
-  assert.match(lifecycle, /啟用.*Discussions.*private vulnerability reporting.*contact links/isu);
-  assert.match(contacts, /xjustloveux\/open-4wd-specs\/discussions/u);
+  assert.match(lifecycle, /pre-launch.*不.*公開.*Q&A/isu);
+  assert.match(lifecycle, /main.*public.*Discussions.*Q&A/isu);
+  assert.doesNotMatch(contacts, /\/discussions(?:\s|$)/u);
   assert.match(contacts, /xjustloveux\/open-4wd-specs\/blob\/master\//u);
   assert.doesNotMatch(contacts, /xjustloveux\/open-4wd(?:\/|$)/u);
+  assert.match(docsForm, /General Q&A is not open during pre-launch/u);
+  assert.doesNotMatch(docsForm, /main repository Discussions/u);
 });
 
 test("release lifecycle keeps optional backup outside the public dependency sequence", () => {
@@ -2120,9 +2124,14 @@ function createStageFixture(
 
   mkdirSync(join(root, "scripts", "site-assets"), { recursive: true });
   mkdirSync(join(root, "node_modules", "mermaid", "dist"), { recursive: true });
+  mkdirSync(
+    join(root, "node_modules", "vis-network", "standalone", "umd"),
+    { recursive: true },
+  );
   for (const name of [
     "build-site.mjs",
     "graph-html-hardening.mjs",
+    "graphify-viewer.mjs",
     "history-ledger.mjs",
     "lib.mjs",
   ]) {
@@ -2162,6 +2171,17 @@ function createStageFixture(
   writeFileSync(
     join(root, "node_modules", "mermaid", "dist", "mermaid.min.js"),
     "",
+  );
+  writeFileSync(
+    join(
+      root,
+      "node_modules",
+      "vis-network",
+      "standalone",
+      "umd",
+      "vis-network.min.js",
+    ),
+    "/*! vis-network 9.1.6 fixture */",
   );
   const faviconSource = join(root, "美術資源", "實際使用圖");
   mkdirSync(faviconSource, { recursive: true });
@@ -2463,6 +2483,33 @@ test("site branding stages the approved favicon bytes", (t) => {
   assert.deepEqual(
     readFileSync(join(root, ".site-src", "assets", "open4wd-favicon.png")),
     favicon,
+  );
+});
+
+test("local sibling graph staging uses the self-hosted native vis-network viewer", (t) => {
+  const { workspace, root } = createStageFixture(t, "本機知識圖");
+  const graphOut = join(workspace, "open-4wd-turn", "graphify-out");
+  mkdirSync(graphOut, { recursive: true });
+  writeFileSync(
+    join(graphOut, "graph.json"),
+    JSON.stringify({
+      nodes: [
+        { id: "alpha", label: "Alpha", community: 1 },
+        { id: "beta", label: "Beta", community: 1 },
+      ],
+      links: [{ source: "alpha", target: "beta", type: "calls" }],
+    }),
+  );
+
+  const result = runStage(root);
+
+  assert.equal(result.status, 0, `${result.stdout}\n${result.stderr}`);
+  const graphStage = join(root, ".site-src", "graph", "open-4wd-turn");
+  assert.match(readFileSync(join(graphStage, "index.html"), "utf8"), /new vis\.Network/u);
+  assert.match(readFileSync(join(graphStage, "viewer-data.js"), "utf8"), /"Alpha"/u);
+  assert.equal(
+    readFileSync(join(graphStage, "vis-network.min.js"), "utf8"),
+    "/*! vis-network 9.1.6 fixture */",
   );
 });
 

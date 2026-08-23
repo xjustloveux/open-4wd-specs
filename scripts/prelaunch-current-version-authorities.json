@@ -57,6 +57,11 @@
       "pattern": "checkpoint_version:\\s*(\\d+);"
     },
     {
+      "id": "graphify-release-manifest-current",
+      "file": "部署資訊/Graphify Release 聚合.md",
+      "pattern": "Graphify Release manifest[^\\n]*schemaVersion=(\\d+)"
+    },
+    {
       "id": "unified-db-current",
       "file": "程式架構/pwa-offline.md",
       "pattern": "indexedDB\\.open\\(UNIFIED_DB_NAME='open-4wd', UNIFIED_DB_VERSION=(\\d+)\\)"
@@ -148,6 +153,10 @@
       {
         "id": "corpus-signaling-v2-plus",
         "pattern": "\\b(?:scoped signed|scoped Signaling) v(?:[2-9]|[1-9][0-9]+)\\b"
+      },
+      {
+        "id": "corpus-graphify-release-manifest-v2-plus",
+        "pattern": "Graphify Release manifest[^\\n]*schemaVersion=(?:[2-9]|[1-9][0-9]+)\\b"
       }
     ]
   }
