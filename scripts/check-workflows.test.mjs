@@ -1,5 +1,6 @@
 import assert from "node:assert/strict";
 import { mkdirSync, mkdtempSync, rmSync, writeFileSync } from "node:fs";
+import { readFile } from "node:fs/promises";
 import { tmpdir } from "node:os";
 import { dirname, join } from "node:path";
 import { spawnSync } from "node:child_process";
@@ -49,4 +50,14 @@ test("commit-pinned and local Actions are accepted", (t) => {
   );
 
   assert.equal(result.status, 0, output(result));
+});
+
+test("docs test entrypoint includes repository-local issue maintenance contracts", async () => {
+  const packageJson = JSON.parse(
+    await readFile(new URL("../package.json", import.meta.url), "utf8"),
+  );
+  assert.match(
+    packageJson.scripts["test:docs"],
+    /scripts\/issue-maintenance\.test\.mjs/u,
+  );
 });
