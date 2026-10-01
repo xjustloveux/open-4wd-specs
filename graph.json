@@ -2401,6 +2401,76 @@
       "summary": null
     },
     {
+      "id": "decisions/D-20260829-01-ChassisRoller掛載槽改為逐槽選配.md",
+      "type": "decision",
+      "domain": [
+        "UGC版權",
+        "建模物理"
+      ],
+      "summary": null
+    },
+    {
+      "id": "decisions/D-20260829-02-ChassisChipWeapon掛載槽改為條件選配.md",
+      "type": "decision",
+      "domain": [
+        "UGC版權",
+        "建模物理"
+      ],
+      "summary": null
+    },
+    {
+      "id": "decisions/D-20260830-01-可編輯GLB倍率血緣.md",
+      "type": "decision",
+      "domain": [
+        "UGC版權",
+        "建模物理"
+      ],
+      "summary": null
+    },
+    {
+      "id": "decisions/D-20260830-02-零件共用表面微調與拓樸修補.md",
+      "type": "decision",
+      "domain": [
+        "建模物理",
+        "前端主題"
+      ],
+      "summary": null
+    },
+    {
+      "id": "decisions/D-20260903-01-編輯器共同變形與匯出新基線.md",
+      "type": "decision",
+      "domain": [
+        "UGC版權",
+        "建模物理"
+      ],
+      "summary": null
+    },
+    {
+      "id": "decisions/D-20260903-02-編輯器增量拼接與共用TRS.md",
+      "type": "decision",
+      "domain": [
+        "建模物理"
+      ],
+      "summary": null
+    },
+    {
+      "id": "decisions/D-20260903-03-編輯器幾何島與Primitive分離.md",
+      "type": "decision",
+      "domain": [
+        "UGC版權",
+        "建模物理"
+      ],
+      "summary": null
+    },
+    {
+      "id": "decisions/D-20260906-01-導輪軸向依掛點用途決定.md",
+      "type": "decision",
+      "domain": [
+        "建模物理"
+      ],
+      "summary": null
+    },
+    {
       "id": "decisions/INDEX.md",
       "type": null,
       "domain": [],
@@ -5686,6 +5756,14 @@
       "to": "資安規範.md"
     },
     {
+      "from": "decisions/D-20260906-01-導輪軸向依掛點用途決定.md",
+      "to": "建模參數/零件與共用介面.md"
+    },
+    {
+      "from": "decisions/D-20260906-01-導輪軸向依掛點用途決定.md",
+      "to": "程式參數/protocol.md"
+    },
+    {
       "from": "decisions/INDEX.md",
       "to": "decisions/D-20260428-01-初始企劃骨架與模組化規格基線.md"
     },
@@ -6807,6 +6885,38 @@
     },
     {
       "from": "decisions/INDEX.md",
+      "to": "decisions/D-20260829-01-ChassisRoller掛載槽改為逐槽選配.md"
+    },
+    {
+      "from": "decisions/INDEX.md",
+      "to": "decisions/D-20260829-02-ChassisChipWeapon掛載槽改為條件選配.md"
+    },
+    {
+      "from": "decisions/INDEX.md",
+      "to": "decisions/D-20260830-01-可編輯GLB倍率血緣.md"
+    },
+    {
+      "from": "decisions/INDEX.md",
+      "to": "decisions/D-20260830-02-零件共用表面微調與拓樸修補.md"
+    },
+    {
+      "from": "decisions/INDEX.md",
+      "to": "decisions/D-20260903-01-編輯器共同變形與匯出新基線.md"
+    },
+    {
+      "from": "decisions/INDEX.md",
+      "to": "decisions/D-20260903-02-編輯器增量拼接與共用TRS.md"
+    },
+    {
+      "from": "decisions/INDEX.md",
+      "to": "decisions/D-20260903-03-編輯器幾何島與Primitive分離.md"
+    },
+    {
+      "from": "decisions/INDEX.md",
+      "to": "decisions/D-20260906-01-導輪軸向依掛點用途決定.md"
+    },
+    {
+      "from": "decisions/INDEX.md",
       "to": "decisions/README.md"
     },
     {
@@ -7104,6 +7214,10 @@
     {
       "from": "建模參數/場地.md",
       "to": "算式表.md"
+    },
+    {
+      "from": "建模參數/場地.md",
+      "to": "編輯器操作.md"
     },
     {
       "from": "建模參數/場地.md",
@@ -10720,6 +10834,14 @@
     {
       "from": "編輯器操作.md",
       "to": "UGC機制.md"
+    },
+    {
+      "from": "編輯器操作.md",
+      "to": "decisions/D-20260830-02-零件共用表面微調與拓樸修補.md"
+    },
+    {
+      "from": "編輯器操作.md",
+      "to": "decisions/D-20260903-01-編輯器共同變形與匯出新基線.md"
     },
     {
       "from": "編輯器操作.md",

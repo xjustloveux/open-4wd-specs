@@ -59,12 +59,22 @@ const KNOWN_CHECKSUMS: Record<string, string> = {
 };
 ```
 
-現行 `canonical-two-car-revision-2` fixture 不是空世界：固定平面場地、兩台九零件車、四筆
+現行 `canonical-two-car-revision-3` fixture 不是空世界：固定平面場地、兩台九零件車、四筆
 boost／stabilize input trace 與 120 frames；seed 奇偶選擇兩車 800W／650W 的固定 power
 variant，因此 seed 會進入物理狀態而非只驗格式。`src/testing/determinism/golden-checksums.ts`
 收藏 `0xCAFEBABE`／120 frames 的 SHA-256 checksum；unit 與 E2E 都直接對同一
 `KNOWN_CHECKSUMS`，不可只在各 runner 內雙跑自比。任何 OS／browser 產生不同值都必須紅燈，
-經調查證明是協定升版後才可更新 fixture ID 與 golden。
+更新 fixture ID 與 golden 前，必須定位相同輸入下的來源與 SDK 差異，確認變更已正式採用，
+再核對 Node 與瀏覽器的逐幀原生快照、完整保存狀態及原有應用程式 harness。不得移除斷言、
+放寬容差或增加 retry 來接受差異。Pre-launch 採內部 fixture 修訂，不為未發布格式保留舊版。
+
+目前修訂使用來源 COM／慣量的三個 collider 質量建構分支，以及所選 solver contact 的輪胎
+負載讀回；舊基準對應自動凸包質量與幾何接觸讀回、Rapier npm 0.19.3。現行固定原生核心
+WASM SHA-256 為 `d92e03c056234eb1996de4c3dc3ac94fe62fb49831c191afd9b5d5083ccb227c`；
+`0xCAFEBABE`／120 frames 的 checksum 為
+`1bbc3d4e0bd753471a88f303f3337404cb2eba298c0bdffb186bf5d4d8890849`。
+此接受值由 Windows Node／Chromium 相同完整狀態支持；Firefox／WebKit 與其他 OS 尚須依
+既有 CI 矩陣執行，不能由單一環境驗證推定通過。
 
 共識數學 ESLint 防線涵蓋 `physics-engine`、PhysicsManifest 重建、canonical editor pipeline、
 anti-piracy、mount assembly、match terminal orchestration 與 ledger entry admission；這些路徑禁用

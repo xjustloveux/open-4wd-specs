@@ -34,11 +34,18 @@ chunk 邊界，並避免 `pipeline/compress` 的 Node-only 相依經巨型 barre
 
 展示層元件（面板 ／ 頁籤 ／bottom sheet）走 `ui-kit/`（o4-*）；表單檢核走 ui-kit forms 兩層模型（[ui-frontend.md §4.1](ui-frontend.md)）。
 
-**幾何工具**（`geometry/` 切分 ＋`pipeline/assembly` 拼接）＝ 在瀏覽器內產生多零件 / 多材質資產所需的水密 sub-mesh node：**拼接**由下而上合併多個水密 GLB（position 定位 ＋ 父子指定），**切分**由上而下對水密 node 軸向平面切 ＋ 開口邊界環三角化封蓋成封閉水密片（整體 Σ 體積守恆、切面沿用該片材質、僅水密 node）。兩者產物皆為封閉水密 sub-mesh，與材質模型（[../材質表.md §7](../材質表.md) 質量 = `Σ(水密體積 × 密度)`）一致。UI 面板 = `pages/editor-page/assembly-panel`／`split-panel`；**行為權威見 [../編輯器操作.md §2.4](../編輯器操作.md)**。目前切分軸向、拼接僅 position；候選精修集中於[../其他.md](../其他.md)。
+**幾何工具**（`geometry/` 切分 ＋`pipeline/assembly` 拼接）＝ 在瀏覽器內產生多零件 / 多材質資產所需的水密 sub-mesh node：**拼接**把一個經 sanitize、canonical 解碼與公尺正規化的外部 GLB 追加到目前資產，保留來源內部 hierarchy，新增 Mesh 自動選取後共用 Node TRS 定位；既有 scene edits 先攤平，整次追加是一筆 asset-replacement undo transaction，不重走完整匯入或 provisional fit。**切分**有三種模式：`mesh-split-apply` 對水密 node 作軸向平面切割與封蓋；`mesh-separate-apply` 依既有 triangle primitive，或依 primitive 內位置焊接後的 exact-edge 幾何島分離。後兩者不新增面，僅在至少兩個輸出皆已水密時改寫；材質與 primitive attributes 保留。三種模式都輸出原父節點下的同層 Mesh node，整次是一筆 asset-replacement undo transaction，且表面／拓樸 patch 未物化時拒絕。工具不做 Mesh 熔接。產物與材質模型（[../材質表.md §7](../材質表.md) 質量 = `Σ(水密體積 × 密度)`）一致。UI 面板 = `pages/editor-page/assembly-panel`／`split-panel`；**行為權威見 [../編輯器操作.md §2.4](../編輯器操作.md)**。平面切割目前限軸向；自由朝向切面候選精修集中於[../其他.md](../其他.md)。
 
 ## 2. 進場管線（wave A）
 
-進場先做 `source admission → identity → 明示來源單位正規化 → meter facts → provisional uniform fit`；無 marker 場地以 150m 最長水平邊作初始 guidance，已帶 [../版本規範.md §15](../版本規範.md) current marker 的成品不重套單位或 fit。之後依 [零件與共用介面.md §4](../建模參數/零件與共用介面.md#4-glb-root-extras--系統自動算出欄位auto_) 執行 volume／mass／bbox／centroid／surface_area、`auto_feature_deviations` 介面特徵絕對公差量測與 visual/collider decimate。作者可再套正值 uniform scale；空間資料一起縮放，UV／貼圖不因空間倍率改寫。外形 AABB、輪徑或馬達總長不構成 canonical 相容性條件。
+進場先做 `source admission → identity → 明示來源單位正規化 → meter facts → provisional uniform fit`；無 marker 場地以 150m 最長水平邊作初始 guidance，已帶 [../版本規範.md §15](../版本規範.md) current marker 的成品不重套單位或 fit。帶合法 `open4wd_editor` provenance 的可編輯衍生檔同樣不重套單位或 fit；marker 只含格式版本與 `normalized_meters=true`，不還原作者倍率。之後依 [零件與共用介面.md §4](../建模參數/零件與共用介面.md#4-glb-root-extras--系統自動算出欄位auto_) 執行 volume／mass／bbox／centroid／surface_area、`auto_feature_deviations` 介面特徵絕對公差量測與 visual/collider decimate。作者以零件、場地共用的 Node TRS 工具調整 Mesh、體積與可編輯 Empty；匯出狀態直接成為新基線。外形 AABB、輪徑或馬達總長不構成 canonical 相容性條件。
+
+`EditorPage` 持有 `{ names, activeName }` selection；viewport 以單一 proxy 表達共同中心，或把同一
+gesture delta 套到各目標自身中心。世界變形轉回各自 parent-local TRS 後，以一批
+`NodeTransformEdit[]` 原子寫入 session。父節點與後代同選時只直接處理最上層被選祖先；一次
+gesture 只建立一筆 history transaction。能力 resolver 將節點分為 Mesh、純位置 Empty、帶方向
+Empty 與體積 Empty：帶方向 Empty 單選保留語意受限旋轉，純位置與帶方向 Empty 都禁止自身
+scale；固定 canonical mount 完全唯讀。
 
 - **全部在 Worker 執行**（場地大 mesh 30–60s，不卡 UI 執行緒）；幾何計算走 [physics-engine.md §5–§6](physics-engine.md)（體積／表面積由 TypeScript 實作、指紋用 WASM；WASM 化評估見該檔 [§5](physics-engine.md#5-mesh-體積計算上傳時wasm) 實作落點）。
 - Loading 覆蓋層逐項回報進度（編輯器操作 [§1.7](../編輯器操作.md#17-進場-loadingwave-a-自動計算)）；嚴重失敗退回 Stage 1、非致命走備援旁白提示。
@@ -51,6 +58,8 @@ chunk 邊界，並避免 `pipeline/compress` 的 Node-only 相依經巨型 barre
 - 唯一持久化 = 視覺層開關偏好（localStorage，編輯器操作 [§1.6](../編輯器操作.md#16-視覺輔助層級開關)）；產出物 = 上鏈成功的 CID 或 `local:<uuid>` 本機測試資產（IndexedDB `local-parts`／`local-tracks`，[pwa-offline.md §5](pwa-offline.md)）。測試零件只可裝入本機測試車位，測試場地只可進 local-test。
 - 重開 current canonical／本機測試資產時沿用已驗 marker 與 baked facts，只重建編輯器需要的
   輕量幾何事實與可逆 document；不重新套來源單位、provisional fit 或 fresh-import type 矩陣。
+- 可編輯 GLB 不保存逐節點 baseline TRS、原始幾何副本或 undo history；重新匯入以檔內目前
+  hierarchy／TRS／幾何作工作階段初始快照。standard glTF Node TRS 可保留，不強制烘焙進頂點。
 
 ### 3.1 重疊表面選擇器
 
@@ -71,7 +80,8 @@ policy 接受或拒絕。RoutePoint 與貼面 RespawnPoint 要求確認後 ident
 
 ### 3.2 可逆表面幾何文件
 
-場地通過 admission 後建立 attribute-preserving `EditableMeshDocument`。它保留原 primitive／材質
+所有零件與場地通過 admission 後都建立 attribute-preserving `EditableMeshDocument` 與 surface
+query index。它保留原 primitive／材質
 ownership 以及 POSITION、NORMAL、TANGENT、TEXCOORD 與 index binding；編輯只記錄 compact
 primitive-local overlay。筆刷 worker 只接收命中 component 的受影響頂點區域，拓樸 worker 只接收
 被選 primitive 的 positions／indices／必要 attributes 與 world positions，不傳整份 GLB 或其他
@@ -82,6 +92,14 @@ primitive 的 query partition；同 mesh 後續 primitive 只調整 triangle off
 partition BVH 保持不變。`MeshPatchEdit`／`TopologyRepairEdit` 依 document → derived render geometry →
 surface index → anchors → marker transform 發布，任一步失敗都補償已發布步驟。全 editor history 上限
 為 128 MiB／100 筆，交易 byte size 只計實際保留 typed arrays。
+
+零件與場地共用同一 mesh document、worker、index patch 與 transaction 類型；差異只在零件採
+毫米級 radius／strength，且沒有 RoutePoint／RespawnPoint anchor。cap 至少要一個合法閉合 loop，
+bridge 至少要兩個同 primitive loop，工具入口依目前 loop 數情境顯示。每次 edit 套用後先
+materialize overlay 並完整重跑 Wave A；失敗即反向套用 inner edit，成功則把衍生 facts 的前後
+快照附在同一 history transaction，使 undo／redo 不只更新 render geometry，也同步 volume、AABB、
+surface area、質心／質量與 triangle count。發布時仍由既有 PhysicsManifest 與 canonical finalizer
+重算、驗證並以 canonical root extras 整組替換 editor-only provenance。
 
 三個輸出入口都先 materialize 目前 editable document，再進既有 canonical finalizer。attribute overlay
 重指被修改 semantic；topology overlay 只重指被修補 primitive 的 index accessor，原 unsigned component
@@ -96,10 +114,10 @@ canonical GLB；runtime collider 也只從該 GLB 的 POSITION／indices 建立�
 
 ## 4. 檢核引擎
 
-| 層                    | 規則來源                                                                                                                                            | 呈現                                                                                                                       |
-| --------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------- |
+| 層                    | 規則來源                                                                                                                                    | 呈現                                                                                                                       |
+| --------------------- | ------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------- |
 | **即時**（編輯中）    | [../建模參數.md](../建模參數.md) 約束＋[../程式參數.md](../程式參數.md) 常數（Mount 偏離／重疊、Checkpoint scale、chip 總和、weapon 必填…） | 紅🟥／黃🟨框＋banner 計數（編輯器操作 [§3](../編輯器操作.md#3-零件編輯)–[§4](../編輯器操作.md#4-場地編輯) 各表為權威清單） |
-| **Stage 3**（上鏈前） | 嚴格 schema 檢核                                                                                                                                    | 拒收清單側欄＋點按跳轉 focus（編輯器操作 [§5.2](../編輯器操作.md#52-stage-3-拒收清單)）                                    |
+| **Stage 3**（上鏈前） | 嚴格 schema 檢核                                                                                                                            | 拒收清單側欄＋點按跳轉 focus（編輯器操作 [§5.2](../編輯器操作.md#52-stage-3-拒收清單)）                                    |
 
 **與收件端共用同一 validator 模組**（[UGC機制.md §4](../UGC機制.md) Stage 3 檢核 = 收件重算同一套 code）——單一實作防「編輯器放行、全網拒收」的規則漂移。場地 validator 回傳的 `reject` 是 canonical／admission hard rule；`warn` 只供 authoring 呈現，不進 protocol admission。完整分層見 [場地.md §8](../建模參數/場地.md#8-場地-glb-root-extras) `TRACK-R-001`。
 
@@ -109,12 +127,12 @@ canonical GLB；runtime collider 也只從該 GLB 的 POSITION／indices 建立�
 
 ## 6. 跨模組對接
 
-| 模組                                                                       | 對接                                                                                                                                                                                         |
-| -------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| [編輯器操作.md](../編輯器操作.md)                                          | 互動／版面／快捷鍵**權威**（[§0.5](../編輯器操作.md#05-整體版面a1)／[§0.6](../編輯器操作.md#06-快捷鍵總表c1)／[§1](../編輯器操作.md#1-通用)–[§5](../編輯器操作.md#5-stage-1--stage-3-互動)） |
-| [../流程/UGC上傳.md](../流程/UGC上傳.md)                           | Stage 資料層狀態轉移／wave A·B 清單／拒收條件                                                                                                                                                |
-| [physics-engine.md](physics-engine.md)                                     | WASM 幾何計算（volume／surface／fingerprint）                                                                                                                                                |
-| [security.md](security.md)                                                 | Stage 1 Sanitize Worker（本模組上游）                                                                                                                                                        |
-| [../材質表.md](../材質表.md)・[../建模參數.md](../建模參數.md)         | 材質 enum／欄位 schema／約束常數                                                                                                                                                             |
-| `ui-kit/`（[ui-frontend.md §4](ui-frontend.md)） | o4-* 元件＋表單檢核層                                                                                                                                                                        |
-| [pwa-offline.md](pwa-offline.md)                                           | `local-parts`／`local-tracks` 本機測試資產                                                                                                                                                   |
+| 模組                                                           | 對接                                                                                                                                                                                         |
+| -------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| [編輯器操作.md](../編輯器操作.md)                              | 互動／版面／快捷鍵**權威**（[§0.5](../編輯器操作.md#05-整體版面a1)／[§0.6](../編輯器操作.md#06-快捷鍵總表c1)／[§1](../編輯器操作.md#1-通用)–[§5](../編輯器操作.md#5-stage-1--stage-3-互動)） |
+| [../流程/UGC上傳.md](../流程/UGC上傳.md)                       | Stage 資料層狀態轉移／wave A·B 清單／拒收條件                                                                                                                                                |
+| [physics-engine.md](physics-engine.md)                         | WASM 幾何計算（volume／surface／fingerprint）                                                                                                                                                |
+| [security.md](security.md)                                     | Stage 1 Sanitize Worker（本模組上游）                                                                                                                                                        |
+| [../材質表.md](../材質表.md)・[../建模參數.md](../建模參數.md) | 材質 enum／欄位 schema／約束常數                                                                                                                                                             |
+| `ui-kit/`（[ui-frontend.md §4](ui-frontend.md)）               | o4-* 元件＋表單檢核層                                                                                                                                                                        |
+| [pwa-offline.md](pwa-offline.md)                               | `local-parts`／`local-tracks` 本機測試資產                                                                                                                                                   |
