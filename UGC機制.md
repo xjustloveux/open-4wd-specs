@@ -92,17 +92,17 @@ Stage 1 拒收條件的唯一權威是 [流程/UGC上傳.md §3](流程/UGC上�
 | 場地 `lap_mode` 推斷                        | `RP1 ↔ RPn` 中心距 < 1m 且 route ≥ 3 點 → loop，否則 linear（恰 2 點一律 linear）；`open` 強制 linear；玩家可 UI 覆蓋（僅 `fixed` 且 ≥ 3 點） |
 | 部件 mass / volume 推算                     | 由 material × volume 自動                                                                                                                     |
 | `auto_input_mw` / `auto_energy_capacity_mj` | volume × K 自動                                                                                                                               |
-| Chip skill slot 數                          | volume → 1–4 個（階梯門檻見 [零件與共用介面.md §3.6](建模參數/零件與共用介面.md#3-各-part-type-專屬欄位)）                                                                             |
+| Chip skill slot 數                          | volume → 1–4 個（階梯門檻見 [零件與共用介面.md §3.6](建模參數/零件與共用介面.md#3-各-part-type-專屬欄位)）                                    |
 
 ### 3.5 即時警告（編輯中軟提示）
 
-| 警告                                           | 觸發   | 行動                               |
-| ---------------------------------------------- | ------ | ---------------------------------- |
+| 警告                                              | 觸發   | 行動                               |
+| ------------------------------------------------- | ------ | ---------------------------------- |
 | Mount 位置介於 `MOUNT_AABB_WARN_M` 與 reject 門檻 | 軟警告 | 玩家可繼續，Stage 3 也通過         |
 | Mount 間距介於 reject 與 `MOUNT_GAP_WARN_M` 門檻  | 軟警告 | 同上                               |
-| Tire / roller mount 軸達 `HINGE_AXIS_WARN_SIN`   | 軟警告 | 同上                               |
-| chip skill_slots 總 `allocation_pct` 接近 100% | 軟提示 | 玩家可繼續（Stage 2 編輯 chip 時） |
-| 「水包塑膠」邊界（fluid sub-mesh 在最外緣）    | 軟警告 | 確認後繼續，後果自負               |
+| Tire / roller mount 軸達 `HINGE_AXIS_WARN_SIN`    | 軟警告 | 同上                               |
+| chip skill_slots 總 `allocation_pct` 接近 100%    | 軟提示 | 玩家可繼續（Stage 2 編輯 chip 時） |
+| 「水包塑膠」邊界（fluid sub-mesh 在最外緣）       | 軟警告 | 確認後繼續，後果自負               |
 
 ### 3.6 編輯器強制互斥
 
@@ -113,15 +113,15 @@ Stage 1 拒收條件的唯一權威是 [流程/UGC上傳.md §3](流程/UGC上�
 
 ### 3.7 AI 單一 fused mesh 的材質處理（零件 / 場地共用）
 
-**問題情境**：Tripo / Meshy 等 AI 3D 服務輸出**單一 fused mesh + 單一 PBR material + 單一 baseColor texture**。多材質模型的單位是**水密 sub-mesh（node）**——每個 sub-mesh 各有獨立水密體積，質量 = `Σ(sub-mesh 水密體積 × 材質密度)`、摩擦 / restitution / stress / fatigue / thermal / 磁性皆逐 sub-mesh well-defined（[材質表.md §7](材質表.md)）；一顆 fused solid 本身是單一實體，但**瀏覽器編輯器可在體積上把它切分成數個水密 sub-solid**（沿軸向平面切開、對切口封蓋 → 每片各自封閉水密），亦可**拼接**數個水密實體為一資產，故多材質資產可在瀏覽器內完成（見下表與 [編輯器操作.md §2.4](編輯器操作.md)）。
+**問題情境**：Tripo / Meshy 等 AI 3D 服務輸出**單一 fused mesh + 單一 PBR material + 單一 baseColor texture**。多材質模型的單位是**水密 sub-mesh（node）**——每個 sub-mesh 各有獨立水密體積，質量 = `Σ(sub-mesh 水密體積 × 材質密度)`、摩擦 / restitution / stress / fatigue / thermal / 磁性皆逐 sub-mesh well-defined（[材質表.md §7](材質表.md)）；瀏覽器編輯器可用平面切割＋封蓋把 fused solid 切成數個水密 sub-solid，也可把 primitive 內原本已各自水密的不連通幾何島，或數個已各自水密的 primitive 分離成 node；另可**拼接**數個水密實體為一資產，故多材質資產可在瀏覽器內完成（見下表與 [編輯器操作.md §2.4](編輯器操作.md)）。
 
-| 情況                 | 材質處理                                                                                                                                                                                                                                                                                                                                                 |
-| -------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **單一 fused mesh**  | = **單一材質**：整顆指派同一材質即可上傳（多數 AI 輸出的正常路徑）                                                                                                                                                                                                                                                                                       |
-| **要多材質**         | 需有**數個各自水密的 sub-mesh（node）**，三條路徑皆可：①**瀏覽器切分**——編輯器把 fused 水密實體沿軸向平面切開＋封蓋，成數片各自水密的 node；②**瀏覽器拼接**——分別匯入數個水密實體 GLB、定位後合為一資產；③於 Blender 等外部工具先切好各水密 node 再上傳。每片有獨立水密體積，質量 / 熱逐 sub-mesh well-defined（見 [編輯器操作.md §2.4](編輯器操作.md)） |
-| **Stage 2 材質指派** | 對每個 sub-mesh（node）指派材質——**主 / fallback 材質 ＋ 逐 sub-mesh 材質下拉**（見 [編輯器操作.md §2.3](編輯器操作.md)），依 `forbidden_scopes` 自動過濾                                                                                                                                                                                                |
+| 情況                 | 材質處理                                                                                                                                                                                                                                                                                                                                                                                       |
+| -------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **單一 fused mesh**  | = **單一材質**：整顆指派同一材質即可上傳（多數 AI 輸出的正常路徑）                                                                                                                                                                                                                                                                                                                             |
+| **要多材質**         | 需有**數個各自水密的 sub-mesh（node）**，三條路徑皆可：①**瀏覽器切分**——平面切割＋封蓋，或沿原本已各自水密的 Primitive／不連通幾何島分離；②**瀏覽器拼接**——先開啟一個資產，再逐次加入另一個水密實體 GLB，以共用 Node TRS 定位後匯出為同一資產；③於 Blender 等外部工具先切好各水密 node 再上傳。每片有獨立水密體積，質量 / 熱逐 sub-mesh well-defined（見 [編輯器操作.md §2.4](編輯器操作.md)） |
+| **Stage 2 材質指派** | 對每個 sub-mesh（node）指派材質——**主 / fallback 材質 ＋ 逐 sub-mesh 材質下拉**（見 [編輯器操作.md §2.3](編輯器操作.md)），依 `forbidden_scopes` 自動過濾                                                                                                                                                                                                                                      |
 
-> **體積切分 vs 表面著色**：編輯器切分的是**體積**——沿平面切開後對每個開口邊界環（含中空 / 環狀多邊界環）三角化封蓋，每片成為**封閉水密實體**、封閉體積正確 → 質量正確（整體 Σ 守恆）；切面沿用該片材質。故切分 / 拼接產物皆與「材質 = 水密 sub-mesh、質量 = `Σ(水密體積 × 密度)`」模型一致。純表面色塊分割（open patch、無獨立體積）無法定義 per-region 質量 / 熱，不成立此模型、編輯器不採。切分**僅對水密 node 開放**（非水密無法保證封蓋後體積正確）；目前切分為軸向（X / Y / Z + 位置）、拼接僅 position 定位。候選精修集中於[其他.md](其他.md)。
+> **體積切分 vs 表面著色**：編輯器切分的是**體積**——沿平面切開後對每個開口邊界環（含中空 / 環狀多邊界環）三角化封蓋，每片成為**封閉水密實體**、封閉體積正確 → 質量正確（整體 Σ 守恆）；切面沿用該片材質。故切分 / 拼接產物皆與「材質 = 水密 sub-mesh、質量 = `Σ(水密體積 × 密度)`」模型一致。純表面色塊分割（open patch、無獨立體積）無法定義 per-region 質量 / 熱，不成立此模型、編輯器不採。切分**僅對水密 node 開放**（非水密無法保證封蓋後體積正確）；目前切分為軸向（X / Y / Z + 位置），拼接加入後共用 Node TRS 位移、旋轉與縮放。候選精修集中於[其他.md](其他.md)。
 
 至少 1 個 sub-mesh 指派材質才能送出（Stage 3 gate 條件之一）。未指派 sub-mesh **fallback 到主 `material`**（[零件與共用介面.md §2](建模參數/零件與共用介面.md#2-glb-root-extras--玩家宣告欄位零件--場地共用) 零件 / [§8.5](建模參數/場地.md#85-材質指派materials-區塊sub-mesh-覆寫) 場地 統一規則；主 `material` 來源 = 玩家指定或最大 sub-mesh 指派，見 [編輯器操作.md §2.3](編輯器操作.md)）並警告。
 
@@ -129,11 +129,11 @@ Stage 1 拒收條件的唯一權威是 [流程/UGC上傳.md §3](流程/UGC上�
 
 Tripo / Meshy 出的單一 mesh 不含 `Mount_Weapon` empty，也無法區分 launcher_body vs bullet。Launch 武器需走以下其中一條：
 
-| 路線                        | 適合對象                                 | 流程                                                                                                                                                                                                                                                                |
-| --------------------------- | ---------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| (a) 純瀏覽器編輯器          | 單一 fused mesh 或已含分離 bullet 節點者 | Stage 2 編輯器加 Mount_Weapon empty；bullet 子節點可用既有獨立節點，或以**切分工具**（軸向平面切＋封蓋，見 [§3.7](#37-ai-單一-fused-mesh-的材質處理零件--場地共用) 與 [編輯器操作.md §2.4](編輯器操作.md)）把 fused 武器切成 launcher_body 與各 bullet 水密片後標記 |
-| (b) Blender + Tripo         | 熟 Blender 的創作者                      | Tripo 出基本 mesh → Blender 補 empty + 拆 launcher / bullet sub-mesh → 上傳                                                                                                                                                                                         |
-| (c) 雙次 Tripo + 編輯器拼接 | 進階 UGC                                 | Tripo 出 launcher GLB + 各 bullet GLB → Stage 2 編輯器**拼接工具**（各匯入、position 定位、指定 bullet 為 launcher_body 子件，見 [§3.7](#37-ai-單一-fused-mesh-的材質處理零件--場地共用) 與 [編輯器操作.md §2.4](編輯器操作.md)）合為單一 weapon GLB                |
+| 路線                      | 適合對象                                 | 流程                                                                                                                                                                                                                                                                |
+| ------------------------- | ---------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| (a) 純瀏覽器編輯器        | 單一 fused mesh 或已含分離 bullet 節點者 | Stage 2 編輯器加 Mount_Weapon empty；bullet 子節點可用既有獨立節點，或以**切分工具**（軸向平面切＋封蓋，見 [§3.7](#37-ai-單一-fused-mesh-的材質處理零件--場地共用) 與 [編輯器操作.md §2.4](編輯器操作.md)）把 fused 武器切成 launcher_body 與各 bullet 水密片後標記 |
+| (b) Blender + Tripo       | 熟 Blender 的創作者                      | Tripo 出基本 mesh → Blender 補 empty + 拆 launcher / bullet sub-mesh → 上傳                                                                                                                                                                                         |
+| (c) 多次生成 + 編輯器拼接 | 不要求 launch 父子結構的一般零件／場地   | 先開啟一個 GLB，再逐次加入其他 GLB，以共用 Node TRS 定位後合為單一資產；launch bullet 必須在加入前已位於 `launcher_body` 的內部 hierarchy，拼接不重新掛父層（見 [§3.7](#37-ai-單一-fused-mesh-的材質處理零件--場地共用) 與 [編輯器操作.md §2.4](編輯器操作.md)）    |
 
 零件 / 一般武器（general / magnet）若不含 launch 子彈，可單純 Tripo 出 → Stage 2 補 Axis / Pivot empty 即可。
 
@@ -154,20 +154,20 @@ Tripo / Meshy 出的單一 mesh 不含 `Mount_Weapon` empty，也無法區分 la
 
 ### 4.2 Stage 3 拒收條件
 
-| 條件                                                                                | 原因                                                           |
-| ----------------------------------------------------------------------------------- | -------------------------------------------------------------- |
-| 必填欄位缺失                                                                        | 編輯未完成                                                     |
-| 最重 / 最輕材質密度比 > 50:1                                                        | 約束違反（單一零件內多材質密度差）                             |
-| Mount 位置違反 `MOUNT_AABB_REJECT_M`                                                | 拒收                                                           |
-| Mount 間距違反 `MOUNT_GAP_REJECT_M`                                                 | 拒收                                                           |
-| Tire / roller mount 軸違反 `HINGE_AXIS_REJECT_SIN`                                  | 拒收                                                           |
-| destructible + visual_only 同時設                                                   | 拒收                                                           |
-| 含禁止材質（依 forbidden_scopes / allowed_part_types）                              | 拒收                                                           |
-| chip skill 重複                                                                     | 拒收                                                           |
-| chip skill_slots 總 allocation_pct > 100%                                           | 拒收                                                           |
-| weapon active 但缺 `weapon_mechanism` / `weapon_main_mesh_node`                     | 拒收                                                           |
-| `general` actuator 缺 `weapon_max_angle_deg`（或驅動 pivot / 驅動體總數超上限）     | 拒收                                                           |
-| `general` actuator payload 非 `mesh_node` / `chain` 二選一（缺 payload 或兩者並存） | 拒收                                                           |
+| 條件                                                                                | 原因                                                                                                         |
+| ----------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------ |
+| 必填欄位缺失                                                                        | 編輯未完成                                                                                                   |
+| 最重 / 最輕材質密度比 > 50:1                                                        | 約束違反（單一零件內多材質密度差）                                                                           |
+| Mount 位置違反 `MOUNT_AABB_REJECT_M`                                                | 拒收                                                                                                         |
+| Mount 間距違反 `MOUNT_GAP_REJECT_M`                                                 | 拒收                                                                                                         |
+| Tire / roller mount 軸違反 `HINGE_AXIS_REJECT_SIN`                                  | 拒收                                                                                                         |
+| destructible + visual_only 同時設                                                   | 拒收                                                                                                         |
+| 含禁止材質（依 forbidden_scopes / allowed_part_types）                              | 拒收                                                                                                         |
+| chip skill 重複                                                                     | 拒收                                                                                                         |
+| chip skill_slots 總 allocation_pct > 100%                                           | 拒收                                                                                                         |
+| weapon active 但缺 `weapon_mechanism` / `weapon_main_mesh_node`                     | 拒收                                                                                                         |
+| `general` actuator 缺 `weapon_max_angle_deg`（或驅動 pivot / 驅動體總數超上限）     | 拒收                                                                                                         |
+| `general` actuator payload 非 `mesh_node` / `chain` 二選一（缺 payload 或兩者並存） | 拒收                                                                                                         |
 | 宣告 fork 且 `parent` 是仲裁黑名單或 similarity-pending 待審作品                    | 拒收（Provider-scoped DMCA 不改 client parent 資格；重製正道 = 大幅修改後以原創上傳，[版權.md §4](版權.md)） |
 
 > **整車質量 / 整車 AABB / 武器-chip 裝載**等屬**組裝（loadout）層**約束，在 [車輛組裝.md](車輛組裝.md) 檢核，不在零件上鏈階段。
@@ -312,22 +312,22 @@ AABB、Empty 完整度與 extras schema 不在 Stage 1 檢核（Stage 2 處理�
 
 ### 9.3 Stage 3 場地特殊嚴格檢核
 
-| 檢核項                 | 規則                                                                                                                                                                            |
-| ---------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| 必填欄位非空           | `track.route[]`（含 RP1 起點 + RPn 終點；open 恰 2 點 / fixed ≥ 2 點）/ 至少一材質；presentation tags 可為空，不屬 PhysicsManifest admission                                    |
-| GLB extras schema 正確 | `open4wd_version` + `type: "track"` marker、`track` / `weather` / `physics` 區塊齊全                                                                                            |
-| 衍生限制滿足           | AABB / tris / GLB 大小 / entity / patch / 主貼圖（見 [零件與共用介面.md §7.2](建模參數/零件與共用介面.md#7-約束限制stage-1--stage-3-嚴格檢核)）                                                                                      |
-| Geometry 壓縮          | 必須 **Draco**（level ≥ 7），未壓縮 mesh primitive 拒收                                                                                                                         |
-| Texture 壓縮           | 主場地貼圖必須 **KTX2 / Basis Universal**（PNG / JPG 直接內嵌拒收）                                                                                                             |
+| 檢核項                 | 規則                                                                                                                                                                                                                   |
+| ---------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| 必填欄位非空           | `track.route[]`（含 RP1 起點 + RPn 終點；open 恰 2 點 / fixed ≥ 2 點）/ 至少一材質；presentation tags 可為空，不屬 PhysicsManifest admission                                                                           |
+| GLB extras schema 正確 | `open4wd_version` + `type: "track"` marker、`track` / `weather` / `physics` 區塊齊全                                                                                                                                   |
+| 衍生限制滿足           | AABB / tris / GLB 大小 / entity / patch / 主貼圖（見 [零件與共用介面.md §7.2](建模參數/零件與共用介面.md#7-約束限制stage-1--stage-3-嚴格檢核)）                                                                        |
+| Geometry 壓縮          | 必須 **Draco**（level ≥ 7），未壓縮 mesh primitive 拒收                                                                                                                                                                |
+| Texture 壓縮           | 主場地貼圖必須 **KTX2 / Basis Universal**（PNG / JPG 直接內嵌拒收）                                                                                                                                                    |
 | Empty 命名規則         | PascalCase + 標準名（見 [零件與共用介面.md §5.4](建模參數/零件與共用介面.md#5-empty-node-命名約定)）                                                                                                                   |
-| Entity schema          | `entity_type` 在 3 類 enum 內；`destructible: true` 與 `physics: "visual_only"` 同時設定拒收                                                                                    |
-| 跑道結構               | `route` 點數（open 恰 2 / fixed ≥ 2）、`width_m > 0`、相鄰點不重合、loop 模式起=終、**每點 position 貼 mesh 表面 ±0.005m**                                                      |
-| KillZone box 範圍      | (位置 ± scale/2) 必須完全在場地 AABB 內                                                                                                                                         |
-| Checkpoint box 範圍    | (位置 ± scale/2) 必須完全在場地 AABB 內（AABB 外永遠無法點亮 = 無法完賽）                                                                                                       |
-| RespawnPoint 位置      | 必須在場地 AABB 內                                                                                                                                                              |
+| Entity schema          | `entity_type` 在 3 類 enum 內；`destructible: true` 與 `physics: "visual_only"` 同時設定拒收                                                                                                                           |
+| 跑道結構               | `route` 點數（open 恰 2 / fixed ≥ 2）、`width_m > 0`、相鄰點不重合、loop 模式起=終、**每點 position 貼 mesh 表面 ±0.005m**                                                                                             |
+| KillZone box 範圍      | (位置 ± scale/2) 必須完全在場地 AABB 內                                                                                                                                                                                |
+| Checkpoint box 範圍    | (位置 ± scale/2) 必須完全在場地 AABB 內（AABB 外永遠無法點亮 = 無法完賽）                                                                                                                                              |
+| RespawnPoint 位置      | 必須在場地 AABB 內                                                                                                                                                                                                     |
 | Empty ↔ 陣列 1:1       | `track.route[]` / `track.checkpoints[]` 每個 entry 有對應同名 empty；`RoutePoint` / `Checkpoint` 前綴 empty 未列入對應陣列 = 孤兒 → 拒收（[零件與共用介面.md §5.4](建模參數/零件與共用介面.md#5-empty-node-命名約定)） |
-| 玩家上限合理           | `PLAYERS_PER_RACE_MIN`（2）≤ auto_player_max ≤ `TRACK_MAX_PLAYERS_HARDCAP`（8）（下限不足 = 永遠開不了房）                                                                      |
-| 重力參數合法           | `gravity_direction` ≠ 零向量；`gravity_strength_m_s2` ∈ 1.6–25                                                                                                                  |
+| 玩家上限合理           | `PLAYERS_PER_RACE_MIN`（2）≤ auto_player_max ≤ `TRACK_MAX_PLAYERS_HARDCAP`（8）（下限不足 = 永遠開不了房）                                                                                                             |
+| 重力參數合法           | `gravity_direction` ≠ 零向量；`gravity_strength_m_s2` ∈ 1.6–25                                                                                                                                                         |
 
 以上正式限制同時受 [場地.md §8](建模參數/場地.md#8-場地-glb-root-extras) 的
 `TRACK-R-001` 約束：finalizer 與首次 CID admission 共用 validator；密度、窄路等 `warn` 只留在
@@ -374,15 +374,15 @@ magnet、destructible-heavy、narrow、wide、short、long；仍只受共通字�
 
 ### 9.5 場地反作弊規則
 
-| 試圖                                                | 對策                                                                                                                                                      |
-| --------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| AABB 巨大想當無限空間                               | Stage 1 不擋（Stage 2 自動縮放）、上限 500×500×100m                                                                                                       |
-| 三角形爆量想拖慢渲染                                | Stage 2 自動 decimate visual + 衍生 collider                                                                                                              |
-| 不壓縮 GLB 想撐爆 80 MiB                            | Stage 3 拒收未 Draco / 未 KTX2                                                                                                                            |
-| 場地超大但內容空洞想佔評分排行                      | Stage 2 密度 < 5 tri/m² 警告 + 玩家評分自然懲罰                                                                                                           |
-| 偽裝跑道但無起終點（缺 `track.route[]` / 點數不足） | Stage 3 嚴格檢核，缺即拒收                                                                                                                                |
+| 試圖                                                | 對策                                                                                                                                                                                     |
+| --------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| AABB 巨大想當無限空間                               | Stage 1 不擋（Stage 2 自動縮放）、上限 500×500×100m                                                                                                                                      |
+| 三角形爆量想拖慢渲染                                | Stage 2 自動 decimate visual + 衍生 collider                                                                                                                                             |
+| 不壓縮 GLB 想撐爆 80 MiB                            | Stage 3 拒收未 Draco / 未 KTX2                                                                                                                                                           |
+| 場地超大但內容空洞想佔評分排行                      | Stage 2 密度 < 5 tri/m² 警告 + 玩家評分自然懲罰                                                                                                                                          |
+| 偽裝跑道但無起終點（缺 `track.route[]` / 點數不足） | Stage 3 嚴格檢核，缺即拒收                                                                                                                                                               |
 | 設定極端天氣參數想癱瘓物理                          | 各參數有上限（風速 ≤ 30m/s、patch ≤ 50、temperature 範圍依 type 限）；kinematic 週期 / 振幅、conveyor 速度亦有上下限（[protocol.md §3](程式參數/protocol.md#3-protocolugcugc-規格約束)） |
-| Entity 數量爆炸                                     | ≤ 100 總額 + 進 savestate 的 ≤ 50                                                                                                                         |
+| Entity 數量爆炸                                     | ≤ 100 總額 + 進 savestate 的 ≤ 50                                                                                                                                                        |
 
 ## 10. 版本升級與遷移
 

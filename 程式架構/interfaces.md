@@ -136,13 +136,27 @@ export interface VehicleWeaponSpec {
   physics?: WeaponPhysicsSpec; // active 必填；runtime 不推斷替代 box／sphere
 }
 
-export interface WeaponPhysicsProxy {
-  nodeName: string;
-  material: MaterialId;
-  massGrams: number;
-  centroidM: Vec3;
-  pointsM: ReadonlyArray<Vec3>; // deterministic convex support points，4..26
+export interface SourceMassProperties {
+  readonly principalInertiaPerKgM2: Vec3; // 來源質心處主慣量/kg，m²；不從接觸凸包重算
+  readonly inertiaFrame: readonly [number, number, number, number]; // proxy-local 單位四元數
 }
+export interface PartPhysicsProxy {
+  readonly nodeName: string;
+  readonly sourceNodeIndex: number;
+  readonly material: MaterialId;
+  readonly massGrams: number;
+  readonly thermalExchangeFactor: number;
+  readonly thermalContactAreaM2: number;
+  readonly contactAreasM2: DirectionalContactAreasM2;
+  readonly wearCapacityJ?: number;
+  readonly centroidM: Vec3;
+  readonly massProperties: SourceMassProperties;
+  readonly pointsM: ReadonlyArray<Vec3>; // deterministic convex support points，4..26
+}
+export type WeaponPhysicsProxy = Omit<
+  PartPhysicsProxy,
+  "sourceNodeIndex" | "thermalExchangeFactor" | "thermalContactAreaM2"
+>;
 export interface WeaponPhysicsActuator {
   actuatorIndex: number;
   pivotNode: string;

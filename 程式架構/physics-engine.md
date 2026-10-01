@@ -83,13 +83,20 @@ hold joint 握持或已釋放的預配置 projectile body，都由同一個 dyna
 hard CCD 用 shape cast／motion clamping 防止合法高速 body 跨過 fixed trimesh、kinematic entity 或
 其他 dynamic body；soft CCD 則是可能在幾何接觸前改變 impulse 的預測約束，初版明確停用，不能
 視為 hard CCD 替代品。場地不新增全域最小牆厚規則，以免限縮 UGC 造型；退化三角形仍由既有
-canonical 幾何品質規則拒收。終點／Checkpoint／KillZone 等自訂 trigger 另走 chassis COM 線段掃掠，
+canonical 幾何品質規則拒收。終點 ／Checkpoint／KillZone 等自訂 trigger 另走 chassis COM 線段掃掠，
 Rapier CCD 不代替 trigger sweep。
 
 這三個值皆為 physics-version-pinned protocol 常數。Rapier snapshot 保存 body CCD 狀態，
 `bodyTopologyKey` 與 restore 驗證 hard／soft CCD，immutable world config 驗證 CCD substeps；任何差異
 原子拒絕。改值會改變碰撞、fatigue、熱與損毀輸出，公開後須隨 physics/client major 出貨。決策見
 [D-20260814-07](../decisions/D-20260814-07-Gameplay動態剛體HardCCD.md)。
+
+Rapier 0.30.1 的 CCD 不讀取 joint contact-disable 或 contact hook，因此既定排除也必須編碼到
+collision groups。每車保留主車體與 weapon fixed proxy 兩個 membership bits，八車互不共用；
+tire／roller 排除直接連結的兩類 primary collider，持彈同樣排除整個 primary body。彈丸釋放後
+只排除來源 weapon fixed proxy，來源車其他零件、其他彈丸、他車與場地仍可接觸；完整離膛後
+恢復來源武器接觸。不得以永久同車免疫替代。projectile 群組屬於可由彈藥與 sourceCleared
+推導的狀態，restore 在替換 live world 前按輸入狀態驗證，而非將群組任意改動視為合法拓樸。
 
 ### 2.3 Tire／roller Revolute 拓樸
 
@@ -98,7 +105,7 @@ mount、動力、電池、技能、武器、route、磁源、天氣與重力只�
 取得或由其中欄位作決定性推導；race runtime 禁止解析 GLB root/node extras 或重跑 Wave A/B。
 正式 UGC 還必須由 asset boundary 核對 ledger record 與 embedded manifest 的 version／digest，並命中
 同一 `(CID, version, digest)` 本機 admission receipt；缺 receipt、讀取失敗或參照不一致都拒絕。
-GLB bytes 在此只提供 collider／視覺幾何。完整信任模型見
+GLB bytes 在此只提供 collider／ 視覺幾何。完整信任模型見
 [D-20260811-02](../decisions/D-20260811-02-Canonical-PhysicsManifest與一次性Admission.md)。
 
 chassis 與所有非 hinge 零件共用一個 primary dynamic body；每顆 tire／roller 依原始 part index
@@ -109,7 +116,7 @@ convex proxy 各建立一顆 collider。每顆 collider 的材質、質量與 `w
 hinge anchor 與 axis 只由完整 Mount frame 決定：anchor 是 chassis-side Mount position，axis 是
 chassis-side Mount local `+X`，視覺與 collider attachment 則為
 `chassisMount × inverse(partMount)`。runtime 不以 AABB 最短軸、三角形、builtin 姿態或外觀猜軸；
-part-side Mount 可有任意複合旋轉，幾何也可刻意不對稱或非圓盤。AABB／圓柱只允許縮減測試 fixture，
+part-side Mount 可有任意複合旋轉，幾何也可刻意不對稱或非圓盤。AABB／ 圓柱只允許縮減測試 fixture，
 正式 admitted asset 一律使用逐 convex proxy 拓樸。
 
 tire 接收 [算式表 §2](../算式表.md) 的角衝量，primary 接收等量反向反作用；roller 永遠被動。
@@ -118,14 +125,14 @@ tire 接收 [算式表 §2](../算式表.md) 的角衝量，primary 接收等量
 物理，並重算 primary body 的質量、local COM 與慣量。不得另派生零摩擦、額外滾阻或 roller 軸向制動。
 正常 `VehicleSpec` 宣告 tire／roller 卻缺完整 hinge
 descriptor 時 fail closed；只有刻意不含 tire part 的縮減 physics fixture 保留 direct-primary
-compatibility fallback。scale、freeze、teleport 與接觸／part world-position 查詢都必須涵蓋 primary
+compatibility fallback。scale、freeze、teleport 與接觸 ／part world-position 查詢都必須涵蓋 primary
 與所有 auxiliary bodies。決策背景見
 [D-20260807-03](../decisions/D-20260807-03-輪組Revolute接觸驅動.md)；損壞狀態與回滾規則見
 [D-20260811-06](../decisions/D-20260811-06-輪組二元損壞與固定驅動份額.md)。
 
 ### 2.4 Active weapon 拓樸
 
-active weapon 的 manifest 必須帶經 Stage 3 `auto_weapon_physics` 重建與 descriptor 交叉驗證後的 typed `WeaponPhysicsSpec`；缺失、材質未知、actuator／projectile 不一致時 admission fail closed，runtime 不回讀原始 extras。固定 proxy 掛 primary body；每個 rotor／chain segment 建 auxiliary dynamic body 與 convex collider，依 descriptor 建 Revolute／Spherical joint。weapon aggregate AABB 不再同時包覆活動 payload，避免重複 collider／質量。
+active weapon 的 manifest 必須帶經 Stage 3 `auto_weapon_physics` 重建與 descriptor 交叉驗證後的 typed `WeaponPhysicsSpec`；缺失、材質未知、actuator／projectile 不一致時 admission fail closed，runtime 不回讀原始 extras。固定 proxy 掛 primary body；每個 rotor／chain segment 建 auxiliary dynamic body 與 convex collider，依 descriptor 建 Revolute／Spherical joint。weapon aggregate AABB 不再同時包覆活動 payload，避免重複 collider／ 質量。
 
 launch projectile 在 world 建立時全部預配置並以 fixed hold joint 持彈；開火只釋放 authored child index，不新增 body。body／collider／joint handles 及各 topology key 由 load-time immutable template 驗證，snapshot 的 ammo／actuator phase 只能決定 mutable phase 與應存在的 hold joint 子集。presentation 以具名 `WeaponNodePose` 對既有 GLB 節點更新；spectator wire 有界且不能建立新 scene object。決策背景見 [D-20260808-03](../decisions/D-20260808-03-武器執行期物理拓撲.md)。
 
@@ -140,9 +147,9 @@ current PhysicsManifest 六向接觸面積，缺可信資料 fail closed。
 
 `TrackSpec.entities` 只來自 current PhysicsManifest。world 依 `entityIndex` 建立 intact fixed／kinematic body 與 colliders，不為 destructible fragment 建立任何 body／collider。`visual_only` 完全排除於物理拓撲。kinematic pose 以固定 frame 與 deterministic motion evaluator 設定 next pose；conveyor 只巡訪實際 contact manifold，local −Z 切向衝量以 solver friction × normal impulse 封頂。
 
-`TrackSpec.weather` 同樣只來自 current PhysicsManifest：race session 注入 `matchId`／`roundIndex` 與 track manifest digest，physics engine 派生 weather seed，以整數 accumulator、spawn ordinal 與 typed exposure grid 生成最多 50 個 active patch descriptors。world 只在 tire／roller 對固定 track solid 的實際 manifold 接觸套用一次 friction／rolling modifier；renderer、spectator 與 editor preview 消費同一 scheduler／descriptor 形狀，不另跑 RNG。body aero 每幀以六軸 drag area、各向 COP、該點相對氣流與 lift factor 施加有車重上限的 impulse。最大 8 車／50 patch 有獨立 60Hz benchmark。
+`TrackSpec.weather` 同樣只來自 current PhysicsManifest：race session 注入 `matchId`／`roundIndex` 與 track manifest digest，physics engine 派生 weather seed，以整數 accumulator、spawn ordinal 與 typed exposure grid 生成最多 50 個 active patch descriptors。world 只在 tire／roller 對固定 track solid 的實際 manifold 接觸套用一次 friction／rolling modifier；renderer、spectator 與 editor preview 消費同一 scheduler／descriptor 形狀，不另跑 RNG。body aero 每幀以六軸 drag area、各向 COP、該點相對氣流與 lift factor 施加有車重上限的 impulse。最大 8 車 ／50 patch 有獨立 60Hz benchmark。
 
-破壞關閉 intact body/colliders、move/conveyor/magnets；碎片一律純視覺，由 `entityIndex + breakFrame + descriptor/presentation version` 重建，並與車輛共用 5 秒生命與淡出參數。RenderFrame／spectator 只傳 bounded visual descriptor，不傳 `physicsActive` 或逐片物理 pose。current SavedState 驗證 intact Rapier enabled 狀態、per-part 溫度／損毀交易、完整 roster 的 `destructionCounts`、projectile `sourceCleared`、checkpoint 約束的 `routeProgressUm`、weather scheduler／active descriptors 與 envelope lifecycle，任一不一致原子拒絕。最大合法 100 entities／50 destructibles／零 fragment body 有獨立 60Hz benchmark與跨 snapshot conformance vector。決策見 [D-20260814-06](../decisions/D-20260814-06-場地碎片統一純視覺.md)。
+破壞關閉 intact body/colliders、move/conveyor/magnets；碎片一律純視覺，由 `entityIndex + breakFrame + descriptor/presentation version` 重建，並與車輛共用 5 秒生命與淡出參數。RenderFrame／spectator 只傳 bounded visual descriptor，不傳 `physicsActive` 或逐片物理 pose。current SavedState 驗證 intact Rapier enabled 狀態、per-part 溫度 ／ 損毀交易、完整 roster 的 `destructionCounts`、projectile `sourceCleared`、checkpoint 約束的 `routeProgressUm`、weather scheduler／active descriptors 與 envelope lifecycle，任一不一致原子拒絕。最大合法 100 entities／50 destructibles／ 零 fragment body 有獨立 60Hz benchmark 與跨 snapshot conformance vector。決策見 [D-20260814-06](../decisions/D-20260814-06-場地碎片統一純視覺.md)。
 
 ### 2.6 Route／respawn surface frame
 

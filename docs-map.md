@@ -20,7 +20,7 @@ slug: null
 | [經濟](#經濟8-檔) | 13 | — | 6 | 0 | 4 | 4 | 1 | 3 | 0 | 1 | 2 | 3 |
 | [UGC版權](#ugc版權17-檔) | 13 | 7 | — | 3 | 24 | 5 | 16 | 5 | 3 | 8 | 1 | 11 |
 | [材質](#材質2-檔) | 2 | 0 | 2 | — | 5 | 2 | 0 | 3 | 0 | 1 | 0 | 0 |
-| [建模物理](#建模物理12-檔) | 9 | 2 | 9 | 7 | — | 11 | 1 | 10 | 0 | 6 | 0 | 9 |
+| [建模物理](#建模物理12-檔) | 9 | 2 | 10 | 7 | — | 11 | 1 | 10 | 0 | 6 | 0 | 9 |
 | [比賽房間](#比賽房間25-檔) | 18 | 4 | 3 | 2 | 17 | — | 12 | 14 | 10 | 9 | 0 | 13 |
 | [信譽仲裁](#信譽仲裁8-檔) | 12 | 3 | 11 | 0 | 4 | 8 | — | 1 | 2 | 0 | 0 | 2 |
 | [版本部署](#版本部署18-檔) | 10 | 5 | 1 | 2 | 3 | 13 | 6 | — | 10 | 6 | 1 | 8 |
@@ -160,7 +160,7 @@ flowchart TB
 | [編輯器操作.md](編輯器操作.md) | canon | Stage 2 編輯器互動與 UI 操作（零件＋場地共用、PC／Mobile 雙端） |
 | [資產政策.md](資產政策.md) | canon | 資產生命週期玩家面說明＋廢止材質登記（絕版品模型） |
 
-決策檔 34 筆——見 [decisions/INDEX.md](decisions/INDEX.md)。
+決策檔 39 筆——見 [decisions/INDEX.md](decisions/INDEX.md)。
 
 ### UGC版權依賴圖（1/2）
 
@@ -285,7 +285,7 @@ flowchart TB
 | [遊戲機制.md](遊戲機制.md) | canon | 機制庫、晶片技能、其他遊玩細節 |
 | [零件與場景.md](零件與場景.md) | canon | 8 類零件＋3 類場景 entity 詳述 |
 
-決策檔 53 筆——見 [decisions/INDEX.md](decisions/INDEX.md)。
+決策檔 61 筆——見 [decisions/INDEX.md](decisions/INDEX.md)。
 
 ```mermaid
 flowchart TB
@@ -743,7 +743,7 @@ flowchart TB
 | [美術資源/頁面線框.md](美術資源/頁面線框.md) | art | 各頁面 wireframe／版面結構與互動規則細化 |
 | [語系清單.md](語系清單.md) | meta | i18n 四語系＋社群 PR 流程 |
 
-決策檔 35 筆——見 [decisions/INDEX.md](decisions/INDEX.md)。
+決策檔 36 筆——見 [decisions/INDEX.md](decisions/INDEX.md)。
 
 ### 前端主題依賴圖（1/2）
 
