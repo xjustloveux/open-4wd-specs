@@ -18,9 +18,9 @@
       "name": "broken-two-fragment-roundtrip",
       "expected": {
         "frame": 15,
-        "snapshotSha256": "6c79c2db24ca3deb7fe1b7dccc70c29014f43bc001eca84ad4d0f2817780a4cc",
-        "runtimeStateHash": "59b17ee29714fbc1bf05bbb3ca02d707f7eca552790c9a73bb2f2425b45e345b",
-        "stateHash": "6beb87bc39036f1e93e3ff57ec13bbe39b1856fae46dfe2ec7e0caa53d7014ba",
+        "snapshotSha256": "82a7a6a07efd6b9e05f737fdc52e0d956d4d41db13c673fcfd2a8e2d16d1f9fe",
+        "runtimeStateHash": "fcf0ea8aaee34c89edcbc5251020f381873f1f786bb72afee3800a56192ba40e",
+        "stateHash": "7e008abf3bd0a7a2cc7f75e66f0dd7a05ffe9a6aa84d43869a6beefa8bc5c435",
         "topology": [
           {
             "entityIndex": 0,

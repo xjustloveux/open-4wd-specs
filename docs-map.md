@@ -14,20 +14,20 @@ slug: null
 
 列＝引用來源、欄＝引用目標；數字是 current canon 文件間的有向連結數，歷史與決策檔不計。
 
-| 來源 \ 目標 | [共識帳本](#共識帳本10-檔) | [經濟](#經濟8-檔) | [UGC版權](#ugc版權17-檔) | [材質](#材質2-檔) | [建模物理](#建模物理12-檔) | [比賽房間](#比賽房間25-檔) | [信譽仲裁](#信譽仲裁8-檔) | [版本部署](#版本部署18-檔) | [資安](#資安6-檔) | [前端主題](#前端主題35-檔) | [治理營運](#治理營運3-檔) | [跨域](#跨域16-檔) |
+| 來源 \ 目標 | [共識帳本](#共識帳本10-檔) | [經濟](#經濟8-檔) | [UGC版權](#ugc版權17-檔) | [材質](#材質2-檔) | [建模物理](#建模物理12-檔) | [比賽房間](#比賽房間28-檔) | [信譽仲裁](#信譽仲裁8-檔) | [版本部署](#版本部署18-檔) | [資安](#資安6-檔) | [前端主題](#前端主題41-檔) | [治理營運](#治理營運3-檔) | [跨域](#跨域16-檔) |
 | --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
-| [共識帳本](#共識帳本10-檔) | — | 8 | 5 | 0 | 8 | 11 | 12 | 9 | 2 | 0 | 1 | 6 |
+| [共識帳本](#共識帳本10-檔) | — | 8 | 5 | 0 | 8 | 12 | 12 | 9 | 2 | 0 | 1 | 6 |
 | [經濟](#經濟8-檔) | 13 | — | 6 | 0 | 4 | 4 | 1 | 3 | 0 | 1 | 2 | 3 |
-| [UGC版權](#ugc版權17-檔) | 13 | 7 | — | 3 | 24 | 5 | 16 | 5 | 3 | 8 | 1 | 11 |
+| [UGC版權](#ugc版權17-檔) | 14 | 7 | — | 3 | 24 | 5 | 16 | 5 | 3 | 8 | 1 | 11 |
 | [材質](#材質2-檔) | 2 | 0 | 2 | — | 5 | 2 | 0 | 3 | 0 | 1 | 0 | 0 |
-| [建模物理](#建模物理12-檔) | 9 | 2 | 10 | 7 | — | 11 | 1 | 10 | 0 | 6 | 0 | 9 |
-| [比賽房間](#比賽房間25-檔) | 18 | 4 | 3 | 2 | 17 | — | 12 | 14 | 10 | 9 | 0 | 13 |
+| [建模物理](#建模物理12-檔) | 9 | 2 | 10 | 7 | — | 12 | 1 | 10 | 0 | 6 | 0 | 9 |
+| [比賽房間](#比賽房間28-檔) | 18 | 4 | 3 | 2 | 20 | — | 12 | 14 | 10 | 9 | 0 | 17 |
 | [信譽仲裁](#信譽仲裁8-檔) | 12 | 3 | 11 | 0 | 4 | 8 | — | 1 | 2 | 0 | 0 | 2 |
 | [版本部署](#版本部署18-檔) | 10 | 5 | 1 | 2 | 3 | 13 | 6 | — | 10 | 6 | 1 | 8 |
-| [資安](#資安6-檔) | 10 | 1 | 5 | 1 | 4 | 7 | 4 | 5 | — | 1 | 1 | 1 |
-| [前端主題](#前端主題35-檔) | 2 | 2 | 11 | 2 | 23 | 9 | 0 | 17 | 3 | — | 0 | 15 |
+| [資安](#資安6-檔) | 10 | 1 | 5 | 1 | 4 | 9 | 4 | 5 | — | 1 | 1 | 1 |
+| [前端主題](#前端主題41-檔) | 2 | 2 | 12 | 2 | 23 | 9 | 0 | 17 | 3 | — | 0 | 15 |
 | [治理營運](#治理營運3-檔) | 4 | 2 | 1 | 1 | 2 | 0 | 0 | 2 | 0 | 0 | — | 0 |
-| [跨域](#跨域16-檔) | 16 | 6 | 24 | 2 | 15 | 40 | 12 | 31 | 13 | 31 | 1 | — |
+| [跨域](#跨域16-檔) | 16 | 6 | 24 | 2 | 16 | 42 | 12 | 31 | 13 | 31 | 1 | — |
 
 ## 共識帳本（10 檔）
 
@@ -44,7 +44,7 @@ slug: null
 | [程式架構/程式流程/ledger.md](程式架構/程式流程/ledger.md) | impl-flow | 程式級流程圖：Checkpoint／Partition／Sync |
 | [資料系統.md](資料系統.md) | canon | ledger／IPFS／canonical 序列化／治理事件 |
 
-決策檔 38 筆——見 [decisions/INDEX.md](decisions/INDEX.md)。
+決策檔 41 筆——見 [decisions/INDEX.md](decisions/INDEX.md)。
 
 ```mermaid
 flowchart TB
@@ -62,6 +62,7 @@ flowchart TB
   n0 --> n4
   n0 --> n6
   n0 --> n9
+  n1 --> n2
   n1 --> n3
   n1 --> n4
   n2 --> n1
@@ -109,7 +110,7 @@ flowchart TB
 | [算式表.md](算式表.md) | registry | 物理／武器／經濟／信譽各核心算式 |
 | [經濟系統.md](經濟系統.md) | canon | 三層分潤、虛擬貨幣、通膨控制 |
 
-決策檔 13 筆——見 [decisions/INDEX.md](decisions/INDEX.md)。
+決策檔 14 筆——見 [decisions/INDEX.md](decisions/INDEX.md)。
 
 ```mermaid
 flowchart TB
@@ -160,7 +161,7 @@ flowchart TB
 | [編輯器操作.md](編輯器操作.md) | canon | Stage 2 編輯器互動與 UI 操作（零件＋場地共用、PC／Mobile 雙端） |
 | [資產政策.md](資產政策.md) | canon | 資產生命週期玩家面說明＋廢止材質登記（絕版品模型） |
 
-決策檔 39 筆——見 [decisions/INDEX.md](decisions/INDEX.md)。
+決策檔 41 筆——見 [decisions/INDEX.md](decisions/INDEX.md)。
 
 ### UGC版權依賴圖（1/2）
 
@@ -215,6 +216,7 @@ flowchart TB
   n7 --> n9
   n8 --> n0
   n8 --> n2
+  n8 --> n5
   n9 --> n1
   n9 --> n7
   n10 --> n0
@@ -285,7 +287,9 @@ flowchart TB
 | [遊戲機制.md](遊戲機制.md) | canon | 機制庫、晶片技能、其他遊玩細節 |
 | [零件與場景.md](零件與場景.md) | canon | 8 類零件＋3 類場景 entity 詳述 |
 
-決策檔 61 筆——見 [decisions/INDEX.md](decisions/INDEX.md)。
+決策檔 91 筆——見 [decisions/INDEX.md](decisions/INDEX.md)。
+
+### 建模物理依賴圖（1/2）
 
 ```mermaid
 flowchart TB
@@ -300,10 +304,8 @@ flowchart TB
   n8["physics-engine"]
   n9["算式表"]
   n10["遊戲機制"]
-  n11["零件與場景"]
   n0 --> n3
   n0 --> n9
-  n0 --> n11
   n1 --> n2
   n1 --> n3
   n1 --> n4
@@ -313,15 +315,16 @@ flowchart TB
   n3 --> n1
   n3 --> n4
   n3 --> n6
+  n3 --> n8
   n3 --> n9
   n3 --> n10
   n4 --> n1
   n4 --> n2
   n4 --> n3
   n4 --> n6
+  n4 --> n8
   n4 --> n9
   n4 --> n10
-  n4 --> n11
   n5 --> n9
   n6 --> n3
   n6 --> n4
@@ -330,6 +333,7 @@ flowchart TB
   n7 --> n6
   n7 --> n9
   n8 --> n1
+  n8 --> n3
   n8 --> n4
   n8 --> n5
   n8 --> n9
@@ -337,20 +341,35 @@ flowchart TB
   n9 --> n4
   n9 --> n5
   n9 --> n6
-  n9 --> n11
+  n9 --> n8
   n10 --> n3
   n10 --> n4
   n10 --> n9
-  n10 --> n11
-  n11 --> n1
-  n11 --> n3
-  n11 --> n4
-  n11 --> n6
-  n11 --> n9
-  n11 --> n10
 ```
 
-## 比賽房間（25 檔）
+### 建模物理依賴圖（2/2）
+
+```mermaid
+flowchart TB
+  n0["零件與場景"]
+```
+
+#### 建模物理依賴圖跨頁關係
+
+| 來源 | 目標 | 關係 |
+| --- | --- | --- |
+| [README](conformance/README.md) | [零件與場景](零件與場景.md) | 連結 |
+| [零件與共用介面](建模參數/零件與共用介面.md) | [零件與場景](零件與場景.md) | 連結 |
+| [算式表](算式表.md) | [零件與場景](零件與場景.md) | 連結 |
+| [遊戲機制](遊戲機制.md) | [零件與場景](零件與場景.md) | 連結 |
+| [零件與場景](零件與場景.md) | [建模參數](建模參數.md) | 連結 |
+| [零件與場景](零件與場景.md) | [場地](建模參數/場地.md) | 連結 |
+| [零件與場景](零件與場景.md) | [零件與共用介面](建模參數/零件與共用介面.md) | 連結 |
+| [零件與場景](零件與場景.md) | [protocol](程式參數/protocol.md) | 連結 |
+| [零件與場景](零件與場景.md) | [算式表](算式表.md) | 連結 |
+| [零件與場景](零件與場景.md) | [遊戲機制](遊戲機制.md) | 連結 |
+
+## 比賽房間（28 檔）
 
 | 檔案 | type | 說明 |
 |---|---|---|
@@ -375,12 +394,15 @@ flowchart TB
 | [程式架構/程式流程/matchmaking.md](程式架構/程式流程/matchmaking.md) | impl-flow | 程式級流程圖：既有房 Quick Match／配對窗口／賽後簽章 |
 | [程式架構/程式流程/network-sync.md](程式架構/程式流程/network-sync.md) | impl-flow | 程式級流程圖：Rollback／Snapshot |
 | [程式架構/程式流程/spectator.md](程式架構/程式流程/spectator.md) | impl-flow | 程式級流程圖：來源分配／deterministic replay／fallback／淘汰切觀戰 |
+| [美術資源/實際使用圖/節慶主題2026/README.md](美術資源/實際使用圖/節慶主題2026/README.md) | art | 萬聖節與彩鉛聖誕的主題、倒數、訊息圖庫交付與重建清單 |
+| [美術資源/提示詞/賽中訊息圖示/christmas.md](美術資源/提示詞/賽中訊息圖示/christmas.md) | art | 彩鉛聖誕賽中訊息圖示 96 詞製作規格 |
 | [美術資源/提示詞/賽中訊息圖示/default-inspired.md](美術資源/提示詞/賽中訊息圖示/default-inspired.md) | art | default-inspired 賽中訊息圖示 96 詞生成提示詞 |
+| [美術資源/提示詞/賽中訊息圖示/halloween.md](美術資源/提示詞/賽中訊息圖示/halloween.md) | art | 萬聖節復古賽中訊息圖示 96 詞製作規格 |
 | [美術資源/提示詞/賽中訊息圖示/moon-rabbit.md](美術資源/提示詞/賽中訊息圖示/moon-rabbit.md) | art | moon-rabbit-inspired 賽中訊息圖示 96 詞生成提示詞 |
 | [賽內機制.md](賽內機制.md) | canon | 房間配對／比賽中／結算（含 HUD、聊天、觀戰） |
 | [車輛組裝.md](車輛組裝.md) | canon | 玩家依正式／本機測試車位用途組車（本機 loadout） |
 
-決策檔 52 筆——見 [decisions/INDEX.md](decisions/INDEX.md)。
+決策檔 72 筆——見 [decisions/INDEX.md](decisions/INDEX.md)。
 
 ### 比賽房間依賴圖（1/2）
 
@@ -414,6 +436,7 @@ flowchart TB
   n2 --> n13
   n3 --> n5
   n3 --> n8
+  n4 --> n9
   n5 --> n1
   n5 --> n4
   n5 --> n7
@@ -427,9 +450,11 @@ flowchart TB
   n8 --> n9
   n8 --> n11
   n8 --> n15
+  n9 --> n1
   n9 --> n4
   n9 --> n8
   n9 --> n13
+  n9 --> n15
   n10 --> n6
   n10 --> n14
   n11 --> n4
@@ -475,12 +500,14 @@ flowchart TB
 | [比賽進行](流程/比賽進行.md) | [車輛組裝](車輛組裝.md) | 連結 |
 | [觀戰](流程/觀戰.md) | [spectator](程式架構/spectator.md) | 連結 |
 | [配對](流程/配對.md) | [賽內機制](賽內機制.md) | 連結 |
+| [network](程式參數/network.md) | [spectator](程式架構/spectator.md) | 連結 |
 | [protocol](程式參數/protocol.md) | [賽內機制](賽內機制.md) | 連結 |
 | [chat-system](程式架構/chat-system.md) | [spectator](程式架構/spectator.md) | 連結 |
 | [chat-system](程式架構/chat-system.md) | [chat-system](程式架構/程式流程/chat-system.md) | 連結 |
 | [chat-system](程式架構/chat-system.md) | [賽內機制](賽內機制.md) | 連結 |
 | [matchmaking](程式架構/matchmaking.md) | [matchmaking](程式架構/程式流程/matchmaking.md) | 連結 |
 | [matchmaking](程式架構/matchmaking.md) | [賽內機制](賽內機制.md) | 連結 |
+| [network-sync](程式架構/network-sync.md) | [spectator](程式架構/spectator.md) | 連結 |
 | [network-sync](程式架構/network-sync.md) | [network-sync](程式架構/程式流程/network-sync.md) | 連結 |
 | [network-sync](程式架構/network-sync.md) | [賽內機制](賽內機制.md) | 連結 |
 | [race-messages](程式架構/race-messages.md) | [spectator](程式架構/spectator.md) | 連結 |
@@ -488,6 +515,7 @@ flowchart TB
 | [spectator](程式架構/spectator.md) | [觀戰](流程/觀戰.md) | 連結 |
 | [spectator](程式架構/spectator.md) | [chat-system](程式架構/chat-system.md) | 連結 |
 | [spectator](程式架構/spectator.md) | [matchmaking](程式架構/matchmaking.md) | 連結 |
+| [spectator](程式架構/spectator.md) | [network-sync](程式架構/network-sync.md) | 連結 |
 | [spectator](程式架構/spectator.md) | [peer-discovery](程式架構/peer-discovery.md) | 連結 |
 | [spectator](程式架構/spectator.md) | [race-messages](程式架構/race-messages.md) | 連結 |
 | [spectator](程式架構/spectator.md) | [room-runtime](程式架構/room-runtime.md) | 連結 |
@@ -496,6 +524,7 @@ flowchart TB
 | [chat-system](程式架構/程式流程/chat-system.md) | [race-messages](程式架構/race-messages.md) | 連結 |
 | [matchmaking](程式架構/程式流程/matchmaking.md) | [配對](流程/配對.md) | 連結 |
 | [matchmaking](程式架構/程式流程/matchmaking.md) | [matchmaking](程式架構/matchmaking.md) | 連結 |
+| [matchmaking](程式架構/程式流程/matchmaking.md) | [network-sync](程式架構/network-sync.md) | 連結 |
 | [network-sync](程式架構/程式流程/network-sync.md) | [比賽進行](流程/比賽進行.md) | 連結 |
 | [network-sync](程式架構/程式流程/network-sync.md) | [network-sync](程式架構/network-sync.md) | 連結 |
 | [spectator](程式架構/程式流程/spectator.md) | [觀戰](流程/觀戰.md) | 連結 |
@@ -587,7 +616,7 @@ flowchart TB
 | [部署資訊/open-4wd-turn.md](部署資訊/open-4wd-turn.md) | deploy | TURN 公版模板 repo 規格（coturn、社群營運者自行部署） |
 | [部署資訊/部署實際值與初始拓撲.md](部署資訊/部署實際值與初始拓撲.md) | deploy | 首次公開 trust root 與社群服務拓撲 |
 
-決策檔 76 筆——見 [decisions/INDEX.md](decisions/INDEX.md)。
+決策檔 84 筆——見 [decisions/INDEX.md](decisions/INDEX.md)。
 
 ### 版本部署依賴圖（1/2）
 
@@ -684,7 +713,7 @@ flowchart TB
 | [程式架構/security.md](程式架構/security.md) | impl | Sanitize Worker／P2P 驗簽／CSP・SRI／依賴管控 |
 | [資安規範.md](資安規範.md) | meta | UGC sanitize／簽署／CSP／漏洞流程 |
 
-決策檔 43 筆——見 [decisions/INDEX.md](decisions/INDEX.md)。
+決策檔 45 筆——見 [decisions/INDEX.md](decisions/INDEX.md)。
 
 ```mermaid
 flowchart TB
@@ -703,7 +732,7 @@ flowchart TB
   n3 --> n2
 ```
 
-## 前端主題（35 檔）
+## 前端主題（41 檔）
 
 | 檔案 | type | 說明 |
 |---|---|---|
@@ -729,12 +758,18 @@ flowchart TB
 | [美術資源/主題外觀與 RWD.md](美術資源/主題外觀與%20RWD.md) | art | 主題 Skin Layer／頁面套用強度／寬高比例三軸 RWD 的穩定視覺規格 |
 | [美術資源/主題審查計畫.md](美術資源/主題審查計畫.md) | art | 主題代表 viewport／靜態原型／整合守門與驗收工作的非 canon 計畫 |
 | [美術資源/前端技術策略.md](美術資源/前端技術策略.md) | art | UI 前端實作契約的穩定導覽入口 |
+| [美術資源/實際使用圖/節慶主題2026/README.md](美術資源/實際使用圖/節慶主題2026/README.md) | art | 萬聖節與彩鉛聖誕的主題、倒數、訊息圖庫交付與重建清單 |
+| [美術資源/實際使用圖/節慶主題2026/previous-README.md](美術資源/實際使用圖/節慶主題2026/previous-README.md) | art | 節慶主題核准設計的來源與保留策略 |
 | [美術資源/實際使用圖/賽內倒數與起跑動畫/README.md](美術資源/實際使用圖/賽內倒數與起跑動畫/README.md) | art | 兩主題賽內倒數與起跑動畫原始工程 |
 | [美術資源/提示詞/UI資產.md](美術資源/提示詞/UI資產.md) | art | UI 資產生成提示詞 |
 | [美術資源/提示詞/場地參考圖.md](美術資源/提示詞/場地參考圖.md) | art | 場地參考圖生成提示詞 |
+| [美術資源/提示詞/賽中訊息圖示/christmas.md](美術資源/提示詞/賽中訊息圖示/christmas.md) | art | 彩鉛聖誕賽中訊息圖示 96 詞製作規格 |
 | [美術資源/提示詞/賽中訊息圖示/default-inspired.md](美術資源/提示詞/賽中訊息圖示/default-inspired.md) | art | default-inspired 賽中訊息圖示 96 詞生成提示詞 |
+| [美術資源/提示詞/賽中訊息圖示/halloween.md](美術資源/提示詞/賽中訊息圖示/halloween.md) | art | 萬聖節復古賽中訊息圖示 96 詞製作規格 |
 | [美術資源/提示詞/賽中訊息圖示/moon-rabbit.md](美術資源/提示詞/賽中訊息圖示/moon-rabbit.md) | art | moon-rabbit-inspired 賽中訊息圖示 96 詞生成提示詞 |
+| [美術資源/提示詞/賽內倒數與起跑動畫/christmas.md](美術資源/提示詞/賽內倒數與起跑動畫/christmas.md) | art | 彩鉛聖誕賽內倒數與無字起跑插畫的來源及動畫規格 |
 | [美術資源/提示詞/賽內倒數與起跑動畫/default.md](美術資源/提示詞/賽內倒數與起跑動畫/default.md) | art | default 主題賽內倒數與起跑動畫提示詞 |
+| [美術資源/提示詞/賽內倒數與起跑動畫/halloween.md](美術資源/提示詞/賽內倒數與起跑動畫/halloween.md) | art | 萬聖節復古賽內倒數與無字起跑插畫的來源及動畫規格 |
 | [美術資源/提示詞/賽內倒數與起跑動畫/moon-rabbit.md](美術資源/提示詞/賽內倒數與起跑動畫/moon-rabbit.md) | art | 月兔主題賽內倒數與起跑動畫提示詞 |
 | [美術資源/提示詞/零件參考圖.md](美術資源/提示詞/零件參考圖.md) | art | 零件參考圖生成提示詞 |
 | [美術資源/提示詞/頁面概念圖.md](美術資源/提示詞/頁面概念圖.md) | art | 頁面概念圖生成提示詞 |
@@ -743,7 +778,7 @@ flowchart TB
 | [美術資源/頁面線框.md](美術資源/頁面線框.md) | art | 各頁面 wireframe／版面結構與互動規則細化 |
 | [語系清單.md](語系清單.md) | meta | i18n 四語系＋社群 PR 流程 |
 
-決策檔 36 筆——見 [decisions/INDEX.md](decisions/INDEX.md)。
+決策檔 38 筆——見 [decisions/INDEX.md](decisions/INDEX.md)。
 
 ### 前端主題依賴圖（1/2）
 
@@ -827,53 +862,63 @@ flowchart TB
   n4["主題外觀與 RWD"]
   n5["主題審查計畫"]
   n6["前端技術策略"]
-  n7["UI資產"]
-  n8["場地參考圖"]
-  n9["零件參考圖"]
-  n10["頁面概念圖"]
-  n11["美術方向"]
-  n12["設計系統"]
-  n13["頁面線框"]
-  n14["語系清單"]
+  n7["README"]
+  n8["previous-README"]
+  n9["README"]
+  n10["UI資產"]
+  n11["場地參考圖"]
+  n12["christmas"]
+  n13["halloween"]
+  n14["零件參考圖"]
+  n15["頁面概念圖"]
+  n16["美術方向"]
+  n17["設計系統"]
+  n18["頁面線框"]
+  n19["語系清單"]
   n1 --> n2
   n1 --> n3
   n1 --> n4
   n1 --> n5
-  n1 --> n7
-  n1 --> n8
-  n1 --> n9
   n1 --> n10
   n1 --> n11
-  n1 --> n12
-  n1 --> n13
   n1 --> n14
+  n1 --> n15
+  n1 --> n16
+  n1 --> n17
+  n1 --> n18
+  n1 --> n19
   n4 --> n5
-  n4 --> n12
-  n4 --> n13
+  n4 --> n17
+  n4 --> n18
   n5 --> n4
-  n6 --> n12
-  n7 --> n8
-  n7 --> n9
-  n7 --> n10
-  n7 --> n12
-  n8 --> n9
-  n9 --> n11
-  n10 --> n0
-  n10 --> n3
-  n10 --> n8
-  n10 --> n9
+  n6 --> n17
+  n8 --> n7
+  n9 --> n7
+  n10 --> n7
   n10 --> n11
-  n10 --> n12
-  n10 --> n13
-  n11 --> n4
-  n11 --> n12
-  n12 --> n1
-  n12 --> n4
-  n12 --> n14
-  n13 --> n0
-  n13 --> n1
-  n13 --> n4
-  n13 --> n5
+  n10 --> n14
+  n10 --> n15
+  n10 --> n17
+  n11 --> n14
+  n12 --> n7
+  n13 --> n7
+  n14 --> n16
+  n15 --> n0
+  n15 --> n3
+  n15 --> n11
+  n15 --> n14
+  n15 --> n16
+  n15 --> n17
+  n15 --> n18
+  n16 --> n4
+  n16 --> n17
+  n17 --> n1
+  n17 --> n4
+  n17 --> n19
+  n18 --> n0
+  n18 --> n1
+  n18 --> n4
+  n18 --> n5
 ```
 
 #### 前端主題依賴圖跨頁關係

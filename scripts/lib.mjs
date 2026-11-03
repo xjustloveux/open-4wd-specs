@@ -7,11 +7,14 @@ import path from 'node:path';
 export const SOURCE_EXEMPT = new Set(['歷史記錄.md']);
 export function isExemptSource(relPath) { return SOURCE_EXEMPT.has(relPath.split('/').pop()); }
 
+// 本機工具工作區與 Git 忽略的 authoring Release 投遞／產物區都不屬 corpus。
 const LOCAL_TOOL_WORKSPACE_ROOTS = Object.freeze([
   '.agents',
   '.claude',
   '.superpowers',
   'docs/superpowers',
+  'release-input',
+  'release-output',
 ]);
 
 export function isLocalToolWorkspacePath(relPath) {

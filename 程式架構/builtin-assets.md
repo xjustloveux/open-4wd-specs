@@ -57,9 +57,9 @@ const isBuiltin = (ref: CID | BuiltinId): ref is BuiltinId =>
 
 CI 監看 `assets/builtin/` GLB 烘焙 extras：物理值變動但 PR 未 bump `builtin_assets_version` → build fail（純視覺變動免 bump；偵測 ＝ 比對烘焙 extras）。
 
-Pre-launch current builtin 與 PhysicsManifest 基線維持 v1；27 個公版 slot 的本機暫行 bytes 只供
-功能／流程驗證與 synthetic reference，不是正式交付，也不作平衡基準。權利證據未完整前，這些
-bytes 不進公開 Git 歷史。專案尚未公開，不保留舊 bytes 相容層；正式公開時才凍結經 Editor
+Pre-launch current builtin 與 PhysicsManifest 基線維持 v1。三個公版場地與 24 個公版零件皆已由程序化生成器交付
+（[D-20261022-01](../decisions/D-20261022-01-公版場地程序化交付與零件維持延後.md)、[D-20261030-01](../decisions/D-20261030-01-公版零件程序化交付.md)）；
+任一類若退回 `deferred-prelaunch`，該類的本機暫行 bytes 只供功能／流程驗證，不是正式交付，權利證據未完整前不進公開 Git 歷史。專案尚未公開，不保留舊 bytes 相容層；正式公開時才凍結經 Editor
 產出、strict gate 與人工驗收通過的 bytes／SHA-256／CID／extrasHash／rights provenance。
 
 ## 5. 公版清單（24 零件 + 3 場地）
@@ -92,7 +92,9 @@ chip skill slots 上傳時 bake 進 GLB、上鏈後 immutable，各 slot `alloca
 `authoring-release-manifest.json`、`SHA256SUMS` 與 Release assets 是公開 bytes 權威。Release
 manifest 的每個 GLB input 必須攜帶相同 `assetId`，main 的
 `scripts/builtin-assets/authoring-manifest.json` 則只保存 Editor recipe 與 output provenance，三方以
-`sourceAssetId`／`assetId` exact-set join。Main dependency lock 必須同時鎖 exact specs commit、
+`sourceAssetId`／`assetId` exact-set join。source manifest 另可列 `e2e:` 前綴的 e2e 匯入素材：它們隨同一
+Release 發布、受同一組 size／SHA-256 與 adoption gate 約束，但不出貨、沒有 Editor recipe，recipe 也不得
+引用；exact-set join 只對 `builtin:` 來源要求一一對應（[D-20261031-01](../decisions/D-20261031-01-authoring來源新增e2e匯入素材.md)）。Main dependency lock 必須同時鎖 exact specs commit、
 `authoring-source-<commit 前 12 碼>` tag、source manifest fingerprint／檔案 SHA-256 與 Release
 manifest SHA-256；adoption gate 再驗 Release manifest 的 source commit、全部 asset mapping、
 下載檔案集合、size／SHA-256 與 `SHA256SUMS`，通過後才跑 production Editor journey。不得把
@@ -112,27 +114,31 @@ part 128px／6k、track 256px。兩值只控制 canonical 輸出容量與視覺�
 首次公開前的最終公版須由 production Editor 手動 author／匯出並通過同一套 strict gate；這些替換仍
 維持 v1。本地測試者精確清除 Open4WD asset cache 或使用 `/reset/`，不得用虛增
 `builtin_assets_version` 代替開發期 cache 操作。
-`public/assets/builtin-delivery.json` 是 v1 交付權威：`deferred-prelaunch` 只允許明列的四類
-asset-dependent tests 在 development profile 顯式 skip 並回報 D-20260820-01；`delivered` 才表示
-正式 GLB 已可進入 strict gate。未知、缺失、malformed state，以及不屬於該清單的一般缺檔，一律
-fail closed。狀態切為 `delivered` 前，`public/assets/builtin/PROVENANCE.md` 必須逐項具備生成或取得
-來源、方案與條款證據、輸入素材權利、輸出授權、產出日期與人工核准；placeholder 不算證據，
-實質權利內容由人類審閱。
+`public/assets/builtin-delivery.json` 是 schema 1 交付權威（編號沿革見 [D-20261029-05](../decisions/D-20261029-05-builtin交付schema重新編號為1.md)），按 `tracks`／`parts` 兩類各自記錄
+`deferred-prelaunch`｜`delivered` 與該類的 `public/assets/builtin/<tracks|parts>/PROVENANCE.md`。
+任一類 `deferred-prelaunch` 時，只允許明列的 asset-dependent tests 在 development profile 顯式 skip
+並回報延後類型與 D-20261022-01：需要整車的 canonical 載入、九組結算旅程與 admission 效能批次要求兩類
+都已交付，場地 surface proof 只要求 `tracks`。`delivered` 才表示該類正式 GLB 已可進入 strict gate；
+strict／release 要求兩類都 `delivered`。未知、缺失、malformed state，以及不屬於該清單的一般缺檔，
+一律 fail closed。某類切為 `delivered` 前，其 PROVENANCE 必須逐項具備生成或取得來源、方案與條款
+證據、輸入素材權利、輸出授權、產出日期與人工核准；placeholder 不算證據，實質權利內容由人類審閱。
+目前 `tracks` 與 `parts` 皆為 `delivered`，交付權威的 `decision` 為 [D-20261030-01](../decisions/D-20261030-01-公版零件程序化交付.md)。
 `OPEN4WD_BUILTIN_AUTHORING=1` 預設只把測試成品寫到 Playwright `test-results`；只有維護者手動再加
 `OPEN4WD_BUILTIN_WRITE=1` 才可寫入 `public/assets/builtin`。CI、一般驗證與 agent 執行不得自行開啟
 寫入旗標，測試通過也不等於已替換正式公版。
 
 > **CI 機械檢核取代人工授權**：GLB extras 合法（同 UGC Stage 3 validator）、`assets/builtin/` 物理烘焙值變動必 bump `builtin_assets_version`（path-based，比照 [版本規範.md §13](../版本規範.md) 對 material-params 的不變式）。「數值平衡是否合理」屬人類判斷 → PR review（與物理常數同標準）。公版**一致性** enforcement 由 peer 端 `builtin-assets CID 比對` + 配對 `builtin_assets_version` 保證（[版本規範.md §7](../版本規範.md)），不需鏈上事件。
 
-Public 出貨 manifest 每筆必須帶 `sha256`、真實 IPFS `cid`、canonical root `extrasHash` 與等於全局 `BUILTIN_ASSETS_VERSION_CURRENT` 的 `assetsVersion`；runtime fetch 後同時重算 SHA-256 與 CID，任一不符即拒絕使用。GLB 不得引用外部 buffer / image URI，PNG 必須有合法 signature／IHDR／ 尺寸，KTX2 必須有合法 signature／ 尺寸；場地紋理僅允許 KTX2，避免未壓縮 PNG 進入大型場地。`check:release-assets --strict` 會對 deferred state、缺檔、provenance 缺失、不完整 manifest、bytes／extras／版本不匹配全部 fail closed；27 個正式 GLB 未交付前只可由 delivery authority 在非 strict 開發檢查明示延後。
+Public 出貨 manifest 每筆必須帶 `sha256`、真實 IPFS `cid`、canonical root `extrasHash` 與等於全局 `BUILTIN_ASSETS_VERSION_CURRENT` 的 `assetsVersion`；runtime fetch 後同時重算 SHA-256 與 CID，任一不符即拒絕使用。GLB 不得引用外部 buffer / image URI，PNG 必須有合法 signature／IHDR／ 尺寸，KTX2 必須有合法 signature／ 尺寸；場地紋理僅允許 KTX2，避免未壓縮 PNG 進入大型場地。`check:release-assets --strict` 會對任一類 deferred state、缺檔、provenance 缺失、不完整 manifest、bytes／extras／版本不匹配全部 fail closed；兩類未全部交付前只可由 delivery authority 按類型在非 strict 開發檢查明示延後。
 
 公版設計為「平庸但能跑」基準線（鼓勵改良超越）；調整向後相容（不可移除 / 不可改 ID）。GLB `assets/builtin/{parts,tracks}/`（24+3 檔）**出貨預算分級**：
 
-- **零件 ≤ 112KiB／檔**：視覺網格 ≤ 8K tri（迷你四驅零件充裕）；公版純色設計 → **免點陣紋理**（材質色／頂點色）、必要時 ≤ 256²。超過原 100KiB 的額度只供完整 PhysicsManifest／deterministic physics metadata，不作提高視覺複雜度的額度
+- **零件 ≤ 112KiB／檔**：視覺網格 ≤ 8K tri（迷你四驅零件充裕）；**車殼例外 ≤ 12K tri**（承擔整車外形曲面，[D-20261022-02](../decisions/D-20261022-02-車殼三角上限放寬至12K.md)）；上限按零件類型查表、authoring recipe 減面目標不得高於該類上限；公版純色設計 → **免點陣紋理**（材質色／頂點色）、必要時 ≤ 256²。超過原 100KiB 的額度只供完整 PhysicsManifest／deterministic physics metadata，不作提高視覺複雜度的額度
 - **場地 ≤ 500KB／ 檔**：visual ≤ 50K tri、紋理 ≤ 1024 KTX2
 - **總計 ≤ 4MB**（cache-first lazy、不進首載 precache，見 [pwa-offline.md](pwa-offline.md)）
+- **root extras ≤ 256KiB／檔**（canonical root extras JSON 的 UTF-8 bytes，含完整 PhysicsManifest 與雨雪曝露格；UGC extras 天花板另見 `SANITIZE_EXTRAS_MAX_BYTES`）
 
-管線：Tripo3D 生成高模 → decimate／retopo 至目標面數 → 紋理策略 → Draco＋KTX2 → **CI 驗 per-file 上限**（機器可驗）。[美術資源/提示詞/零件參考圖.md](../美術資源/提示詞/零件參考圖.md) 的「50K 面 ＋1024 紋理」為**生成階段高模建議值、非出貨值**。
+管線：公版零件與場地皆由受版控的 Blender 程序化生成器從零建立，生成器快照與 authoring GLB 隨 authoring-source Release 保存，再走同一 finalizer、Draco＋KTX2 與 **CI 驗 per-file 上限**（機器可驗；[D-20261022-01](../decisions/D-20261022-01-公版場地程序化交付與零件維持延後.md)、[D-20261030-01](../decisions/D-20261030-01-公版零件程序化交付.md)）。[美術資源/提示詞/零件參考圖.md](../美術資源/提示詞/零件參考圖.md) 的「50K 面 ＋1024 紋理」為**生成階段高模建議值、非出貨值**。
 
 ## 8. 跨模組對接
 

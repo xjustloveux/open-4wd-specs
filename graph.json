@@ -2471,6 +2471,382 @@
       "summary": null
     },
     {
+      "id": "decisions/D-20261016-01-回定位等待空出的實際落點.md",
+      "type": "decision",
+      "domain": [
+        "建模物理"
+      ],
+      "summary": null
+    },
+    {
+      "id": "decisions/D-20261018-01-成對滾阻力矩與實際耗散.md",
+      "type": "decision",
+      "domain": [
+        "建模物理"
+      ],
+      "summary": null
+    },
+    {
+      "id": "decisions/D-20261018-02-單向有限扭矩輪軸馬達.md",
+      "type": "decision",
+      "domain": [
+        "建模物理"
+      ],
+      "summary": null
+    },
+    {
+      "id": "decisions/D-20261018-03-接受子步時間作功與區域耗能.md",
+      "type": "decision",
+      "domain": [
+        "建模物理"
+      ],
+      "summary": null
+    },
+    {
+      "id": "decisions/D-20261020-01-輪類滾動面改掛保守cylinder.md",
+      "type": "decision",
+      "domain": [
+        "建模物理"
+      ],
+      "summary": null
+    },
+    {
+      "id": "decisions/D-20261020-02-旋轉面形狀分類移至烘焙期.md",
+      "type": "decision",
+      "domain": [
+        "建模物理"
+      ],
+      "summary": null
+    },
+    {
+      "id": "decisions/D-20261021-01-場地碰撞體分段與邊界法線機制.md",
+      "type": "decision",
+      "domain": [
+        "建模物理"
+      ],
+      "summary": null
+    },
+    {
+      "id": "decisions/D-20261021-02-滾輪被包覆內件維持凸hull.md",
+      "type": "decision",
+      "domain": [
+        "建模物理"
+      ],
+      "summary": null
+    },
+    {
+      "id": "decisions/D-20261022-01-公版場地程序化交付與零件維持延後.md",
+      "type": "decision",
+      "domain": [
+        "版本部署",
+        "建模物理",
+        "UGC版權"
+      ],
+      "summary": null
+    },
+    {
+      "id": "decisions/D-20261022-02-車殼三角上限放寬至12K.md",
+      "type": "decision",
+      "domain": [
+        "建模物理",
+        "版本部署"
+      ],
+      "summary": null
+    },
+    {
+      "id": "decisions/D-20261025-01-持彈碰撞體切換與可選彈體獨立耐久.md",
+      "type": "decision",
+      "domain": [
+        "建模物理",
+        "比賽房間"
+      ],
+      "summary": null
+    },
+    {
+      "id": "decisions/D-20261026-01-鉸接輪組被包覆內件只承載質量.md",
+      "type": "decision",
+      "domain": [
+        "建模物理"
+      ],
+      "summary": null
+    },
+    {
+      "id": "decisions/D-20261026-02-CCD持續接觸改掃核心球.md",
+      "type": "decision",
+      "domain": [
+        "建模物理",
+        "比賽房間"
+      ],
+      "summary": null
+    },
+    {
+      "id": "decisions/D-20261027-01-接觸點求解順序對稱化.md",
+      "type": "decision",
+      "domain": [
+        "建模物理",
+        "比賽房間"
+      ],
+      "summary": null
+    },
+    {
+      "id": "decisions/D-20261027-02-動態目標持續接觸回復完整形狀TOI.md",
+      "type": "decision",
+      "domain": [
+        "建模物理",
+        "比賽房間"
+      ],
+      "summary": null
+    },
+    {
+      "id": "decisions/D-20261028-01-快照取消正規化與本機信任載入.md",
+      "type": "decision",
+      "domain": [
+        "建模物理",
+        "比賽房間"
+      ],
+      "summary": null
+    },
+    {
+      "id": "decisions/D-20261028-02-靜態形狀登錄參照快照.md",
+      "type": "decision",
+      "domain": [
+        "建模物理",
+        "比賽房間"
+      ],
+      "summary": null
+    },
+    {
+      "id": "decisions/D-20261028-03-輸入延遲有界回滾與模擬Worker.md",
+      "type": "decision",
+      "domain": [
+        "比賽房間",
+        "建模物理"
+      ],
+      "summary": null
+    },
+    {
+      "id": "decisions/D-20261028-04-效能預算三層口徑.md",
+      "type": "decision",
+      "domain": [
+        "建模物理",
+        "比賽房間",
+        "版本部署"
+      ],
+      "summary": null
+    },
+    {
+      "id": "decisions/D-20261028-05-bounded-step接受容差放寬至0.2毫米.md",
+      "type": "decision",
+      "domain": [
+        "建模物理",
+        "比賽房間"
+      ],
+      "summary": null
+    },
+    {
+      "id": "decisions/D-20261029-01-回合終局一致性.md",
+      "type": "decision",
+      "domain": [
+        "比賽房間",
+        "建模物理"
+      ],
+      "summary": null
+    },
+    {
+      "id": "decisions/D-20261029-02-forfeit整場壓縮名次.md",
+      "type": "decision",
+      "domain": [
+        "共識帳本",
+        "經濟",
+        "比賽房間"
+      ],
+      "summary": null
+    },
+    {
+      "id": "decisions/D-20261029-03-catch-up分tick追趕與落後端快進.md",
+      "type": "decision",
+      "domain": [
+        "比賽房間"
+      ],
+      "summary": null
+    },
+    {
+      "id": "decisions/D-20261029-04-catch-up追趕期限驗簽心跳與背景恢復.md",
+      "type": "decision",
+      "domain": [
+        "比賽房間"
+      ],
+      "summary": null
+    },
+    {
+      "id": "decisions/D-20261029-05-builtin交付schema重新編號為1.md",
+      "type": "decision",
+      "domain": [
+        "版本部署"
+      ],
+      "summary": null
+    },
+    {
+      "id": "decisions/D-20261030-01-公版零件程序化交付.md",
+      "type": "decision",
+      "domain": [
+        "版本部署",
+        "UGC版權"
+      ],
+      "summary": null
+    },
+    {
+      "id": "decisions/D-20261030-02-Ed25519改RFC8032嚴格驗簽.md",
+      "type": "decision",
+      "domain": [
+        "資安",
+        "共識帳本"
+      ],
+      "summary": null
+    },
+    {
+      "id": "decisions/D-20261030-04-後續回合屏障停滯改記forfeit.md",
+      "type": "decision",
+      "domain": [
+        "比賽房間",
+        "共識帳本"
+      ],
+      "summary": null
+    },
+    {
+      "id": "decisions/D-20261030-05-越窗卡頓改走catch-up.md",
+      "type": "decision",
+      "domain": [
+        "比賽房間"
+      ],
+      "summary": null
+    },
+    {
+      "id": "decisions/D-20261030-06-catch-up依快照傳輸時間順延front.md",
+      "type": "decision",
+      "domain": [
+        "比賽房間"
+      ],
+      "summary": null
+    },
+    {
+      "id": "decisions/D-20261030-07-零件退化面積隨尺寸縮放與減面誤差上限.md",
+      "type": "decision",
+      "domain": [
+        "建模物理"
+      ],
+      "summary": null
+    },
+    {
+      "id": "decisions/D-20261031-01-authoring來源新增e2e匯入素材.md",
+      "type": "decision",
+      "domain": [
+        "建模物理"
+      ],
+      "summary": null
+    },
+    {
+      "id": "decisions/D-20261031-02-公版九組驗收改以結算旅程為門檻.md",
+      "type": "decision",
+      "domain": [
+        "版本部署"
+      ],
+      "summary": null
+    },
+    {
+      "id": "decisions/D-20261031-03-導輪掛點預設朝上並改以傾角調整.md",
+      "type": "decision",
+      "domain": [
+        "建模物理"
+      ],
+      "summary": null
+    },
+    {
+      "id": "decisions/D-20261031-04-公版多起跑完賽率量測與非退步閘.md",
+      "type": "decision",
+      "domain": [
+        "版本部署"
+      ],
+      "summary": null
+    },
+    {
+      "id": "decisions/D-20261031-05-整車最低離地以輪胎接地面為準.md",
+      "type": "decision",
+      "domain": [
+        "建模物理"
+      ],
+      "summary": null
+    },
+    {
+      "id": "decisions/D-20261031-06-同材質地面節點合併切塊.md",
+      "type": "decision",
+      "domain": [
+        "建模物理"
+      ],
+      "summary": null
+    },
+    {
+      "id": "decisions/D-20261031-07-圓柱曲面支撐線段依法線方位.md",
+      "type": "decision",
+      "domain": [
+        "建模物理"
+      ],
+      "summary": null
+    },
+    {
+      "id": "decisions/D-20261101-01-本機測試也顯示效能警告.md",
+      "type": "decision",
+      "domain": [
+        "比賽房間",
+        "建模物理"
+      ],
+      "summary": null
+    },
+    {
+      "id": "decisions/D-20261101-02-持續接觸判定的幾何回退.md",
+      "type": "decision",
+      "domain": [
+        "建模物理",
+        "比賽房間"
+      ],
+      "summary": null
+    },
+    {
+      "id": "decisions/D-20261101-03-場地閘牆格軌跡視界截在在場上幀.md",
+      "type": "decision",
+      "domain": [
+        "建模物理"
+      ],
+      "summary": null
+    },
+    {
+      "id": "decisions/D-20261102-01-比賽視口固定算圖削減.md",
+      "type": "decision",
+      "domain": [
+        "比賽房間",
+        "前端主題"
+      ],
+      "summary": null
+    },
+    {
+      "id": "decisions/D-20261102-02-比賽視口背景層移除與像素自適應.md",
+      "type": "decision",
+      "domain": [
+        "比賽房間",
+        "前端主題"
+      ],
+      "summary": null
+    },
+    {
+      "id": "decisions/D-20261103-01-PR依賴稽核只擋新增.md",
+      "type": "decision",
+      "domain": [
+        "版本部署",
+        "資安"
+      ],
+      "summary": null
+    },
+    {
       "id": "decisions/INDEX.md",
       "type": null,
       "domain": [],
@@ -3291,6 +3667,23 @@
       "summary": "UI 前端實作契約的穩定導覽入口"
     },
     {
+      "id": "美術資源/實際使用圖/節慶主題2026/README.md",
+      "type": "art",
+      "domain": [
+        "前端主題",
+        "比賽房間"
+      ],
+      "summary": "萬聖節與彩鉛聖誕的主題、倒數、訊息圖庫交付與重建清單"
+    },
+    {
+      "id": "美術資源/實際使用圖/節慶主題2026/previous-README.md",
+      "type": "art",
+      "domain": [
+        "前端主題"
+      ],
+      "summary": "節慶主題核准設計的來源與保留策略"
+    },
+    {
       "id": "美術資源/實際使用圖/賽內倒數與起跑動畫/README.md",
       "type": "art",
       "domain": [
@@ -3315,6 +3708,15 @@
       "summary": "場地參考圖生成提示詞"
     },
     {
+      "id": "美術資源/提示詞/賽中訊息圖示/christmas.md",
+      "type": "art",
+      "domain": [
+        "比賽房間",
+        "前端主題"
+      ],
+      "summary": "彩鉛聖誕賽中訊息圖示 96 詞製作規格"
+    },
+    {
       "id": "美術資源/提示詞/賽中訊息圖示/default-inspired.md",
       "type": "art",
       "domain": [
@@ -3322,6 +3724,15 @@
         "前端主題"
       ],
       "summary": "default-inspired 賽中訊息圖示 96 詞生成提示詞"
+    },
+    {
+      "id": "美術資源/提示詞/賽中訊息圖示/halloween.md",
+      "type": "art",
+      "domain": [
+        "比賽房間",
+        "前端主題"
+      ],
+      "summary": "萬聖節復古賽中訊息圖示 96 詞製作規格"
     },
     {
       "id": "美術資源/提示詞/賽中訊息圖示/moon-rabbit.md",
@@ -3333,12 +3744,28 @@
       "summary": "moon-rabbit-inspired 賽中訊息圖示 96 詞生成提示詞"
     },
     {
+      "id": "美術資源/提示詞/賽內倒數與起跑動畫/christmas.md",
+      "type": "art",
+      "domain": [
+        "前端主題"
+      ],
+      "summary": "彩鉛聖誕賽內倒數與無字起跑插畫的來源及動畫規格"
+    },
+    {
       "id": "美術資源/提示詞/賽內倒數與起跑動畫/default.md",
       "type": "art",
       "domain": [
         "前端主題"
       ],
       "summary": "default 主題賽內倒數與起跑動畫提示詞"
+    },
+    {
+      "id": "美術資源/提示詞/賽內倒數與起跑動畫/halloween.md",
+      "type": "art",
+      "domain": [
+        "前端主題"
+      ],
+      "summary": "萬聖節復古賽內倒數與無字起跑插畫的來源及動畫規格"
     },
     {
       "id": "美術資源/提示詞/賽內倒數與起跑動畫/moon-rabbit.md",
@@ -3678,6 +4105,34 @@
     {
       "from": "conformance/README.md",
       "to": "decisions/D-20260815-03-CanonicalFold自包含比賽結算.md"
+    },
+    {
+      "from": "conformance/README.md",
+      "to": "decisions/D-20261021-01-場地碰撞體分段與邊界法線機制.md"
+    },
+    {
+      "from": "conformance/README.md",
+      "to": "decisions/D-20261026-02-CCD持續接觸改掃核心球.md"
+    },
+    {
+      "from": "conformance/README.md",
+      "to": "decisions/D-20261027-01-接觸點求解順序對稱化.md"
+    },
+    {
+      "from": "conformance/README.md",
+      "to": "decisions/D-20261027-02-動態目標持續接觸回復完整形狀TOI.md"
+    },
+    {
+      "from": "conformance/README.md",
+      "to": "decisions/D-20261028-02-靜態形狀登錄參照快照.md"
+    },
+    {
+      "from": "conformance/README.md",
+      "to": "decisions/D-20261028-05-bounded-step接受容差放寬至0.2毫米.md"
+    },
+    {
+      "from": "conformance/README.md",
+      "to": "decisions/D-20261101-02-持續接觸判定的幾何回退.md"
     },
     {
       "from": "conformance/README.md",
@@ -4041,6 +4496,10 @@
     },
     {
       "from": "decisions/D-20260602-02-斷線結算finisherCount.md",
+      "to": "decisions/D-20261029-02-forfeit整場壓縮名次.md"
+    },
+    {
+      "from": "decisions/D-20260602-02-斷線結算finisherCount.md",
       "to": "經濟系統.md"
     },
     {
@@ -4346,6 +4805,10 @@
     {
       "from": "decisions/D-20260630-02-多回合積分制三層正名.md",
       "to": "decisions/D-20260629-01-組裝房間劃界.md"
+    },
+    {
+      "from": "decisions/D-20260630-02-多回合積分制三層正名.md",
+      "to": "decisions/D-20261029-02-forfeit整場壓縮名次.md"
     },
     {
       "from": "decisions/D-20260630-02-多回合積分制三層正名.md",
@@ -5488,6 +5951,10 @@
       "to": "程式架構/security.md"
     },
     {
+      "from": "decisions/D-20260730-02-Part匯入自動縮放減面與掛點.md",
+      "to": "decisions/D-20261030-07-零件退化面積隨尺寸縮放與減面誤差上限.md"
+    },
+    {
       "from": "decisions/D-20260731-01-signaling開發期baseline重設v1.md",
       "to": "decisions/D-20260724-01-signaling-v2部署拓撲.md"
     },
@@ -5502,6 +5969,10 @@
     {
       "from": "decisions/D-20260731-05-Bug-Bounty與私密漏洞重現.md",
       "to": "decisions/D-20260703-09-公共池廢除.md"
+    },
+    {
+      "from": "decisions/D-20260802-02-GO前race-ready屏障.md",
+      "to": "decisions/D-20261030-04-後續回合屏障停滯改記forfeit.md"
     },
     {
       "from": "decisions/D-20260802-12-觀戰公開報廢presentation快照.md",
@@ -5592,6 +6063,10 @@
       "to": "decisions/D-20260814-06-場地碎片統一純視覺.md"
     },
     {
+      "from": "decisions/D-20260811-04-逐Collider材質接觸與滾動阻力.md",
+      "to": "decisions/D-20261021-01-場地碰撞體分段與邊界法線機制.md"
+    },
+    {
       "from": "decisions/D-20260811-05-能量域熱模型與固定熱庫接觸.md",
       "to": "decisions/D-20260811-10-逐Region接觸耗散輪胎磨耗.md"
     },
@@ -5641,6 +6116,10 @@
     },
     {
       "from": "decisions/D-20260812-02-觀戰Deterministic-Replay與精簡Fallback.md",
+      "to": "decisions/D-20261029-03-catch-up分tick追趕與落後端快進.md"
+    },
+    {
+      "from": "decisions/D-20260812-02-觀戰Deterministic-Replay與精簡Fallback.md",
       "to": "程式架構/spectator.md"
     },
     {
@@ -5670,6 +6149,22 @@
     {
       "from": "decisions/D-20260813-06-工具鏈Inventory與三向一致性閘.md",
       "to": "程式架構/toolchain.md"
+    },
+    {
+      "from": "decisions/D-20260814-05-車輛零件損毀交易與純視覺碎片.md",
+      "to": "decisions/D-20261025-01-持彈碰撞體切換與可選彈體獨立耐久.md"
+    },
+    {
+      "from": "decisions/D-20260814-09-回合名次與失能終局.md",
+      "to": "decisions/D-20261029-01-回合終局一致性.md"
+    },
+    {
+      "from": "decisions/D-20260814-10-直接致毀破壞歸因.md",
+      "to": "decisions/D-20261025-01-持彈碰撞體切換與可選彈體獨立耐久.md"
+    },
+    {
+      "from": "decisions/D-20260814-11-技能停用權威投影.md",
+      "to": "decisions/D-20261029-01-回合終局一致性.md"
     },
     {
       "from": "decisions/D-20260815-02-註解品質本機前移與多語PR流程.md",
@@ -5708,6 +6203,10 @@
       "to": "程式架構/moderation.md"
     },
     {
+      "from": "decisions/D-20260816-12-完整PhysicsManifest零件預算.md",
+      "to": "decisions/D-20261022-02-車殼三角上限放寬至12K.md"
+    },
+    {
       "from": "decisions/D-20260817-01-鑄幣來源限比賽與創作.md",
       "to": "經濟系統.md"
     },
@@ -5744,6 +6243,14 @@
       "to": "編輯器操作.md"
     },
     {
+      "from": "decisions/D-20260818-01-Authoring大型原始資產Release-first.md",
+      "to": "decisions/D-20261022-01-公版場地程序化交付與零件維持延後.md"
+    },
+    {
+      "from": "decisions/D-20260820-01-預發布內建資產延後交付與兩段發布鏈.md",
+      "to": "decisions/D-20261022-01-公版場地程序化交付與零件維持延後.md"
+    },
+    {
       "from": "decisions/D-20260823-01-註解hook本機wrapper生成.md",
       "to": "decisions/D-20260815-02-註解品質本機前移與多語PR流程.md"
     },
@@ -5762,6 +6269,626 @@
     {
       "from": "decisions/D-20260906-01-導輪軸向依掛點用途決定.md",
       "to": "程式參數/protocol.md"
+    },
+    {
+      "from": "decisions/D-20261018-02-單向有限扭矩輪軸馬達.md",
+      "to": "算式表.md"
+    },
+    {
+      "from": "decisions/D-20261018-03-接受子步時間作功與區域耗能.md",
+      "to": "算式表.md"
+    },
+    {
+      "from": "decisions/D-20261020-01-輪類滾動面改掛保守cylinder.md",
+      "to": "decisions/D-20261026-01-鉸接輪組被包覆內件只承載質量.md"
+    },
+    {
+      "from": "decisions/D-20261020-02-旋轉面形狀分類移至烘焙期.md",
+      "to": "decisions/D-20261021-02-滾輪被包覆內件維持凸hull.md"
+    },
+    {
+      "from": "decisions/D-20261021-01-場地碰撞體分段與邊界法線機制.md",
+      "to": "decisions/D-20260524-03-DeterministicWorld與Rapier鎖版.md"
+    },
+    {
+      "from": "decisions/D-20261021-01-場地碰撞體分段與邊界法線機制.md",
+      "to": "decisions/D-20260811-04-逐Collider材質接觸與滾動阻力.md"
+    },
+    {
+      "from": "decisions/D-20261021-01-場地碰撞體分段與邊界法線機制.md",
+      "to": "decisions/D-20261026-02-CCD持續接觸改掃核心球.md"
+    },
+    {
+      "from": "decisions/D-20261021-01-場地碰撞體分段與邊界法線機制.md",
+      "to": "專案生命週期.md"
+    },
+    {
+      "from": "decisions/D-20261021-01-場地碰撞體分段與邊界法線機制.md",
+      "to": "建模參數/場地.md"
+    },
+    {
+      "from": "decisions/D-20261021-02-滾輪被包覆內件維持凸hull.md",
+      "to": "decisions/D-20261020-02-旋轉面形狀分類移至烘焙期.md"
+    },
+    {
+      "from": "decisions/D-20261021-02-滾輪被包覆內件維持凸hull.md",
+      "to": "decisions/D-20261021-01-場地碰撞體分段與邊界法線機制.md"
+    },
+    {
+      "from": "decisions/D-20261021-02-滾輪被包覆內件維持凸hull.md",
+      "to": "decisions/D-20261026-01-鉸接輪組被包覆內件只承載質量.md"
+    },
+    {
+      "from": "decisions/D-20261022-01-公版場地程序化交付與零件維持延後.md",
+      "to": "decisions/D-20261029-05-builtin交付schema重新編號為1.md"
+    },
+    {
+      "from": "decisions/D-20261022-02-車殼三角上限放寬至12K.md",
+      "to": "程式參數/protocol.md"
+    },
+    {
+      "from": "decisions/D-20261022-02-車殼三角上限放寬至12K.md",
+      "to": "程式架構/builtin-assets.md"
+    },
+    {
+      "from": "decisions/D-20261025-01-持彈碰撞體切換與可選彈體獨立耐久.md",
+      "to": "decisions/D-20260808-03-武器執行期物理拓撲.md"
+    },
+    {
+      "from": "decisions/D-20261026-01-鉸接輪組被包覆內件只承載質量.md",
+      "to": "decisions/D-20261021-02-滾輪被包覆內件維持凸hull.md"
+    },
+    {
+      "from": "decisions/D-20261026-02-CCD持續接觸改掃核心球.md",
+      "to": "decisions/D-20260814-07-Gameplay動態剛體HardCCD.md"
+    },
+    {
+      "from": "decisions/D-20261026-02-CCD持續接觸改掃核心球.md",
+      "to": "decisions/D-20261021-01-場地碰撞體分段與邊界法線機制.md"
+    },
+    {
+      "from": "decisions/D-20261026-02-CCD持續接觸改掃核心球.md",
+      "to": "decisions/D-20261026-01-鉸接輪組被包覆內件只承載質量.md"
+    },
+    {
+      "from": "decisions/D-20261026-02-CCD持續接觸改掃核心球.md",
+      "to": "decisions/D-20261027-01-接觸點求解順序對稱化.md"
+    },
+    {
+      "from": "decisions/D-20261026-02-CCD持續接觸改掃核心球.md",
+      "to": "decisions/D-20261027-02-動態目標持續接觸回復完整形狀TOI.md"
+    },
+    {
+      "from": "decisions/D-20261027-02-動態目標持續接觸回復完整形狀TOI.md",
+      "to": "decisions/D-20261026-02-CCD持續接觸改掃核心球.md"
+    },
+    {
+      "from": "decisions/D-20261028-01-快照取消正規化與本機信任載入.md",
+      "to": "程式參數/network.md"
+    },
+    {
+      "from": "decisions/D-20261028-01-快照取消正規化與本機信任載入.md",
+      "to": "程式架構/physics-engine.md"
+    },
+    {
+      "from": "decisions/D-20261028-03-輸入延遲有界回滾與模擬Worker.md",
+      "to": "decisions/D-20260705-03-比賽頁橫向翻案與鍵位.md"
+    },
+    {
+      "from": "decisions/D-20261028-03-輸入延遲有界回滾與模擬Worker.md",
+      "to": "decisions/D-20260810-03-回合唯一ConsensusAnchor與衝突失效.md"
+    },
+    {
+      "from": "decisions/D-20261028-03-輸入延遲有界回滾與模擬Worker.md",
+      "to": "decisions/D-20260812-02-觀戰Deterministic-Replay與精簡Fallback.md"
+    },
+    {
+      "from": "decisions/D-20261028-03-輸入延遲有界回滾與模擬Worker.md",
+      "to": "decisions/D-20260817-03-比賽執行常數與賽前窄路警告收斂.md"
+    },
+    {
+      "from": "decisions/D-20261028-03-輸入延遲有界回滾與模擬Worker.md",
+      "to": "decisions/D-20261028-01-快照取消正規化與本機信任載入.md"
+    },
+    {
+      "from": "decisions/D-20261028-03-輸入延遲有界回滾與模擬Worker.md",
+      "to": "decisions/D-20261028-04-效能預算三層口徑.md"
+    },
+    {
+      "from": "decisions/D-20261028-03-輸入延遲有界回滾與模擬Worker.md",
+      "to": "decisions/D-20261029-01-回合終局一致性.md"
+    },
+    {
+      "from": "decisions/D-20261028-03-輸入延遲有界回滾與模擬Worker.md",
+      "to": "decisions/D-20261029-03-catch-up分tick追趕與落後端快進.md"
+    },
+    {
+      "from": "decisions/D-20261028-03-輸入延遲有界回滾與模擬Worker.md",
+      "to": "decisions/D-20261029-04-catch-up追趕期限驗簽心跳與背景恢復.md"
+    },
+    {
+      "from": "decisions/D-20261028-03-輸入延遲有界回滾與模擬Worker.md",
+      "to": "專案生命週期.md"
+    },
+    {
+      "from": "decisions/D-20261028-03-輸入延遲有界回滾與模擬Worker.md",
+      "to": "流程/比賽進行.md"
+    },
+    {
+      "from": "decisions/D-20261028-03-輸入延遲有界回滾與模擬Worker.md",
+      "to": "程式參數/network.md"
+    },
+    {
+      "from": "decisions/D-20261028-03-輸入延遲有界回滾與模擬Worker.md",
+      "to": "程式架構/network-sync.md"
+    },
+    {
+      "from": "decisions/D-20261028-03-輸入延遲有界回滾與模擬Worker.md",
+      "to": "程式架構/security.md"
+    },
+    {
+      "from": "decisions/D-20261028-03-輸入延遲有界回滾與模擬Worker.md",
+      "to": "程式架構/spectator.md"
+    },
+    {
+      "from": "decisions/D-20261028-03-輸入延遲有界回滾與模擬Worker.md",
+      "to": "賽內機制.md"
+    },
+    {
+      "from": "decisions/D-20261028-04-效能預算三層口徑.md",
+      "to": "decisions/D-20260809-07-效能回歸與BootstrapCoverage可執行門檻.md"
+    },
+    {
+      "from": "decisions/D-20261028-04-效能預算三層口徑.md",
+      "to": "decisions/D-20261021-01-場地碰撞體分段與邊界法線機制.md"
+    },
+    {
+      "from": "decisions/D-20261028-04-效能預算三層口徑.md",
+      "to": "decisions/D-20261028-01-快照取消正規化與本機信任載入.md"
+    },
+    {
+      "from": "decisions/D-20261028-04-效能預算三層口徑.md",
+      "to": "decisions/D-20261028-03-輸入延遲有界回滾與模擬Worker.md"
+    },
+    {
+      "from": "decisions/D-20261028-04-效能預算三層口徑.md",
+      "to": "decisions/D-20261029-03-catch-up分tick追趕與落後端快進.md"
+    },
+    {
+      "from": "decisions/D-20261028-04-效能預算三層口徑.md",
+      "to": "程式參數/network.md"
+    },
+    {
+      "from": "decisions/D-20261028-04-效能預算三層口徑.md",
+      "to": "程式架構/network-sync.md"
+    },
+    {
+      "from": "decisions/D-20261028-04-效能預算三層口徑.md",
+      "to": "程式架構/physics-engine.md"
+    },
+    {
+      "from": "decisions/D-20261028-04-效能預算三層口徑.md",
+      "to": "程式架構/testing.md"
+    },
+    {
+      "from": "decisions/D-20261029-01-回合終局一致性.md",
+      "to": "decisions/D-20260814-09-回合名次與失能終局.md"
+    },
+    {
+      "from": "decisions/D-20261029-01-回合終局一致性.md",
+      "to": "decisions/D-20260814-11-技能停用權威投影.md"
+    },
+    {
+      "from": "decisions/D-20261029-01-回合終局一致性.md",
+      "to": "decisions/D-20261028-03-輸入延遲有界回滾與模擬Worker.md"
+    },
+    {
+      "from": "decisions/D-20261029-01-回合終局一致性.md",
+      "to": "decisions/D-20261029-02-forfeit整場壓縮名次.md"
+    },
+    {
+      "from": "decisions/D-20261029-01-回合終局一致性.md",
+      "to": "decisions/D-20261029-03-catch-up分tick追趕與落後端快進.md"
+    },
+    {
+      "from": "decisions/D-20261029-01-回合終局一致性.md",
+      "to": "專案生命週期.md"
+    },
+    {
+      "from": "decisions/D-20261029-01-回合終局一致性.md",
+      "to": "流程/比賽進行.md"
+    },
+    {
+      "from": "decisions/D-20261029-01-回合終局一致性.md",
+      "to": "程式架構/interfaces.md"
+    },
+    {
+      "from": "decisions/D-20261029-01-回合終局一致性.md",
+      "to": "程式架構/network-sync.md"
+    },
+    {
+      "from": "decisions/D-20261029-01-回合終局一致性.md",
+      "to": "程式架構/physics-engine.md"
+    },
+    {
+      "from": "decisions/D-20261029-01-回合終局一致性.md",
+      "to": "程式架構/spectator.md"
+    },
+    {
+      "from": "decisions/D-20261029-01-回合終局一致性.md",
+      "to": "算式表.md"
+    },
+    {
+      "from": "decisions/D-20261029-01-回合終局一致性.md",
+      "to": "賽內機制.md"
+    },
+    {
+      "from": "decisions/D-20261029-02-forfeit整場壓縮名次.md",
+      "to": "decisions/D-20260602-02-斷線結算finisherCount.md"
+    },
+    {
+      "from": "decisions/D-20261029-02-forfeit整場壓縮名次.md",
+      "to": "decisions/D-20260630-02-多回合積分制三層正名.md"
+    },
+    {
+      "from": "decisions/D-20261029-02-forfeit整場壓縮名次.md",
+      "to": "decisions/D-20261029-01-回合終局一致性.md"
+    },
+    {
+      "from": "decisions/D-20261029-02-forfeit整場壓縮名次.md",
+      "to": "專案生命週期.md"
+    },
+    {
+      "from": "decisions/D-20261029-02-forfeit整場壓縮名次.md",
+      "to": "流程/比賽進行.md"
+    },
+    {
+      "from": "decisions/D-20261029-02-forfeit整場壓縮名次.md",
+      "to": "算式表.md"
+    },
+    {
+      "from": "decisions/D-20261029-02-forfeit整場壓縮名次.md",
+      "to": "賽內機制.md"
+    },
+    {
+      "from": "decisions/D-20261029-03-catch-up分tick追趕與落後端快進.md",
+      "to": "decisions/D-20260809-07-效能回歸與BootstrapCoverage可執行門檻.md"
+    },
+    {
+      "from": "decisions/D-20261029-03-catch-up分tick追趕與落後端快進.md",
+      "to": "decisions/D-20260812-02-觀戰Deterministic-Replay與精簡Fallback.md"
+    },
+    {
+      "from": "decisions/D-20261029-03-catch-up分tick追趕與落後端快進.md",
+      "to": "decisions/D-20261028-03-輸入延遲有界回滾與模擬Worker.md"
+    },
+    {
+      "from": "decisions/D-20261029-03-catch-up分tick追趕與落後端快進.md",
+      "to": "decisions/D-20261028-04-效能預算三層口徑.md"
+    },
+    {
+      "from": "decisions/D-20261029-03-catch-up分tick追趕與落後端快進.md",
+      "to": "decisions/D-20261029-01-回合終局一致性.md"
+    },
+    {
+      "from": "decisions/D-20261029-03-catch-up分tick追趕與落後端快進.md",
+      "to": "decisions/D-20261029-04-catch-up追趕期限驗簽心跳與背景恢復.md"
+    },
+    {
+      "from": "decisions/D-20261029-03-catch-up分tick追趕與落後端快進.md",
+      "to": "使用技術.md"
+    },
+    {
+      "from": "decisions/D-20261029-03-catch-up分tick追趕與落後端快進.md",
+      "to": "專案生命週期.md"
+    },
+    {
+      "from": "decisions/D-20261029-03-catch-up分tick追趕與落後端快進.md",
+      "to": "流程/比賽進行.md"
+    },
+    {
+      "from": "decisions/D-20261029-03-catch-up分tick追趕與落後端快進.md",
+      "to": "流程/觀戰.md"
+    },
+    {
+      "from": "decisions/D-20261029-03-catch-up分tick追趕與落後端快進.md",
+      "to": "程式參數/network.md"
+    },
+    {
+      "from": "decisions/D-20261029-03-catch-up分tick追趕與落後端快進.md",
+      "to": "程式架構/network-sync.md"
+    },
+    {
+      "from": "decisions/D-20261029-03-catch-up分tick追趕與落後端快進.md",
+      "to": "程式架構/physics-engine.md"
+    },
+    {
+      "from": "decisions/D-20261029-03-catch-up分tick追趕與落後端快進.md",
+      "to": "程式架構/security.md"
+    },
+    {
+      "from": "decisions/D-20261029-03-catch-up分tick追趕與落後端快進.md",
+      "to": "程式架構/spectator.md"
+    },
+    {
+      "from": "decisions/D-20261029-03-catch-up分tick追趕與落後端快進.md",
+      "to": "程式架構/testing.md"
+    },
+    {
+      "from": "decisions/D-20261029-03-catch-up分tick追趕與落後端快進.md",
+      "to": "程式架構/程式流程/network-sync.md"
+    },
+    {
+      "from": "decisions/D-20261029-04-catch-up追趕期限驗簽心跳與背景恢復.md",
+      "to": "decisions/D-20261028-03-輸入延遲有界回滾與模擬Worker.md"
+    },
+    {
+      "from": "decisions/D-20261029-04-catch-up追趕期限驗簽心跳與背景恢復.md",
+      "to": "decisions/D-20261029-03-catch-up分tick追趕與落後端快進.md"
+    },
+    {
+      "from": "decisions/D-20261029-04-catch-up追趕期限驗簽心跳與背景恢復.md",
+      "to": "decisions/D-20261030-06-catch-up依快照傳輸時間順延front.md"
+    },
+    {
+      "from": "decisions/D-20261029-04-catch-up追趕期限驗簽心跳與背景恢復.md",
+      "to": "decisions/README.md"
+    },
+    {
+      "from": "decisions/D-20261029-04-catch-up追趕期限驗簽心跳與背景恢復.md",
+      "to": "專案生命週期.md"
+    },
+    {
+      "from": "decisions/D-20261029-04-catch-up追趕期限驗簽心跳與背景恢復.md",
+      "to": "程式參數/network.md"
+    },
+    {
+      "from": "decisions/D-20261029-04-catch-up追趕期限驗簽心跳與背景恢復.md",
+      "to": "程式架構/network-sync.md"
+    },
+    {
+      "from": "decisions/D-20261029-05-builtin交付schema重新編號為1.md",
+      "to": "decisions/D-20260814-24-Pre-launch自有版本統一v1.md"
+    },
+    {
+      "from": "decisions/D-20261029-05-builtin交付schema重新編號為1.md",
+      "to": "decisions/D-20261022-01-公版場地程序化交付與零件維持延後.md"
+    },
+    {
+      "from": "decisions/D-20261029-05-builtin交付schema重新編號為1.md",
+      "to": "專案生命週期.md"
+    },
+    {
+      "from": "decisions/D-20261029-05-builtin交付schema重新編號為1.md",
+      "to": "程式架構/builtin-assets.md"
+    },
+    {
+      "from": "decisions/D-20261030-01-公版零件程序化交付.md",
+      "to": "decisions/D-20261022-01-公版場地程序化交付與零件維持延後.md"
+    },
+    {
+      "from": "decisions/D-20261030-01-公版零件程序化交付.md",
+      "to": "decisions/D-20261029-05-builtin交付schema重新編號為1.md"
+    },
+    {
+      "from": "decisions/D-20261030-01-公版零件程序化交付.md",
+      "to": "程式架構/builtin-assets.md"
+    },
+    {
+      "from": "decisions/D-20261030-01-公版零件程序化交付.md",
+      "to": "美術資源/提示詞/零件參考圖.md"
+    },
+    {
+      "from": "decisions/D-20261030-02-Ed25519改RFC8032嚴格驗簽.md",
+      "to": "decisions/D-20261029-03-catch-up分tick追趕與落後端快進.md"
+    },
+    {
+      "from": "decisions/D-20261030-02-Ed25519改RFC8032嚴格驗簽.md",
+      "to": "使用技術.md"
+    },
+    {
+      "from": "decisions/D-20261030-02-Ed25519改RFC8032嚴格驗簽.md",
+      "to": "專案生命週期.md"
+    },
+    {
+      "from": "decisions/D-20261030-02-Ed25519改RFC8032嚴格驗簽.md",
+      "to": "程式架構/key-manager.md"
+    },
+    {
+      "from": "decisions/D-20261030-02-Ed25519改RFC8032嚴格驗簽.md",
+      "to": "程式架構/network-sync.md"
+    },
+    {
+      "from": "decisions/D-20261030-02-Ed25519改RFC8032嚴格驗簽.md",
+      "to": "程式架構/security.md"
+    },
+    {
+      "from": "decisions/D-20261030-02-Ed25519改RFC8032嚴格驗簽.md",
+      "to": "資安規範.md"
+    },
+    {
+      "from": "decisions/D-20261030-04-後續回合屏障停滯改記forfeit.md",
+      "to": "decisions/D-20260802-02-GO前race-ready屏障.md"
+    },
+    {
+      "from": "decisions/D-20261030-04-後續回合屏障停滯改記forfeit.md",
+      "to": "decisions/D-20261029-02-forfeit整場壓縮名次.md"
+    },
+    {
+      "from": "decisions/D-20261030-04-後續回合屏障停滯改記forfeit.md",
+      "to": "流程/比賽結算.md"
+    },
+    {
+      "from": "decisions/D-20261030-04-後續回合屏障停滯改記forfeit.md",
+      "to": "流程/比賽進行.md"
+    },
+    {
+      "from": "decisions/D-20261030-04-後續回合屏障停滯改記forfeit.md",
+      "to": "程式參數/protocol.md"
+    },
+    {
+      "from": "decisions/D-20261030-04-後續回合屏障停滯改記forfeit.md",
+      "to": "賽內機制.md"
+    },
+    {
+      "from": "decisions/D-20261030-05-越窗卡頓改走catch-up.md",
+      "to": "decisions/D-20261029-03-catch-up分tick追趕與落後端快進.md"
+    },
+    {
+      "from": "decisions/D-20261030-05-越窗卡頓改走catch-up.md",
+      "to": "decisions/D-20261029-04-catch-up追趕期限驗簽心跳與背景恢復.md"
+    },
+    {
+      "from": "decisions/D-20261030-05-越窗卡頓改走catch-up.md",
+      "to": "流程/比賽進行.md"
+    },
+    {
+      "from": "decisions/D-20261030-05-越窗卡頓改走catch-up.md",
+      "to": "程式參數/network.md"
+    },
+    {
+      "from": "decisions/D-20261030-05-越窗卡頓改走catch-up.md",
+      "to": "程式架構/network-sync.md"
+    },
+    {
+      "from": "decisions/D-20261030-06-catch-up依快照傳輸時間順延front.md",
+      "to": "decisions/D-20261029-03-catch-up分tick追趕與落後端快進.md"
+    },
+    {
+      "from": "decisions/D-20261030-06-catch-up依快照傳輸時間順延front.md",
+      "to": "decisions/D-20261029-04-catch-up追趕期限驗簽心跳與背景恢復.md"
+    },
+    {
+      "from": "decisions/D-20261030-06-catch-up依快照傳輸時間順延front.md",
+      "to": "專案生命週期.md"
+    },
+    {
+      "from": "decisions/D-20261030-06-catch-up依快照傳輸時間順延front.md",
+      "to": "程式參數/network.md"
+    },
+    {
+      "from": "decisions/D-20261030-06-catch-up依快照傳輸時間順延front.md",
+      "to": "程式架構/network-sync.md"
+    },
+    {
+      "from": "decisions/D-20261030-07-零件退化面積隨尺寸縮放與減面誤差上限.md",
+      "to": "decisions/D-20260730-02-Part匯入自動縮放減面與掛點.md"
+    },
+    {
+      "from": "decisions/D-20261030-07-零件退化面積隨尺寸縮放與減面誤差上限.md",
+      "to": "程式參數/protocol.md"
+    },
+    {
+      "from": "decisions/D-20261030-07-零件退化面積隨尺寸縮放與減面誤差上限.md",
+      "to": "程式參數/ui.md"
+    },
+    {
+      "from": "decisions/D-20261030-07-零件退化面積隨尺寸縮放與減面誤差上限.md",
+      "to": "程式架構/editor.md"
+    },
+    {
+      "from": "decisions/D-20261030-07-零件退化面積隨尺寸縮放與減面誤差上限.md",
+      "to": "程式架構/security.md"
+    },
+    {
+      "from": "decisions/D-20261031-01-authoring來源新增e2e匯入素材.md",
+      "to": "decisions/D-20261022-01-公版場地程序化交付與零件維持延後.md"
+    },
+    {
+      "from": "decisions/D-20261031-01-authoring來源新增e2e匯入素材.md",
+      "to": "decisions/D-20261030-01-公版零件程序化交付.md"
+    },
+    {
+      "from": "decisions/D-20261031-01-authoring來源新增e2e匯入素材.md",
+      "to": "程式架構/builtin-assets.md"
+    },
+    {
+      "from": "decisions/D-20261031-01-authoring來源新增e2e匯入素材.md",
+      "to": "程式架構/testing.md"
+    },
+    {
+      "from": "decisions/D-20261031-01-authoring來源新增e2e匯入素材.md",
+      "to": "美術資源/美術方向.md"
+    },
+    {
+      "from": "decisions/D-20261031-02-公版九組驗收改以結算旅程為門檻.md",
+      "to": "decisions/D-20261028-05-bounded-step接受容差放寬至0.2毫米.md"
+    },
+    {
+      "from": "decisions/D-20261031-04-公版多起跑完賽率量測與非退步閘.md",
+      "to": "decisions/D-20261028-05-bounded-step接受容差放寬至0.2毫米.md"
+    },
+    {
+      "from": "decisions/D-20261031-04-公版多起跑完賽率量測與非退步閘.md",
+      "to": "decisions/D-20261031-02-公版九組驗收改以結算旅程為門檻.md"
+    },
+    {
+      "from": "decisions/D-20261101-01-本機測試也顯示效能警告.md",
+      "to": "decisions/D-20261028-04-效能預算三層口徑.md"
+    },
+    {
+      "from": "decisions/D-20261101-01-本機測試也顯示效能警告.md",
+      "to": "程式架構/network-sync.md"
+    },
+    {
+      "from": "decisions/D-20261101-01-本機測試也顯示效能警告.md",
+      "to": "程式架構/physics-engine.md"
+    },
+    {
+      "from": "decisions/D-20261101-01-本機測試也顯示效能警告.md",
+      "to": "賽內機制.md"
+    },
+    {
+      "from": "decisions/D-20261101-02-持續接觸判定的幾何回退.md",
+      "to": "decisions/D-20261026-02-CCD持續接觸改掃核心球.md"
+    },
+    {
+      "from": "decisions/D-20261101-02-持續接觸判定的幾何回退.md",
+      "to": "程式參數/network.md"
+    },
+    {
+      "from": "decisions/D-20261101-02-持續接觸判定的幾何回退.md",
+      "to": "程式架構/physics-engine.md"
+    },
+    {
+      "from": "decisions/D-20261101-02-持續接觸判定的幾何回退.md",
+      "to": "程式架構/testing.md"
+    },
+    {
+      "from": "decisions/D-20261101-03-場地閘牆格軌跡視界截在在場上幀.md",
+      "to": "decisions/D-20261021-01-場地碰撞體分段與邊界法線機制.md"
+    },
+    {
+      "from": "decisions/D-20261101-03-場地閘牆格軌跡視界截在在場上幀.md",
+      "to": "decisions/D-20261101-02-持續接觸判定的幾何回退.md"
+    },
+    {
+      "from": "decisions/D-20261102-01-比賽視口固定算圖削減.md",
+      "to": "decisions/D-20261028-04-效能預算三層口徑.md"
+    },
+    {
+      "from": "decisions/D-20261102-01-比賽視口固定算圖削減.md",
+      "to": "程式架構/settings.md"
+    },
+    {
+      "from": "decisions/D-20261102-01-比賽視口固定算圖削減.md",
+      "to": "程式架構/ui-frontend.md"
+    },
+    {
+      "from": "decisions/D-20261102-02-比賽視口背景層移除與像素自適應.md",
+      "to": "decisions/D-20261102-01-比賽視口固定算圖削減.md"
+    },
+    {
+      "from": "decisions/D-20261102-02-比賽視口背景層移除與像素自適應.md",
+      "to": "程式架構/network-sync.md"
+    },
+    {
+      "from": "decisions/D-20261102-02-比賽視口背景層移除與像素自適應.md",
+      "to": "程式架構/settings.md"
+    },
+    {
+      "from": "decisions/D-20261102-02-比賽視口背景層移除與像素自適應.md",
+      "to": "程式架構/ui-frontend.md"
     },
     {
       "from": "decisions/INDEX.md",
@@ -6917,6 +8044,182 @@
     },
     {
       "from": "decisions/INDEX.md",
+      "to": "decisions/D-20261016-01-回定位等待空出的實際落點.md"
+    },
+    {
+      "from": "decisions/INDEX.md",
+      "to": "decisions/D-20261018-01-成對滾阻力矩與實際耗散.md"
+    },
+    {
+      "from": "decisions/INDEX.md",
+      "to": "decisions/D-20261018-02-單向有限扭矩輪軸馬達.md"
+    },
+    {
+      "from": "decisions/INDEX.md",
+      "to": "decisions/D-20261018-03-接受子步時間作功與區域耗能.md"
+    },
+    {
+      "from": "decisions/INDEX.md",
+      "to": "decisions/D-20261020-01-輪類滾動面改掛保守cylinder.md"
+    },
+    {
+      "from": "decisions/INDEX.md",
+      "to": "decisions/D-20261020-02-旋轉面形狀分類移至烘焙期.md"
+    },
+    {
+      "from": "decisions/INDEX.md",
+      "to": "decisions/D-20261021-01-場地碰撞體分段與邊界法線機制.md"
+    },
+    {
+      "from": "decisions/INDEX.md",
+      "to": "decisions/D-20261021-02-滾輪被包覆內件維持凸hull.md"
+    },
+    {
+      "from": "decisions/INDEX.md",
+      "to": "decisions/D-20261022-01-公版場地程序化交付與零件維持延後.md"
+    },
+    {
+      "from": "decisions/INDEX.md",
+      "to": "decisions/D-20261022-02-車殼三角上限放寬至12K.md"
+    },
+    {
+      "from": "decisions/INDEX.md",
+      "to": "decisions/D-20261025-01-持彈碰撞體切換與可選彈體獨立耐久.md"
+    },
+    {
+      "from": "decisions/INDEX.md",
+      "to": "decisions/D-20261026-01-鉸接輪組被包覆內件只承載質量.md"
+    },
+    {
+      "from": "decisions/INDEX.md",
+      "to": "decisions/D-20261026-02-CCD持續接觸改掃核心球.md"
+    },
+    {
+      "from": "decisions/INDEX.md",
+      "to": "decisions/D-20261027-01-接觸點求解順序對稱化.md"
+    },
+    {
+      "from": "decisions/INDEX.md",
+      "to": "decisions/D-20261027-02-動態目標持續接觸回復完整形狀TOI.md"
+    },
+    {
+      "from": "decisions/INDEX.md",
+      "to": "decisions/D-20261028-01-快照取消正規化與本機信任載入.md"
+    },
+    {
+      "from": "decisions/INDEX.md",
+      "to": "decisions/D-20261028-02-靜態形狀登錄參照快照.md"
+    },
+    {
+      "from": "decisions/INDEX.md",
+      "to": "decisions/D-20261028-03-輸入延遲有界回滾與模擬Worker.md"
+    },
+    {
+      "from": "decisions/INDEX.md",
+      "to": "decisions/D-20261028-04-效能預算三層口徑.md"
+    },
+    {
+      "from": "decisions/INDEX.md",
+      "to": "decisions/D-20261028-05-bounded-step接受容差放寬至0.2毫米.md"
+    },
+    {
+      "from": "decisions/INDEX.md",
+      "to": "decisions/D-20261029-01-回合終局一致性.md"
+    },
+    {
+      "from": "decisions/INDEX.md",
+      "to": "decisions/D-20261029-02-forfeit整場壓縮名次.md"
+    },
+    {
+      "from": "decisions/INDEX.md",
+      "to": "decisions/D-20261029-03-catch-up分tick追趕與落後端快進.md"
+    },
+    {
+      "from": "decisions/INDEX.md",
+      "to": "decisions/D-20261029-04-catch-up追趕期限驗簽心跳與背景恢復.md"
+    },
+    {
+      "from": "decisions/INDEX.md",
+      "to": "decisions/D-20261029-05-builtin交付schema重新編號為1.md"
+    },
+    {
+      "from": "decisions/INDEX.md",
+      "to": "decisions/D-20261030-01-公版零件程序化交付.md"
+    },
+    {
+      "from": "decisions/INDEX.md",
+      "to": "decisions/D-20261030-02-Ed25519改RFC8032嚴格驗簽.md"
+    },
+    {
+      "from": "decisions/INDEX.md",
+      "to": "decisions/D-20261030-04-後續回合屏障停滯改記forfeit.md"
+    },
+    {
+      "from": "decisions/INDEX.md",
+      "to": "decisions/D-20261030-05-越窗卡頓改走catch-up.md"
+    },
+    {
+      "from": "decisions/INDEX.md",
+      "to": "decisions/D-20261030-06-catch-up依快照傳輸時間順延front.md"
+    },
+    {
+      "from": "decisions/INDEX.md",
+      "to": "decisions/D-20261030-07-零件退化面積隨尺寸縮放與減面誤差上限.md"
+    },
+    {
+      "from": "decisions/INDEX.md",
+      "to": "decisions/D-20261031-01-authoring來源新增e2e匯入素材.md"
+    },
+    {
+      "from": "decisions/INDEX.md",
+      "to": "decisions/D-20261031-02-公版九組驗收改以結算旅程為門檻.md"
+    },
+    {
+      "from": "decisions/INDEX.md",
+      "to": "decisions/D-20261031-03-導輪掛點預設朝上並改以傾角調整.md"
+    },
+    {
+      "from": "decisions/INDEX.md",
+      "to": "decisions/D-20261031-04-公版多起跑完賽率量測與非退步閘.md"
+    },
+    {
+      "from": "decisions/INDEX.md",
+      "to": "decisions/D-20261031-05-整車最低離地以輪胎接地面為準.md"
+    },
+    {
+      "from": "decisions/INDEX.md",
+      "to": "decisions/D-20261031-06-同材質地面節點合併切塊.md"
+    },
+    {
+      "from": "decisions/INDEX.md",
+      "to": "decisions/D-20261031-07-圓柱曲面支撐線段依法線方位.md"
+    },
+    {
+      "from": "decisions/INDEX.md",
+      "to": "decisions/D-20261101-01-本機測試也顯示效能警告.md"
+    },
+    {
+      "from": "decisions/INDEX.md",
+      "to": "decisions/D-20261101-02-持續接觸判定的幾何回退.md"
+    },
+    {
+      "from": "decisions/INDEX.md",
+      "to": "decisions/D-20261101-03-場地閘牆格軌跡視界截在在場上幀.md"
+    },
+    {
+      "from": "decisions/INDEX.md",
+      "to": "decisions/D-20261102-01-比賽視口固定算圖削減.md"
+    },
+    {
+      "from": "decisions/INDEX.md",
+      "to": "decisions/D-20261102-02-比賽視口背景層移除與像素自適應.md"
+    },
+    {
+      "from": "decisions/INDEX.md",
+      "to": "decisions/D-20261103-01-PR依賴稽核只擋新增.md"
+    },
+    {
+      "from": "decisions/INDEX.md",
       "to": "decisions/README.md"
     },
     {
@@ -6981,6 +8284,14 @@
     },
     {
       "from": "使用技術.md",
+      "to": "decisions/D-20261028-03-輸入延遲有界回滾與模擬Worker.md"
+    },
+    {
+      "from": "使用技術.md",
+      "to": "decisions/D-20261030-02-Ed25519改RFC8032嚴格驗簽.md"
+    },
+    {
+      "from": "使用技術.md",
       "to": "主題系統.md"
     },
     {
@@ -6998,6 +8309,10 @@
     {
       "from": "使用技術.md",
       "to": "程式架構/key-manager.md"
+    },
+    {
+      "from": "使用技術.md",
+      "to": "程式架構/network-sync.md"
     },
     {
       "from": "使用技術.md",
@@ -7185,6 +8500,14 @@
     },
     {
       "from": "建模參數/場地.md",
+      "to": "decisions/D-20261020-02-旋轉面形狀分類移至烘焙期.md"
+    },
+    {
+      "from": "建模參數/場地.md",
+      "to": "decisions/D-20261031-06-同材質地面節點合併切塊.md"
+    },
+    {
+      "from": "建模參數/場地.md",
       "to": "建模參數.md"
     },
     {
@@ -7213,6 +8536,10 @@
     },
     {
       "from": "建模參數/場地.md",
+      "to": "程式架構/physics-engine.md"
+    },
+    {
+      "from": "建模參數/場地.md",
       "to": "算式表.md"
     },
     {
@@ -7226,6 +8553,18 @@
     {
       "from": "建模參數/場地.md",
       "to": "遊戲機制.md"
+    },
+    {
+      "from": "建模參數/零件與共用介面.md",
+      "to": "decisions/D-20261027-01-接觸點求解順序對稱化.md"
+    },
+    {
+      "from": "建模參數/零件與共用介面.md",
+      "to": "decisions/D-20261031-03-導輪掛點預設朝上並改以傾角調整.md"
+    },
+    {
+      "from": "建模參數/零件與共用介面.md",
+      "to": "decisions/D-20261031-05-整車最低離地以輪胎接地面為準.md"
     },
     {
       "from": "建模參數/零件與共用介面.md",
@@ -7250,6 +8589,10 @@
     {
       "from": "建模參數/零件與共用介面.md",
       "to": "程式參數/protocol.md"
+    },
+    {
+      "from": "建模參數/零件與共用介面.md",
+      "to": "程式架構/physics-engine.md"
     },
     {
       "from": "建模參數/零件與共用介面.md",
@@ -7757,7 +9100,15 @@
     },
     {
       "from": "流程/比賽結算.md",
+      "to": "decisions/D-20261029-02-forfeit整場壓縮名次.md"
+    },
+    {
+      "from": "流程/比賽結算.md",
       "to": "信譽系統.md"
+    },
+    {
+      "from": "流程/比賽結算.md",
+      "to": "流程/比賽進行.md"
     },
     {
       "from": "流程/比賽結算.md",
@@ -7786,6 +9137,10 @@
     {
       "from": "流程/比賽結算.md",
       "to": "經濟系統.md"
+    },
+    {
+      "from": "流程/比賽進行.md",
+      "to": "decisions/D-20261030-05-越窗卡頓改走catch-up.md"
     },
     {
       "from": "流程/比賽進行.md",
@@ -8061,6 +9416,14 @@
     },
     {
       "from": "版本規範.md",
+      "to": "decisions/D-20261020-02-旋轉面形狀分類移至烘焙期.md"
+    },
+    {
+      "from": "版本規範.md",
+      "to": "decisions/D-20261021-01-場地碰撞體分段與邊界法線機制.md"
+    },
+    {
+      "from": "版本規範.md",
       "to": "主題系統.md"
     },
     {
@@ -8293,11 +9656,47 @@
     },
     {
       "from": "程式參數/network.md",
+      "to": "decisions/D-20261028-02-靜態形狀登錄參照快照.md"
+    },
+    {
+      "from": "程式參數/network.md",
+      "to": "decisions/D-20261028-03-輸入延遲有界回滾與模擬Worker.md"
+    },
+    {
+      "from": "程式參數/network.md",
+      "to": "decisions/D-20261028-04-效能預算三層口徑.md"
+    },
+    {
+      "from": "程式參數/network.md",
+      "to": "decisions/D-20261029-03-catch-up分tick追趕與落後端快進.md"
+    },
+    {
+      "from": "程式參數/network.md",
+      "to": "decisions/D-20261029-04-catch-up追趕期限驗簽心跳與背景恢復.md"
+    },
+    {
+      "from": "程式參數/network.md",
+      "to": "decisions/D-20261030-05-越窗卡頓改走catch-up.md"
+    },
+    {
+      "from": "程式參數/network.md",
       "to": "版本規範.md"
     },
     {
       "from": "程式參數/network.md",
       "to": "程式參數.md"
+    },
+    {
+      "from": "程式參數/network.md",
+      "to": "程式參數/共通規則.md"
+    },
+    {
+      "from": "程式參數/network.md",
+      "to": "程式架構/network-sync.md"
+    },
+    {
+      "from": "程式參數/network.md",
+      "to": "程式架構/spectator.md"
     },
     {
       "from": "程式參數/network.md",
@@ -8310,6 +9709,34 @@
     {
       "from": "程式參數/network.md",
       "to": "部署資訊/open-4wd-signaling.md"
+    },
+    {
+      "from": "程式參數/protocol.md",
+      "to": "decisions/D-20261020-02-旋轉面形狀分類移至烘焙期.md"
+    },
+    {
+      "from": "程式參數/protocol.md",
+      "to": "decisions/D-20261025-01-持彈碰撞體切換與可選彈體獨立耐久.md"
+    },
+    {
+      "from": "程式參數/protocol.md",
+      "to": "decisions/D-20261026-01-鉸接輪組被包覆內件只承載質量.md"
+    },
+    {
+      "from": "程式參數/protocol.md",
+      "to": "decisions/D-20261026-02-CCD持續接觸改掃核心球.md"
+    },
+    {
+      "from": "程式參數/protocol.md",
+      "to": "decisions/D-20261027-01-接觸點求解順序對稱化.md"
+    },
+    {
+      "from": "程式參數/protocol.md",
+      "to": "decisions/D-20261027-02-動態目標持續接觸回復完整形狀TOI.md"
+    },
+    {
+      "from": "程式參數/protocol.md",
+      "to": "decisions/D-20261028-05-bounded-step接受容差放寬至0.2毫米.md"
     },
     {
       "from": "程式參數/protocol.md",
@@ -8413,6 +9840,10 @@
     },
     {
       "from": "程式參數/ui.md",
+      "to": "decisions/D-20261021-01-場地碰撞體分段與邊界法線機制.md"
+    },
+    {
+      "from": "程式參數/ui.md",
       "to": "主題系統.md"
     },
     {
@@ -8434,6 +9865,10 @@
     {
       "from": "程式參數/ui.md",
       "to": "程式架構/audio-system.md"
+    },
+    {
+      "from": "程式參數/ui.md",
+      "to": "程式架構/editor.md"
     },
     {
       "from": "程式參數/ui.md",
@@ -8462,6 +9897,10 @@
     {
       "from": "程式參數/ui.md",
       "to": "部署資訊.md"
+    },
+    {
+      "from": "程式參數/共通規則.md",
+      "to": "decisions/D-20261028-03-輸入延遲有界回滾與模擬Worker.md"
     },
     {
       "from": "程式參數/共通規則.md",
@@ -8542,6 +9981,10 @@
     {
       "from": "程式架構.md",
       "to": "版權.md"
+    },
+    {
+      "from": "程式架構.md",
+      "to": "程式參數/network.md"
     },
     {
       "from": "程式架構.md",
@@ -8837,6 +10280,26 @@
     },
     {
       "from": "程式架構/builtin-assets.md",
+      "to": "decisions/D-20261022-01-公版場地程序化交付與零件維持延後.md"
+    },
+    {
+      "from": "程式架構/builtin-assets.md",
+      "to": "decisions/D-20261022-02-車殼三角上限放寬至12K.md"
+    },
+    {
+      "from": "程式架構/builtin-assets.md",
+      "to": "decisions/D-20261029-05-builtin交付schema重新編號為1.md"
+    },
+    {
+      "from": "程式架構/builtin-assets.md",
+      "to": "decisions/D-20261030-01-公版零件程序化交付.md"
+    },
+    {
+      "from": "程式架構/builtin-assets.md",
+      "to": "decisions/D-20261031-01-authoring來源新增e2e匯入素材.md"
+    },
+    {
+      "from": "程式架構/builtin-assets.md",
       "to": "其他.md"
     },
     {
@@ -9037,6 +10500,14 @@
     },
     {
       "from": "程式架構/editor.md",
+      "to": "decisions/D-20261021-01-場地碰撞體分段與邊界法線機制.md"
+    },
+    {
+      "from": "程式架構/editor.md",
+      "to": "decisions/D-20261030-07-零件退化面積隨尺寸縮放與減面誤差上限.md"
+    },
+    {
+      "from": "程式架構/editor.md",
       "to": "其他.md"
     },
     {
@@ -9066,6 +10537,10 @@
     {
       "from": "程式架構/editor.md",
       "to": "程式參數.md"
+    },
+    {
+      "from": "程式架構/editor.md",
+      "to": "程式參數/protocol.md"
     },
     {
       "from": "程式架構/editor.md",
@@ -9186,6 +10661,10 @@
     {
       "from": "程式架構/interfaces.md",
       "to": "零件與場景.md"
+    },
+    {
+      "from": "程式架構/key-manager.md",
+      "to": "decisions/D-20261030-02-Ed25519改RFC8032嚴格驗簽.md"
     },
     {
       "from": "程式架構/key-manager.md",
@@ -9477,7 +10956,67 @@
     },
     {
       "from": "程式架構/network-sync.md",
+      "to": "decisions/D-20261028-01-快照取消正規化與本機信任載入.md"
+    },
+    {
+      "from": "程式架構/network-sync.md",
+      "to": "decisions/D-20261028-02-靜態形狀登錄參照快照.md"
+    },
+    {
+      "from": "程式架構/network-sync.md",
+      "to": "decisions/D-20261028-03-輸入延遲有界回滾與模擬Worker.md"
+    },
+    {
+      "from": "程式架構/network-sync.md",
+      "to": "decisions/D-20261028-04-效能預算三層口徑.md"
+    },
+    {
+      "from": "程式架構/network-sync.md",
+      "to": "decisions/D-20261028-05-bounded-step接受容差放寬至0.2毫米.md"
+    },
+    {
+      "from": "程式架構/network-sync.md",
+      "to": "decisions/D-20261029-01-回合終局一致性.md"
+    },
+    {
+      "from": "程式架構/network-sync.md",
+      "to": "decisions/D-20261029-03-catch-up分tick追趕與落後端快進.md"
+    },
+    {
+      "from": "程式架構/network-sync.md",
+      "to": "decisions/D-20261029-04-catch-up追趕期限驗簽心跳與背景恢復.md"
+    },
+    {
+      "from": "程式架構/network-sync.md",
+      "to": "decisions/D-20261030-02-Ed25519改RFC8032嚴格驗簽.md"
+    },
+    {
+      "from": "程式架構/network-sync.md",
+      "to": "decisions/D-20261030-05-越窗卡頓改走catch-up.md"
+    },
+    {
+      "from": "程式架構/network-sync.md",
+      "to": "decisions/D-20261101-01-本機測試也顯示效能警告.md"
+    },
+    {
+      "from": "程式架構/network-sync.md",
+      "to": "decisions/D-20261102-02-比賽視口背景層移除與像素自適應.md"
+    },
+    {
+      "from": "程式架構/network-sync.md",
+      "to": "流程/比賽進行.md"
+    },
+    {
+      "from": "程式架構/network-sync.md",
       "to": "程式參數/network.md"
+    },
+    {
+      "from": "程式架構/network-sync.md",
+      "to": "程式架構.md"
+    },
+    {
+      "from": "程式架構/network-sync.md",
+      "to": "程式架構/interfaces.md"
     },
     {
       "from": "程式架構/network-sync.md",
@@ -9493,7 +11032,15 @@
     },
     {
       "from": "程式架構/network-sync.md",
+      "to": "程式架構/physics-engine.md"
+    },
+    {
+      "from": "程式架構/network-sync.md",
       "to": "程式架構/race-messages.md"
+    },
+    {
+      "from": "程式架構/network-sync.md",
+      "to": "程式架構/room-runtime.md"
     },
     {
       "from": "程式架構/network-sync.md",
@@ -9501,7 +11048,19 @@
     },
     {
       "from": "程式架構/network-sync.md",
+      "to": "程式架構/spectator.md"
+    },
+    {
+      "from": "程式架構/network-sync.md",
+      "to": "程式架構/testing.md"
+    },
+    {
+      "from": "程式架構/network-sync.md",
       "to": "程式架構/程式流程/network-sync.md"
+    },
+    {
+      "from": "程式架構/network-sync.md",
+      "to": "算式表.md"
     },
     {
       "from": "程式架構/network-sync.md",
@@ -9621,7 +11180,83 @@
     },
     {
       "from": "程式架構/physics-engine.md",
+      "to": "decisions/D-20261016-01-回定位等待空出的實際落點.md"
+    },
+    {
+      "from": "程式架構/physics-engine.md",
+      "to": "decisions/D-20261018-03-接受子步時間作功與區域耗能.md"
+    },
+    {
+      "from": "程式架構/physics-engine.md",
+      "to": "decisions/D-20261020-01-輪類滾動面改掛保守cylinder.md"
+    },
+    {
+      "from": "程式架構/physics-engine.md",
+      "to": "decisions/D-20261020-02-旋轉面形狀分類移至烘焙期.md"
+    },
+    {
+      "from": "程式架構/physics-engine.md",
+      "to": "decisions/D-20261021-01-場地碰撞體分段與邊界法線機制.md"
+    },
+    {
+      "from": "程式架構/physics-engine.md",
+      "to": "decisions/D-20261021-02-滾輪被包覆內件維持凸hull.md"
+    },
+    {
+      "from": "程式架構/physics-engine.md",
+      "to": "decisions/D-20261025-01-持彈碰撞體切換與可選彈體獨立耐久.md"
+    },
+    {
+      "from": "程式架構/physics-engine.md",
+      "to": "decisions/D-20261026-01-鉸接輪組被包覆內件只承載質量.md"
+    },
+    {
+      "from": "程式架構/physics-engine.md",
+      "to": "decisions/D-20261026-02-CCD持續接觸改掃核心球.md"
+    },
+    {
+      "from": "程式架構/physics-engine.md",
+      "to": "decisions/D-20261027-01-接觸點求解順序對稱化.md"
+    },
+    {
+      "from": "程式架構/physics-engine.md",
+      "to": "decisions/D-20261027-02-動態目標持續接觸回復完整形狀TOI.md"
+    },
+    {
+      "from": "程式架構/physics-engine.md",
+      "to": "decisions/D-20261028-01-快照取消正規化與本機信任載入.md"
+    },
+    {
+      "from": "程式架構/physics-engine.md",
+      "to": "decisions/D-20261028-02-靜態形狀登錄參照快照.md"
+    },
+    {
+      "from": "程式架構/physics-engine.md",
+      "to": "decisions/D-20261028-05-bounded-step接受容差放寬至0.2毫米.md"
+    },
+    {
+      "from": "程式架構/physics-engine.md",
+      "to": "decisions/D-20261031-06-同材質地面節點合併切塊.md"
+    },
+    {
+      "from": "程式架構/physics-engine.md",
+      "to": "decisions/D-20261031-07-圓柱曲面支撐線段依法線方位.md"
+    },
+    {
+      "from": "程式架構/physics-engine.md",
+      "to": "decisions/D-20261101-02-持續接觸判定的幾何回退.md"
+    },
+    {
+      "from": "程式架構/physics-engine.md",
+      "to": "decisions/D-20261101-03-場地閘牆格軌跡視界截在在場上幀.md"
+    },
+    {
+      "from": "程式架構/physics-engine.md",
       "to": "建模參數.md"
+    },
+    {
+      "from": "程式架構/physics-engine.md",
+      "to": "建模參數/場地.md"
     },
     {
       "from": "程式架構/physics-engine.md",
@@ -9674,6 +11309,10 @@
     {
       "from": "程式架構/physics-engine.md",
       "to": "資料系統.md"
+    },
+    {
+      "from": "程式架構/physics-engine.md",
+      "to": "賽內機制.md"
     },
     {
       "from": "程式架構/pinning-service.md",
@@ -9905,6 +11544,14 @@
     },
     {
       "from": "程式架構/security.md",
+      "to": "decisions/D-20261030-02-Ed25519改RFC8032嚴格驗簽.md"
+    },
+    {
+      "from": "程式架構/security.md",
+      "to": "decisions/D-20261103-01-PR依賴稽核只擋新增.md"
+    },
+    {
+      "from": "程式架構/security.md",
       "to": "建模參數/runtime.md"
     },
     {
@@ -9934,6 +11581,10 @@
     {
       "from": "程式架構/security.md",
       "to": "程式架構/moderation.md"
+    },
+    {
+      "from": "程式架構/security.md",
+      "to": "程式架構/network-sync.md"
     },
     {
       "from": "程式架構/security.md",
@@ -9974,6 +11625,14 @@
     {
       "from": "程式架構/settings.md",
       "to": "decisions/D-20260808-06-多身分封存與加密本機備份.md"
+    },
+    {
+      "from": "程式架構/settings.md",
+      "to": "decisions/D-20261102-01-比賽視口固定算圖削減.md"
+    },
+    {
+      "from": "程式架構/settings.md",
+      "to": "decisions/D-20261102-02-比賽視口背景層移除與像素自適應.md"
     },
     {
       "from": "程式架構/settings.md",
@@ -10065,6 +11724,10 @@
     },
     {
       "from": "程式架構/spectator.md",
+      "to": "decisions/D-20261029-03-catch-up分tick追趕與落後端快進.md"
+    },
+    {
+      "from": "程式架構/spectator.md",
       "to": "流程/觀戰.md"
     },
     {
@@ -10078,6 +11741,10 @@
     {
       "from": "程式架構/spectator.md",
       "to": "程式架構/matchmaking.md"
+    },
+    {
+      "from": "程式架構/spectator.md",
+      "to": "程式架構/network-sync.md"
     },
     {
       "from": "程式架構/spectator.md",
@@ -10138,6 +11805,50 @@
     {
       "from": "程式架構/system-constants.md",
       "to": "資料系統.md"
+    },
+    {
+      "from": "程式架構/testing.md",
+      "to": "decisions/D-20261027-01-接觸點求解順序對稱化.md"
+    },
+    {
+      "from": "程式架構/testing.md",
+      "to": "decisions/D-20261027-02-動態目標持續接觸回復完整形狀TOI.md"
+    },
+    {
+      "from": "程式架構/testing.md",
+      "to": "decisions/D-20261028-01-快照取消正規化與本機信任載入.md"
+    },
+    {
+      "from": "程式架構/testing.md",
+      "to": "decisions/D-20261028-02-靜態形狀登錄參照快照.md"
+    },
+    {
+      "from": "程式架構/testing.md",
+      "to": "decisions/D-20261028-04-效能預算三層口徑.md"
+    },
+    {
+      "from": "程式架構/testing.md",
+      "to": "decisions/D-20261028-05-bounded-step接受容差放寬至0.2毫米.md"
+    },
+    {
+      "from": "程式架構/testing.md",
+      "to": "decisions/D-20261029-03-catch-up分tick追趕與落後端快進.md"
+    },
+    {
+      "from": "程式架構/testing.md",
+      "to": "decisions/D-20261031-02-公版九組驗收改以結算旅程為門檻.md"
+    },
+    {
+      "from": "程式架構/testing.md",
+      "to": "decisions/D-20261031-04-公版多起跑完賽率量測與非退步閘.md"
+    },
+    {
+      "from": "程式架構/testing.md",
+      "to": "decisions/D-20261031-07-圓柱曲面支撐線段依法線方位.md"
+    },
+    {
+      "from": "程式架構/testing.md",
+      "to": "decisions/D-20261101-02-持續接觸判定的幾何回退.md"
     },
     {
       "from": "程式架構/testing.md",
@@ -10265,6 +11976,10 @@
     },
     {
       "from": "程式架構/toolchain.md",
+      "to": "程式架構/physics-engine.md"
+    },
+    {
+      "from": "程式架構/toolchain.md",
       "to": "程式架構/pinning-service.md"
     },
     {
@@ -10354,6 +12069,14 @@
     {
       "from": "程式架構/ugc-rating.md",
       "to": "資料系統.md"
+    },
+    {
+      "from": "程式架構/ui-frontend.md",
+      "to": "decisions/D-20261102-01-比賽視口固定算圖削減.md"
+    },
+    {
+      "from": "程式架構/ui-frontend.md",
+      "to": "decisions/D-20261102-02-比賽視口背景層移除與像素自適應.md"
     },
     {
       "from": "程式架構/ui-frontend.md",
@@ -10536,6 +12259,10 @@
       "to": "程式架構/matchmaking.md"
     },
     {
+      "from": "程式架構/程式流程/matchmaking.md",
+      "to": "程式架構/network-sync.md"
+    },
+    {
       "from": "程式架構/程式流程/network-sync.md",
       "to": "流程.md"
     },
@@ -10681,6 +12408,26 @@
     },
     {
       "from": "算式表.md",
+      "to": "decisions/D-20261018-01-成對滾阻力矩與實際耗散.md"
+    },
+    {
+      "from": "算式表.md",
+      "to": "decisions/D-20261018-02-單向有限扭矩輪軸馬達.md"
+    },
+    {
+      "from": "算式表.md",
+      "to": "decisions/D-20261018-03-接受子步時間作功與區域耗能.md"
+    },
+    {
+      "from": "算式表.md",
+      "to": "decisions/D-20261029-01-回合終局一致性.md"
+    },
+    {
+      "from": "算式表.md",
+      "to": "decisions/D-20261029-02-forfeit整場壓縮名次.md"
+    },
+    {
+      "from": "算式表.md",
       "to": "信譽系統.md"
     },
     {
@@ -10722,6 +12469,10 @@
     {
       "from": "算式表.md",
       "to": "程式架構/matchmaking.md"
+    },
+    {
+      "from": "算式表.md",
+      "to": "程式架構/physics-engine.md"
     },
     {
       "from": "算式表.md",
@@ -10842,6 +12593,14 @@
     {
       "from": "編輯器操作.md",
       "to": "decisions/D-20260903-01-編輯器共同變形與匯出新基線.md"
+    },
+    {
+      "from": "編輯器操作.md",
+      "to": "decisions/D-20261027-01-接觸點求解順序對稱化.md"
+    },
+    {
+      "from": "編輯器操作.md",
+      "to": "decisions/D-20261031-03-導輪掛點預設朝上並改以傾角調整.md"
     },
     {
       "from": "編輯器操作.md",
@@ -11116,12 +12875,24 @@
       "to": "美術資源/設計系統.md"
     },
     {
+      "from": "美術資源/實際使用圖/節慶主題2026/previous-README.md",
+      "to": "美術資源/實際使用圖/節慶主題2026/README.md"
+    },
+    {
+      "from": "美術資源/實際使用圖/賽內倒數與起跑動畫/README.md",
+      "to": "美術資源/實際使用圖/節慶主題2026/README.md"
+    },
+    {
       "from": "美術資源/提示詞/UI資產.md",
       "to": "主題系統.md"
     },
     {
       "from": "美術資源/提示詞/UI資產.md",
       "to": "程式架構/ui-frontend.md"
+    },
+    {
+      "from": "美術資源/提示詞/UI資產.md",
+      "to": "美術資源/實際使用圖/節慶主題2026/README.md"
     },
     {
       "from": "美術資源/提示詞/UI資產.md",
@@ -11166,6 +12937,14 @@
     {
       "from": "美術資源/提示詞/場地參考圖.md",
       "to": "零件與場景.md"
+    },
+    {
+      "from": "美術資源/提示詞/賽內倒數與起跑動畫/christmas.md",
+      "to": "美術資源/實際使用圖/節慶主題2026/README.md"
+    },
+    {
+      "from": "美術資源/提示詞/賽內倒數與起跑動畫/halloween.md",
+      "to": "美術資源/實際使用圖/節慶主題2026/README.md"
     },
     {
       "from": "美術資源/提示詞/零件參考圖.md",
@@ -11353,6 +13132,14 @@
     },
     {
       "from": "資安規範.md",
+      "to": "decisions/D-20261030-02-Ed25519改RFC8032嚴格驗簽.md"
+    },
+    {
+      "from": "資安規範.md",
+      "to": "decisions/D-20261103-01-PR依賴稽核只擋新增.md"
+    },
+    {
+      "from": "資安規範.md",
       "to": "使用技術.md"
     },
     {
@@ -11406,6 +13193,10 @@
     {
       "from": "資安規範.md",
       "to": "程式架構/moderation.md"
+    },
+    {
+      "from": "資安規範.md",
+      "to": "程式架構/network-sync.md"
     },
     {
       "from": "資安規範.md",
@@ -11557,6 +13348,18 @@
     },
     {
       "from": "賽內機制.md",
+      "to": "decisions/D-20261028-03-輸入延遲有界回滾與模擬Worker.md"
+    },
+    {
+      "from": "賽內機制.md",
+      "to": "decisions/D-20261029-01-回合終局一致性.md"
+    },
+    {
+      "from": "賽內機制.md",
+      "to": "decisions/D-20261029-02-forfeit整場壓縮名次.md"
+    },
+    {
+      "from": "賽內機制.md",
       "to": "主題系統.md"
     },
     {
@@ -11622,6 +13425,10 @@
     {
       "from": "賽內機制.md",
       "to": "程式架構/network-sync.md"
+    },
+    {
+      "from": "賽內機制.md",
+      "to": "程式架構/physics-engine.md"
     },
     {
       "from": "賽內機制.md",
@@ -11726,6 +13533,10 @@
     {
       "from": "車輛組裝.md",
       "to": "零件與場景.md"
+    },
+    {
+      "from": "遊戲機制.md",
+      "to": "decisions/D-20261016-01-回定位等待空出的實際落點.md"
     },
     {
       "from": "遊戲機制.md",

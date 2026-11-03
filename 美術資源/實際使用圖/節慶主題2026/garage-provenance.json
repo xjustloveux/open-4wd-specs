@@ -1,0 +1,18 @@
+{
+  "status": "superseded",
+  "currentRecord": "empty-state-provenance.json",
+  "previous": [
+    {
+      "season": "halloween",
+      "kind": "garage",
+      "authoringFile": "release-input/ui/themes/halloween/empty-garage-illustration.png",
+      "prompt": "Wide 16:9 transparent RGBA empty-garage illustration for an American vintage Halloween miniature racing workshop UI. A friendly pumpkin-headed mechanic with brass goggles and plum overalls stands beside a clearly EMPTY small vehicle maintenance lift, no car anywhere. Antique brass tools and wooden cabinet with one lantern and a tiny bat accent. Clear welcoming empty vehicle slot. Intricate engraved crosshatching, orange pumpkin, deep plum, antique gold and cream. Centered compact composition with clear transparent margins, readable at 320x180. No full background, panel, words, numerals, logo or watermark. Actual alpha outside artwork. Match a premium crafted engraving illustration, not a flat vector icon."
+    },
+    {
+      "season": "christmas",
+      "kind": "garage",
+      "authoringFile": "release-input/ui/themes/christmas/empty-garage-illustration.png",
+      "prompt": "Wide 16:9 transparent RGBA empty-garage illustration for a Christmas colored-pencil miniature racing workshop UI. A friendly small reindeer mechanic with brass goggles, green overalls and red scarf standing beside a clearly EMPTY miniature vehicle maintenance lift and empty work mat, no car anywhere. Wooden tool cabinet, two neatly arranged tools, fir sprig and small wrapped spare-parts box as restrained Christmas accents. Warm reassuring inviting expression. Rich dry colored-pencil pigment and obvious crosshatched paper-like marks within the subjects, forest green cranberry red ivory gold. Centered compact composition, generous transparent margins, clean silhouette readable at 320x180. No scenery backdrop, floor rectangle, text, numeral, logo, watermark, smooth vector or glossy 3D. Actual alpha transparency around all artwork."
+    }
+  ]
+}

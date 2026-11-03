@@ -14,6 +14,8 @@ deprecates: []
 
 # D-20260818-01｜Authoring 大型原始資產 Release-first
 
+> **2026-10-22 關聯追補**：[D-20261022-01](D-20261022-01-公版場地程序化交付與零件維持延後.md) 讓 Release 準備工具另把 `.py`／`.md` 文字來源（程序化生成器快照與來源說明）封裝為 `authoring-text.zip`；其他副檔名仍 fail closed。
+
 ## 背景與驅動力
 
 原設計讓 specs Git LFS 保存大型 authoring bytes，再由 Release 分發。LFS 儲存與流量額度會影響同一帳務範圍的其他專案；開源歷史又不適合在額度不足時任意刪除。專案仍在 pre-launch，且 specs 預計重建，因此不保留未公開的 LFS owner 模型。

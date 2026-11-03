@@ -62,6 +62,11 @@
       "pattern": "Graphify Release manifest[^\\n]*schemaVersion=(\\d+)"
     },
     {
+      "id": "builtin-delivery-current",
+      "file": "程式架構/builtin-assets.md",
+      "pattern": "builtin-delivery\\.json` 是 schema (\\d+) 交付權威"
+    },
+    {
       "id": "unified-db-current",
       "file": "程式架構/pwa-offline.md",
       "pattern": "indexedDB\\.open\\(UNIFIED_DB_NAME='open-4wd', UNIFIED_DB_VERSION=(\\d+)\\)"
@@ -157,6 +162,10 @@
       {
         "id": "corpus-graphify-release-manifest-v2-plus",
         "pattern": "Graphify Release manifest[^\\n]*schemaVersion=(?:[2-9]|[1-9][0-9]+)\\b"
+      },
+      {
+        "id": "corpus-builtin-delivery-v2-plus",
+        "pattern": "builtin-delivery\\.json`?[^\\n]{0,8}schema(?:Version)?\\s*(?:=|:)?\\s*(?:[2-9]|[1-9][0-9]+)\\b"
       }
     ]
   }

@@ -148,11 +148,17 @@ async function sanitizeMesh(req: SanitizeRequest): Promise<SanitizeResult> {
   if (sizeCanonical.some((s, axis) => s > SANITIZE_LIMITS.MAX_AABB_M[axis]))
     return { ok: false, reason: "out-of-bounds", details: `bounds-m ${sizeM}` };
 
-  // 4. 退化三角形（面積 < PART_DEGENERATE_TRIANGLE_AREA_MIN_M2〔protocol.md §3〕，> 5% 拒收）
+  // 4. 退化三角形（面積 < min(PART_DEGENERATE_TRIANGLE_AREA_MIN_M2,
+  //    PART_DEGENERATE_TRIANGLE_AREA_DIAGONAL_RATIO × 世界 AABB 對角線²)〔protocol.md §3〕，> 5% 拒收；
+  //    大型零件與場地落在絕對值，小零件依尺寸放寬）
+  const diagonal = Math.hypot(...sizeM);
+  const minAreaM2 = Math.min(
+    PART_DEGENERATE_TRIANGLE_AREA_MIN_M2,
+    PART_DEGENERATE_TRIANGLE_AREA_DIAGONAL_RATIO * diagonal * diagonal,
+  );
   let degenerate = 0;
   for (const tri of mesh.triangles)
-    if (triangleAreaM2(tri) < PART_DEGENERATE_TRIANGLE_AREA_MIN_M2)
-      degenerate++;
+    if (triangleAreaM2(tri) < minAreaM2) degenerate++;
   if (degenerate > mesh.triangleCount * 0.05)
     return {
       ok: false,
@@ -246,7 +252,11 @@ async function verifyP2PMessage<T>(
 }
 ```
 
+簽章一律以 `verifyMessage` 驗（RFC 8032 嚴格模式：非正規編碼、S ≥ L 與小階公鑰一律驗不過，方程式為 cofactored）；`signer` 經 `peerIdToPublicKey` 解碼，小階、全零或非正規編碼公鑰的 PeerId 視為格式不符（[key-manager.md §3](key-manager.md)、[D-20261030-02](../decisions/D-20261030-02-Ed25519改RFC8032嚴格驗簽.md)）。
+
 `P2P_MESSAGE_TIMESTAMP_TOLERANCE_SEC = 30`、`P2P_MESSAGE_NONCE_BYTES = 16`、`P2P_NONCE_SET_MAX_ENTRIES = 8192`（資安規範 [§3.3](../資安規範.md#33-防-replay)）。Gossip 接收另使用「驗 envelope / signer / 簽章但暫不 commit nonce → topic payload schema → per-signer rate limit → commit nonce」順序；因此限流拒絕的 unique nonce 不會先灌滿 replay 集合。一般非 Gossip 呼叫仍使用一次完成驗證與 commit 的 `verifyP2PMessage`。
+
+賽內回合訊息（Race Sign Key 簽的 input、checksum、catch-up 訊息與輸入日誌條目）另走非同步驗簽器：只有可作身分的公鑰（非小階、非全零、正規編碼）才交 WebCrypto Ed25519，WebCrypto 接受才採用，拒絕、拋錯或逾時一律以 noble 嚴格模式複核並以 noble 為準，接受集合與 noble 相同；規則見 [network-sync.md §7.1](network-sync.md)「驗簽器」。
 
 ## 3. CSP（生產環境；build 時生成 `<meta>` 注入）
 
@@ -259,8 +269,8 @@ inline import map、JSON-LD 與 stylesheet `onload` 內容不同，因此 policy
 ```typescript
 const baseline = [
   "default-src 'self'",
-  "worker-src 'self' blob:", // Sanitize / 指紋 Worker
-  "connect-src 'self' wss: https:", // scheme 級白名單：玩家可自選 signaling / pinning / gateway 節點（資安規範 §4），固定域名白名單會擋自選端點；仍擋非 TLS 外連
+  "worker-src 'self' blob:", // 模擬 Worker（同源 module chunk）、Sanitize / 指紋 Worker、KTX2 transcoder（同源生成 Worker）、three DRACOLoader（blob:）
+  "connect-src 'self' blob: wss: https:", // scheme 級白名單：玩家可自選 signaling / pinning / gateway 節點（資安規範 §4），固定域名白名單會擋自選端點；仍擋非 TLS 外連；blob: 供 three 以 fetch 讀 GLB 內嵌貼圖
   "img-src 'self' data: blob:", // GLB texture 可能用 blob
   "style-src 'self' 'unsafe-inline'", // Angular
   "font-src 'self'",
@@ -278,6 +288,26 @@ const baseline = [
 `script-src` 永不加入 `'unsafe-inline'`；hash 由實際 UTF-8 內容計算並去重。`upgrade-insecure-requests`
 保留為 production 縱深防禦；Chromium localhost smoke 已確認本機 HTTP 位址仍依 potentially
 trustworthy 例外保留，不需要為本機驗證移除 production directive。
+
+**`connect-src` 的 `blob:`**：GLTFLoader 先把 GLB 內嵌影像包成 `blob:` URL，再由 KTX2Loader（經
+FileLoader）或 ImageBitmapLoader（PNG／JPEG）以 `fetch()` 讀取；`fetch()` 受 `connect-src` 約束，
+缺 `blob:` 時讀取被擋，GLTFLoader 會把貼圖靜默改成 `null`，模型照載但沒有貼圖。`blob:` 只能指向本源
+自建的 Blob，不能用來外連或外洩資料。
+
+**正式 CSP 實跑防線**：e2e 建置不注入 CSP，因此另有 `scripts/verify-csp-dist.mjs`：在已注入 meta CSP
+的 dist 上以 Chromium 跑公版車＋公版場地的本機測試，斷言 `securitypolicyviolation`、console CSP
+拒絕訊息與 Worker 內 CSP 拒絕（以 pageerror 浮出）皆為 0、至少一張 KTX2 貼圖經 `blob:` 讀取且 transcode 成功、three 沒有貼圖載入失敗；
+任一不符即 exit 1。判準邏輯由 `scripts/verify-csp-dist.test.mjs` 覆蓋（`test:scripts`）。Pages 部署 workflow
+在自己的 `build:custom-domain` 之後、上傳部署產物之前以 Chromium 執行 `pnpm verify:csp-dist`，未通過不部署；
+e2e 啟動會重建同一個 `dist/`，因此這道防線不可接在 e2e 之後。
+
+**Worker 的 CSP 來源**：以 `http(s)` 腳本 URL 建立的 dedicated Worker，CSP 只來自 Worker 腳本自己的 HTTP 回應 header，不繼承建立它的文件；以 `blob:` URL 建立的 Worker（例如 three DRACOLoader 的 decoder pool）則繼承建立它的文件的 CSP，`script-src` 不含 `'unsafe-eval'`，Worker 內 `eval`／`new Function` 會被擋。KTX2Loader 的 Basis transcoder 以 embind 動態產生函式，放在 `blob:` Worker 會在正式 CSP 下初始化失敗，因此改為同源生成 Worker；主文件 `script-src` 不為它加入 `'unsafe-eval'`。對同源腳本 Worker，meta CSP 只約束主文件與「能否建立該 Worker」（`worker-src`）。GitHub Pages 無法替 Worker 腳本送 header，因此**模擬 Worker 與其他同源腳本 Worker 在正式部署下沒有 CSP**——Worker 內 `eval`／`new Function` 可執行、跨源 fetch 不受 `connect-src` 限制（Chromium 與 Firefox 實測）。對應的約束：
+
+- 模擬 Worker 只以同源 module chunk 建立（`new Worker(new URL(…, import.meta.url), { type: 'module' })`），Worker 內只載入本站同源模組；不得以 `blob:` 或跨源 URL 建立模擬 Worker。
+- Worker 內的 Rapier WASM 內嵌於 chunk（base64），載入時先核對 wasm sha256 再 `WebAssembly.instantiate`；主文件的 `'wasm-unsafe-eval'` 不延伸到 Worker，Worker 端也不需要它。
+- Worker 內 Draco 解碼器是建置時生成的 ESM 包裝：上游 three `draco_decoder.js` 原樣複製並在檔尾補 default export，輸出到 gitignored 的 `public/vendor/draco-gltf-module/`。生成器拒收含 `eval`、`Function`（含間接呼叫與經 `constructor` 取得）、`importScripts` 或 DOM 注入的來源，`--check` 比對生成物與上游逐位元一致；這是 Worker 內動態程式碼的唯一防線，字串拼接出的名稱靠上游逐位元複製約束。
+- KTX2 transcoder Worker 只從同源生成物 `vendor/basis-worker/ktx2-transcoder.js` 建立（以 `document.baseURI` 解析，`KTX2Loader` 子類別在上游 `init()` 解析後替換 worker creator），不得以 `blob:` 或跨源 URL 建立。生成物由 `scripts/generate-ktx2-transcoder-worker.mjs` 依上游 `KTX2Loader.init()` 的組法（常數＋`basis_transcoder.js` 原文＋`BasisWorker` 本體）輸出到 gitignored 的 `public/vendor/basis-worker/`，內容與上游 blob 逐位元一致，`--check` 守門；Worker 只處理主執行緒傳入的 transcoder 與 KTX2 bytes。
+- 模擬 Worker 只接受已 admission 的資產；不可信 GLB 解析仍只走 Sanitize Worker（[§1](#1-ugc-mesh-sanitize-worker)）。GLB 由主執行緒 fetch 後以私有複本 Transferable 傳入。
 
 > **meta CSP 限制**：`frame-ancestors` 經 `<meta>` 交付**無效**（規格明定）、GH Pages 亦無法送 `X-Frame-Options` → **主站無框架保護**。風險評估 = 無 cookie / 無跨源授權狀態（身分為本地金鑰、PIN 只在本地驗證），clickjacking 攻擊面有限，**接受**；自架 pinning server 走 HTTP header（[§6](#6-pinning-server-安全-header)）不受此限。signaling 為 **wss**、pinning 走 **HTTPS** API。
 
@@ -304,7 +334,7 @@ save-exact=true       # 禁 ^ / ~，鎖死版本
 engine-strict=true
 ```
 
-`package.json` 依賴皆 pin 精確版本（無 `^` / `~`；版號 ＝lockfile 實際解析值）。CI 兩道：主 CI `pnpm install --frozen-lockfile`（比對 lockfile）＋`.github/workflows/security.yml`（push / PR / 每週排程）`pnpm audit --audit-level moderate`——audit warning ≥ moderate 阻擋 merge（[資安規範.md §6.2](../資安規範.md)）。只允許 well-known 核心套件（Rapier / libp2p / OrbitDB…）。
+`package.json` 依賴皆 pin 精確版本（無 `^` / `~`；版號 ＝lockfile 實際解析值）。CI 兩道：主 CI `pnpm install --frozen-lockfile`（比對 lockfile）＋`.github/workflows/security.yml`（PR / 每週排程）`pnpm audit --audit-level moderate`——每週排程整份 audit ≥ moderate 紅燈；PR 以 base 分支的 lockfile／`pnpm-workspace.yaml`（含 `audit.ignore`）另跑一次 audit 當基線，`scripts/check-audit-diff.mjs` 以 GHSA＋套件名比對、只擋 PR 新引入的 advisories，基線既有的列出不擋，由排程紅燈與人工升版清償（[資安規範.md §6.2](../資安規範.md)、[D-20261103-01](../decisions/D-20261103-01-PR依賴稽核只擋新增.md)）。npm 依賴不交 Dependabot（`.github/dependabot.yml` 只追 GitHub Actions 的 SHA pin），升版與 `pnpm-workspace.yaml` 的 `overrides` 由維護者人工審查。只允許 well-known 核心套件（Rapier / libp2p / OrbitDB…）。
 
 ### 5.1 Vendored 檔案政策
 

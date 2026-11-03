@@ -14,6 +14,8 @@ deprecates: []
 
 # D-20260802-02｜GO 前全員 race-ready 屏障
 
+> **2026-10-30 關聯追補**：「無嚴格進度即取消且不產生 forfeit 等後果」已由 [D-20261030-04](D-20261030-04-後續回合屏障停滯改記forfeit.md) 限縮為首回合 GO 前；後續回合停滯改為未到者記 forfeit、剩餘非 forfeit 成員低於 ⌊N/2⌋＋1 時整場作廢。其餘決定不變。
+
 ## 背景與驅動力
 
 正式 match 原本在各 client 完成本機 world／network 後各自開始倒數；較慢 peer 的場地、車資產或第一個真實 render 尚未完成時，較快 peer 已可能啟動 frame pump。這會讓同一 roster 在不同 wall-clock 時刻進入模擬，並把純載入失敗誤推進賽中斷線、棄賽或結算語意。

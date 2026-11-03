@@ -50,7 +50,7 @@ Stage 3（本機儲存／匯出／上鏈共用）：
 > | 零件 8 類         | 不套物理尺度；來源單位正規化與 scene transform 解算後，Stage 3 對 canonical meter/world AABB 套 `PART_AABB_MIN/MAX_M`（[protocol.md §3](../程式參數/protocol.md#3-protocolugcugc-規格約束)） |
 > | track             | 不套物理尺度；Stage 2 可自動 fit，Stage 3 對 fit 後 canonical meter/world geometry 套場地 AABB 與 `auto_player_max ≥ PLAYERS_PER_RACE_MIN`                 |
 >
-> **Stage 2 必要解析產物**：wave A 必須取得 `volume`；watertight 積分失敗時走 voxelization 備援，**兩者皆失敗 = type 定案失敗並退回上傳**（[§4.1](零件與共用介面.md#41-所有-part-共用)）。這項要求不屬於 Stage 1 source admission。
+> **Stage 2 必要解析產物**：wave A 必須取得 `volume`；watertight 積分失敗時走 voxelization 備援，**兩者皆失敗 = type 定案失敗並退回上傳**（[§4.1](零件與共用介面.md#41-所有-part-共用)）；場地 `physics: "visual_only"` 節點（貼花、標線等單面裝飾）不需 volume，以零體積計、不進質量與熱屬性，finalize 時其餘節點的體積失敗以帶節點名的拒收 finding 回報。這項要求不屬於 Stage 1 source admission。
 >
 > 幾何相似的 type（如 battery vs chip 同為小盒）必要產物清單相同 → Stage 1 皆放行，**by design**（UI 選擇即玩家意圖宣告；權威檢核在 Stage 3 嚴格 schema）。新增 part type 時，定義其必要解析產物清單即自動定義 Stage 1 行為。具體演算法（watertight 判定、voxel 解析度、主軸推斷）屬實作層，比照 [§4.2](零件與共用介面.md#42-body-專屬-aero) aero。
 

@@ -14,6 +14,8 @@ deprecates: []
 
 # D-20260812-02｜觀戰 Deterministic Replay 與精簡 Fallback
 
+> **2026-10-29 關聯追補**：replay「幀完整」的判定已由 [D-20261029-03](D-20261029-03-catch-up分tick追趕與落後端快進.md) 修訂為不再要求已 quit 車（`RaceProgress.quitAtFrame` 已設定）的封包，缺封包者餵空輸入、緩衝以已簽 leave 前瞻；觀戰端另加無進度看門狗。wire 與 deterministic replay 主模式不變。
+
 ## 背景與驅動力
 
 10Hz presentation snapshot 無法提供真實車體、完整場地動態與一致 HUD，資料量又會隨武器、

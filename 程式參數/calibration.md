@@ -26,7 +26,7 @@ slug: null
 | `FLUID_PROJECTILE_SENSOR_THICKNESS_M` | 0.002 m（初估） | fluid projectile 圓形薄 sensor 總厚度 |
 | `K_CHIP_SKILL_WASTE_HEAT` | 0.001（synthetic reference 初估） | 實際 `battery_cost_j` → chip heat J 的比例 |
 | `K_BATTERY_SKILL_WASTE_HEAT` | 0.02（synthetic reference 初估） | 實際 `battery_cost_j` → battery heat J 的比例 |
-| `K_BATTERY_PASSIVE` | 0.15（synthetic reference 初估） | 實際供能功率轉為 battery heat power 的比例 |
+| `K_BATTERY_PASSIVE` | 0.02（公版三車 600 秒熱預算校準） | 實際供能功率轉為 battery heat power 的比例 |
 | `K_MOTOR_HEAT` | 0.2（synthetic reference 初估） | motor 實際輸入功率轉為 heat power 的比例 |
 | `MIN_TEMPERATURE_C` | -273.15 | 所有 runtime 熱積分下限 |
 | `MAX_TEMPERATURE_C` | 5000 | 所有 runtime 熱積分上限 |

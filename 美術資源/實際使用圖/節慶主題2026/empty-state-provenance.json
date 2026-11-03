@@ -1,0 +1,100 @@
+{
+  "current": [
+    {
+      "season": "halloween",
+      "kind": "connection",
+      "source": "release-input/ui/themes/halloween/empty-connection-illustration.png",
+      "prompt": "Create a single production UI empty-state illustration for Open4WD. American vintage Halloween collectible toy illustration, dimensional hand-painted carved orange pumpkin details, deep plum black metal, warm antique brass, subtle engraved crosshatching, tiny bat motifs. Rich polished high-quality game asset. EXACT SUBJECT: two matching small mechanical electrical connector pods facing each other horizontally, one left and one right, their short plug tips facing inward and clearly separated by a central gap, tiny broken spark in gap. Both pods connected to short cables exiting outward. Symmetric wide composition. No people, no animals, no mascot, no handheld radio. Match a cohesive asset family whose other themes use mechanical connector pairs, a miniature racing car, and an empty display alcove. Wide 16:9 composition intended for 640x360 transparent WebP. Subject occupies about 80-85 percent of canvas width and 75-85 percent of height, centered and fully visible with consistent safe margins. Transparent background, no scenery, no opaque rectangle, no checkerboard pattern, no words, no letters, no watermark. Clean readable silhouette at 240x135 screen size. Draw only the requested subject.",
+      "sha256": "76fd216b0f7e9975ac399b26d48aa64955ae33a8f7966640b0a2e71965202bae",
+      "size": [
+        1672,
+        941
+      ]
+    },
+    {
+      "season": "halloween",
+      "kind": "garage",
+      "source": "release-input/ui/themes/halloween/empty-garage-illustration.png",
+      "prompt": "Create a single production UI empty-state illustration for Open4WD. American vintage Halloween collectible toy illustration, dimensional hand-painted carved orange pumpkin details, deep plum black metal, warm antique brass, subtle engraved crosshatching, tiny bat motifs. Rich polished high-quality game asset. EXACT SUBJECT: one complete premium MINI 4WD racing toy car, low streamlined racing body, four black rubber tires, exposed small guide rollers and front/rear roller bumpers, rear wing, no driver. Three-quarter front view pointing toward lower left, centered. Seasonal decorations integrated into vehicle body without obscuring vehicle mechanics. No character, no lift, no garage scenery, no gifts surrounding it. Match a cohesive asset family whose other themes use mechanical connector pairs, a miniature racing car, and an empty display alcove. Wide 16:9 composition intended for 640x360 transparent WebP. Subject occupies about 80-85 percent of canvas width and 75-85 percent of height, centered and fully visible with consistent safe margins. Transparent background, no scenery, no opaque rectangle, no checkerboard pattern, no words, no letters, no watermark. Clean readable silhouette at 240x135 screen size. Draw only the requested subject.",
+      "sha256": "a4f80a0027aa921e08024ef977e95324879ac5f5f820b4eea77e67e9085fe7f7",
+      "size": [
+        1672,
+        941
+      ]
+    },
+    {
+      "season": "halloween",
+      "kind": "generic",
+      "source": "release-input/ui/themes/halloween/empty-generic-illustration.png",
+      "prompt": "Create a single production UI empty-state illustration for Open4WD. American vintage Halloween collectible toy illustration, dimensional hand-painted carved orange pumpkin details, deep plum black metal, warm antique brass, subtle engraved crosshatching, tiny bat motifs. Rich polished high-quality game asset. EXACT SUBJECT: one empty futuristic mechanical display pedestal/alcove, a wide circular empty platform at bottom and decorative upright backing behind it. Platform visibly EMPTY, blank backing, themed architectural frame. Three-quarter nearly front view. No character, no car, no toolbox, no text, no floating items. Match a cohesive asset family whose other themes use mechanical connector pairs, a miniature racing car, and an empty display alcove. Wide 16:9 composition intended for 640x360 transparent WebP. Subject occupies about 80-85 percent of canvas width and 75-85 percent of height, centered and fully visible with consistent safe margins. Transparent background, no scenery, no opaque rectangle, no checkerboard pattern, no words, no letters, no watermark. Clean readable silhouette at 240x135 screen size. Draw only the requested subject.",
+      "sha256": "5d61e3d36aec52ecc55eca06004c295caa9ef37da0db4c338e704fca95e91636",
+      "size": [
+        1672,
+        941
+      ]
+    },
+    {
+      "season": "christmas",
+      "kind": "connection",
+      "source": "release-input/ui/themes/christmas/empty-connection-illustration.png",
+      "prompt": "Create a single production UI empty-state illustration for Open4WD. Clearly visible colored pencil illustration, layered pencil hatching and grain throughout the actual objects, tactile hand-drawn edges, cranberry red, evergreen green, warm ivory, small holly and gold bells. Christmas unmistakable, polished game UI art, not shiny plastic 3D. EXACT SUBJECT: two matching small mechanical electrical connector pods facing each other horizontally, one left and one right, their short plug tips facing inward and clearly separated by a central gap, tiny broken spark in gap. Both pods connected to short cables exiting outward. Symmetric wide composition. No people, no animals, no mascot, no handheld radio. Match a cohesive asset family whose other themes use mechanical connector pairs, a miniature racing car, and an empty display alcove. Wide 16:9 composition intended for 640x360 transparent WebP. Subject occupies about 80-85 percent of canvas width and 75-85 percent of height, centered and fully visible with consistent safe margins. Transparent background, no scenery, no opaque rectangle, no checkerboard pattern, no words, no letters, no watermark. Clean readable silhouette at 240x135 screen size. Draw only the requested subject.",
+      "sha256": "d8f25614364d1c6b0582d5bc64b6a45e98c90e6ec51a145a4760504badafdd25",
+      "size": [
+        1672,
+        941
+      ]
+    },
+    {
+      "season": "christmas",
+      "kind": "garage",
+      "source": "release-input/ui/themes/christmas/empty-garage-illustration.png",
+      "prompt": "Create a single production UI empty-state illustration for Open4WD. Clearly visible colored pencil illustration, layered pencil hatching and grain throughout the actual objects, tactile hand-drawn edges, cranberry red, evergreen green, warm ivory, small holly and gold bells. Christmas unmistakable, polished game UI art, not shiny plastic 3D. EXACT SUBJECT: one complete premium MINI 4WD racing toy car, low streamlined racing body, four black rubber tires, exposed small guide rollers and front/rear roller bumpers, rear wing, no driver. Three-quarter front view pointing toward lower left, centered. Seasonal decorations integrated into vehicle body without obscuring vehicle mechanics. No character, no lift, no garage scenery, no gifts surrounding it. Match a cohesive asset family whose other themes use mechanical connector pairs, a miniature racing car, and an empty display alcove. Wide 16:9 composition intended for 640x360 transparent WebP. Subject occupies about 80-85 percent of canvas width and 75-85 percent of height, centered and fully visible with consistent safe margins. Transparent background, no scenery, no opaque rectangle, no checkerboard pattern, no words, no letters, no watermark. Clean readable silhouette at 240x135 screen size. Draw only the requested subject.",
+      "sha256": "48292f9adec35c58abec996d4a34177fecd7582df0c8b0d56af6e935d8bd6540",
+      "size": [
+        1672,
+        941
+      ]
+    },
+    {
+      "season": "christmas",
+      "kind": "generic",
+      "source": "release-input/ui/themes/christmas/empty-generic-illustration.png",
+      "prompt": "Create a single production UI empty-state illustration for Open4WD. Clearly visible colored pencil illustration, layered pencil hatching and grain throughout the actual objects, tactile hand-drawn edges, cranberry red, evergreen green, warm ivory, small holly and gold bells. Christmas unmistakable, polished game UI art, not shiny plastic 3D. EXACT SUBJECT: one empty futuristic mechanical display pedestal/alcove, a wide circular empty platform at bottom and decorative upright backing behind it. Platform visibly EMPTY, blank backing, themed architectural frame. Three-quarter nearly front view. No character, no car, no toolbox, no text, no floating items. Match a cohesive asset family whose other themes use mechanical connector pairs, a miniature racing car, and an empty display alcove. Wide 16:9 composition intended for 640x360 transparent WebP. Subject occupies about 80-85 percent of canvas width and 75-85 percent of height, centered and fully visible with consistent safe margins. Transparent background, no scenery, no opaque rectangle, no checkerboard pattern, no words, no letters, no watermark. Clean readable silhouette at 240x135 screen size. Draw only the requested subject.",
+      "sha256": "73659375dcd0e4db222e2e5dffc1762e60a50c55b1c82e528f3cedf96a27526e",
+      "size": [
+        1672,
+        941
+      ]
+    }
+  ],
+  "superseded": [
+    {
+      "season": "halloween",
+      "kind": "generic",
+      "source": "exec-2d66158f-538d-45c2-99d5-60fec11f65c4.png",
+      "prompt": "Standalone wide 640x360 transparent RGBA game empty-state illustration, centered compact group with 15 percent transparent margins. American vintage Halloween engraving in dark plum ink, pumpkin orange, antique gold and cream, friendly pumpkin-headed mechanic in goggles and plum overalls. An open EMPTY miniature toolbox with a folded cloth and one small wrench beside it, the mechanic looking inside patiently. Clear empty inventory meaning. Warm and reassuring, polished coherent craft illustration, simple strong silhouette readable at small size. No text, numerals, punctuation, brand, watermark, background scene or frame. Actual alpha outside the subject.",
+      "authoringFile": "release-input/ui/themes/halloween/empty-generic-illustration.png"
+    },
+    {
+      "season": "halloween",
+      "kind": "connection",
+      "source": "exec-b2414220-84fc-4f64-bc8a-76f55e2a1723.png",
+      "prompt": "Standalone wide 640x360 transparent RGBA game empty-state illustration, centered compact group with 15 percent transparent margins. American vintage Halloween engraving in dark plum ink, pumpkin orange, antique gold and cream, friendly pumpkin-headed mechanic in goggles and plum overalls. The mechanic holding two visibly DISCONNECTED cable plugs with a clear gap between them, a quiet radio antenna behind. Connection unavailable meaning; no error words, no punctuation. Warm and reassuring, polished coherent craft illustration, simple strong silhouette readable at small size. No text, numerals, punctuation, brand, watermark, background scene or frame. Actual alpha outside the subject.",
+      "authoringFile": "release-input/ui/themes/halloween/empty-connection-illustration.png"
+    },
+    {
+      "season": "christmas",
+      "kind": "generic",
+      "source": "exec-2c4aabec-1fe6-4ccc-ae9c-76f7592d4b0f.png",
+      "prompt": "Standalone wide 640x360 transparent RGBA game empty-state illustration, centered compact group with 15 percent transparent margins. Clearly hand drawn colored pencil Christmas art with visible dry pigment grain and uneven layered hatching, forest green, cranberry red, ivory, a friendly reindeer mechanic in green overalls and red scarf. An open EMPTY miniature toolbox with a folded cloth and one small wrench beside it, the mechanic looking inside patiently. Clear empty inventory meaning. Warm and reassuring, polished coherent craft illustration, simple strong silhouette readable at small size. No text, numerals, punctuation, brand, watermark, background scene or frame. Actual alpha outside the subject.",
+      "authoringFile": "release-input/ui/themes/christmas/empty-generic-illustration.png"
+    },
+    {
+      "season": "christmas",
+      "kind": "connection",
+      "source": "exec-f3f15113-f65e-4ef8-9cc4-72b22ecec731.png",
+      "prompt": "Standalone wide 640x360 transparent RGBA game empty-state illustration, centered compact group with 15 percent transparent margins. Clearly hand drawn colored pencil Christmas art with visible dry pigment grain and uneven layered hatching, forest green, cranberry red, ivory, a friendly reindeer mechanic in green overalls and red scarf. The mechanic holding two visibly DISCONNECTED cable plugs with a clear gap between them, a quiet radio antenna behind. Connection unavailable meaning; no error words, no punctuation. Warm and reassuring, polished coherent craft illustration, simple strong silhouette readable at small size. No text, numerals, punctuation, brand, watermark, background scene or frame. Actual alpha outside the subject.",
+      "authoringFile": "release-input/ui/themes/christmas/empty-connection-illustration.png"
+    }
+  ]
+}

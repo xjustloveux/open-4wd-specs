@@ -1001,3 +1001,11 @@ Constraints: background must be one uniform #00ff00 with no shadow, gradient, te
 7. **手機版必要時是否分版？** 全螢幕 hero 類有出 9:16 嗎？
 
 任何一項 fail → reroll prompt。
+
+## 節慶主題 2026
+
+萬聖節復古與彩鉛聖誕的 PNG 母圖分別放在 `release-input/ui/themes/halloween/` 與 `christmas/`。首頁、車庫背景、UGC 背景必須分工：車庫中央保留空舞台供實際 3D 車輛呈現，UGC 使用賽道設計工作桌，不能全部共用首頁車輛插畫。
+
+通用空狀態使用技師與空工具箱，連線空狀態使用明顯分離的接頭；均為 640×360 透明 WebP。萬聖節採南瓜技師與雕刻筆觸，聖誕節採馴鹿技師與彩鉛筆觸。核心流程圖、按鈕與面板裝飾沿用可編輯 SVG。
+
+製作來源、原稿路徑與重建方式見 [節慶主題 2026](../實際使用圖/節慶主題2026/README.md)。

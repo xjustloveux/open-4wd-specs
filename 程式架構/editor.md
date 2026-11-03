@@ -121,9 +121,20 @@ canonical GLB；runtime collider 也只從該 GLB 的 POSITION／indices 建立�
 
 **與收件端共用同一 validator 模組**（[UGC機制.md §4](../UGC機制.md) Stage 3 檢核 = 收件重算同一套 code）——單一實作防「編輯器放行、全網拒收」的規則漂移。場地 validator 回傳的 `reject` 是 canonical／admission hard rule；`warn` 只供 authoring 呈現，不進 protocol admission。完整分層見 [場地.md §8](../建模參數/場地.md#8-場地-glb-root-extras) `TRACK-R-001`。
 
+**場地碰撞 region 分類（統計分頁）**：場地資產的右側欄統計分頁另列一張表，每個靜態 solid 節點一列（entity 子樹與流體節點不列）：
+
+| 欄 | 內容 |
+| --- | --- |
+| 分類 | 三角法線 \|ny\| < `TRACK_REGION_WALL_NORMAL_Y_MAX`（0.5）視為豎直；豎直占比 ≥ `TRACK_REGION_WALL_FRACTION_MIN`（0.9）＝牆、≤ `TRACK_REGION_GROUND_WALL_FRACTION_MAX`（0.1）＝地、其餘＝混合；退化三角不計 |
+| 三角數 | 該節點三角數 |
+| 處置與預估 piece 數 | 宣告為牆條帶且吻合＝牆條帶切段（環數 − 1）；與 Stage 3 同一份牆條帶判定退回單顆的節點＝單顆（1）；其餘＝地面分塊（質心所在 XZ 格數，與 runtime 同一計數函數） |
+| 八車成本等級 | 三角數 ÷ 預估 piece 數：< `TRACK_REGION_COST_MEDIUM_MIN_TRIANGLES_PER_PIECE`（2000）低、2000–`TRACK_REGION_COST_HIGH_ABOVE_TRIANGLES_PER_PIECE`（20000）中、> 20000 高 |
+
+分類與估算是 `editor/pipeline/track-region-classify.ts` 的純函數，只供作者參考：不進 protocol、admission 或 manifest，也不擋送出。依據見 [D-20261021-01](../decisions/D-20261021-01-場地碰撞體分段與邊界法線機制.md)。
+
 ## 5. 送出驅動（wave B；本機測試 / 上鏈 / 可編輯 GLB）
 
-三出口共用同一 canonical finalizer：攤平編輯 → part 重新執行同一套保真減面 → wave A/B 重算 → 全量規則檢核 → 從實際幾何、材質、合法 empty 與已驗作者宣告建立 current typed `PhysicsManifest`（含純視覺 fragment descriptor、逐 tire region wear capacity、能量域熱欄位、六向接觸面積與 part collider proxies）→ 寫入完整 manifest、version、canonical SHA-256 digest 與 [../版本規範.md §15](../版本規範.md) 的 current marker → Draco → 超大貼圖等比降至 4096px 內並轉 KTX2 → 壓縮後重驗。canonical 相容量測只接受介面表列出的 mount／hinge 特徵與逐 feature 絕對公差；輪徑、AABB、馬達總長等外形尺寸不得進入量測 API。**出口 A 本機測試**存 `local:<uuid>`；**出口 B 上鏈**保持 canonical GLB bytes 不變，只在 bytes 外增加三種分工明確的 mesh fingerprint、PhysicsFingerprint 與 manifest reference，再做相似度、IPFS 與 ledger 操作；**出口 C 可編輯 GLB**由同一 canonical 成品展開 Draco、把 KTX2 轉為內嵌 PNG，保留 authored 結構與 extras，但移除 canonical marker、manifest 與 `auto_*` 衍生快取。鏈上詳情與本機資產下載共用同一轉換埠；CAR 另保留 exact CID。當前 metadata 只支援 `copyright: self-made`。決策見 [D-20260811-04](../decisions/D-20260811-04-逐Collider材質接觸與滾動阻力.md)、[D-20260811-05](../decisions/D-20260811-05-能量域熱模型與固定熱庫接觸.md)、[D-20260811-10](../decisions/D-20260811-10-逐Region接觸耗散輪胎磨耗.md)、[D-20260811-14](../decisions/D-20260811-14-材質Capability與介面嚴外形寬.md)。
+三出口共用同一 canonical finalizer：攤平編輯 → part 重新執行同一套保真減面（每輪外形誤差上限 `PART_IMPORT_SIMPLIFY_ERROR_MAX`，退化比例超標時才續減；退化面積下限依零件尺寸縮放，見 [../程式參數/protocol.md](../程式參數/protocol.md) 的 `PART_DEGENERATE_TRIANGLE_AREA_DIAGONAL_RATIO` 與 [D-20261030-07](../decisions/D-20261030-07-零件退化面積隨尺寸縮放與減面誤差上限.md)）→ wave A/B 重算 → 全量規則檢核 → 從實際幾何、材質、合法 empty 與已驗作者宣告建立 current typed `PhysicsManifest`（含純視覺 fragment descriptor、逐 tire region wear capacity、能量域熱欄位、六向接觸面積與 part collider proxies）→ 寫入完整 manifest、version、canonical SHA-256 digest 與 [../版本規範.md §15](../版本規範.md) 的 current marker → Draco → 超大貼圖等比降至 4096px 內並轉 KTX2 → 壓縮後重驗。canonical 相容量測只接受介面表列出的 mount／hinge 特徵與逐 feature 絕對公差；輪徑、AABB、馬達總長等外形尺寸不得進入量測 API。**出口 A 本機測試**存 `local:<uuid>`；**出口 B 上鏈**保持 canonical GLB bytes 不變，只在 bytes 外增加三種分工明確的 mesh fingerprint、PhysicsFingerprint 與 manifest reference，再做相似度、IPFS 與 ledger 操作；**出口 C 可編輯 GLB**由同一 canonical 成品展開 Draco、把 KTX2 轉為內嵌 PNG，保留 authored 結構與 extras，但移除 canonical marker、manifest 與 `auto_*` 衍生快取。鏈上詳情與本機資產下載共用同一轉換埠；CAR 另保留 exact CID。當前 metadata 只支援 `copyright: self-made`。決策見 [D-20260811-04](../decisions/D-20260811-04-逐Collider材質接觸與滾動阻力.md)、[D-20260811-05](../decisions/D-20260811-05-能量域熱模型與固定熱庫接觸.md)、[D-20260811-10](../decisions/D-20260811-10-逐Region接觸耗散輪胎磨耗.md)、[D-20260811-14](../decisions/D-20260811-14-材質Capability與介面嚴外形寬.md)。
 
 ## 6. 跨模組對接
 

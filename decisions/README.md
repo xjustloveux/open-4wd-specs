@@ -54,3 +54,9 @@
 `pnpm check:decisions`（[scripts/check-decisions.mjs](../scripts/check-decisions.mjs)）驗證：frontmatter 可解析、id 唯一且同檔名、status 鏈雙向一致（`supersedes`↔`superseded_by`）、`amends` 目標存在、domains 合法、`deprecates` 結構、`sources` 唯一解析且與歷史記錄回引雙向一致；歷史記錄側另驗決策檔連結可解析（歷史檔全面豁免於 `check:refs`，只能在此補檢）。月份／每日結構與生成索引由 `pnpm check:history` 驗證；[INDEX.md](INDEX.md) 由決策檢查腳本的 `--write-index` 生成（廢止與改名索引＋依域分組）。
 
 首批 106 筆源自 2026-07-24 歷史記錄 [§1](../歷史記錄.md#1-重大重構里程碑) 全量升格裁決（候選 120、🔹14 依裁決併入或維持流水帳）。
+
+當日序號不保證連號，id 一經使用即不重編：
+
+- 首批升格期間留下的空號（D-20260703-10、D-20260705-04、D-20260706-09／11／13、D-20260708-02）沒有對應的決策檔，也不補建。
+- D-20260726-01 屬工作流程 repo 的決策目錄，與本目錄共用 id 空間。
+- 已核准但尚未落地的決策，先在草稿中占用序號，落地時才寫入本目錄；落地前本目錄會暫時缺號。

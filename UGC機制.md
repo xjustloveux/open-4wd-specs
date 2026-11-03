@@ -203,7 +203,9 @@ UnixFS root 的完整可達 block set；frame 順序不具語意。logical GLB �
 
 CAR 與「匯出可編輯 GLB」目的不同：CAR 保存 canonical UnixFS blocks 與原 CID；GLB 匯出則從
 已驗證 CID 的完整 canonical bytes 展開 Draco、把 KTX2 轉成內嵌 PNG，移除 marker 與衍生快取，
-供 DCC 修改。editable GLB 不承諾原 CID，重新匯入必須重走 Stage 1–3。
+供 DCC 修改。要在一般 GLB 檢視器或 DCC 開啟資產，一律用這份可編輯 GLB：canonical bytes 把
+Draco 與 KTX2 列為 `extensionsRequired`，不具備兩種解碼能力的檢視器會無貼圖或打不開
+（[§9.3](#93-stage-3-場地特殊嚴格檢核)）。editable GLB 不承諾原 CID，重新匯入必須重走 Stage 1–3。
 
 ### 4.6 資產庫／入庫
 
@@ -316,7 +318,7 @@ AABB、Empty 完整度與 extras schema 不在 Stage 1 檢核（Stage 2 處理�
 | ---------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | 必填欄位非空           | `track.route[]`（含 RP1 起點 + RPn 終點；open 恰 2 點 / fixed ≥ 2 點）/ 至少一材質；presentation tags 可為空，不屬 PhysicsManifest admission                                                                           |
 | GLB extras schema 正確 | `open4wd_version` + `type: "track"` marker、`track` / `weather` / `physics` 區塊齊全                                                                                                                                   |
-| 衍生限制滿足           | AABB / tris / GLB 大小 / entity / patch / 主貼圖（見 [零件與共用介面.md §7.2](建模參數/零件與共用介面.md#7-約束限制stage-1--stage-3-嚴格檢核)）                                                                        |
+| 衍生限制滿足           | AABB / tris / GLB 大小 / entity / patch / 主貼圖（見 [零件與共用介面.md §7.2](建模參數/零件與共用介面.md#7-約束限制stage-1--stage-3-嚴格檢核)）；collider piece ≤ 8192，admission 與 Stage 3 依 runtime 同一套切分純函數計數，超限拒收（`collider-piece-count-exceeded`）                                                                        |
 | Geometry 壓縮          | 必須 **Draco**（level ≥ 7），未壓縮 mesh primitive 拒收                                                                                                                                                                |
 | Texture 壓縮           | 主場地貼圖必須 **KTX2 / Basis Universal**（PNG / JPG 直接內嵌拒收）                                                                                                                                                    |
 | Empty 命名規則         | PascalCase + 標準名（見 [零件與共用介面.md §5.4](建模參數/零件與共用介面.md#5-empty-node-命名約定)）                                                                                                                   |
@@ -327,6 +329,7 @@ AABB、Empty 完整度與 extras schema 不在 Stage 1 檢核（Stage 2 處理�
 | RespawnPoint 位置      | 必須在場地 AABB 內                                                                                                                                                                                                     |
 | Empty ↔ 陣列 1:1       | `track.route[]` / `track.checkpoints[]` 每個 entry 有對應同名 empty；`RoutePoint` / `Checkpoint` 前綴 empty 未列入對應陣列 = 孤兒 → 拒收（[零件與共用介面.md §5.4](建模參數/零件與共用介面.md#5-empty-node-命名約定)） |
 | 玩家上限合理           | `PLAYERS_PER_RACE_MIN`（2）≤ auto_player_max ≤ `TRACK_MAX_PLAYERS_HARDCAP`（8）（下限不足 = 永遠開不了房）                                                                                                             |
+| 牆條帶宣告（若有）     | 同一 `mesh_node` 重複宣告拒收（`wall-strip-node-duplicate`，admission 同一判定）；節點須為獨立 solid region、環序列合法（每環點數 ≤ `TRACK_WALL_RING_POINTS_MAX`、環數與段數合計受 piece 上限約束）、三角歸屬成立；不吻合不拒收：該 region 退回單顆碰撞體（manifest `singleColliderNodes`），節點不存在則宣告作廢，皆給警告 `wall-strip-fallback`（reason＝`wall-strip-node-missing`／`wall-strip-ring-shape`／`wall-strip-triangle-unassigned`），見 [場地.md §8.7](建模參數/場地.md#87-碰撞體分段collision-區塊選填) |
 | 重力參數合法           | `gravity_direction` ≠ 零向量；`gravity_strength_m_s2` ∈ 1.6–25                                                                                                                                                         |
 
 以上正式限制同時受 [場地.md §8](建模參數/場地.md#8-場地-glb-root-extras) 的
@@ -334,7 +337,7 @@ AABB、Empty 完整度與 extras schema 不在 Stage 1 檢核（Stage 2 處理�
 authoring UI。首次 admission 只有在完整 `TrackPhysicsManifest` 重建、參照核對及 receipt 持久化全數
 成功後才成立；runtime 只消費 typed admitted asset，不在賽前重跑本表。
 
-> **強制壓縮設計理由**：Draco + KTX2 都是 **glTF 2.0 標準 extension**（`KHR_draco_mesh_compression` / `KHR_texture_basisu`），主流 viewer / engine 原生支援。Stage 2 編輯器在 finalize 時自動套用（玩家不需手動處理）；Stage 3 拒收未壓縮純粹是防繞過 Stage 2 直送 Stage 3。具體量化參數（Draco position bits / KTX2 UASTC vs ETC1S 選擇）屬實作層，由 convert script 決定。
+> **強制壓縮設計理由**：Draco + KTX2 都是 **glTF 2.0 標準 extension**（`KHR_draco_mesh_compression` / `KHR_texture_basisu`），且 canonical GLB 把兩者列在 `extensionsRequired`：第三方 viewer / engine 必須**同時**具備 Draco 解碼器與 KTX2（Basis Universal）轉碼器才能開啟——缺 KTX2 轉碼會無貼圖或報錯（three.js 的 `setKTX2Loader must be called…`），缺 Draco 多半靜默失敗。這是刻意的：canonical bytes 只為本專案 runtime（自帶 decoder／transcoder worker）與鏈上容量設計；要在一般檢視器或 DCC 開啟，請用出口 C 的可編輯 GLB（[§4.5](#45-car-保存與本機補回)）。Stage 2 編輯器在 finalize 時自動套用（玩家不需手動處理）；Stage 3 拒收未壓縮純粹是防繞過 Stage 2 直送 Stage 3。具體量化參數（Draco position bits / KTX2 UASTC vs ETC1S 選擇）屬實作層，由 convert script 決定。
 
 ### 9.4 場地外部可變 presentation metadata
 
@@ -390,7 +393,7 @@ magnet、destructible-heavy、narrow、wide、short、long；仍只受共通字�
 
 ### 10.1 schema 版本寫入時機
 
-`open4wd_version` 由 Stage 3 共用 canonical finalizer 寫入；本機儲存與上鏈使用相同已標記 GLB bytes。開發期唯一支援的 marker 與 PhysicsManifest 版本以 [版本規範.md §15](版本規範.md) 為權威；current manifest 必須包含逐 tire collider region wear capacity、定點能量帳、能量域熱欄位與 part collider proxies，並攜帶 version 與 digest。沒有舊版 shim、遷移或雙讀 fallback。檔案匯出以這份 canonical bytes 為來源，但下載前移除 marker、manifest 與衍生快取，避免外部修改後冒充 current canonical。Stage 2 編輯內容仍只存在 session 記憶體（不做持久化草稿）。
+`open4wd_version` 由 Stage 3 共用 canonical finalizer 寫入；本機儲存與上鏈使用相同已標記 GLB bytes。開發期唯一支援的 marker 與 PhysicsManifest 版本以 [版本規範.md §15](版本規範.md) 為權威；current manifest 必須包含逐 tire collider region wear capacity、定點能量帳、能量域熱欄位、part collider proxies 與場地碰撞體分段宣告 `collision`，並攜帶 version 與 digest。沒有舊版 shim、遷移或雙讀 fallback。檔案匯出以這份 canonical bytes 為來源，但下載前移除 marker、manifest 與衍生快取，避免外部修改後冒充 current canonical。Stage 2 編輯內容仍只存在 session 記憶體（不做持久化草稿）。
 
 ### 10.1.1 PhysicsManifest admission 與 runtime authority
 

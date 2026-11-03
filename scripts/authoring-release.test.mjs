@@ -37,6 +37,9 @@ async function fixture() {
     join(input, "audio", "engines", "idle.wav"),
     Buffer.from("wav fixture"),
   );
+  await mkdir(join(input, "generator"), { recursive: true });
+  await writeFile(join(input, "generator", "build.py"), "print('fixture')\n");
+  await writeFile(join(input, "generator", "GENERATOR.md"), "# fixture\n");
   const sourceBytes = Buffer.from("glTF fixture");
   return {
     temporary,
@@ -92,6 +95,18 @@ test("prepare creates deterministic release bytes and preserves logical archive 
       },
       {
         assetId: null,
+        logicalPath: "generator/build.py",
+        releaseAsset: "authoring-text.zip",
+        archivePath: "generator/build.py",
+      },
+      {
+        assetId: null,
+        logicalPath: "generator/GENERATOR.md",
+        releaseAsset: "authoring-text.zip",
+        archivePath: "generator/GENERATOR.md",
+      },
+      {
+        assetId: null,
         logicalPath: "images/parts/wheel.png",
         releaseAsset: "authoring-images.zip",
         archivePath: "images/parts/wheel.png",
@@ -109,6 +124,7 @@ test("prepare creates deterministic release bytes and preserves logical archive 
     "authoring-audio.zip",
     "authoring-images.zip",
     "authoring-release-manifest.json",
+    "authoring-text.zip",
     "sport.glb",
   ])
     assert.deepEqual(
@@ -116,6 +132,37 @@ test("prepare creates deterministic release bytes and preserves logical archive 
       await readFile(join(outputs[1], name)),
       name,
     );
+});
+
+test("prepare and verify accept e2e: sourced GLBs under the same identity rules as builtin:", async () => {
+  const { temporary, input, sourceManifest } = await fixture();
+  const e2eBytes = Buffer.from("glTF e2e fixture");
+  await writeFile(join(input, "vehicles", "shell-e2e.glb"), e2eBytes);
+  sourceManifest.assets.push({
+    assetId: "e2e:shell",
+    logicalPath: "release-input/vehicles/shell-e2e.glb",
+    releaseAsset: "shell-e2e.glb",
+    sha256: createHash("sha256").update(e2eBytes).digest("hex"),
+    size: e2eBytes.length,
+  });
+  const outputDirectory = join(temporary, "e2e");
+  await prepareAuthoringRelease({
+    inputDirectory: input,
+    outputDirectory,
+    sourceSha: SHA,
+    sourceManifest,
+  });
+  const manifest = await verifyPreparedAuthoringRelease(outputDirectory);
+  assert.deepEqual(
+    manifest.inputs
+      .filter((entry) => entry.assetId !== null)
+      .map(({ assetId, releaseAsset }) => ({ assetId, releaseAsset })),
+    // inputs 依 logical path 排序，與前綴無關
+    [
+      { assetId: "e2e:shell", releaseAsset: "shell-e2e.glb" },
+      { assetId: "builtin:sport", releaseAsset: "sport.glb" },
+    ],
+  );
 });
 
 test("verify rejects changed assets", async () => {

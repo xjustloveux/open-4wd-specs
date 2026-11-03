@@ -49,6 +49,21 @@ test("manifest validates a minimal source-only contract and derives stable relea
   });
 });
 
+test("manifest accepts e2e import inputs beside builtin sources and rejects other id namespaces", () => {
+  const current = manifest();
+  current.assets[1] = {
+    ...current.assets[1],
+    assetId: "e2e:part-chassis",
+    logicalPath: "release-input/e2e/e2e-part-chassis/e2e-part-chassis.glb",
+    releaseAsset: "e2e-part-chassis.glb",
+  };
+  assert.deepEqual(validateAuthoringSourceManifest(current), []);
+  current.assets[1] = { ...current.assets[1], assetId: "test:part-chassis" };
+  assert.ok(
+    validateAuthoringSourceManifest(current).some((error) => error.includes("assetId is invalid")),
+  );
+});
+
 test("manifest rejects duplicate identity, flat-name collisions, traversal, and non-canonical names", () => {
   const duplicate = manifest();
   duplicate.assets[1] = {

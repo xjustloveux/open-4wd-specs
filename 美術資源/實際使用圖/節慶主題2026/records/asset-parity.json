@@ -1,0 +1,214 @@
+{
+  "halloween": {
+    "referenceThemes": [
+      "default",
+      "moon-rabbit-workshop-2026-97c954"
+    ],
+    "imageKeys": 26,
+    "missingImageKeys": [],
+    "uniqueFiles": 21,
+    "files": [
+      "assets/brand-emblem.svg",
+      "assets/core-loop-assembly.svg",
+      "assets/core-loop-race.svg",
+      "assets/core-loop-tuning.svg",
+      "assets/empty-connection.webp",
+      "assets/empty-generic.webp",
+      "assets/harvest-engraving.webp",
+      "assets/landing-hero.webp",
+      "assets/panel-surface.svg",
+      "assets/primary-action-decoration.svg",
+      "assets/race-countdown/1-static.webp",
+      "assets/race-countdown/1.webp",
+      "assets/race-countdown/2-static.webp",
+      "assets/race-countdown/2.webp",
+      "assets/race-countdown/3-static.webp",
+      "assets/race-countdown/3.webp",
+      "assets/race-countdown/start-static.webp",
+      "assets/race-countdown/start.webp",
+      "assets/scene-ugc.webp",
+      "assets/workshop-background.webp",
+      "assets/workshop-entry-icon.svg"
+    ],
+    "countdown": {
+      "1-static.webp": {
+        "size": [
+          512,
+          512
+        ],
+        "frames": 1,
+        "loop": 1,
+        "bytes": 32016
+      },
+      "1.webp": {
+        "size": [
+          512,
+          512
+        ],
+        "frames": 7,
+        "loop": 1,
+        "bytes": 189178
+      },
+      "2-static.webp": {
+        "size": [
+          512,
+          512
+        ],
+        "frames": 1,
+        "loop": 1,
+        "bytes": 53674
+      },
+      "2.webp": {
+        "size": [
+          512,
+          512
+        ],
+        "frames": 7,
+        "loop": 1,
+        "bytes": 316470
+      },
+      "3-static.webp": {
+        "size": [
+          512,
+          512
+        ],
+        "frames": 1,
+        "loop": 1,
+        "bytes": 55256
+      },
+      "3.webp": {
+        "size": [
+          512,
+          512
+        ],
+        "frames": 7,
+        "loop": 1,
+        "bytes": 324662
+      },
+      "start-static.webp": {
+        "size": [
+          512,
+          512
+        ],
+        "frames": 1,
+        "loop": 1,
+        "bytes": 52144
+      },
+      "start.webp": {
+        "size": [
+          512,
+          512
+        ],
+        "frames": 8,
+        "loop": 1,
+        "bytes": 353398
+      }
+    }
+  },
+  "christmas": {
+    "referenceThemes": [
+      "default",
+      "moon-rabbit-workshop-2026-97c954"
+    ],
+    "imageKeys": 26,
+    "missingImageKeys": [],
+    "uniqueFiles": 21,
+    "files": [
+      "assets/brand-emblem.svg",
+      "assets/core-loop-assembly.svg",
+      "assets/core-loop-race.svg",
+      "assets/core-loop-tuning.svg",
+      "assets/empty-connection.webp",
+      "assets/empty-garage.webp",
+      "assets/empty-generic.webp",
+      "assets/landing-hero.webp",
+      "assets/panel-surface.svg",
+      "assets/primary-action-decoration.svg",
+      "assets/race-countdown/1-static.webp",
+      "assets/race-countdown/1.webp",
+      "assets/race-countdown/2-static.webp",
+      "assets/race-countdown/2.webp",
+      "assets/race-countdown/3-static.webp",
+      "assets/race-countdown/3.webp",
+      "assets/race-countdown/start-static.webp",
+      "assets/race-countdown/start.webp",
+      "assets/scene-ugc.webp",
+      "assets/workshop-background.webp",
+      "assets/workshop-entry-icon.svg"
+    ],
+    "countdown": {
+      "1-static.webp": {
+        "size": [
+          512,
+          512
+        ],
+        "frames": 1,
+        "loop": 1,
+        "bytes": 49102
+      },
+      "1.webp": {
+        "size": [
+          512,
+          512
+        ],
+        "frames": 7,
+        "loop": 1,
+        "bytes": 287734
+      },
+      "2-static.webp": {
+        "size": [
+          512,
+          512
+        ],
+        "frames": 1,
+        "loop": 1,
+        "bytes": 67258
+      },
+      "2.webp": {
+        "size": [
+          512,
+          512
+        ],
+        "frames": 7,
+        "loop": 1,
+        "bytes": 394940
+      },
+      "3-static.webp": {
+        "size": [
+          512,
+          512
+        ],
+        "frames": 1,
+        "loop": 1,
+        "bytes": 65026
+      },
+      "3.webp": {
+        "size": [
+          512,
+          512
+        ],
+        "frames": 7,
+        "loop": 1,
+        "bytes": 380314
+      },
+      "start-static.webp": {
+        "size": [
+          512,
+          512
+        ],
+        "frames": 1,
+        "loop": 1,
+        "bytes": 65194
+      },
+      "start.webp": {
+        "size": [
+          512,
+          512
+        ],
+        "frames": 8,
+        "loop": 1,
+        "bytes": 450736
+      }
+    }
+  }
+}

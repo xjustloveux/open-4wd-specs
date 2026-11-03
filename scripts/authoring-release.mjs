@@ -8,11 +8,13 @@ import {
   writeFile,
 } from "node:fs/promises";
 import { basename, extname, join, relative, resolve, sep } from "node:path";
-import { validateAuthoringSourceManifest } from "./authoring-source-manifest.mjs";
+import {
+  ASSET_ID,
+  validateAuthoringSourceManifest,
+} from "./authoring-source-manifest.mjs";
 
 const SHA = /^[0-9a-f]{40}$/u;
 const SHA256 = /^[0-9a-f]{64}$/u;
-const ASSET_ID = /^builtin:[a-z0-9-]+$/u;
 const RELEASE_ASSET = /^[A-Za-z0-9][A-Za-z0-9._-]*$/u;
 // 發布腳本在 bundle 目錄內產生的旁生檔：本次發布的 receipt，以及下載回讀副本
 // （含被移置一旁的前一輪）。它們既不是 Release 產物，也不該讓 bundle 驗證失敗。
@@ -20,6 +22,8 @@ const PUBLISH_SIDECAR = /^(?:publish-receipt\.json|\.readback(?:-[\w.-]+)?)$/u;
 const DIRECT_EXTENSIONS = new Set([".glb"]);
 const IMAGE_EXTENSIONS = new Set([".png"]);
 const AUDIO_EXTENSIONS = new Set([".wav", ".flac"]);
+// 程序化資產的生成器程式與來源說明屬 authoring 輸入，與圖片、音訊同樣以固定順序封裝。
+const TEXT_EXTENSIONS = new Set([".py", ".md"]);
 const ZIP_UTF8 = 0x0800;
 
 const crcTable = Array.from({ length: 256 }, (_, value) => {
@@ -176,7 +180,7 @@ export async function prepareAuthoringRelease({
 
   const directNames = new Set();
   const sourceEntries = [];
-  const grouped = { images: [], audio: [] };
+  const grouped = { images: [], audio: [], text: [] };
   const sourceByLogicalPath = new Map(
     sourceManifest.assets.map((asset) => [
       asset.logicalPath.replace(/^release-input\//u, ""),
@@ -229,6 +233,10 @@ export async function prepareAuthoringRelease({
       sourceEntry.releaseAsset = "authoring-audio.zip";
       sourceEntry.archivePath = logicalPath;
       grouped.audio.push({ path: logicalPath, bytes: await readFile(full) });
+    } else if (TEXT_EXTENSIONS.has(extension)) {
+      sourceEntry.releaseAsset = "authoring-text.zip";
+      sourceEntry.archivePath = logicalPath;
+      grouped.text.push({ path: logicalPath, bytes: await readFile(full) });
     } else {
       throw new Error(`unsupported release input extension: ${logicalPath}`);
     }
@@ -243,6 +251,7 @@ export async function prepareAuthoringRelease({
   for (const [group, releaseAsset] of [
     [grouped.images, "authoring-images.zip"],
     [grouped.audio, "authoring-audio.zip"],
+    [grouped.text, "authoring-text.zip"],
   ]) {
     if (group.length > 0)
       await writeFile(

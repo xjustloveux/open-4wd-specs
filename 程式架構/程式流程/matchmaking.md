@@ -113,8 +113,11 @@ flowchart TD
 ```mermaid
 flowchart TD
     Race[比賽進行中] --> Voluntary{GO 後主動離場?}
-    Voluntary -->|是| LeaveWire[送出 leave<br/>reason voluntary]
-    LeaveWire --> LeaveEvent[本人單簽 RaceLeaveEvent]
+    Voluntary -->|是| LeaveEvent[本人單簽 RaceLeaveEvent]
+    LeaveEvent --> InRound{match 回合進行中?}
+    InRound -->|是| InStream[已簽輸入流送 leave<br/>等 leave-flushed 或上限]
+    InRound -->|否| LeaveWire[送出 control leave<br/>reason voluntary]
+    InStream --> LeaveWire
     LeaveEvent --> LeaveEffect[套用離場計次與信譽效果]
 
     Voluntary -->|否| Disconnect[玩家 X 斷線]
@@ -141,7 +144,7 @@ flowchart TD
     class Void fail
 ```
 
-`RaceLeaveEvent` 只立即形成本人離場成本，不產生排名、TrueSkill、經濟或完賽效果，也不縮小 MatchResult quorum；正式 MatchResult 的其餘效果仍依原 active roster 的合法定稿正常套用。
+流內 leave 只決定該回合的退出幀（[network-sync.md §7.4](../network-sync.md)）；control `leave` 與網路斷線只進結算 forfeit 名單，不影響回合終局。`RaceLeaveEvent` 只立即形成本人離場成本，不產生排名、TrueSkill、經濟或完賽效果，也不縮小 MatchResult quorum；正式 MatchResult 的其餘效果仍依原 active roster 的合法定稿正常套用。
 
 ## 房主繼任
 

@@ -43,3 +43,5 @@ Windows 也可從 `open-4wd-specs` 執行 `build-race-animation.bat`；兩個入
 
 預設 authoring root 為 `open-4wd-specs/release-input/ui/race-countdown/`；只有從另一個已驗證
 備份重建時，才以 `--authoring-root <path>` 明確覆寫。
+
+萬聖節與聖誕節共用本目錄的 PNG 動畫編碼器與時序，節慶插畫來源及交付檢查表見 [節慶主題 2026](../節慶主題2026/README.md)。兩者同樣輸出透明、單次播放的動畫及靜態 WebP，PNG 影格保存在各自的 `release-input/ui/race-countdown/` 子目錄。
