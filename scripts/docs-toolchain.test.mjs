@@ -1717,6 +1717,14 @@ test("glob lints exclude local tool workspaces without disabling corpus lint", (
     join(superpowersPlan, "local-plan.md"),
     "### Skipped heading\n\n這是 MVP 版本。\n\n```\nbroken\n```\n",
   );
+  for (const stagingRoot of ["release-input", "release-output"]) {
+    const staging = join(root, stagingRoot, "tracks", "generator");
+    mkdirSync(staging, { recursive: true });
+    writeFileSync(
+      join(staging, "README.md"),
+      "### Skipped heading\n\n這是 MVP 版本。\n\n```\nbroken\n```\n",
+    );
+  }
 
   const markdownlint = join(
     REPO_ROOT,
@@ -2467,9 +2475,21 @@ test("offline docs build uses the existing venv with a cold cache", (t) => {
   ]) {
     assert.ok(searchable.includes(term), `${term} 必須原樣保留於搜尋索引`);
   }
+  // 動態門檻（issue 001032）：無 Jieba 基準＝同一份索引剝離分詞分隔符（逸出序列
+  // ​ 與原始零寬空白皆剝）後的位元組數，隨語料成長自動縮放；固定字面值會被
+  // 自然成長撐破。Jieba 的膨脹機制只有插入分隔符，剝離即還原無分詞序列化。
+  const searchIndexBytes = readFileSync(searchIndexPath);
+  const separatorEscape = String.fromCharCode(92) + "u200b";
+  const noJiebaBaselineByteLength = Buffer.byteLength(
+    searchIndexBytes
+      .toString("utf8")
+      .replaceAll(separatorEscape, "")
+      .replaceAll("​", ""),
+    "utf8",
+  );
   assert.ok(
-    readFileSync(searchIndexPath).byteLength < 8_873_356,
-    "Jieba 索引不得超過無 Jieba 基準的兩倍",
+    searchIndexBytes.byteLength < noJiebaBaselineByteLength * 2,
+    `Jieba 索引不得超過無 Jieba 基準的兩倍（實際 ${searchIndexBytes.byteLength}、基準 ${noJiebaBaselineByteLength}）`,
   );
 });
 

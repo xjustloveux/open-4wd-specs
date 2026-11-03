@@ -5,6 +5,7 @@ summary: 賽中圖示訊息目錄、圖庫、九格 loadout、wire 與 HUD 契�
 authority: null
 slug: null
 ---
+
 # 賽中圖示訊息（race-messages）
 
 > 本模組是獨立於網站 `ThemeService` 的參賽者快速溝通系統。等待房自由文字仍由 [chat-system.md](chat-system.md) 負責；進入比賽後只使用本模組的受審查圖示訊息。
@@ -13,20 +14,20 @@ slug: null
 
 中央 `MessageDefinition` 以只新增不改義的 `messageKey` 表示共同文字語意。每筆必須有 `zh-TW`／`zh-CN`／`en`／`ja` label、無障礙描述、分類與搜尋詞，且不得含 HTML 或 URL。v1 固定 12 類 × 8 筆，共 96 keys：
 
-| 類別 | keys |
-|---|---|
-| 基本回答 | `yes`、`no`、`okay`、`understood`、`not-sure`、`maybe`、`please`、`one-more-time` |
-| 問候／開場 | `hello`、`welcome`、`nice-to-meet-you`、`good-luck`、`have-fun`、`lets-go`、`wait-a-moment`、`here-we-go` |
-| 行車／位置 | `on-your-left`、`on-your-right`、`coming-through`、`go-ahead`、`after-you`、`slowing-down`、`stopping`、`make-way` |
-| 一般危險 | `watch-out`、`danger`、`obstacle-ahead`、`crash-ahead`、`debris-ahead`、`slippery-road`、`rough-road`、`narrow-path` |
-| 賽道／戰鬥 | `jump-ahead`、`trap-ahead`、`incoming-attack`、`behind-you`、`wrong-way`、`blocked-path`、`wait-for-me`、`catching-up` |
-| 自身狀態 | `im-stuck`、`im-lost`、`i-crashed`、`im-damaged`、`low-energy`、`cant-move`、`recovering`、`im-out` |
-| 正向稱讚 | `nice`、`great`、`amazing`、`awesome`、`impressive`、`well-done`、`clean-move`、`respect` |
-| 情緒／幽默 | `wow`、`lol`、`oops`、`no-way`、`close-one`、`lucky`、`unlucky`、`facepalm` |
-| 禮貌／修復關係 | `thanks`、`sorry`、`my-bad`、`excuse-me`、`no-problem`、`its-okay`、`please-stop`、`no-hard-feelings` |
-| 競技表現 | `nice-hit`、`good-dodge`、`good-save`、`good-defense`、`that-hurt`、`comeback`、`great-overtake`、`photo-finish` |
-| 鼓勵 | `keep-going`、`dont-give-up`、`you-can-do-it`、`take-your-time`、`almost-there`、`nice-try`、`all-good`、`next-time` |
-| 賽後互動 | `good-game`、`well-played`、`congratulations`、`nice-race`、`great-finish`、`good-effort`、`rematch`、`goodbye` |
+| 類別           | keys                                                                                                                   |
+| -------------- | ---------------------------------------------------------------------------------------------------------------------- |
+| 基本回答       | `yes`、`no`、`okay`、`understood`、`not-sure`、`maybe`、`please`、`one-more-time`                                      |
+| 問候／開場     | `hello`、`welcome`、`nice-to-meet-you`、`good-luck`、`have-fun`、`lets-go`、`wait-a-moment`、`here-we-go`              |
+| 行車／位置     | `on-your-left`、`on-your-right`、`coming-through`、`go-ahead`、`after-you`、`slowing-down`、`stopping`、`make-way`     |
+| 一般危險       | `watch-out`、`danger`、`obstacle-ahead`、`crash-ahead`、`debris-ahead`、`slippery-road`、`rough-road`、`narrow-path`   |
+| 賽道／戰鬥     | `jump-ahead`、`trap-ahead`、`incoming-attack`、`behind-you`、`wrong-way`、`blocked-path`、`wait-for-me`、`catching-up` |
+| 自身狀態       | `im-stuck`、`im-lost`、`i-crashed`、`im-damaged`、`low-energy`、`cant-move`、`recovering`、`im-out`                    |
+| 正向稱讚       | `nice`、`great`、`amazing`、`awesome`、`impressive`、`well-done`、`clean-move`、`respect`                              |
+| 情緒／幽默     | `wow`、`lol`、`oops`、`no-way`、`close-one`、`lucky`、`unlucky`、`facepalm`                                            |
+| 禮貌／修復關係 | `thanks`、`sorry`、`my-bad`、`excuse-me`、`no-problem`、`its-okay`、`please-stop`、`no-hard-feelings`                  |
+| 競技表現       | `nice-hit`、`good-dodge`、`good-save`、`good-defense`、`that-hurt`、`comeback`、`great-overtake`、`photo-finish`       |
+| 鼓勵           | `keep-going`、`dont-give-up`、`you-can-do-it`、`take-your-time`、`almost-there`、`nice-try`、`all-good`、`next-time`   |
+| 賽後互動       | `good-game`、`well-played`、`congratulations`、`nice-race`、`great-finish`、`good-effort`、`rematch`、`goodbye`        |
 
 倒數／GO、Ready、正式斷線、排名、圈數、完賽、處罰、checksum／desync、資源下載及網路品質都是 runtime 可判定事實，不進玩家自選目錄。現行 8 人 FFA 也不提供結盟、集火或指定玩家訊息。
 
@@ -41,19 +42,23 @@ slug: null
 - 只有已取得可公開散布權、provenance 可稽核且通過 CI decode／digest／尺寸／透明／容量檢查的圖庫可進 Git。既然正式隨 Git 出貨，所有玩家都可選用、發送、下載與觀看，不設 entitlement gate。
 - 缺圖或下載失敗不阻擋 match-start、race-ready 或倒數；以中央四語 label 與 core fallback icon 顯示。
 
-首批 runtime pack `default-inspired` 與 `moon-rabbit` 各覆蓋 v1 全 96 keys，但網站主題只是美術靈感，不是 runtime 關聯。提示詞與原始 PNG 位置：
+Runtime pack `default-inspired`、`moon-rabbit`、`halloween` 與 `christmas` 各覆蓋 v1 全 96 keys，但網站主題只是美術靈感，不是 runtime 關聯。提示詞與原始 PNG 位置：
 
 ```text
 open-4wd-specs/美術資源/提示詞/賽中訊息圖示/default-inspired.md
 open-4wd-specs/美術資源/提示詞/賽中訊息圖示/moon-rabbit.md
-open-4wd-specs/release-input/ui/race-messages/{default,moon-rabbit}/
+open-4wd-specs/美術資源/提示詞/賽中訊息圖示/halloween.md
+open-4wd-specs/美術資源/提示詞/賽中訊息圖示/christmas.md
+open-4wd-specs/release-input/ui/race-messages/{default,moon-rabbit,halloween,christmas}/
 ```
 
-兩套各 96 張無字 RGBA PNG 已依提示詞逐張生成並保留於 specs；main repo 的 `scripts/generate-race-message-packs.mjs --complete` 會縮放、壓縮為 256×256 WebP 並產生含 byte size 與 SHA-256 的 manifest，`scripts/check-race-message-packs.mjs --complete` 則逐張解碼驗證完整性、尺寸、alpha、64 KiB 上限與 digest。runtime 產物位於：
+每套的 96 張無字 RGBA PNG 依提示詞逐張製作並保留於 specs；main repo 的 `scripts/generate-race-message-packs.mjs --complete` 會縮放、壓縮為 256×256 WebP 並產生含 byte size 與 SHA-256 的 manifest，`scripts/check-race-message-packs.mjs --complete` 則逐張解碼驗證完整性、尺寸、alpha、64 KiB 上限與 digest。runtime 產物位於：
 
 ```text
-open-4wd/public/assets/race-message-packs/{default-inspired,moon-rabbit}/
+open-4wd/public/assets/race-message-packs/{default-inspired,moon-rabbit,halloween,christmas}/
 ```
+
+新增圖庫時必須同批補上 generator、完整性 checker、builtin manifest registry、四語設定名稱與精確 identity 測試。`--complete` 除張數外，必須核對中央目錄的完整 key 集合；不能只把圖檔放進 public 目錄。單獨重建可使用 `--pack=halloween` 或 `--pack=christmas`，避免重編碼既有圖庫。
 
 ## 3. 玩家九格與凍結時點
 
@@ -69,7 +74,7 @@ open-4wd/public/assets/race-message-packs/{default-inspired,moon-rabbit}/
 
 ```typescript
 interface RaceMessageWire {
-  type: 'race-message';
+  type: "race-message";
   matchId: string;
   sender: PeerId;
   loadoutDigest: string;

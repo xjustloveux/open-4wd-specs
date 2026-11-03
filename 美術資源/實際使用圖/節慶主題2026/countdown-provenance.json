@@ -1,0 +1,151 @@
+{
+  "generator": "OpenAI built-in imagegen",
+  "masters": [
+    {
+      "season": "halloween",
+      "name": "3",
+      "prompt": "Create one premium game HUD illustration, square canvas, genuine transparent RGBA background, 12% clear margins. American vintage Halloween engraved illustration, pumpkin orange, deep plum, antique brass, dense fine crosshatching. Carved pumpkin surfaces, bat wing brackets, brass workshop details. One single LARGE numeral 3 filling 75% of the canvas height. Solid broad sculptural glyph, immediately readable at 64px, intricate themed surface illustrations and small attached seasonal decorations, front facing. No other numerals or words. Match the richness and crafted detail of a premium arcade racing countdown collectible, not a thin line icon. No background scene, panel, rectangular frame, logo, watermark, surrounding text or full-canvas glow.",
+      "authoringFile": "release-input/ui/race-countdown/halloween/source/3.png"
+    },
+    {
+      "season": "halloween",
+      "name": "2",
+      "prompt": "Create one premium game HUD illustration, square canvas, genuine transparent RGBA background, 12% clear margins. American vintage Halloween engraved illustration, pumpkin orange, deep plum, antique brass, dense fine crosshatching. Carved pumpkin surfaces, bat wing brackets, brass workshop details. One single LARGE numeral 2 filling 75% of the canvas height. Solid broad sculptural glyph, immediately readable at 64px, intricate themed surface illustrations and small attached seasonal decorations, front facing. No other numerals or words. Match the richness and crafted detail of a premium arcade racing countdown collectible, not a thin line icon. No background scene, panel, rectangular frame, logo, watermark, surrounding text or full-canvas glow.",
+      "authoringFile": "release-input/ui/race-countdown/halloween/source/2.png"
+    },
+    {
+      "season": "halloween",
+      "name": "1",
+      "prompt": "Create one premium game HUD illustration, square canvas, genuine transparent RGBA background, 12% clear margins. American vintage Halloween engraved illustration, pumpkin orange, deep plum, antique brass, dense fine crosshatching. Carved pumpkin surfaces, bat wing brackets, brass workshop details. One single LARGE numeral 1 filling 75% of the canvas height. Solid broad sculptural glyph, immediately readable at 64px, intricate themed surface illustrations and small attached seasonal decorations, front facing. No other numerals or words. Match the richness and crafted detail of a premium arcade racing countdown collectible, not a thin line icon. No background scene, panel, rectangular frame, logo, watermark, surrounding text or full-canvas glow.",
+      "authoringFile": "release-input/ui/race-countdown/halloween/source/1.png"
+    },
+    {
+      "season": "halloween",
+      "name": "start",
+      "prompt": "Create one premium game HUD illustration, square canvas, genuine transparent RGBA background, 12% clear margins. American vintage Halloween engraved illustration, pumpkin orange, deep plum, antique brass, dense fine crosshatching. Carved pumpkin surfaces, bat wing brackets, brass workshop details. A compact festive starting horn / race signal launcher on a small mechanical base, three-quarter view, releasing a single controlled burst of festive sparks toward upper right. Absolutely NO words, letters, numerals or GO symbol. Match the richness and crafted detail of a premium arcade racing countdown collectible, not a thin line icon. No background scene, panel, rectangular frame, logo, watermark, surrounding text or full-canvas glow.",
+      "authoringFile": "release-input/ui/race-countdown/halloween/source/start.png"
+    },
+    {
+      "season": "christmas",
+      "name": "3",
+      "prompt": "Create one premium game HUD illustration, square canvas, genuine transparent RGBA background, 12% clear margins. Christmas COLORED PENCIL illustration, visibly rough dry pencil pigment, rich layered crosshatching, cranberry red, evergreen green, warm ivory, gold. Fir sprigs, holly berries, ribbon and tiny sleigh bells. Never smooth vector, glossy 3D or watercolor. One single LARGE numeral 3 filling 75% of the canvas height. Solid broad sculptural glyph, immediately readable at 64px, intricate themed surface illustrations and small attached seasonal decorations, front facing. No other numerals or words. Match the richness and crafted detail of a premium arcade racing countdown collectible, not a thin line icon. No background scene, panel, rectangular frame, logo, watermark, surrounding text or full-canvas glow.",
+      "authoringFile": "release-input/ui/race-countdown/christmas/source/3.png"
+    },
+    {
+      "season": "christmas",
+      "name": "2",
+      "prompt": "Create one premium game HUD illustration, square canvas, genuine transparent RGBA background, 12% clear margins. Christmas COLORED PENCIL illustration, visibly rough dry pencil pigment, rich layered crosshatching, cranberry red, evergreen green, warm ivory, gold. Fir sprigs, holly berries, ribbon and tiny sleigh bells. Never smooth vector, glossy 3D or watercolor. One single LARGE numeral 2 filling 75% of the canvas height. Solid broad sculptural glyph, immediately readable at 64px, intricate themed surface illustrations and small attached seasonal decorations, front facing. No other numerals or words. Match the richness and crafted detail of a premium arcade racing countdown collectible, not a thin line icon. No background scene, panel, rectangular frame, logo, watermark, surrounding text or full-canvas glow.",
+      "authoringFile": "release-input/ui/race-countdown/christmas/source/2.png"
+    },
+    {
+      "season": "christmas",
+      "name": "1",
+      "prompt": "Create one premium game HUD illustration, square canvas, genuine transparent RGBA background, 12% clear margins. Christmas COLORED PENCIL illustration, visibly rough dry pencil pigment, rich layered crosshatching, cranberry red, evergreen green, warm ivory, gold. Fir sprigs, holly berries, ribbon and tiny sleigh bells. Never smooth vector, glossy 3D or watercolor. One single LARGE numeral 1 filling 75% of the canvas height. Solid broad sculptural glyph, immediately readable at 64px, intricate themed surface illustrations and small attached seasonal decorations, front facing. No other numerals or words. Match the richness and crafted detail of a premium arcade racing countdown collectible, not a thin line icon. No background scene, panel, rectangular frame, logo, watermark, surrounding text or full-canvas glow.",
+      "authoringFile": "release-input/ui/race-countdown/christmas/source/1.png"
+    },
+    {
+      "season": "christmas",
+      "name": "start",
+      "prompt": "Create one premium game HUD illustration, square canvas, genuine transparent RGBA background, 12% clear margins. Christmas COLORED PENCIL illustration, visibly rough dry pencil pigment, rich layered crosshatching, cranberry red, evergreen green, warm ivory, gold. Fir sprigs, holly berries, ribbon and tiny sleigh bells. Never smooth vector, glossy 3D or watercolor. A compact festive starting horn / race signal launcher on a small mechanical base, three-quarter view, releasing a single controlled burst of festive sparks toward upper right. Absolutely NO words, letters, numerals or GO symbol. Match the richness and crafted detail of a premium arcade racing countdown collectible, not a thin line icon. No background scene, panel, rectangular frame, logo, watermark, surrounding text or full-canvas glow.",
+      "authoringFile": "release-input/ui/race-countdown/christmas/source/start.png"
+    }
+  ],
+  "startFrames": [
+    {
+      "season": "halloween",
+      "frame": 0,
+      "authoringFile": "release-input/ui/race-countdown/halloween/source/start/00.png",
+      "prompt": "Edit this exact illustration into animation source frame 0. Preserve IDENTICALLY the horn geometry, decorations, base, camera, scale and canvas placement. Do not redesign or move any solid part. Only change emitted light/spark effects. Standby: remove all external sparks, star confetti and beams; only a dim internal glow. Preserve the source engraved Halloween style and genuine transparent alpha. No text, numerals, backdrop or GO."
+    },
+    {
+      "season": "halloween",
+      "frame": 1,
+      "authoringFile": "release-input/ui/race-countdown/halloween/source/start/01.png",
+      "prompt": "Edit this exact illustration into animation source frame 1. Preserve IDENTICALLY the horn geometry, decorations, base, camera, scale and canvas placement. Do not redesign or move any solid part. Only change emitted light/spark effects. Early charging: a tiny warm orange glow inside the horn, absolutely no external burst. Preserve the source engraved Halloween style and genuine transparent alpha. No text, numerals, backdrop or GO."
+    },
+    {
+      "season": "halloween",
+      "frame": 2,
+      "authoringFile": "release-input/ui/race-countdown/halloween/source/start/02.png",
+      "prompt": "Edit this exact illustration into animation source frame 2. Preserve IDENTICALLY the horn geometry, decorations, base, camera, scale and canvas placement. Do not redesign or move any solid part. Only change emitted light/spark effects. Ignition: a concentrated small glow at the mouth and only two short tiny sparks. Preserve the source engraved Halloween style and genuine transparent alpha. No text, numerals, backdrop or GO."
+    },
+    {
+      "season": "halloween",
+      "frame": 3,
+      "authoringFile": "release-input/ui/race-countdown/halloween/source/start/03.png",
+      "prompt": "Edit this exact illustration into animation source frame 3. Preserve IDENTICALLY the horn geometry, decorations, base, camera, scale and canvas placement. Do not redesign or move any solid part. Only change emitted light/spark effects. Single peak: one short controlled cone of orange sparks and festive star confetti just leaving the mouth toward upper right. Preserve the source engraved Halloween style and genuine transparent alpha. No text, numerals, backdrop or GO."
+    },
+    {
+      "season": "halloween",
+      "frame": 4,
+      "authoringFile": "release-input/ui/race-countdown/halloween/source/start/04.png",
+      "prompt": "Edit this exact illustration into animation source frame 4. Preserve IDENTICALLY the horn geometry, decorations, base, camera, scale and canvas placement. Do not redesign or move any solid part. Only change emitted light/spark effects. Outward travel: the same spark festivee is farther from the mouth toward upper right; central light decreasing. Preserve the source engraved Halloween style and genuine transparent alpha. No text, numerals, backdrop or GO."
+    },
+    {
+      "season": "halloween",
+      "frame": 5,
+      "authoringFile": "release-input/ui/race-countdown/halloween/source/start/05.png",
+      "prompt": "Edit this exact illustration into animation source frame 5. Preserve IDENTICALLY the horn geometry, decorations, base, camera, scale and canvas placement. Do not redesign or move any solid part. Only change emitted light/spark effects. Dispersion: faint sparks farther out in the same direction; no new ignition, dim warm center. Preserve the source engraved Halloween style and genuine transparent alpha. No text, numerals, backdrop or GO."
+    },
+    {
+      "season": "halloween",
+      "frame": 6,
+      "authoringFile": "release-input/ui/race-countdown/halloween/source/start/06.png",
+      "prompt": "Edit this exact illustration into animation source frame 6. Preserve IDENTICALLY the horn geometry, decorations, base, camera, scale and canvas placement. Do not redesign or move any solid part. Only change emitted light/spark effects. Recovery: mostly quiet device, just two distant dim sparks near upper right. Preserve the source engraved Halloween style and genuine transparent alpha. No text, numerals, backdrop or GO."
+    },
+    {
+      "season": "halloween",
+      "frame": 7,
+      "authoringFile": "release-input/ui/race-countdown/halloween/source/start/07.png",
+      "prompt": "Edit this exact illustration into animation source frame 7. Preserve IDENTICALLY the horn geometry, decorations, base, camera, scale and canvas placement. Do not redesign or move any solid part. Only change emitted light/spark effects. Afterglow: fully quiet device again, only a very faint glow inside, no external festivee. Preserve the source engraved Halloween style and genuine transparent alpha. No text, numerals, backdrop or GO."
+    },
+    {
+      "season": "christmas",
+      "frame": 0,
+      "authoringFile": "release-input/ui/race-countdown/christmas/source/start/00.png",
+      "prompt": "Edit this exact illustration into animation source frame 0. Preserve IDENTICALLY the horn geometry, decorations, base, camera, scale and canvas placement. Do not redesign or move any solid part. Only change emitted light/spark effects. Standby: remove all external sparks, star confetti and beams; only a dim internal glow. Preserve the source rough colored pencil Christmas style and genuine transparent alpha. No text, numerals, backdrop or GO."
+    },
+    {
+      "season": "christmas",
+      "frame": 1,
+      "authoringFile": "release-input/ui/race-countdown/christmas/source/start/01.png",
+      "prompt": "Edit this exact illustration into animation source frame 1. Preserve IDENTICALLY the horn geometry, decorations, base, camera, scale and canvas placement. Do not redesign or move any solid part. Only change emitted light/spark effects. Early charging: a tiny warm orange glow inside the horn, absolutely no external burst. Preserve the source rough colored pencil Christmas style and genuine transparent alpha. No text, numerals, backdrop or GO."
+    },
+    {
+      "season": "christmas",
+      "frame": 2,
+      "authoringFile": "release-input/ui/race-countdown/christmas/source/start/02.png",
+      "prompt": "Edit this exact illustration into animation source frame 2. Preserve IDENTICALLY the horn geometry, decorations, base, camera, scale and canvas placement. Do not redesign or move any solid part. Only change emitted light/spark effects. Ignition: a concentrated small glow at the mouth and only two short tiny sparks. Preserve the source rough colored pencil Christmas style and genuine transparent alpha. No text, numerals, backdrop or GO."
+    },
+    {
+      "season": "christmas",
+      "frame": 3,
+      "authoringFile": "release-input/ui/race-countdown/christmas/source/start/03.png",
+      "prompt": "Edit this exact illustration into animation source frame 3. Preserve IDENTICALLY the horn geometry, decorations, base, camera, scale and canvas placement. Do not redesign or move any solid part. Only change emitted light/spark effects. Single peak: one short controlled cone of orange sparks and festive star confetti just leaving the mouth toward upper right. Preserve the source rough colored pencil Christmas style and genuine transparent alpha. No text, numerals, backdrop or GO."
+    },
+    {
+      "season": "christmas",
+      "frame": 4,
+      "authoringFile": "release-input/ui/race-countdown/christmas/source/start/04.png",
+      "prompt": "Edit this exact illustration into animation source frame 4. Preserve IDENTICALLY the horn geometry, decorations, base, camera, scale and canvas placement. Do not redesign or move any solid part. Only change emitted light/spark effects. Outward travel: the same spark festivee is farther from the mouth toward upper right; central light decreasing. Preserve the source rough colored pencil Christmas style and genuine transparent alpha. No text, numerals, backdrop or GO."
+    },
+    {
+      "season": "christmas",
+      "frame": 5,
+      "authoringFile": "release-input/ui/race-countdown/christmas/source/start/05.png",
+      "prompt": "Edit this exact illustration into animation source frame 5. Preserve IDENTICALLY the horn geometry, decorations, base, camera, scale and canvas placement. Do not redesign or move any solid part. Only change emitted light/spark effects. Dispersion: faint sparks farther out in the same direction; no new ignition, dim warm center. Preserve the source rough colored pencil Christmas style and genuine transparent alpha. No text, numerals, backdrop or GO."
+    },
+    {
+      "season": "christmas",
+      "frame": 6,
+      "authoringFile": "release-input/ui/race-countdown/christmas/source/start/06.png",
+      "prompt": "Edit this exact illustration into animation source frame 6. Preserve IDENTICALLY the horn geometry, decorations, base, camera, scale and canvas placement. Do not redesign or move any solid part. Only change emitted light/spark effects. Recovery: mostly quiet device, just two distant dim sparks near upper right. Preserve the source rough colored pencil Christmas style and genuine transparent alpha. No text, numerals, backdrop or GO."
+    },
+    {
+      "season": "christmas",
+      "frame": 7,
+      "authoringFile": "release-input/ui/race-countdown/christmas/source/start/07.png",
+      "prompt": "Edit this exact illustration into animation source frame 7. Preserve IDENTICALLY the horn geometry, decorations, base, camera, scale and canvas placement. Do not redesign or move any solid part. Only change emitted light/spark effects. Afterglow: fully quiet device again, only a very faint glow inside, no external festivee. Preserve the source rough colored pencil Christmas style and genuine transparent alpha. No text, numerals, backdrop or GO."
+    }
+  ]
+}

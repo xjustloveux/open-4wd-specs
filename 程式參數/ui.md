@@ -67,6 +67,17 @@ slug: null
 | `TRACK_IMPORT_COMFORT_M`            | [120, 180]                                                                                                         | 場地首次匯入舒適帶（m）                                 |
 | `PART_IMPORT_TARGET_LONGEST_EDGE_M` | `{ chassis: 0.13, body: 0.13, tire: 0.032, motor: 0.024, battery: 0.06, roller: 0.011, chip: 0.03, weapon: 0.06 }` | 無 marker 零件首次匯入各 type 目標最長邊（m）           |
 | `PART_IMPORT_GEOMETRY_TARGET`       | 90_000                                                                                                             | 自動減面目標，為 100k canonical 硬上限預留 10% headroom |
+| `PART_IMPORT_SIMPLIFY_ERROR_MAX`    | 0.005                                                                                                              | 自動減面每輪外形誤差上限（網格半徑的比例）；達不到面數目標時停在上一輪並回報     |
+
+以下只影響場地統計分頁的碰撞 region 分類與成本提示，不進 protocol、admission 或 manifest，也不擋送出（[editor.md §4](../程式架構/editor.md#4-檢核引擎)、[D-20261021-01](../decisions/D-20261021-01-場地碰撞體分段與邊界法線機制.md)）。
+
+| 常數 | 值 | 說明 |
+| --- | --: | --- |
+| `TRACK_REGION_WALL_NORMAL_Y_MAX` | 0.5 | 三角法線 \|ny\| 低於此值視為豎直（與水平面夾角大於 60°） |
+| `TRACK_REGION_WALL_FRACTION_MIN` | 0.9 | 豎直三角占比不低於此值＝牆 |
+| `TRACK_REGION_GROUND_WALL_FRACTION_MAX` | 0.1 | 豎直三角占比不高於此值＝地；介於兩者＝混合 |
+| `TRACK_REGION_COST_MEDIUM_MIN_TRIANGLES_PER_PIECE` | 2000 | 每顆 collider 平均三角數達此值＝成本「中」、未達＝「低」 |
+| `TRACK_REGION_COST_HIGH_ABOVE_TRIANGLES_PER_PIECE` | 20000 | 每顆 collider 平均三角數超過此值＝成本「高」 |
 
 > **RWD 語意**：40／64／90em 是主要內容分桶，禁機型綁定；72rem compact navigation 是 public shell 的 container content-fit 守門，32rem／orientation／aspect-ratio 是高度與比例守門，120em／112rem 是遊戲面超寬例外，均不是第四套網格桶。寬度單位是 CSS 邏輯像素；主要寬度 media query 以 em、content-fit 以 container rem、低高度以 rem、畫面形狀以 orientation／aspect-ratio 實作。完整規則見 [美術資源/主題外觀與 RWD.md §7](../美術資源/主題外觀與%20RWD.md)。
 

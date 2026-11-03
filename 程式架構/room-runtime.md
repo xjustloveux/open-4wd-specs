@@ -51,7 +51,7 @@ type RoomWire =
   | { kind: 'grid-commitments-locked'; contextDigest; commitments }
   | { kind: 'grid-reveal'; signed: SignedPayload<GridRevealPayload> }
   | { kind: 'grid-ceremony-cancel'; contextDigest; reason; missingPeers }
-  | { kind: 'match-start'; matchId; startedAt; state; gridProof; lockedStartPackage; preStartDisconnects }
+  | { kind: 'match-start'; matchId; startedAt; state; lockedStartPackage; preStartDisconnects } // state 不含 lockedStartPackage
   | { kind: 'ping'; nonce: number } | { kind: 'pong'; nonce: number }                       // host 量 RTT
   | { kind: 'leave' };                                                                      // member→host（斷線同義）
 
@@ -70,6 +70,11 @@ interface RoomMemberWire { peerId; nicknameSnapshot; ratingX1000; pingMs: number
 觀戰者重複、來源不在固定 participant roster，皆在 decode 邊界拒收。participant source 只接受
 配置中明確指向自己的觀戰連線，不以缺欄代表舊版或退回本機選舉。
 
+`match-start` 的鎖定包只在 wire 頂層出現一次：`state` 不得再帶 `lockedStartPackage`，起跑證明一律取
+`lockedStartPackage.gridProof`（wire 不另帶 `gridProof`），且 `matchId`／`startedAt` 必須與鎖定包相同；
+多帶欄位、state 內嵌或不一致皆在 decode 邊界拒收。最壞情況（8 人、5 回合、UGC CID 零件、50 觀戰）
+編碼約 89 KB，低於 256 KiB room wire 上限。
+
 **OPAQUE role invitation admission**：participant 與 spectator 都使用 CSPRNG 產生的 192-bit invitation，並以 RFC 9807 OPAQUE 登入；`join-request` 不帶 secret。OPAQUE 後的雙向 confirmation 綁 protocol version、RoomId、role、policy epoch、joiner／expected host PeerId、雙方 nonce 與 transcript hash。wire 只接受 OPAQUE 訊息與這個 confirmation 形狀，plaintext secret 或其他形狀一律拒絕（[D-20260806-01](../decisions/D-20260806-01-OPAQUE角色邀請驗證.md)）。
 
 HostRoom 只持 OPAQUE server setup／registration record；participant 成功後以 session key 加密該 server state 交付繼任用途，spectator 絕不取得 succession envelope。通過的 spectator 只進私有 control slot、不加入 `Room.members`；match-start 同時通知兩角色，之後只有 participant 建 race mesh。
@@ -83,6 +88,7 @@ HostRoom 只持 OPAQUE server setup／registration record；participant 成功�
 - `detectTransport`：`getStats` 選中候選對走 relay＝TURN，讀不到 ＝ 保守回 `'direct'`。
 - **raw ingress admission**：每條 link 在 DAG-CBOR decode 前先套用 256 KiB 單包上限，以及一般訊息 64 burst／32 s⁻¹、raw byte 327,680 burst／262,144 B s⁻¹ 的 token bucket；預算跨 callback 持續，不因單次 handler 返回而重置。
 - **高成本 wire quota**：OPAQUE、join／state、Ready／簽章、grid、chat 與 match-start 另受 8 burst／4 s⁻¹ 的低頻 bucket 約束；ping／pong、cancel-ready 與 leave 只消耗一般預算。
+- **送出端上限**：room 通道不做應用層分段（分段範圍見 [network-sync.md](network-sync.md) §6.1）。`send` 以編碼後大小比對 `min(pc.sctp.maxMessageSize, DATA_CHANNEL_MESSAGE_SAFE_MAX_BYTES)`（協商值未知時退回 RFC 8841 預設 64 KiB），超限整則不送；通道未開、超限或底層 `send` 例外都不外拋，`send` 回 `false` 告知呼叫端。
 - **違規處置與可觀測性**：oversized、非 binary、畸形、一般或高成本 quota overflow 都先丟棄並累計 `ingressStats`；連續 16 次 drop 關閉 room-control link，任何成功 decode 且通過 quota 的分派會清除連續計數。所有 wire 仍須通過既有 closed schema。
 
 ## 4. 房主權威（`host-room.ts` `HostRoom`）
@@ -92,6 +98,7 @@ HostRoom 只持 OPAQUE server setup／registration record；participant 成功�
 - **join 裁決**：先做 waiting／重複／容量／封鎖與每房間逐 PeerId 的線上嘗試窗；open role 或繼任 seeded 直接收編，受保護角色必須完成單一、順序化 OPAQUE state machine 與雙向 confirmation。認證錯誤對外只回通用 `join-rejected`。
 - **半開洪流防護**：已撥、未 admit 的 link 計入 `canAcceptDial` 上限（匿名新 keypair 灌 presence 撐不出無限半開 PC）；`attachLink` 10s 未表態即斷；`close` 收半開 link＋wire handler 首行 `#closed` 守門（收攤後到達的訊息不被 admit 進死房）。
 - **room-state 廣播**：每變化（進出 ／ready／ping 更新 ／ 狀態機）即 `#broadcast`。
+- **廣播逐 link 隔離**：room-state、ceremony、ping 與 match-start 廣播逐條 link 送出，單一 link 回 `false` 或拋錯都不中斷其他 participant／spectator，也不阻止 match-start 後 host 本地的 `onMatchStart`；失敗的 link 由其自身 close／斷線路徑收斂。
 - **spectator policy**：`updateSpectatorPolicy` 只在 waiting 接受完整 public projection（allow／max／required／epoch），每次成功以單一 room-state 廣播；secret 僅在 HostRoom／RoomService 私有 admission 狀態，不進 public Room 或下行 wire。
 - **授權通關**：`updateAuthorizedEntry` 只在 waiting 由 host 替換最多 200 個 PeerId 的本機快照；participant／spectator 命中時只略過各自 OPAQUE 密碼證明，封鎖、狀態、重複與容量 reservation 仍先執行。快照不進 public Room 或 wire，完整 reload／host loss／繼任一律清空；收藏來源與 UI 規則見 [player-favorites.md](player-favorites.md)。
 - **Ready／chat 中繼**：host 與 member 都以 `ReadyDeclaration` 簽署房間、設定 digest、membership epoch、完整 ClientVersionInfo 與逐回合 `carRotation`；`cancel-ready` 只撤銷本人。`chat` **中繼前逐成員限流**（`canSend` 窗 5/s）＋原文中繼＋房主本地消費。
@@ -104,7 +111,7 @@ HostRoom 只持 OPAQUE server setup／registration record；participant 成功�
 
 ## 5. 成員端（`host-room.ts` `MemberRoom`）
 
-單 link 對房主的消費面：`room-state`／`chat`／起跑 commitment-reveal／`match-start` 路由至 handlers＋ 快取 `lastState`；`ping`→ 自動 `pong`；link 斷 ＝`onHostLost`（繼任判定）。participant 只對已驗 roster／rules／manifest／series context 簽 commitment，收到完整且逐筆驗簽的 locked commitment set 後才 reveal；spectator 不參與 ceremony，但會驗完整 proof。
+單 link 對房主的消費面：`room-state`／`chat`／起跑 commitment-reveal／`match-start` 路由至 handlers＋ 快取 `lastState`；`ping`→ 自動 `pong`；link 斷 ＝`onHostLost`（繼任判定）。收到 `match-start` 時，本地 `lastState` 與交給 handler 的 state 以 wire 頂層鎖定包補回 `lockedStartPackage`，gridProof 取自鎖定包。participant 只對已驗 roster／rules／manifest／series context 簽 commitment，收到完整且逐筆驗簽的 locked commitment set 後才 reveal；spectator 不參與 ceremony，但會驗完整 proof。
 
 ## 6. 服務編排（`room-service.ts` `RoomService`）
 

@@ -18,9 +18,8 @@ slug: null
 
 ```mermaid
 flowchart TD
-    Start([每 frame 開始]) --> Local[寫入本地輸入]
-    Local --> Broadcast[廣播 input 訊息]
-    Broadcast --> Recv[接收網路訊息]
+    Start([每 frame 開始]) --> Receipt[套用非同步交付回執]
+    Receipt --> Recv[接收網路訊息]
     Recv --> Process{處理訊息}
     Process -->|input| ValidateInput{loadout schema /<br/>唯一 / Event-Hold 合法?}
     ValidateInput -->|否| DropInput[丟棄並記 misbehavior]
@@ -32,17 +31,20 @@ flowchart TD
     CheckPred -->|否| MarkRB[標記需 rollback 至 frame N]
     StoreCS --> Continue
     MarkRB --> Continue
-    Continue --> RB{需 rollback?}
-    RB -->|是| Restore[restore snapshot]
-    Restore --> Replay[重播至當前 frame]
-    Replay --> SavePre
-    RB -->|否| SavePre[saveState 當前 frame<br/>的 pre-step 快照進 buffer]
+    Continue --> Local[本地輸入排程到 current+D<br/>簽章並廣播]
+    Local --> RB{需 rollback?}
+    RB -->|是| Restore[載入 ≤ 目標幀的最近快照<br/>距 current 超過 R 即 fail-closed]
+    Restore --> Replay[重播至當前 frame<br/>只在對齊幀與含預測幀重存]
+    Replay --> SaveRule
+    RB -->|否| SaveRule{對齊幀或含預測?}
+    SaveRule -->|是| SavePre[saveState 當前 frame<br/>的前緣快照進 buffer]
+    SaveRule -->|否| StepCurrent
     SavePre --> StepCurrent[step 當前 frame]
     StepCurrent --> CSCheck{到達 checksum 取樣 frame?}
-    CSCheck -->|是| Hash[computeStateHash]
-    Hash --> SendCS[廣播 checksum]
-    CSCheck -->|否| Done
-    SendCS --> Done([下一 frame])
+    CSCheck -->|是| Hash[記暫定 hash]
+    CSCheck -->|否| Settle
+    Hash --> Settle[已確定的暫定 hash 廣播<br/>依幀序發出已確定記錄]
+    Settle --> Done([下一 frame])
 ```
 
 ## Checksum 解決流程
@@ -71,17 +73,18 @@ sequenceDiagram
     participant P2 as Player 2
 
     Note over P1,P2: frame N
-    P1->>P1: localInput
-    P1->>P2: input N
+    P1->>P1: frame N−D 取樣的 localInput 排程到 N
+    P1->>P2: input N（D 幀前送出）
 
-    Note over P2: 延遲收到另一玩家的舊 input
-    P2->>P2: 延遲期間使用上一輸入作預測值
+    Note over P2: 單向延遲 ≤ D 幀：步進 N 前已收到、不需預測
+    Note over P2: 超過 D 幀才延遲收到
+    P2->>P2: 延遲期間延續上一輸入的 Hold 作預測值
     P2->>P2: 比對 預測 vs 實際
 
     alt 預測正確
         Note over P2: 不需 rollback
     else 預測錯誤
-        P2->>P2: rollback 至 frame N
+        P2->>P2: rollback 至 frame N（深度 ≤ R）
         P2->>P2: 用實際輸入重播受影響區間
     end
 ```
@@ -136,14 +139,17 @@ sequenceDiagram
 
     alt 重連窗內成功
         Lost->>Other: 定向 signed sync-probe-request
-        Other->>Lost: signed offer（最近兩個 aligned frame + hash，snapshot 已 pin）
+        Other->>Lost: signed offer（最多兩個已 final aligned frame + hash，snapshot 已 pin）
         Note over Lost,Other: offer 遺失時以同 offerId 依政策重送；不重複 copy/hash
         Lost->>Other: strict-quorum 同 frame+hash 的 exact offerId/target request
-        Other->>Lost: unicast sync-response（僅首選 voter 傳完整 snapshot）
-        Lost->>Lost: 在回覆窗內等待；逾時先取消 pending 再換 voter
+        Other->>Lost: unicast sync-response（僅首選 voter 傳完整 snapshot＋簽章輸入日誌）
+        Lost->>Lost: 在回覆窗內等待（外層簽章驗過即記到達、逾時改自到達起算）；逾時先取消 pending 再換 voter
         Lost->>Lost: 驗簽成功且 enqueue 後才消耗 pending，核對來源、目標、大小與內外 frame
+        Lost->>Lost: 日誌命中已驗快取者跳過、其餘分片驗簽，再驗語意（roster、車輛 schema、front 跨度）
+        Lost->>Lost: 以非 provider 觀測的參考幀夾限 front 與追前緣目標；越界記 misbehavior 並換 voter
         Lost->>Lost: current SavedState schema+vehicle/entity/destruction/route/projectile/weather lifecycle+拓撲+數值範圍 原子 loadState
-        Note over Lost,Other: 畸形或 load 失敗：記 misbehavior、不前跳、不中斷幀<br/>成功送交通道才刪 pinned offer 並進 cooldown；send 失敗保留供重試
+        Lost->>Lost: 載入 F 後依牆鐘預算分 tick 追到前緣，追趕結束後本機輸入自結束幀加 D 恢復
+        Note over Lost,Other: 畸形或 load 失敗：記 misbehavior、不前跳、不中斷幀<br/>成功送交通道才刪 pinned offer 並進 cooldown；send 失敗由 responder 有上限地重送
     else 重連窗期滿仍未連
         Engine->>Other: 標記 Lost 為「異常斷線」
         Note over Other: 比賽繼續，Lost 排在最後一名
@@ -151,12 +157,14 @@ sequenceDiagram
     end
 ```
 
+追前緣目標、輸入日誌、驗簽、時間線重建與分 tick 追趕規則見 [network-sync.md §7.1](../network-sync.md) 第 4–6 步。
+
 ## Snapshot Buffer 滑動視窗
 
 ```mermaid
 flowchart LR
     Oldest[最舊可回滾快照] --> Middle[視窗內快照]
-    Middle --> Newest[最新 pre-step 快照]
+    Middle --> Newest[最新前緣快照<br/>對齊幀或預測幀]
     Newest --> Push[推入下一份快照]
     Push --> Drop1[移除超出視窗的舊快照]
 
@@ -166,5 +174,5 @@ flowchart LR
     class Drop1 fail
 ```
 
-Buffer 精確保留 12 個 pre-step 快照，rollback acceptance 固定為 8 frames 且不可協商；
-視窗推進與接納門檻以程式參數 authority 為準。
+Buffer 只保存前緣快照（對齊幀與含預測的幀），保留距最近一次寫入 12 幀內者，不保證每幀都有；
+rollback acceptance 為 R 幀且不可協商。視窗推進與接納門檻以程式參數 authority 為準。

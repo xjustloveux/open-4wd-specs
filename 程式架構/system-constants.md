@@ -16,7 +16,7 @@ slug: null
 ```text
 @open4wd/system-constants
 ├── protocol/         ← 跨 peer 共識必須一致（變更 → protocol major bump）
-├── network/          ← sync＝協定綁定（major）；signaling/discovery＝連線策略；providers＝公開服務觀測
+├── network/          ← sync＝協定綁定（major）；signaling/discovery＝連線策略；providers＝公開服務觀測；perf＝效能預算口徑、local-policy＝本機處置政策（皆非協定）
 ├── ui/               ← 純客戶端
 └── economy-config/   ← 治理 signer 數量的純計算 helper；不保存 config shape／預設值（§4）
 ```
@@ -68,7 +68,7 @@ UI.animation.TOAST_DURATION_MS; // 4000
 
 ## 5. 不變式（CI `pnpm run check:invariants`）
 
-編譯期 + 執行期雙重檢查（revShare 三層總和 = 100（pct 整數）、vehicle mass min < max、rollback buffer min ≤ default ≤ max、players min ≤ max ≤ hardcap、consensus anchor 收集窗可容納四個以上 fallback slots、治理 signer set 僅允許 N=1 或 N>=3 且 quorum 分別為 1／`floor(2N/3)+1` 等）；摘錄與實作連結見 [共通規則.md §19.2](../程式參數/共通規則.md#19-型別系統--不變式ci-強制檢查)，完整清單以 `src/system-constants/invariants.ts` 為執行權威。CI fail → 阻擋 merge。
+編譯期 + 執行期雙重檢查（revShare 三層總和 = 100（pct 整數）、vehicle mass min < max、1 ≤ rollback buffer default ≤ max、輸入延遲反應上限與延遲容忍下限、players min ≤ max ≤ hardcap、consensus anchor 收集窗可容納四個以上 fallback slots、治理 signer set 僅允許 N=1 或 N>=3 且 quorum 分別為 1／`floor(2N/3)+1` 等）；摘錄與實作連結見 [共通規則.md §19.2](../程式參數/共通規則.md#19-型別系統--不變式ci-強制檢查)，完整清單以 `src/system-constants/invariants.ts` 為執行權威。CI fail → 阻擋 merge。
 
 ## 6. 跨模組對接
 

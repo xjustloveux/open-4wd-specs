@@ -63,6 +63,11 @@ test("corpus walker excludes root-local tool workspaces", (t) => {
   const superpowersDocs = join(root, "docs", "superpowers", "plans");
   mkdirSync(superpowersDocs, { recursive: true });
   writeFileSync(join(superpowersDocs, "local.md"), "# Local plan");
+  for (const stagingRoot of ["release-input", "release-output"]) {
+    const staging = join(root, stagingRoot, "tracks");
+    mkdirSync(staging, { recursive: true });
+    writeFileSync(join(staging, "PROVENANCE.md"), "# Local staging");
+  }
 
   assert.deepEqual(
     walkMd(root).map((file) => rel(root, file)),

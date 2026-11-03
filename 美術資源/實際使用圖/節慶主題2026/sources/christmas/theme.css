@@ -1,0 +1,141 @@
+:scope {
+  --theme-christmas-style-ready: 1;
+  --theme-foundation-canvas: #f7f4e9;
+  --theme-foundation-steel: #fffdf5;
+  --theme-foundation-raised: #eeeedd;
+  --theme-foundation-frame: #7a8964;
+  --theme-foundation-orange: #a8443c;
+  --theme-foundation-blue: #375f43;
+  --theme-foundation-ivory: #2c4533;
+  --theme-foundation-shadow: 2px 4px 0 #b6af8b55;
+}
+[data-theme-part='workshop-entry'] {
+  color: #fffdf3; background: #963b34; border: 1px solid #7a302a;
+  border-radius: 3px 8px 2px 6px; box-shadow: inset 0 0 0 2px #e8b499;
+}
+[data-theme-part='primary-action'],[data-theme-part='primary-action'] > * { transform: none; }
+
+[data-theme-part='app-backdrop'] { background: #f7f4e9; }
+[data-theme-part='app-backdrop']::before { background: none; opacity: 0; }
+[data-theme-part='public-navigation'] {
+  color: #2c4533; background: #fffdf5f5; border: 1px solid #a7ad8c;
+  border-radius: 2px 7px 2px 5px; box-shadow: 0 3px 0 #b6af8b55;
+}
+[data-theme-part='public-navigation']::after {
+  content: ''; position: absolute; inset: auto 0 -5px; height: 4px; pointer-events: none;
+  background: repeating-linear-gradient(125deg,#a5484177 0 7px,#faf5df 7px 13px,#54704e77 13px 20px,#faf5df 20px 26px);
+}
+[data-theme-part='brand-wordmark'] { color: #36583c; text-shadow: none; }
+[data-theme-part='brand-emblem'] { background: url('assets/brand-emblem.svg') center / contain no-repeat; }
+[data-theme-part='public-tool'] { color: #36583c; background: #fffdf5; border-color: #778563; box-shadow: none; }
+[data-theme-part='landing-info-surface'] { background: #f7f4e9; }
+[data-theme-part='hero-art'] {
+  background: linear-gradient(90deg,#f7f4e9 0%,#f7f4e9bb 23%,transparent 53%),url('assets/landing-hero.webp') 67% center / cover no-repeat;
+  filter: none; mask-image: none; -webkit-mask-image: none;
+}
+[data-theme-part='hero-copy'] { text-shadow: none; }
+[data-theme-part='hero-title'] {
+  color: #36583c; font-family: var(--o4-display-font); font-size: clamp(2.3rem,4.4vw,4.2rem);
+  line-height: 1.18; letter-spacing: .015em; background: none; filter: none;
+  -webkit-text-fill-color: currentcolor; text-shadow: none;
+}
+[data-theme-part='hero-lead'] { color: #435940; }
+[data-theme-part='hero-eyebrow'] { color: #923d36; }
+
+[data-theme-part='support-panel'],[data-theme-part='settings-shell'],[data-theme-part='garage-panel'],
+[data-theme-part='race-bench-board'],[data-theme-part='race-config-general-settings'],[data-theme-part='room-gate-board'],
+[data-theme-part='result-standings-board'],[data-theme-part='ugc-detail-board'],[data-theme-part='login-entry'],
+[data-theme-part='about-article'],[data-theme-part='announcement-article'],[data-theme-part='help-article'],
+[data-theme-part='dmca-article'],[data-theme-part='creator-identity-surface'],[data-theme-part='inbox-console'] {
+  position: relative; isolation: isolate; color: #2c4533; background: #fffdf5;
+  border: 1px solid #a7ad8c; border-radius: 3px 8px 2px 6px;
+  box-shadow: 2px 4px 0 #b6af8b55;
+}
+[data-theme-part='support-panel']::before,[data-theme-part='garage-panel']::before,
+[data-theme-part='race-bench-board']::before,[data-theme-part='race-config-general-settings']::before,
+[data-theme-part='room-gate-board']::before,[data-theme-part='result-standings-board']::before,
+[data-theme-part='ugc-detail-board']::before,[data-theme-part='login-entry']::before,
+[data-theme-part='about-article']::before,[data-theme-part='announcement-article']::before,
+[data-theme-part='help-article']::before,[data-theme-part='dmca-article']::before,
+[data-theme-part='creator-identity-surface']::before,[data-theme-part='inbox-console']::before {
+  content: ''; position: absolute; inset: 0; z-index: -1; pointer-events: none;
+  border: 18px solid transparent; border-image: url('assets/panel-surface.svg') 24 fill / 15px / 0 stretch;
+  background: none; opacity: .8;
+}
+[data-theme-part='support-panel'][data-theme-panel-kind='core-loop']::after,
+[data-theme-part='garage-panel']::after,[data-theme-part='race-bench-board']::after,
+[data-theme-part='race-config-general-settings']::after,[data-theme-part='room-gate-board']::after,
+[data-theme-part='result-standings-board']::after,[data-theme-part='ugc-detail-board']::after {
+  content: ''; position: absolute; top: 4px; right: 9px; width: 68px; height: 44px;
+  background: url('assets/brand-emblem.svg') center / contain no-repeat; pointer-events: none;
+}
+[data-theme-part='garage-panel'] h2,[data-theme-part='race-bench-board'] h2,
+[data-theme-part='race-config-general-settings'] h2,[data-theme-part='room-gate-board'] h2,
+[data-theme-part='result-standings-board'] h2,[data-theme-part='ugc-detail-board'] h2,
+[data-theme-part='support-panel'][data-theme-panel-kind='core-loop'] h2 { max-width: calc(100% - 66px); }
+[data-theme-part='support-panel'][data-theme-panel-kind='announcements']::after {
+  content: ''; position: absolute; top: 17px; right: 17px; width: 20px; height: 20px;
+  background: url('assets/workshop-entry-icon.svg') center / contain no-repeat; pointer-events: none; opacity: .6;
+}
+[data-theme-part='panel-label'],[data-theme-part='core-loop'],[data-theme-part='announcements'] {
+  color: #2c4533; background: transparent; border-color: #a7ad8c; box-shadow: none;
+}
+[data-theme-part='core-loop']::before,[data-theme-part='announcements']::before { background: none; }
+[data-theme-part='core-loop-item'] { background: #f2f2e5; border-color: #9aa57f; border-radius: 3px 7px 3px 5px; }
+[data-theme-part='settings-shell']::before,[data-theme-part='settings-shell']::after { background: none; }
+[data-theme-part='settings-navigation'],[data-theme-part='help-navigation'] { background: #efeddf; border-color: #a7ad8c; box-shadow: none; }
+[data-theme-part='settings-panel'] { background: #fffdf5; }
+[data-theme-part='settings-row'],[data-theme-part='settings-panel'] fieldset,
+[data-theme-part='card'],[data-theme-part='theme-card'],[data-theme-part='garage-slot'],[data-theme-part='garage-shelf'] {
+  background: #fbfaf1; color: #2c4533; border-color: #9aa57f; border-radius: 3px 7px 2px 5px;
+  box-shadow: 1px 2px 0 #c8c5a944;
+}
+[data-theme-part='theme-card']:has(input:checked) { border-color: #375f43; box-shadow: inset 0 0 0 2px #375f43; }
+[data-theme-part='settings-control'] [role='tab'] { color: #36583c; background: #fffdf5; border-color: #778563; }
+[data-theme-part='settings-control'] [role='tab'][aria-selected='true'] { color: #fffdf5; background: #375f43; }
+[data-theme-part='button'][data-variant='secondary'],[data-theme-part='button'][data-variant='ghost'],
+[data-theme-part='button'][data-variant='primary'],[data-theme-part='primary-action'] {
+  position: relative; clip-path: none; border-radius: 3px 8px 2px 6px; border: 1px solid #778563;
+  background-color: #eef0df; background-image: url('assets/panel-surface.svg'); background-size: 100% 100%;
+  color: #29442e; box-shadow: 1px 2px 0 #8b9c6366,inset 0 0 0 2px #fff9e0;
+}
+[data-theme-part='button'][data-variant='primary'],[data-theme-part='primary-action'] {
+  background-color: #963b34; color: #fffdf3; border-color: #7a302a;
+  box-shadow: 1px 3px 0 #58704788,inset 0 0 0 2px #e8b499,inset 0 0 0 4px #af5848;
+  background-image: url('assets/panel-surface.svg'),repeating-linear-gradient(153deg,#ffeccc22 0 1px,transparent 1px 4px);
+}
+[data-theme-part='primary-action-decoration'] { display: block; width: 1.5rem; height: 1.7rem; background: url('assets/primary-action-decoration.svg') center / contain no-repeat; }
+[data-theme-part='primary-action-decoration'][data-decoration-position='start'] { display: none; }
+[data-theme-part='form-select'] { color-scheme: light; }
+[data-theme-part='form-input'],[data-theme-part='form-select'],[data-theme-part='form-textarea'] {
+  color: #2c4533; background: #fffef7; border-color: #778563; box-shadow: inset 0 0 0 2px #f4f1df;
+}
+[data-theme-part='button']:focus-visible,[data-theme-part='primary-action']:focus-visible,
+[data-theme-part='form-input']:focus-visible,[data-theme-part='form-select']:focus-visible,[data-theme-part='form-textarea']:focus-visible { outline-color: #375f43; }
+[data-theme-part='garage-shell'] { background: #f7f4e9; }
+[data-theme-part='garage-stage'] { border: 4px solid #e5dfcc; border-radius: 4px 10px 3px 8px; box-shadow: 2px 4px 0 #b8b39355; }
+[data-theme-part='garage-panel'] { --garage-panel-background: #fffdf5; }
+[data-theme-part='settings-heading'],[data-theme-part='about-heading'],[data-theme-part='help-heading'],
+[data-theme-part='announcements-heading'],[data-theme-part='login-heading'],[data-theme-part='creator-heading'],
+[data-theme-part='result-heading'],[data-theme-part='room-heading'],[data-theme-part='ugc-heading'],
+[data-theme-part='race-config-heading'],[data-theme-part='dmca-heading'],[data-theme-part='inbox-heading'] {
+  color: #36583c; background: none; border-color: #a7ad8c; box-shadow: none; text-shadow: none;
+  font-family: var(--o4-display-font);
+}
+[data-theme-part='garage-edit-preview'] { background: #eef0ec; border-color: #a7ad8c; }
+[data-theme-part='garage-edit-preview']::before { background: none; }
+@media (max-width: 40em) {
+  [data-theme-part='hero-art'] { background-position: center,67% top; }
+  [data-theme-part='hero-title'] { font-size: clamp(2rem,8vw,3rem); }
+  [data-theme-part='primary-action'] { min-width: min(17rem,100%); }
+}
+@media (orientation: landscape) and (max-height: 30rem) {
+  [data-theme-part='hero-title'] { font-size: clamp(1.7rem,8dvh,2.6rem); }
+}
+@media (prefers-reduced-motion: reduce) {
+  [data-theme-part='button'],[data-theme-part='primary-action'] { transition: none; transform: none; }
+}
+
+[data-theme-part='settings-panel'] { overflow-wrap: anywhere; min-width: 0; }
+
+[data-theme-part='button'] { text-shadow: none; font-family: var(--font-family-base); }

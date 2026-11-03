@@ -1,0 +1,107 @@
+{
+  "themeId": "halloween-workshop-2026-a9028c",
+  "approvedDesign": "Halloween v5 / Christmas v9",
+  "rasterOrigin": "OpenAI image_gen, approved in the seasonal-theme design conversation",
+  "vectorOrigin": "Project-authored SVG; no external references",
+  "rasterConversion": {
+    "tool": "Pillow",
+    "format": "WebP",
+    "quality": 88,
+    "method": 6
+  },
+  "fallback": "Default audio is intentionally inherited; all visual slots have local assets. Reserved gameplay tokens and neutral PBR are unchanged.",
+  "files": {
+    "assets/brand-emblem.svg": {
+      "bytes": 999,
+      "sha256": "7062af25017d625c4818c562958a62469bc451ba86af27b8040a98a1c0d6375f"
+    },
+    "assets/core-loop-assembly.svg": {
+      "bytes": 403,
+      "sha256": "ff52fa4e48cf4eff7383deb859723013b80dbbc706f46ac84db472a41241e1ea"
+    },
+    "assets/core-loop-race.svg": {
+      "bytes": 339,
+      "sha256": "18a17da48cdf0523833be86bafefe3a28de465bbc4084b57d6b294b7d60b3f84"
+    },
+    "assets/core-loop-tuning.svg": {
+      "bytes": 366,
+      "sha256": "5499c110b0a5fa7791f1888e4d2f5b1cec48cba0915e8b635f9fb450240e0266"
+    },
+    "assets/empty-connection.webp": {
+      "bytes": 43324,
+      "sha256": "9687a645ff65d6db4ddba549c55e44669c9aba99d9109406883a484a1d3adf58"
+    },
+    "assets/empty-generic.webp": {
+      "bytes": 49458,
+      "sha256": "062b963cb639c2297cd5ce8feb399210b16f741214957ad4a5ea790e6644b1c8"
+    },
+    "assets/harvest-engraving.webp": {
+      "bytes": 58530,
+      "sha256": "805603f4bd364430e4b65e908e9500d548ac4867885feadff0d7b1e674086326"
+    },
+    "assets/landing-hero.webp": {
+      "bytes": 310374,
+      "sha256": "4d01c4fa6384b55d691e77f7583690bb7fbfe2374af70f4e84716e8b802ddc56"
+    },
+    "assets/panel-surface.svg": {
+      "bytes": 279,
+      "sha256": "4651c5a6b354248839898b7ae33d142c551e2a180a115944f18550de0949c199"
+    },
+    "assets/primary-action-decoration.svg": {
+      "bytes": 522,
+      "sha256": "2ce3af5e3a82fbc227b50d8e4a5dc2f03138eba10b04a08bc6d25aa69244a41a"
+    },
+    "assets/race-countdown/1-static.webp": {
+      "bytes": 32016,
+      "sha256": "42ffba37c9f65b1d2b5776ef7b4b36a16c75aae3f8921c7e51b716ce110b9ebd"
+    },
+    "assets/race-countdown/1.webp": {
+      "bytes": 189178,
+      "sha256": "692f81a285e5e1417ed9c49cee5680241159e039f8f6c21ac8911c041cc8530e"
+    },
+    "assets/race-countdown/2-static.webp": {
+      "bytes": 53674,
+      "sha256": "67b7a5f28c02c736353bcc439573b9ab3f63cdc7088b4e077ce26dc0d7510df4"
+    },
+    "assets/race-countdown/2.webp": {
+      "bytes": 316470,
+      "sha256": "019d41f4d2116d28f06e10e84a843cb598e9f37479c1d87c5fe17e4c5cfcd8d8"
+    },
+    "assets/race-countdown/3-static.webp": {
+      "bytes": 55256,
+      "sha256": "90d5e4899273ecf01b93d7368a0cd6a47b6a2959c457035efd742d6c72b451e8"
+    },
+    "assets/race-countdown/3.webp": {
+      "bytes": 324662,
+      "sha256": "13689f9603e24e6f2e475f7c54776240e5da4721abe364b15eb12d2204b9f7c7"
+    },
+    "assets/race-countdown/start-static.webp": {
+      "bytes": 52144,
+      "sha256": "0a1661f102b247dc0163bb741d6439f5dd56302c5981cc543c40256231ace27f"
+    },
+    "assets/race-countdown/start.webp": {
+      "bytes": 353398,
+      "sha256": "eca5d7bf9f99bd495afd7ae5721dd686354765a6c2b3208ab926ff6d85ee3d22"
+    },
+    "assets/scene-ugc.webp": {
+      "bytes": 554384,
+      "sha256": "b3387855e79220ccebf622b93644a37b783781ce8db44c00e0e75c2b0aaca03f"
+    },
+    "assets/workshop-background.webp": {
+      "bytes": 533726,
+      "sha256": "562467bf8b9fcd6c65aa3df81b50b012ee54fbf1c3229eef509b718a4181c752"
+    },
+    "assets/workshop-entry-icon.svg": {
+      "bytes": 961,
+      "sha256": "7a9bf29862fb142e38974ea8b0042e28c0e3b094f18947a8e7fb5b8fe014c5fa"
+    },
+    "theme.css": {
+      "bytes": 8947,
+      "sha256": "73d18c9cfeeaddc3a6fa8be967dad410c55555ddabfadd1b19b4e04da7ed13f2"
+    },
+    "theme.json": {
+      "bytes": 4702,
+      "sha256": "5c5bedebd9ccb729526ecb03f6364b564261c6e8d1cfdefd0bef1dc5f95617e5"
+    }
+  }
+}

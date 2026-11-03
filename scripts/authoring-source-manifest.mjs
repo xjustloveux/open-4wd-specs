@@ -7,7 +7,11 @@ export const AUTHORING_SOURCE_MANIFEST =
   "美術資源/authoring-source-manifest.json";
 export const AUTHORING_SOURCE_ROOT = "release-input";
 const SHA256 = /^[0-9a-f]{64}$/u;
-const ASSET_ID = /^builtin:[a-z0-9-]+$/u;
+/**
+ * 來源 assetId 的唯一權威：builtin: 為出貨公版、e2e: 為只供 main e2e 模擬外部匯入、不出貨的素材
+ * （D-20261031-01）。Release 封裝與驗證沿用同一個常數，避免兩邊各自維護前綴清單而漂移。
+ */
+export const ASSET_ID = /^(?:builtin|e2e):[a-z0-9-]+$/u;
 const RELEASE_ASSET = /^[A-Za-z0-9][A-Za-z0-9._-]*\.glb$/u;
 
 const isRecord = (value) =>

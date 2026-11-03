@@ -9,5 +9,8 @@ site/
 .superpowers/**
 # 本機 Superpowers 設計／執行計畫不是 specs corpus，也不得進入發布文檔。
 docs/superpowers/**
+# Git 忽略的 authoring Release 投遞區與產物區不是 specs corpus。
+release-input/**
+release-output/**
 # 歷史／快照類統一策略：歷史記錄合法記載廢除用語，術語規則豁免（結構／排版 lint 照跑）
 歷史記錄.md

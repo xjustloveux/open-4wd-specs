@@ -14,6 +14,10 @@ deprecates: [{"item":"公版 part 單檔 104 KiB 預算","kind":"replaced","repl
 
 # D-20260816-12｜完整 PhysicsManifest 公版零件預算
 
+> **2026-10-22 關聯追補**：車殼的單檔視覺三角上限後由
+> [D-20261022-02](D-20261022-02-車殼三角上限放寬至12K.md) 放寬為 12K；其他公版零件的 8K、
+> 112 KiB 單檔與全套 4 MiB 上限不受影響。
+
 ## 背景與驅動力
 
 武器拓撲決策把公版 part 從 100 KiB 調到 104 KiB，以容納 deterministic physics metadata。完整

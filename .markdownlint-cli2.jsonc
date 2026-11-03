@@ -9,7 +9,10 @@
     ".agents/**",
     ".claude/**",
     ".superpowers/**",
-    "docs/superpowers/**"
+    "docs/superpowers/**",
+    // Git 忽略的 authoring Release 投遞區與產物區（含生成器快照說明），不屬 corpus。
+    "release-input/**",
+    "release-output/**"
   ],
   "config": {
     "default": true,

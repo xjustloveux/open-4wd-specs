@@ -12,14 +12,15 @@ slug: null
 
 ## 資料分類
 
-| 內容                              | 位置／Release 形式                                                                       | 是否進 Git   |
-| --------------------------------- | ---------------------------------------------------------------------------------------- | ------------ |
-| 提示詞、規格                      | `美術資源/提示詞/`                                                                       | 是           |
-| 小型 WebP、SVG、favicon、審查預覽 | 既有分類目錄                                                                             | 是           |
-| GLB master                        | `release-input/parts/`、`release-input/tracks/`；Release 逐檔扁平上傳                    | 否           |
-| 高解析／無損 PNG                  | GLB 審查圖放 parts／tracks；UI 母圖放 `release-input/ui/`；封裝為 `authoring-images.zip` | 否           |
-| WAV／FLAC master                  | `release-input/audio/`；封裝為 `authoring-audio.zip`                                     | 否           |
-| runtime 最佳化資產                | `open-4wd` runtime manifest 所在目錄                                                     | 不回存 specs |
+| 內容                              | 位置／Release 形式                                                                                                | 是否進 Git   |
+| --------------------------------- | ----------------------------------------------------------------------------------------------------------------- | ------------ |
+| 提示詞、規格                      | `美術資源/提示詞/`                                                                                                | 是           |
+| 小型 WebP、SVG、favicon、審查預覽 | 既有分類目錄                                                                                                      | 是           |
+| GLB master                        | `release-input/parts/`、`release-input/tracks/`；Release 逐檔扁平上傳                                             | 否           |
+| 高解析／無損 PNG                  | GLB 審查圖放 parts／tracks；UI 母圖放 `release-input/ui/`；封裝為 `authoring-images.zip`                          | 否           |
+| WAV／FLAC master                  | `release-input/audio/`；封裝為 `authoring-audio.zip`                                                              | 否           |
+| 程序化生成器程式與來源說明        | `release-input/tracks/generator/`、`release-input/tracks/PROVENANCE.md`；`.py`／`.md` 封裝為 `authoring-text.zip` | 否           |
+| runtime 最佳化資產                | `open-4wd` runtime manifest 所在目錄                                                                              | 不回存 specs |
 
 GLB 的 basename 在整批輸入內必須唯一；ZIP 保留相對於 `release-input/` 的邏輯路徑。其他副檔名會 fail closed。封裝採固定順序、時間戳與 store-only ZIP，方便同一輸入重現完全相同 bytes。
 
@@ -31,16 +32,18 @@ release-input/
 ├── parts/
 │   └── <part-id>/
 ├── tracks/
-│   └── <track-id>/
+│   ├── <track-id>/
+│   ├── generator/
+│   └── PROVENANCE.md
 ├── audio/
 │   ├── vehicles/
 │   ├── tracks/
 │   ├── ui/
 │   └── music/
 └── ui/
-    ├── themes/{default,moon-rabbit}/
-    ├── race-messages/{default,moon-rabbit}/
-    ├── race-countdown/{default,moon-rabbit}/
+    ├── themes/{default,moon-rabbit,halloween,christmas}/
+    ├── race-messages/{default,moon-rabbit,halloween,christmas}/
+    ├── race-countdown/{default,moon-rabbit,halloween,christmas}/
     └── social/og/
 ```
 

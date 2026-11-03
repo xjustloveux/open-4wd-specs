@@ -91,14 +91,16 @@ export interface StartGridPlacement {
 
 export interface PhysicsEngine {
   readonly engineName: string;
-  readonly engineVersion: string; // Rapier 版本，影響 deterministic（見 版本規範.md rapier_version）
+  readonly engineVersion: string; // runtime 完整核心身份，SavedState 全等核對（配對 rapier_version 為同一字串）
   initWorld(config: PhysicsWorldConfig): Promise<Result<void>>;
   loadVehicle(vehicleSpec: VehicleSpec, startGrid?: StartGridPlacement): Result<VehicleId>;
   loadTrack(trackSpec: TrackSpec): Result<TrackId>;
   step(inputs: ReadonlyArray<PlayerInput>): StepOutput; // 推進一 frame（固定 60Hz）
-  saveState(): SavedState; // rollback savestate
+  saveState(): OwnSavedState; // rollback savestate；純讀取，回傳參照登記為本機自產
+  isOwnSavedState(state: SavedState): state is OwnSavedState; // 同一份自產參照才為 true
   savedStateFrame(state: SavedState): number | null; // side-effect-free 完整 schema/topology inspect
-  loadState(state: SavedState): void;
+  loadState(state: SavedState): void; // 外來快照：完整驗證
+  loadOwnState(state: OwnSavedState): void; // rollback 本機信任載入；非自產（含偽造品牌）拒絕
   inputSchemaForPeer(peerId: PeerId): ReadonlyArray<SkillSlot> | null;
   computeMeshVolume(meshBytes: Uint8Array): Result<number>; // WASM 內，整數量化
   computeMeshSurfaceArea(meshBytes: Uint8Array): Result<number>;
@@ -134,6 +136,7 @@ export interface VehicleWeaponSpec {
   passiveWeightSplitPct?: number; // passive 專屬：減重 vs 抗性（0–100、預設 50、組裝層）
   ammoCount?: number; // launch 滿彈；必須等於 physics.projectiles.length
   physics?: WeaponPhysicsSpec; // active 必填；runtime 不推斷替代 box／sphere
+  projectileIndependentDurability?: boolean; // launch 必填（缺省 extras＝false）；非 launch 不得出現
 }
 
 export interface SourceMassProperties {
@@ -152,10 +155,11 @@ export interface PartPhysicsProxy {
   readonly centroidM: Vec3;
   readonly massProperties: SourceMassProperties;
   readonly pointsM: ReadonlyArray<Vec3>; // deterministic convex support points，4..26
+  readonly contact?: "none"; // 僅 tire／roller：被判圓外圈完整包覆的質量件，不建 collider、質量併入 hinge body
 }
 export type WeaponPhysicsProxy = Omit<
   PartPhysicsProxy,
-  "sourceNodeIndex" | "thermalExchangeFactor" | "thermalContactAreaM2"
+  "sourceNodeIndex" | "thermalExchangeFactor" | "thermalContactAreaM2" | "contact"
 >;
 export interface WeaponPhysicsActuator {
   actuatorIndex: number;
@@ -185,6 +189,7 @@ export interface WeaponPhysicsSpec {
     nodeName: string;
     pose: { positionM: Vec3; rotation: [number, number, number, number] };
     proxy: WeaponPhysicsProxy;
+    durability?: { heatCapacityJPerC: number; ambientConductanceWPerC: number; thermalLimitC: number | null }; // 僅彈體獨立耐久開啟
     fluidPayload?: {
       volumeM3: number; // Stage 3 套用變換後重算的 canonical 體積
       behavior: "grip_loss" | "sticky" | "freeze" | "burn" | "corrosive";
@@ -235,6 +240,15 @@ export interface TrackSpec {
   meshBytes: Uint8Array;
   config?: TrackConfig; // 只由 admitted PhysicsManifest hydrate；runtime 禁讀 extras
   materials?: ReadonlyArray<{ meshNode: string; material: MaterialId }>;
+  collision: TrackCollisionSpec; // admitted manifest 的碰撞體分段（必填；無牆條帶時 wallStrips 為空陣列）
+}
+export interface TrackCollisionSpec {
+  groundCellM: number; // 地面 XZ 格邊長（m），6–16
+  wallStrips: ReadonlyArray<TrackWallStrip>;
+}
+export interface TrackWallStrip {
+  meshNode: string; // 牆 sub-mesh 節點（獨立 solid region）
+  rings: ReadonlyArray<Vec3[]>; // 截面環序列；≥2 環、每環 ≥3 點、點數與繞向一致
 }
 export interface TrackConfig {
   trackType: "open" | "fixed";
@@ -272,12 +286,18 @@ export interface PlayerInput {
   events: ReadonlyArray<InputEvent>;
 }
 
-export type InputEvent = {
+export type InputEvent = SkillTriggerInput | LeaveInput;
+
+export interface SkillTriggerInput {
   type: "skill-trigger";
   skillId: SkillId;
   isHoldTick: boolean;
-}; // 觸發 chip slot 上的 skill；isHoldTick=Hold 型按住期間每 dt tick；強弱由該 slot allocation_pct 決定（見 車輛組裝.md）
-// 玩家賽中唯一輸入 = 技能觸發：迷你四驅車**無轉向**（滾輪貼牆自走）；橫向位移 = swerve_left / swerve_right 技能（賽內機制.md §2.4.1 鍵位）
+} // 觸發 chip slot 上的 skill；isHoldTick=Hold 型按住期間每 dt tick；強弱由該 slot allocation_pct 決定（見 車輛組裝.md）
+// 玩家賽中唯一操控輸入 = 技能觸發：迷你四驅車**無轉向**（滾輪貼牆自走）；橫向位移 = swerve_left / swerve_right 技能（賽內機制.md §2.4.1 鍵位）
+
+export interface LeaveInput {
+  type: "leave";
+} // 流內離場：peer 在已簽輸入流內宣告自該幀起退出本回合；必須單獨成幀，只承認第一次，之後的輸入由引擎忽略（network-sync.md §7.4、physics-engine.md §2.10）
 
 /** 8 種 skill enum（設計見 車輛組裝.md / 建模參數.md skill slot）*/
 export type SkillId =
@@ -324,7 +344,7 @@ export interface WeaponActuator {
 Race HUD 另輸出固定順序的 `skillDisableReasons`：`disallow-chip → chip-broken →
 functional-disabled → physics-retired → eliminated → quit`；本機車況尚不可得時使用
 `state-unavailable`。陣列非空即代表所有主動技能槽 disabled 且 active=false。這是由當幀
-`VehicleState`、逐回合規則與編排層退出集合推導的 presentation/input authority，不持久化成另一個
+`VehicleState`、逐回合規則與本車 `RaceProgress.quitAtFrame` 推導的 presentation/input authority，不持久化成另一個
 latch。RacePage 只在 enabled→disabled 邊沿釋放現有 hold，並在任何停用原因存在時於播放音效與
 `feedInput` 之前拒絕新 press；物理引擎仍保留獨立 fail-closed 驗證。
 
@@ -345,6 +365,7 @@ export interface VehicleState {
   angularVelocity: Vec3;
   weaponNodes?: ReadonlyArray<WeaponNodePose>; // 只允許 baked node-name domain
   parts: ReadonlyArray<PartState>; // per-part fatigue / temperature / broken
+  weaponProjectiles?: ReadonlyArray<ProjectileState>; // 僅彈體獨立耐久開啟：每顆預載彈耐久；broken 不計致毀
   enduranceRemainingPct: number; // 0~100 = battery 剩餘 / 初始 × 100
 }
 export interface WeaponNodePose {
@@ -360,13 +381,23 @@ export interface PartState {
   temperature: number; // °C，per-part 即時（可逆）
   broken: boolean; // 任一路徑達破壞（fatigue ≥ 1.0 / 一擊 stress > ultimate × K_STRESS_BURST_FACTOR / 積分後 T_next > thermalLimitC）
 }
+export interface ProjectileState {
+  projectileIndex: number;
+  fatigue: number;
+  temperature: number;
+  broken: boolean; // 發射前損毀；可用彈藥＝未發射且未損毀者
+  breakFrame: number | null; // 發射前損毀的權威 fixed frame
+}
 export type CollisionEvent = {
   a: VehicleId | TrackId;
   b: VehicleId | TrackId;
   point: Vec3;
   relativeSpeed: number;
 };
-export type SavedState = Uint8Array; // Rapier 序列化
+export type SavedState = Uint8Array; // Rapier 序列化；不可變形狀寫登錄參照，envelope 列出引用批次（D-20261028-02）
+declare const ownSavedStateBrand: unique symbol;
+// 本行程 saveState 自產；型別品牌只做防呆，引擎另以執行期登記核對（D-20261028-01）
+export type OwnSavedState = SavedState & { readonly [ownSavedStateBrand]: true };
 
 export interface MeshFingerprint {
   primary: string; // 完整 SHA-256

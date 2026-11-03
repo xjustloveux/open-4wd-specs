@@ -87,13 +87,19 @@ function mnemonicToSeed(m: Mnemonic): Uint8Array { return bip39.mnemonicToSeedSy
 
 function deriveKeyPair(seed: Uint8Array): KeyPair { return { privateKey: seed, publicKey: ed25519.getPublicKey(seed) }; }
 function signMessage(priv: Uint8Array, msg: Uint8Array): Signature { return ed25519.sign(msg, priv); }
-function verifyMessage(pub: Uint8Array, msg: Uint8Array, sig: Signature): boolean { return ed25519.verify(sig, msg, pub); }
+// RFC 8032 嚴格驗簽：A 與 R 須正規編碼、S < L、小階 A 拒絕；方程式為 cofactored
+function verifyMessage(pub: Uint8Array, msg: Uint8Array, sig: Signature): boolean { return ed25519.verify(sig, msg, pub, { zip215: false }); }
+// 身分公鑰入口檢查：32 bytes、非全零、可嚴格解碼且不是小階點
+function isAcceptablePublicKey(pub: Uint8Array): boolean;
 
 function publicKeyToPeerId(pub: Uint8Array): PeerId {     // multicodec ed25519-pub (0xed01) + base58btc
   const combined = new Uint8Array([0xed, 0x01, ...pub]);
   return 'z' + base58btc.encode(combined);
 }
+function peerIdToPublicKey(peerId: PeerId): Uint8Array | null;  // 前綴、長度或 isAcceptablePublicKey 不符 → null
 ```
+
+> 驗簽語意（[D-20261030-02](../decisions/D-20261030-02-Ed25519改RFC8032嚴格驗簽.md)）：`verifyMessage` 是產品唯一的驗簽實作，一律 RFC 8032 嚴格模式，不接受 ZIP-215 的非正規編碼與小階公鑰。外部提供的 32 bytes 要當成身分公鑰前先經 `isAcceptablePublicKey`：`peerIdToPublicKey`（因此 `isCanonicalPeerId` 與所有以 PeerId 取公鑰的驗簽）、回合簽章鑰宣告（[network-sync.md §7.1](network-sync.md)）、`setHardwareProvider` 的提供者公鑰（首次簽章前檢查，不通過即拒絕簽章）與以 seed 派生 profile 的路徑（防禦性）。
 
 > 助記詞長度：`generateMnemonic` 預設 24 詞（最強）；`validateMnemonic` / `recoverFromMnemonic` 接受 12 或 24 詞（對齊 [資安規範.md §3.1/§12](../資安規範.md)「BIP39 12/24 詞」）。
 > 建檔頁只在當次流程顯示助記詞並完成隨機字位抄寫驗證；profile 僅保存衍生出的

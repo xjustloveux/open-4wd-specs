@@ -17,7 +17,7 @@ interface MatchResultEvent extends BaseEvent {
   type: "match-result";
   matchId: string;
   gridProof: StartGridProof; // 完整 commitment/reveal proof，只在外層保存一次
-  ranking: PeerId[]; // 總名次（N 回合積分加總 + tiebreak；驗算者重算比對，見 算式表 §20.1）
+  ranking: PeerId[]; // 總名次（forfeit 者整場壓出回合積分、排末位；N 回合積分加總 + tiebreak；驗算者重算比對，見 算式表 §20.1）
   rounds: RoundResult[]; // 逐回合權威結果（積分 / 總名次由此 derive、不另存）
   roundAnchors: Array<RaceConsensusAnchorEvent | null>; // inline 自包含證書；null＝該場不得鑄幣
   loadouts: Readonly<Record<PeerId, MatchParticipantLoadout>>;
@@ -202,7 +202,7 @@ async function buildMatchResultCandidate(
     type: "match-result" as const,
     matchId: ctx.matchId,
     gridProof: ctx.gridProof,
-    ranking: deriveTotalRanking(ctx.rounds),
+    ranking: deriveTotalRanking(ctx.rounds, ctx.disconnects),
     rounds: ctx.rounds,
     roundAnchors: ctx.roundAnchors,
     loadouts: mapToPlainRecord(ctx.submittedLoadouts), // 可簽章欄位＝plain Record（上方鐵則）
@@ -251,8 +251,8 @@ async function reviewAndSignMatchResult(
   //   ① rounds[] 各回合 ranking / finishTimes / destructionCounts 與本機賽內觀測一致（每回合 deterministic 物理、各 peer 自有結果）
   //   ② inline anchors 與本機收集證書一致
   //   ③ loadouts / matchRules 與賽前提交一致
-  // ② 總名次防偽：candidate.ranking 須等於由 rounds[] 重算的總名次（算式表 §20.1 `deriveTotalRanking`）
-  const recomputed = deriveTotalRanking(candidate.rounds);
+  // ② 總名次防偽：candidate.ranking 須等於由 rounds[]＋disconnects 重算的總名次（算式表 §20.1 `deriveTotalRanking`）
+  const recomputed = deriveTotalRanking(candidate.rounds, candidate.disconnects);
   if (
     candidate.ranking.length !== recomputed.length ||
     candidate.ranking.some((p, i) => p !== recomputed[i])

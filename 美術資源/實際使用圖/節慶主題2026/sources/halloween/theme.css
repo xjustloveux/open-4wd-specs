@@ -1,0 +1,98 @@
+:scope {
+  --theme-halloween-style-ready: 1;
+  --theme-foundation-canvas: #19131f;
+  --theme-foundation-steel: #292031;
+  --theme-foundation-raised: #36283b;
+  --theme-foundation-frame: #9a7256;
+  --theme-foundation-orange: #f5a14a;
+  --theme-foundation-blue: #e6c987;
+  --theme-foundation-ivory: #f6e6bf;
+  --theme-foundation-shadow: 3px 4px 0 #0c0913;
+}
+[data-theme-part='workshop-entry'] {
+  color: #24172b; background: #f3b457; border: 1px solid #f9d48a;
+  border-radius: 4px; box-shadow: inset 0 0 0 2px #be823777;
+}
+[data-theme-part='primary-action'],[data-theme-part='primary-action'] > * { transform: none; }
+[data-theme-part='app-backdrop'] { background: #19131f; }
+[data-theme-part='app-backdrop']::before { opacity: .16; filter: blur(1.75rem) saturate(.65); }
+[data-theme-part='public-navigation'] { color: #f6e6bf; background: #24192bf5; border: 1px solid #9a7256; border-radius: 5px; box-shadow: 0 3px 0 #100b16; }
+[data-theme-part='public-navigation']::after { content: ''; position: absolute; inset: auto 0 -16px; height: 18px; background: url('assets/workshop-entry-icon.svg') center / 220px 22px repeat-x; pointer-events: none; opacity: .7; }
+[data-theme-part='brand-wordmark'] { color: #f3c777; text-shadow: 1px 2px 0 #0c0913; }
+[data-theme-part='brand-emblem'] { background: url('assets/brand-emblem.svg') center / contain no-repeat; }
+[data-theme-part='public-tool'] { color: #f6e6bf; border-color: #9a7256; background: #302337; box-shadow: none; }
+[data-theme-part='landing-info-surface'] { background: #19131f; }
+[data-theme-part='hero-art'] { background: linear-gradient(90deg,#19131fee,#19131f55 42%,transparent 72%),url('assets/landing-hero.webp') 68% center / cover no-repeat; mask-image: none; -webkit-mask-image: none; }
+[data-theme-part='hero-title'] { color: #f3c777; background: none; filter: none; -webkit-text-fill-color: currentcolor; text-shadow: 2px 3px 0 #24122a; font-size: clamp(2.3rem,4.4vw,4.2rem); line-height: 1.12; letter-spacing: -.02em; }
+[data-theme-part='hero-lead'] { color: #f6e6bf; }
+[data-theme-part='hero-eyebrow'] { color: #f5a14a; }
+[data-theme-part='support-panel'],[data-theme-part='settings-shell'],[data-theme-part='race-bench-board'],
+[data-theme-part='race-config-general-settings'],[data-theme-part='room-gate-board'],[data-theme-part='result-standings-board'],
+[data-theme-part='ugc-detail-board'],[data-theme-part='login-entry'],[data-theme-part='about-article'],
+[data-theme-part='announcement-article'],[data-theme-part='help-article'],[data-theme-part='dmca-article'],
+[data-theme-part='creator-identity-surface'],[data-theme-part='inbox-console'] {
+  position: relative; isolation: isolate; border: 1px solid #9a7256; border-radius: 5px;
+  background: #292031; color: #f6e6bf; box-shadow: 3px 4px 0 #100b16;
+}
+[data-theme-part='support-panel']::before,[data-theme-part='race-bench-board']::before,
+[data-theme-part='race-config-general-settings']::before,[data-theme-part='room-gate-board']::before,
+[data-theme-part='result-standings-board']::before,[data-theme-part='ugc-detail-board']::before,
+[data-theme-part='login-entry']::before,[data-theme-part='about-article']::before,
+[data-theme-part='announcement-article']::before,[data-theme-part='help-article']::before,
+[data-theme-part='dmca-article']::before,[data-theme-part='creator-identity-surface']::before,[data-theme-part='inbox-console']::before {
+  content: ''; position: absolute; inset: 5px; border: 1px dashed #b28b5a88; border-radius: 2px;
+  background: url('assets/panel-surface.svg') center / 120px 120px; pointer-events: none; z-index: -1;
+}
+[data-theme-part='garage-panel'],[data-theme-part='support-panel'][data-theme-panel-kind='core-loop'] {
+  --color-text-primary: #382b31; --color-text-secondary: #655047; --color-text-muted: #655047;
+  --garage-ivory: #382b31; --garage-muted: #655047; --garage-panel-background: #f4e6c7;
+  --o4-control-surface: #e9d6b0; --o4-control-border: #89683f;
+  position: relative; isolation: isolate; background: #f4e6c7; color: #382b31;
+  border: 1px solid #bf9861; border-radius: 5px; box-shadow: 3px 4px 0 #100b16;
+}
+[data-theme-part='garage-panel']::before { content: ''; position: absolute; inset: 6px; border: 1px dashed #89683f; border-radius: 2px; background: url('assets/panel-surface.svg') center / 120px 120px; z-index: -1; pointer-events: none; }
+[data-theme-part='panel-label'],[data-theme-part='core-loop'],[data-theme-part='announcements'] { background: transparent; color: inherit; box-shadow: none; border-color: #9a7256; }
+[data-theme-part='core-loop']::before,[data-theme-part='announcements']::before { background: none; }
+[data-theme-part='core-loop-item'] { color: #382b31; background: #e9d6b0; border-color: #bf9861; border-radius: 3px; }
+[data-theme-part='settings-shell']::before,[data-theme-part='settings-shell']::after { background: none; }
+[data-theme-part='settings-navigation'],[data-theme-part='help-navigation'] { background: #211726; border-color: #9a7256; box-shadow: none; }
+[data-theme-part='settings-panel'] { background: #292031; }
+[data-theme-part='settings-row'],[data-theme-part='settings-panel'] fieldset,[data-theme-part='card'],[data-theme-part='theme-card'],[data-theme-part='garage-shelf'],[data-theme-part='garage-slot'] { background: #292031; border-color: #9a7256; border-radius: 4px; box-shadow: none; }
+[data-theme-part='theme-card']:has(input:checked) { border-color: #f5a14a; box-shadow: inset 0 0 0 2px #f5a14a; }
+[data-theme-part='button'][data-variant='secondary'],[data-theme-part='button'][data-variant='ghost'] { color: var(--color-text-primary); background: var(--o4-control-surface); border-color: #9a7256; border-radius: 3px; box-shadow: inset 0 0 0 2px #b28b5a33; }
+[data-theme-part='button'][data-variant='primary'],[data-theme-part='primary-action'] {
+  position: relative; clip-path: none; color: #24172b; background: #f3b457;
+  border: 1px solid #f9d48a; border-radius: 4px; box-shadow: 2px 3px 0 #100b16,inset 0 0 0 3px #be823777;
+}
+[data-theme-part='button'][data-variant='primary']::before { content: ''; position: absolute; inset: 4px; border: 1px dashed #6c472d88; border-radius: 2px; pointer-events: none; }
+[data-theme-part='primary-action-decoration'] { display: block; width: 1.8rem; height: 1.3rem; background: url('assets/primary-action-decoration.svg') center / contain no-repeat; }
+[data-theme-part='primary-action-decoration'][data-decoration-position='end'] { transform: scaleX(-1); }
+[data-theme-part='garage-shell'] { background: linear-gradient(#22182b,#16101d); }
+[data-theme-part='garage-stage'] { border: 2px solid #9a7256; border-radius: 38% 38% 7px 7px / 20% 20% 7px 7px; box-shadow: inset 0 0 0 4px #211726,0 0 0 1px #c19a65; }
+[data-theme-part='settings-heading'],[data-theme-part='about-heading'],[data-theme-part='help-heading'],
+[data-theme-part='announcements-heading'],[data-theme-part='login-heading'],[data-theme-part='creator-heading'],
+[data-theme-part='result-heading'],[data-theme-part='room-heading'],[data-theme-part='ugc-heading'],
+[data-theme-part='race-config-heading'],[data-theme-part='dmca-heading'],[data-theme-part='inbox-heading'] {
+  position: relative; padding-inline-end: 5.5rem; color: #f3c777; background: none; box-shadow: none;
+  border-color: #9a7256; text-shadow: 1px 2px 0 #100b16;
+}
+[data-theme-part='settings-heading']::after,[data-theme-part='about-heading']::after,[data-theme-part='help-heading']::after,
+[data-theme-part='announcements-heading']::after,[data-theme-part='login-heading']::after,[data-theme-part='creator-heading']::after,
+[data-theme-part='result-heading']::after,[data-theme-part='room-heading']::after,[data-theme-part='ugc-heading']::after,
+[data-theme-part='race-config-heading']::after,[data-theme-part='dmca-heading']::after,[data-theme-part='inbox-heading']::after {
+  content: ''; position: absolute; right: .5rem; top: 0; width: 5rem; height: 4rem;
+  background: url('assets/brand-emblem.svg') center / contain no-repeat; pointer-events: none;
+}
+[data-theme-part='garage-edit-preview']::before { background: none; }
+@media (max-width: 40em) {
+  [data-theme-part='hero-title'] { font-size: clamp(2rem,8vw,3rem); }
+  [data-theme-part='primary-action'] { min-width: min(17rem,100%); }
+}
+@media (orientation: landscape) and (max-height: 30rem) {
+  [data-theme-part='hero-title'] { font-size: clamp(1.7rem,8dvh,2.6rem); }
+}
+@media (prefers-reduced-motion: reduce) {
+  [data-theme-part='button'],[data-theme-part='primary-action'] { transition: none; transform: none; }
+}
+
+[data-theme-part='settings-panel'] { overflow-wrap: anywhere; min-width: 0; }
