@@ -2847,6 +2847,32 @@
       "summary": null
     },
     {
+      "id": "decisions/D-20261104-01-Tripo時期authoring-source-Release棄用.md",
+      "type": "decision",
+      "domain": [
+        "版本部署",
+        "治理營運"
+      ],
+      "summary": null
+    },
+    {
+      "id": "decisions/D-20261104-02-公版AI生成圖的權利聲明.md",
+      "type": "decision",
+      "domain": [
+        "治理營運"
+      ],
+      "summary": null
+    },
+    {
+      "id": "decisions/D-20261104-03-像素自適應階梯延伸與慢幀計入.md",
+      "type": "decision",
+      "domain": [
+        "比賽房間",
+        "前端主題"
+      ],
+      "summary": null
+    },
+    {
       "id": "decisions/INDEX.md",
       "type": null,
       "domain": [],
@@ -6891,6 +6917,58 @@
       "to": "程式架構/ui-frontend.md"
     },
     {
+      "from": "decisions/D-20261104-01-Tripo時期authoring-source-Release棄用.md",
+      "to": "decisions/D-20260818-01-Authoring大型原始資產Release-first.md"
+    },
+    {
+      "from": "decisions/D-20261104-01-Tripo時期authoring-source-Release棄用.md",
+      "to": "decisions/D-20261022-01-公版場地程序化交付與零件維持延後.md"
+    },
+    {
+      "from": "decisions/D-20261104-01-Tripo時期authoring-source-Release棄用.md",
+      "to": "decisions/D-20261030-01-公版零件程序化交付.md"
+    },
+    {
+      "from": "decisions/D-20261104-01-Tripo時期authoring-source-Release棄用.md",
+      "to": "decisions/D-20261031-01-authoring來源新增e2e匯入素材.md"
+    },
+    {
+      "from": "decisions/D-20261104-01-Tripo時期authoring-source-Release棄用.md",
+      "to": "版權.md"
+    },
+    {
+      "from": "decisions/D-20261104-01-Tripo時期authoring-source-Release棄用.md",
+      "to": "美術資源/Immutable Release/README.md"
+    },
+    {
+      "from": "decisions/D-20261104-02-公版AI生成圖的權利聲明.md",
+      "to": "decisions/D-20260703-06-授權不可撤銷與AI條款.md"
+    },
+    {
+      "from": "decisions/D-20261104-02-公版AI生成圖的權利聲明.md",
+      "to": "版權.md"
+    },
+    {
+      "from": "decisions/D-20261104-02-公版AI生成圖的權利聲明.md",
+      "to": "美術資源/美術方向.md"
+    },
+    {
+      "from": "decisions/D-20261104-03-像素自適應階梯延伸與慢幀計入.md",
+      "to": "decisions/D-20261102-01-比賽視口固定算圖削減.md"
+    },
+    {
+      "from": "decisions/D-20261104-03-像素自適應階梯延伸與慢幀計入.md",
+      "to": "decisions/D-20261102-02-比賽視口背景層移除與像素自適應.md"
+    },
+    {
+      "from": "decisions/D-20261104-03-像素自適應階梯延伸與慢幀計入.md",
+      "to": "程式架構/settings.md"
+    },
+    {
+      "from": "decisions/D-20261104-03-像素自適應階梯延伸與慢幀計入.md",
+      "to": "程式架構/ui-frontend.md"
+    },
+    {
       "from": "decisions/INDEX.md",
       "to": "decisions/D-20260428-01-初始企劃骨架與模組化規格基線.md"
     },
@@ -8220,6 +8298,18 @@
     },
     {
       "from": "decisions/INDEX.md",
+      "to": "decisions/D-20261104-01-Tripo時期authoring-source-Release棄用.md"
+    },
+    {
+      "from": "decisions/INDEX.md",
+      "to": "decisions/D-20261104-02-公版AI生成圖的權利聲明.md"
+    },
+    {
+      "from": "decisions/INDEX.md",
+      "to": "decisions/D-20261104-03-像素自適應階梯延伸與慢幀計入.md"
+    },
+    {
+      "from": "decisions/INDEX.md",
       "to": "decisions/README.md"
     },
     {
@@ -9492,6 +9582,10 @@
     },
     {
       "from": "版權.md",
+      "to": "decisions/D-20261104-02-公版AI生成圖的權利聲明.md"
+    },
+    {
+      "from": "版權.md",
       "to": "主題系統.md"
     },
     {
@@ -9565,6 +9659,10 @@
     {
       "from": "版權.md",
       "to": "經濟系統.md"
+    },
+    {
+      "from": "版權.md",
+      "to": "美術資源.md"
     },
     {
       "from": "版權.md",
@@ -11636,6 +11734,10 @@
     },
     {
       "from": "程式架構/settings.md",
+      "to": "decisions/D-20261104-03-像素自適應階梯延伸與慢幀計入.md"
+    },
+    {
+      "from": "程式架構/settings.md",
       "to": "主題系統.md"
     },
     {
@@ -12077,6 +12179,10 @@
     {
       "from": "程式架構/ui-frontend.md",
       "to": "decisions/D-20261102-02-比賽視口背景層移除與像素自適應.md"
+    },
+    {
+      "from": "程式架構/ui-frontend.md",
+      "to": "decisions/D-20261104-03-像素自適應階梯延伸與慢幀計入.md"
     },
     {
       "from": "程式架構/ui-frontend.md",
@@ -12811,6 +12917,10 @@
       "to": "零件與場景.md"
     },
     {
+      "from": "美術資源/Immutable Release/README.md",
+      "to": "decisions/D-20261104-01-Tripo時期authoring-source-Release棄用.md"
+    },
+    {
       "from": "美術資源/UGC卡片.md",
       "to": "UGC機制.md"
     },
@@ -13005,6 +13115,10 @@
     {
       "from": "美術資源/提示詞/頁面概念圖.md",
       "to": "賽內機制.md"
+    },
+    {
+      "from": "美術資源/美術方向.md",
+      "to": "decisions/D-20261104-02-公版AI生成圖的權利聲明.md"
     },
     {
       "from": "美術資源/美術方向.md",
