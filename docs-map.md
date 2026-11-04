@@ -18,7 +18,7 @@ slug: null
 | --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
 | [共識帳本](#共識帳本10-檔) | — | 8 | 5 | 0 | 8 | 12 | 12 | 9 | 2 | 0 | 1 | 6 |
 | [經濟](#經濟8-檔) | 13 | — | 6 | 0 | 4 | 4 | 1 | 3 | 0 | 1 | 2 | 3 |
-| [UGC版權](#ugc版權17-檔) | 14 | 7 | — | 3 | 24 | 5 | 16 | 5 | 3 | 8 | 1 | 11 |
+| [UGC版權](#ugc版權17-檔) | 14 | 7 | — | 3 | 24 | 5 | 16 | 5 | 3 | 9 | 1 | 11 |
 | [材質](#材質2-檔) | 2 | 0 | 2 | — | 5 | 2 | 0 | 3 | 0 | 1 | 0 | 0 |
 | [建模物理](#建模物理12-檔) | 9 | 2 | 10 | 7 | — | 12 | 1 | 10 | 0 | 6 | 0 | 9 |
 | [比賽房間](#比賽房間28-檔) | 18 | 4 | 3 | 2 | 20 | — | 12 | 14 | 10 | 9 | 0 | 17 |
@@ -402,7 +402,7 @@ flowchart TB
 | [賽內機制.md](賽內機制.md) | canon | 房間配對／比賽中／結算（含 HUD、聊天、觀戰） |
 | [車輛組裝.md](車輛組裝.md) | canon | 玩家依正式／本機測試車位用途組車（本機 loadout） |
 
-決策檔 72 筆——見 [decisions/INDEX.md](decisions/INDEX.md)。
+決策檔 73 筆——見 [decisions/INDEX.md](decisions/INDEX.md)。
 
 ### 比賽房間依賴圖（1/2）
 
@@ -616,7 +616,7 @@ flowchart TB
 | [部署資訊/open-4wd-turn.md](部署資訊/open-4wd-turn.md) | deploy | TURN 公版模板 repo 規格（coturn、社群營運者自行部署） |
 | [部署資訊/部署實際值與初始拓撲.md](部署資訊/部署實際值與初始拓撲.md) | deploy | 首次公開 trust root 與社群服務拓撲 |
 
-決策檔 84 筆——見 [decisions/INDEX.md](decisions/INDEX.md)。
+決策檔 85 筆——見 [decisions/INDEX.md](decisions/INDEX.md)。
 
 ### 版本部署依賴圖（1/2）
 
@@ -778,7 +778,7 @@ flowchart TB
 | [美術資源/頁面線框.md](美術資源/頁面線框.md) | art | 各頁面 wireframe／版面結構與互動規則細化 |
 | [語系清單.md](語系清單.md) | meta | i18n 四語系＋社群 PR 流程 |
 
-決策檔 38 筆——見 [decisions/INDEX.md](decisions/INDEX.md)。
+決策檔 39 筆——見 [decisions/INDEX.md](decisions/INDEX.md)。
 
 ### 前端主題依賴圖（1/2）
 
@@ -978,7 +978,7 @@ flowchart TB
 | [流程/治理事件.md](流程/治理事件.md) | flow | economy-config 治理多簽變更 |
 | [程式參數/economy-config.md](程式參數/economy-config.md) | registry | OrbitDB 動態治理 economy config |
 
-決策檔 50 筆——見 [decisions/INDEX.md](decisions/INDEX.md)。
+決策檔 52 筆——見 [decisions/INDEX.md](decisions/INDEX.md)。
 
 ```mermaid
 flowchart TB

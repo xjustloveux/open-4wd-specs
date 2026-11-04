@@ -75,3 +75,11 @@ asset 集合、size／SHA-256 與 `SHA256SUMS`。任一欄不一致都不得執�
 ## 備份移除門檻
 
 只有 immutable Release 已發布、下載回讀全部通過、`publish-receipt.json` 已另行備份，且 main 已依 manifest 成功採用，才可考慮移除工作站大型原始備份。任一條件未滿都保留備份。舊 Git LFS 工作樹內容在首次 Release 完成前只視為過渡備份；未來重建 specs repo 時不得再放回 Git。
+
+## 棄用的 Release
+
+| Release | 狀態 | 依據 |
+| --- | --- | --- |
+| `authoring-source-509d0a0a3e83`（2026-08-18） | 棄用並已於 2026-11-04 由維護者刪除（Release 與 tag 皆已自 GitHub 移除）：內容為 Tripo 時期公版原件，不得作為 authoring 來源、測試素材或參考輸入，main 的 dependency lock 不得指向它；本列保留為歷史紀錄 | [D-20261104-01](../../decisions/D-20261104-01-Tripo時期authoring-source-Release棄用.md) |
+
+自 D-20261104-01 起，只有 desired state 全部通過權利審閱的 authoring 來源才可發布為 immutable Release；發布前的審閱紀錄留在兩份 PROVENANCE。

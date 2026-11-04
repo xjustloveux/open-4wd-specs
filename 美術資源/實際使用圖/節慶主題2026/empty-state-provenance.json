@@ -71,28 +71,28 @@
     {
       "season": "halloween",
       "kind": "generic",
-      "source": "exec-2d66158f-538d-45c2-99d5-60fec11f65c4.png",
+      "source": "openai-image-generation export, superseded by the current record (temporary export id removed; D-20261104-02)",
       "prompt": "Standalone wide 640x360 transparent RGBA game empty-state illustration, centered compact group with 15 percent transparent margins. American vintage Halloween engraving in dark plum ink, pumpkin orange, antique gold and cream, friendly pumpkin-headed mechanic in goggles and plum overalls. An open EMPTY miniature toolbox with a folded cloth and one small wrench beside it, the mechanic looking inside patiently. Clear empty inventory meaning. Warm and reassuring, polished coherent craft illustration, simple strong silhouette readable at small size. No text, numerals, punctuation, brand, watermark, background scene or frame. Actual alpha outside the subject.",
       "authoringFile": "release-input/ui/themes/halloween/empty-generic-illustration.png"
     },
     {
       "season": "halloween",
       "kind": "connection",
-      "source": "exec-b2414220-84fc-4f64-bc8a-76f55e2a1723.png",
+      "source": "openai-image-generation export, superseded by the current record (temporary export id removed; D-20261104-02)",
       "prompt": "Standalone wide 640x360 transparent RGBA game empty-state illustration, centered compact group with 15 percent transparent margins. American vintage Halloween engraving in dark plum ink, pumpkin orange, antique gold and cream, friendly pumpkin-headed mechanic in goggles and plum overalls. The mechanic holding two visibly DISCONNECTED cable plugs with a clear gap between them, a quiet radio antenna behind. Connection unavailable meaning; no error words, no punctuation. Warm and reassuring, polished coherent craft illustration, simple strong silhouette readable at small size. No text, numerals, punctuation, brand, watermark, background scene or frame. Actual alpha outside the subject.",
       "authoringFile": "release-input/ui/themes/halloween/empty-connection-illustration.png"
     },
     {
       "season": "christmas",
       "kind": "generic",
-      "source": "exec-2c4aabec-1fe6-4ccc-ae9c-76f7592d4b0f.png",
+      "source": "openai-image-generation export, superseded by the current record (temporary export id removed; D-20261104-02)",
       "prompt": "Standalone wide 640x360 transparent RGBA game empty-state illustration, centered compact group with 15 percent transparent margins. Clearly hand drawn colored pencil Christmas art with visible dry pigment grain and uneven layered hatching, forest green, cranberry red, ivory, a friendly reindeer mechanic in green overalls and red scarf. An open EMPTY miniature toolbox with a folded cloth and one small wrench beside it, the mechanic looking inside patiently. Clear empty inventory meaning. Warm and reassuring, polished coherent craft illustration, simple strong silhouette readable at small size. No text, numerals, punctuation, brand, watermark, background scene or frame. Actual alpha outside the subject.",
       "authoringFile": "release-input/ui/themes/christmas/empty-generic-illustration.png"
     },
     {
       "season": "christmas",
       "kind": "connection",
-      "source": "exec-f3f15113-f65e-4ef8-9cc4-72b22ecec731.png",
+      "source": "openai-image-generation export, superseded by the current record (temporary export id removed; D-20261104-02)",
       "prompt": "Standalone wide 640x360 transparent RGBA game empty-state illustration, centered compact group with 15 percent transparent margins. Clearly hand drawn colored pencil Christmas art with visible dry pigment grain and uneven layered hatching, forest green, cranberry red, ivory, a friendly reindeer mechanic in green overalls and red scarf. The mechanic holding two visibly DISCONNECTED cable plugs with a clear gap between them, a quiet radio antenna behind. Connection unavailable meaning; no error words, no punctuation. Warm and reassuring, polished coherent craft illustration, simple strong silhouette readable at small size. No text, numerals, punctuation, brand, watermark, background scene or frame. Actual alpha outside the subject.",
       "authoringFile": "release-input/ui/themes/christmas/empty-connection-illustration.png"
     }

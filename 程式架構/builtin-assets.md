@@ -100,7 +100,8 @@ manifest SHA-256；adoption gate 再驗 Release manifest 的 source commit、全
 下載檔案集合、size／SHA-256 與 `SHA256SUMS`，通過後才跑 production Editor journey。不得把
 canonical bytes 回填為 source，也不存在舊式 candidate epoch tag 或 Git LFS pointer 採用路徑。
 每筆 recipe 另明示 `textureMaxEdgePx`，part 再明示 `partTriangleTarget`；目前 reviewed profile 為
-part 128px／6k、track 256px。兩值只控制 canonical 輸出容量與視覺細節，不能寫死在壓縮或減面
+part 256px／8k（車殼 12k，[D-20261022-02](../decisions/D-20261022-02-車殼三角上限放寬至12K.md)）、
+track 256px／50k：三角目標等於下節的出貨上限，貼圖邊長不高於上限（部分零件只需 64px）。兩值只控制 canonical 輸出容量與視覺細節，不能寫死在壓縮或減面
 判斷裡，也不構成材質、物理、尺寸或造型准入限制。
 
 公版變更（新增 / 調整 / deprecate）走**純 client 發版** —— 公版在 git、不在鏈上，同物理常數 / 材質數值（build-time 資產、不走治理、無鏈上事件）。編輯器 re-author → 匯出新 GLB → PR → CI → 推版生效；操作流程見 [流程/升版.md §8.3](../流程/升版.md)。與 UGC GLB 的鏈上提交流程**無關**。
