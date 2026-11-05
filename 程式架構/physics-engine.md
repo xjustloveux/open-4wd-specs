@@ -352,8 +352,11 @@ region；region 以材質字串的 UTF-16 碼元序、再以 source node index �
   節點縫上沒有鬼三角，頂面邊是 90° 的真稜，輪胎跨縫被頂起。runtime 與 admission 計數都先把同材質、
   非牆條帶、非單顆的 solid region 合併成一個 region（`sourceNodeIndex` 取組內最小者，canonical key 與
   piece group 隨之以材質為單位），再焊接、切塊、推導鬼三角。合併時剔除跨節點的埋藏面：與另一節點的
-  三角共面、法線反向、至少共用一個焊接後頂點，且質心落在該三角內者；同一節點內刻意做成雙面的
-  零厚度面不受影響（[D-20261031-06](../decisions/D-20261031-06-同材質地面節點合併切塊.md)）。
+  三角共面、法線反向，且整片被這些三角的聯集蓋住者（投影到自身平面逐一裁剪、剩餘面積不超過容差；候選以
+  AABB 重疊篩選、不要求共用頂點）；部分被蓋住者（相鄰節點寬度不同的接縫、小方塊坐在大底板上）只保留減去
+  全部候選後的外露碎片，碎片超過上限時整片保留；同一節點內刻意做成雙面的零厚度面不受影響
+  （[D-20261031-06](../decisions/D-20261031-06-同材質地面節點合併切塊.md)、
+  [D-20261104-04](../decisions/D-20261104-04-埋藏面以整片覆蓋判定並保留外露碎片.md)）。
 - **piece group**：`addTrack` 依 canonical key `track:material:sourceNode` 首次出現的順序從 1 起派發
   group。kernel 對「同一動態 collider × 同一固定 body × 同一非 0 group」的多顆 collider 合併
   manifold，成為一個 solver cluster（leader＝有 manifold 的最小 handle piece），等同拆分前單顆
