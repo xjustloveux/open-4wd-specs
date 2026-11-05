@@ -2873,6 +2873,22 @@
       "summary": null
     },
     {
+      "id": "decisions/D-20261104-04-埋藏面以整片覆蓋判定並保留外露碎片.md",
+      "type": "decision",
+      "domain": [
+        "建模物理"
+      ],
+      "summary": null
+    },
+    {
+      "id": "decisions/D-20261105-01-地面格預設4公尺與範圍放寬.md",
+      "type": "decision",
+      "domain": [
+        "建模物理"
+      ],
+      "summary": null
+    },
+    {
       "id": "decisions/INDEX.md",
       "type": null,
       "domain": [],
@@ -8310,6 +8326,14 @@
     },
     {
       "from": "decisions/INDEX.md",
+      "to": "decisions/D-20261104-04-埋藏面以整片覆蓋判定並保留外露碎片.md"
+    },
+    {
+      "from": "decisions/INDEX.md",
+      "to": "decisions/D-20261105-01-地面格預設4公尺與範圍放寬.md"
+    },
+    {
+      "from": "decisions/INDEX.md",
       "to": "decisions/README.md"
     },
     {
@@ -9838,6 +9862,10 @@
     },
     {
       "from": "程式參數/protocol.md",
+      "to": "decisions/D-20261105-01-地面格預設4公尺與範圍放寬.md"
+    },
+    {
+      "from": "程式參數/protocol.md",
       "to": "信譽系統.md"
     },
     {
@@ -11350,6 +11378,10 @@
     },
     {
       "from": "程式架構/physics-engine.md",
+      "to": "decisions/D-20261104-04-埋藏面以整片覆蓋判定並保留外露碎片.md"
+    },
+    {
+      "from": "程式架構/physics-engine.md",
       "to": "建模參數.md"
     },
     {
@@ -11951,6 +11983,10 @@
     {
       "from": "程式架構/testing.md",
       "to": "decisions/D-20261101-02-持續接觸判定的幾何回退.md"
+    },
+    {
+      "from": "程式架構/testing.md",
+      "to": "decisions/D-20261105-01-地面格預設4公尺與範圍放寬.md"
     },
     {
       "from": "程式架構/testing.md",

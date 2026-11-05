@@ -243,7 +243,7 @@ export interface TrackSpec {
   collision: TrackCollisionSpec; // admitted manifest 的碰撞體分段（必填；無牆條帶時 wallStrips 為空陣列）
 }
 export interface TrackCollisionSpec {
-  groundCellM: number; // 地面 XZ 格邊長（m），6–16
+  groundCellM: number; // 地面 XZ 格邊長（m），2–16
   wallStrips: ReadonlyArray<TrackWallStrip>;
 }
 export interface TrackWallStrip {
