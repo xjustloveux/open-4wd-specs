@@ -355,6 +355,7 @@ namespace。production-owned `AppShellDynamicDeps` 只列 AppShell 實際消費�
 - 逐幀基準的目標由常數推導（`budgetsFor(hz)`），`perf-baseline.json` 不寫毫秒目標；`meetsProductTarget` 按 L0／L1／L2 分列，非逐幀項目另以 `meetsFixedTarget` 呈現。兩者都是**產品診斷**，在效能報表中獨立呈現，目前不是共享 runner 的 hard gate。
 - 參考機：一般中階筆電；具體 CPU／OS／瀏覽器／電源模式尚未登錄（D-20261028-04 待決事項 1）。`race-frame-cost-8players`、`rollback-worst-event` 與 `catch-up-worst` 的 reference 是本機 Node 代理量測的暫置值，標為 `provisional`：參考機重建前惡化只警告、不失敗。
 - 只輸出、不設目標的診斷：world step、`engine.step`、`saveState`、`loadOwnState`、`loadState`、`stateHash`、snapshot bytes、最深回滾事件分佈，以及 `catch-up-worst` 的載入、日誌驗簽與重播分項。
+- 公版資產的研究量測不進 `perf-baseline.json`：`scripts/completion-rate/frame-cost.mjs` 以正式 admission 載入公版零件與場地、八台公版車零輸入自走，依同一每幀實付定義量 P50／P95 與 L0／L1 比值；`--profile` 讀 kernel profiler 分項，`--cars`／`--drop-materials`／`--ground-cell` 供縮放與歸因。本機 Node 代理數字，不設閘（[D-20261105-01](../decisions/D-20261105-01-地面格預設4公尺與範圍放寬.md) 的依據）。
 - 非逐幀的資產處理項目維持固定毫秒產品目標（尚未列入 `perf-baseline.json`）：mesh fingerprint ≤ 50 ms、mesh 體積計算 ≤ 30 ms（10k 頂點）。
 
 共享 CI runner 先執行固定 CPU／記憶體校準，再以正規化後相對
