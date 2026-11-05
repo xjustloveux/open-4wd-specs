@@ -131,8 +131,11 @@ envelope 批次 sha256 或清單不符即拒絕；跨登錄表（甲輸出後銷
 checkpoint 在 4 MiB 上限及衍生 wire 預算內並輸出裕度（預設 240 幀，`O4_SNAPSHOT_SIZE_FULL=1` 跑 960 幀）。
 登錄表本身的批次語意、內嵌位元組相容、別名、token 釋放與就地修改由 vendored source-kit 的 Rust 測試
 `static_shape_registry_d20261028` 在每個 repair 代重建時執行。
-`src/testing/integration/builtin-rolling-truncation.spec.ts`（[D-20261101-02](../decisions/D-20261101-02-持續接觸判定的幾何回退.md)）斷言 speed 公版車在 urban
-1500 幀內沒有任何一步位移低於鄰近 31 步中位數的 0.9 倍（hard CCD 不得截斷持續貼地滾動的輪胎）；kernel 側
+`src/testing/integration/builtin-rolling-truncation.spec.ts`（[D-20261101-02](../decisions/D-20261101-02-持續接觸判定的幾何回退.md)、
+[D-20261105-02](../decisions/D-20261105-02-單步截斷守門改為多軌跡次數上限.md)）斷言公版三場 × 三車款各 1500 幀
+零輸入自走的 CCD 單步截斷合計不超過 5 次、每條軌跡被判定的步數不少於 1,200（截斷＝車速超過 1 m/s 而該步
+位移不到步後速度 × 步長的 0.9 倍；上限容納 kernel 判面的已知殘餘與首次撞擊的正常截停，判定步數下限防止
+車款調校後整條軌跡被判準跳過）；kernel 側
 由 `sweeps.rs` 的 `persistent_contact_fallback_tests`（manifold 暫時無點的貼地 pair 仍判持續接觸、離地 pair
 不判、同群鄰 piece 有接觸點時參考法線取自鄰 piece 而非回退）與 `persistent_target_normal_tests`（回退參考
 法線的擬法線錐修正六案）守住，binding 的

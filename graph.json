@@ -2889,6 +2889,14 @@
       "summary": null
     },
     {
+      "id": "decisions/D-20261105-02-單步截斷守門改為多軌跡次數上限.md",
+      "type": "decision",
+      "domain": [
+        "建模物理"
+      ],
+      "summary": null
+    },
+    {
       "id": "decisions/INDEX.md",
       "type": null,
       "domain": [],
@@ -8334,6 +8342,10 @@
     },
     {
       "from": "decisions/INDEX.md",
+      "to": "decisions/D-20261105-02-單步截斷守門改為多軌跡次數上限.md"
+    },
+    {
+      "from": "decisions/INDEX.md",
       "to": "decisions/README.md"
     },
     {
@@ -11382,6 +11394,10 @@
     },
     {
       "from": "程式架構/physics-engine.md",
+      "to": "decisions/D-20261105-02-單步截斷守門改為多軌跡次數上限.md"
+    },
+    {
+      "from": "程式架構/physics-engine.md",
       "to": "建模參數.md"
     },
     {
@@ -11987,6 +12003,10 @@
     {
       "from": "程式架構/testing.md",
       "to": "decisions/D-20261105-01-地面格預設4公尺與範圍放寬.md"
+    },
+    {
+      "from": "程式架構/testing.md",
+      "to": "decisions/D-20261105-02-單步截斷守門改為多軌跡次數上限.md"
     },
     {
       "from": "程式架構/testing.md",
