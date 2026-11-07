@@ -2897,6 +2897,15 @@
       "summary": null
     },
     {
+      "id": "decisions/D-20261107-01-持續接觸trimesh目標排除部分三角形補掃.md",
+      "type": "decision",
+      "domain": [
+        "建模物理",
+        "比賽房間"
+      ],
+      "summary": null
+    },
+    {
       "id": "decisions/INDEX.md",
       "type": null,
       "domain": [],
@@ -6993,6 +7002,34 @@
       "to": "程式架構/ui-frontend.md"
     },
     {
+      "from": "decisions/D-20261107-01-持續接觸trimesh目標排除部分三角形補掃.md",
+      "to": "decisions/D-20261026-02-CCD持續接觸改掃核心球.md"
+    },
+    {
+      "from": "decisions/D-20261107-01-持續接觸trimesh目標排除部分三角形補掃.md",
+      "to": "decisions/D-20261101-02-持續接觸判定的幾何回退.md"
+    },
+    {
+      "from": "decisions/D-20261107-01-持續接觸trimesh目標排除部分三角形補掃.md",
+      "to": "decisions/D-20261101-03-場地閘牆格軌跡視界截在在場上幀.md"
+    },
+    {
+      "from": "decisions/D-20261107-01-持續接觸trimesh目標排除部分三角形補掃.md",
+      "to": "decisions/D-20261105-02-單步截斷守門改為多軌跡次數上限.md"
+    },
+    {
+      "from": "decisions/D-20261107-01-持續接觸trimesh目標排除部分三角形補掃.md",
+      "to": "程式參數/network.md"
+    },
+    {
+      "from": "decisions/D-20261107-01-持續接觸trimesh目標排除部分三角形補掃.md",
+      "to": "程式架構/physics-engine.md"
+    },
+    {
+      "from": "decisions/D-20261107-01-持續接觸trimesh目標排除部分三角形補掃.md",
+      "to": "程式架構/testing.md"
+    },
+    {
       "from": "decisions/INDEX.md",
       "to": "decisions/D-20260428-01-初始企劃骨架與模組化規格基線.md"
     },
@@ -8343,6 +8380,10 @@
     {
       "from": "decisions/INDEX.md",
       "to": "decisions/D-20261105-02-單步截斷守門改為多軌跡次數上限.md"
+    },
+    {
+      "from": "decisions/INDEX.md",
+      "to": "decisions/D-20261107-01-持續接觸trimesh目標排除部分三角形補掃.md"
     },
     {
       "from": "decisions/INDEX.md",
@@ -11402,6 +11443,10 @@
     },
     {
       "from": "程式架構/physics-engine.md",
+      "to": "decisions/D-20261107-01-持續接觸trimesh目標排除部分三角形補掃.md"
+    },
+    {
+      "from": "程式架構/physics-engine.md",
       "to": "建模參數.md"
     },
     {
@@ -12011,6 +12056,10 @@
     {
       "from": "程式架構/testing.md",
       "to": "decisions/D-20261105-02-單步截斷守門改為多軌跡次數上限.md"
+    },
+    {
+      "from": "程式架構/testing.md",
+      "to": "decisions/D-20261107-01-持續接觸trimesh目標排除部分三角形補掃.md"
     },
     {
       "from": "程式架構/testing.md",

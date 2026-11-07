@@ -139,7 +139,11 @@ checkpoint 在 4 MiB 上限及衍生 wire 預算內並輸出裕度（預設 240 
 由 `sweeps.rs` 的 `persistent_contact_fallback_tests`（manifold 暫時無點的貼地 pair 仍判持續接觸、離地 pair
 不判、同群鄰 piece 有接觸點時參考法線取自鄰 piece 而非回退）與 `persistent_target_normal_tests`（回退參考
 法線的擬法線錐修正六案）守住，binding 的
-`ccd_persistent_contact`（含 `diag-blade-split-v60` 薄牆）與隧穿治具照跑。
+`ccd_persistent_contact`（含 `diag-blade-split-v60` 薄牆）與隧穿治具照跑。持續接觸 pair 對 trimesh 目標的補掃
+（[D-20261107-01](../decisions/D-20261107-01-持續接觸trimesh目標排除部分三角形補掃.md)）由原生整合測試
+`ccd_same_piece_wall` 守住，前緣越過牆面都不得超過 1 mm（牆在另一個 piece group 時同一判準）：已貼地的方塊、
+輪子與 1 mm 平躺薄板以 2、5、20、60、120 m/s 撞上與地面同一個 trimesh 的牆；方塊以 2、5、20、60 m/s 貼著
+牆滑進同一個 trimesh 的轉角。
 
 在 Playwright 內對各瀏覽器跑 `/internal/sim-harness?seed=...&frames=...`，比對
 `KNOWN_CHECKSUMS`。`seed`／`frames` 是非機密的確定性測試輸入，且 `frames` 必須為
