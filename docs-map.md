@@ -287,7 +287,7 @@ flowchart TB
 | [遊戲機制.md](遊戲機制.md) | canon | 機制庫、晶片技能、其他遊玩細節 |
 | [零件與場景.md](零件與場景.md) | canon | 8 類零件＋3 類場景 entity 詳述 |
 
-決策檔 94 筆——見 [decisions/INDEX.md](decisions/INDEX.md)。
+決策檔 95 筆——見 [decisions/INDEX.md](decisions/INDEX.md)。
 
 ### 建模物理依賴圖（1/2）
 
@@ -402,7 +402,7 @@ flowchart TB
 | [賽內機制.md](賽內機制.md) | canon | 房間配對／比賽中／結算（含 HUD、聊天、觀戰） |
 | [車輛組裝.md](車輛組裝.md) | canon | 玩家依正式／本機測試車位用途組車（本機 loadout） |
 
-決策檔 73 筆——見 [decisions/INDEX.md](decisions/INDEX.md)。
+決策檔 74 筆——見 [decisions/INDEX.md](decisions/INDEX.md)。
 
 ### 比賽房間依賴圖（1/2）
 
