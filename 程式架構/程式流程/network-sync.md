@@ -61,7 +61,10 @@ flowchart TD
     MyMatch -->|否| Inc[consecutiveDesync++<br/>不 rollback（重播同 input 無法收斂）]
     Inc --> Limit{達 desync strike 門檻?}
     Limit -->|是| Invalid
-    Limit -->|否| Done([繼續、待下輪 checksum])
+    Limit -->|否| Absent{該輪有成員缺席投票?}
+    Absent -->|是| Resync[向該輪多數票 peer<br/>發起 catch-up 重同步]
+    Absent -->|否| Done([繼續、待下輪 checksum])
+    Resync --> Done
     Reset --> Done
 ```
 

@@ -235,7 +235,7 @@ class ChecksumExchanger {
       this.consecutiveDesyncs = 0;
       return { type: "consistent" };
     }
-    // mismatch 不嘗試 rollback：決定性重播同一批 input 必得同一結果、治不了真分歧（且分歧點多在 StateBuffer 12 frame 窗外）→ 只累積 strike
+    // mismatch 不嘗試 rollback：決定性重播同一批 input 必得同一結果、治不了真分歧（且分歧點多在 StateBuffer 12 frame 窗外）→ 累積 strike（有成員缺席時少數端另行重同步，見本節下方）
     this.consecutiveDesyncs++;
     if (this.consecutiveDesyncs >= this.DESYNC_LIMIT)
       return { type: "persistent-desync" };
@@ -251,7 +251,7 @@ type ChecksumResult =
   | { type: "persistent-desync" };
 ```
 
-`persistent-desync` → `handlePersistentDesync` 自我驅逐：本機停模擬、送 control `leave`（reason `'desync'`；對端只記斷線〔forfeit〕，不影響終局）＋ 觸發 [ledger.md §9 `DesyncEvent`](ledger.md)（被踢者自簽自報、不影響信譽、純供調查）。**checksum 等待容差 30 frame（0.5 秒）**：某 peer 的 checksum 逾窗未到 → 該輪視同缺席、不阻塞多數決；**mismatch 不觸發 rollback**（決定性重播無法收斂真分歧）、僅累積 strike。
+`persistent-desync` → `handlePersistentDesync` 自我驅逐：本機停模擬、送 control `leave`（reason `'desync'`；對端只記斷線〔forfeit〕，不影響終局）＋ 觸發 [ledger.md §9 `DesyncEvent`](ledger.md)（被踢者自簽自報、不影響信譽、純供調查）。**checksum 等待容差 30 frame（0.5 秒）**：某 peer 的 checksum 逾窗未到 → 該輪視同缺席、不阻塞多數決；**mismatch 不觸發 rollback**（決定性重播無法收斂真分歧）、累積 strike；該輪有 roster 成員缺席投票時，少數端另向該輪多數票 peer 發起 catch-up 重同步（所需票數＝多數票遠端人數、至少兩名，[D-20261109-01](../decisions/D-20261109-01-斷線造成的checksum少數端重同步.md)），全員投票時不發起。
 
 ### 4.1 已確定步進串流
 
