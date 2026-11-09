@@ -2914,6 +2914,14 @@
       "summary": null
     },
     {
+      "id": "decisions/D-20261109-01-斷線造成的checksum少數端重同步.md",
+      "type": "decision",
+      "domain": [
+        "比賽房間"
+      ],
+      "summary": null
+    },
+    {
       "id": "decisions/INDEX.md",
       "type": null,
       "domain": [],
@@ -7050,6 +7058,26 @@
       "to": "程式架構/physics-engine.md"
     },
     {
+      "from": "decisions/D-20261109-01-斷線造成的checksum少數端重同步.md",
+      "to": "decisions/D-20261029-01-回合終局一致性.md"
+    },
+    {
+      "from": "decisions/D-20261109-01-斷線造成的checksum少數端重同步.md",
+      "to": "decisions/D-20261029-03-catch-up分tick追趕與落後端快進.md"
+    },
+    {
+      "from": "decisions/D-20261109-01-斷線造成的checksum少數端重同步.md",
+      "to": "程式架構/network-sync.md"
+    },
+    {
+      "from": "decisions/D-20261109-01-斷線造成的checksum少數端重同步.md",
+      "to": "程式架構/程式流程/network-sync.md"
+    },
+    {
+      "from": "decisions/D-20261109-01-斷線造成的checksum少數端重同步.md",
+      "to": "賽內機制.md"
+    },
+    {
       "from": "decisions/INDEX.md",
       "to": "decisions/D-20260428-01-初始企劃骨架與模組化規格基線.md"
     },
@@ -8408,6 +8436,10 @@
     {
       "from": "decisions/INDEX.md",
       "to": "decisions/D-20261107-02-場地閘弧牆穿入改和單顆對照比較.md"
+    },
+    {
+      "from": "decisions/INDEX.md",
+      "to": "decisions/D-20261109-01-斷線造成的checksum少數端重同步.md"
     },
     {
       "from": "decisions/INDEX.md",
@@ -11211,6 +11243,10 @@
     },
     {
       "from": "程式架構/network-sync.md",
+      "to": "decisions/D-20261109-01-斷線造成的checksum少數端重同步.md"
+    },
+    {
+      "from": "程式架構/network-sync.md",
       "to": "流程/比賽進行.md"
     },
     {
@@ -13608,6 +13644,10 @@
     {
       "from": "賽內機制.md",
       "to": "decisions/D-20261029-02-forfeit整場壓縮名次.md"
+    },
+    {
+      "from": "賽內機制.md",
+      "to": "decisions/D-20261109-01-斷線造成的checksum少數端重同步.md"
     },
     {
       "from": "賽內機制.md",

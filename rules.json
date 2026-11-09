@@ -2625,7 +2625,7 @@
       "anchor": {
         "file": "賽內機制.md",
         "line": 119,
-        "excerpt": "- checksum 等待容差 30 frame（0.5 秒）：逾窗未到 = 該輪缺席、不阻塞多數決；mismatch 不觸發 rollback、僅累積 des"
+        "excerpt": "- checksum 等待容差 30 frame（0.5 秒）：逾窗未到 = 該輪缺席、不阻塞多數決；mismatch 不觸發 rollback、累積 desy"
       },
       "refs": []
     },

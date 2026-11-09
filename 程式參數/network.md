@@ -92,7 +92,7 @@ slug: null
 | `PEER_DESYNC_TOLERANCE_FRAMES`                       | 30         | checksum 等待容差（0.5 秒；逾窗未到 = 該輪缺席、不阻塞多數決）                                                                               |
 | `CATCH_UP_MAX_ADVANCE_FRAMES`                        | 900        | 重連 catch-up 快照相對請求幀的最大前跳（15 秒 × 60Hz）；超界回應丟棄，防簽章 peer 以巨幅未來幀凍結／跳過賽程                                 |
 | `CHECKSUM_PAST_HORIZON_FRAMES`                       | 150        | 已逾 checksum 週期 120 + 等待窗 30 的舊票丟棄，不得重建票倉                                                                                  |
-| `DESYNC_STRIKE_LIMIT`                                | 3          | 連續 checksum mismatch 達此值 → persistent-desync（mismatch 不 rollback、僅累積）                                                            |
+| `DESYNC_STRIKE_LIMIT`                                | 3          | 連續 checksum mismatch 達此值 → persistent-desync（mismatch 不 rollback；有成員缺席時少數端另行重同步）                                                            |
 | `SPECTATOR_BROADCAST_INTERVAL_MS`                    | 100        | 僅精簡 presentation fallback 的 state broadcast 10Hz；deterministic replay 不使用此節拍                                                      |
 
 ### 8.1 `network/perf`（效能預算口徑）
