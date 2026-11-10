@@ -287,7 +287,7 @@ flowchart TB
 | [遊戲機制.md](遊戲機制.md) | canon | 機制庫、晶片技能、其他遊玩細節 |
 | [零件與場景.md](零件與場景.md) | canon | 8 類零件＋3 類場景 entity 詳述 |
 
-決策檔 96 筆——見 [decisions/INDEX.md](decisions/INDEX.md)。
+決策檔 97 筆——見 [decisions/INDEX.md](decisions/INDEX.md)。
 
 ### 建模物理依賴圖（1/2）
 
