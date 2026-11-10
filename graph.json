@@ -2922,6 +2922,14 @@
       "summary": null
     },
     {
+      "id": "decisions/D-20261110-01-場地閘試算拒絕改比集合平均.md",
+      "type": "decision",
+      "domain": [
+        "建模物理"
+      ],
+      "summary": null
+    },
+    {
       "id": "decisions/INDEX.md",
       "type": null,
       "domain": [],
@@ -7078,6 +7086,22 @@
       "to": "賽內機制.md"
     },
     {
+      "from": "decisions/D-20261110-01-場地閘試算拒絕改比集合平均.md",
+      "to": "decisions/D-20261021-01-場地碰撞體分段與邊界法線機制.md"
+    },
+    {
+      "from": "decisions/D-20261110-01-場地閘試算拒絕改比集合平均.md",
+      "to": "decisions/D-20261028-05-bounded-step接受容差放寬至0.2毫米.md"
+    },
+    {
+      "from": "decisions/D-20261110-01-場地閘試算拒絕改比集合平均.md",
+      "to": "decisions/D-20261107-02-場地閘弧牆穿入改和單顆對照比較.md"
+    },
+    {
+      "from": "decisions/D-20261110-01-場地閘試算拒絕改比集合平均.md",
+      "to": "程式架構/physics-engine.md"
+    },
+    {
       "from": "decisions/INDEX.md",
       "to": "decisions/D-20260428-01-初始企劃骨架與模組化規格基線.md"
     },
@@ -8440,6 +8464,10 @@
     {
       "from": "decisions/INDEX.md",
       "to": "decisions/D-20261109-01-斷線造成的checksum少數端重同步.md"
+    },
+    {
+      "from": "decisions/INDEX.md",
+      "to": "decisions/D-20261110-01-場地閘試算拒絕改比集合平均.md"
     },
     {
       "from": "decisions/INDEX.md",
@@ -11508,6 +11536,10 @@
     {
       "from": "程式架構/physics-engine.md",
       "to": "decisions/D-20261107-02-場地閘弧牆穿入改和單顆對照比較.md"
+    },
+    {
+      "from": "程式架構/physics-engine.md",
+      "to": "decisions/D-20261110-01-場地閘試算拒絕改比集合平均.md"
     },
     {
       "from": "程式架構/physics-engine.md",
