@@ -3059,6 +3059,14 @@
       "summary": null
     },
     {
+      "id": "decisions/D-20261114-01-場地物件相位偏移的幀換算與第0幀姿態.md",
+      "type": "decision",
+      "domain": [
+        "建模物理"
+      ],
+      "summary": null
+    },
+    {
       "id": "decisions/INDEX.md",
       "type": null,
       "domain": [],
@@ -7451,6 +7459,10 @@
       "to": "程式架構/audio-system.md"
     },
     {
+      "from": "decisions/D-20261114-01-場地物件相位偏移的幀換算與第0幀姿態.md",
+      "to": "建模參數/場地.md"
+    },
+    {
       "from": "decisions/INDEX.md",
       "to": "decisions/D-20260428-01-初始企劃骨架與模組化規格基線.md"
     },
@@ -8884,6 +8896,10 @@
     },
     {
       "from": "decisions/INDEX.md",
+      "to": "decisions/D-20261114-01-場地物件相位偏移的幀換算與第0幀姿態.md"
+    },
+    {
+      "from": "decisions/INDEX.md",
       "to": "decisions/README.md"
     },
     {
@@ -9169,6 +9185,10 @@
     {
       "from": "建模參數/場地.md",
       "to": "decisions/D-20261031-06-同材質地面節點合併切塊.md"
+    },
+    {
+      "from": "建模參數/場地.md",
+      "to": "decisions/D-20261114-01-場地物件相位偏移的幀換算與第0幀姿態.md"
     },
     {
       "from": "建模參數/場地.md",
