@@ -3051,6 +3051,14 @@
       "summary": null
     },
     {
+      "id": "decisions/D-20261113-11-音樂靜音時不載入BGM.md",
+      "type": "decision",
+      "domain": [
+        "前端主題"
+      ],
+      "summary": null
+    },
+    {
       "id": "decisions/INDEX.md",
       "type": null,
       "domain": [],
@@ -7435,6 +7443,14 @@
       "to": "流程/比賽進行.md"
     },
     {
+      "from": "decisions/D-20261113-11-音樂靜音時不載入BGM.md",
+      "to": "decisions/D-20261113-04-靜音旗標與頂欄喇叭鈕.md"
+    },
+    {
+      "from": "decisions/D-20261113-11-音樂靜音時不載入BGM.md",
+      "to": "程式架構/audio-system.md"
+    },
+    {
       "from": "decisions/INDEX.md",
       "to": "decisions/D-20260428-01-初始企劃骨架與模組化規格基線.md"
     },
@@ -8861,6 +8877,10 @@
     {
       "from": "decisions/INDEX.md",
       "to": "decisions/D-20261113-10-開賽巡禮鏡位規劃移出呈現就緒路徑.md"
+    },
+    {
+      "from": "decisions/INDEX.md",
+      "to": "decisions/D-20261113-11-音樂靜音時不載入BGM.md"
     },
     {
       "from": "decisions/INDEX.md",
@@ -10933,6 +10953,10 @@
     {
       "from": "程式架構/audio-system.md",
       "to": "decisions/D-20261113-04-靜音旗標與頂欄喇叭鈕.md"
+    },
+    {
+      "from": "程式架構/audio-system.md",
+      "to": "decisions/D-20261113-11-音樂靜音時不載入BGM.md"
     },
     {
       "from": "程式架構/audio-system.md",
