@@ -402,7 +402,7 @@ flowchart TB
 | [賽內機制.md](賽內機制.md) | canon | 房間配對／比賽中／結算（含 HUD、聊天、觀戰） |
 | [車輛組裝.md](車輛組裝.md) | canon | 玩家依正式／本機測試車位用途組車（本機 loadout） |
 
-決策檔 82 筆——見 [decisions/INDEX.md](decisions/INDEX.md)。
+決策檔 83 筆——見 [decisions/INDEX.md](decisions/INDEX.md)。
 
 ### 比賽房間依賴圖（1/2）
 

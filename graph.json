@@ -3043,6 +3043,14 @@
       "summary": null
     },
     {
+      "id": "decisions/D-20261113-10-開賽巡禮鏡位規劃移出呈現就緒路徑.md",
+      "type": "decision",
+      "domain": [
+        "比賽房間"
+      ],
+      "summary": null
+    },
+    {
       "id": "decisions/INDEX.md",
       "type": null,
       "domain": [],
@@ -7419,6 +7427,14 @@
       "to": "算式表.md"
     },
     {
+      "from": "decisions/D-20261113-10-開賽巡禮鏡位規劃移出呈現就緒路徑.md",
+      "to": "decisions/D-20261113-03-開賽巡禮依場地挑選鏡位.md"
+    },
+    {
+      "from": "decisions/D-20261113-10-開賽巡禮鏡位規劃移出呈現就緒路徑.md",
+      "to": "流程/比賽進行.md"
+    },
+    {
       "from": "decisions/INDEX.md",
       "to": "decisions/D-20260428-01-初始企劃骨架與模組化規格基線.md"
     },
@@ -8844,6 +8860,10 @@
     },
     {
       "from": "decisions/INDEX.md",
+      "to": "decisions/D-20261113-10-開賽巡禮鏡位規劃移出呈現就緒路徑.md"
+    },
+    {
+      "from": "decisions/INDEX.md",
       "to": "decisions/README.md"
     },
     {
@@ -9773,6 +9793,10 @@
     {
       "from": "流程/比賽進行.md",
       "to": "decisions/D-20261113-06-開賽巡禮每回合進行並顯示車輛.md"
+    },
+    {
+      "from": "流程/比賽進行.md",
+      "to": "decisions/D-20261113-10-開賽巡禮鏡位規劃移出呈現就緒路徑.md"
     },
     {
       "from": "流程/比賽進行.md",
