@@ -40,6 +40,7 @@ slug: null
 | `MIN_TIRE_WEAR_SPEED_MPS` | 0.001 | 低於此接觸速度視為共識靜止，不記 rolling／slip wear |
 | `K_TORQUE_FROM_W` | 0.0002（公版最弱 speed 整車可由靜止爬 7.38% 起跑坡） | 功率 → 扭力（N·m/W）；每幀另以 `mass × remaining Δv` 鉗制，不跨越 derived top speed（[D-20260807-02](../decisions/D-20260807-02-公版起跑扭矩與極速衝量鉗制.md)） |
 | `K_SPEED_FROM_W` | 0.015（初估；speed 配置極速 ≈8.4 m/s） | 功率 → 極速（m/s/W） |
+| `DRIVE_REFERENCE_WHEEL_RADIUS_M` | 0.016（公版輪胎半徑） | 扭矩換算推力的固定參考輪半徑（m）；與實際輪徑無關（[D-20261113-09](../decisions/D-20261113-09-驅動換算改用參考輪半徑與對轉軸半徑.md)） |
 | `K_BOOST` / `K_BRAKE` / `K_JUMP` / `K_SLAM` | 0.00065／0.00065／0.00065／0.00065（初估；滿威力 boost ≈+3 m/s、jump ≈0.3m） | Event 技能衝量係數（N·s／effect J） |
 | `K_SWERVE` | 0.0008（初估；持續側移 ≈1.5 m/s²） | Hold 側移衝量係數（N·s／effect J） |
 | `K_STABILIZE` | 0.5（初估；Hold 期間角阻尼 ≈+3） | Hold 角阻尼係數（阻尼／effect J） |

@@ -101,7 +101,7 @@ registration／document base 推導，不硬編任一 profile。E2E 必分別從
 | 公告語系 JSON／圖片                                              | 公告專用 bounded cache；URL digest 與 response SHA-256 相符才可寫入                          |
 | 公告附件                                                         | 非圖片不 precache、不因開頁自動下載；玩家明確開啟時走一般網路回應                            |
 
-Precache 清單雙層：SW 源檔只列穩定檔名（`/`、`index.html`、manifest×4、favicon），`inject-precache`（build 後、`scripts/`）掃 dist 根改寫為全量（hash 檔名 JS/CSS＋icons；決定性排序 ＝SW byte 穩定不誤觸升版偵測）。此外，腳本讀取**已通過驗證的 default theme manifest**，把其 `theme.json` 與所有非 null runtime 資產加入 install-time precache；其他主題不加入，維持選用後 cache-first lazy。manifest 路徑必須留在該主題目錄內，路徑穿越直接使 build gate 失敗。install 走**逐資產** `cache.add(...).catch()`（`addAll` 為原子——任一缺席整批全滅）；`cache.put` 僅收 `status === 200`（206 partial 進 Cache API 必 throw）且寫入 best-effort。四語系字典 ＝ 動態 import 隨 bundle chunk（precache 全 JS 涵蓋、無獨立 `/assets/i18n/`）。
+Precache 清單雙層：SW 源檔只列穩定檔名（`/`、`index.html`、manifest×4、favicon），`inject-precache`（build 後、`scripts/`）掃 dist 根改寫為全量（hash 檔名 JS/CSS＋icons；決定性排序 ＝SW byte 穩定不誤觸升版偵測）。此外，腳本讀取**已通過驗證的 default theme manifest**，把其 `theme.json` 與 `bgm-*` 以外的所有非 null runtime 資產加入 install-time precache（BGM 體積大，播放時才取檔）；其他主題不加入，維持選用後 cache-first lazy。manifest 路徑必須留在該主題目錄內，路徑穿越直接使 build gate 失敗。install 走**逐資產** `cache.add(...).catch()`（`addAll` 為原子——任一缺席整批全滅）；`cache.put` 僅收 `status === 200`（206 partial 進 Cache API 必 throw）且寫入 best-effort。四語系字典 ＝ 動態 import 隨 bundle chunk（precache 全 JS 涵蓋、無獨立 `/assets/i18n/`）。
 
 `CLIENT_VERSION` 與 `BUILTIN_ASSETS_VERSION` 由 `generate:pwa` 注入，主快取名稱為
 `open4wd-${CLIENT_VERSION}-assets-${BUILTIN_ASSETS_VERSION}`（`check:pwa` 守門一致）。activate 只清

@@ -26,13 +26,18 @@ slug: null
 | `VISUAL_FRAGMENT_LIFETIME_MS`          | 5000 | 車輛與場地純視覺碎片共用存續時間                          |
 | `VISUAL_FRAGMENT_FADE_MS`              | 1000 | 存續期末段淡出時間                                        |
 
-## 13. `ui/audio`（BGM 轉場）
+## 13. `ui/audio`（BGM 轉場與總輸出限幅）
 
 | 常數               | 值   | 說明                                                                                         |
 | ------------------ | ---- | -------------------------------------------------------------------------------------------- |
 | `BGM_CROSSFADE_MS` | 1000 | BGM 異曲轉場淡出淡入時長（初估；[程式架構/audio-system.md §4](../程式架構/audio-system.md)） |
+| `AUDIO_LIMITER_THRESHOLD_DB` | -3 | 總輸出限幅器門檻（dBFS）；未達門檻的聲音不受影響（[程式架構/audio-system.md §5](../程式架構/audio-system.md)） |
+| `AUDIO_LIMITER_KNEE_DB` | 0 | 限幅器 knee 寬度（dB） |
+| `AUDIO_LIMITER_RATIO` | 20 | 限幅器壓縮比 |
+| `AUDIO_LIMITER_ATTACK_S` | 0.003 | 限幅器起音時間（秒） |
+| `AUDIO_LIMITER_RELEASE_S` | 0.25 | 限幅器釋放時間（秒） |
 
-> **槽位與保留 SFX 單一權威 ＝ `src/audio-system/slots.ts`**；它們是封閉名錄而非可調參數，不在本表另抄。**音量預設單一權威 ＝settings**（[遊戲機制.md §9](../遊戲機制.md)／ [程式架構/settings.md](../程式架構/settings.md)：master 80 / sfx 100 / bgm 80，0–100 整數）——本表不另列音量常數；三路玩家可覆寫、持久於 settings。音訊系統（槽位 ／ 轉場 ／ 混音）見 [程式架構/audio-system.md](../程式架構/audio-system.md)。
+> **槽位與保留 SFX 單一權威 ＝ `src/audio-system/slots.ts`**；它們是封閉名錄而非可調參數，不在本表另抄。**音量預設單一權威 ＝settings**（[遊戲機制.md §9](../遊戲機制.md)／ [程式架構/settings.md](../程式架構/settings.md)：sfx 50 / bgm 50，0–100 整數）——本表不另列音量常數；兩軸玩家可覆寫、持久於 settings。音訊系統（槽位 ／ 轉場 ／ 混音）見 [程式架構/audio-system.md](../程式架構/audio-system.md)。
 
 ## 14. `ui/layout`（版面）與主題常數
 
@@ -108,9 +113,11 @@ slug: null
 | 常數                                             |                  值 | 說明                                             |
 | ------------------------------------------------ | ------------------: | ------------------------------------------------ |
 | `FOLLOW_CAMERA_DISTANCE_MIN_M`                   |               0.3 m | 跟車偏好直線距離下限                             |
-| `FOLLOW_CAMERA_DISTANCE_MAX_M`                   |                 2 m | 跟車偏好直線距離上限                             |
+| `FOLLOW_CAMERA_DISTANCE_MAX_M`                   |                 5 m | 跟車偏好直線距離上限                             |
 | `FOLLOW_CAMERA_DISTANCE_DEFAULT_M`               |               0.5 m | 舊設定／非有限輸入 fallback 與 HUD 重設值        |
-| `FOLLOW_CAMERA_DISTANCE_STEP_M`                  |              0.05 m | HUD 與滑鼠滾輪每次調整量                         |
+| `FOLLOW_CAMERA_DISTANCE_STEP_M`                  |               0.1 m | HUD 與滑鼠滾輪在門檻以內（含）的每次調整量                |
+| `FOLLOW_CAMERA_DISTANCE_FAR_THRESHOLD_M`         |                 2 m | 步距切換門檻                                 |
+| `FOLLOW_CAMERA_DISTANCE_FAR_STEP_M`              |               0.2 m | 超過門檻後 HUD 與滑鼠滾輪的每次調整量                  |
 | `FOLLOW_CAMERA_ELEVATION_RAD`                    | `atan2(0.22, 0.45)` | 固定仰角；後距與高度隨直線距離等比例縮放         |
 | `FOLLOW_CAMERA_UPRIGHT_DOT_MIN`                  |                 0.5 | 車體 up 與世界 up 的安全朝向更新門檻             |
 | `FOLLOW_CAMERA_HORIZONTAL_EPSILON`               |              0.0001 | 水平車頭投影退化門檻                             |

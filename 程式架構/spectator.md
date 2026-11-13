@@ -205,7 +205,7 @@ type CameraMode =
   | { type: 'tour' };                           // 巡禮：局部車群導播鏡位
 ```
 
-共用 RacePage 的 `CameraController` 維持 role、產品模式、目標與首幀確立的固定車序；`TourDirector` 只以局部車群展開度取景，鏡位套用前對場地做 ray collision 避讓，不做全場 fit。participant 的「類型／跟車／自己」與 spectator 的「類型／跟車」共用同一狀態機。已淘汰或完賽車仍可跟，只跳過離線缺席者。
+共用 RacePage 的 `CameraController` 維持 role、產品模式、目標與首幀確立的固定車序；`TourDirector` 在比賽進行中只以局部車群展開度取景，鏡位套用前對場地做 ray collision 避讓，不做全場 fit；回合場地載入後循環播放 `tour-planner` 依場地規劃的鏡位（`tourPlayback` 為 `loop`）；參賽者在開賽巡禮開始時改為從第一個鏡位依序播一輪（`fixed`），倒數開始即結束巡禮並切到跟車視角；觀戰者維持循環播放，到收到第一個已步進的畫面為止（[D-20261113-06](../decisions/D-20261113-06-開賽巡禮每回合進行並顯示車輛.md)）。participant 的「類型／跟車／自己」與 spectator 的「類型／跟車」共用同一狀態機。已淘汰或完賽車仍可跟，只跳過離線缺席者。
 
 ## 6. 淘汰自動轉觀戰
 
@@ -281,10 +281,14 @@ interface FallbackSpectatorVehicleState {
   brokenPartIds: readonly string[]; // 最多 64 筆；每項 1–128 chars，ASCII 字典序去重
   eliminated: boolean;
   weaponNodes: readonly SpectatorWeaponNodeState[];
+  wheels?: readonly [slotIndex: number, angleMrad: number, angularVelocityDradS: number][]; // 最多 10 筆，slotIndex 嚴格遞增
+  preloadedProjectiles?: { broken: number; total: number }; // 僅彈體獨立耐久開啟：0 ≤ broken ≤ total、1 ≤ total ≤ LAUNCH_AMMO_COUNT_MAX
 }
 interface SpectatorTrackFragmentState { fragmentIndex: number; seed: number; seedMm: Vec3; volumeMm3: number; opacityX1000: number; }
 interface SpectatorTrackEntityState { entityIndex: number; nodeName: string; positionMm: Vec3; rotation: Quat; broken: boolean; fragments: readonly SpectatorTrackFragmentState[]; }
 ```
+
+`wheels` 的 slotIndex 依序對應 `tire:FL`、`tire:FR`、`tire:RL`、`tire:RR`、`roller:FL`、`roller:FR`、`roller:CL`、`roller:CR`、`roller:RL`、`roller:RR`；轉角以毫弧度表示（絕對值不超過 3142），角速度以 0.1 rad/s 表示（絕對值不超過 100000），三個值都必須是整數，超出範圍、非整數或槽位未遞增即拒收。接收端以兩幀的角速度平均還原整圈數後插值。`preloadedProjectiles` 是預載彈損毀計數（[D-20261025-01](../decisions/D-20261025-01-持彈碰撞體切換與可選彈體獨立耐久.md)），兩個值都必須是範圍內的整數，否則拒收；它是離散值，接收端插值途中維持前一幀、到終點才換新一幀，與 `brokenPartIds` 相同。
 
 `decodeSpectatorMessage` 是不信任邊界，僅接受上述 discriminator 與各型正面表列欄位。world descriptor 的 roster 必須固定排序且每位具完整 loadout；input／checksum 必須保留原 Race Sign Key 簽章並逐筆驗證；checkpoint 受既有 SavedState 上限（`SYNC_SNAPSHOT_MAX_BYTES`，4 MiB）、frame／hash／topology驗證保護，而且只在 `waiting-checkpoint` 接受目前 channel generation 綁定的 `sourcePeerId`／`sourceEpoch`，frame 必須不低於目前單調 floor。錯階段、舊 generation、錯 source 或倒退 frame 在 snapshot／signature base64 decode 前拒絕；合法 checkpoint 的兩份 bytes 只解碼一次，再共用於 hash、簽章驗證與 `loadCheckpoint`。fallback 先以 UTF-8 byte length 拒絕超過 256 KiB，再套 vehicles／weapon nodes／track entities／純視覺 fragment descriptors／weather／HUD 的 encoder-decoder 對稱上限，來源不得送出接收端必丟的幀。fragment wire 不含 `physicsActive`、物理 pose 或 velocity。未知、多欄、少欄、非 canonical 排序或畸形資料全部 fail-closed。
 

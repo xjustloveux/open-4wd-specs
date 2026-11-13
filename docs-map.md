@@ -14,7 +14,7 @@ slug: null
 
 列＝引用來源、欄＝引用目標；數字是 current canon 文件間的有向連結數，歷史與決策檔不計。
 
-| 來源 \ 目標 | [共識帳本](#共識帳本10-檔) | [經濟](#經濟8-檔) | [UGC版權](#ugc版權17-檔) | [材質](#材質2-檔) | [建模物理](#建模物理12-檔) | [比賽房間](#比賽房間28-檔) | [信譽仲裁](#信譽仲裁8-檔) | [版本部署](#版本部署18-檔) | [資安](#資安6-檔) | [前端主題](#前端主題41-檔) | [治理營運](#治理營運3-檔) | [跨域](#跨域16-檔) |
+| 來源 \ 目標 | [共識帳本](#共識帳本10-檔) | [經濟](#經濟8-檔) | [UGC版權](#ugc版權17-檔) | [材質](#材質2-檔) | [建模物理](#建模物理12-檔) | [比賽房間](#比賽房間28-檔) | [信譽仲裁](#信譽仲裁8-檔) | [版本部署](#版本部署18-檔) | [資安](#資安6-檔) | [前端主題](#前端主題43-檔) | [治理營運](#治理營運3-檔) | [跨域](#跨域16-檔) |
 | --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
 | [共識帳本](#共識帳本10-檔) | — | 8 | 5 | 0 | 8 | 12 | 12 | 9 | 2 | 0 | 1 | 6 |
 | [經濟](#經濟8-檔) | 13 | — | 6 | 0 | 4 | 4 | 1 | 3 | 0 | 1 | 2 | 3 |
@@ -25,7 +25,7 @@ slug: null
 | [信譽仲裁](#信譽仲裁8-檔) | 12 | 3 | 11 | 0 | 4 | 8 | — | 1 | 2 | 0 | 0 | 2 |
 | [版本部署](#版本部署18-檔) | 10 | 5 | 1 | 2 | 3 | 13 | 6 | — | 10 | 6 | 1 | 8 |
 | [資安](#資安6-檔) | 10 | 1 | 5 | 1 | 4 | 9 | 4 | 5 | — | 1 | 1 | 1 |
-| [前端主題](#前端主題41-檔) | 2 | 2 | 12 | 2 | 23 | 9 | 0 | 17 | 3 | — | 0 | 15 |
+| [前端主題](#前端主題43-檔) | 2 | 2 | 12 | 2 | 23 | 9 | 0 | 17 | 3 | — | 0 | 15 |
 | [治理營運](#治理營運3-檔) | 4 | 2 | 1 | 1 | 2 | 0 | 0 | 2 | 0 | 0 | — | 0 |
 | [跨域](#跨域16-檔) | 16 | 6 | 24 | 2 | 16 | 42 | 12 | 31 | 13 | 31 | 1 | — |
 
@@ -287,7 +287,7 @@ flowchart TB
 | [遊戲機制.md](遊戲機制.md) | canon | 機制庫、晶片技能、其他遊玩細節 |
 | [零件與場景.md](零件與場景.md) | canon | 8 類零件＋3 類場景 entity 詳述 |
 
-決策檔 97 筆——見 [decisions/INDEX.md](decisions/INDEX.md)。
+決策檔 99 筆——見 [decisions/INDEX.md](decisions/INDEX.md)。
 
 ### 建模物理依賴圖（1/2）
 
@@ -402,7 +402,7 @@ flowchart TB
 | [賽內機制.md](賽內機制.md) | canon | 房間配對／比賽中／結算（含 HUD、聊天、觀戰） |
 | [車輛組裝.md](車輛組裝.md) | canon | 玩家依正式／本機測試車位用途組車（本機 loadout） |
 
-決策檔 75 筆——見 [decisions/INDEX.md](decisions/INDEX.md)。
+決策檔 82 筆——見 [decisions/INDEX.md](decisions/INDEX.md)。
 
 ### 比賽房間依賴圖（1/2）
 
@@ -431,6 +431,7 @@ flowchart TB
   n1 --> n7
   n1 --> n8
   n1 --> n9
+  n2 --> n1
   n2 --> n7
   n2 --> n8
   n2 --> n13
@@ -732,7 +733,7 @@ flowchart TB
   n3 --> n2
 ```
 
-## 前端主題（41 檔）
+## 前端主題（43 檔）
 
 | 檔案 | type | 說明 |
 |---|---|---|
@@ -740,7 +741,7 @@ flowchart TB
 | [公告系統.md](公告系統.md) | canon | repo-owned 四語靜態公告、結構化內容、撤回／取代 |
 | [程式參數/ui.md](程式參數/ui.md) | registry | 動畫、音訊、版面、語系與 SEO 參數 |
 | [程式架構/announcements.md](程式架構/announcements.md) | impl | 四語公告 scanner／generator／catalog／safe renderer |
-| [程式架構/audio-system.md](程式架構/audio-system.md) | impl | 播放槽名錄／主題音訊 fallback／BGM 轉場／三路混音 |
+| [程式架構/audio-system.md](程式架構/audio-system.md) | impl | 播放槽名錄／主題音訊 fallback／BGM 轉場／兩軸混音與靜音 |
 | [程式架構/i18n.md](程式架構/i18n.md) | impl | 字典載入／I18nService／ICU 複數／Intl 格式化 |
 | [程式架構/pages-contracts.md](程式架構/pages-contracts.md) | impl | 路由頁面、AppDataProviders、O4Viewport 與 RaceSession 的資料入口契約 |
 | [程式架構/pwa-offline.md](程式架構/pwa-offline.md) | impl | PWA manifest／SW 快取分路／離線 UI／UGC 快取 LRU |
@@ -757,6 +758,8 @@ flowchart TB
 | [美術資源/UGC卡片.md](美術資源/UGC卡片.md) | art | UGC 卡片結構／必顯欄位／評分顯示規則與入口 |
 | [美術資源/主題外觀與 RWD.md](美術資源/主題外觀與%20RWD.md) | art | 主題 Skin Layer／頁面套用強度／寬高比例三軸 RWD 的穩定視覺規格 |
 | [美術資源/主題審查計畫.md](美術資源/主題審查計畫.md) | art | 主題代表 viewport／靜態原型／整合守門與驗收工作的非 canon 計畫 |
+| [美術資源/主題音訊/README.md](美術資源/主題音訊/README.md) | art | 四個主題的 BGM 與音效交付清單、程式合成產生器與來源紀錄 |
+| [美術資源/主題音訊/風格設定.md](美術資源/主題音訊/風格設定.md) | art | 四個主題的 BGM 曲風、動機、配器與音效材質設定 |
 | [美術資源/前端技術策略.md](美術資源/前端技術策略.md) | art | UI 前端實作契約的穩定導覽入口 |
 | [美術資源/實際使用圖/節慶主題2026/README.md](美術資源/實際使用圖/節慶主題2026/README.md) | art | 萬聖節與彩鉛聖誕的主題、倒數、訊息圖庫交付與重建清單 |
 | [美術資源/實際使用圖/節慶主題2026/previous-README.md](美術資源/實際使用圖/節慶主題2026/previous-README.md) | art | 節慶主題核准設計的來源與保留策略 |
@@ -778,7 +781,7 @@ flowchart TB
 | [美術資源/頁面線框.md](美術資源/頁面線框.md) | art | 各頁面 wireframe／版面結構與互動規則細化 |
 | [語系清單.md](語系清單.md) | meta | i18n 四語系＋社群 PR 流程 |
 
-決策檔 39 筆——見 [decisions/INDEX.md](decisions/INDEX.md)。
+決策檔 45 筆——見 [decisions/INDEX.md](decisions/INDEX.md)。
 
 ### 前端主題依賴圖（1/2）
 
@@ -798,7 +801,6 @@ flowchart TB
   n11["themes"]
   n12["ui-frontend"]
   n13["i18n"]
-  n14["pwa-offline"]
   n0 --> n2
   n0 --> n4
   n0 --> n5
@@ -817,6 +819,7 @@ flowchart TB
   n3 --> n1
   n4 --> n0
   n4 --> n2
+  n4 --> n7
   n4 --> n10
   n4 --> n11
   n5 --> n7
@@ -827,7 +830,6 @@ flowchart TB
   n6 --> n12
   n7 --> n0
   n7 --> n5
-  n7 --> n14
   n8 --> n9
   n9 --> n0
   n9 --> n5
@@ -848,77 +850,84 @@ flowchart TB
   n12 --> n7
   n12 --> n11
   n13 --> n5
-  n14 --> n7
 ```
 
 ### 前端主題依賴圖（2/2）
 
 ```mermaid
 flowchart TB
-  n0["編輯器操作"]
-  n1["美術資源"]
-  n2["README"]
-  n3["UGC卡片"]
-  n4["主題外觀與 RWD"]
-  n5["主題審查計畫"]
-  n6["前端技術策略"]
+  n0["pwa-offline"]
+  n1["編輯器操作"]
+  n2["美術資源"]
+  n3["README"]
+  n4["UGC卡片"]
+  n5["主題外觀與 RWD"]
+  n6["主題審查計畫"]
   n7["README"]
-  n8["previous-README"]
-  n9["README"]
-  n10["UI資產"]
-  n11["場地參考圖"]
-  n12["christmas"]
-  n13["halloween"]
-  n14["零件參考圖"]
-  n15["頁面概念圖"]
-  n16["美術方向"]
-  n17["設計系統"]
-  n18["頁面線框"]
-  n19["語系清單"]
-  n1 --> n2
-  n1 --> n3
-  n1 --> n4
-  n1 --> n5
-  n1 --> n10
-  n1 --> n11
-  n1 --> n14
-  n1 --> n15
-  n1 --> n16
-  n1 --> n17
-  n1 --> n18
-  n1 --> n19
-  n4 --> n5
-  n4 --> n17
-  n4 --> n18
-  n5 --> n4
-  n6 --> n17
+  n8["風格設定"]
+  n9["前端技術策略"]
+  n10["README"]
+  n11["previous-README"]
+  n12["README"]
+  n13["UI資產"]
+  n14["場地參考圖"]
+  n15["christmas"]
+  n16["halloween"]
+  n17["零件參考圖"]
+  n18["頁面概念圖"]
+  n19["美術方向"]
+  n20["設計系統"]
+  n21["頁面線框"]
+  n22["語系清單"]
+  n2 --> n3
+  n2 --> n4
+  n2 --> n5
+  n2 --> n6
+  n2 --> n13
+  n2 --> n14
+  n2 --> n17
+  n2 --> n18
+  n2 --> n19
+  n2 --> n20
+  n2 --> n21
+  n2 --> n22
+  n5 --> n6
+  n5 --> n20
+  n5 --> n21
+  n6 --> n5
+  n7 --> n8
+  n8 --> n5
   n8 --> n7
-  n9 --> n7
+  n8 --> n10
+  n9 --> n20
   n10 --> n7
-  n10 --> n11
-  n10 --> n14
-  n10 --> n15
-  n10 --> n17
-  n11 --> n14
-  n12 --> n7
-  n13 --> n7
-  n14 --> n16
-  n15 --> n0
-  n15 --> n3
-  n15 --> n11
-  n15 --> n14
-  n15 --> n16
-  n15 --> n17
-  n15 --> n18
-  n16 --> n4
-  n16 --> n17
-  n17 --> n1
-  n17 --> n4
+  n11 --> n10
+  n12 --> n10
+  n13 --> n10
+  n13 --> n14
+  n13 --> n17
+  n13 --> n18
+  n13 --> n20
+  n14 --> n17
+  n15 --> n10
+  n16 --> n10
   n17 --> n19
-  n18 --> n0
   n18 --> n1
   n18 --> n4
-  n18 --> n5
+  n18 --> n14
+  n18 --> n17
+  n18 --> n19
+  n18 --> n20
+  n18 --> n21
+  n19 --> n5
+  n19 --> n20
+  n20 --> n2
+  n20 --> n5
+  n20 --> n22
+  n21 --> n1
+  n21 --> n2
+  n21 --> n5
+  n21 --> n6
 ```
 
 #### 前端主題依賴圖跨頁關係
@@ -930,8 +939,10 @@ flowchart TB
 | [主題系統](主題系統.md) | [語系清單](語系清單.md) | 連結 |
 | [ui](程式參數/ui.md) | [主題外觀與 RWD](美術資源/主題外觀與%20RWD.md) | 連結 |
 | [ui](程式參數/ui.md) | [語系清單](語系清單.md) | 連結 |
+| [audio-system](程式架構/audio-system.md) | [README](美術資源/主題音訊/README.md) | 連結 |
 | [i18n](程式架構/i18n.md) | [語系清單](語系清單.md) | 連結 |
 | [pages-contracts](程式架構/pages-contracts.md) | [頁面線框](美術資源/頁面線框.md) | 連結 |
+| [pwa-offline](程式架構/pwa-offline.md) | [pwa-offline](程式架構/程式流程/pwa-offline.md) | 連結 |
 | [pwa-offline](程式架構/pwa-offline.md) | [語系清單](語系清單.md) | 連結 |
 | [race-routing](程式架構/race-routing.md) | [語系清單](語系清單.md) | 連結 |
 | [seo](程式架構/seo.md) | [語系清單](語系清單.md) | 連結 |
@@ -944,6 +955,7 @@ flowchart TB
 | [ui-frontend](程式架構/ui-frontend.md) | [設計系統](美術資源/設計系統.md) | 連結 |
 | [ui-frontend](程式架構/ui-frontend.md) | [語系清單](語系清單.md) | 連結 |
 | [i18n](程式架構/程式流程/i18n.md) | [語系清單](語系清單.md) | 連結 |
+| [pwa-offline](程式架構/程式流程/pwa-offline.md) | [pwa-offline](程式架構/pwa-offline.md) | 連結 |
 | [編輯器操作](編輯器操作.md) | [ui-frontend](程式架構/ui-frontend.md) | 連結 |
 | [美術資源](美術資源.md) | [主題系統](主題系統.md) | 連結 |
 | [美術資源](美術資源.md) | [ui](程式參數/ui.md) | 連結 |
@@ -954,6 +966,8 @@ flowchart TB
 | [主題外觀與 RWD](美術資源/主題外觀與%20RWD.md) | [主題系統](主題系統.md) | 連結 |
 | [主題外觀與 RWD](美術資源/主題外觀與%20RWD.md) | [ui-frontend](程式架構/ui-frontend.md) | 連結 |
 | [主題審查計畫](美術資源/主題審查計畫.md) | [ui-frontend](程式架構/ui-frontend.md) | 連結 |
+| [README](美術資源/主題音訊/README.md) | [audio-system](程式架構/audio-system.md) | 連結 |
+| [風格設定](美術資源/主題音訊/風格設定.md) | [audio-system](程式架構/audio-system.md) | 連結 |
 | [前端技術策略](美術資源/前端技術策略.md) | [ui-frontend](程式架構/ui-frontend.md) | 連結 |
 | [UI資產](美術資源/提示詞/UI資產.md) | [主題系統](主題系統.md) | 連結 |
 | [UI資產](美術資源/提示詞/UI資產.md) | [ui-frontend](程式架構/ui-frontend.md) | 連結 |

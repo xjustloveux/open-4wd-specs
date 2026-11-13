@@ -249,7 +249,9 @@ chassis-side Mount local `+X`，視覺與 collider attachment 則為
 `chassisMount × inverse(partMount)`。runtime 不以 AABB 最短軸、三角形、builtin 姿態或外觀猜軸；
 part-side Mount 可有任意複合旋轉，幾何也可刻意不對稱或非圓盤。AABB box 只允許縮減測試 fixture；
 正式 admitted asset 的非圓 proxy 一律使用逐 convex proxy 拓樸，cylinder 只由烘焙 `shape` 標記
-決定（hinge descriptor 的 `radiusM` 保留為驅動換算半徑），runtime 不從 mesh 重推圓柱。
+決定，runtime 不從 mesh 重推圓柱。hinge descriptor 的 `radiusM` 是驅動與滾阻換算用的半徑，組裝時由
+manifest 的 proxy 對轉軸量得（判圓 proxy 取 `shape.radiusM`、其餘取 `pointsM` 到轉軸的最大距離，
+`contact: none` 不計），不取 AABB 投影（[D-20261113-09](../decisions/D-20261113-09-驅動換算改用參考輪半徑與對轉軸半徑.md)）。
 
 tire 接收 [算式表 §2](../算式表.md) 的角衝量，primary 接收等量反向反作用；roller 永遠被動。
 驅動以 world 建立時的原始 driven tire 數固定分母，損壞 tire 的份額不重分配，全部損壞時不推進。

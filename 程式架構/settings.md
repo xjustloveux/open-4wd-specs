@@ -26,9 +26,10 @@ interface AppSettings {
 interface AccountSettings { hasPinSet: boolean; storedKeyType: 'pin-encrypted' | 'none'; }   // 不存實際 PIN
 
 interface AudioSettings {
-  masterVolume: number;          // 0~100, default 80
-  sfxVolume: number;             // 0~100, default 100（相對 master）
-  bgmVolume: number;             // 0~100, default 80（背景音樂；槽位機制見 audio-system.md）
+  sfxVolume: number;             // 0~100, default 50（音效與世界音）
+  bgmVolume: number;             // 0~100, default 50（背景音樂；槽位機制見 audio-system.md）
+  sfxMuted: boolean;             // default true；靜音不改變 sfxVolume
+  bgmMuted: boolean;             // default true；靜音不改變 bgmVolume
 }
 
 interface DisplaySettings {
@@ -68,7 +69,7 @@ interface ProfileNetworkAuthority {
 interface GameplaySettings {
   customKeyBindings: KeyBinding[];
   playTimeReminder: { enabled: boolean; intervalHours: 1 | 2 | 3 };
-  followCameraDistanceM: number;          // 0.3–2.0 m；default 0.5 m，純本機 presentation
+  followCameraDistanceM: number;          // 0.3–5.0 m；default 0.5 m，純本機 presentation
 }
 
 interface PrivacySettings {
@@ -93,7 +94,7 @@ session 且不寫入設定。`disabled`／`offline` 會先阻擋該服務的所�
 ```typescript
 const DEFAULT_SETTINGS: AppSettings = {
   account: { hasPinSet: false, storedKeyType: 'none' },
-  audio: { masterVolume: 80, sfxVolume: 100, bgmVolume: 80 },
+  audio: { sfxVolume: 50, bgmVolume: 50, sfxMuted: true, bgmMuted: true },
   display: { language: null, themeId: 'default', effectsQuality: 'high', renderScalePercent: 100, antialias: 'on', colorblindMode: false, uiFontSize: 'medium', motionPreference: 'system' },
   network: {
     services: {
@@ -136,7 +137,7 @@ section 都回到顯示。`about` 不得改寫成 maintenance：六欄版本、M
 | 分類 | 未登入可用 | 需登入／解鎖 |
 |---|---|---|
 | 顯示 | 語系、主題、UI 字級、特效品質、3D 算圖解析度、反鋸齒、色盲模式、減少動態效果 | 無 |
-| 音訊 | master / SFX / BGM 三軸 | 無 |
+| 音訊 | 音效、音樂兩軸音量與各自的靜音開關 | 無 |
 | 遊戲行為 | 鍵盤／手把 binding、遊戲時長提醒、跟車距離 | 無 |
 | 網路 | 非敏感 Bootstrap／Pinning 節點與 UGC 本機分享保留可預先設定；不得因此啟動 P2P | TURN credential 與需要玩家身分的連線能力 |
 | 隱私 | UGC 貢獻偏好與遊戲時長提醒資料的裝置儲存／無集中式遙測說明、第三方 client／P2P IP／聊天證據三項安全揭露、聊天顯示過濾開關與本機詞表 | PeerId 顯示、身分分域收藏清單管理與依玩家狀態產生的診斷項目 |
@@ -170,7 +171,7 @@ Account 的 `IdentityData.changePin(oldPin, newPin)` 必須把兩值原樣交給
 
 ### 4.1 Runtime consumer 與能力真實性
 
-- `customKeyBindings` 目前只接受比賽確實消費的 `skill-1`～`skill-4`，鍵盤欄位使用 `KeyboardEvent.code`；重複 action、鍵碼或手把按鈕與不支援值在載入 sanitizer 被移除。自訂後該技能原本的 `Digit1`～`Digit4`／`Numpad1`～`Numpad4` 預設綁定讓位。
+- `customKeyBindings` 目前只接受比賽確實消費的 `skill-1`～`skill-4`，鍵盤欄位使用 `KeyboardEvent.code`；重複 action、鍵碼或手把按鈕與不支援值在載入 sanitizer 被移除；落在比賽固定功能鍵清單（鍵盤 `Escape`／`Enter`／`NumpadEnter`／`KeyM`，手把按鈕 4／5／8／9）的鍵碼或按鈕在載入與寫入時被捨棄，該槽的該輸入回到預設，設定頁重綁到這些鍵時拒絕並顯示原因。手把的技能綁定由比賽實際消費。自訂後該技能原本的 `Digit1`～`Digit4`／`Numpad1`～`Numpad4` 預設綁定讓位。
 - `playTimeReminder` 由 App runtime 排程，設定變更會取消舊 timer 並重排；App 銷毀時必清除 timer。提醒只顯示本機 toast，不上鏈、不發網路請求。
 - `ugcContribution` 偏好與 `playTimeReminder` 的設定／提醒計時只存於目前裝置，兩項功能不新增集中式遙測。這項聲明不涵蓋 authenticated online play、peer serving 或 signaling／TURN／peer 基礎設施；它們仍依既有邊界處理網路識別碼與傳輸中繼資料。
 - `effectsQuality` 同時控制 DOM 特效與 Three.js render profile：`medium` 關閉 outline post-processing，`low` 另把 toon 階數降為 2；主題本身仍可用。
@@ -262,7 +263,7 @@ ownership。
 | [遊戲機制.md §9](../遊戲機制.md) | 八大正式分類 + 可關閉第九開發者分類的設計權威 |
 | [i18n.md](i18n.md) · [語系清單.md](../語系清單.md) | 語言設定 / 切換 |
 | [themes.md](themes.md) · [../主題系統.md](../主題系統.md) | 主題選擇（`DisplaySettings.themeId`、即時生效）|
-| [audio-system.md](audio-system.md) | 音量三軸（master / sfx / bgm）|
+| [audio-system.md](audio-system.md) | 音量兩軸（sfx / bgm）與各自的靜音旗標 |
 | [../賽內機制.md §2.4.1](../賽內機制.md) | 「自訂按鍵」範圍 = 鍵盤＋手把重綁（觸控佈局固定）；預設鍵位權威 |
 | [key-manager.md](key-manager.md) | PIN / 助記詞 / 刪除本地資料 |
 | [pinning-service.md](pinning-service.md) · [signaling-service.md](signaling-service.md) | 節點清單 / TURN |

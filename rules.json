@@ -70,7 +70,7 @@
       "refs": [
         {
           "file": "賽內機制.md",
-          "line": 275
+          "line": 280
         }
       ]
     },
@@ -611,7 +611,7 @@
       },
       "anchor": {
         "file": "算式表.md",
-        "line": 605,
+        "line": 612,
         "excerpt": "月度派發係數只依 `softCap` 與 `monthMinted` 的整數公式計算："
       },
       "refs": []
@@ -630,7 +630,7 @@
       },
       "anchor": {
         "file": "算式表.md",
-        "line": 620,
+        "line": 627,
         "excerpt": "比賽獎金依總名次、完賽人數、月度係數與治理參數決定："
       },
       "refs": []
@@ -649,7 +649,7 @@
       },
       "anchor": {
         "file": "算式表.md",
-        "line": 630,
+        "line": 637,
         "excerpt": "`rank` = **總名次**（N 回合積分加總後的最終名次，見 [§20.1](#201-多回合積分與總名次)）；獎金 per-match 發一次（非每回合"
       },
       "refs": []
@@ -668,7 +668,7 @@
       },
       "anchor": {
         "file": "算式表.md",
-        "line": 649,
+        "line": 656,
         "excerpt": "單一 UGC 的回饋金由評分、利基加成、月度係數與基礎額共同決定："
       },
       "refs": []
@@ -687,7 +687,7 @@
       },
       "anchor": {
         "file": "算式表.md",
-        "line": 714,
+        "line": 721,
         "excerpt": "UGC 評分投票權重依投票者信譽分成 0.5、1.0、1.5 三級："
       },
       "refs": []
@@ -706,7 +706,7 @@
       },
       "anchor": {
         "file": "算式表.md",
-        "line": 724,
+        "line": 731,
         "excerpt": "UGC 評分依票數選用隱式 fallback、Bayesian 拉中性或明確票均值："
       },
       "refs": []
@@ -725,7 +725,7 @@
       },
       "anchor": {
         "file": "算式表.md",
-        "line": 738,
+        "line": 745,
         "excerpt": "**隱式 fallback（整數查表）**：浮點 `log10` 跨硬體不一致會炸毀 consensus derive，故隱式評分採整數查表："
       },
       "refs": []
@@ -1046,7 +1046,7 @@
       },
       "anchor": {
         "file": "算式表.md",
-        "line": 764,
+        "line": 771,
         "excerpt": "8 人 FFA 用 TrueSkill 成對近似多人更新（μ, σ 演化）。**rating 屬共識 derive**（`MatchDerivedState`、"
       },
       "refs": []
@@ -2662,7 +2662,7 @@
       },
       "anchor": {
         "file": "賽內機制.md",
-        "line": 235,
+        "line": 240,
         "excerpt": "| 完成該回合 `lap_count` 圈 | 玩家進入該回合「已完賽」狀態；其他玩家繼續 |"
       },
       "refs": []
@@ -2681,7 +2681,7 @@
       },
       "anchor": {
         "file": "賽內機制.md",
-        "line": 241,
+        "line": 246,
         "excerpt": "回合結束 → 先分①已完賽、②未完賽存活、③未完賽失能（battery／motor `functionalDisabled` 或 chassis `physic"
       },
       "refs": []
@@ -2700,7 +2700,7 @@
       },
       "anchor": {
         "file": "賽內機制.md",
-        "line": 253,
+        "line": 258,
         "excerpt": "| 新車初始狀態 | 載入下一回合的車即全新（fatigue 0 / temperature ambient / battery 滿 / 彈藥滿 / broke"
       },
       "refs": []
@@ -2719,7 +2719,7 @@
       },
       "anchor": {
         "file": "賽內機制.md",
-        "line": 260,
+        "line": 265,
         "excerpt": "1. **總名次**：forfeit 者（`disconnects` 中的開賽成員）整場不得分，先從每個回合名次移除，其餘玩家依移除後名次 `k` 得 `P −"
       },
       "refs": []
@@ -2738,7 +2738,7 @@
       },
       "anchor": {
         "file": "賽內機制.md",
-        "line": 269,
+        "line": 274,
         "excerpt": "- 所有完賽者只核對 match facts（rounds、ranking、loadouts、grid proof、inline anchors、disconn"
       },
       "refs": []
@@ -2757,7 +2757,7 @@
       },
       "anchor": {
         "file": "賽內機制.md",
-        "line": 299,
+        "line": 304,
         "excerpt": "| 賽中網路斷線 | race-mesh 獨立 generation 先走 15s 重連窗；GO 後逾時僅原 active roster 嚴格多數側可形成 ne"
       },
       "refs": []
@@ -2776,7 +2776,7 @@
       },
       "anchor": {
         "file": "賽內機制.md",
-        "line": 315,
+        "line": 320,
         "excerpt": "| Input 偽造／畸形 | Race Sign Key 簽章／回合隔離；每幀最多 4 個不重複 skill，Event／Hold 型態與本回合 loadou"
       },
       "refs": []
@@ -2795,7 +2795,7 @@
       },
       "anchor": {
         "file": "賽內機制.md",
-        "line": 316,
+        "line": 321,
         "excerpt": "| 同幀 equivocation | `(peer, frame)` 首個 signed 值鎖定；本端觀測到第二個相異值立即 fail-closed；跨 Da"
       },
       "refs": []
@@ -2814,7 +2814,7 @@
       },
       "anchor": {
         "file": "賽內機制.md",
-        "line": 319,
+        "line": 324,
         "excerpt": "| 抄近路 / 跳關 | Checkpoint 須依序點亮才算完賽 / 計圈；所有 peer deterministic 重算驗證 |"
       },
       "refs": []
@@ -3032,7 +3032,7 @@
       "refs": [
         {
           "file": "算式表.md",
-          "line": 678
+          "line": 685
         },
         {
           "file": "資料系統.md",
@@ -3193,7 +3193,7 @@
       "refs": [
         {
           "file": "賽內機制.md",
-          "line": 303
+          "line": 308
         }
       ]
     },
@@ -3221,7 +3221,7 @@
         },
         {
           "file": "算式表.md",
-          "line": 692
+          "line": 699
         }
       ]
     },

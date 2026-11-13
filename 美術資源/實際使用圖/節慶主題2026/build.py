@@ -15,6 +15,9 @@ APP = WORKSPACE / 'open-4wd'
 IDS = json.loads((HERE / 'themes.json').read_text(encoding='utf-8'))
 BASE = json.loads((APP / 'public/assets/themes/default/theme.json').read_text(encoding='utf-8'))
 
+# 節慶主題自備的音效槽（順序即 theme.json 的鍵順序）。
+THEME_SFX_SLOTS = ['sfx-click','sfx-confirm','sfx-cancel','sfx-error','sfx-toast','sfx-checkpoint','sfx-race-finish','sfx-motor-loop','sfx-collision-light','sfx-collision-heavy','sfx-weapon-melee-launch','sfx-weapon-melee-impact','sfx-weapon-projectile-launch','sfx-weapon-projectile-impact','sfx-skill-boost','sfx-skill-brake','sfx-skill-swerve','sfx-skill-jump','sfx-skill-slam','sfx-skill-stabilize']
+
 def write(path, content):
     path.parent.mkdir(parents=True, exist_ok=True)
     path.write_text(content, encoding='utf-8', newline='\n')
@@ -102,6 +105,8 @@ for season, identifier in IDS.items():
     }
     for key, value in {'black':'#f0ecdf' if is_xmas else '#16101d','steel-0':'#f7f4e9' if is_xmas else '#22182b','steel-1':'#fffdf5' if is_xmas else '#34263b','steel-2':'#d6d7c3' if is_xmas else '#5a4057','orange':'#a8443c' if is_xmas else '#f5a14a','orange-hot':'#923d36' if is_xmas else '#ffd078','blue':'#375f43' if is_xmas else '#dbb276','gold':'#876a28' if is_xmas else '#e6c987','ivory':'#2c4533' if is_xmas else '#f6e6bf','muted':'#52634d' if is_xmas else '#dcc5ad','frame':'#7a8964' if is_xmas else '#9a7256','panel-shadow':tokens['--o4-panel-shadow']}.items():
         tokens[f'--garage-{key}'] = value
+    # 車庫背景圖的寬高比，以及展示台在圖中的位置、寬度（以圖寬高為 1）與觀看俯角（度）；車庫展示用它把車輛對到台面。
+    tokens.update({'--garage-backdrop-aspect':'1.5','--garage-stand-x':'0.5' if is_xmas else '0.505','--garage-stand-y':'0.67' if is_xmas else '0.68','--garage-stand-width':'0.42' if is_xmas else '0.44','--garage-stand-elevation':'10' if is_xmas else '8'})
     assets_map = {key:'assets/landing-hero.webp' for key in ['landing-hero','garage-background','theme-preview','scene-home','scene-race-config','scene-race','scene-result','scene-ugc']}
     assets_map.update({key:'assets/workshop-background.webp' for key in ['garage-background','scene-race-config','scene-race']})
     assets_map['scene-ugc'] = 'assets/scene-ugc.webp'
@@ -114,6 +119,11 @@ for season, identifier in IDS.items():
     if not is_xmas:
         # Keep the registered empty-garage path; headings use the separate pumpkin emblem.
         assets_map['empty-garage'] = 'assets/harvest-engraving.webp'
+    # 音訊檔由 美術資源/主題音訊 的產生器產出後放入 assets/audio，本腳本只登錄路徑、不產生也不刪除音檔。
+    # 比賽以外的六個 BGM 槽共用首頁曲；保留槽與三個路面循環音不列，執行時沿用 default。
+    for key in ['bgm-home','bgm-garage','bgm-editor','bgm-browse','bgm-room','bgm-race','bgm-result']:
+        assets_map[key] = 'assets/audio/bgm-race.ogg' if key == 'bgm-race' else 'assets/audio/bgm-home.ogg'
+    assets_map.update({key:f'assets/audio/{key}.ogg' for key in THEME_SFX_SLOTS})
     manifest = {
         'id':identifier,'styleApiVersion':1,'stylesheet':'theme.css',
         'name':dict(zip(['zh-TW','zh-CN','en','ja'], ['彩鉛聖誕工坊','彩铅圣诞工坊','Christmas Pencil Workshop','色鉛筆のクリスマス工房'] if is_xmas else ['萬聖節復古工坊','万圣节复古工坊','Halloween Harvest Workshop','ハロウィンのレトロ工房'])),
@@ -133,6 +143,6 @@ for season, identifier in IDS.items():
     write(output / 'theme.json',json.dumps(manifest,ensure_ascii=False,indent=2)+'\n')
     shutil.copyfile(vector_source / 'theme.css',output / 'theme.css')
     subprocess.run(['node', str(APP / 'node_modules/prettier/bin/prettier.cjs'), '--ignore-path', str(HERE / 'format-ignore'), '--write', str(output / 'theme.css'), str(output / 'theme.json')], cwd=APP, check=True)
-    provenance = {'themeId':identifier,'approvedDesign':'Halloween v5 / Christmas v9','rasterOrigin':'OpenAI image_gen, approved in the seasonal-theme design conversation','vectorOrigin':'Project-authored SVG; no external references','rasterConversion':{'tool':'Pillow','format':'WebP','quality':88,'method':6},'fallback':'Default audio is intentionally inherited; all visual slots have local assets. Reserved gameplay tokens and neutral PBR are unchanged.','files':{p.relative_to(output).as_posix():{'bytes':p.stat().st_size,'sha256':hashlib.sha256(p.read_bytes()).hexdigest()} for p in sorted(output.rglob('*')) if p.is_file()}}
+    provenance = {'themeId':identifier,'approvedDesign':'Halloween v5 / Christmas v9','rasterOrigin':'OpenAI image_gen, approved in the seasonal-theme design conversation','vectorOrigin':'Project-authored SVG; no external references','rasterConversion':{'tool':'Pillow','format':'WebP','quality':88,'method':6},'fallback':'Theme audio is registered from assets/audio; reserved gameplay SFX and the three surface loops inherit default. All visual slots have local assets. Reserved gameplay tokens and neutral PBR are unchanged.','files':{p.relative_to(output).as_posix():{'bytes':p.stat().st_size,'sha256':hashlib.sha256(p.read_bytes()).hexdigest()} for p in sorted(output.rglob('*')) if p.is_file()}}
     write(HERE / 'records' / f'{season}-build-manifest.json',json.dumps(provenance,ensure_ascii=False,indent=2)+'\n')
     print(identifier, sum(p.stat().st_size for p in output.rglob('*') if p.is_file()), 'bytes')
