@@ -781,7 +781,7 @@ flowchart TB
 | [美術資源/頁面線框.md](美術資源/頁面線框.md) | art | 各頁面 wireframe／版面結構與互動規則細化 |
 | [語系清單.md](語系清單.md) | meta | i18n 四語系＋社群 PR 流程 |
 
-決策檔 45 筆——見 [decisions/INDEX.md](decisions/INDEX.md)。
+決策檔 46 筆——見 [decisions/INDEX.md](decisions/INDEX.md)。
 
 ### 前端主題依賴圖（1/2）
 
