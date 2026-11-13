@@ -342,8 +342,8 @@ export interface WeaponActuator {
 ```
 
 Race HUD 另輸出固定順序的 `skillDisableReasons`：`disallow-chip → chip-broken →
-functional-disabled → physics-retired → eliminated → quit`；本機車況尚不可得時使用
-`state-unavailable`。陣列非空即代表所有主動技能槽 disabled 且 active=false。這是由當幀
+functional-disabled → physics-retired → eliminated → quit → energy-depleted`；本機車況尚不可得時使用
+`state-unavailable`。陣列非空即代表所有主動技能槽 disabled 且 active=false。每個技能槽另帶選填的 `unavailableReason`（`burned`／`energy-depleted`／`weapon-broken`／`ammo-empty`／`unavailable`）與 `ammoRemaining`；武器零件損壞與彈藥用盡只停用武器槽，不進 `skillDisableReasons`。這是由當幀
 `VehicleState`、逐回合規則與本車 `RaceProgress.quitAtFrame` 推導的 presentation/input authority，不持久化成另一個
 latch。RacePage 只在 enabled→disabled 邊沿釋放現有 hold，並在任何停用原因存在時於播放音效與
 `feedInput` 之前拒絕新 press；物理引擎仍保留獨立 fail-closed 驗證。
@@ -367,6 +367,8 @@ export interface VehicleState {
   parts: ReadonlyArray<PartState>; // per-part fatigue / temperature / broken
   weaponProjectiles?: ReadonlyArray<ProjectileState>; // 僅彈體獨立耐久開啟：每顆預載彈耐久；broken 不計致毀
   enduranceRemainingPct: number; // 0~100 = battery 剩餘 / 初始 × 100
+  weaponAmmoRemaining?: number; // 僅主動發射型武器：剩餘彈數；純呈現輸出，不進快照與觀戰 wire
+  wheelHinges?: ReadonlyArray<WheelHingeState>; // 每顆未損壞的 tire／roller：{ partIndex, angleRad, angularVelocityRadS }；唯讀衍生值，不進快照與雜湊
 }
 export interface WeaponNodePose {
   nodeName: string;

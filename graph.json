@@ -2930,6 +2930,119 @@
       "summary": null
     },
     {
+      "id": "decisions/D-20261112-01-主題音訊採程式合成與預載分層.md",
+      "type": "decision",
+      "domain": [
+        "前端主題"
+      ],
+      "summary": null
+    },
+    {
+      "id": "decisions/D-20261112-02-BGM改以Web-Audio-buffer循環播放.md",
+      "type": "decision",
+      "domain": [
+        "前端主題"
+      ],
+      "summary": null
+    },
+    {
+      "id": "decisions/D-20261112-03-音訊共用單一Context與總輸出限幅.md",
+      "type": "decision",
+      "domain": [
+        "前端主題"
+      ],
+      "summary": null
+    },
+    {
+      "id": "decisions/D-20261112-04-比賽以外的場景共用首頁曲.md",
+      "type": "decision",
+      "domain": [
+        "前端主題"
+      ],
+      "summary": null
+    },
+    {
+      "id": "decisions/D-20261112-05-移除主音量.md",
+      "type": "decision",
+      "domain": [
+        "前端主題"
+      ],
+      "summary": null
+    },
+    {
+      "id": "decisions/D-20261113-01-跟車距離上限提高到4公尺.md",
+      "type": "decision",
+      "domain": [
+        "比賽房間"
+      ],
+      "summary": null
+    },
+    {
+      "id": "decisions/D-20261113-02-技能鈕顯示事實狀態.md",
+      "type": "decision",
+      "domain": [
+        "比賽房間"
+      ],
+      "summary": null
+    },
+    {
+      "id": "decisions/D-20261113-03-開賽巡禮依場地挑選鏡位.md",
+      "type": "decision",
+      "domain": [
+        "比賽房間"
+      ],
+      "summary": null
+    },
+    {
+      "id": "decisions/D-20261113-04-靜音旗標與頂欄喇叭鈕.md",
+      "type": "decision",
+      "domain": [
+        "前端主題"
+      ],
+      "summary": null
+    },
+    {
+      "id": "decisions/D-20261113-05-跟車距離上限5公尺與分段步距.md",
+      "type": "decision",
+      "domain": [
+        "比賽房間"
+      ],
+      "summary": null
+    },
+    {
+      "id": "decisions/D-20261113-06-開賽巡禮每回合進行並顯示車輛.md",
+      "type": "decision",
+      "domain": [
+        "比賽房間"
+      ],
+      "summary": null
+    },
+    {
+      "id": "decisions/D-20261113-07-輪胎與導輪的呈現取自物理姿態.md",
+      "type": "decision",
+      "domain": [
+        "比賽房間",
+        "建模物理"
+      ],
+      "summary": null
+    },
+    {
+      "id": "decisions/D-20261113-08-比賽選單與固定功能鍵.md",
+      "type": "decision",
+      "domain": [
+        "比賽房間"
+      ],
+      "summary": null
+    },
+    {
+      "id": "decisions/D-20261113-09-驅動換算改用參考輪半徑與對轉軸半徑.md",
+      "type": "decision",
+      "domain": [
+        "建模物理"
+      ],
+      "summary": null
+    },
+    {
       "id": "decisions/INDEX.md",
       "type": null,
       "domain": [],
@@ -3244,7 +3357,7 @@
       "domain": [
         "前端主題"
       ],
-      "summary": "播放槽名錄／主題音訊 fallback／BGM 轉場／三路混音"
+      "summary": "播放槽名錄／主題音訊 fallback／BGM 轉場／兩軸混音與靜音"
     },
     {
       "id": "程式架構/bootstrap.md",
@@ -3740,6 +3853,22 @@
         "前端主題"
       ],
       "summary": "主題代表 viewport／靜態原型／整合守門與驗收工作的非 canon 計畫"
+    },
+    {
+      "id": "美術資源/主題音訊/README.md",
+      "type": "art",
+      "domain": [
+        "前端主題"
+      ],
+      "summary": "四個主題的 BGM 與音效交付清單、程式合成產生器與來源紀錄"
+    },
+    {
+      "id": "美術資源/主題音訊/風格設定.md",
+      "type": "art",
+      "domain": [
+        "前端主題"
+      ],
+      "summary": "四個主題的 BGM 曲風、動機、配器與音效材質設定"
     },
     {
       "id": "美術資源/前端技術策略.md",
@@ -7102,6 +7231,194 @@
       "to": "程式架構/physics-engine.md"
     },
     {
+      "from": "decisions/D-20261112-01-主題音訊採程式合成與預載分層.md",
+      "to": "程式架構/audio-system.md"
+    },
+    {
+      "from": "decisions/D-20261112-01-主題音訊採程式合成與預載分層.md",
+      "to": "程式架構/pwa-offline.md"
+    },
+    {
+      "from": "decisions/D-20261112-01-主題音訊採程式合成與預載分層.md",
+      "to": "程式架構/themes.md"
+    },
+    {
+      "from": "decisions/D-20261112-01-主題音訊採程式合成與預載分層.md",
+      "to": "美術資源/主題音訊/README.md"
+    },
+    {
+      "from": "decisions/D-20261112-02-BGM改以Web-Audio-buffer循環播放.md",
+      "to": "decisions/D-20261112-01-主題音訊採程式合成與預載分層.md"
+    },
+    {
+      "from": "decisions/D-20261112-02-BGM改以Web-Audio-buffer循環播放.md",
+      "to": "程式架構/audio-system.md"
+    },
+    {
+      "from": "decisions/D-20261112-03-音訊共用單一Context與總輸出限幅.md",
+      "to": "decisions/D-20261112-02-BGM改以Web-Audio-buffer循環播放.md"
+    },
+    {
+      "from": "decisions/D-20261112-03-音訊共用單一Context與總輸出限幅.md",
+      "to": "程式參數/ui.md"
+    },
+    {
+      "from": "decisions/D-20261112-03-音訊共用單一Context與總輸出限幅.md",
+      "to": "程式架構/audio-system.md"
+    },
+    {
+      "from": "decisions/D-20261112-04-比賽以外的場景共用首頁曲.md",
+      "to": "decisions/D-20261112-01-主題音訊採程式合成與預載分層.md"
+    },
+    {
+      "from": "decisions/D-20261112-04-比賽以外的場景共用首頁曲.md",
+      "to": "decisions/D-20261112-02-BGM改以Web-Audio-buffer循環播放.md"
+    },
+    {
+      "from": "decisions/D-20261112-04-比賽以外的場景共用首頁曲.md",
+      "to": "程式架構/audio-system.md"
+    },
+    {
+      "from": "decisions/D-20261112-04-比賽以外的場景共用首頁曲.md",
+      "to": "美術資源/主題音訊/README.md"
+    },
+    {
+      "from": "decisions/D-20261112-05-移除主音量.md",
+      "to": "decisions/D-20261112-03-音訊共用單一Context與總輸出限幅.md"
+    },
+    {
+      "from": "decisions/D-20261112-05-移除主音量.md",
+      "to": "程式架構/audio-system.md"
+    },
+    {
+      "from": "decisions/D-20261112-05-移除主音量.md",
+      "to": "程式架構/settings.md"
+    },
+    {
+      "from": "decisions/D-20261113-01-跟車距離上限提高到4公尺.md",
+      "to": "decisions/D-20260810-01-跟車距離與世界水平穩定視角.md"
+    },
+    {
+      "from": "decisions/D-20261113-01-跟車距離上限提高到4公尺.md",
+      "to": "程式參數/ui.md"
+    },
+    {
+      "from": "decisions/D-20261113-01-跟車距離上限提高到4公尺.md",
+      "to": "賽內機制.md"
+    },
+    {
+      "from": "decisions/D-20261113-02-技能鈕顯示事實狀態.md",
+      "to": "程式架構/interfaces.md"
+    },
+    {
+      "from": "decisions/D-20261113-02-技能鈕顯示事實狀態.md",
+      "to": "賽內機制.md"
+    },
+    {
+      "from": "decisions/D-20261113-03-開賽巡禮依場地挑選鏡位.md",
+      "to": "流程/比賽進行.md"
+    },
+    {
+      "from": "decisions/D-20261113-03-開賽巡禮依場地挑選鏡位.md",
+      "to": "程式參數/protocol.md"
+    },
+    {
+      "from": "decisions/D-20261113-04-靜音旗標與頂欄喇叭鈕.md",
+      "to": "decisions/D-20261112-05-移除主音量.md"
+    },
+    {
+      "from": "decisions/D-20261113-04-靜音旗標與頂欄喇叭鈕.md",
+      "to": "程式架構/audio-system.md"
+    },
+    {
+      "from": "decisions/D-20261113-04-靜音旗標與頂欄喇叭鈕.md",
+      "to": "程式架構/settings.md"
+    },
+    {
+      "from": "decisions/D-20261113-05-跟車距離上限5公尺與分段步距.md",
+      "to": "decisions/D-20261113-01-跟車距離上限提高到4公尺.md"
+    },
+    {
+      "from": "decisions/D-20261113-05-跟車距離上限5公尺與分段步距.md",
+      "to": "程式參數/ui.md"
+    },
+    {
+      "from": "decisions/D-20261113-05-跟車距離上限5公尺與分段步距.md",
+      "to": "賽內機制.md"
+    },
+    {
+      "from": "decisions/D-20261113-06-開賽巡禮每回合進行並顯示車輛.md",
+      "to": "decisions/D-20261113-03-開賽巡禮依場地挑選鏡位.md"
+    },
+    {
+      "from": "decisions/D-20261113-06-開賽巡禮每回合進行並顯示車輛.md",
+      "to": "流程/比賽進行.md"
+    },
+    {
+      "from": "decisions/D-20261113-06-開賽巡禮每回合進行並顯示車輛.md",
+      "to": "流程/觀戰.md"
+    },
+    {
+      "from": "decisions/D-20261113-06-開賽巡禮每回合進行並顯示車輛.md",
+      "to": "賽內機制.md"
+    },
+    {
+      "from": "decisions/D-20261113-07-輪胎與導輪的呈現取自物理姿態.md",
+      "to": "decisions/D-20260812-02-觀戰Deterministic-Replay與精簡Fallback.md"
+    },
+    {
+      "from": "decisions/D-20261113-07-輪胎與導輪的呈現取自物理姿態.md",
+      "to": "decisions/D-20261113-06-開賽巡禮每回合進行並顯示車輛.md"
+    },
+    {
+      "from": "decisions/D-20261113-07-輪胎與導輪的呈現取自物理姿態.md",
+      "to": "程式架構/interfaces.md"
+    },
+    {
+      "from": "decisions/D-20261113-07-輪胎與導輪的呈現取自物理姿態.md",
+      "to": "程式架構/spectator.md"
+    },
+    {
+      "from": "decisions/D-20261113-07-輪胎與導輪的呈現取自物理姿態.md",
+      "to": "賽內機制.md"
+    },
+    {
+      "from": "decisions/D-20261113-08-比賽選單與固定功能鍵.md",
+      "to": "程式架構/settings.md"
+    },
+    {
+      "from": "decisions/D-20261113-08-比賽選單與固定功能鍵.md",
+      "to": "賽內機制.md"
+    },
+    {
+      "from": "decisions/D-20261113-09-驅動換算改用參考輪半徑與對轉軸半徑.md",
+      "to": "decisions/D-20260807-02-公版起跑扭矩與極速衝量鉗制.md"
+    },
+    {
+      "from": "decisions/D-20261113-09-驅動換算改用參考輪半徑與對轉軸半徑.md",
+      "to": "decisions/D-20260811-14-材質Capability與介面嚴外形寬.md"
+    },
+    {
+      "from": "decisions/D-20261113-09-驅動換算改用參考輪半徑與對轉軸半徑.md",
+      "to": "decisions/D-20261020-02-旋轉面形狀分類移至烘焙期.md"
+    },
+    {
+      "from": "decisions/D-20261113-09-驅動換算改用參考輪半徑與對轉軸半徑.md",
+      "to": "decisions/D-20261113-07-輪胎與導輪的呈現取自物理姿態.md"
+    },
+    {
+      "from": "decisions/D-20261113-09-驅動換算改用參考輪半徑與對轉軸半徑.md",
+      "to": "程式參數/calibration.md"
+    },
+    {
+      "from": "decisions/D-20261113-09-驅動換算改用參考輪半徑與對轉軸半徑.md",
+      "to": "程式架構/physics-engine.md"
+    },
+    {
+      "from": "decisions/D-20261113-09-驅動換算改用參考輪半徑與對轉軸半徑.md",
+      "to": "算式表.md"
+    },
+    {
       "from": "decisions/INDEX.md",
       "to": "decisions/D-20260428-01-初始企劃骨架與模組化規格基線.md"
     },
@@ -8471,6 +8788,62 @@
     },
     {
       "from": "decisions/INDEX.md",
+      "to": "decisions/D-20261112-01-主題音訊採程式合成與預載分層.md"
+    },
+    {
+      "from": "decisions/INDEX.md",
+      "to": "decisions/D-20261112-02-BGM改以Web-Audio-buffer循環播放.md"
+    },
+    {
+      "from": "decisions/INDEX.md",
+      "to": "decisions/D-20261112-03-音訊共用單一Context與總輸出限幅.md"
+    },
+    {
+      "from": "decisions/INDEX.md",
+      "to": "decisions/D-20261112-04-比賽以外的場景共用首頁曲.md"
+    },
+    {
+      "from": "decisions/INDEX.md",
+      "to": "decisions/D-20261112-05-移除主音量.md"
+    },
+    {
+      "from": "decisions/INDEX.md",
+      "to": "decisions/D-20261113-01-跟車距離上限提高到4公尺.md"
+    },
+    {
+      "from": "decisions/INDEX.md",
+      "to": "decisions/D-20261113-02-技能鈕顯示事實狀態.md"
+    },
+    {
+      "from": "decisions/INDEX.md",
+      "to": "decisions/D-20261113-03-開賽巡禮依場地挑選鏡位.md"
+    },
+    {
+      "from": "decisions/INDEX.md",
+      "to": "decisions/D-20261113-04-靜音旗標與頂欄喇叭鈕.md"
+    },
+    {
+      "from": "decisions/INDEX.md",
+      "to": "decisions/D-20261113-05-跟車距離上限5公尺與分段步距.md"
+    },
+    {
+      "from": "decisions/INDEX.md",
+      "to": "decisions/D-20261113-06-開賽巡禮每回合進行並顯示車輛.md"
+    },
+    {
+      "from": "decisions/INDEX.md",
+      "to": "decisions/D-20261113-07-輪胎與導輪的呈現取自物理姿態.md"
+    },
+    {
+      "from": "decisions/INDEX.md",
+      "to": "decisions/D-20261113-08-比賽選單與固定功能鍵.md"
+    },
+    {
+      "from": "decisions/INDEX.md",
+      "to": "decisions/D-20261113-09-驅動換算改用參考輪半徑與對轉軸半徑.md"
+    },
+    {
+      "from": "decisions/INDEX.md",
       "to": "decisions/README.md"
     },
     {
@@ -9395,6 +9768,14 @@
     },
     {
       "from": "流程/比賽進行.md",
+      "to": "decisions/D-20261113-03-開賽巡禮依場地挑選鏡位.md"
+    },
+    {
+      "from": "流程/比賽進行.md",
+      "to": "decisions/D-20261113-06-開賽巡禮每回合進行並顯示車輛.md"
+    },
+    {
+      "from": "流程/比賽進行.md",
       "to": "信譽系統.md"
     },
     {
@@ -9600,6 +9981,10 @@
     {
       "from": "流程/觀戰.md",
       "to": "decisions/D-20260810-01-跟車距離與世界水平穩定視角.md"
+    },
+    {
+      "from": "流程/觀戰.md",
+      "to": "流程/比賽進行.md"
     },
     {
       "from": "流程/觀戰.md",
@@ -9872,6 +10257,10 @@
     {
       "from": "程式參數/calibration.md",
       "to": "decisions/D-20260807-02-公版起跑扭矩與極速衝量鉗制.md"
+    },
+    {
+      "from": "程式參數/calibration.md",
+      "to": "decisions/D-20261113-09-驅動換算改用參考輪半徑與對轉軸半徑.md"
     },
     {
       "from": "程式參數/calibration.md",
@@ -10503,6 +10892,26 @@
     },
     {
       "from": "程式架構/audio-system.md",
+      "to": "decisions/D-20261112-02-BGM改以Web-Audio-buffer循環播放.md"
+    },
+    {
+      "from": "程式架構/audio-system.md",
+      "to": "decisions/D-20261112-03-音訊共用單一Context與總輸出限幅.md"
+    },
+    {
+      "from": "程式架構/audio-system.md",
+      "to": "decisions/D-20261112-04-比賽以外的場景共用首頁曲.md"
+    },
+    {
+      "from": "程式架構/audio-system.md",
+      "to": "decisions/D-20261112-05-移除主音量.md"
+    },
+    {
+      "from": "程式架構/audio-system.md",
+      "to": "decisions/D-20261113-04-靜音旗標與頂欄喇叭鈕.md"
+    },
+    {
+      "from": "程式架構/audio-system.md",
       "to": "主題系統.md"
     },
     {
@@ -10515,11 +10924,19 @@
     },
     {
       "from": "程式架構/audio-system.md",
+      "to": "程式架構/pwa-offline.md"
+    },
+    {
+      "from": "程式架構/audio-system.md",
       "to": "程式架構/settings.md"
     },
     {
       "from": "程式架構/audio-system.md",
       "to": "程式架構/themes.md"
+    },
+    {
+      "from": "程式架構/audio-system.md",
+      "to": "美術資源/主題音訊/README.md"
     },
     {
       "from": "程式架構/audio-system.md",
@@ -11543,6 +11960,10 @@
     },
     {
       "from": "程式架構/physics-engine.md",
+      "to": "decisions/D-20261113-09-驅動換算改用參考輪半徑與對轉軸半徑.md"
+    },
+    {
+      "from": "程式架構/physics-engine.md",
       "to": "建模參數.md"
     },
     {
@@ -12019,7 +12440,15 @@
     },
     {
       "from": "程式架構/spectator.md",
+      "to": "decisions/D-20261025-01-持彈碰撞體切換與可選彈體獨立耐久.md"
+    },
+    {
+      "from": "程式架構/spectator.md",
       "to": "decisions/D-20261029-03-catch-up分tick追趕與落後端快進.md"
+    },
+    {
+      "from": "程式架構/spectator.md",
+      "to": "decisions/D-20261113-06-開賽巡禮每回合進行並顯示車輛.md"
     },
     {
       "from": "程式架構/spectator.md",
@@ -12739,6 +13168,10 @@
     },
     {
       "from": "算式表.md",
+      "to": "decisions/D-20261113-09-驅動換算改用參考輪半徑與對轉軸半徑.md"
+    },
+    {
+      "from": "算式表.md",
       "to": "信譽系統.md"
     },
     {
@@ -13182,12 +13615,48 @@
       "to": "美術資源/主題外觀與 RWD.md"
     },
     {
+      "from": "美術資源/主題音訊/README.md",
+      "to": "decisions/D-20261112-01-主題音訊採程式合成與預載分層.md"
+    },
+    {
+      "from": "美術資源/主題音訊/README.md",
+      "to": "decisions/D-20261112-04-比賽以外的場景共用首頁曲.md"
+    },
+    {
+      "from": "美術資源/主題音訊/README.md",
+      "to": "程式架構/audio-system.md"
+    },
+    {
+      "from": "美術資源/主題音訊/README.md",
+      "to": "美術資源/主題音訊/風格設定.md"
+    },
+    {
+      "from": "美術資源/主題音訊/風格設定.md",
+      "to": "程式架構/audio-system.md"
+    },
+    {
+      "from": "美術資源/主題音訊/風格設定.md",
+      "to": "美術資源/主題外觀與 RWD.md"
+    },
+    {
+      "from": "美術資源/主題音訊/風格設定.md",
+      "to": "美術資源/主題音訊/README.md"
+    },
+    {
+      "from": "美術資源/主題音訊/風格設定.md",
+      "to": "美術資源/實際使用圖/節慶主題2026/README.md"
+    },
+    {
       "from": "美術資源/前端技術策略.md",
       "to": "程式架構/ui-frontend.md"
     },
     {
       "from": "美術資源/前端技術策略.md",
       "to": "美術資源/設計系統.md"
+    },
+    {
+      "from": "美術資源/實際使用圖/節慶主題2026/README.md",
+      "to": "美術資源/主題音訊/README.md"
     },
     {
       "from": "美術資源/實際使用圖/節慶主題2026/previous-README.md",
@@ -13680,6 +14149,22 @@
     {
       "from": "賽內機制.md",
       "to": "decisions/D-20261109-01-斷線造成的checksum少數端重同步.md"
+    },
+    {
+      "from": "賽內機制.md",
+      "to": "decisions/D-20261113-02-技能鈕顯示事實狀態.md"
+    },
+    {
+      "from": "賽內機制.md",
+      "to": "decisions/D-20261113-05-跟車距離上限5公尺與分段步距.md"
+    },
+    {
+      "from": "賽內機制.md",
+      "to": "decisions/D-20261113-07-輪胎與導輪的呈現取自物理姿態.md"
+    },
+    {
+      "from": "賽內機制.md",
+      "to": "decisions/D-20261113-08-比賽選單與固定功能鍵.md"
     },
     {
       "from": "賽內機制.md",

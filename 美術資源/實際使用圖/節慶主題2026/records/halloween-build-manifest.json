@@ -9,8 +9,96 @@
     "quality": 88,
     "method": 6
   },
-  "fallback": "Default audio is intentionally inherited; all visual slots have local assets. Reserved gameplay tokens and neutral PBR are unchanged.",
+  "fallback": "Theme audio is registered from assets/audio; reserved gameplay SFX and the three surface loops inherit default. All visual slots have local assets. Reserved gameplay tokens and neutral PBR are unchanged.",
   "files": {
+    "assets/audio/bgm-home.ogg": {
+      "bytes": 1449922,
+      "sha256": "8b2ea1e622a2cd73430c9cfc88ea900934d66ffe995895a90b8b89a82ce96102"
+    },
+    "assets/audio/bgm-race.ogg": {
+      "bytes": 1841766,
+      "sha256": "0e36650e098940879d37719307aec3057cfb80528997f966a330b5f04b78a749"
+    },
+    "assets/audio/sfx-cancel.ogg": {
+      "bytes": 10049,
+      "sha256": "4adf4b340017fc419dcd2112b6818a112fdd893cc89a8c8c77a8f26944dfa6cf"
+    },
+    "assets/audio/sfx-checkpoint.ogg": {
+      "bytes": 11384,
+      "sha256": "948e8c8d429ff2a32b0d743c06bd2c8258bb82001e45396ffb757e8070a9feed"
+    },
+    "assets/audio/sfx-click.ogg": {
+      "bytes": 1277,
+      "sha256": "893ce35280d477d4d815a6b662b88710cbcd1cd42ea9c04f0cb26c80e0c94e37"
+    },
+    "assets/audio/sfx-collision-heavy.ogg": {
+      "bytes": 8131,
+      "sha256": "a645ace3f7a6075385c9168b0c73cbcae62179f282defc7669edd1d586ccc218"
+    },
+    "assets/audio/sfx-collision-light.ogg": {
+      "bytes": 3848,
+      "sha256": "0937970522f5748f3f7508f1687d01fd3b019fc067ed20685bfb13d2cae0b0ea"
+    },
+    "assets/audio/sfx-confirm.ogg": {
+      "bytes": 10330,
+      "sha256": "1f5aae69e86734178ebac7f0815d38fda5f5593c8ce1553ab52aa0e5cfac3021"
+    },
+    "assets/audio/sfx-error.ogg": {
+      "bytes": 7098,
+      "sha256": "d765d19d780634188b88e4dfc7eb7ba587955d1f32208b6f10362ef89d013769"
+    },
+    "assets/audio/sfx-motor-loop.ogg": {
+      "bytes": 39934,
+      "sha256": "e209a89e715d2d75a318efe6d5fb87a5191bbd4cd293d9027a8d94e589427848"
+    },
+    "assets/audio/sfx-race-finish.ogg": {
+      "bytes": 33967,
+      "sha256": "370d4b537441d7bba8228fdbabbe7312720e0bb4d18f429f7cdfbb55c80ca079"
+    },
+    "assets/audio/sfx-skill-boost.ogg": {
+      "bytes": 11050,
+      "sha256": "0aae582ebf3c53617619a381cf6b61efb638dc783002af078ffbf46bf4fe0421"
+    },
+    "assets/audio/sfx-skill-brake.ogg": {
+      "bytes": 7659,
+      "sha256": "74098f3b24f0145437702ddcf37a3b4e691a725e46fce6b42f5509c7f277e328"
+    },
+    "assets/audio/sfx-skill-jump.ogg": {
+      "bytes": 7250,
+      "sha256": "e6bc904a14f5fffb0f1479037fcb25eaadf2aa396102342e0782b20bb5594b1c"
+    },
+    "assets/audio/sfx-skill-slam.ogg": {
+      "bytes": 9258,
+      "sha256": "2f59c0be6a8cd690699c8903b8efdf9ec7da79d4d04c2474dd665e79106ce46f"
+    },
+    "assets/audio/sfx-skill-stabilize.ogg": {
+      "bytes": 14840,
+      "sha256": "29b751f2e98f0df5789b691dd73e8d6cbcb32820719424136ef72b1ca250fc60"
+    },
+    "assets/audio/sfx-skill-swerve.ogg": {
+      "bytes": 6255,
+      "sha256": "3e65a36dd24a839e8138174ba87ffee353af1064a4ca54da6c0758178c13cee9"
+    },
+    "assets/audio/sfx-toast.ogg": {
+      "bytes": 14418,
+      "sha256": "63d2f05beb11194f4656081151ddc2c22be283fd34c7502326055af310b82a5a"
+    },
+    "assets/audio/sfx-weapon-melee-impact.ogg": {
+      "bytes": 8929,
+      "sha256": "ae030670dc53c46e6a112b1793e8c60af9182b4d8a6c47d8370f5fd6c5597eee"
+    },
+    "assets/audio/sfx-weapon-melee-launch.ogg": {
+      "bytes": 6019,
+      "sha256": "5e11af155fac55e6caf8f489a5c434e2361bcb14b2db3630dbf20cb0280c5f22"
+    },
+    "assets/audio/sfx-weapon-projectile-impact.ogg": {
+      "bytes": 8276,
+      "sha256": "fa5284d0d1a0bc5c84418e581fda75668385a6b3312698a79b38a749181b7f33"
+    },
+    "assets/audio/sfx-weapon-projectile-launch.ogg": {
+      "bytes": 5940,
+      "sha256": "9401fbc12d5edfbb14f8bf7781de90866175af74b9e2d345fa9e876b7900eac8"
+    },
     "assets/brand-emblem.svg": {
       "bytes": 999,
       "sha256": "7062af25017d625c4818c562958a62469bc451ba86af27b8040a98a1c0d6375f"
@@ -96,12 +184,12 @@
       "sha256": "7a9bf29862fb142e38974ea8b0042e28c0e3b094f18947a8e7fb5b8fe014c5fa"
     },
     "theme.css": {
-      "bytes": 8947,
-      "sha256": "73d18c9cfeeaddc3a6fa8be967dad410c55555ddabfadd1b19b4e04da7ed13f2"
+      "bytes": 19854,
+      "sha256": "09127a18fecd6bd4bab9e43bd3fe81f98de1d44ba1bd227405bcbf070a992ed6"
     },
     "theme.json": {
-      "bytes": 4702,
-      "sha256": "5c5bedebd9ccb729526ecb03f6364b564261c6e8d1cfdefd0bef1dc5f95617e5"
+      "bytes": 6534,
+      "sha256": "b18c4d06635236562f294c70ef5ae0464fec6e612857acf5ea43a74364687d7f"
     }
   }
 }

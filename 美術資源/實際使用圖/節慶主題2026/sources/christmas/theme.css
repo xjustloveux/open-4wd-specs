@@ -9,133 +9,673 @@
   --theme-foundation-ivory: #2c4533;
   --theme-foundation-shadow: 2px 4px 0 #b6af8b55;
 }
-[data-theme-part='workshop-entry'] {
-  color: #fffdf3; background: #963b34; border: 1px solid #7a302a;
-  border-radius: 3px 8px 2px 6px; box-shadow: inset 0 0 0 2px #e8b499;
+[data-theme-part='primary-action'],
+[data-theme-part='primary-action'] > * {
+  transform: none;
 }
-[data-theme-part='primary-action'],[data-theme-part='primary-action'] > * { transform: none; }
 
-[data-theme-part='app-backdrop'] { background: #f7f4e9; }
-[data-theme-part='app-backdrop']::before { background: none; opacity: 0; }
+[data-theme-part='app-backdrop'] {
+  background: #f7f4e9;
+}
+[data-theme-part='app-backdrop']::before {
+  background: none;
+  opacity: 0;
+}
 [data-theme-part='public-navigation'] {
-  color: #2c4533; background: #fffdf5f5; border: 1px solid #a7ad8c;
-  border-radius: 2px 7px 2px 5px; box-shadow: 0 3px 0 #b6af8b55;
+  color: #2c4533;
+  background: #fffdf5f5;
+  border: 1px solid #a7ad8c;
+  border-radius: 2px 7px 2px 5px;
+  box-shadow: 0 3px 0 #b6af8b55;
 }
 [data-theme-part='public-navigation']::after {
-  content: ''; position: absolute; inset: auto 0 -5px; height: 4px; pointer-events: none;
-  background: repeating-linear-gradient(125deg,#a5484177 0 7px,#faf5df 7px 13px,#54704e77 13px 20px,#faf5df 20px 26px);
+  content: '';
+  position: absolute;
+  inset: auto 0 -5px;
+  height: 4px;
+  pointer-events: none;
+  background: repeating-linear-gradient(
+    125deg,
+    #a5484177 0 7px,
+    #faf5df 7px 13px,
+    #54704e77 13px 20px,
+    #faf5df 20px 26px
+  );
 }
-[data-theme-part='brand-wordmark'] { color: #36583c; text-shadow: none; }
-[data-theme-part='brand-emblem'] { background: url('assets/brand-emblem.svg') center / contain no-repeat; }
-[data-theme-part='public-tool'] { color: #36583c; background: #fffdf5; border-color: #778563; box-shadow: none; }
-[data-theme-part='landing-info-surface'] { background: #f7f4e9; }
+[data-theme-part='brand-wordmark'] {
+  color: #36583c;
+  text-shadow: none;
+}
+[data-theme-part='brand-emblem'] {
+  background: url('assets/brand-emblem.svg') center / contain no-repeat;
+}
+[data-theme-part='public-tool'] {
+  color: #36583c;
+  background: #fffdf5;
+  border-color: #778563;
+  box-shadow: none;
+}
+[data-theme-part='landing-info-surface'] {
+  background: #f7f4e9;
+}
 [data-theme-part='hero-art'] {
-  background: linear-gradient(90deg,#f7f4e9 0%,#f7f4e9bb 23%,transparent 53%),url('assets/landing-hero.webp') 67% center / cover no-repeat;
-  filter: none; mask-image: none; -webkit-mask-image: none;
+  background:
+    linear-gradient(90deg, #f7f4e9 0%, #f7f4e9bb 23%, transparent 53%),
+    url('assets/landing-hero.webp') 67% center / cover no-repeat;
+  filter: none;
+  mask-image: none;
+  -webkit-mask-image: none;
 }
-[data-theme-part='hero-copy'] { text-shadow: none; }
+[data-theme-part='hero-copy'] {
+  text-shadow: none;
+}
 [data-theme-part='hero-title'] {
-  color: #36583c; font-family: var(--o4-display-font); font-size: clamp(2.3rem,4.4vw,4.2rem);
-  line-height: 1.18; letter-spacing: .015em; background: none; filter: none;
-  -webkit-text-fill-color: currentcolor; text-shadow: none;
+  color: #36583c;
+  font-family: var(--o4-display-font);
+  font-size: clamp(2.3rem, 4.4vw, 4.2rem);
+  line-height: 1.18;
+  letter-spacing: 0.015em;
+  background: none;
+  filter: none;
+  -webkit-text-fill-color: currentcolor;
+  text-shadow: none;
 }
-[data-theme-part='hero-lead'] { color: #435940; }
-[data-theme-part='hero-eyebrow'] { color: #923d36; }
+[data-theme-part='hero-lead'] {
+  color: #435940;
+}
+[data-theme-part='hero-eyebrow'] {
+  color: #923d36;
+}
 
-[data-theme-part='support-panel'],[data-theme-part='settings-shell'],[data-theme-part='garage-panel'],
-[data-theme-part='race-bench-board'],[data-theme-part='race-config-general-settings'],[data-theme-part='room-gate-board'],
-[data-theme-part='result-standings-board'],[data-theme-part='ugc-detail-board'],[data-theme-part='login-entry'],
-[data-theme-part='about-article'],[data-theme-part='announcement-article'],[data-theme-part='help-article'],
-[data-theme-part='dmca-article'],[data-theme-part='creator-identity-surface'],[data-theme-part='inbox-console'] {
-  position: relative; isolation: isolate; color: #2c4533; background: #fffdf5;
-  border: 1px solid #a7ad8c; border-radius: 3px 8px 2px 6px;
+[data-theme-part='settings-shell'],
+[data-theme-part='garage-panel'],
+[data-theme-part='race-bench-board'],
+[data-theme-part='race-config-general-settings'],
+[data-theme-part='room-gate-board'],
+[data-theme-part='result-standings-board'],
+[data-theme-part='ugc-detail-board'],
+[data-theme-part='login-entry'],
+[data-theme-part='about-article'],
+[data-theme-part='announcement-article'],
+[data-theme-part='help-article'],
+[data-theme-part='dmca-article'],
+[data-theme-part='creator-identity-surface'],
+[data-theme-part='inbox-console'] {
+  position: relative;
+  isolation: isolate;
+  color: #2c4533;
+  background: #fffdf5;
+  border: 1px solid #a7ad8c;
+  border-radius: 3px 8px 2px 6px;
   box-shadow: 2px 4px 0 #b6af8b55;
 }
-[data-theme-part='support-panel']::before,[data-theme-part='garage-panel']::before,
-[data-theme-part='race-bench-board']::before,[data-theme-part='race-config-general-settings']::before,
-[data-theme-part='room-gate-board']::before,[data-theme-part='result-standings-board']::before,
-[data-theme-part='ugc-detail-board']::before,[data-theme-part='login-entry']::before,
-[data-theme-part='about-article']::before,[data-theme-part='announcement-article']::before,
-[data-theme-part='help-article']::before,[data-theme-part='dmca-article']::before,
-[data-theme-part='creator-identity-surface']::before,[data-theme-part='inbox-console']::before {
-  content: ''; position: absolute; inset: 0; z-index: -1; pointer-events: none;
-  border: 18px solid transparent; border-image: url('assets/panel-surface.svg') 24 fill / 15px / 0 stretch;
-  background: none; opacity: .8;
+[data-theme-part='garage-panel']::before,
+[data-theme-part='race-bench-board']::before,
+[data-theme-part='race-config-general-settings']::before,
+[data-theme-part='room-gate-board']::before,
+[data-theme-part='result-standings-board']::before,
+[data-theme-part='ugc-detail-board']::before,
+[data-theme-part='login-entry']::before,
+[data-theme-part='about-article']::before,
+[data-theme-part='announcement-article']::before,
+[data-theme-part='help-article']::before,
+[data-theme-part='dmca-article']::before,
+[data-theme-part='creator-identity-surface']::before,
+[data-theme-part='inbox-console']::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  border: 18px solid transparent;
+  border-image: url('assets/panel-surface.svg') 24 fill / 15px / 0 stretch;
+  background: none;
+  opacity: 0.8;
 }
 [data-theme-part='support-panel'][data-theme-panel-kind='core-loop']::after,
-[data-theme-part='garage-panel']::after,[data-theme-part='race-bench-board']::after,
-[data-theme-part='race-config-general-settings']::after,[data-theme-part='room-gate-board']::after,
-[data-theme-part='result-standings-board']::after,[data-theme-part='ugc-detail-board']::after {
-  content: ''; position: absolute; top: 4px; right: 9px; width: 68px; height: 44px;
-  background: url('assets/brand-emblem.svg') center / contain no-repeat; pointer-events: none;
+[data-theme-part='garage-panel']::after,
+[data-theme-part='race-bench-board']::after,
+[data-theme-part='race-config-general-settings']::after,
+[data-theme-part='room-gate-board']::after,
+[data-theme-part='result-standings-board']::after,
+[data-theme-part='ugc-detail-board']::after {
+  content: '';
+  position: absolute;
+  inset: 4px 9px auto auto;
+  width: 68px;
+  height: 44px;
+  background: url('assets/brand-emblem.svg') center / contain no-repeat;
+  box-shadow: none;
+  pointer-events: none;
 }
-[data-theme-part='garage-panel'] h2,[data-theme-part='race-bench-board'] h2,
-[data-theme-part='race-config-general-settings'] h2,[data-theme-part='room-gate-board'] h2,
-[data-theme-part='result-standings-board'] h2,[data-theme-part='ugc-detail-board'] h2,
-[data-theme-part='support-panel'][data-theme-panel-kind='core-loop'] h2 { max-width: calc(100% - 66px); }
+[data-theme-part='garage-panel'] h2,
+[data-theme-part='race-bench-board'] h2,
+[data-theme-part='race-config-general-settings'] h2,
+[data-theme-part='room-gate-board'] h2,
+[data-theme-part='ugc-detail-board'] h2 {
+  max-width: calc(100% - 66px);
+}
+[data-theme-part='result-standings-board'] > header {
+  padding-inline-end: 66px;
+  flex-wrap: wrap;
+}
+[data-theme-part='result-standings-board'] > header > div {
+  min-width: 0;
+}
+[data-theme-part='result-standings-board'] h2 {
+  max-width: 100%;
+}
 [data-theme-part='support-panel'][data-theme-panel-kind='announcements']::after {
-  content: ''; position: absolute; top: 17px; right: 17px; width: 20px; height: 20px;
-  background: url('assets/workshop-entry-icon.svg') center / contain no-repeat; pointer-events: none; opacity: .6;
+  content: '';
+  position: absolute;
+  top: 17px;
+  right: 17px;
+  width: 20px;
+  height: 20px;
+  background: url('assets/workshop-entry-icon.svg') center / contain no-repeat;
+  pointer-events: none;
+  opacity: 0.6;
 }
-[data-theme-part='panel-label'],[data-theme-part='core-loop'],[data-theme-part='announcements'] {
-  color: #2c4533; background: transparent; border-color: #a7ad8c; box-shadow: none;
+/* 首頁資訊區：外層不加框，內容是一張縫線紙卡，標題為壓在卡片上緣的燕尾緞帶。 */
+[data-theme-part='support-panel'] {
+  position: relative;
+  isolation: isolate;
+  display: flex;
+  flex-direction: column;
+  padding: 0.9rem 0 0;
+  color: #2c4533;
 }
-[data-theme-part='core-loop']::before,[data-theme-part='announcements']::before { background: none; }
-[data-theme-part='core-loop-item'] { background: #f2f2e5; border-color: #9aa57f; border-radius: 3px 7px 3px 5px; }
-[data-theme-part='settings-shell']::before,[data-theme-part='settings-shell']::after { background: none; }
-[data-theme-part='settings-navigation'],[data-theme-part='help-navigation'] { background: #efeddf; border-color: #a7ad8c; box-shadow: none; }
-[data-theme-part='settings-panel'] { background: #fffdf5; }
-[data-theme-part='settings-row'],[data-theme-part='settings-panel'] fieldset,
-[data-theme-part='card'],[data-theme-part='theme-card'],[data-theme-part='garage-slot'],[data-theme-part='garage-shelf'] {
-  background: #fbfaf1; color: #2c4533; border-color: #9aa57f; border-radius: 3px 7px 2px 5px;
-  box-shadow: 1px 2px 0 #c8c5a944;
+[data-theme-part='panel-label'] {
+  position: relative;
+  inset: auto;
+  align-self: flex-start;
+  min-height: 2.2rem;
+  max-inline-size: calc(100% - 7rem);
+  margin: 0 0 -1.15rem 1rem;
+  padding: 0.3rem 2rem 0.3rem 1.1rem;
+  border: 0;
+  border-radius: 0;
+  color: #fffdf3;
+  background:
+    repeating-linear-gradient(90deg, #f3cdb6 0 5px, transparent 5px 9px) 0 4px / 100% 1px no-repeat,
+    repeating-linear-gradient(90deg, #f3cdb6 0 5px, transparent 5px 9px) 0 calc(100% - 4px) / 100%
+      1px no-repeat,
+    #963b34;
+  box-shadow: none;
+  clip-path: polygon(0 0, 100% 0, calc(100% - 0.8rem) 50%, 100% 100%, 0 100%);
+  rotate: -1.5deg;
 }
-[data-theme-part='theme-card']:has(input:checked) { border-color: #375f43; box-shadow: inset 0 0 0 2px #375f43; }
-[data-theme-part='settings-control'] [role='tab'] { color: #36583c; background: #fffdf5; border-color: #778563; }
-[data-theme-part='settings-control'] [role='tab'][aria-selected='true'] { color: #fffdf5; background: #375f43; }
-[data-theme-part='button'][data-variant='secondary'],[data-theme-part='button'][data-variant='ghost'],
-[data-theme-part='button'][data-variant='primary'],[data-theme-part='primary-action'] {
-  position: relative; clip-path: none; border-radius: 3px 8px 2px 6px; border: 1px solid #778563;
-  background-color: #eef0df; background-image: url('assets/panel-surface.svg'); background-size: 100% 100%;
-  color: #29442e; box-shadow: 1px 2px 0 #8b9c6366,inset 0 0 0 2px #fff9e0;
+[data-theme-part='panel-label']::before {
+  display: none;
 }
-[data-theme-part='button'][data-variant='primary'],[data-theme-part='primary-action'] {
-  background-color: #963b34; color: #fffdf3; border-color: #7a302a;
-  box-shadow: 1px 3px 0 #58704788,inset 0 0 0 2px #e8b499,inset 0 0 0 4px #af5848;
-  background-image: url('assets/panel-surface.svg'),repeating-linear-gradient(153deg,#ffeccc22 0 1px,transparent 1px 4px);
-}
-[data-theme-part='primary-action-decoration'] { display: block; width: 1.5rem; height: 1.7rem; background: url('assets/primary-action-decoration.svg') center / contain no-repeat; }
-[data-theme-part='primary-action-decoration'][data-decoration-position='start'] { display: none; }
-[data-theme-part='form-select'] { color-scheme: light; }
-[data-theme-part='form-input'],[data-theme-part='form-select'],[data-theme-part='form-textarea'] {
-  color: #2c4533; background: #fffef7; border-color: #778563; box-shadow: inset 0 0 0 2px #f4f1df;
-}
-[data-theme-part='button']:focus-visible,[data-theme-part='primary-action']:focus-visible,
-[data-theme-part='form-input']:focus-visible,[data-theme-part='form-select']:focus-visible,[data-theme-part='form-textarea']:focus-visible { outline-color: #375f43; }
-[data-theme-part='garage-shell'] { background: #f7f4e9; }
-[data-theme-part='garage-stage'] { border: 4px solid #e5dfcc; border-radius: 4px 10px 3px 8px; box-shadow: 2px 4px 0 #b8b39355; }
-[data-theme-part='garage-panel'] { --garage-panel-background: #fffdf5; }
-[data-theme-part='settings-heading'],[data-theme-part='about-heading'],[data-theme-part='help-heading'],
-[data-theme-part='announcements-heading'],[data-theme-part='login-heading'],[data-theme-part='creator-heading'],
-[data-theme-part='result-heading'],[data-theme-part='room-heading'],[data-theme-part='ugc-heading'],
-[data-theme-part='race-config-heading'],[data-theme-part='dmca-heading'],[data-theme-part='inbox-heading'] {
-  color: #36583c; background: none; border-color: #a7ad8c; box-shadow: none; text-shadow: none;
+[data-theme-part='panel-label'] h2 {
   font-family: var(--o4-display-font);
 }
-[data-theme-part='garage-edit-preview'] { background: #eef0ec; border-color: #a7ad8c; }
-[data-theme-part='garage-edit-preview']::before { background: none; }
+[data-theme-part='core-loop'],
+[data-theme-part='announcements'] {
+  flex: 1 1 auto;
+  height: auto;
+  color: #2c4533;
+  background: #fffdf5;
+  border: 1px solid #a7ad8c;
+  border-radius: 14px 20px 12px 18px / 18px 13px 19px 14px;
+  box-shadow:
+    0 1px 2px #6f6a4a33,
+    0 4px 12px #6f6a4a2e;
+}
+[data-theme-part='core-loop']::before,
+[data-theme-part='announcements']::before {
+  content: '';
+  position: absolute;
+  inset: 6px;
+  z-index: -1;
+  border: 1px dashed #b38c42;
+  border-radius: 9px 15px 8px 13px / 13px 9px 14px 10px;
+  background: none;
+  pointer-events: none;
+}
+[data-theme-part='core-loop'] {
+  padding: 1.6rem 0.7rem 0.7rem;
+}
+[data-theme-part='announcements'] {
+  padding: 1.8rem 1.4rem 1.1rem;
+}
+[data-theme-part='core-loop-item'] {
+  background: transparent;
+  border-color: #9aa57f;
+  border-inline-start-style: dashed;
+  border-radius: 0;
+}
+[data-theme-part='settings-shell']::before,
+[data-theme-part='settings-shell']::after {
+  background: none;
+}
+[data-theme-part='settings-navigation'],
+[data-theme-part='help-navigation'] {
+  background: #efeddf;
+  border-color: #a7ad8c;
+  box-shadow: none;
+}
+[data-theme-part='settings-panel'] {
+  background: #fffdf5;
+}
+[data-theme-part='settings-panel'] fieldset,
+[data-theme-part='card'],
+[data-theme-part='theme-card'],
+[data-theme-part='garage-slot'],
+[data-theme-part='garage-shelf'] {
+  background: #fbfaf1;
+  color: #2c4533;
+  border-color: #9aa57f;
+  border-radius: 3px 7px 2px 5px;
+  box-shadow: 1px 2px 0 #c8c5a944;
+}
+[data-theme-part='theme-card']:has(input:checked) {
+  border-color: #375f43;
+  box-shadow: inset 0 0 0 2px #375f43;
+}
+/*
+ * 手作紙卡造型語言：圓潤不對稱的紙卡圓角、實線外框加縫線虛線內框、柔和的紙感陰影，
+ * 字感沿用一般字重、不轉大寫。
+ */
+[data-theme-part='button'],
+[data-theme-part='primary-action'],
+[data-theme-part='workshop-entry'] {
+  --theme-card-stitch: #8b9c63;
+  clip-path: none;
+  border-radius: 14px 18px 13px 19px / 17px 13px 18px 14px;
+  box-shadow:
+    0 1px 1px #6f6a4a3d,
+    0 3px 7px #6f6a4a38;
+  letter-spacing: 0.01em;
+  text-transform: none;
+}
+[data-theme-part='button'][data-variant='secondary'],
+[data-theme-part='button'][data-variant='ghost'],
+[data-theme-part='button'][data-variant='icon'],
+[data-theme-part='button'][data-variant='primary'],
+[data-theme-part='form-file-trigger'] [data-theme-part='button'],
+[data-theme-part='primary-action'],
+[data-theme-part='workshop-entry'] {
+  position: relative;
+  border: 1px solid #778563;
+  background-color: #f1f2e2;
+  background-image: repeating-linear-gradient(153deg, #ffffff33 0 1px, transparent 1px 4px);
+  background-size: 100% 100%;
+  color: #29442e;
+}
+[data-theme-part='button'][data-variant='secondary']::before,
+[data-theme-part='button'][data-variant='icon']::before,
+[data-theme-part='button'][data-variant='primary']::before,
+[data-theme-part='form-file-trigger'] [data-theme-part='button']::before,
+[data-theme-part='primary-action']::before,
+[data-theme-part='workshop-entry']::before {
+  content: '';
+  position: absolute;
+  inset: 4px;
+  border: 1px dashed var(--theme-card-stitch);
+  border-radius: 10px 14px 9px 15px / 13px 9px 14px 10px;
+  pointer-events: none;
+}
+[data-theme-part='button']:hover:not(:disabled),
+[data-theme-part='primary-action']:hover,
+[data-theme-part='workshop-entry']:hover {
+  border-color: #375f43;
+  filter: brightness(1.03);
+  box-shadow:
+    0 2px 2px #6f6a4a3d,
+    0 7px 14px #6f6a4a40;
+  transform: translateY(-2px) rotate(-0.6deg);
+}
+[data-theme-part='button']:active:not(:disabled),
+[data-theme-part='primary-action']:active,
+[data-theme-part='workshop-entry']:active {
+  box-shadow: 0 1px 1px #6f6a4a55;
+  transform: translateY(1px);
+}
+[data-theme-part='button'][data-variant='ghost'] {
+  border: 1px dashed #778563;
+  background-color: transparent;
+  background-image: none;
+  box-shadow: none;
+}
+[data-theme-part='button'][data-variant='ghost']:hover:not(:disabled) {
+  background-color: #f1f2e2;
+  box-shadow: none;
+  transform: none;
+}
+[data-theme-part='button'][data-variant='primary'],
+[data-theme-part='primary-action'],
+[data-theme-part='workshop-entry'] {
+  --theme-card-stitch: #f3cdb6;
+  background-color: #963b34;
+  background-image: repeating-linear-gradient(153deg, #ffeccc22 0 1px, transparent 1px 4px);
+  color: #fffdf3;
+  border-color: #7a302a;
+}
+[data-theme-part='button'][data-variant='primary']:hover:not(:disabled),
+[data-theme-part='primary-action']:hover,
+[data-theme-part='workshop-entry']:hover {
+  border-color: #5e211d;
+}
+[data-theme-part='button'][aria-pressed='true'],
+[data-theme-part='pagination'] [data-theme-part='button'][aria-current='page'] {
+  --theme-card-stitch: #cfe0c0;
+  border: 1px solid #27462f;
+  background-color: #375f43;
+  background-image: none;
+  color: #fffdf5;
+  box-shadow: inset 0 2px 4px #1c33229e;
+  transform: translateY(1px);
+}
+/* 首頁主按鈕：左側一道綠色緞帶，右側保留禮物盒裝飾，旗標與箭頭圖示不顯示。 */
+[data-theme-part='primary-action'] {
+  gap: 0.7rem;
+  padding: 0.85rem 1.4rem 0.85rem 3.1rem;
+  border-radius: 22px 30px 20px 28px / 28px 21px 30px 22px;
+  background-image:
+    linear-gradient(
+      90deg,
+      transparent 1.35rem,
+      #d9c783 1.35rem 1.47rem,
+      #426444 1.47rem 2.13rem,
+      #d9c783 2.13rem 2.25rem,
+      transparent 2.25rem
+    ),
+    repeating-linear-gradient(153deg, #ffeccc22 0 1px, transparent 1px 4px);
+  box-shadow:
+    0 2px 2px #6f6a4a4d,
+    0 8px 18px #6f6a4a47;
+  rotate: -1deg;
+}
+[data-theme-part='primary-action']::before {
+  inset: 6px;
+  border-radius: 17px 25px 15px 23px / 23px 16px 25px 17px;
+}
+[data-theme-part='primary-action'] o4-icon {
+  display: none;
+}
+[data-theme-part='workshop-entry'] {
+  gap: 0.4rem;
+  border-radius: 12px 16px 11px 15px / 15px 11px 16px 12px;
+}
+[data-theme-part='workshop-entry']::before {
+  inset: 3px;
+  border-radius: 9px 13px 8px 12px / 12px 8px 13px 9px;
+}
+[data-theme-part='workshop-entry-icon'] {
+  display: block;
+  flex: none;
+  width: 1.35rem;
+  height: 1.35rem;
+  background: url('assets/workshop-entry-icon.svg') center / contain no-repeat;
+}
+[data-theme-part='workshop-entry-icon'] o4-icon {
+  display: none;
+}
+/* 分頁：虛線縫邊的紙條，選取項是一枚綠色圓角貼紙。 */
+[data-theme-part='tab'] {
+  gap: 4px;
+  padding: 4px;
+  border: 1px dashed #778563;
+  border-radius: 18px 22px 17px 21px / 21px 17px 22px 18px;
+  background: #f1f2e2;
+  box-shadow: none;
+}
+[data-theme-part='tab'] [role='tab'] {
+  border: 1px solid transparent;
+  border-radius: 14px 18px 13px 17px / 17px 13px 18px 14px;
+  color: #36583c;
+  background: transparent;
+  box-shadow: none;
+}
+[data-theme-part='tab'] [role='tab']:hover:not(:disabled) {
+  color: #29442e;
+  background: #fffdf5;
+  border-color: #a7ad8c;
+}
+[data-theme-part='tab'] [role='tab'][aria-selected='true'] {
+  color: #fffdf5;
+  background: #375f43;
+  border-color: #27462f;
+  box-shadow:
+    inset 0 0 0 2px #375f43,
+    inset 0 0 0 3px #cfe0c0,
+    0 2px 5px #6f6a4a55;
+}
+/* 切換開關：圓潤紙條軌道與鈕扣狀滑塊。 */
+[data-theme-part='toggle']::before {
+  border: 1px solid #778563;
+  border-radius: 14px;
+  background: #f1f2e2;
+  box-shadow: inset 0 1px 3px #6f6a4a40;
+}
+[data-theme-part='toggle'] span {
+  width: 20px;
+  height: 20px;
+  margin-inline-start: 1px;
+  border-radius: 50%;
+  background: #963b34;
+  box-shadow:
+    inset 0 0 0 2px #963b34,
+    inset 0 0 0 3px #f3cdb6,
+    0 1px 3px #6f6a4a80;
+}
+[data-theme-part='toggle']:hover:not(:disabled)::before {
+  border-color: #375f43;
+  filter: none;
+}
+[data-theme-part='toggle'][aria-checked='true']::before {
+  border-color: #27462f;
+  background: #375f43;
+  box-shadow: inset 0 1px 3px #1c33229e;
+}
+[data-theme-part='toggle'][aria-checked='true'] span {
+  background: #fffdf5;
+  box-shadow:
+    inset 0 0 0 2px #fffdf5,
+    inset 0 0 0 3px #8b9c63,
+    0 1px 3px #1c332280;
+}
+[data-theme-part='toggle']:focus-visible::before {
+  border-color: #375f43;
+  box-shadow: inset 0 1px 3px #6f6a4a40;
+}
+/* 滑桿：圓頭紙條軌道與紅色鈕扣握把。 */
+[data-theme-part='form-range'] {
+  -webkit-appearance: none;
+  appearance: none;
+  background: transparent;
+}
+[data-theme-part='form-range']::-webkit-slider-runnable-track {
+  height: 8px;
+  border: 1px solid #778563;
+  border-radius: 4px;
+  background: linear-gradient(#963b34, #963b34) 0 0 / var(--o4-slider-fill, 0%) 100% no-repeat
+    #e9e9d6;
+}
+[data-theme-part='form-range']::-moz-range-progress {
+  height: 6px;
+  border-radius: 4px;
+  background: #963b34;
+}
+[data-theme-part='form-range']::-moz-range-track {
+  height: 6px;
+  border: 1px solid #778563;
+  border-radius: 4px;
+  background: #e9e9d6;
+}
+[data-theme-part='form-range']::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 22px;
+  height: 22px;
+  margin-top: -8px;
+  border: 1px solid #7a302a;
+  border-radius: 50%;
+  background: #963b34;
+  box-shadow:
+    inset 0 0 0 2px #963b34,
+    inset 0 0 0 3px #f3cdb6,
+    0 2px 4px #6f6a4a80;
+}
+[data-theme-part='form-range']::-moz-range-thumb {
+  width: 20px;
+  height: 20px;
+  border: 1px solid #7a302a;
+  border-radius: 50%;
+  background: #963b34;
+  box-shadow:
+    inset 0 0 0 2px #963b34,
+    inset 0 0 0 3px #f3cdb6,
+    0 2px 4px #6f6a4a80;
+}
+[data-theme-part='dmca-article'] [data-dmca-danger] {
+  color: #7e2927;
+  background: #f9e6df;
+  border-color: #9b3430;
+}
+[data-theme-part='dmca-article'] [data-in-app-report] {
+  color: #2c4533;
+  background: #eeeedd;
+}
+[data-theme-part='primary-action-decoration'] {
+  display: block;
+  width: 1.5rem;
+  height: 1.7rem;
+  background: url('assets/primary-action-decoration.svg') center / contain no-repeat;
+}
+[data-theme-part='primary-action-decoration'][data-decoration-position='start'] {
+  display: none;
+}
+[data-theme-part='form-select'] {
+  color-scheme: light;
+}
+/* 輸入欄位：卡片上的書寫欄，三邊淡線、底邊是較重的書寫線。 */
+[data-theme-part='form-input'],
+[data-theme-part='form-select'],
+[data-theme-part='form-textarea'] {
+  color: #2c4533;
+  background: #fffef7;
+  border: 1px solid #c3c7ab;
+  border-block-end: 2px solid #778563;
+  border-radius: 10px 13px 5px 6px / 12px 10px 5px 5px;
+  box-shadow: inset 0 2px 4px #6f6a4a1f;
+}
+[data-theme-part='form-input']:hover:not(:disabled),
+[data-theme-part='form-select']:hover:not(:disabled),
+[data-theme-part='form-textarea']:hover:not(:disabled) {
+  border-color: #a7ad8c;
+  border-block-end-color: #375f43;
+  background: #fffffb;
+}
+[data-theme-part='form-input']:focus-visible,
+[data-theme-part='form-select']:focus-visible,
+[data-theme-part='form-textarea']:focus-visible {
+  border-color: #a7ad8c;
+  border-block-end-color: #963b34;
+  box-shadow: inset 0 2px 4px #6f6a4a1f;
+}
+[data-theme-part='form-input'][readonly],
+[data-theme-part='form-textarea'][readonly] {
+  border-block-end-style: dashed;
+  color: #52634d;
+  background: #f1f2e2;
+}
+[data-theme-part='button']:focus-visible,
+[data-theme-part='primary-action']:focus-visible,
+[data-theme-part='form-input']:focus-visible,
+[data-theme-part='form-select']:focus-visible,
+[data-theme-part='form-textarea']:focus-visible {
+  outline-color: #375f43;
+}
+[data-theme-part='garage-shell'] {
+  border-radius: 3px 9px 4px 7px;
+  background:
+    repeating-linear-gradient(153deg, #ffffff55 0 1px, transparent 1px 4px),
+    radial-gradient(circle at 72% 6%, #a8443c1f, transparent 38%),
+    linear-gradient(170deg, #e9ead6, #dcdcc4);
+  box-shadow: inset 0 0 0 1px #a7ad8c66;
+}
+[data-theme-part='garage-stage'] {
+  border: 4px solid #e5dfcc;
+  border-radius: 4px 10px 3px 8px;
+  box-shadow: 2px 4px 0 #b8b39355;
+}
+[data-theme-part='garage-panel'] {
+  --garage-panel-background: #fffdf5;
+}
+[data-theme-part='settings-heading'],
+[data-theme-part='about-heading'],
+[data-theme-part='help-heading'],
+[data-theme-part='announcements-heading'],
+[data-theme-part='login-heading'],
+[data-theme-part='creator-heading'],
+[data-theme-part='result-heading'],
+[data-theme-part='room-heading'],
+[data-theme-part='ugc-heading'],
+[data-theme-part='race-config-heading'],
+[data-theme-part='dmca-heading'],
+[data-theme-part='home-heading'],
+[data-theme-part='garage-heading'],
+[data-theme-part='editor-heading'],
+[data-theme-part='inbox-heading'] {
+  color: #36583c;
+  background: none;
+  border-color: #a7ad8c;
+  box-shadow: none;
+  text-shadow: none;
+  font-family: var(--o4-display-font);
+}
+[data-theme-part='garage-edit-preview'] {
+  background: #eef0ec;
+  border-color: #a7ad8c;
+}
+[data-theme-part='garage-edit-preview']::before {
+  background: none;
+}
 @media (max-width: 40em) {
-  [data-theme-part='hero-art'] { background-position: center,67% top; }
-  [data-theme-part='hero-title'] { font-size: clamp(2rem,8vw,3rem); }
-  [data-theme-part='primary-action'] { min-width: min(17rem,100%); }
+  [data-theme-part='core-loop-item'] {
+    border-block-start-style: dashed;
+  }
+  [data-theme-part='hero-art'] {
+    background-position:
+      center,
+      67% top;
+  }
+  [data-theme-part='hero-title'] {
+    font-size: clamp(2rem, 8vw, 3rem);
+  }
+  [data-theme-part='primary-action'] {
+    min-width: min(17rem, 100%);
+  }
 }
 @media (orientation: landscape) and (max-height: 30rem) {
-  [data-theme-part='hero-title'] { font-size: clamp(1.7rem,8dvh,2.6rem); }
+  [data-theme-part='hero-title'] {
+    font-size: clamp(1.7rem, 8dvh, 2.6rem);
+  }
 }
 @media (prefers-reduced-motion: reduce) {
-  [data-theme-part='button'],[data-theme-part='primary-action'] { transition: none; transform: none; }
+  [data-theme-part='button'],
+  [data-theme-part='button']:hover:not(:disabled),
+  [data-theme-part='button']:active:not(:disabled),
+  [data-theme-part='primary-action'],
+  [data-theme-part='primary-action']:hover,
+  [data-theme-part='primary-action']:active,
+  [data-theme-part='workshop-entry'],
+  [data-theme-part='workshop-entry']:hover,
+  [data-theme-part='workshop-entry']:active {
+    transition: none;
+    transform: none;
+  }
 }
 
-[data-theme-part='settings-panel'] { overflow-wrap: anywhere; min-width: 0; }
+[data-theme-part='settings-panel'] {
+  overflow-wrap: anywhere;
+  min-width: 0;
+}
 
-[data-theme-part='button'] { text-shadow: none; font-family: var(--font-family-base); }
+[data-theme-part='button'] {
+  text-shadow: none;
+  font-family: var(--font-family-base);
+}

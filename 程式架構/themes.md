@@ -172,7 +172,7 @@ function resolveAsset(key: string): string | null {
 
 ## 4. SW 快取
 
-- `default/` manifest、stylesheet、一般資產、字型與 OFL 授權檔隨 fallback 骨幹列 install precache。
+- `default/` manifest、stylesheet、一般資產（含音效）、字型與 OFL 授權檔隨 fallback 骨幹列 install precache；`bgm-*` 不列入，播放時才取檔。
 - 其他主題 = cache-first lazy：`setTheme` 時抓 manifest＋stylesheet＋ 資產進 cache；首載 bundle 不含非 default 主題。
 - 升版失效 = 新版 `CACHE_NAME` 整組換新（[versioning.md §7](versioning.md)）。
 - **升版後自癒**：activate 後首次啟動背景重跑 `setTheme(getCurrentTheme())`（在線即補滿快取）；離線資產缺 → 該 session 以 default 呈現、不改 persisted（[../主題系統.md §6](../主題系統.md)）。

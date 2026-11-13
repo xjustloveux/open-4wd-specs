@@ -9,90 +9,659 @@
   --theme-foundation-ivory: #f6e6bf;
   --theme-foundation-shadow: 3px 4px 0 #0c0913;
 }
+[data-theme-part='primary-action'],
+[data-theme-part='primary-action'] > * {
+  transform: none;
+}
+[data-theme-part='app-backdrop'] {
+  background: #19131f;
+}
+[data-theme-part='app-backdrop']::before {
+  opacity: 0.16;
+  filter: blur(1.75rem) saturate(0.65);
+}
+[data-theme-part='public-navigation'] {
+  color: #f6e6bf;
+  background: #24192bf5;
+  border: 1px solid #9a7256;
+  border-radius: 5px;
+  box-shadow: 0 3px 0 #100b16;
+}
+[data-theme-part='public-navigation']::after {
+  content: '';
+  position: absolute;
+  inset: auto 0 -16px;
+  height: 18px;
+  background: url('assets/workshop-entry-icon.svg') center / 220px 22px repeat-x;
+  pointer-events: none;
+  opacity: 0.7;
+}
+[data-theme-part='brand-wordmark'] {
+  color: #f3c777;
+  text-shadow: 1px 2px 0 #0c0913;
+}
+[data-theme-part='brand-emblem'] {
+  background: url('assets/brand-emblem.svg') center / contain no-repeat;
+}
+[data-theme-part='public-tool'] {
+  color: #f6e6bf;
+  border-color: #9a7256;
+  background: #302337;
+  box-shadow: none;
+}
+[data-theme-part='landing-info-surface'] {
+  background: #19131f;
+}
+[data-theme-part='hero-art'] {
+  background:
+    linear-gradient(90deg, #19131fee, #19131f55 42%, transparent 72%),
+    url('assets/landing-hero.webp') 68% center / cover no-repeat;
+  mask-image: none;
+  -webkit-mask-image: none;
+}
+[data-theme-part='hero-title'] {
+  color: #f3c777;
+  background: none;
+  filter: none;
+  -webkit-text-fill-color: currentcolor;
+  text-shadow: 2px 3px 0 #24122a;
+  font-size: clamp(2.3rem, 4.4vw, 4.2rem);
+  line-height: 1.12;
+  letter-spacing: -0.02em;
+}
+[data-theme-part='hero-lead'] {
+  color: #f6e6bf;
+}
+[data-theme-part='hero-eyebrow'] {
+  color: #f5a14a;
+}
+[data-theme-part='support-panel'],
+[data-theme-part='settings-shell'],
+[data-theme-part='race-bench-board'],
+[data-theme-part='race-config-general-settings'],
+[data-theme-part='room-gate-board'],
+[data-theme-part='result-standings-board'],
+[data-theme-part='ugc-detail-board'],
+[data-theme-part='login-entry'],
+[data-theme-part='about-article'],
+[data-theme-part='announcement-article'],
+[data-theme-part='help-article'],
+[data-theme-part='dmca-article'],
+[data-theme-part='creator-identity-surface'],
+[data-theme-part='inbox-console'] {
+  position: relative;
+  isolation: isolate;
+  border: 1px solid #9a7256;
+  border-radius: 5px;
+  background: #292031;
+  color: #f6e6bf;
+  box-shadow: 3px 4px 0 #100b16;
+}
+[data-theme-part='race-bench-board']::before,
+[data-theme-part='race-config-general-settings']::before,
+[data-theme-part='room-gate-board']::before,
+[data-theme-part='result-standings-board']::before,
+[data-theme-part='ugc-detail-board']::before,
+[data-theme-part='login-entry']::before,
+[data-theme-part='about-article']::before,
+[data-theme-part='announcement-article']::before,
+[data-theme-part='help-article']::before,
+[data-theme-part='dmca-article']::before,
+[data-theme-part='creator-identity-surface']::before,
+[data-theme-part='inbox-console']::before {
+  content: '';
+  position: absolute;
+  inset: 5px;
+  border: 1px dashed #b28b5a88;
+  border-radius: 2px;
+  background: url('assets/panel-surface.svg') center / 120px 120px;
+  pointer-events: none;
+  z-index: -1;
+}
+[data-theme-part='garage-panel'] {
+  --color-text-primary: #382b31;
+  --color-text-secondary: #655047;
+  --color-text-muted: #655047;
+  --garage-ivory: #382b31;
+  --garage-muted: #655047;
+  --garage-panel-background: #f4e6c7;
+  --o4-control-surface: #e9d6b0;
+  --o4-control-border: #89683f;
+  position: relative;
+  isolation: isolate;
+  background: #f4e6c7;
+  color: #382b31;
+  border: 1px solid #bf9861;
+  border-radius: 5px;
+  box-shadow: 3px 4px 0 #100b16;
+}
+[data-theme-part='garage-panel']::before {
+  content: '';
+  position: absolute;
+  inset: 6px;
+  border: 1px dashed #89683f;
+  border-radius: 2px;
+  background: url('assets/panel-surface.svg') center / 120px 120px;
+  z-index: -1;
+  pointer-events: none;
+}
+[data-theme-part='garage-panel'] h2 {
+  color: #382b31;
+  text-shadow: none;
+}
+[data-theme-part='garage-panel'] o4-onboarding-guide {
+  --color-text-primary: #f6e6bf;
+  --color-text-secondary: #d8c39d;
+  --color-text-muted: #d8c39d;
+  color: var(--color-text-primary);
+}
+/* 首頁資訊區：單層雙線票券框，標題為票頭橫條，內容區不再另外加框。 */
+[data-theme-part='support-panel'] {
+  display: flex;
+  flex-direction: column;
+  padding: 0;
+  border: 3px double #9a7256;
+  border-radius: 0;
+  background: #292031;
+  box-shadow: 5px 5px 0 #0c0913;
+}
+[data-theme-part='support-panel']::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: url('assets/panel-surface.svg') center / 120px 120px;
+  pointer-events: none;
+}
+[data-theme-part='panel-label'] {
+  position: relative;
+  inset: auto;
+  justify-content: center;
+  gap: 0.7rem;
+  min-height: 2.75rem;
+  padding: 0.5rem 1rem;
+  border: 0;
+  border-block-end: 1px dashed #9a7256;
+  border-radius: 0;
+  color: #f3c777;
+  background: #36283b;
+  box-shadow: none;
+  font-family: 'Arial Narrow', 'Bahnschrift Condensed', var(--font-family-base);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+[data-theme-part='panel-label']::before,
+[data-theme-part='panel-label']::after {
+  content: '';
+  position: static;
+  flex: none;
+  width: 0.42rem;
+  height: 0.42rem;
+  translate: none;
+  rotate: 45deg;
+  background: #f5a14a;
+  box-shadow: none;
+}
+[data-theme-part='core-loop'],
+[data-theme-part='announcements'] {
+  flex: 1 1 auto;
+  height: auto;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  color: inherit;
+  box-shadow: none;
+}
+[data-theme-part='core-loop'] {
+  padding: 0.45rem 0.35rem;
+}
+[data-theme-part='announcements'] {
+  padding: 0.85rem 1.15rem 1rem;
+}
+[data-theme-part='core-loop-item'] {
+  color: #f6e6bf;
+  background: transparent;
+  border-color: #9a7256;
+  border-inline-start-style: dashed;
+  border-radius: 0;
+}
+[data-theme-part='settings-shell']::before,
+[data-theme-part='settings-shell']::after {
+  background: none;
+}
+[data-theme-part='settings-navigation'],
+[data-theme-part='help-navigation'] {
+  background: #211726;
+  border-color: #9a7256;
+  box-shadow: none;
+}
+[data-theme-part='settings-panel'] {
+  background: #292031;
+}
+[data-theme-part='settings-panel'] fieldset,
+[data-theme-part='card'],
+[data-theme-part='theme-card'],
+[data-theme-part='garage-shelf'],
+[data-theme-part='garage-slot'] {
+  background: #292031;
+  border-color: #9a7256;
+  border-radius: 4px;
+  box-shadow: none;
+}
+[data-theme-part='theme-card']:has(input:checked) {
+  border-color: #f5a14a;
+  box-shadow: inset 0 0 0 2px #f5a14a;
+}
+/*
+ * 票券造型語言：四角內凹的票券外形、內側雙線框、硬邊偏移陰影、窄體大寫字。
+ * 內凹角以四個徑向漸層拼出，不使用 clip-path，焦點框與陰影才不會被裁掉。
+ */
+[data-theme-part='button'],
+[data-theme-part='primary-action'],
 [data-theme-part='workshop-entry'] {
-  color: #24172b; background: #f3b457; border: 1px solid #f9d48a;
-  border-radius: 4px; box-shadow: inset 0 0 0 2px #be823777;
+  --theme-ticket-fill: #3a2a40;
+  --theme-ticket-notch: 6px;
+  --theme-ticket-ink: #9a7256;
+  --theme-ticket-shadow: #9a7256;
+  --theme-ticket-corner:
+    transparent var(--theme-ticket-notch),
+    var(--theme-ticket-fill) calc(var(--theme-ticket-notch) + 0.5px);
+  clip-path: none;
+  border: 0;
+  border-radius: 0;
+  background:
+    radial-gradient(circle at 0 0, var(--theme-ticket-corner)) left top / 51% 51% no-repeat,
+    radial-gradient(circle at 100% 0, var(--theme-ticket-corner)) right top / 51% 51% no-repeat,
+    radial-gradient(circle at 0 100%, var(--theme-ticket-corner)) left bottom / 51% 51% no-repeat,
+    radial-gradient(circle at 100% 100%, var(--theme-ticket-corner)) right bottom / 51% 51%
+      no-repeat;
+  box-shadow: none;
+  filter: drop-shadow(3px 3px 0 var(--theme-ticket-shadow));
+  letter-spacing: 0.08em;
+  text-shadow: none;
+  text-transform: uppercase;
 }
-[data-theme-part='primary-action'],[data-theme-part='primary-action'] > * { transform: none; }
-[data-theme-part='app-backdrop'] { background: #19131f; }
-[data-theme-part='app-backdrop']::before { opacity: .16; filter: blur(1.75rem) saturate(.65); }
-[data-theme-part='public-navigation'] { color: #f6e6bf; background: #24192bf5; border: 1px solid #9a7256; border-radius: 5px; box-shadow: 0 3px 0 #100b16; }
-[data-theme-part='public-navigation']::after { content: ''; position: absolute; inset: auto 0 -16px; height: 18px; background: url('assets/workshop-entry-icon.svg') center / 220px 22px repeat-x; pointer-events: none; opacity: .7; }
-[data-theme-part='brand-wordmark'] { color: #f3c777; text-shadow: 1px 2px 0 #0c0913; }
-[data-theme-part='brand-emblem'] { background: url('assets/brand-emblem.svg') center / contain no-repeat; }
-[data-theme-part='public-tool'] { color: #f6e6bf; border-color: #9a7256; background: #302337; box-shadow: none; }
-[data-theme-part='landing-info-surface'] { background: #19131f; }
-[data-theme-part='hero-art'] { background: linear-gradient(90deg,#19131fee,#19131f55 42%,transparent 72%),url('assets/landing-hero.webp') 68% center / cover no-repeat; mask-image: none; -webkit-mask-image: none; }
-[data-theme-part='hero-title'] { color: #f3c777; background: none; filter: none; -webkit-text-fill-color: currentcolor; text-shadow: 2px 3px 0 #24122a; font-size: clamp(2.3rem,4.4vw,4.2rem); line-height: 1.12; letter-spacing: -.02em; }
-[data-theme-part='hero-lead'] { color: #f6e6bf; }
-[data-theme-part='hero-eyebrow'] { color: #f5a14a; }
-[data-theme-part='support-panel'],[data-theme-part='settings-shell'],[data-theme-part='race-bench-board'],
-[data-theme-part='race-config-general-settings'],[data-theme-part='room-gate-board'],[data-theme-part='result-standings-board'],
-[data-theme-part='ugc-detail-board'],[data-theme-part='login-entry'],[data-theme-part='about-article'],
-[data-theme-part='announcement-article'],[data-theme-part='help-article'],[data-theme-part='dmca-article'],
-[data-theme-part='creator-identity-surface'],[data-theme-part='inbox-console'] {
-  position: relative; isolation: isolate; border: 1px solid #9a7256; border-radius: 5px;
-  background: #292031; color: #f6e6bf; box-shadow: 3px 4px 0 #100b16;
+[data-theme-part='button']::before,
+[data-theme-part='primary-action']::before,
+[data-theme-part='workshop-entry']::before {
+  content: '';
+  position: absolute;
+  inset: 6px;
+  border: 3px double var(--theme-ticket-ink);
+  pointer-events: none;
 }
-[data-theme-part='support-panel']::before,[data-theme-part='race-bench-board']::before,
-[data-theme-part='race-config-general-settings']::before,[data-theme-part='room-gate-board']::before,
-[data-theme-part='result-standings-board']::before,[data-theme-part='ugc-detail-board']::before,
-[data-theme-part='login-entry']::before,[data-theme-part='about-article']::before,
-[data-theme-part='announcement-article']::before,[data-theme-part='help-article']::before,
-[data-theme-part='dmca-article']::before,[data-theme-part='creator-identity-surface']::before,[data-theme-part='inbox-console']::before {
-  content: ''; position: absolute; inset: 5px; border: 1px dashed #b28b5a88; border-radius: 2px;
-  background: url('assets/panel-surface.svg') center / 120px 120px; pointer-events: none; z-index: -1;
+[data-theme-part='button']:hover:not(:disabled),
+[data-theme-part='primary-action']:hover,
+[data-theme-part='workshop-entry']:hover {
+  filter: brightness(1.06) drop-shadow(5px 5px 0 var(--theme-ticket-shadow));
+  transform: translate(-2px, -2px);
 }
-[data-theme-part='garage-panel'],[data-theme-part='support-panel'][data-theme-panel-kind='core-loop'] {
-  --color-text-primary: #382b31; --color-text-secondary: #655047; --color-text-muted: #655047;
-  --garage-ivory: #382b31; --garage-muted: #655047; --garage-panel-background: #f4e6c7;
-  --o4-control-surface: #e9d6b0; --o4-control-border: #89683f;
-  position: relative; isolation: isolate; background: #f4e6c7; color: #382b31;
-  border: 1px solid #bf9861; border-radius: 5px; box-shadow: 3px 4px 0 #100b16;
+[data-theme-part='button']:active:not(:disabled),
+[data-theme-part='primary-action']:active,
+[data-theme-part='workshop-entry']:active {
+  filter: drop-shadow(1px 1px 0 var(--theme-ticket-shadow));
+  transform: translate(2px, 2px);
 }
-[data-theme-part='garage-panel']::before { content: ''; position: absolute; inset: 6px; border: 1px dashed #89683f; border-radius: 2px; background: url('assets/panel-surface.svg') center / 120px 120px; z-index: -1; pointer-events: none; }
-[data-theme-part='panel-label'],[data-theme-part='core-loop'],[data-theme-part='announcements'] { background: transparent; color: inherit; box-shadow: none; border-color: #9a7256; }
-[data-theme-part='core-loop']::before,[data-theme-part='announcements']::before { background: none; }
-[data-theme-part='core-loop-item'] { color: #382b31; background: #e9d6b0; border-color: #bf9861; border-radius: 3px; }
-[data-theme-part='settings-shell']::before,[data-theme-part='settings-shell']::after { background: none; }
-[data-theme-part='settings-navigation'],[data-theme-part='help-navigation'] { background: #211726; border-color: #9a7256; box-shadow: none; }
-[data-theme-part='settings-panel'] { background: #292031; }
-[data-theme-part='settings-row'],[data-theme-part='settings-panel'] fieldset,[data-theme-part='card'],[data-theme-part='theme-card'],[data-theme-part='garage-shelf'],[data-theme-part='garage-slot'] { background: #292031; border-color: #9a7256; border-radius: 4px; box-shadow: none; }
-[data-theme-part='theme-card']:has(input:checked) { border-color: #f5a14a; box-shadow: inset 0 0 0 2px #f5a14a; }
-[data-theme-part='button'][data-variant='secondary'],[data-theme-part='button'][data-variant='ghost'] { color: var(--color-text-primary); background: var(--o4-control-surface); border-color: #9a7256; border-radius: 3px; box-shadow: inset 0 0 0 2px #b28b5a33; }
-[data-theme-part='button'][data-variant='primary'],[data-theme-part='primary-action'] {
-  position: relative; clip-path: none; color: #24172b; background: #f3b457;
-  border: 1px solid #f9d48a; border-radius: 4px; box-shadow: 2px 3px 0 #100b16,inset 0 0 0 3px #be823777;
+[data-theme-part='button']:disabled {
+  filter: grayscale(0.5) drop-shadow(1px 1px 0 var(--theme-ticket-shadow));
 }
-[data-theme-part='button'][data-variant='primary']::before { content: ''; position: absolute; inset: 4px; border: 1px dashed #6c472d88; border-radius: 2px; pointer-events: none; }
-[data-theme-part='primary-action-decoration'] { display: block; width: 1.8rem; height: 1.3rem; background: url('assets/primary-action-decoration.svg') center / contain no-repeat; }
-[data-theme-part='primary-action-decoration'][data-decoration-position='end'] { transform: scaleX(-1); }
-[data-theme-part='garage-shell'] { background: linear-gradient(#22182b,#16101d); }
-[data-theme-part='garage-stage'] { border: 2px solid #9a7256; border-radius: 38% 38% 7px 7px / 20% 20% 7px 7px; box-shadow: inset 0 0 0 4px #211726,0 0 0 1px #c19a65; }
-[data-theme-part='settings-heading'],[data-theme-part='about-heading'],[data-theme-part='help-heading'],
-[data-theme-part='announcements-heading'],[data-theme-part='login-heading'],[data-theme-part='creator-heading'],
-[data-theme-part='result-heading'],[data-theme-part='room-heading'],[data-theme-part='ugc-heading'],
-[data-theme-part='race-config-heading'],[data-theme-part='dmca-heading'],[data-theme-part='inbox-heading'] {
-  position: relative; padding-inline-end: 5.5rem; color: #f3c777; background: none; box-shadow: none;
-  border-color: #9a7256; text-shadow: 1px 2px 0 #100b16;
+[data-theme-part='button'][data-variant='secondary'],
+[data-theme-part='button'][data-variant='icon'],
+[data-theme-part='form-file-trigger'] [data-theme-part='button'] {
+  color: #f6e6bf;
 }
-[data-theme-part='settings-heading']::after,[data-theme-part='about-heading']::after,[data-theme-part='help-heading']::after,
-[data-theme-part='announcements-heading']::after,[data-theme-part='login-heading']::after,[data-theme-part='creator-heading']::after,
-[data-theme-part='result-heading']::after,[data-theme-part='room-heading']::after,[data-theme-part='ugc-heading']::after,
-[data-theme-part='race-config-heading']::after,[data-theme-part='dmca-heading']::after,[data-theme-part='inbox-heading']::after {
-  content: ''; position: absolute; right: .5rem; top: 0; width: 5rem; height: 4rem;
-  background: url('assets/brand-emblem.svg') center / contain no-repeat; pointer-events: none;
+[data-theme-part='button'][data-variant='ghost'] {
+  --theme-ticket-fill: #2a1f30;
+  color: #f6e6bf;
+  filter: drop-shadow(0 0 0 transparent);
 }
-[data-theme-part='garage-edit-preview']::before { background: none; }
+[data-theme-part='button'][data-variant='ghost']::before {
+  inset: 4px;
+  border: 1px dashed var(--theme-ticket-ink);
+}
+[data-theme-part='button'][data-variant='ghost']:hover:not(:disabled) {
+  --theme-ticket-fill: #3a2a40;
+  filter: drop-shadow(0 0 0 transparent);
+  transform: none;
+}
+[data-theme-part='button'][data-variant='ghost']:active:not(:disabled) {
+  filter: drop-shadow(0 0 0 transparent);
+  transform: translate(1px, 1px);
+}
+[data-theme-part='button'][data-variant='primary'],
+[data-theme-part='primary-action'],
+[data-theme-part='workshop-entry'] {
+  --theme-ticket-fill: #f3b457;
+  --theme-ticket-ink: #6c472d;
+  --theme-ticket-shadow: #8a4a22;
+  position: relative;
+  color: #24172b;
+}
+[data-theme-part='button'][data-variant='warning'] {
+  --theme-ticket-fill: var(--color-warning);
+  --theme-ticket-ink: #24172b;
+  --theme-ticket-shadow: #0c0913;
+}
+[data-theme-part='button'][data-variant='danger'] {
+  --theme-ticket-fill: #a81414;
+  --theme-ticket-ink: #ffb4a8;
+  --theme-ticket-shadow: #0c0913;
+}
+[data-theme-part='button'][aria-pressed='true'],
+[data-theme-part='pagination'] [data-theme-part='button'][aria-current='page'] {
+  --theme-ticket-fill: #f6e6bf;
+  --theme-ticket-ink: #24172b;
+  color: #24172b;
+  filter: drop-shadow(1px 1px 0 var(--theme-ticket-shadow));
+  transform: translate(2px, 2px);
+}
+[data-theme-part='primary-action'] {
+  --theme-ticket-notch: 9px;
+  gap: 0.6rem;
+  padding: 0.8rem 1.1rem;
+  font-family: 'Arial Narrow', 'Bahnschrift Condensed', var(--font-family-base);
+  letter-spacing: 0.16em;
+  filter: drop-shadow(5px 5px 0 var(--theme-ticket-shadow));
+}
+[data-theme-part='primary-action']::before {
+  inset: 7px;
+}
+[data-theme-part='primary-action']::after {
+  content: '';
+  position: absolute;
+  inset: 10px 3.25rem;
+  border-inline: 1px dashed #6c472d;
+  pointer-events: none;
+}
+[data-theme-part='primary-action']:hover {
+  filter: brightness(1.06) drop-shadow(7px 7px 0 var(--theme-ticket-shadow));
+}
+[data-theme-part='primary-action']:active {
+  filter: drop-shadow(2px 2px 0 var(--theme-ticket-shadow));
+  transform: translate(3px, 3px);
+}
+[data-theme-part='primary-action'] o4-icon {
+  display: none;
+}
+[data-theme-part='workshop-entry'] {
+  --theme-ticket-notch: 4px;
+  gap: 0.45rem;
+  font-family: 'Arial Narrow', 'Bahnschrift Condensed', var(--font-family-base);
+  filter: drop-shadow(2px 2px 0 var(--theme-ticket-shadow));
+}
+[data-theme-part='workshop-entry']::before {
+  inset: 3px;
+  border: 1px solid #6c472daa;
+}
+[data-theme-part='workshop-entry']:hover {
+  filter: brightness(1.06) drop-shadow(3px 3px 0 var(--theme-ticket-shadow));
+  transform: translate(-1px, -1px);
+}
+[data-theme-part='workshop-entry']:active {
+  filter: drop-shadow(1px 1px 0 var(--theme-ticket-shadow));
+  transform: translate(1px, 1px);
+}
+/* 頂欄圖示取自垂掛蝙蝠彩帶的單一蝙蝠；手機寬度只剩這個圖示。 */
+[data-theme-part='workshop-entry-icon'] {
+  display: block;
+  flex: none;
+  width: 1.9rem;
+  height: 1.25rem;
+  background: url('assets/workshop-entry-icon.svg') -1.66rem -0.27rem / 10.6rem auto no-repeat;
+}
+[data-theme-part='workshop-entry-icon'] o4-icon {
+  display: none;
+}
+/* 輸入欄位：表格欄位加票根齒孔線，底邊為雙線。 */
+[data-theme-part='form-input'],
+[data-theme-part='form-select'],
+[data-theme-part='form-textarea'] {
+  padding-inline-start: 1.2rem;
+  border: 1px solid #9a7256;
+  border-block-end: 3px double #c19a65;
+  border-radius: 0;
+  color: #f6e6bf;
+  background: repeating-linear-gradient(180deg, #9a7256 0 4px, transparent 4px 8px) 0.6rem 0 / 1px
+    100% no-repeat #211726;
+  box-shadow: none;
+  letter-spacing: 0.02em;
+}
+[data-theme-part='form-select'] option,
+[data-theme-part='form-select'] optgroup {
+  color: #f6e6bf;
+  background-color: #211726;
+}
+[data-theme-part='form-input']:hover:not(:disabled),
+[data-theme-part='form-select']:hover:not(:disabled),
+[data-theme-part='form-textarea']:hover:not(:disabled) {
+  border-color: #c19a65;
+  background-color: #2a1e30;
+}
+[data-theme-part='form-input']:focus-visible,
+[data-theme-part='form-select']:focus-visible,
+[data-theme-part='form-textarea']:focus-visible {
+  border-color: #f5a14a;
+  box-shadow: 3px 3px 0 #0c0913;
+}
+[data-theme-part='form-input'][readonly],
+[data-theme-part='form-textarea'][readonly] {
+  border-style: dashed;
+  color: #dcc5ad;
+  background-color: #19131f;
+}
+/* 分頁：整條票券以齒孔虛線分格，選取格為實心票面。 */
+[data-theme-part='tab'] {
+  gap: 0;
+  padding: 3px;
+  border: 1px solid #9a7256;
+  border-radius: 0;
+  background: #211726;
+  box-shadow: 3px 3px 0 #0c0913;
+}
+[data-theme-part='tab'] [role='tab'] {
+  border: 0;
+  border-inline-start: 1px dashed #9a7256;
+  border-radius: 0;
+  color: #dcc5ad;
+  background: transparent;
+  box-shadow: none;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+[data-theme-part='tab'] [role='tab']:first-child {
+  border-inline-start: 0;
+}
+[data-theme-part='tab'] [role='tab']:hover:not(:disabled) {
+  color: #f6e6bf;
+  background: #36283b;
+}
+[data-theme-part='tab'] [role='tab'][aria-selected='true'] {
+  color: #24172b;
+  background: #f3b457;
+  box-shadow:
+    inset 0 0 0 2px #f3b457,
+    inset 0 0 0 3px #6c472d;
+}
+/* 切換開關：雙線框方形軌道與方形滑塊。 */
+[data-theme-part='toggle']::before {
+  border: 3px double #9a7256;
+  border-radius: 0;
+  background: #211726;
+  box-shadow: 2px 2px 0 #0c0913;
+}
+[data-theme-part='toggle'] span {
+  width: 16px;
+  height: 16px;
+  margin-inline-start: 3px;
+  border-radius: 0;
+  background: #dcc5ad;
+}
+[data-theme-part='toggle']:hover:not(:disabled)::before {
+  border-color: #c19a65;
+}
+[data-theme-part='toggle'][aria-checked='true']::before {
+  border-color: #6c472d;
+  background: #f3b457;
+  box-shadow: 2px 2px 0 #0c0913;
+}
+[data-theme-part='toggle'][aria-checked='true'] span {
+  background: #24172b;
+}
+[data-theme-part='toggle']:focus-visible::before {
+  border-color: #f5a14a;
+  box-shadow: 2px 2px 0 #0c0913;
+}
+/* 滑桿：刻度尺軌道與票根方形握把；握把左側依 --o4-slider-fill 塗成票面色。 */
+[data-theme-part='form-range'] {
+  -webkit-appearance: none;
+  appearance: none;
+  background: transparent;
+}
+[data-theme-part='form-range']::-webkit-slider-runnable-track {
+  height: 10px;
+  border: 1px solid #9a7256;
+  background:
+    repeating-linear-gradient(90deg, #6c472d 0 1px, transparent 1px 8px),
+    linear-gradient(#f3b457, #f3b457) 0 0 / var(--o4-slider-fill, 0%) 100% no-repeat,
+    #211726;
+}
+[data-theme-part='form-range']::-moz-range-progress {
+  height: 8px;
+  background: repeating-linear-gradient(90deg, #6c472d 0 1px, transparent 1px 8px) #f3b457;
+}
+[data-theme-part='form-range']::-moz-range-track {
+  height: 8px;
+  border: 1px solid #9a7256;
+  background: repeating-linear-gradient(90deg, #9a7256 0 1px, transparent 1px 8px) #211726;
+}
+[data-theme-part='form-range']::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 16px;
+  height: 26px;
+  margin-top: -9px;
+  border: 1px solid #24172b;
+  border-radius: 0;
+  background: #f3b457;
+  box-shadow:
+    inset 0 0 0 2px #f3b457,
+    inset 0 0 0 3px #6c472d,
+    3px 3px 0 #0c0913;
+}
+[data-theme-part='form-range']::-moz-range-thumb {
+  width: 14px;
+  height: 24px;
+  border: 1px solid #24172b;
+  border-radius: 0;
+  background: #f3b457;
+  box-shadow:
+    inset 0 0 0 2px #f3b457,
+    inset 0 0 0 3px #6c472d,
+    3px 3px 0 #0c0913;
+}
+[data-theme-part='primary-action-decoration'] {
+  display: block;
+  flex: none;
+  width: 1.8rem;
+  height: 1.3rem;
+  background: url('assets/primary-action-decoration.svg') center / contain no-repeat;
+}
+[data-theme-part='primary-action-decoration'][data-decoration-position='end'] {
+  transform: scaleX(-1);
+}
+[data-theme-part='garage-shell'] {
+  background: linear-gradient(#22182b, #16101d);
+}
+[data-theme-part='garage-stage'] {
+  border: 2px solid #9a7256;
+  border-radius: 38% 38% 7px 7px / 20% 20% 7px 7px;
+  box-shadow:
+    inset 0 0 0 4px #211726,
+    0 0 0 1px #c19a65;
+}
+[data-theme-part='settings-heading'],
+[data-theme-part='about-heading'],
+[data-theme-part='help-heading'],
+[data-theme-part='announcements-heading'],
+[data-theme-part='login-heading'],
+[data-theme-part='creator-heading'],
+[data-theme-part='result-heading'],
+[data-theme-part='room-heading'],
+[data-theme-part='ugc-heading'],
+[data-theme-part='race-config-heading'],
+[data-theme-part='dmca-heading'],
+[data-theme-part='home-heading'],
+[data-theme-part='garage-heading'],
+[data-theme-part='editor-heading'],
+[data-theme-part='inbox-heading'] {
+  position: relative;
+  padding-inline-end: 5.5rem;
+  color: #f3c777;
+  background: none;
+  box-shadow: none;
+  border-color: #9a7256;
+  text-shadow: 1px 2px 0 #100b16;
+}
+[data-theme-part='settings-heading']::after,
+[data-theme-part='about-heading']::after,
+[data-theme-part='help-heading']::after,
+[data-theme-part='announcements-heading']::after,
+[data-theme-part='login-heading']::after,
+[data-theme-part='creator-heading']::after,
+[data-theme-part='result-heading']::after,
+[data-theme-part='room-heading']::after,
+[data-theme-part='ugc-heading']::after,
+[data-theme-part='race-config-heading']::after,
+[data-theme-part='dmca-heading']::after,
+[data-theme-part='home-heading']::after,
+[data-theme-part='garage-heading']::after,
+[data-theme-part='editor-heading']::after,
+[data-theme-part='inbox-heading']::after {
+  content: '';
+  position: absolute;
+  right: 0.5rem;
+  top: 0;
+  width: 5rem;
+  height: 4rem;
+  max-height: 100%;
+  background: url('assets/brand-emblem.svg') center / contain no-repeat;
+  pointer-events: none;
+}
+[data-theme-part='garage-edit-preview']::before {
+  background: none;
+}
 @media (max-width: 40em) {
-  [data-theme-part='hero-title'] { font-size: clamp(2rem,8vw,3rem); }
-  [data-theme-part='primary-action'] { min-width: min(17rem,100%); }
+  [data-theme-part='core-loop-item'] {
+    border-block-start-style: dashed;
+  }
+  [data-theme-part='hero-title'] {
+    font-size: clamp(2rem, 8vw, 3rem);
+  }
+  [data-theme-part='primary-action'] {
+    min-width: min(17rem, 100%);
+  }
 }
 @media (orientation: landscape) and (max-height: 30rem) {
-  [data-theme-part='hero-title'] { font-size: clamp(1.7rem,8dvh,2.6rem); }
+  [data-theme-part='hero-title'] {
+    font-size: clamp(1.7rem, 8dvh, 2.6rem);
+  }
 }
 @media (prefers-reduced-motion: reduce) {
-  [data-theme-part='button'],[data-theme-part='primary-action'] { transition: none; transform: none; }
+  [data-theme-part='button'],
+  [data-theme-part='button']:hover:not(:disabled),
+  [data-theme-part='button']:active:not(:disabled),
+  [data-theme-part='primary-action'],
+  [data-theme-part='primary-action']:hover,
+  [data-theme-part='primary-action']:active,
+  [data-theme-part='workshop-entry'],
+  [data-theme-part='workshop-entry']:hover,
+  [data-theme-part='workshop-entry']:active {
+    transition: none;
+    transform: none;
+  }
 }
 
-[data-theme-part='settings-panel'] { overflow-wrap: anywhere; min-width: 0; }
+[data-theme-part='settings-panel'] {
+  overflow-wrap: anywhere;
+  min-width: 0;
+}

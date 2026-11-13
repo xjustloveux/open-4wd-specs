@@ -51,3 +51,9 @@ node_modules/
 /release-input/
 /release-output/
 /.graphify-releases/
+
+# 主題音訊產生器的輸出（各主題的 .ogg、循環試聽檔與中間片段）；出貨檔在主 repo 的主題資料夾。
+# 本資料夾只追蹤頂層的腳本與文件：所有子資料夾與頂層的 .ogg、.wav 都忽略，新增主題不需改這裡。
+/美術資源/主題音訊/*/
+/美術資源/主題音訊/*.ogg
+/美術資源/主題音訊/*.wav
