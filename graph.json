@@ -3180,6 +3180,14 @@
       "summary": null
     },
     {
+      "id": "decisions/D-20261115-04-沒有重生點時對起點做同樣的警告.md",
+      "type": "decision",
+      "domain": [
+        "建模物理"
+      ],
+      "summary": null
+    },
+    {
       "id": "decisions/INDEX.md",
       "type": null,
       "domain": [],
@@ -7685,6 +7693,10 @@
     },
     {
       "from": "decisions/D-20261114-11-回定位的阻擋方維持只有車輛並對重生點加警告.md",
+      "to": "decisions/D-20261115-04-沒有重生點時對起點做同樣的警告.md"
+    },
+    {
+      "from": "decisions/D-20261114-11-回定位的阻擋方維持只有車輛並對重生點加警告.md",
       "to": "編輯器操作.md"
     },
     {
@@ -7749,6 +7761,26 @@
     },
     {
       "from": "decisions/D-20261115-03-佔位判定與最後合法位置維持現狀.md",
+      "to": "遊戲機制.md"
+    },
+    {
+      "from": "decisions/D-20261115-04-沒有重生點時對起點做同樣的警告.md",
+      "to": "decisions/D-20261114-11-回定位的阻擋方維持只有車輛並對重生點加警告.md"
+    },
+    {
+      "from": "decisions/D-20261115-04-沒有重生點時對起點做同樣的警告.md",
+      "to": "decisions/D-20261114-12-掉出場地的回定位落點沿up抬升.md"
+    },
+    {
+      "from": "decisions/D-20261115-04-沒有重生點時對起點做同樣的警告.md",
+      "to": "decisions/D-20261115-01-重生點警告的預留空間計入回定位的抬升.md"
+    },
+    {
+      "from": "decisions/D-20261115-04-沒有重生點時對起點做同樣的警告.md",
+      "to": "編輯器操作.md"
+    },
+    {
+      "from": "decisions/D-20261115-04-沒有重生點時對起點做同樣的警告.md",
       "to": "遊戲機制.md"
     },
     {
@@ -9242,6 +9274,10 @@
     {
       "from": "decisions/INDEX.md",
       "to": "decisions/D-20261115-03-佔位判定與最後合法位置維持現狀.md"
+    },
+    {
+      "from": "decisions/INDEX.md",
+      "to": "decisions/D-20261115-04-沒有重生點時對起點做同樣的警告.md"
     },
     {
       "from": "decisions/INDEX.md",
@@ -13833,6 +13869,10 @@
     },
     {
       "from": "編輯器操作.md",
+      "to": "decisions/D-20261115-04-沒有重生點時對起點做同樣的警告.md"
+    },
+    {
+      "from": "編輯器操作.md",
       "to": "decisions/INDEX.md"
     },
     {
@@ -14842,6 +14882,10 @@
     {
       "from": "遊戲機制.md",
       "to": "decisions/D-20261115-03-佔位判定與最後合法位置維持現狀.md"
+    },
+    {
+      "from": "遊戲機制.md",
+      "to": "decisions/D-20261115-04-沒有重生點時對起點做同樣的警告.md"
     },
     {
       "from": "遊戲機制.md",
