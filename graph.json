@@ -3163,6 +3163,23 @@
       "summary": null
     },
     {
+      "id": "decisions/D-20261115-02-chassis的原點必須在包圍盒內.md",
+      "type": "decision",
+      "domain": [
+        "建模物理",
+        "UGC版權"
+      ],
+      "summary": null
+    },
+    {
+      "id": "decisions/D-20261115-03-佔位判定與最後合法位置維持現狀.md",
+      "type": "decision",
+      "domain": [
+        "建模物理"
+      ],
+      "summary": null
+    },
+    {
       "id": "decisions/INDEX.md",
       "type": null,
       "domain": [],
@@ -7703,6 +7720,38 @@
       "to": "編輯器操作.md"
     },
     {
+      "from": "decisions/D-20261115-02-chassis的原點必須在包圍盒內.md",
+      "to": "UGC機制.md"
+    },
+    {
+      "from": "decisions/D-20261115-02-chassis的原點必須在包圍盒內.md",
+      "to": "建模參數/零件與共用介面.md"
+    },
+    {
+      "from": "decisions/D-20261115-02-chassis的原點必須在包圍盒內.md",
+      "to": "流程/UGC上傳.md"
+    },
+    {
+      "from": "decisions/D-20261115-02-chassis的原點必須在包圍盒內.md",
+      "to": "程式參數/protocol.md"
+    },
+    {
+      "from": "decisions/D-20261115-02-chassis的原點必須在包圍盒內.md",
+      "to": "編輯器操作.md"
+    },
+    {
+      "from": "decisions/D-20261115-03-佔位判定與最後合法位置維持現狀.md",
+      "to": "decisions/D-20261016-01-回定位等待空出的實際落點.md"
+    },
+    {
+      "from": "decisions/D-20261115-03-佔位判定與最後合法位置維持現狀.md",
+      "to": "decisions/D-20261114-10-step曲線的場地物件是瞬移且目標被佔住時延後.md"
+    },
+    {
+      "from": "decisions/D-20261115-03-佔位判定與最後合法位置維持現狀.md",
+      "to": "遊戲機制.md"
+    },
+    {
       "from": "decisions/INDEX.md",
       "to": "decisions/D-20260428-01-初始企劃骨架與模組化規格基線.md"
     },
@@ -9188,6 +9237,14 @@
     },
     {
       "from": "decisions/INDEX.md",
+      "to": "decisions/D-20261115-02-chassis的原點必須在包圍盒內.md"
+    },
+    {
+      "from": "decisions/INDEX.md",
+      "to": "decisions/D-20261115-03-佔位判定與最後合法位置維持現狀.md"
+    },
+    {
+      "from": "decisions/INDEX.md",
       "to": "decisions/README.md"
     },
     {
@@ -9569,6 +9626,10 @@
     {
       "from": "建模參數/零件與共用介面.md",
       "to": "decisions/D-20261114-09-定稿資產的節點不得宣告matrix.md"
+    },
+    {
+      "from": "建模參數/零件與共用介面.md",
+      "to": "decisions/D-20261115-02-chassis的原點必須在包圍盒內.md"
     },
     {
       "from": "建模參數/零件與共用介面.md",
@@ -14777,6 +14838,10 @@
     {
       "from": "遊戲機制.md",
       "to": "decisions/D-20261114-12-掉出場地的回定位落點沿up抬升.md"
+    },
+    {
+      "from": "遊戲機制.md",
+      "to": "decisions/D-20261115-03-佔位判定與最後合法位置維持現狀.md"
     },
     {
       "from": "遊戲機制.md",

@@ -161,7 +161,7 @@ flowchart TB
 | [編輯器操作.md](編輯器操作.md) | canon | Stage 2 編輯器互動與 UI 操作（零件＋場地共用、PC／Mobile 雙端） |
 | [資產政策.md](資產政策.md) | canon | 資產生命週期玩家面說明＋廢止材質登記（絕版品模型） |
 
-決策檔 41 筆——見 [decisions/INDEX.md](decisions/INDEX.md)。
+決策檔 42 筆——見 [decisions/INDEX.md](decisions/INDEX.md)。
 
 ### UGC版權依賴圖（1/2）
 
@@ -287,7 +287,7 @@ flowchart TB
 | [遊戲機制.md](遊戲機制.md) | canon | 機制庫、晶片技能、其他遊玩細節 |
 | [零件與場景.md](零件與場景.md) | canon | 8 類零件＋3 類場景 entity 詳述 |
 
-決策檔 112 筆——見 [decisions/INDEX.md](decisions/INDEX.md)。
+決策檔 114 筆——見 [decisions/INDEX.md](decisions/INDEX.md)。
 
 ### 建模物理依賴圖（1/2）
 
