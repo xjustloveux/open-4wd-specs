@@ -105,6 +105,7 @@ reason 缺失或不在封閉集合時只顯示一般「所選節點配額不足�
 | 超過 source admission 絕對 ceiling | 來源 GLB > 80 MiB、來源總三角形數 > 3M 或其他 sanitize 資源預算；part 的 100k canonical cap 不在自動處理前拒收，改走 Stage 2 自動減面 + Stage 3 嚴格檢核 |
 | sanitize Worker 拒絕               | 含 external URL / 惡意 extras / NaN/Inf mesh（安全性）                                                                                                   |
 | node 名稱重複                      | 全系統以節點名稱為 key（`materials[]` / Mount 配對 / `route[]` / `checkpoints[]` 等），重名 = 解析歧義（[零件與共用介面.md §2](../建模參數/零件與共用介面.md#2-glb-root-extras--玩家宣告欄位零件--場地共用)）           |
+| 節點變換不合 glTF 規定             | `translation`／`scale` 不是三個有限數值、`rotation` 不是四個有限數值，或 `matrix` 不是十六個有限數值、最後一列不是 0, 0, 0, 1、帶剪切而無法分解成平移、旋轉、縮放（[D-20261114-06](../decisions/D-20261114-06-節點變換不合glTF規定時拒收.md)） |
 
 > **禁止材質不在 Stage 1 拒收**：Stage 1 自動剃除違規材質指派 → 變未指派，Stage 2 重新指派；Stage 3 仍嚴格拒收殘留禁止材質。
 

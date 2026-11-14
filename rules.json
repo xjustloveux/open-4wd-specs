@@ -4163,7 +4163,7 @@
       },
       "anchor": {
         "file": "建模參數/零件與共用介面.md",
-        "line": 75,
+        "line": 76,
         "excerpt": "Battery 的 `configured_output_w` 必須大於 0，且不得超過實際 canonical 幾何"
       },
       "refs": []
@@ -4186,7 +4186,7 @@
       },
       "anchor": {
         "file": "建模參數/零件與共用介面.md",
-        "line": 102,
+        "line": 103,
         "excerpt": "每個 `allocation_pct` 必須為 1–100 整數，同一 chip 全槽總和不得超過 100；"
       },
       "refs": []
