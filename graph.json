@@ -3139,6 +3139,14 @@
       "summary": null
     },
     {
+      "id": "decisions/D-20261114-11-回定位的阻擋方維持只有車輛並對重生點加警告.md",
+      "type": "decision",
+      "domain": [
+        "建模物理"
+      ],
+      "summary": null
+    },
+    {
       "id": "decisions/INDEX.md",
       "type": null,
       "domain": [],
@@ -7631,6 +7639,22 @@
       "to": "編輯器操作.md"
     },
     {
+      "from": "decisions/D-20261114-11-回定位的阻擋方維持只有車輛並對重生點加警告.md",
+      "to": "decisions/D-20261016-01-回定位等待空出的實際落點.md"
+    },
+    {
+      "from": "decisions/D-20261114-11-回定位的阻擋方維持只有車輛並對重生點加警告.md",
+      "to": "decisions/D-20261114-10-step曲線的場地物件是瞬移且目標被佔住時延後.md"
+    },
+    {
+      "from": "decisions/D-20261114-11-回定位的阻擋方維持只有車輛並對重生點加警告.md",
+      "to": "編輯器操作.md"
+    },
+    {
+      "from": "decisions/D-20261114-11-回定位的阻擋方維持只有車輛並對重生點加警告.md",
+      "to": "遊戲機制.md"
+    },
+    {
       "from": "decisions/INDEX.md",
       "to": "decisions/D-20260428-01-初始企劃骨架與模組化規格基線.md"
     },
@@ -9101,6 +9125,10 @@
     {
       "from": "decisions/INDEX.md",
       "to": "decisions/D-20261114-10-step曲線的場地物件是瞬移且目標被佔住時延後.md"
+    },
+    {
+      "from": "decisions/INDEX.md",
+      "to": "decisions/D-20261114-11-回定位的阻擋方維持只有車輛並對重生點加警告.md"
     },
     {
       "from": "decisions/INDEX.md",
@@ -13676,6 +13704,10 @@
     },
     {
       "from": "編輯器操作.md",
+      "to": "decisions/D-20261114-11-回定位的阻擋方維持只有車輛並對重生點加警告.md"
+    },
+    {
+      "from": "編輯器操作.md",
       "to": "decisions/INDEX.md"
     },
     {
@@ -14673,6 +14705,10 @@
     {
       "from": "遊戲機制.md",
       "to": "decisions/D-20261016-01-回定位等待空出的實際落點.md"
+    },
+    {
+      "from": "遊戲機制.md",
+      "to": "decisions/D-20261114-11-回定位的阻擋方維持只有車輛並對重生點加警告.md"
     },
     {
       "from": "遊戲機制.md",
