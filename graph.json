@@ -3115,6 +3115,22 @@
       "summary": null
     },
     {
+      "id": "decisions/D-20261114-08-匯入時把節點matrix改寫成平移旋轉縮放.md",
+      "type": "decision",
+      "domain": [
+        "建模物理"
+      ],
+      "summary": null
+    },
+    {
+      "id": "decisions/D-20261114-09-定稿資產的節點不得宣告matrix.md",
+      "type": "decision",
+      "domain": [
+        "建模物理"
+      ],
+      "summary": null
+    },
+    {
       "id": "decisions/INDEX.md",
       "type": null,
       "domain": [],
@@ -7563,6 +7579,34 @@
       "to": "流程/UGC上傳.md"
     },
     {
+      "from": "decisions/D-20261114-08-匯入時把節點matrix改寫成平移旋轉縮放.md",
+      "to": "decisions/D-20261114-06-節點變換不合glTF規定時拒收.md"
+    },
+    {
+      "from": "decisions/D-20261114-08-匯入時把節點matrix改寫成平移旋轉縮放.md",
+      "to": "decisions/D-20261114-07-節點各軸縮放的允許範圍.md"
+    },
+    {
+      "from": "decisions/D-20261114-08-匯入時把節點matrix改寫成平移旋轉縮放.md",
+      "to": "decisions/D-20261114-09-定稿資產的節點不得宣告matrix.md"
+    },
+    {
+      "from": "decisions/D-20261114-08-匯入時把節點matrix改寫成平移旋轉縮放.md",
+      "to": "建模參數/零件與共用介面.md"
+    },
+    {
+      "from": "decisions/D-20261114-08-匯入時把節點matrix改寫成平移旋轉縮放.md",
+      "to": "流程/UGC上傳.md"
+    },
+    {
+      "from": "decisions/D-20261114-09-定稿資產的節點不得宣告matrix.md",
+      "to": "decisions/D-20261114-08-匯入時把節點matrix改寫成平移旋轉縮放.md"
+    },
+    {
+      "from": "decisions/D-20261114-09-定稿資產的節點不得宣告matrix.md",
+      "to": "建模參數/零件與共用介面.md"
+    },
+    {
       "from": "decisions/INDEX.md",
       "to": "decisions/D-20260428-01-初始企劃骨架與模組化規格基線.md"
     },
@@ -9024,6 +9068,14 @@
     },
     {
       "from": "decisions/INDEX.md",
+      "to": "decisions/D-20261114-08-匯入時把節點matrix改寫成平移旋轉縮放.md"
+    },
+    {
+      "from": "decisions/INDEX.md",
+      "to": "decisions/D-20261114-09-定稿資產的節點不得宣告matrix.md"
+    },
+    {
+      "from": "decisions/INDEX.md",
       "to": "decisions/README.md"
     },
     {
@@ -9393,6 +9445,14 @@
     {
       "from": "建模參數/零件與共用介面.md",
       "to": "decisions/D-20261114-07-節點各軸縮放的允許範圍.md"
+    },
+    {
+      "from": "建模參數/零件與共用介面.md",
+      "to": "decisions/D-20261114-08-匯入時把節點matrix改寫成平移旋轉縮放.md"
+    },
+    {
+      "from": "建模參數/零件與共用介面.md",
+      "to": "decisions/D-20261114-09-定稿資產的節點不得宣告matrix.md"
     },
     {
       "from": "建模參數/零件與共用介面.md",
@@ -9777,6 +9837,10 @@
     {
       "from": "流程/UGC上傳.md",
       "to": "decisions/D-20261114-07-節點各軸縮放的允許範圍.md"
+    },
+    {
+      "from": "流程/UGC上傳.md",
+      "to": "decisions/D-20261114-08-匯入時把節點matrix改寫成平移旋轉縮放.md"
     },
     {
       "from": "流程/UGC上傳.md",
