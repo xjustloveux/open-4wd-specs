@@ -611,7 +611,7 @@
       },
       "anchor": {
         "file": "算式表.md",
-        "line": 612,
+        "line": 613,
         "excerpt": "月度派發係數只依 `softCap` 與 `monthMinted` 的整數公式計算："
       },
       "refs": []
@@ -630,7 +630,7 @@
       },
       "anchor": {
         "file": "算式表.md",
-        "line": 627,
+        "line": 628,
         "excerpt": "比賽獎金依總名次、完賽人數、月度係數與治理參數決定："
       },
       "refs": []
@@ -649,7 +649,7 @@
       },
       "anchor": {
         "file": "算式表.md",
-        "line": 637,
+        "line": 638,
         "excerpt": "`rank` = **總名次**（N 回合積分加總後的最終名次，見 [§20.1](#201-多回合積分與總名次)）；獎金 per-match 發一次（非每回合"
       },
       "refs": []
@@ -668,7 +668,7 @@
       },
       "anchor": {
         "file": "算式表.md",
-        "line": 656,
+        "line": 657,
         "excerpt": "單一 UGC 的回饋金由評分、利基加成、月度係數與基礎額共同決定："
       },
       "refs": []
@@ -687,7 +687,7 @@
       },
       "anchor": {
         "file": "算式表.md",
-        "line": 721,
+        "line": 722,
         "excerpt": "UGC 評分投票權重依投票者信譽分成 0.5、1.0、1.5 三級："
       },
       "refs": []
@@ -706,7 +706,7 @@
       },
       "anchor": {
         "file": "算式表.md",
-        "line": 731,
+        "line": 732,
         "excerpt": "UGC 評分依票數選用隱式 fallback、Bayesian 拉中性或明確票均值："
       },
       "refs": []
@@ -725,7 +725,7 @@
       },
       "anchor": {
         "file": "算式表.md",
-        "line": 745,
+        "line": 746,
         "excerpt": "**隱式 fallback（整數查表）**：浮點 `log10` 跨硬體不一致會炸毀 consensus derive，故隱式評分採整數查表："
       },
       "refs": []
@@ -1046,7 +1046,7 @@
       },
       "anchor": {
         "file": "算式表.md",
-        "line": 771,
+        "line": 772,
         "excerpt": "8 人 FFA 用 TrueSkill 成對近似多人更新（μ, σ 演化）。**rating 屬共識 derive**（`MatchDerivedState`、"
       },
       "refs": []
@@ -3032,7 +3032,7 @@
       "refs": [
         {
           "file": "算式表.md",
-          "line": 685
+          "line": 686
         },
         {
           "file": "資料系統.md",
@@ -3221,7 +3221,7 @@
         },
         {
           "file": "算式表.md",
-          "line": 699
+          "line": 700
         }
       ]
     },

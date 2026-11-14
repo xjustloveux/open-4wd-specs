@@ -3067,6 +3067,38 @@
       "summary": null
     },
     {
+      "id": "decisions/D-20261114-02-磁源N極取節點本機正Y軸.md",
+      "type": "decision",
+      "domain": [
+        "建模物理"
+      ],
+      "summary": null
+    },
+    {
+      "id": "decisions/D-20261114-03-磁力以最小有效距離取代截斷.md",
+      "type": "decision",
+      "domain": [
+        "建模物理"
+      ],
+      "summary": null
+    },
+    {
+      "id": "decisions/D-20261114-04-天氣曝露排除動態遮擋.md",
+      "type": "decision",
+      "domain": [
+        "建模物理"
+      ],
+      "summary": null
+    },
+    {
+      "id": "decisions/D-20261114-05-kinematic平移方向取世界矩陣帶到的方向.md",
+      "type": "decision",
+      "domain": [
+        "建模物理"
+      ],
+      "summary": null
+    },
+    {
       "id": "decisions/INDEX.md",
       "type": null,
       "domain": [],
@@ -7463,6 +7495,34 @@
       "to": "建模參數/場地.md"
     },
     {
+      "from": "decisions/D-20261114-02-磁源N極取節點本機正Y軸.md",
+      "to": "建模參數/場地.md"
+    },
+    {
+      "from": "decisions/D-20261114-02-磁源N極取節點本機正Y軸.md",
+      "to": "建模參數/零件與共用介面.md"
+    },
+    {
+      "from": "decisions/D-20261114-02-磁源N極取節點本機正Y軸.md",
+      "to": "材質表.md"
+    },
+    {
+      "from": "decisions/D-20261114-02-磁源N極取節點本機正Y軸.md",
+      "to": "算式表.md"
+    },
+    {
+      "from": "decisions/D-20261114-03-磁力以最小有效距離取代截斷.md",
+      "to": "算式表.md"
+    },
+    {
+      "from": "decisions/D-20261114-04-天氣曝露排除動態遮擋.md",
+      "to": "建模參數/場地.md"
+    },
+    {
+      "from": "decisions/D-20261114-05-kinematic平移方向取世界矩陣帶到的方向.md",
+      "to": "建模參數/場地.md"
+    },
+    {
       "from": "decisions/INDEX.md",
       "to": "decisions/D-20260428-01-初始企劃骨架與模組化規格基線.md"
     },
@@ -8900,6 +8960,22 @@
     },
     {
       "from": "decisions/INDEX.md",
+      "to": "decisions/D-20261114-02-磁源N極取節點本機正Y軸.md"
+    },
+    {
+      "from": "decisions/INDEX.md",
+      "to": "decisions/D-20261114-03-磁力以最小有效距離取代截斷.md"
+    },
+    {
+      "from": "decisions/INDEX.md",
+      "to": "decisions/D-20261114-04-天氣曝露排除動態遮擋.md"
+    },
+    {
+      "from": "decisions/INDEX.md",
+      "to": "decisions/D-20261114-05-kinematic平移方向取世界矩陣帶到的方向.md"
+    },
+    {
+      "from": "decisions/INDEX.md",
       "to": "decisions/README.md"
     },
     {
@@ -9192,6 +9268,18 @@
     },
     {
       "from": "建模參數/場地.md",
+      "to": "decisions/D-20261114-02-磁源N極取節點本機正Y軸.md"
+    },
+    {
+      "from": "建模參數/場地.md",
+      "to": "decisions/D-20261114-04-天氣曝露排除動態遮擋.md"
+    },
+    {
+      "from": "建模參數/場地.md",
+      "to": "decisions/D-20261114-05-kinematic平移方向取世界矩陣帶到的方向.md"
+    },
+    {
+      "from": "建模參數/場地.md",
       "to": "建模參數.md"
     },
     {
@@ -9361,6 +9449,10 @@
     {
       "from": "材質表.md",
       "to": "UGC機制.md"
+    },
+    {
+      "from": "材質表.md",
+      "to": "decisions/D-20261114-02-磁源N極取節點本機正Y軸.md"
     },
     {
       "from": "材質表.md",
@@ -13237,6 +13329,10 @@
     {
       "from": "算式表.md",
       "to": "decisions/D-20261113-09-驅動換算改用參考輪半徑與對轉軸半徑.md"
+    },
+    {
+      "from": "算式表.md",
+      "to": "decisions/D-20261114-03-磁力以最小有效距離取代截斷.md"
     },
     {
       "from": "算式表.md",
