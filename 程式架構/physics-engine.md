@@ -328,7 +328,7 @@ current PhysicsManifest 六向接觸面積，缺可信資料 fail closed。
 local `+Y` 是 up。Hermite sample 的 up 先在相鄰 authored up 間插值，再投影到 sample tangent 的
 正交平面；runtime 的中心線最近點必須逐條預採樣**線段**做夾限投影，不得以最近 sample 點替代，
 並以同一投影參數連續插值 half-width、tangent 與 up。退化 fallback 只依 authored frame 與固定軸序，
-不可讀 camera 或 gravity。起跑格沿第一個 sample up 抬升 `START_GRID_LIFT_M`，所有 spawn／teleport quaternion 同時對齊車輛 local `-Z／+Y`。所有車同縱向，slot s 的 lateral offset 固定為 `(s-(N-1)/2)×START_GRID_CELL_WIDTH_M`，沿 surface-frame right 左右對稱；`N×cell width > RP1.width_m` 時 admission／runtime 同式拒絕。引擎只接受明確 `{slot, playerCount}`，正式賽不得以 load order 推斷 slot。這使 bank、側牆、
+不可讀 camera 或 gravity。起跑格沿第一個 sample up 抬升 `START_GRID_LIFT_M`，掉出場地後回定位到 `RespawnPoint` 或起點時也沿該點的 up 抬升同一個量（[D-20261114-12](../decisions/D-20261114-12-掉出場地的回定位落點沿up抬升.md)），所有 spawn／teleport quaternion 同時對齊車輛 local `-Z／+Y`。所有車同縱向，slot s 的 lateral offset 固定為 `(s-(N-1)/2)×START_GRID_CELL_WIDTH_M`，沿 surface-frame right 左右對稱；`N×cell width > RP1.width_m` 時 admission／runtime 同式拒絕。引擎只接受明確 `{slot, playerCount}`，正式賽不得以 load order 推斷 slot。這使 bank、側牆、
 倒掛、垂直段與 360° 迴圈不被世界重力拉回水平；詳見
 [D-20260808-01](../decisions/D-20260808-01-route與respawn完整surface-frame.md)、[D-20260814-20](../decisions/D-20260814-20-多人可驗算起跑格.md)。
 
