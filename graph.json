@@ -3131,6 +3131,14 @@
       "summary": null
     },
     {
+      "id": "decisions/D-20261114-10-step曲線的場地物件是瞬移且目標被佔住時延後.md",
+      "type": "decision",
+      "domain": [
+        "建模物理"
+      ],
+      "summary": null
+    },
+    {
       "id": "decisions/INDEX.md",
       "type": null,
       "domain": [],
@@ -7607,6 +7615,22 @@
       "to": "建模參數/零件與共用介面.md"
     },
     {
+      "from": "decisions/D-20261114-10-step曲線的場地物件是瞬移且目標被佔住時延後.md",
+      "to": "decisions/D-20261016-01-回定位等待空出的實際落點.md"
+    },
+    {
+      "from": "decisions/D-20261114-10-step曲線的場地物件是瞬移且目標被佔住時延後.md",
+      "to": "建模參數/場地.md"
+    },
+    {
+      "from": "decisions/D-20261114-10-step曲線的場地物件是瞬移且目標被佔住時延後.md",
+      "to": "程式架構/physics-engine.md"
+    },
+    {
+      "from": "decisions/D-20261114-10-step曲線的場地物件是瞬移且目標被佔住時延後.md",
+      "to": "編輯器操作.md"
+    },
+    {
       "from": "decisions/INDEX.md",
       "to": "decisions/D-20260428-01-初始企劃骨架與模組化規格基線.md"
     },
@@ -9076,6 +9100,10 @@
     },
     {
       "from": "decisions/INDEX.md",
+      "to": "decisions/D-20261114-10-step曲線的場地物件是瞬移且目標被佔住時延後.md"
+    },
+    {
+      "from": "decisions/INDEX.md",
       "to": "decisions/README.md"
     },
     {
@@ -9377,6 +9405,10 @@
     {
       "from": "建模參數/場地.md",
       "to": "decisions/D-20261114-05-kinematic平移方向取世界矩陣帶到的方向.md"
+    },
+    {
+      "from": "建模參數/場地.md",
+      "to": "decisions/D-20261114-10-step曲線的場地物件是瞬移且目標被佔住時延後.md"
     },
     {
       "from": "建模參數/場地.md",
@@ -12249,6 +12281,10 @@
     {
       "from": "程式架構/physics-engine.md",
       "to": "decisions/D-20261113-09-驅動換算改用參考輪半徑與對轉軸半徑.md"
+    },
+    {
+      "from": "程式架構/physics-engine.md",
+      "to": "decisions/D-20261114-10-step曲線的場地物件是瞬移且目標被佔住時延後.md"
     },
     {
       "from": "程式架構/physics-engine.md",
