@@ -70,9 +70,11 @@ variant，因此 seed 會進入物理狀態而非只驗格式。`src/testing/det
 
 目前修訂使用來源 COM／慣量的三個 collider 質量建構分支，以及所選 solver contact 的輪胎
 負載讀回；舊基準對應自動凸包質量與幾何接觸讀回、Rapier npm 0.19.3。現行固定原生核心
-WASM SHA-256 為 `4e2c0b93530ff63b9934d655c694ba8c32d2780423eab55bd709e12e55422693`；
+WASM SHA-256 為 `ec9b5fad893d8dc9229d35ffa9e677f3ebc0910a48b85fd407db9c5ee06f0a62`；
 `0xCAFEBABE`／120 frames 的 checksum 為
-`433b94d4b443f1c5ee77ad3417e19a4b1692614f4908c5e1bb97339cf3a88ac3`（revision-20：圓柱曲面支撐線段改依投影後法線方位，
+`17cbc2e9eafbc7ff75546bbc9b69acd60a0ae81b0fc91602fe2d1426a8924689`（場景編號仍是 revision-20；這個值是三角網格見證側一致性修正後
+重新擷取的，issue 001309，前值 `433b94d4b443f1c5ee77ad3417e19a4b1692614f4908c5e1bb97339cf3a88ac3`；輸送帶改由求解器摩擦帶動不改這個值，
+[D-20261115-06](../decisions/D-20261115-06-輸送帶改由求解器摩擦帶動.md)。revision-20：圓柱曲面支撐線段改依投影後法線方位，
 平面場地對角線上的輪胎接觸幾何改變；場景與輸入不變，[D-20261031-07](../decisions/D-20261031-07-圓柱曲面支撐線段依法線方位.md)、
 issue 001164；revision-19 為接觸 normal 求解順序對稱化與動態目標持續接觸回復完整形狀 TOI，[D-20261027-01](../decisions/D-20261027-01-接觸點求解順序對稱化.md)、
 [D-20261027-02](../decisions/D-20261027-02-動態目標持續接觸回復完整形狀TOI.md)、issue 001075／001082）。

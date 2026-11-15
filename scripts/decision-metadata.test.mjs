@@ -5,6 +5,7 @@ import { dirname, join } from "node:path";
 import test from "node:test";
 
 import {
+  collectAmendedBy,
   collectVectorFamilies,
   validateDeprecations,
   validateHistoricalFiles,
@@ -62,6 +63,106 @@ test("relationship addenda require a dated header and a reverse frontmatter rela
     ),
     [],
   );
+});
+
+test("relationship addenda accept one dated block per later date, in ascending order", () => {
+  const entries = new Map([
+    ["D-20260801-01", { fm: { amends: [], supersedes: [] } }],
+    ["D-20260802-01", { fm: { amends: ["D-20260801-01"], supersedes: [] } }],
+    ["D-20260802-02", { fm: { amends: ["D-20260801-01"], supersedes: [] } }],
+    ["D-20260905-01", { fm: { amends: ["D-20260801-01"], supersedes: [] } }],
+  ]);
+  const first = [
+    "> **2026-08-02 關聯追補**：甲條款由 [D-20260802-01](D-20260802-01-a.md) 修訂。",
+    "> 乙條款由 [D-20260802-02](D-20260802-02-b.md) 修訂。",
+  ];
+  const second = ["> **2026-09-05 關聯追補**：丙條款由 [D-20260905-01](D-20260905-01-c.md) 修訂。"];
+  const body = (...blocks) =>
+    [
+      "# D-20260801-01｜Earlier decision",
+      "",
+      ...blocks.flatMap((block) => [...block, ""]),
+      "## 背景與驅動力",
+    ].join("\n");
+  const check = (text) => validateRelationshipAddendum("D-20260801-01", text, entries);
+
+  assert.deepEqual(check(body(first, second)), []);
+  assert.deepEqual(check(body(first)), []);
+  // 較晚的日期排在前面
+  assert.match(check(body(second, first)).join("\n"), /日期先後/u);
+  // 同一個日期拆成兩則
+  assert.match(check(body([first[0]], [first[0].replace("甲", "乙").replace("02-01", "02-02")])).join("\n"), /日期先後/u);
+  // 每一則各自比對日期：第二則連到別的日期的決策
+  assert.match(
+    check(body(first, [second[0].replace("D-20260905-01](D-20260905-01", "D-20260802-01](D-20260802-01")])).join("\n"),
+    /關聯追補日期 2026-09-05 必須等於目標 D-20260802-01 的日期 2026-08-02/u,
+  );
+  // 每一則都要連結後續決策
+  assert.match(check(body(first, ["> **2026-09-05 關聯追補**：丙條款已修訂。"])).join("\n"), /至少須連結/u);
+  // 同一份後續決策出現在兩則裡時，其中一則的日期一定對不上
+  assert.notDeepEqual(
+    check(body(first, [second[0] + "另見 [D-20260802-01](D-20260802-01-a.md)。"])),
+    [],
+  );
+  // 追補之外不得再出現追補標頭（例如放在四節之間）
+  assert.match(
+    check(body(first) + "\n\n本文。\n\n" + second[0] + "\n").join("\n"),
+    /必須緊接 H1/u,
+  );
+  // 兩則之間必須空一行
+  assert.match(check(body([...first, ...second])).join("\n"), /必須緊接 H1/u);
+});
+
+test("each relationship addendum target must exist, be later, and point back by amends or supersedes", () => {
+  const addendum = (date, targetId) =>
+    [
+      "# D-20260801-01｜Earlier decision",
+      "",
+      `> **${date} 關聯追補**：相關條款由 [${targetId}](${targetId}-x.md) 修訂。`,
+      "",
+      "## 背景與驅動力",
+    ].join("\n");
+  const entries = new Map([
+    ["D-20260801-01", { fm: { amends: [], supersedes: [] } }],
+    // 較早的決策即使回指本檔、日期也對得上，仍不得當成追補目標。
+    ["D-20260701-01", { fm: { amends: ["D-20260801-01"], supersedes: [] } }],
+    // 以 supersedes 回指同樣成立。
+    ["D-20260802-01", { fm: { amends: [], supersedes: ["D-20260801-01"] } }],
+    // 沒有 amends／supersedes 欄位的目標：視為沒有回指。
+    ["D-20260803-01", { fm: {} }],
+    ["D-20260801-02", { fm: { amends: ["D-20260801-01"], supersedes: [] } }],
+  ]);
+  const check = (date, targetId) =>
+    validateRelationshipAddendum("D-20260801-01", addendum(date, targetId), entries);
+
+  assert.deepEqual(check("2026-08-02", "D-20260802-01"), []);
+  // 同一天、序號較大的決策也算較後。
+  assert.deepEqual(check("2026-08-01", "D-20260801-02"), []);
+  assert.deepEqual(check("2026-07-01", "D-20260701-01"), ["關聯追補只能指向較後的 ADR：D-20260701-01"]);
+  assert.deepEqual(check("2026-08-01", "D-20260801-01").slice(0, 1), [
+    "關聯追補只能指向較後的 ADR：D-20260801-01",
+  ]);
+  assert.deepEqual(check("2026-08-09", "D-20260809-01"), ["關聯追補目標不存在：D-20260809-01"]);
+  assert.deepEqual(check("2026-08-03", "D-20260803-01"), [
+    "關聯追補目標 D-20260803-01 的 amends 或 supersedes 未回指 D-20260801-01",
+  ]);
+});
+
+test("the reverse amends relation lists every later decision once, in id order", () => {
+  const entries = new Map([
+    ["D-20260905-01", { fm: { id: "D-20260905-01", amends: ["D-20260801-01", "D-20260801-02"] } }],
+    ["D-20260801-01", { fm: { id: "D-20260801-01", amends: [] } }],
+    ["D-20260801-02", { fm: { id: "D-20260801-02" } }],
+    ["D-20260802-01", { fm: { id: "D-20260802-01", amends: ["D-20260801-01", "D-20260801-01"] } }],
+    ["D-20260803-02", { fm: { id: "D-20260803-02", amends: ["D-20260801-01"] } }],
+    // supersedes 不算修訂：被取代的決策已經以 superseded 標示。
+    ["D-20260803-01", { fm: { id: "D-20260803-01", amends: [], supersedes: ["D-20260801-02"] } }],
+  ]);
+  const reverse = collectAmendedBy(entries);
+  assert.deepEqual(reverse.get("D-20260801-01"), ["D-20260802-01", "D-20260803-02", "D-20260905-01"]);
+  assert.deepEqual(reverse.get("D-20260801-02"), ["D-20260905-01"]);
+  assert.equal(reverse.has("D-20260905-01"), false);
+  assert.equal(reverse.size, 2);
 });
 
 test("deprecations accept empty metadata and exact removed, renamed, or replaced entries", () => {

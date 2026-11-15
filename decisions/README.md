@@ -4,11 +4,11 @@
 
 ## 鐵則
 
-1. **不可變**：`status: accepted` 的決策檔**本文**（背景／選項／決定／後果）不再修改。改變決策 ＝ 建新檔 `supersedes` 舊檔。frontmatter 的關聯性 metadata（`superseded_by`／`amends`／`sources`／`files`／`vectors`／`deprecates`）允許回填與更正——它們描述「這份決策與什麼相關」，不是決策本身；錯字修正同樣允許。若後續 ADR 只部分修訂舊檔，可在舊檔 H1 後加入一段**關聯追補**，但不得改寫原四節。
+1. **不可變**：`status: accepted` 的決策檔**本文**（背景／選項／決定／後果）不再修改。改變決策 ＝ 建新檔 `supersedes` 舊檔。frontmatter 的關聯性 metadata（`superseded_by`／`amends`／`sources`／`files`／`vectors`／`deprecates`）允許回填與更正——它們描述「這份決策與什麼相關」，不是決策本身；錯字修正同樣允許。若後續 ADR 只部分修訂舊檔，可在舊檔 H1 後加入**關聯追補**（同一份舊檔先後被不同日期的 ADR 修訂時，每個日期各一則），但不得改寫原四節。
 2. **不與 canon 重複**：決策檔寫背景、選項、取捨、後果；現況規格細節一律連結 canon，不重述。
 3. **引用紀律**：決策檔全檔禁用 `§`；跨檔引用一律使用檔級連結，需要章節資訊時在連結文字寫「第 N 節」。
 
-關聯追補固定緊接 H1，首行格式為 `> **YYYY-MM-DD 關聯追補**：…`，續行仍使用 blockquote。日期必須等於所連結後續 ADR 的日期；後續 ADR 的 `amends` 或 `supersedes` 也必須回指本檔。追補只能說明原決策哪些部分後來被修訂或取代，不得新增決策、改寫當時理由或充當現況 canon；`check:decisions` 會驗格式、時間順序與反向關係。
+關聯追補固定緊接 H1，每一則是一段 blockquote：首行格式為 `> **YYYY-MM-DD 關聯追補**：…`，續行仍使用 blockquote、不得再帶日期標頭。日期必須等於該則所連結後續 ADR 的日期；同一天的後續 ADR 寫在同一則，不同日期各寫一則，依日期先後排列，兩則之間空一行；同一份後續 ADR 只出現在一則裡。後續 ADR 的 `amends` 或 `supersedes` 也必須回指本檔。追補是選用的說明：哪些後續 ADR 以 `amends` 修訂了本檔，看 [INDEX.md](INDEX.md) 裡本檔那一列的 `amended by`（由工具從後續 ADR 的 `amends` 反向產生；沒有被修訂的決策那一列沒有這個標記）。以 `supersedes` 完整取代本檔的 ADR 不列在 `amended by`；被取代的決策那一列另以 `superseded →` 標示取代它的 ADR；它若也被 `amends` 修訂過（不論在被取代之前或之後），`amended by` 照常列出。追補只能說明原決策哪些部分後來被修訂或取代，不得新增決策、改寫當時理由或充當現況 canon；`check:decisions` 會驗格式、時間順序與反向關係。
 
 ## 檔名與 frontmatter
 

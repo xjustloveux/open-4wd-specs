@@ -18,6 +18,10 @@ deprecates: []
 > SavedState／checksum 與對應 benchmark 條款已由 [D-20260814-06](D-20260814-06-場地碎片統一純視覺.md)
 > 取代；typed Track Entity、kinematic、conveyor、visual-only、fatigue 與 magnet 條款繼續有效。
 
+> **2026-11-15 關聯追補**：conveyor 的帶動方式（步進之後補切向衝量）已由
+> [D-20261115-06](D-20261115-06-輸送帶改由求解器摩擦帶動.md) 修訂為求解器摩擦帶動；只作用於實際接觸、受摩擦係數與
+> 法向衝量上限約束、broken 後歸零三點不變。
+
 ## 背景與驅動力
 
 場地編輯器已宣告 decoration、kinematic move/conveyor、visual-only、destructible 與動態磁源，
