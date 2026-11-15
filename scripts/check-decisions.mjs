@@ -13,6 +13,7 @@ import { collectHistory } from './history-ledger.mjs';
 import { DOMAINS } from './domains.mjs';
 import { parseFrontmatterBlock } from './lib.mjs';
 import {
+  collectAmendedBy,
   collectVectorFamilies,
   validateDeprecations,
   validateHistoricalFiles,
@@ -174,7 +175,7 @@ function buildIndex() {
   const out = [];
   out.push('# 決策索引（INDEX）');
   out.push('');
-  out.push('> 本檔由 `pnpm check:decisions --write-index` 生成，勿手改。依首要域分組、id 升冪；制度說明見 [README.md](README.md)。');
+  out.push('> 本檔由 `pnpm check:decisions --write-index` 生成，勿手改。依首要域分組、id 升冪；被後續決策修訂的決策，那一列的 `amended by` 由後續決策的 `amends` 反向推得；制度說明見 [README.md](README.md)。');
   out.push('');
   // 排序一律指定 locale：不帶 locale 的 localeCompare 走行程預設 collation（本機 zh-TW、
   // CI 的 LANG=C.UTF-8 → en-US-u-va-posix），同一份輸入會排出不同 INDEX、check 在 CI 假紅。
@@ -196,6 +197,7 @@ function buildIndex() {
     out.push(`| ${entry.fm.date} | ${escapeTableCell(deprecation.item)} | ${kindLabel[deprecation.kind]} | ${escapeTableCell(deprecation.replacement ?? '—')} | [${entry.fm.id}](${entry.file}) |`);
   }
   out.push('');
+  const amendedBy = collectAmendedBy(entries);
   for (const dm of DOMAINS) {
     const rows = [...entries.values()].filter(e => (e.fm.domains ?? [])[0] === dm).sort((a, b) => a.fm.id.localeCompare(b.fm.id, 'en'));
     if (rows.length === 0) continue;
@@ -206,6 +208,8 @@ function buildIndex() {
       if (e.fm.status === 'superseded') marks.push(`superseded → ${e.fm.superseded_by}`);
       if ((e.fm.supersedes ?? []).length) marks.push(`supersedes ${e.fm.supersedes.join('、')}`);
       if ((e.fm.amends ?? []).length) marks.push(`amends ${e.fm.amends.join('、')}`);
+      // 反向關係由工具從後續決策的 amends 推得，不寫進決策檔本文。
+      if (amendedBy.has(e.fm.id)) marks.push(`amended by ${amendedBy.get(e.fm.id).join('、')}`);
       out.push(`- [${e.fm.id}](${e.file})｜${e.title}${marks.length ? `（${marks.join('；')}）` : ''}`);
     }
     out.push('');

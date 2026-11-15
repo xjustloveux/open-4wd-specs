@@ -10,36 +10,69 @@ function idDate(id) {
   return `${compact.slice(0, 4)}-${compact.slice(4, 6)}-${compact.slice(6, 8)}`;
 }
 
+/**
+ * `amends` 的反向關係：被修訂的決策 id → 修訂它的決策 id（去重、依 id 升冪）。
+ * 只看 amends；被完整取代的決策已由 `superseded_by` 標示。
+ */
+export function collectAmendedBy(entries) {
+  const reverse = new Map();
+  for (const [id, entry] of entries) {
+    for (const target of entry.fm.amends ?? []) {
+      if (!reverse.has(target)) reverse.set(target, new Set());
+      reverse.get(target).add(id);
+    }
+  }
+  return new Map(
+    [...reverse].map(([target, ids]) => [target, [...ids].sort((a, b) => a.localeCompare(b, "en"))]),
+  );
+}
+
 export function validateRelationshipAddendum(id, body, entries) {
   if (!body.includes("關聯追補")) return [];
   const violations = [];
   const escapedId = id.replace(/[.*+?^${}()|[\]\\]/gu, "\\$&");
+  // 一則追補＝一段 blockquote：首行帶日期標頭。兩則黏在一起（中間沒有空行）時會被比對成一段，
+  // 由下面的標頭數量檢查擋下。
+  const header = "> \\*\\*\\d{4}-\\d{2}-\\d{2} 關聯追補\\*\\*：";
+  const block = `${header}[^\\n]*(?:\\n> [^\\n]*)*`;
   const match = body.match(
     new RegExp(
-      `^# ${escapedId}｜[^\\n]+\\n\\n(> \\*\\*\\d{4}-\\d{2}-\\d{2} 關聯追補\\*\\*：[^\\n]*(?:\\n> [^\\n]*)*)\\n\\n## 背景與驅動力$`,
+      `^# ${escapedId}｜[^\\n]+\\n\\n(${block}(?:\\n\\n${block})*)\\n\\n## 背景與驅動力$`,
       "mu",
     ),
   );
-  if (!match) {
-    return ["關聯追補必須緊接 H1，格式為「> **YYYY-MM-DD 關聯追補**：…」"];
+  // 標頭只能出現在 H1 之後那一組追補裡；四節本文中出現的標頭不屬於任何一則。
+  const headerCount = [...body.matchAll(new RegExp(`^${header}`, "gmu"))].length;
+  const blocks = match ? match[1].split("\n\n") : [];
+  if (!match || headerCount !== blocks.length) {
+    return [
+      "關聯追補必須緊接 H1，每一則是一段「> **YYYY-MM-DD 關聯追補**：…」blockquote，多則之間空一行",
+    ];
   }
 
-  const block = match[1];
-  const date = block.match(/^> \*\*(\d{4}-\d{2}-\d{2}) 關聯追補\*\*：/u)?.[1];
-  const targets = [...new Set([...block.matchAll(/D-\d{8}-\d{2}/gu)].map((item) => item[0]))];
-  if (targets.length === 0) violations.push("關聯追補至少須連結一份後續 ADR");
-  for (const targetId of targets) {
-    const target = entries.get(targetId);
-    if (!target) {
-      violations.push(`關聯追補目標不存在：${targetId}`);
-      continue;
+  let previousDate = null;
+  for (const text of blocks) {
+    const date = text.match(/^> \*\*(\d{4}-\d{2}-\d{2}) 關聯追補\*\*：/u)?.[1];
+    if (previousDate !== null && date <= previousDate)
+      violations.push(
+        `關聯追補須依日期先後排列，同一個日期只能有一則：${date} 排在 ${previousDate} 之後`,
+      );
+    previousDate = date;
+    const targets = [...new Set([...text.matchAll(/D-\d{8}-\d{2}/gu)].map((item) => item[0]))];
+    if (targets.length === 0) violations.push(`${date} 的關聯追補至少須連結一份後續 ADR`);
+    for (const targetId of targets) {
+      const target = entries.get(targetId);
+      if (!target) {
+        violations.push(`關聯追補目標不存在：${targetId}`);
+        continue;
+      }
+      if (targetId <= id) violations.push(`關聯追補只能指向較後的 ADR：${targetId}`);
+      if (idDate(targetId) !== date)
+        violations.push(`關聯追補日期 ${date} 必須等於目標 ${targetId} 的日期 ${idDate(targetId)}`);
+      const reverse = [...(target.fm.amends ?? []), ...(target.fm.supersedes ?? [])];
+      if (!reverse.includes(id))
+        violations.push(`關聯追補目標 ${targetId} 的 amends 或 supersedes 未回指 ${id}`);
     }
-    if (targetId <= id) violations.push(`關聯追補只能指向較後的 ADR：${targetId}`);
-    if (idDate(targetId) !== date)
-      violations.push(`關聯追補日期 ${date} 必須等於目標 ${targetId} 的日期 ${idDate(targetId)}`);
-    const reverse = [...(target.fm.amends ?? []), ...(target.fm.supersedes ?? [])];
-    if (!reverse.includes(id))
-      violations.push(`關聯追補目標 ${targetId} 的 amends 或 supersedes 未回指 ${id}`);
   }
   return violations;
 }
