@@ -3204,6 +3204,14 @@
       "summary": null
     },
     {
+      "id": "decisions/D-20261115-07-武器磁鐵的磁場原點取主網格節點的幾何中心.md",
+      "type": "decision",
+      "domain": [
+        "建模物理"
+      ],
+      "summary": null
+    },
+    {
       "id": "decisions/INDEX.md",
       "type": null,
       "domain": [],
@@ -7840,6 +7848,18 @@
       "to": "零件與場景.md"
     },
     {
+      "from": "decisions/D-20261115-07-武器磁鐵的磁場原點取主網格節點的幾何中心.md",
+      "to": "建模參數/零件與共用介面.md"
+    },
+    {
+      "from": "decisions/D-20261115-07-武器磁鐵的磁場原點取主網格節點的幾何中心.md",
+      "to": "算式表.md"
+    },
+    {
+      "from": "decisions/D-20261115-07-武器磁鐵的磁場原點取主網格節點的幾何中心.md",
+      "to": "零件與場景.md"
+    },
+    {
       "from": "decisions/INDEX.md",
       "to": "decisions/D-20260428-01-初始企劃骨架與模組化規格基線.md"
     },
@@ -9342,6 +9362,10 @@
     {
       "from": "decisions/INDEX.md",
       "to": "decisions/D-20261115-06-輸送帶改由求解器摩擦帶動.md"
+    },
+    {
+      "from": "decisions/INDEX.md",
+      "to": "decisions/D-20261115-07-武器磁鐵的磁場原點取主網格節點的幾何中心.md"
     },
     {
       "from": "decisions/INDEX.md",
@@ -13757,6 +13781,10 @@
     },
     {
       "from": "算式表.md",
+      "to": "decisions/D-20261115-07-武器磁鐵的磁場原點取主網格節點的幾何中心.md"
+    },
+    {
+      "from": "算式表.md",
       "to": "信譽系統.md"
     },
     {
@@ -15194,6 +15222,10 @@
     {
       "from": "零件與場景.md",
       "to": "decisions/D-20261115-06-輸送帶改由求解器摩擦帶動.md"
+    },
+    {
+      "from": "零件與場景.md",
+      "to": "decisions/D-20261115-07-武器磁鐵的磁場原點取主網格節點的幾何中心.md"
     },
     {
       "from": "零件與場景.md",
