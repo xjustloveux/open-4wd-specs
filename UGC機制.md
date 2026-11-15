@@ -160,6 +160,7 @@ Tripo / Meshy 出的單一 mesh 不含 `Mount_Weapon` empty，也無法區分 la
 | 最重 / 最輕材質密度比 > 50:1                                                        | 約束違反（單一零件內多材質密度差）                                                                           |
 | Mount 位置違反 `MOUNT_AABB_REJECT_M`                                                | 拒收                                                                                                         |
 | Mount 間距違反 `MOUNT_GAP_REJECT_M`                                                 | 拒收                                                                                                         |
+| chassis 原點超出 AABB 的距離大於 `CHASSIS_ORIGIN_AABB_TOLERANCE_M` | 拒收 |
 | Tire / roller mount 軸違反 `HINGE_AXIS_REJECT_SIN`                                  | 拒收                                                                                                         |
 | destructible + visual_only 同時設                                                   | 拒收                                                                                                         |
 | 含禁止材質（依 forbidden_scopes / allowed_part_types）                              | 拒收                                                                                                         |

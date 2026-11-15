@@ -307,7 +307,7 @@ manifold point 與 canonical 有向 normal，以 `v + ω×r` 和方向 constrain
 tire／roller 對固定 track 的 pair 只走專用磨耗 ledger。兩通道共用實際 collider 材質與
 current PhysicsManifest 六向接觸面積，缺可信資料 fail closed。
 
-`TrackSpec.entities` 只來自 current PhysicsManifest。world 依 `entityIndex` 建立 intact fixed／kinematic body 與 colliders，不為 destructible fragment 建立任何 body／collider。`visual_only` 完全排除於物理拓撲。entity collider 以每節點 AABB box 為基礎；連續 360° 旋轉（`rotation_amplitude_deg = 360`）的 kinematic entity 逐 collider 節點在烘焙期對 `rotation_axis` 判圓，判圓者（轉盤盤面等）帶 `shape` cylinder、runtime 建圓柱 collider，非圓（擋板等）維持 box（[D-20261020-02](../decisions/D-20261020-02-旋轉面形狀分類移至烘焙期.md)；box faceting 會把旋轉圓盤變成「旋轉方箱」而困住車輛）。kinematic pose 以固定 frame 與 deterministic motion evaluator 設定 next pose；conveyor 只巡訪實際 contact manifold，local −Z 切向衝量以 solver friction × normal impulse 封頂。
+`TrackSpec.entities` 只來自 current PhysicsManifest。world 依 `entityIndex` 建立 intact fixed／kinematic body 與 colliders，不為 destructible fragment 建立任何 body／collider。`visual_only` 完全排除於物理拓撲。entity collider 以每節點 AABB box 為基礎；連續 360° 旋轉（`rotation_amplitude_deg = 360`）的 kinematic entity 逐 collider 節點在烘焙期對 `rotation_axis` 判圓，判圓者（轉盤盤面等）帶 `shape` cylinder、runtime 建圓柱 collider，非圓（擋板等）維持 box（[D-20261020-02](../decisions/D-20261020-02-旋轉面形狀分類移至烘焙期.md)；box faceting 會把旋轉圓盤變成「旋轉方箱」而困住車輛）。kinematic pose 以固定 frame 與 deterministic motion evaluator 設定 next pose；`step` 曲線例外，切換時直接設定位置而不經 next pose，目標位置被車輛佔住時延後（[D-20261114-10](../decisions/D-20261114-10-step曲線的場地物件是瞬移且目標被佔住時延後.md)）；conveyor 只巡訪實際 contact manifold，local −Z 切向衝量以 solver friction × normal impulse 封頂。
 
 `TrackSpec.weather` 同樣只來自 current PhysicsManifest：race session 注入 `matchId`／`roundIndex` 與 track manifest digest，physics engine 派生 weather seed，以整數 accumulator、spawn ordinal 與 typed exposure grid 生成最多 50 個 active patch descriptors。world 只在 tire／roller 對固定 track solid 的實際 manifold 接觸套用一次 friction／rolling modifier；renderer、spectator 與 editor preview 消費同一 scheduler／descriptor 形狀，不另跑 RNG。body aero 每幀以六軸 drag area、各向 COP、該點相對氣流與 lift factor 施加有車重上限的 impulse。最大 8 車 ／50 patch 有獨立 60Hz benchmark。
 
@@ -328,7 +328,7 @@ current PhysicsManifest 六向接觸面積，缺可信資料 fail closed。
 local `+Y` 是 up。Hermite sample 的 up 先在相鄰 authored up 間插值，再投影到 sample tangent 的
 正交平面；runtime 的中心線最近點必須逐條預採樣**線段**做夾限投影，不得以最近 sample 點替代，
 並以同一投影參數連續插值 half-width、tangent 與 up。退化 fallback 只依 authored frame 與固定軸序，
-不可讀 camera 或 gravity。起跑格沿第一個 sample up 抬升 `START_GRID_LIFT_M`，所有 spawn／teleport quaternion 同時對齊車輛 local `-Z／+Y`。所有車同縱向，slot s 的 lateral offset 固定為 `(s-(N-1)/2)×START_GRID_CELL_WIDTH_M`，沿 surface-frame right 左右對稱；`N×cell width > RP1.width_m` 時 admission／runtime 同式拒絕。引擎只接受明確 `{slot, playerCount}`，正式賽不得以 load order 推斷 slot。這使 bank、側牆、
+不可讀 camera 或 gravity。起跑格沿第一個 sample up 抬升 `START_GRID_LIFT_M`，掉出場地後回定位到 `RespawnPoint` 或起點時也沿該點的 up 抬升同一個量（[D-20261114-12](../decisions/D-20261114-12-掉出場地的回定位落點沿up抬升.md)），所有 spawn／teleport quaternion 同時對齊車輛 local `-Z／+Y`。所有車同縱向，slot s 的 lateral offset 固定為 `(s-(N-1)/2)×START_GRID_CELL_WIDTH_M`，沿 surface-frame right 左右對稱；`N×cell width > RP1.width_m` 時 admission／runtime 同式拒絕。引擎只接受明確 `{slot, playerCount}`，正式賽不得以 load order 推斷 slot。這使 bank、側牆、
 倒掛、垂直段與 360° 迴圈不被世界重力拉回水平；詳見
 [D-20260808-01](../decisions/D-20260808-01-route與respawn完整surface-frame.md)、[D-20260814-20](../decisions/D-20260814-20-多人可驗算起跑格.md)。
 
