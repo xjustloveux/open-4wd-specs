@@ -289,27 +289,29 @@ UGC authoring 與檢核工具名錄只由 [流程/UGC上傳.md §7](流程/UGC�
 
 | 條件         | 限制                                                                                                                 |
 | ------------ | -------------------------------------------------------------------------------------------------------------------- |
-| GLB 檔案大小 | ≤ 80 MiB（強制 Draco 幾何 + KTX2 紋理壓縮，[§9.3](#93-stage-3-場地特殊嚴格檢核) Stage 2 自動補；Stage 3 拒收未壓縮） |
+| GLB 檔案大小 | ≤ 80 MiB（強制 Draco 幾何 + KTX2 紋理壓縮，[§9.3](#93-stage-3-場地特殊嚴格檢核) 定稿時自動套用；Stage 3 拒收未壓縮的成品） |
 
 > 零件／場地共用的「≥1 mesh」、安全性（無可執行內容／外連 URL）、來源總三角形數 3M
 > 絕對 ceiling 與其他 Stage 1 檢核見 [§2.2](#22-stage-1-拒收條件) 所指向的唯一權威表；來源超過
 > 3M 時 Stage 1 拒收。
 
 AABB、Empty 完整度與 extras schema 不在 Stage 1 檢核（Stage 2 處理）；tris 在 Stage 1 只檢核
-來源總量 3M 絕對 ceiling，編輯後超量才由 Stage 2 decimate。
+來源總量 3M 絕對 ceiling，編輯後超量才由 [§9.2](#92-場地特殊自動調整stage-2-計算stage-3-定稿時套用) 的自動調整 decimate。
 
-### 9.2 Stage 2 場地特殊自動調整
+### 9.2 場地特殊自動調整（Stage 2 計算、Stage 3 定稿時套用）
 
-| 觸發                        | 動作                                                                                                                                        |
-| --------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------- |
-| AABB > 500m × 500m × 100m   | 等比例縮放至上限                                                                                                                            |
-| 編輯操作後 Visual tris > 3M | Stage 2 自動 decimate；原始來源若已超 3M 已由 Stage 1 絕對 ceiling 拒收                                                                     |
-| Collider 缺失               | 從 visual mesh 衍生（auto-decimate 至 500k）                                                                                                |
-| Watertight 失敗             | remesh / convex hull fallback                                                                                                               |
-| 沿 route 算最窄寬度         | Stage 3 定稿時算出並寫 `auto_narrowest_path_m`（[場地.md §8.6](建模參數/場地.md#86-系統自動算出auto_stage-3-定稿時寫入)）                    |
-| 玩家上限                    | 由 `RP1.width_m` 自動推導                                                                                                                   |
-| `lap_mode` 自動推斷         | `RP1 ↔ RPn` 距離 < 1m 且 route ≥ 3 點 → loop，否則 linear（恰 2 點一律 linear）；`open` 強制 linear；玩家可 UI 覆蓋（僅 `fixed` 且 ≥ 3 點） |
-| 未壓縮 GLB                  | 自動套用 Draco（geometry level 7）+ KTX2 / Basis Universal（紋理）                                                                          |
+進 Stage 2 時與 Stage 3 定稿時都會跑 wave A。下表的縮放與減面由 wave A 算出，定稿時才套用到 GLB 本體，套用後重算全部幾何量，仍超限才由 [§9.3](#93-stage-3-場地特殊嚴格檢核) 拒收。
+
+| 觸發 | 動作 | 時機 |
+| --- | --- | --- |
+| AABB > 500m × 500m × 100m | 等比例縮放至上限 | wave A 算出縮放係數；Stage 3 定稿時套用 |
+| 編輯操作後 Visual tris > 3M | 逐節點 decimate 至上限；原始來源若已超 3M 已由 Stage 1 絕對 ceiling 拒收 | wave A 算出各節點的目標；Stage 3 定稿時套用 |
+| Collider tris > 500k | 場地沒有另外的 collider mesh。collider 三角形數的算法是不屬於 `visual_only` entity 的 mesh 節點三角形合計，超過上限時這些節點逐節點 decimate 至上限。這是計數的口徑，比賽實際使用的碰撞形狀依節點而定：`physics: default` 的 entity 以包圍盒或圓柱承載，流體材質的節點是 sensor（[場地.md §9](建模參數/場地.md#9-場地-entityglb-子節點物件)） | wave A 算出各節點的目標；Stage 3 定稿時套用 |
+| Watertight 失敗 | 那個節點的體積與質心改以 voxel 估算，不做 remesh 或 convex hull；voxel 也算不出體積時，進 Stage 2 的那一次退回 Stage 1，定稿的那一次拒收。`visual_only` entity 的節點不算體積，不適用這一列 | wave A 執行時 |
+| 沿 route 算最窄寬度 | 寫 `auto_narrowest_path_m`（[場地.md §8.6](建模參數/場地.md#86-系統自動算出auto_stage-3-定稿時寫入)） | Stage 3 定稿時 |
+| 玩家上限 | 由 `RP1.width_m` 自動推導 | 檢核時計算；Stage 3 定稿時寫入 `auto_player_max` |
+| `lap_mode` 自動推斷 | `RP1 ↔ RPn` 距離 < 1m 且 route ≥ 3 點 → loop，否則 linear（恰 2 點一律 linear）；`open` 強制 linear；玩家可 UI 覆蓋（僅 `fixed` 且 ≥ 3 點） | 編輯器即時顯示推斷結果；Stage 3 定稿時寫入 `track.lap_mode` |
+| 未壓縮 GLB | 自動套用 Draco（geometry level 7）+ KTX2 / Basis Universal（紋理） | Stage 3 定稿時 |
 
 > AI 單一 fused mesh 的材質處理、launch 武器處理屬零件 / 場地共用的 Stage 2 工作流，見 [§3.7](#37-ai-單一-fused-mesh-的材質處理零件--場地共用) / [§3.8](#38-ai-單一-mesh-的-launch-武器處理零件)。
 
@@ -380,8 +382,8 @@ magnet、destructible-heavy、narrow、wide、short、long；仍只受共通字�
 
 | 試圖                                                | 對策                                                                                                                                                                                     |
 | --------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| AABB 巨大想當無限空間                               | Stage 1 不擋（Stage 2 自動縮放）、上限 500×500×100m                                                                                                                                      |
-| 三角形爆量想拖慢渲染                                | Stage 2 自動 decimate visual + 衍生 collider                                                                                                                                             |
+| AABB 巨大想當無限空間                               | Stage 1 不擋（[§9.2](#92-場地特殊自動調整stage-2-計算stage-3-定稿時套用) 自動縮放）、上限 500×500×100m                                                                                                                                      |
+| 三角形爆量想拖慢渲染                                | [§9.2](#92-場地特殊自動調整stage-2-計算stage-3-定稿時套用) 自動 decimate；collider 三角形數（非 `visual_only` entity 節點的三角形合計）同受 500k 上限                                                                                                                                             |
 | 不壓縮 GLB 想撐爆 80 MiB                            | Stage 3 拒收未 Draco / 未 KTX2                                                                                                                                                           |
 | 場地超大但內容空洞想佔評分排行                      | Stage 2 密度 < 5 tri/m² 警告 + 玩家評分自然懲罰                                                                                                                                          |
 | 偽裝跑道但無起終點（缺 `track.route[]` / 點數不足） | Stage 3 嚴格檢核，缺即拒收                                                                                                                                                               |
