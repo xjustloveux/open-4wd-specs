@@ -3212,6 +3212,14 @@
       "summary": null
     },
     {
+      "id": "decisions/D-20261115-08-場地entity的流體材質節點是跟著剛體的sensor.md",
+      "type": "decision",
+      "domain": [
+        "建模物理"
+      ],
+      "summary": null
+    },
+    {
       "id": "decisions/INDEX.md",
       "type": null,
       "domain": [],
@@ -7860,6 +7868,14 @@
       "to": "零件與場景.md"
     },
     {
+      "from": "decisions/D-20261115-08-場地entity的流體材質節點是跟著剛體的sensor.md",
+      "to": "建模參數/場地.md"
+    },
+    {
+      "from": "decisions/D-20261115-08-場地entity的流體材質節點是跟著剛體的sensor.md",
+      "to": "材質表.md"
+    },
+    {
       "from": "decisions/INDEX.md",
       "to": "decisions/D-20260428-01-初始企劃骨架與模組化規格基線.md"
     },
@@ -9369,6 +9385,10 @@
     },
     {
       "from": "decisions/INDEX.md",
+      "to": "decisions/D-20261115-08-場地entity的流體材質節點是跟著剛體的sensor.md"
+    },
+    {
+      "from": "decisions/INDEX.md",
       "to": "decisions/README.md"
     },
     {
@@ -9677,6 +9697,10 @@
     },
     {
       "from": "建模參數/場地.md",
+      "to": "decisions/D-20261115-08-場地entity的流體材質節點是跟著剛體的sensor.md"
+    },
+    {
+      "from": "建模參數/場地.md",
       "to": "建模參數.md"
     },
     {
@@ -9870,6 +9894,10 @@
     {
       "from": "材質表.md",
       "to": "decisions/D-20261114-02-磁源N極取節點本機正Y軸.md"
+    },
+    {
+      "from": "材質表.md",
+      "to": "decisions/D-20261115-08-場地entity的流體材質節點是跟著剛體的sensor.md"
     },
     {
       "from": "材質表.md",
