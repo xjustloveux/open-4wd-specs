@@ -306,7 +306,7 @@ AABB、Empty 完整度與 extras schema 不在 Stage 1 檢核（Stage 2 處理�
 | 編輯操作後 Visual tris > 3M | Stage 2 自動 decimate；原始來源若已超 3M 已由 Stage 1 絕對 ceiling 拒收                                                                     |
 | Collider 缺失               | 從 visual mesh 衍生（auto-decimate 至 500k）                                                                                                |
 | Watertight 失敗             | remesh / convex hull fallback                                                                                                               |
-| 沿 route 算最窄寬度         | 寫 `auto_narrowest_path_m`                                                                                                                  |
+| 沿 route 算最窄寬度         | Stage 3 定稿時算出並寫 `auto_narrowest_path_m`（[場地.md §8.6](建模參數/場地.md#86-系統自動算出auto_stage-3-定稿時寫入)）                    |
 | 玩家上限                    | 由 `RP1.width_m` 自動推導                                                                                                                   |
 | `lap_mode` 自動推斷         | `RP1 ↔ RPn` 距離 < 1m 且 route ≥ 3 點 → loop，否則 linear（恰 2 點一律 linear）；`open` 強制 linear；玩家可 UI 覆蓋（僅 `fixed` 且 ≥ 3 點） |
 | 未壓縮 GLB                  | 自動套用 Draco（geometry level 7）+ KTX2 / Basis Universal（紋理）                                                                          |
