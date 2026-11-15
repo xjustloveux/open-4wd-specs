@@ -304,14 +304,14 @@ AABB、Empty 完整度與 extras schema 不在 Stage 1 檢核（Stage 2 處理�
 
 | 觸發 | 動作 | 時機 |
 | --- | --- | --- |
-| AABB > 500m × 500m × 100m | 等比例縮放至上限 | wave A 算出縮放係數；Stage 3 定稿時套用 |
+| AABB > 500m × 500m × 100m | 等比例縮放至上限 | 未標記的外部來源（沒有 canonical marker、也沒有合法的 `open4wd_editor` 資訊）在匯入時先等比例縮放工作檔：AABB 超過上限、或水平最長邊落在舒適範圍（120–180 m）之外時，倍率取「水平最長邊到 150 m 的倍率」與「各軸都不超過上限的最大倍率」兩者較小的一個，其餘情況不縮放；其他來源與編輯後超限的情況由 wave A 算出縮放係數，Stage 3 定稿時套用 |
 | 編輯操作後 Visual tris > 3M | 逐節點 decimate 至上限；原始來源若已超 3M 已由 Stage 1 絕對 ceiling 拒收 | wave A 算出各節點的目標；Stage 3 定稿時套用 |
-| Collider tris > 500k | 場地沒有另外的 collider mesh。collider 三角形數的算法是不屬於 `visual_only` entity 的 mesh 節點三角形合計，超過上限時這些節點逐節點 decimate 至上限。這是計數的口徑，比賽實際使用的碰撞形狀依節點而定：`physics: default` 的 entity 以包圍盒或圓柱承載，流體材質的節點是 sensor（[場地.md §9](建模參數/場地.md#9-場地-entityglb-子節點物件)） | wave A 算出各節點的目標；Stage 3 定稿時套用 |
-| Watertight 失敗 | 那個節點的體積與質心改以 voxel 估算，不做 remesh 或 convex hull；voxel 也算不出體積時，進 Stage 2 的那一次退回 Stage 1，定稿的那一次拒收。`visual_only` entity 的節點不算體積，不適用這一列 | wave A 執行時 |
+| Collider tris > 500k | 場地沒有另外的 collider mesh。collider 三角形數的算法是不屬於 `visual_only` entity 的 mesh 節點三角形合計，超過上限時這些節點逐節點 decimate 至上限。這是計數的口徑，比賽實際使用的碰撞形狀依節點而定：`physics: default` 的 entity 以包圍盒或圓柱承載，流體材質的節點是 sensor（不屬於 entity 的是靜態 sensor，屬於 entity 的掛在 entity 的剛體上；[場地.md §9](建模參數/場地.md#9-場地-entityglb-子節點物件)）。編輯器的即時檢核不顯示 collider 三角形超限，超限在定稿時減面、減面後仍超限才拒收；全部節點都屬於 `visual_only` entity（collider 三角形數為 0）則即時拒收 | wave A 算出各節點的目標；Stage 3 定稿時套用 |
+| Watertight 失敗 | 那個節點的體積與質心改以 voxel 估算，不做 remesh 或 convex hull（網格水密但積分算不出來、或積分結果的慣量不成立時同樣改用 voxel）；voxel 也算不出體積時，進 Stage 2 的那一次退回 Stage 1，定稿的那一次拒收。`visual_only` entity 的節點不算體積，不適用這一列 | wave A 執行時 |
 | 沿 route 算最窄寬度 | 寫 `auto_narrowest_path_m`（[場地.md §8.6](建模參數/場地.md#86-系統自動算出auto_stage-3-定稿時寫入)） | Stage 3 定稿時 |
 | 玩家上限 | 由 `RP1.width_m` 自動推導 | 檢核時計算；Stage 3 定稿時寫入 `auto_player_max` |
 | `lap_mode` 自動推斷 | `RP1 ↔ RPn` 距離 < 1m 且 route ≥ 3 點 → loop，否則 linear（恰 2 點一律 linear）；`open` 強制 linear；玩家可 UI 覆蓋（僅 `fixed` 且 ≥ 3 點） | 編輯器即時顯示推斷結果；Stage 3 定稿時寫入 `track.lap_mode` |
-| 未壓縮 GLB | 自動套用 Draco（geometry level 7）+ KTX2 / Basis Universal（紋理） | Stage 3 定稿時 |
+| 未壓縮 GLB | 自動套用 Draco 幾何壓縮 + KTX2 / Basis Universal（紋理）；Draco 位置量化的位元數與量化範圍依節點而定，見 [場地.md §8.7](建模參數/場地.md#87-碰撞體分段collision-區塊選填) | Stage 3 定稿時 |
 
 > AI 單一 fused mesh 的材質處理、launch 武器處理屬零件 / 場地共用的 Stage 2 工作流，見 [§3.7](#37-ai-單一-fused-mesh-的材質處理零件--場地共用) / [§3.8](#38-ai-單一-mesh-的-launch-武器處理零件)。
 
