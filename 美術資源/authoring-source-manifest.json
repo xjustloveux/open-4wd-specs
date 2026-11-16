@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "candidateEpoch": 5,
+  "candidateEpoch": 6,
   "assets": [
     {
       "assetId": "builtin:battery-01",
@@ -137,10 +137,10 @@
     },
     {
       "assetId": "builtin:tire-02",
-      "logicalPath": "release-input/parts/part-tire-heavy/part-tire-heavy-procedural-v1.glb",
-      "releaseAsset": "part-tire-heavy-procedural-v1.glb",
-      "sha256": "e3bd7f2b9991c01237a3fbe1f61e258a780efefbef93adcf3bd65b8ad139f4b3",
-      "size": 234544
+      "logicalPath": "release-input/parts/part-tire-heavy/part-tire-heavy-procedural-v2.glb",
+      "releaseAsset": "part-tire-heavy-procedural-v2.glb",
+      "sha256": "8cbd877049848de486f4883e9b1e6cc5e2e64bfd35325299e94169a0b68e6064",
+      "size": 234556
     },
     {
       "assetId": "builtin:tire-03",

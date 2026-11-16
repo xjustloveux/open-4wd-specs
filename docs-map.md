@@ -257,7 +257,7 @@ flowchart TB
 
 | 檔案 | type | 說明 |
 |---|---|---|
-| [材質表.md](材質表.md) | registry | 全 31 種統一材質的物理欄位與禁限規則 |
+| [材質表.md](材質表.md) | registry | 全 32 種統一材質的物理欄位與禁限規則 |
 | [資產政策.md](資產政策.md) | canon | 資產生命週期玩家面說明＋廢止材質登記（絕版品模型） |
 
 決策檔 7 筆——見 [decisions/INDEX.md](decisions/INDEX.md)。
@@ -287,7 +287,7 @@ flowchart TB
 | [遊戲機制.md](遊戲機制.md) | canon | 機制庫、晶片技能、其他遊玩細節 |
 | [零件與場景.md](零件與場景.md) | canon | 8 類零件＋3 類場景 entity 詳述 |
 
-決策檔 127 筆——見 [decisions/INDEX.md](decisions/INDEX.md)。
+決策檔 128 筆——見 [decisions/INDEX.md](decisions/INDEX.md)。
 
 ### 建模物理依賴圖（1/2）
 
@@ -402,7 +402,7 @@ flowchart TB
 | [賽內機制.md](賽內機制.md) | canon | 房間配對／比賽中／結算（含 HUD、聊天、觀戰） |
 | [車輛組裝.md](車輛組裝.md) | canon | 玩家依正式／本機測試車位用途組車（本機 loadout） |
 
-決策檔 85 筆——見 [decisions/INDEX.md](decisions/INDEX.md)。
+決策檔 86 筆——見 [decisions/INDEX.md](decisions/INDEX.md)。
 
 ### 比賽房間依賴圖（1/2）
 

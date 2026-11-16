@@ -70,7 +70,7 @@ Pre-launch current builtin 與 PhysicsManifest 基線維持 v1。三個公版場
 | ------- | ------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------------------- |
 | chassis | 輕量低 mass、Mount_Motor 後置         | 重型高 mass、roller mount 齊全、前置重心              | 平衡中 mass、前後對稱                                             |
 | body    | 流線低 drag、微下壓                   | 重裝甲高 drag、高耐撞                                 | 通用中 drag                                                       |
-| tire    | 光面胎面 + rubber（高摩擦軟胎）       | 越野花紋 + 硬橡膠（耐磨）                             | 通用淺花紋、平衡                                                  |
+| tire    | 光面胎面 + rubber（高摩擦軟胎）       | 越野花紋 + hard_rubber（耐磨、抓地較低）              | 通用淺花紋 + rubber（胎面材質同 speed，寬度介於兩者之間）         |
 | motor   | 大體積、torque_ratio 偏低（偏速）     | 大體積、torque_ratio 偏高（偏扭矩）                   | 中體積、torque_ratio 50                                           |
 | battery | 高 configured_output_w                | 大容量 auto_energy_capacity_mj                        | 平衡                                                              |
 | roller  | 小尺寸低摩擦                          | 大尺寸中摩擦                                          | 中尺寸平衡                                                        |
