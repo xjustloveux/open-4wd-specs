@@ -308,7 +308,7 @@ manifold point 與 canonical 有向 normal，以 `v + ω×r` 和方向 constrain
 tire／roller 對固定 track 的 pair 只走專用磨耗 ledger。兩通道共用實際 collider 材質與
 current PhysicsManifest 六向接觸面積，缺可信資料 fail closed。
 
-`TrackSpec.entities` 只來自 current PhysicsManifest。world 依 `entityIndex` 建立 intact fixed／kinematic body 與 colliders，不為 destructible fragment 建立任何 body／collider。`visual_only` 完全排除於物理拓撲。entity collider 以每節點 AABB box 為基礎；連續 360° 旋轉（`rotation_amplitude_deg = 360`）的 kinematic entity 逐 collider 節點在烘焙期對 `rotation_axis` 判圓，判圓者（轉盤盤面等）帶 `shape` cylinder、runtime 建圓柱 collider，非圓（擋板等）維持 box（[D-20261020-02](../decisions/D-20261020-02-旋轉面形狀分類移至烘焙期.md)；box faceting 會把旋轉圓盤變成「旋轉方箱」而困住車輛）。kinematic pose 以固定 frame 與 deterministic motion evaluator 設定 next pose；`step` 曲線例外，切換時直接設定位置而不經 next pose，目標位置被車輛佔住時延後（[D-20261114-10](../decisions/D-20261114-10-step曲線的場地物件是瞬移且目標被佔住時延後.md)）；conveyor 在建立 collider 時設定表面速度（entity local −Z 乘以帶速，換到 collider 本機座標）；vendored 核心產生求解器接觸點時，把兩個 collider 的表面速度轉到世界座標相減、去掉沿接觸法線的分量，寫成接觸點的切向目標速度，由求解器的摩擦帶動接觸物，上限是 friction × normal impulse（[D-20261115-06](../decisions/D-20261115-06-輸送帶改由求解器摩擦帶動.md)）。
+`TrackSpec.entities` 只來自 current PhysicsManifest。world 依 `entityIndex` 建立 intact fixed／kinematic body 與 colliders，不為 destructible fragment 建立任何 body／collider。`visual_only` 完全排除於物理拓撲。entity collider 以每節點 AABB box 為基礎；連續 360° 旋轉（`rotation_amplitude_deg = 360`）的 kinematic entity 逐 collider 節點在烘焙期對 `rotation_axis` 判圓，判圓者（轉盤盤面等）帶 `shape` cylinder、runtime 建圓柱 collider，非圓（擋板等）維持 box（[D-20261020-02](../decisions/D-20261020-02-旋轉面形狀分類移至烘焙期.md)；box faceting 會把旋轉圓盤變成「旋轉方箱」而困住車輛）。kinematic pose 以固定 frame 與 deterministic motion evaluator 設定 next pose，vendored 核心在 next pose 與目前姿態相等時給零速度（[D-20261116-07](../decisions/D-20261116-07-姿態不變的kinematic物體速度為零.md)）；`step` 曲線例外，切換時直接設定位置而不經 next pose，目標位置被車輛佔住時延後（[D-20261114-10](../decisions/D-20261114-10-step曲線的場地物件是瞬移且目標被佔住時延後.md)）；conveyor 在建立 collider 時設定表面速度（entity local −Z 乘以帶速，換到 collider 本機座標）；vendored 核心產生求解器接觸點時，把兩個 collider 的表面速度轉到世界座標相減、去掉沿接觸法線的分量，寫成接觸點的切向目標速度，由求解器的摩擦帶動接觸物，上限是 friction × normal impulse（[D-20261115-06](../decisions/D-20261115-06-輸送帶改由求解器摩擦帶動.md)）。
 
 `TrackSpec.weather` 同樣只來自 current PhysicsManifest：race session 注入 `matchId`／`roundIndex` 與 track manifest digest，physics engine 派生 weather seed，以整數 accumulator、spawn ordinal 與 typed exposure grid 生成最多 50 個 active patch descriptors。world 只在 tire／roller 對固定 track solid 的實際 manifold 接觸套用一次 friction／rolling modifier；renderer、spectator 與 editor preview 消費同一 scheduler／descriptor 形狀，不另跑 RNG。body aero 每幀以六軸 drag area、各向 COP、該點相對氣流與 lift factor 施加有車重上限的 impulse。最大 8 車 ／50 patch 有獨立 60Hz benchmark。
 
@@ -404,7 +404,7 @@ region；region 以材質字串的 UTF-16 碼元序、再以 source node index �
 的兩個值都 ≤ `BOUNDED_STEP_TOLERANCE_M`（0.2 mm），且 CCD 查詢沒有未決（`needsSubdivision`）。第一個值是
 關節錨點的線性誤差（幀末與子步峰值取大者），第二個值是旋轉表面位移（非自由軸角誤差乘 body2 包圍半徑，
 `2r·sin(θ/2)`）；原生只回傳全世界的最大值。被拒時還原並二分重試，深度上限 `BOUNDED_STEP_DEPTH_LIMIT`
-（10），全部分支共用最多 `BOUNDED_STEP_TRIAL_MAX`（63）次試算，用盡即整幀失敗。四個值都是
+（10），全部分支共用最多 `BOUNDED_STEP_TRIAL_MAX`（63）次試算。停損前某一幀用盡時，同一幀以同一個分段政策、接受超出容差的試算重跑一次（非有限值與原生判定需要細分的試算仍被拒絕並照常細分），這一幀算作需要細分的幀；重跑也用盡才整幀失敗（[D-20261116-08](../decisions/D-20261116-08-試算用盡時接受未收斂結果.md)）。四個值都是
 physics-pinned 常數，改值會改變軌跡（[D-20261028-05](../decisions/D-20261028-05-bounded-step接受容差放寬至0.2毫米.md)）。
 
 半幀起跑是薄目標品質的一部分，不是成本上的保守設定：D-20261027-02 的動態薄目標保證只在兩個半幀上
@@ -420,7 +420,7 @@ physics-pinned 常數，改值會改變軌跡（[D-20261028-05](../decisions/D-2
 計數需要 vendor 變更或逐關節讀取成本（[D-20261025-01](../decisions/D-20261025-01-持彈碰撞體切換與可選彈體獨立耐久.md)）。
 觸發時全場同幀精度略降，決定性與公平不受影響；八車同場可能誤觸發，playtest 觀察後再評估分車。
 不進共識的純診斷計數由 `PhysicsEngine.boundedStallDiagnostics()` 對外提供：停損觸發幀數
-（`stallFrames`）、其中接受超出容差試算的幀數（`acceptedFrames`）與最長連續細分幀數
+（`stallFrames`）、其中接受超出容差試算的幀數（`acceptedFrames`）、停損前試算用盡而重跑的幀數（`exhaustedFallbackFrames`）與最長連續細分幀數
 （`longestRunFrames`）。
 
 ### 2.9 接觸點 normal 求解順序
@@ -534,12 +534,14 @@ fn mesh_volume_signed(triangles: &[Triangle]) -> f64 {
 | 駕駛動力                 | SOC 降額後取得可用輸出，駕駛先扣整數 quantum                                                                                                 | [算式表 §2](../算式表.md)       |
 | 技能觸發（event-driven） | 依 allocation 分配剩餘輸出；效果、電池成本與兩路廢熱分帳，Event／Hold／launch 依成功語意結算                                                | [算式表 §3](../算式表.md)       |
 | 武器反作用力             | 武器動能轉 chassis 質心反向衝量（K_REACTION）                                                                                                  | [算式表 §4](../算式表.md)       |
-| 磁力                     | 磁源→車輛／Track Entity 鐵磁 sub-mesh 逐 canonical collider 取材質、susceptibility 與世界中心後聚合（1/r²，impulse 只施於 COM、不產生 torque；fixed target 仍回推動態 source）；磁源↔磁源同極斥／異極吸 | [算式表 §5](../算式表.md)       |
+| 磁力                     | 磁源→車輛／Track Entity 鐵磁 sub-mesh 逐 canonical collider 取材質、susceptibility 與世界中心後聚合（1/r²，impulse 只施於 COM、不產生 torque；fixed target 仍回推動態 source）；磁源↔磁源同極斥／異極吸；每台車一幀的磁力衝量加總後套單幀位移上限 | [算式表 §5](../算式表.md)       |
 | 熱模型                   | per-part J/W ledger；ambient／solid contact 固定熱庫與滑移熱在單一 backward Euler 解算一次；過熱破壞無 graceful degradation                    | [算式表 §6](../算式表.md)       |
 | 損耗 fatigue             | 衝撞由實際碰撞 collider 材質對稱套用 attacker／target，車輛與 destructible entity 同規則；acid 由實際 zone/sub-mesh 接觸材質計算且同 zone/part 去重；輪胎逐 region rolling／slip 耗散與熱加權；閾值 1.0、broken 後凍結 | [算式表 §7·§8·§9](../算式表.md) |
 | 場地物理                 | entity destructible（fatigue 達閾值後停用 intact 物理，碎片只重建純視覺 descriptor）、天氣 patch、風力、重力                                      | [算式表 §10](../算式表.md)      |
 | 賽道進度                 | checkpoint 與 KillZone 使用 chassis COM segment-AABB；RPn 使用 authored surface frame 的正向 segment-plane crossing；`routeProgressUm` 保存 checkpoint 約束下單調不退的 route arc-length；`finishArmed`／previous COM／量化進度／完賽幀進 current SavedState 與 hash；流內離場凍結與回合終局欄位見 §2.10 | [零件與共用介面.md §5.4](../建模參數/零件與共用介面.md#5-empty-node-命名約定) |
 | 流體 deploy zone         | 場地 authored sensor 與 fluid projectile 首次合法場地接觸啟用的預配置圓形 sensor 共用 canonical zone key；同 zone／part 多 collider 去重，grip／sticky 取最強，burn／freeze／corrosive 依 distinct zone 疊加；source peer、anchor 與 in-flight／deployed／retired 進 current SavedState | [算式表 §6.4·§8](../算式表.md)  |
+
+**磁力的已知限制**（issue 001430）：持續的磁力小於靜摩擦上限時，壓在地面上的車會緩慢爬移，但回報的速度接近 0（量測：40 公克鋼方塊車、10 N 磁源在 0.3 公尺處、重力 -9.81；第 60 到 240 幀爬移約每秒 0.005 到 0.009 公尺，同時回報約每秒 1.6e-7 到 3.0e-7 公尺；爬移隨車被吸近而加速，第 480 幀約每秒 0.04 公尺，回報約每秒 1.1e-4 公尺）；無接觸時回報速度與實際位移一致。回合失能滑行窗的低速判定看的是回報速度，所以這種爬移不算移動中。
 
 每回合載入該回合的車 + 場地 = 全新世界,以「車輛回合初始狀態」開始（fatigue 0、temperature = 場地環境溫、broken false、battery 滿、彈藥滿）；回合獨立、不共享 runtime 狀態（換新車 + 新世界的自然結果、非 reset 流程，回合數可變 N）見 [算式表 §11](../算式表.md)。
 

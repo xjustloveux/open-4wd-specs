@@ -151,6 +151,8 @@ class SpectatorBroadcaster {
 
 fallback 推幀節拍為 10Hz。`spectatorStateOf` 只投影 §7 正面表列的 presentation 欄位；`weaponNodes.fired` 是公開動畫邊緣，協議 HUD 只含 elapsed／lap／standings。不得傳來源參賽者的 NET、耐久、溫度、電量、技能配置、原始 input 或共識票；所有欄位都不具物理／賽果權威（[D-20260812-02](../decisions/D-20260812-02-觀戰Deterministic-Replay與精簡Fallback.md)）。
 
+**狀態來源**：fallback 的公開狀態只取已確定串流（[network-sync.md §4.1](network-sync.md)）。正式比賽中，模擬端在已確定紀錄的對齊幀（`SPECTATOR_BROADCAST_INTERVAL_FRAMES`，6 幀）把步輸出與公開 HUD（經過時間由已確定幀數推得）送給主執行緒，`SpectatorTicker` 據此呼叫 `broadcastState`；live 步可能含預測，只用來推送已驗的 replay 封包，不廣播公開狀態。觀戰畫面因此延遲到該幀已確定才收到，但不會顯示被回滾推翻的預測。來源 catch-up 時：前進載入跳過的對齊幀不廣播；倒退載入重送的舊幀被觀戰端的嚴格遞增規則丟棄，新時間線超過已廣播的幀後恢復；追趕期間廣播比 10Hz 密集（[D-20261116-06](../decisions/D-20261116-06-觀戰fallback只廣播已確定幀.md)）。
+
 ### 4.2 進房閘（evaluateSpectatorJoin）
 
 零文案 code、UI 映 i18n（`spectator.reject.<reason>`）。`waiting` 可先加入共用 RoomPage；`closed` 拒。

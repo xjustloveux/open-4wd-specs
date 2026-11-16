@@ -255,14 +255,14 @@ type ChecksumResult =
 
 ### 4.1 已確定步進串流
 
-引擎另以 `onSettled` 依幀序發出**已確定步進記錄**，消費端（race-session）的回合共識錨、觀戰 checkpoint 與回合終局只吃這條串流，不讀 live 步的預測輸出（issue 001094、001095、001101）：
+引擎另以 `onSettled` 依幀序發出**已確定步進記錄**，消費端（race-session）的回合共識錨、觀戰 checkpoint、觀戰 fallback 公開狀態與回合終局只吃這條串流，不讀 live 步的預測輸出（issue 001094、001095、001101）：
 
 - **幀號約定**：記錄 N＝已步進 N 次後的狀態（即 frame N 步進前），附該步的物理輸出與擷取的附帶資料（各車進度、致毀統計）；記錄 N 在 frame N−1 已確定後才發出。checksum 幀 f 的 hash 則是步進 f 之後的狀態，兩者差一。
 - 每幀恰發一次；回滾重播覆寫尚未發出的記錄。對齊 checkpoint 幀（`SNAPSHOT_INTERVAL_FRAMES` 的倍數）的記錄附 `{ hash, snapshot }`：hash 為該狀態的 state hash，snapshot 與該幀的對齊存檔共用。
 - catch-up 對齊時先發 `reset(F)`，之後由 F+1 續發；消費端在 reset 時以載入狀態的 hash 補記載入幀 F 的錨（F 是已驗證的對齊幀），不重建任何消費端狀態。
 - `reset(F)` 可早於已發出的最後一筆記錄（倒退載入，[§7.1](#71-state-catch-up重連後對齊) 第 5 步）：F 之後已發出的記錄屬舊時間線，消費端在補記 F 的錨之前先丟棄 F 之後的舊值，F 之後重發的記錄屬新時間線。回合共識錨刪除本機在 F 之後記錄的 hash，不再提案或拿來比對他人的聯署請求；回合 abort 證據摘要同樣丟棄 F 之後者。觀戰來源目前錨的幀 > F 時清除該錨、不再補送給 late join 或重求，但保留已驗簽的 input／checksum backlog（與本機時間線無關）；發布舊錨時已裁掉其之前的封包，因此之後只採用幀 ≥ 被清除錨幀的新錨，確保新錨之後的 input 不缺號（[spectator.md §3](spectator.md)）。回合終局只由已確定記錄所附的已雜湊每車欄位無狀態判定；這些欄位隨快照載入，恢復端與 live peers 推導出相同結果。
 - 停串流分兩層。引擎層：只有回滾重播超出回滾窗（`onPersistentDesync('window')`）會清空待發記錄並停發；不可恢復 lag 的 `'window'`、持續落後的 `'lag'` 與輸入 equivocation 的 `'input'`，引擎都不停發。模擬端：收到 `'window'`、`'input'`、`'lag'` 任一升級，或主執行緒通知已自我驅逐（含 checksum 票面升級），都在同一步內同步停止消費串流並停迴圈，之後不再發出 checkpoint 或回合終局。race-session 已自我驅逐後，遲到的已確定訊息與回合終局一律丟棄，不定稿回合、不開下一回合、不結算。
-- 消費端行為：回合共識錨只記帶 checkpoint 的記錄 hash；觀戰 checkpoint 只發布記錄所附快照（frame 0 於開賽時另發一次），live 步不另外 `saveState`；回合終局（完賽、時限、無存活車終局窗）以記錄判定，因此預測中的衝線或時限不會結束回合，終局延後到終局幀已確定，終局幀與致毀統計取自記錄。終局的唯一來源是記錄所附各車 `RaceProgress`（完賽幀、流內離場幀、最後移動幀、離開存活幀，[physics-engine.md §2.10](physics-engine.md)）加上當幀車況；判定規則見 [賽內機制.md §3.1](../賽內機制.md)，滑行窗算式見 [算式表 §20.1](../算式表.md)。傳輸層的斷線通知不進終局。
+- 消費端行為：回合共識錨只記帶 checkpoint 的記錄 hash；觀戰 checkpoint 只發布記錄所附快照（frame 0 於開賽時另發一次），live 步不另外 `saveState`；觀戰 fallback 公開狀態只取正式比賽中落在觀戰廣播對齊幀的記錄（[D-20261116-06](../decisions/D-20261116-06-觀戰fallback只廣播已確定幀.md)）；回合終局（完賽、時限、無存活車終局窗）以記錄判定，因此預測中的衝線或時限不會結束回合，終局延後到終局幀已確定，終局幀與致毀統計取自記錄。終局的唯一來源是記錄所附各車 `RaceProgress`（完賽幀、流內離場幀、最後移動幀、離開存活幀，[physics-engine.md §2.10](physics-engine.md)）加上當幀車況；判定規則見 [賽內機制.md §3.1](../賽內機制.md)，滑行窗算式見 [算式表 §20.1](../算式表.md)。傳輸層的斷線通知不進終局。
 
 ## 5. Rollback 主迴圈
 
