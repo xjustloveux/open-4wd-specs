@@ -101,10 +101,16 @@ hard CCD 持續接觸規則與接觸 normal 求解順序的守門分兩層。常
 `REPAIR-VERIFICATION.json`：主 repo CI 沒有 Rust toolchain，且這些案例只隨 kernel 改變。
 
 共識數學 ESLint 防線涵蓋 `physics-engine`、PhysicsManifest 重建、canonical editor pipeline、
-anti-piracy、mount assembly、match terminal orchestration 與 ledger entry admission；這些路徑禁用
+anti-piracy、mount assembly、match terminal orchestration 與 ledger entry admission，以及這些路徑
+匯入、但檔案位在上述目錄之外的推導與模擬計算模組（GLB 場景圖與節點變換、Wave A 幾何分析與
+減面、表面查詢、零件合約與單位換算、熱交換、canonical 文字排序與 GLB 解碼等，逐檔列在
+`eslint.config.js`）；這些路徑禁用
 ECMAScript 允許實作近似的 `Math.hypot`／三角／對數／冪函數及 `**`。向量長度固定使用明示連乘
 加 `Math.sqrt`，風向使用固定 range-reduction 多項式，admission ceil-log2 使用整數 bit-length。
-純顯示與 Editor `reopen` 反向投影不產生共識值，明確排除。repository contract test 會對每個
+純顯示與 Editor `reopen` 反向投影不產生共識值，明確排除；`editor/geometry` 與 `editor/import` 下
+只在作者端執行、輸出就是 GLB 內容的編輯工具檔（零件最佳化、網格分割與組裝用到的幾何工具、可編輯
+網格文件）也排除：收件端與首次準入對實際 GLB 重跑規則與 manifest 推導，不重跑零件最佳化與網格
+分割。`editor/pipeline` 目錄仍整個列入，包括其中只在作者端執行的編輯操作檔。repository contract test 會對每個
 受保護路徑注入禁用運算，避免未來縮小 glob 後仍因 production 當下剛好沒有命中而假綠。
 
 快照無損守門（[D-20261028-01](../decisions/D-20261028-01-快照取消正規化與本機信任載入.md)）取代舊的
