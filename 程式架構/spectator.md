@@ -116,7 +116,7 @@ class SpectatorSession {
 }
 ```
 
-同一 fallback generation 的 frame 必須嚴格遞增，重複或倒退一律丟棄。每次 `round-start` 與成功換綁新 source generation 都先 `resetStream()`，所以新場地載入後不會再輸出上一回合位姿，新來源首幀也不會從舊來源座標滑入。其餘插值以 `next` 車輛集合為準、`prev` 缺席者原樣輸出（新進車無前幀可插）。位姿線性／nlerp 至 next 幀；離散 `brokenPartIds`／`eliminated` 在 alpha 到 1 時切換，不製造半破壞狀態。入站通道 JSON 解析、逐幀泵（`schedule`）、渲染／換場／倒數／回合摘要／同步階段／終局訂閱與終局閂由 `joinAsSpectator` 回傳的 `SpectatorViewer`（實作 `SpectateHandle`，[§9](#9-api)）承擔；畸形幀丟棄不中斷收訊。
+同一 fallback generation 的 frame 必須嚴格遞增，重複或倒退一律丟棄。每次 `round-start` 與成功換綁新 source generation 都先 `resetStream()`，所以新場地載入後不會再輸出上一回合位姿，新來源首幀也不會從舊來源座標滑入。其餘插值以 `next` 車輛集合為準、`prev` 缺席者原樣輸出（新進車無前幀可插）。位姿線性／nlerp 至 next 幀；離散 `brokenPartIds`／`eliminated` 在 alpha 到 1 時切換，不製造半破壞狀態。場地物件的 `lastTeleportFrame` 落在 `prev` 與 `next` 兩幀之間（大於 `prev` 的幀）時不補間：顯示時刻在那一幀之前取 `prev` 的位姿、之後取 `next` 的位姿；帶 `continuousRotation: true` 的物件（旋轉 360 度的 `step` 物件）只這樣切換位置，旋轉照常 nlerp。`lastTeleportFrame` 由物理引擎在每一次 step（含回滾重播與追趕）記錄、載入存檔時清掉晚於存檔幀的紀錄，隨場地物件狀態輸出（[D-20261116-02](../decisions/D-20261116-02-觀戰端場地物件瞬移時不補間.md)）。入站通道 JSON 解析、逐幀泵（`schedule`）、渲染／換場／倒數／回合摘要／同步階段／終局訂閱與終局閂由 `joinAsSpectator` 回傳的 `SpectatorViewer`（實作 `SpectateHandle`，[§9](#9-api)）承擔；畸形幀丟棄不中斷收訊。
 
 ## 4. Participant source 廣播與 join 閘
 
@@ -285,7 +285,7 @@ interface FallbackSpectatorVehicleState {
   preloadedProjectiles?: { broken: number; total: number }; // 僅彈體獨立耐久開啟：0 ≤ broken ≤ total、1 ≤ total ≤ LAUNCH_AMMO_COUNT_MAX
 }
 interface SpectatorTrackFragmentState { fragmentIndex: number; seed: number; seedMm: Vec3; volumeMm3: number; opacityX1000: number; }
-interface SpectatorTrackEntityState { entityIndex: number; nodeName: string; positionMm: Vec3; rotation: Quat; broken: boolean; fragments: readonly SpectatorTrackFragmentState[]; }
+interface SpectatorTrackEntityState { entityIndex: number; nodeName: string; positionMm: Vec3; rotation: Quat; broken: boolean; lastTeleportFrame?: number; continuousRotation?: true; fragments: readonly SpectatorTrackFragmentState[]; } // lastTeleportFrame：最近一次瞬移（step 切換）完成的幀，從未瞬移時省略，非負整數；continuousRotation：旋轉 360 度的 step 物件才帶、值只能是 true；不合者拒收
 ```
 
 `wheels` 的 slotIndex 依序對應 `tire:FL`、`tire:FR`、`tire:RL`、`tire:RR`、`roller:FL`、`roller:FR`、`roller:CL`、`roller:CR`、`roller:RL`、`roller:RR`；轉角以毫弧度表示（絕對值不超過 3142），角速度以 0.1 rad/s 表示（絕對值不超過 100000），三個值都必須是整數，超出範圍、非整數或槽位未遞增即拒收。接收端以兩幀的角速度平均還原整圈數後插值。`preloadedProjectiles` 是預載彈損毀計數（[D-20261025-01](../decisions/D-20261025-01-持彈碰撞體切換與可選彈體獨立耐久.md)），兩個值都必須是範圍內的整數，否則拒收；它是離散值，接收端插值途中維持前一幀、到終點才換新一幀，與 `brokenPartIds` 相同。

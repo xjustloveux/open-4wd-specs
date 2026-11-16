@@ -3228,6 +3228,22 @@
       "summary": null
     },
     {
+      "id": "decisions/D-20261116-01-可破壞entity的根節點自身要有幾何.md",
+      "type": "decision",
+      "domain": [
+        "建模物理"
+      ],
+      "summary": null
+    },
+    {
+      "id": "decisions/D-20261116-02-觀戰端場地物件瞬移時不補間.md",
+      "type": "decision",
+      "domain": [
+        "比賽房間"
+      ],
+      "summary": null
+    },
+    {
       "id": "decisions/INDEX.md",
       "type": null,
       "domain": [],
@@ -7713,6 +7729,10 @@
     },
     {
       "from": "decisions/D-20261114-10-step曲線的場地物件是瞬移且目標被佔住時延後.md",
+      "to": "decisions/D-20261116-02-觀戰端場地物件瞬移時不補間.md"
+    },
+    {
+      "from": "decisions/D-20261114-10-step曲線的場地物件是瞬移且目標被佔住時延後.md",
       "to": "建模參數/場地.md"
     },
     {
@@ -7881,6 +7901,10 @@
     },
     {
       "from": "decisions/D-20261115-08-場地entity的流體材質節點是跟著剛體的sensor.md",
+      "to": "decisions/D-20261116-01-可破壞entity的根節點自身要有幾何.md"
+    },
+    {
+      "from": "decisions/D-20261115-08-場地entity的流體材質節點是跟著剛體的sensor.md",
       "to": "建模參數/場地.md"
     },
     {
@@ -7894,6 +7918,22 @@
     {
       "from": "decisions/D-20261115-09-輸送帶entity至少要有一個非流體節點.md",
       "to": "建模參數/場地.md"
+    },
+    {
+      "from": "decisions/D-20261116-01-可破壞entity的根節點自身要有幾何.md",
+      "to": "decisions/D-20261115-08-場地entity的流體材質節點是跟著剛體的sensor.md"
+    },
+    {
+      "from": "decisions/D-20261116-01-可破壞entity的根節點自身要有幾何.md",
+      "to": "建模參數/場地.md"
+    },
+    {
+      "from": "decisions/D-20261116-02-觀戰端場地物件瞬移時不補間.md",
+      "to": "decisions/D-20261114-10-step曲線的場地物件是瞬移且目標被佔住時延後.md"
+    },
+    {
+      "from": "decisions/D-20261116-02-觀戰端場地物件瞬移時不補間.md",
+      "to": "程式架構/spectator.md"
     },
     {
       "from": "decisions/INDEX.md",
@@ -9413,6 +9453,14 @@
     },
     {
       "from": "decisions/INDEX.md",
+      "to": "decisions/D-20261116-01-可破壞entity的根節點自身要有幾何.md"
+    },
+    {
+      "from": "decisions/INDEX.md",
+      "to": "decisions/D-20261116-02-觀戰端場地物件瞬移時不補間.md"
+    },
+    {
+      "from": "decisions/INDEX.md",
       "to": "decisions/README.md"
     },
     {
@@ -9726,6 +9774,10 @@
     {
       "from": "建模參數/場地.md",
       "to": "decisions/D-20261115-09-輸送帶entity至少要有一個非流體節點.md"
+    },
+    {
+      "from": "建模參數/場地.md",
+      "to": "decisions/D-20261116-01-可破壞entity的根節點自身要有幾何.md"
     },
     {
       "from": "建模參數/場地.md",
@@ -13109,6 +13161,10 @@
     },
     {
       "from": "程式架構/spectator.md",
+      "to": "decisions/D-20261116-02-觀戰端場地物件瞬移時不補間.md"
+    },
+    {
+      "from": "程式架構/spectator.md",
       "to": "流程/觀戰.md"
     },
     {
@@ -14014,6 +14070,10 @@
     {
       "from": "編輯器操作.md",
       "to": "decisions/D-20261031-03-導輪掛點預設朝上並改以傾角調整.md"
+    },
+    {
+      "from": "編輯器操作.md",
+      "to": "decisions/D-20261114-02-磁源N極取節點本機正Y軸.md"
     },
     {
       "from": "編輯器操作.md",
