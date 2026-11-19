@@ -71,7 +71,7 @@ interface QuickMatchRoomAdvertisement {
 
 ## 3. 既有公開房選擇（動態窗口）
 
-`selectQuickMatchRoom` 只保留 public、quick-match-enabled、無 participantPassword、`waiting`、仍有 participant 空位且 client version 相容的房。discovery 摘要不攜帶 `mode`／`rulesKey`；`disallowChip` 的唯一權威是入房後 `MatchConfig.rounds[]`，UI 若需要摘要只能由逐回合值本地衍生。rating 使用 `displayRating ÷ 1000` 整數分域：初始 ±5，每滿 10 秒 +5，上限 ±30。
+`selectQuickMatchRoom` 只保留 public、quick-match-enabled、無 participantPassword、`waiting`、仍有 participant 空位且 client version 相容的房。discovery 摘要不攜帶 `mode`／`rulesKey`；`disallowChip` 的唯一權威是入房後 `MatchConfig.rounds[]`，UI 若需要摘要只能由逐回合值本地衍生。公告也不帶房間的每車碰撞塊上限，候選選擇不依上限篩選。rating 使用 `displayRating ÷ 1000` 整數分域：初始 ±5，每滿 10 秒 +5，上限 ±30。
 
 同一輸入下候選固定依下列順序選擇，不能依網路到達順序決定：
 
@@ -112,6 +112,7 @@ interface Room {
   participantPolicyEpoch: number;       // 同 RoomId 固定，0=open、1=受 invitation 保護
   members: PeerId[];                              // 進房順序
   maxPlayers: number;                            // ≤ min(各回合 track auto_player_max)（建模參數/零件與共用介面.md §5.4）、≤ PLAYERS_PER_RACE_MAX
+  vehicleColliderPieceMax: number | null;        // 每車碰撞塊上限；null＝不限，否則為 ROOM_VEHICLE_COLLIDER_PIECE_MAX_OPTIONS 其中一個值；建房時決定
   matchConfig: MatchConfig;
   currentMatchId?: string;                       // 當前比賽 id＝deriveMatchId(room.members, startedAt, matchRules, gridProof)；綁 roster 與可驗算起跑證明——見 §4.1
   pinnedCheckpointCid: CID;                      // 房間 pin 的帳本檢查點（版本規範 §20；B 軸可用性判定基準、`ROOM_PINNED_CHECKPOINT_MAX_AGE_HOURS` 檢核）
@@ -124,7 +125,7 @@ interface Room {
 }
 interface MatchConfig {
   rounds: RoundConfig[];                          // 長度 = MATCH_ROUND_COUNT（1..MAX）；房主逐回合設定（loadout 見 車輛組裝.md §2）
-  matchRules: MatchRules;                         // 全場通用規則容器；新房目前為空
+  matchRules: MatchRules;                         // 全場通用規則容器；新房目前為空（每車碰撞塊上限不在這裡，是 Room 的欄位）
 }
 interface RoundConfig {
   trackRef: PartRef;                              // 該回合場地（CID 或 builtin:track-XX；各回合可重複同軌）
@@ -156,6 +157,11 @@ interface RoomCreationAccessPolicy {
 
 **〔ROOM-R-021〕** Quick Match 只加入既有 `visibility=public`、`quickMatchEnabled=true`、無 participantPassword 的 waiting 房；公告以現有 participant displayRating 中位數作錨。候選 admission 失敗回到輪詢，逾時不得建立 fallback 房；participant 容量沿用 ROOM-R-019 的 reservation（[D-20260802-08](../decisions/D-20260802-08-Quick-Match加入既有公開房.md)；向量 `room/quick-match-selection`）。
 
+`Room.vehicleColliderPieceMax` 是房間對每一台參賽車的碰撞塊上限，針對輪替內每一台車個別檢查，不是全房合計。
+它不屬於 `MatchConfig.matchRules`，因此不是 `deriveMatchId` 的輸入，也不隨 `matchRules` 進入結算事件；它是 Ready 設定的欄位，納入
+`ReadyDeclaration` 所簽的 `configDigest`。檢查的位置與顯示見
+[room-runtime.md §4](room-runtime.md#4-房主權威host-roomts-hostroom)（[D-20261118-02](../decisions/D-20261118-02-房間的每車碰撞塊上限.md)）。
+
 圈數 / 賽程時間上限為**逐回合**房間設定（非場地 GLB 屬性），見 [賽內機制.md §1.5](../賽內機制.md)。
 `disallowChip` 同屬逐回合規則；每回合未提供時為 `false`。
 
@@ -186,7 +192,7 @@ matchId 的 roster 是 `LockedStartPackage` 的原鎖定名單；倒數中已確
 
 ### 4.3 ReadyDeclaration、ReadySet 與 LockedStartPackage
 
-個人 `ReadyDeclaration` 簽署 `{ roomId, configDigest, membershipEpoch, participant, clientVersion, carRotation }`，不綁完整 roster；因此換人只作廢集合層，不抹除其他玩家的最終選擇。完整 roster 都有聲明後才建立 canonical `ReadySetContext` 與 digest。每端驗過同一集合的簽章、A 軸版本、實際 admitted manifests、loadout 結構與 B 軸資產版本，才簽 `ReadySetAcknowledgement`。
+個人 `ReadyDeclaration` 簽署 `{ roomId, configDigest, membershipEpoch, participant, clientVersion, carRotation }`，不綁完整 roster；因此換人只作廢集合層，不抹除其他玩家的最終選擇。完整 roster 都有聲明後才建立 canonical `ReadySetContext` 與 digest。每端驗過同一集合的簽章、A 軸版本、實際 admitted manifests、loadout 結構與 B 軸資產版本，才簽 `ReadySetAcknowledgement`。`configDigest` 的輸入含房間的每車碰撞塊上限；房間設有上限時，集合內任何一份聲明有車超過上限或算不出碰撞塊合計，同樣不簽。
 
 全 ack 後才執行起跑格 commitment／reveal，並形成不可變 `LockedStartPackage`：ReadySet context／digest、全部聲明與 ack、grid proof、matchId、startedAt、倒數 deadline 與聲明簽章索引。package 在倒數前複製到全員，RaceSession 只消費它；車庫後續變化不能改變本場輸入。倒數斷線只改 survivor transport 與 `preStartDisconnects`，package、matchId 與 slot mapping 不變。
 
@@ -292,6 +298,7 @@ interface MatchmakingApi {
     config: MatchConfig,
     accessPolicy?: RoomCreationAccessPolicy,
     maxPlayers?: number,
+    vehicleColliderPieceMax?: number | null,     // 每車碰撞塊上限；省略或 null＝不限
   ): Promise<Result<{ roomId: RoomId }>>;
   joinRoom(roomId: RoomId, request: RoomJoinRequest): Promise<Result<void>>;
   leaveRoom(): Promise<void>;

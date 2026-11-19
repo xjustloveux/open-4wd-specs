@@ -70,7 +70,7 @@
       "refs": [
         {
           "file": "賽內機制.md",
-          "line": 280
+          "line": 288
         }
       ]
     },
@@ -2624,7 +2624,7 @@
       },
       "anchor": {
         "file": "賽內機制.md",
-        "line": 119,
+        "line": 127,
         "excerpt": "- checksum 等待容差 30 frame（0.5 秒）：逾窗未到 = 該輪缺席、不阻塞多數決；mismatch 不觸發 rollback、累積 desy"
       },
       "refs": []
@@ -2643,7 +2643,7 @@
       },
       "anchor": {
         "file": "賽內機制.md",
-        "line": 125,
+        "line": 133,
         "excerpt": "跨 peer 物理運算結果**必須完全一致**："
       },
       "refs": []
@@ -2662,7 +2662,7 @@
       },
       "anchor": {
         "file": "賽內機制.md",
-        "line": 240,
+        "line": 248,
         "excerpt": "| 完成該回合 `lap_count` 圈 | 玩家進入該回合「已完賽」狀態；其他玩家繼續 |"
       },
       "refs": []
@@ -2681,7 +2681,7 @@
       },
       "anchor": {
         "file": "賽內機制.md",
-        "line": 246,
+        "line": 254,
         "excerpt": "回合結束 → 先分①已完賽、②未完賽存活、③未完賽失能（battery／motor `functionalDisabled` 或 chassis `physic"
       },
       "refs": []
@@ -2700,7 +2700,7 @@
       },
       "anchor": {
         "file": "賽內機制.md",
-        "line": 258,
+        "line": 266,
         "excerpt": "| 新車初始狀態 | 載入下一回合的車即全新（fatigue 0 / temperature ambient / battery 滿 / 彈藥滿 / broke"
       },
       "refs": []
@@ -2719,7 +2719,7 @@
       },
       "anchor": {
         "file": "賽內機制.md",
-        "line": 265,
+        "line": 273,
         "excerpt": "1. **總名次**：forfeit 者（`disconnects` 中的開賽成員）整場不得分，先從每個回合名次移除，其餘玩家依移除後名次 `k` 得 `P −"
       },
       "refs": []
@@ -2738,7 +2738,7 @@
       },
       "anchor": {
         "file": "賽內機制.md",
-        "line": 274,
+        "line": 282,
         "excerpt": "- 所有完賽者只核對 match facts（rounds、ranking、loadouts、grid proof、inline anchors、disconn"
       },
       "refs": []
@@ -2757,7 +2757,7 @@
       },
       "anchor": {
         "file": "賽內機制.md",
-        "line": 304,
+        "line": 312,
         "excerpt": "| 賽中網路斷線 | race-mesh 獨立 generation 先走 15s 重連窗；GO 後逾時僅原 active roster 嚴格多數側可形成 ne"
       },
       "refs": []
@@ -2776,7 +2776,7 @@
       },
       "anchor": {
         "file": "賽內機制.md",
-        "line": 320,
+        "line": 328,
         "excerpt": "| Input 偽造／畸形 | Race Sign Key 簽章／回合隔離；每幀最多 4 個不重複 skill，Event／Hold 型態與本回合 loadou"
       },
       "refs": []
@@ -2795,7 +2795,7 @@
       },
       "anchor": {
         "file": "賽內機制.md",
-        "line": 321,
+        "line": 329,
         "excerpt": "| 同幀 equivocation | `(peer, frame)` 首個 signed 值鎖定；本端觀測到第二個相異值立即 fail-closed；跨 Da"
       },
       "refs": []
@@ -2814,7 +2814,7 @@
       },
       "anchor": {
         "file": "賽內機制.md",
-        "line": 324,
+        "line": 332,
         "excerpt": "| 抄近路 / 跳關 | Checkpoint 須依序點亮才算完賽 / 計圈；所有 peer deterministic 重算驗證 |"
       },
       "refs": []
@@ -3193,7 +3193,7 @@
       "refs": [
         {
           "file": "賽內機制.md",
-          "line": 308
+          "line": 316
         }
       ]
     },

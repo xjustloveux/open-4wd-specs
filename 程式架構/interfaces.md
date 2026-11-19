@@ -143,6 +143,12 @@ export interface SourceMassProperties {
   readonly principalInertiaPerKgM2: Vec3; // 來源質心處主慣量/kg，m²；不從接觸凸包重算
   readonly inertiaFrame: readonly [number, number, number, number]; // proxy-local 單位四元數
 }
+export interface PartColliderPiece {
+  readonly pointsM: ReadonlyArray<Vec3>; // deterministic convex support points，4..98
+  readonly shape?: ProxyCylinderShape; // 僅 tire／roller 滾動面：判圓 cylinder 取代凸 hull
+}
+// 節點層（D-20261117-02）：一個網格節點一筆；質量、熱、接觸面積與磨耗在節點，碰撞形狀在 colliders。
+// 非武器零件的 colliders 是作者資料（D-20261118-01）：編輯器產生後烘入；判圓節點的 cylinder 由收件端依網格重算。
 export interface PartPhysicsProxy {
   readonly nodeName: string;
   readonly sourceNodeIndex: number;
@@ -154,13 +160,19 @@ export interface PartPhysicsProxy {
   readonly wearCapacityJ?: number;
   readonly centroidM: Vec3;
   readonly massProperties: SourceMassProperties;
-  readonly pointsM: ReadonlyArray<Vec3>; // deterministic convex support points，4..26
-  readonly contact?: "none"; // 僅 tire／roller：被判圓外圈完整包覆的質量件，不建 collider、質量併入 hinge body
+  readonly colliders: ReadonlyArray<PartColliderPiece>; // 零到多塊；空＝只承載質量（非武器零件）
 }
-export type WeaponPhysicsProxy = Omit<
-  PartPhysicsProxy,
-  "sourceNodeIndex" | "thermalExchangeFactor" | "thermalContactAreaM2" | "contact"
->;
+export interface WeaponPhysicsProxy {
+  readonly nodeName: string;
+  readonly material: MaterialId;
+  readonly massGrams: number;
+  readonly contactAreasM2: DirectionalContactAreasM2;
+  readonly wearCapacityJ?: number;
+  readonly centroidM: Vec3;
+  readonly massProperties: SourceMassProperties;
+  readonly pointsM: ReadonlyArray<Vec3>; // 武器管線仍一個節點一塊
+  readonly shape?: ProxyCylinderShape;
+}
 export interface WeaponPhysicsActuator {
   actuatorIndex: number;
   pivotNode: string;
