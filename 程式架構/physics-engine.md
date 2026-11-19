@@ -53,7 +53,7 @@ world.numSolverIterations = SOLVER_VELOCITY_ITERATIONS; // 4
 world.numInternalPgsIterations = SOLVER_INTERNAL_PGS_ITERATIONS; // 25
 world.maxCcdSubsteps = PHYSICS_CCD_MAX_SUBSTEPS; // 2；與 render catch-up 分軌
 world.integrationParameters.raw.setCcdPersistentContactPolicy(
-  PHYSICS_CCD_PERSISTENT_CONTACT_POLICY, // 2；只對固定目標改掃核心球（§2.2）
+  PHYSICS_CCD_PERSISTENT_CONTACT_POLICY, // 3；只對固定目標改掃核心球，動態目標已接觸且不再逼近時不求 TOI（§2.2）
 );
 world.integrationParameters.raw.setContactNormalOrderPolicy(
   PHYSICS_CONTACT_NORMAL_ORDER_POLICY, // 1；接觸 normal 求解與點序無關（§2.9）
@@ -115,7 +115,7 @@ fixture），走完整驗證。`loadOwnState` 只接受本引擎目前世界以 
 記錄的登錄鍵即通過、不讀回幾何；鍵不符（改寫為內嵌或指到其他序號）退回完整幾何 bytes 比對。完整驗證的 restore 除了 body／collider，也逐一核對 Revolute joint 的 handle、兩端 body、型別、
 anchor、frame／axis、linked-contact flag、limit 與 motor immutable state；數量或任一拓樸欄位不符
 即在替換 live world 前原子拒絕。tire／roller auxiliary body 的旋轉與角速度同樣進入 state hash。
-collider 拓樸以 manifest 推導的應建 collider 集合為準：`contact: "none"` 的輪組質量件不建 collider、
+collider 拓樸以 manifest 推導的應建 collider 集合為準：沒有碰撞塊的節點（只承載質量）不建 collider、
 不在拓樸紀錄內（[§2.3](#23-tireroller-revolute-拓樸)）；launch 持彈 collider 與預配置彈剛體的啟用
 狀態依 [§2.4](#24-active-weapon-拓樸) 由彈藥與損毀狀態推導後比對。
 
@@ -189,11 +189,21 @@ pair 的處理：
 - 目標為 kinematic 或 dynamic 剛體（車對車、彈對車、旋轉武器）時不套用持續接觸規則，照父代以完整形狀求
   TOI（[D-20261027-02](../decisions/D-20261027-02-動態目標持續接觸回復完整形狀TOI.md)）。動態目標只掃核心球時，旋轉薄件質心幾乎不動、端點卻以 ω·R 掃進
   目標，核心球看不到而會切入或穿過動態薄目標。
+  - 例外（[D-20261119-01](../decisions/D-20261119-01-動態目標持續接觸不再逼近時不求TOI.md)）：直接 pair 在步首（或 CCD 子步首）的 narrow phase 已有
+    `dist ≤ prediction_distance` 的接觸點，而且每個這樣的接觸點這一步沿接觸法線的逼近量都不超過
+    `prediction_distance` 時，這個 pair 這一步不求 TOI，留給接觸求解器。逼近量＝接觸點隨來源剛體與隨目標剛體
+    各自從起始姿態移到結束姿態的位移差，投影到來源指向目標的法線，含轉動。求解後的階段取接觸求解之後的位移。
+    求解前的子步切分階段，dynamic 與 velocity-based kinematic 目標的結束姿態還沒有推進，等於把目標當成不動，
+    兩者沿法線同行的共同位移也算成逼近，對這兩類目標較少放行；position-based kinematic 目標在這個階段用的是
+    指定的整步位移。沒有這條時，兩車貼著行進會每一步
+    都在步首附近找到撞擊而被截短位移（速度不變、實際前進變慢）。判定只看步首已有的接觸點：來源形狀上離接觸點
+    較遠的部位在同一步內甩進目標時，這條規則不會察覺；kernel 的每秒 30 公尺車對車對撞場景在對撞後翻滾階段
+    量到約 1.14 mm 的穿入，就是這種情況（issue 001448）。
 - 核心球心在該 collider 的形狀質心，半徑＝min(0.25 × `ccd_thickness`, 0.5 × 內切半徑)；內切半徑限制
   斜放薄凸包被高估的 `ccd_thickness`。30° 與兩個比例是 kernel 固定常數，由 physics-version 釘住。
 - 感測器、偽 pair 與非持續接觸 pair 照舊以完整形狀求 TOI。
 
-設定以原生整合參數 `ccd_persistent_contact_policy` 承載（2＝上述規則），由
+設定以原生整合參數 `ccd_persistent_contact_policy` 承載（3＝上述規則），由
 `PHYSICS_CCD_PERSISTENT_CONTACT_POLICY` 在 bounded profile 之後回填；進 Rapier snapshot，immutable world
 config 與 restore 皆驗證，差異原子拒絕。
 
@@ -212,47 +222,67 @@ GLB bytes 在此只提供 collider／ 視覺幾何。完整信任模型見
 [D-20260811-02](../decisions/D-20260811-02-Canonical-PhysicsManifest與一次性Admission.md)。
 
 chassis 與所有非 hinge 零件共用一個 primary dynamic body；每顆 tire／roller 依原始 part index
-建立獨立 auxiliary dynamic body 與 contact-disabled Revolute impulse joint，該 part 每個未標
-`contact: "none"` 的 admitted proxy 各建立一顆 collider。滾動面的形狀判定在**烘焙期**完成：derive 於量化前的全解析度網格
+建立獨立 auxiliary dynamic body 與 contact-disabled Revolute impulse joint，該 part 每個節點的每塊
+碰撞各建立一顆 collider。滾動面的形狀判定在**烘焙期**完成：derive 於量化前的全解析度網格
 對 Mount 軸做 64 向徑向支撐判圓（容差 `ROLLING_SURFACE_ROUNDNESS_EPSILON_M`），判圓的 proxy
 在 manifest 烘入 `shape` cylinder（擬合外緣半徑、軸向半寬、asset-local 中心與軸），runtime 讀
 標記建 `ColliderDesc.cylinder`（pose＝shape 中心經組裝變換 ＋hinge `cylinderRotationLocal`）；
 凸 hull 的離散圓周會把正圓輪變成多邊形、支撐半徑漣波遠超接觸容差並造成系統性偏航
 （[D-20261020-01](../decisions/D-20261020-01-輪類滾動面改掛保守cylinder.md)）。非圓滾動 proxy
-（方輪、齒輪等作者意圖）以保角支撐量化：hull 圓周站落在徑向剖面凸包角點（≤12、等角距裁減）
-上，忠實保留 authored 角形；非滾動 proxy（hub 等）維持固定 26 向 convex hull
-（[D-20261020-02](../decisions/D-20261020-02-旋轉面形狀分類移至烘焙期.md)）。同一部件有多個判圓
-proxy 時，被包覆者退回已烘好的凸 hull 點：存在另一個半徑更大、同軸（兩軸外積長度
-≤ 1e-6、內件中心到外件軸線 ≤ 10 µm，反向軸視為同軸）且軸向區間（中心 ± `halfHeightM`，端點容差
-10 µm）包含它的判圓 proxy 時，該件接觸不到外界、移除 `shape`；未被包覆的較小判圓件（例如同軸上下
-兩段、軸向外露、偏軸或斜軸）保留 `shape`，半徑並列者互不包覆
-（[D-20261021-02](../decisions/D-20261021-02-滾輪被包覆內件維持凸hull.md)）。
+（方輪、齒輪等作者意圖）以保角支撐量化：hull 圓周站落在徑向剖面凸包角點（≤48、等角距裁減）
+上，忠實保留 authored 角形；非滾動 proxy（hub 等）維持固定 98 向 convex hull
+（[D-20261020-02](../decisions/D-20261020-02-旋轉面形狀分類移至烘焙期.md)）。以上是每個節點的**預設形狀**；
+節點在 manifest 實際帶哪些碰撞塊，依下段的作者資料決定。輪組不壓成單一 collider。
 
-上述判定之後，derive 再判定**被包覆質量件**：同一 tire／roller 部件內，候選外圈＝帶 cylinder `shape`
-的 proxy C；另一 proxy P 的每個 admitted `pointsM` 點到 C 軸線距離 ≤ `C.radiusM + ε`，且沿 C 軸相對
-`C.centerM` 的投影絕對值 ≤ `C.halfHeightM + ε`（ε＝`ENCLOSED_PROXY_TOLERANCE_M`）；P 若帶 `shape`，
-另需依上段同軸包含規則被 C 包覆。多個候選時取包住 P 且 `sourceNodeIndex` 最小者，全程 f64 加減乘除
-與平方根。P 在 manifest 烘入 `contact: "none"`，保留材質、質量、centroid、質量性質、熱資料與
-`wearCapacityJ`；admission 逐件重判，標記與判定不一致即拒收，非 tire／roller 出現 `contact` 亦拒收。
-runtime 不為 P 建 collider：其質量性質經 part pose 換到 hinge body frame，多件以平行軸定理合成後
-設為 hinge body 的 additional mass properties，總質量、質心與慣量張量與全部建 collider 時相同；
-同一 part 的 proxy 不得全為 `contact: "none"`。凸出外圈的件不算被包覆，仍建 collider。鉸接 body 的
-CCD 厚度因此由外圈決定。公版 tire-01～03 的 Hub 與 roller-01～03 的 InnerSleeve／BearingHousing／
-SealRings 皆為質量件（[D-20261026-01](../decisions/D-20261026-01-鉸接輪組被包覆內件只承載質量.md)）。
-每顆 collider 的材質、質量與 `wearCapacityJ` 仍來自對應 proxy，不得以整車單一密度平均分配；
-輪組不壓成單一 collider，只有被包覆質量件不建 collider。proxy 的 `centroidM` 與 `inertiaFrame` 屬 part（asset-local）frame；collider 擺位
-不等於 part pose 時（cylinder 以 shape 中心加軸向旋轉擺放，含 weapon rotor），交給 Rapier 前須換到
-collider-local：質心 c′＝R⁻¹·(c − shape 中心)、主軸 frame′＝R⁻¹·frame，R 為 collider 相對 part 的
-旋轉；凸 hull collider 擺在 part pose，原值直用。未換算會讓質心偏軸、慣量主軸錯轉。
+**碰撞塊的來源與 admission 重建**（[D-20261118-01](../decisions/D-20261118-01-零件碰撞塊改為作者資料與覆蓋規則.md)）：
+非武器零件的碰撞塊是作者資料，由編輯器產生後烘入內嵌 manifest 的 `proxies[].colliders`，admission 不從網格節點
+推導碰撞塊。`derivePhysicsManifest(glb, { colliders })` 的作者碰撞塊取自選項，省略時取該 GLB 內嵌 manifest 的碰撞塊；
+兩者都沒有的非武器零件無法推導（`physics manifest part colliders missing`）。組成節點層時：
+
+- 判圓的 tire／roller 節點：作者清單為空＝只承載質量；非空＝一律使用由網格重算的 cylinder，不採用作者給的形狀。
+- 其餘節點：直接使用作者給的凸包塊；沒有列出的節點只承載質量。非判圓節點的碰撞塊帶 cylinder `shape` 即拒收。
+- 作者清單指名不存在的節點即拒收。
+- 武器：每個網格節點由推導取得一塊凸包，不讀作者碰撞塊。
+
+`verifyEmbeddedPhysicsManifest` 以內嵌 manifest 的碰撞塊加上由幾何重算的節點層（質量、質心、慣量、材質、熱、磨耗、
+接觸面積）與判圓 cylinder 重組清單，重組結果的 digest 必須等於內嵌 digest；內嵌的節點層或 cylinder 與重算值不同
+即拒收。沒有碰撞塊的節點保留材質、質量、centroid、質量性質、熱資料與 `wearCapacityJ`。
+節點是否只承載質量由產生碰撞塊的一方決定，admission 不另做包覆判定；碰撞塊與外觀是否
+相符由覆蓋規則量測（[零件與共用介面.md §4.2.1](../建模參數/零件與共用介面.md#421-共用-part-collider-proxies)）。
+這項量測只做記錄，與准入結果分開：admission worker 先送出驗證結果，呼叫端的准入即以它完成；之後 worker 才量測
+非武器零件的覆蓋，另送一則 `collider-coverage` 訊息。呼叫端在准入結果之後最多再保留 worker 20 秒，屆時終止，記錄
+沒到就不寫；沒有 Worker 的環境先回傳准入結果，再以計時器排程量測。記錄帶覆蓋是否通過、兩個方向的最大距離、塊數與
+該類上限、取樣預算已記帳的次數與是否超出預算；未通過、超出預算或塊數超過該類零件上限時寫一則主控台警告。覆蓋的
+結果、量測拋錯、超出預算或沒有做完，都不會改變或延後准入結果；30 秒的 worker 逾時只涵蓋重建與 digest 比對。
+
+每塊碰撞另由清單驗證（`validColliderPiece`）做結構檢查，嵌入與 admission 時都執行、不合即拒收：4 到 98 個有限的點；
+第一個點與另外某三個點張成的平行六面體，行列式絕對值大於 1e-12 m³（`hasPositiveHullVolume`；全部相同或共面的點
+不行）；且每個點落在零件 AABB（`geometry.aabbMinM`／`aabbMaxM`）各軸向外推 `PART_COLLIDER_COVERAGE_MAX_M` 的範圍內。
+這是結構規則，目的是拒絕無法構成凸包或離零件很遠的形狀。覆蓋量測另有取樣預算
+`PART_COLLIDER_COVERAGE_EVALUATION_MAX`：它只對取樣迴圈記帳，不是量測整體工作量或時間的上限
+（[零件與共用介面.md §4.2.1](../建模參數/零件與共用介面.md#421-共用-part-collider-proxies)）；量測慢或沒有做完時，依上段只是沒有記錄。
+
+**節點層與質量**（[D-20261117-02](../decisions/D-20261117-02-零件碰撞改為節點層兩層格式.md)）：質量只在節點層。
+runtime 為每個節點的每塊碰撞建一顆 collider，這些零件節點 collider 一律以 `setDensity(0)` 建立、不帶質量
+（武器物理管線的 collider 仍各自帶質量，見 [§2.4](#24-active-weapon-拓樸)）；所屬剛體（主車體或
+hinge body）上所有仍完好節點的質量性質，以平行軸定理合成後設為該剛體的 additional mass properties。節點的
+`centroidM` 與 `inertiaFrame` 屬 part（asset-local）frame，經 part pose 換到剛體 frame 後合成，與碰撞塊的擺位無關。
+零件損毀時，該零件所有節點一併退出附加質量；驗證外來快照時，附加質量與合成質量的期望值依快照宣告的損毀集合
+推導，零件節點 collider 的質量必須為零。同一 part 節點數須為 1 到 `PART_COLLIDER_PROXY_COUNT_MAX`，
+碰撞塊合計須為 1 到 `PART_COLLIDER_PROXY_COUNT_MAX` 塊，武器每個節點都要有碰撞。collider canonical key 為
+`vehicle:<車>:<零件>:<節點名>#<塊序>`，材質、六向接觸面積與 `wearCapacityJ` 取所屬節點，不得以整車單一密度平均分配。
+
+磁性：鐵磁材質的節點是磁源的吸引目標，每個節點一個目標、位置取節點質心（剛體局部座標）再依剛體位姿換到世界
+座標，不隨碰撞塊數改變；零件損毀時一併退出。磁力武器走武器物理管線，磁場原點取主網格節點 collider 的幾何中心。
 
 hinge anchor 與 axis 只由完整 Mount frame 決定：anchor 是 chassis-side Mount position，axis 是
 chassis-side Mount local `+X`，視覺與 collider attachment 則為
 `chassisMount × inverse(partMount)`。runtime 不以 AABB 最短軸、三角形、builtin 姿態或外觀猜軸；
 part-side Mount 可有任意複合旋轉，幾何也可刻意不對稱或非圓盤。AABB box 只允許縮減測試 fixture；
-正式 admitted asset 的非圓 proxy 一律使用逐 convex proxy 拓樸，cylinder 只由烘焙 `shape` 標記
+正式 admitted asset 的非圓 proxy 一律使用逐 convex proxy 拓樸，cylinder 只由 admitted manifest 的 `shape` 標記
 決定，runtime 不從 mesh 重推圓柱。hinge descriptor 的 `radiusM` 是驅動與滾阻換算用的半徑，組裝時由
-manifest 的 proxy 對轉軸量得（判圓 proxy 取 `shape.radiusM`、其餘取 `pointsM` 到轉軸的最大距離，
-`contact: none` 不計），不取 AABB 投影（[D-20261113-09](../decisions/D-20261113-09-驅動換算改用參考輪半徑與對轉軸半徑.md)）。
+manifest 的碰撞塊對轉軸量得（判圓碰撞塊取 `shape.radiusM`、其餘取 `pointsM` 到轉軸的最大距離，
+沒有碰撞塊的質量件不計），不取 AABB 投影（[D-20261113-09](../decisions/D-20261113-09-驅動換算改用參考輪半徑與對轉軸半徑.md)）。
 
 tire 接收 [算式表 §2](../算式表.md) 的角衝量，primary 接收等量反向反作用；roller 永遠被動。
 驅動以 world 建立時的原始 driven tire 數固定分母，損壞 tire 的份額不重分配，全部損壞時不推進。

@@ -3316,6 +3316,55 @@
       "summary": null
     },
     {
+      "id": "decisions/D-20261117-01-零件碰撞形狀貼近外觀與編輯器物理形狀檢視.md",
+      "type": "decision",
+      "domain": [
+        "建模物理"
+      ],
+      "summary": null
+    },
+    {
+      "id": "decisions/D-20261117-02-零件碰撞改為節點層兩層格式.md",
+      "type": "decision",
+      "domain": [
+        "建模物理"
+      ],
+      "summary": null
+    },
+    {
+      "id": "decisions/D-20261118-01-零件碰撞塊改為作者資料與覆蓋規則.md",
+      "type": "decision",
+      "domain": [
+        "建模物理"
+      ],
+      "summary": null
+    },
+    {
+      "id": "decisions/D-20261118-02-房間的每車碰撞塊上限.md",
+      "type": "decision",
+      "domain": [
+        "比賽房間"
+      ],
+      "summary": null
+    },
+    {
+      "id": "decisions/D-20261119-01-動態目標持續接觸不再逼近時不求TOI.md",
+      "type": "decision",
+      "domain": [
+        "建模物理",
+        "比賽房間"
+      ],
+      "summary": null
+    },
+    {
+      "id": "decisions/D-20261119-02-Ready被拒絕時回報原因.md",
+      "type": "decision",
+      "domain": [
+        "比賽房間"
+      ],
+      "summary": null
+    },
+    {
       "id": "decisions/INDEX.md",
       "type": null,
       "domain": [],
@@ -4618,6 +4667,10 @@
     {
       "from": "conformance/README.md",
       "to": "decisions/D-20261101-02-持續接觸判定的幾何回退.md"
+    },
+    {
+      "from": "conformance/README.md",
+      "to": "decisions/D-20261119-01-動態目標持續接觸不再逼近時不求TOI.md"
     },
     {
       "from": "conformance/README.md",
@@ -6660,6 +6713,10 @@
       "to": "decisions/D-20261029-01-回合終局一致性.md"
     },
     {
+      "from": "decisions/D-20260814-23-Ready提交驗證與倒數.md",
+      "to": "decisions/D-20261118-02-房間的每車碰撞塊上限.md"
+    },
+    {
       "from": "decisions/D-20260815-02-註解品質本機前移與多語PR流程.md",
       "to": "decisions/D-20260813-01-註解語言與公開Template-CI劃界.md"
     },
@@ -6780,6 +6837,10 @@
       "to": "decisions/D-20261021-02-滾輪被包覆內件維持凸hull.md"
     },
     {
+      "from": "decisions/D-20261020-02-旋轉面形狀分類移至烘焙期.md",
+      "to": "decisions/D-20261117-01-零件碰撞形狀貼近外觀與編輯器物理形狀檢視.md"
+    },
+    {
       "from": "decisions/D-20261021-01-場地碰撞體分段與邊界法線機制.md",
       "to": "decisions/D-20260524-03-DeterministicWorld與Rapier鎖版.md"
     },
@@ -6812,6 +6873,10 @@
       "to": "decisions/D-20261026-01-鉸接輪組被包覆內件只承載質量.md"
     },
     {
+      "from": "decisions/D-20261021-02-滾輪被包覆內件維持凸hull.md",
+      "to": "decisions/D-20261118-01-零件碰撞塊改為作者資料與覆蓋規則.md"
+    },
+    {
       "from": "decisions/D-20261022-01-公版場地程序化交付與零件維持延後.md",
       "to": "decisions/D-20261029-05-builtin交付schema重新編號為1.md"
     },
@@ -6836,6 +6901,18 @@
       "to": "decisions/D-20261021-02-滾輪被包覆內件維持凸hull.md"
     },
     {
+      "from": "decisions/D-20261026-01-鉸接輪組被包覆內件只承載質量.md",
+      "to": "decisions/D-20261117-01-零件碰撞形狀貼近外觀與編輯器物理形狀檢視.md"
+    },
+    {
+      "from": "decisions/D-20261026-01-鉸接輪組被包覆內件只承載質量.md",
+      "to": "decisions/D-20261117-02-零件碰撞改為節點層兩層格式.md"
+    },
+    {
+      "from": "decisions/D-20261026-01-鉸接輪組被包覆內件只承載質量.md",
+      "to": "decisions/D-20261118-01-零件碰撞塊改為作者資料與覆蓋規則.md"
+    },
+    {
       "from": "decisions/D-20261026-02-CCD持續接觸改掃核心球.md",
       "to": "decisions/D-20260814-07-Gameplay動態剛體HardCCD.md"
     },
@@ -6858,6 +6935,10 @@
     {
       "from": "decisions/D-20261027-02-動態目標持續接觸回復完整形狀TOI.md",
       "to": "decisions/D-20261026-02-CCD持續接觸改掃核心球.md"
+    },
+    {
+      "from": "decisions/D-20261027-02-動態目標持續接觸回復完整形狀TOI.md",
+      "to": "decisions/D-20261119-01-動態目標持續接觸不再逼近時不求TOI.md"
     },
     {
       "from": "decisions/D-20261028-01-快照取消正規化與本機信任載入.md",
@@ -8150,6 +8231,194 @@
     {
       "from": "decisions/D-20261116-11-新增硬橡膠材質與公版heavy輪胎.md",
       "to": "程式架構/builtin-assets.md"
+    },
+    {
+      "from": "decisions/D-20261117-01-零件碰撞形狀貼近外觀與編輯器物理形狀檢視.md",
+      "to": "decisions/D-20261020-02-旋轉面形狀分類移至烘焙期.md"
+    },
+    {
+      "from": "decisions/D-20261117-01-零件碰撞形狀貼近外觀與編輯器物理形狀檢視.md",
+      "to": "decisions/D-20261026-01-鉸接輪組被包覆內件只承載質量.md"
+    },
+    {
+      "from": "decisions/D-20261117-01-零件碰撞形狀貼近外觀與編輯器物理形狀檢視.md",
+      "to": "decisions/D-20261117-02-零件碰撞改為節點層兩層格式.md"
+    },
+    {
+      "from": "decisions/D-20261117-01-零件碰撞形狀貼近外觀與編輯器物理形狀檢視.md",
+      "to": "decisions/D-20261118-01-零件碰撞塊改為作者資料與覆蓋規則.md"
+    },
+    {
+      "from": "decisions/D-20261117-01-零件碰撞形狀貼近外觀與編輯器物理形狀檢視.md",
+      "to": "建模參數/零件與共用介面.md"
+    },
+    {
+      "from": "decisions/D-20261117-01-零件碰撞形狀貼近外觀與編輯器物理形狀檢視.md",
+      "to": "程式架構/editor.md"
+    },
+    {
+      "from": "decisions/D-20261117-01-零件碰撞形狀貼近外觀與編輯器物理形狀檢視.md",
+      "to": "程式架構/physics-engine.md"
+    },
+    {
+      "from": "decisions/D-20261117-01-零件碰撞形狀貼近外觀與編輯器物理形狀檢視.md",
+      "to": "編輯器操作.md"
+    },
+    {
+      "from": "decisions/D-20261117-02-零件碰撞改為節點層兩層格式.md",
+      "to": "decisions/D-20261026-01-鉸接輪組被包覆內件只承載質量.md"
+    },
+    {
+      "from": "decisions/D-20261117-02-零件碰撞改為節點層兩層格式.md",
+      "to": "decisions/D-20261117-01-零件碰撞形狀貼近外觀與編輯器物理形狀檢視.md"
+    },
+    {
+      "from": "decisions/D-20261117-02-零件碰撞改為節點層兩層格式.md",
+      "to": "decisions/D-20261118-01-零件碰撞塊改為作者資料與覆蓋規則.md"
+    },
+    {
+      "from": "decisions/D-20261117-02-零件碰撞改為節點層兩層格式.md",
+      "to": "建模參數/零件與共用介面.md"
+    },
+    {
+      "from": "decisions/D-20261117-02-零件碰撞改為節點層兩層格式.md",
+      "to": "程式架構/editor.md"
+    },
+    {
+      "from": "decisions/D-20261117-02-零件碰撞改為節點層兩層格式.md",
+      "to": "程式架構/interfaces.md"
+    },
+    {
+      "from": "decisions/D-20261117-02-零件碰撞改為節點層兩層格式.md",
+      "to": "程式架構/physics-engine.md"
+    },
+    {
+      "from": "decisions/D-20261117-02-零件碰撞改為節點層兩層格式.md",
+      "to": "算式表.md"
+    },
+    {
+      "from": "decisions/D-20261117-02-零件碰撞改為節點層兩層格式.md",
+      "to": "編輯器操作.md"
+    },
+    {
+      "from": "decisions/D-20261118-01-零件碰撞塊改為作者資料與覆蓋規則.md",
+      "to": "decisions/D-20261117-02-零件碰撞改為節點層兩層格式.md"
+    },
+    {
+      "from": "decisions/D-20261118-01-零件碰撞塊改為作者資料與覆蓋規則.md",
+      "to": "decisions/D-20261118-02-房間的每車碰撞塊上限.md"
+    },
+    {
+      "from": "decisions/D-20261118-01-零件碰撞塊改為作者資料與覆蓋規則.md",
+      "to": "建模參數/零件與共用介面.md"
+    },
+    {
+      "from": "decisions/D-20261118-01-零件碰撞塊改為作者資料與覆蓋規則.md",
+      "to": "流程/配對.md"
+    },
+    {
+      "from": "decisions/D-20261118-01-零件碰撞塊改為作者資料與覆蓋規則.md",
+      "to": "程式參數/protocol.md"
+    },
+    {
+      "from": "decisions/D-20261118-01-零件碰撞塊改為作者資料與覆蓋規則.md",
+      "to": "程式架構/editor.md"
+    },
+    {
+      "from": "decisions/D-20261118-01-零件碰撞塊改為作者資料與覆蓋規則.md",
+      "to": "程式架構/interfaces.md"
+    },
+    {
+      "from": "decisions/D-20261118-01-零件碰撞塊改為作者資料與覆蓋規則.md",
+      "to": "程式架構/physics-engine.md"
+    },
+    {
+      "from": "decisions/D-20261118-01-零件碰撞塊改為作者資料與覆蓋規則.md",
+      "to": "程式架構/room-runtime.md"
+    },
+    {
+      "from": "decisions/D-20261118-01-零件碰撞塊改為作者資料與覆蓋規則.md",
+      "to": "編輯器操作.md"
+    },
+    {
+      "from": "decisions/D-20261118-01-零件碰撞塊改為作者資料與覆蓋規則.md",
+      "to": "車輛組裝.md"
+    },
+    {
+      "from": "decisions/D-20261118-02-房間的每車碰撞塊上限.md",
+      "to": "decisions/D-20260814-23-Ready提交驗證與倒數.md"
+    },
+    {
+      "from": "decisions/D-20261118-02-房間的每車碰撞塊上限.md",
+      "to": "decisions/D-20261118-01-零件碰撞塊改為作者資料與覆蓋規則.md"
+    },
+    {
+      "from": "decisions/D-20261118-02-房間的每車碰撞塊上限.md",
+      "to": "decisions/D-20261119-02-Ready被拒絕時回報原因.md"
+    },
+    {
+      "from": "decisions/D-20261118-02-房間的每車碰撞塊上限.md",
+      "to": "建模參數/零件與共用介面.md"
+    },
+    {
+      "from": "decisions/D-20261118-02-房間的每車碰撞塊上限.md",
+      "to": "流程/配對.md"
+    },
+    {
+      "from": "decisions/D-20261118-02-房間的每車碰撞塊上限.md",
+      "to": "程式參數/protocol.md"
+    },
+    {
+      "from": "decisions/D-20261118-02-房間的每車碰撞塊上限.md",
+      "to": "程式架構/matchmaking.md"
+    },
+    {
+      "from": "decisions/D-20261118-02-房間的每車碰撞塊上限.md",
+      "to": "程式架構/room-runtime.md"
+    },
+    {
+      "from": "decisions/D-20261118-02-房間的每車碰撞塊上限.md",
+      "to": "美術資源/頁面線框.md"
+    },
+    {
+      "from": "decisions/D-20261118-02-房間的每車碰撞塊上限.md",
+      "to": "賽內機制.md"
+    },
+    {
+      "from": "decisions/D-20261118-02-房間的每車碰撞塊上限.md",
+      "to": "車輛組裝.md"
+    },
+    {
+      "from": "decisions/D-20261119-01-動態目標持續接觸不再逼近時不求TOI.md",
+      "to": "decisions/D-20261027-02-動態目標持續接觸回復完整形狀TOI.md"
+    },
+    {
+      "from": "decisions/D-20261119-01-動態目標持續接觸不再逼近時不求TOI.md",
+      "to": "程式參數/network.md"
+    },
+    {
+      "from": "decisions/D-20261119-01-動態目標持續接觸不再逼近時不求TOI.md",
+      "to": "程式參數/protocol.md"
+    },
+    {
+      "from": "decisions/D-20261119-01-動態目標持續接觸不再逼近時不求TOI.md",
+      "to": "程式架構/physics-engine.md"
+    },
+    {
+      "from": "decisions/D-20261119-01-動態目標持續接觸不再逼近時不求TOI.md",
+      "to": "程式架構/testing.md"
+    },
+    {
+      "from": "decisions/D-20261119-02-Ready被拒絕時回報原因.md",
+      "to": "decisions/D-20261118-02-房間的每車碰撞塊上限.md"
+    },
+    {
+      "from": "decisions/D-20261119-02-Ready被拒絕時回報原因.md",
+      "to": "流程/配對.md"
+    },
+    {
+      "from": "decisions/D-20261119-02-Ready被拒絕時回報原因.md",
+      "to": "程式架構/room-runtime.md"
     },
     {
       "from": "decisions/INDEX.md",
@@ -9713,6 +9982,30 @@
     },
     {
       "from": "decisions/INDEX.md",
+      "to": "decisions/D-20261117-01-零件碰撞形狀貼近外觀與編輯器物理形狀檢視.md"
+    },
+    {
+      "from": "decisions/INDEX.md",
+      "to": "decisions/D-20261117-02-零件碰撞改為節點層兩層格式.md"
+    },
+    {
+      "from": "decisions/INDEX.md",
+      "to": "decisions/D-20261118-01-零件碰撞塊改為作者資料與覆蓋規則.md"
+    },
+    {
+      "from": "decisions/INDEX.md",
+      "to": "decisions/D-20261118-02-房間的每車碰撞塊上限.md"
+    },
+    {
+      "from": "decisions/INDEX.md",
+      "to": "decisions/D-20261119-01-動態目標持續接觸不再逼近時不求TOI.md"
+    },
+    {
+      "from": "decisions/INDEX.md",
+      "to": "decisions/D-20261119-02-Ready被拒絕時回報原因.md"
+    },
+    {
+      "from": "decisions/INDEX.md",
       "to": "decisions/README.md"
     },
     {
@@ -10129,6 +10422,14 @@
     },
     {
       "from": "建模參數/零件與共用介面.md",
+      "to": "decisions/D-20261117-02-零件碰撞改為節點層兩層格式.md"
+    },
+    {
+      "from": "建模參數/零件與共用介面.md",
+      "to": "decisions/D-20261118-01-零件碰撞塊改為作者資料與覆蓋規則.md"
+    },
+    {
+      "from": "建模參數/零件與共用介面.md",
       "to": "建模參數.md"
     },
     {
@@ -10158,6 +10459,10 @@
     {
       "from": "建模參數/零件與共用介面.md",
       "to": "算式表.md"
+    },
+    {
+      "from": "建模參數/零件與共用介面.md",
+      "to": "編輯器操作.md"
     },
     {
       "from": "建模參數/零件與共用介面.md",
@@ -11009,6 +11314,10 @@
     },
     {
       "from": "流程/配對.md",
+      "to": "程式架構/room-runtime.md"
+    },
+    {
+      "from": "流程/配對.md",
       "to": "程式架構/signaling-service.md"
     },
     {
@@ -11341,10 +11650,6 @@
     },
     {
       "from": "程式參數/protocol.md",
-      "to": "decisions/D-20261026-01-鉸接輪組被包覆內件只承載質量.md"
-    },
-    {
-      "from": "程式參數/protocol.md",
       "to": "decisions/D-20261026-02-CCD持續接觸改掃核心球.md"
     },
     {
@@ -11370,6 +11675,14 @@
     {
       "from": "程式參數/protocol.md",
       "to": "decisions/D-20261116-05-場地磁源數量上限.md"
+    },
+    {
+      "from": "程式參數/protocol.md",
+      "to": "decisions/D-20261118-01-零件碰撞塊改為作者資料與覆蓋規則.md"
+    },
+    {
+      "from": "程式參數/protocol.md",
+      "to": "decisions/D-20261119-01-動態目標持續接觸不再逼近時不求TOI.md"
     },
     {
       "from": "程式參數/protocol.md",
@@ -11450,6 +11763,10 @@
     {
       "from": "程式參數/protocol.md",
       "to": "程式架構/reputation.md"
+    },
+    {
+      "from": "程式參數/protocol.md",
+      "to": "程式架構/room-runtime.md"
     },
     {
       "from": "程式參數/protocol.md",
@@ -12173,6 +12490,10 @@
     },
     {
       "from": "程式架構/editor.md",
+      "to": "decisions/D-20261118-01-零件碰撞塊改為作者資料與覆蓋規則.md"
+    },
+    {
+      "from": "程式架構/editor.md",
       "to": "其他.md"
     },
     {
@@ -12494,6 +12815,10 @@
     {
       "from": "程式架構/matchmaking.md",
       "to": "decisions/D-20260814-20-多人可驗算起跑格.md"
+    },
+    {
+      "from": "程式架構/matchmaking.md",
+      "to": "decisions/D-20261118-02-房間的每車碰撞塊上限.md"
     },
     {
       "from": "程式架構/matchmaking.md",
@@ -12873,15 +13198,7 @@
     },
     {
       "from": "程式架構/physics-engine.md",
-      "to": "decisions/D-20261021-02-滾輪被包覆內件維持凸hull.md"
-    },
-    {
-      "from": "程式架構/physics-engine.md",
       "to": "decisions/D-20261025-01-持彈碰撞體切換與可選彈體獨立耐久.md"
-    },
-    {
-      "from": "程式架構/physics-engine.md",
-      "to": "decisions/D-20261026-01-鉸接輪組被包覆內件只承載質量.md"
     },
     {
       "from": "程式架構/physics-engine.md",
@@ -12966,6 +13283,18 @@
     {
       "from": "程式架構/physics-engine.md",
       "to": "decisions/D-20261116-08-試算用盡時接受未收斂結果.md"
+    },
+    {
+      "from": "程式架構/physics-engine.md",
+      "to": "decisions/D-20261117-02-零件碰撞改為節點層兩層格式.md"
+    },
+    {
+      "from": "程式架構/physics-engine.md",
+      "to": "decisions/D-20261118-01-零件碰撞塊改為作者資料與覆蓋規則.md"
+    },
+    {
+      "from": "程式架構/physics-engine.md",
+      "to": "decisions/D-20261119-01-動態目標持續接觸不再逼近時不求TOI.md"
     },
     {
       "from": "程式架構/physics-engine.md",
@@ -13214,6 +13543,14 @@
     {
       "from": "程式架構/room-runtime.md",
       "to": "decisions/D-20260806-01-OPAQUE角色邀請驗證.md"
+    },
+    {
+      "from": "程式架構/room-runtime.md",
+      "to": "decisions/D-20261118-01-零件碰撞塊改為作者資料與覆蓋規則.md"
+    },
+    {
+      "from": "程式架構/room-runtime.md",
+      "to": "decisions/D-20261118-02-房間的每車碰撞塊上限.md"
     },
     {
       "from": "程式架構/room-runtime.md",
@@ -13606,6 +13943,14 @@
     {
       "from": "程式架構/testing.md",
       "to": "decisions/D-20261116-07-姿態不變的kinematic物體速度為零.md"
+    },
+    {
+      "from": "程式架構/testing.md",
+      "to": "decisions/D-20261117-02-零件碰撞改為節點層兩層格式.md"
+    },
+    {
+      "from": "程式架構/testing.md",
+      "to": "decisions/D-20261119-01-動態目標持續接觸不再逼近時不求TOI.md"
     },
     {
       "from": "程式架構/testing.md",
@@ -14209,6 +14554,10 @@
     },
     {
       "from": "算式表.md",
+      "to": "decisions/D-20261117-02-零件碰撞改為節點層兩層格式.md"
+    },
+    {
+      "from": "算式表.md",
       "to": "信譽系統.md"
     },
     {
@@ -14406,6 +14755,10 @@
     {
       "from": "編輯器操作.md",
       "to": "decisions/D-20261116-03-step物件兩端停留至少500毫秒.md"
+    },
+    {
+      "from": "編輯器操作.md",
+      "to": "decisions/D-20261118-01-零件碰撞塊改為作者資料與覆蓋規則.md"
     },
     {
       "from": "編輯器操作.md",
@@ -15226,6 +15579,10 @@
     {
       "from": "賽內機制.md",
       "to": "decisions/D-20261113-08-比賽選單與固定功能鍵.md"
+    },
+    {
+      "from": "賽內機制.md",
+      "to": "decisions/D-20261118-02-房間的每車碰撞塊上限.md"
     },
     {
       "from": "賽內機制.md",

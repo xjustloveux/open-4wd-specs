@@ -59,7 +59,7 @@ const KNOWN_CHECKSUMS: Record<string, string> = {
 };
 ```
 
-現行 `canonical-two-car-revision-20` fixture 不是空世界：固定平面場地、兩台九零件車、四筆
+現行 `canonical-two-car-revision-21` fixture 不是空世界：固定平面場地、兩台九零件車、四筆
 boost／stabilize input trace 與 120 frames；seed 奇偶選擇兩車 800W／650W 的固定 power
 variant，因此 seed 會進入物理狀態而非只驗格式。`src/testing/determinism/golden-checksums.ts`
 收藏 `0xCAFEBABE`／120 frames 的 SHA-256 checksum；unit 與 E2E 都直接對同一
@@ -68,12 +68,13 @@ variant，因此 seed 會進入物理狀態而非只驗格式。`src/testing/det
 再核對 Node 與瀏覽器的逐幀原生快照、完整保存狀態及原有應用程式 harness。不得移除斷言、
 放寬容差或增加 retry 來接受差異。Pre-launch 採內部 fixture 修訂，不為未發布格式保留舊版。
 
-目前修訂使用來源 COM／慣量的三個 collider 質量建構分支，以及所選 solver contact 的輪胎
-負載讀回；舊基準對應自動凸包質量與幾何接觸讀回、Rapier npm 0.19.3。現行固定原生核心
-WASM SHA-256 為 `0a805583ee4c63635202dd20138d8d1daece1ca0bbdc2dc5e02a98822975a285`；
+目前修訂的車輛 collider 一律零質量，節點的來源 COM／慣量合成為所屬剛體的附加質量（[D-20261117-02](../decisions/D-20261117-02-零件碰撞改為節點層兩層格式.md)），
+並以所選 solver contact 讀回輪胎負載；舊基準對應自動凸包質量與幾何接觸讀回、Rapier npm 0.19.3。現行固定原生核心
+WASM SHA-256 為 `cae9e826553c95df3b836c813d40e34eab960b9064b8e3351c179165ad2ce9c5`；
 `0xCAFEBABE`／120 frames 的 checksum 為
-`17cbc2e9eafbc7ff75546bbc9b69acd60a0ae81b0fc91602fe2d1426a8924689`（場景編號仍是 revision-20；這個值是三角網格見證側一致性修正後
-重新擷取的，issue 001309，前值 `433b94d4b443f1c5ee77ad3417e19a4b1692614f4908c5e1bb97339cf3a88ac3`；輸送帶改由求解器摩擦帶動與姿態不變的 kinematic 物體速度改為零都不改這個值（[D-20261116-07](../decisions/D-20261116-07-姿態不變的kinematic物體速度為零.md)），
+`93ea97625feda56309962c50000eb7605196436723581306f5a162b70b91512e`（revision-21：零件碰撞改為節點層、剛體質量性質改由節點合成附加質量，各節點質量來源不變但數值路徑不同；場景與輸入不變，issue 001440。revision-20 的最後一個值為
+`17cbc2e9eafbc7ff75546bbc9b69acd60a0ae81b0fc91602fe2d1426a8924689`，是三角網格見證側一致性修正後
+重新擷取的，issue 001309，前值 `433b94d4b443f1c5ee77ad3417e19a4b1692614f4908c5e1bb97339cf3a88ac3`；輸送帶改由求解器摩擦帶動、姿態不變的 kinematic 物體速度改為零，CCD 三角形掃描只走可能接觸範圍內的三角形（issue 001438），CCD 對凸多面體質心的步進內快取（issue 001439），以及動態目標的持續接觸不再逼近時不求 TOI（issue 001442、[D-20261119-01](../decisions/D-20261119-01-動態目標持續接觸不再逼近時不求TOI.md)，revision-21 的值同樣不變）都不改這個值（[D-20261116-07](../decisions/D-20261116-07-姿態不變的kinematic物體速度為零.md)），
 [D-20261115-06](../decisions/D-20261115-06-輸送帶改由求解器摩擦帶動.md)。revision-20：圓柱曲面支撐線段改依投影後法線方位，
 平面場地對角線上的輪胎接觸幾何改變；場景與輸入不變，[D-20261031-07](../decisions/D-20261031-07-圓柱曲面支撐線段依法線方位.md)、
 issue 001164；revision-19 為接觸 normal 求解順序對稱化與動態目標持續接觸回復完整形狀 TOI，[D-20261027-01](../decisions/D-20261027-01-接觸點求解順序對稱化.md)、
@@ -91,14 +92,22 @@ hard CCD 持續接觸規則與接觸 normal 求解順序的守門分兩層。常
 （`BOUNDED_STEP_INITIAL_SPLIT`，[D-20261028-05](../decisions/D-20261028-05-bounded-step接受容差放寬至0.2毫米.md)；整幀起跑時本保證不成立）：方塊打 100／300 rad/s 旋轉的 2 mm 動態薄刃，以及自旋
 300 rad/s 的 1 mm 刀片自 0.05／0.3 m 外打 2 mm 動態護板，30／60／120 m/s × 7 個起點微擾共 84 次；判準為
 幀末真實穿入 ≤ 目標半厚，且嚴格穿過＝0（來源中心在目標局部座標換邊，且前後兩幀來源包圍盒都完全落在
-板面內）。中心換邊但包圍盒超出板面屬繞過板緣，只記錄不判。同組牆＋薄刀片平躺衝牆、斜放薄 hull 貼地
+板面內）。中心換邊但包圍盒超出板面屬繞過板緣，只記錄不判。常駐單元測試
+`src/physics-engine/ccd-non-closing-release.spec.ts` 守動態目標的持續接觸放行
+（issue 001442、[D-20261119-01](../decisions/D-20261119-01-動態目標持續接觸不再逼近時不求TOI.md)）：自轉的輪與輪面上方 0.5 mm 的方塊並排同速前進、
+各受一個互相靠攏的力，政策 2 至少有一步把輪的位移截短（確認場景抓得到截斷），正式政策 0 步，且接觸點距離不低於
+負的預測距離；這個場景只重現一步截斷，多車貼行的持續截斷以八車量測觀察，不在常駐測試內。同組牆＋薄刀片平躺衝牆、斜放薄 hull 貼地
 截斷、非圓輪截斷率與車速、武器與底盤落地及下壓沉入、車對車與彈對車、快照還原後續跑一致、
 接觸 normal 求解的點序對稱（2 點交換與 3–4 點反序衝量逐位元相同、單點 lane 與逐點相同、SIMD lane 互不
 影響、反彈同規則）、2 點與 3–4 點接觸的航向依存偏航、含彈與刀片貼推的動態薄目標 210 次完整擾動集合，
 以及 `parallel` feature 串行與並行同雜湊，屬 kernel 性質，由 vendored source-kit 的 Rust kernel 測試
 （`ccd_persistent_contact_d20261026`、`contact_order_dynamic_d20261027`、`o4_order_symmetric_tests`、
 `ccd_persistent_parallel_d20261026`、`contact_order_parallel_d20261027`）在每個 repair 代重建時執行並記入
-`REPAIR-VERIFICATION.json`：主 repo CI 沒有 Rust toolchain，且這些案例只隨 kernel 改變。
+`REPAIR-VERIFICATION.json`：主 repo CI 沒有 Rust toolchain，且這些案例只隨 kernel 改變。其中 `contact_order_dynamic` 的
+動態薄目標 210 次擾動集合、穿牆守門 105 次、車對車與快照還原四項也以現行的政策 3 執行（issue 001448）；車對車守門在
+現行設定下為推擠 > −0.5 mm、每秒 30 公尺對撞 > −1.5 mm（實測約 −1.14 mm，出現在對撞後翻滾階段，見
+[D-20261119-01](../decisions/D-20261119-01-動態目標持續接觸不再逼近時不求TOI.md)）。`ccd_persistent_contact` 仍只以政策 0 與 1 執行。政策 3 規則本身的 kernel 測試是
+`ccd_non_closing_release`（10 項）與 `sweeps.rs` 內的 `non_closing_release_tests`（5 項）。
 
 共識數學 ESLint 防線涵蓋 `physics-engine`、PhysicsManifest 重建、canonical editor pipeline、
 anti-piracy、mount assembly、match terminal orchestration 與 ledger entry admission，以及這些路徑
