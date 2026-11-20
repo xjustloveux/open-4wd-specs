@@ -3373,6 +3373,22 @@
       "summary": null
     },
     {
+      "id": "decisions/D-20261119-04-編輯器以各節點的碰撞塊上限引導自動拆塊.md",
+      "type": "decision",
+      "domain": [
+        "建模物理"
+      ],
+      "summary": null
+    },
+    {
+      "id": "decisions/D-20261120-01-武器的作者碰撞塊與依剛體分組量測.md",
+      "type": "decision",
+      "domain": [
+        "建模物理"
+      ],
+      "summary": null
+    },
+    {
       "id": "decisions/INDEX.md",
       "type": null,
       "domain": [],
@@ -8286,6 +8302,10 @@
     },
     {
       "from": "decisions/D-20261117-02-零件碰撞改為節點層兩層格式.md",
+      "to": "decisions/D-20261120-01-武器的作者碰撞塊與依剛體分組量測.md"
+    },
+    {
+      "from": "decisions/D-20261117-02-零件碰撞改為節點層兩層格式.md",
       "to": "建模參數/零件與共用介面.md"
     },
     {
@@ -8319,6 +8339,14 @@
     {
       "from": "decisions/D-20261118-01-零件碰撞塊改為作者資料與覆蓋規則.md",
       "to": "decisions/D-20261119-03-覆蓋量測預算改以運算次數記帳與自帶凸包.md"
+    },
+    {
+      "from": "decisions/D-20261118-01-零件碰撞塊改為作者資料與覆蓋規則.md",
+      "to": "decisions/D-20261119-04-編輯器以各節點的碰撞塊上限引導自動拆塊.md"
+    },
+    {
+      "from": "decisions/D-20261118-01-零件碰撞塊改為作者資料與覆蓋規則.md",
+      "to": "decisions/D-20261120-01-武器的作者碰撞塊與依剛體分組量測.md"
     },
     {
       "from": "decisions/D-20261118-01-零件碰撞塊改為作者資料與覆蓋規則.md",
@@ -8450,6 +8478,46 @@
     },
     {
       "from": "decisions/D-20261119-03-覆蓋量測預算改以運算次數記帳與自帶凸包.md",
+      "to": "編輯器操作.md"
+    },
+    {
+      "from": "decisions/D-20261119-04-編輯器以各節點的碰撞塊上限引導自動拆塊.md",
+      "to": "decisions/D-20261118-01-零件碰撞塊改為作者資料與覆蓋規則.md"
+    },
+    {
+      "from": "decisions/D-20261119-04-編輯器以各節點的碰撞塊上限引導自動拆塊.md",
+      "to": "建模參數/零件與共用介面.md"
+    },
+    {
+      "from": "decisions/D-20261119-04-編輯器以各節點的碰撞塊上限引導自動拆塊.md",
+      "to": "程式架構/editor.md"
+    },
+    {
+      "from": "decisions/D-20261119-04-編輯器以各節點的碰撞塊上限引導自動拆塊.md",
+      "to": "編輯器操作.md"
+    },
+    {
+      "from": "decisions/D-20261120-01-武器的作者碰撞塊與依剛體分組量測.md",
+      "to": "decisions/D-20261118-01-零件碰撞塊改為作者資料與覆蓋規則.md"
+    },
+    {
+      "from": "decisions/D-20261120-01-武器的作者碰撞塊與依剛體分組量測.md",
+      "to": "建模參數/零件與共用介面.md"
+    },
+    {
+      "from": "decisions/D-20261120-01-武器的作者碰撞塊與依剛體分組量測.md",
+      "to": "程式參數/protocol.md"
+    },
+    {
+      "from": "decisions/D-20261120-01-武器的作者碰撞塊與依剛體分組量測.md",
+      "to": "程式架構/editor.md"
+    },
+    {
+      "from": "decisions/D-20261120-01-武器的作者碰撞塊與依剛體分組量測.md",
+      "to": "程式架構/physics-engine.md"
+    },
+    {
+      "from": "decisions/D-20261120-01-武器的作者碰撞塊與依剛體分組量測.md",
       "to": "編輯器操作.md"
     },
     {
@@ -10042,6 +10110,14 @@
     },
     {
       "from": "decisions/INDEX.md",
+      "to": "decisions/D-20261119-04-編輯器以各節點的碰撞塊上限引導自動拆塊.md"
+    },
+    {
+      "from": "decisions/INDEX.md",
+      "to": "decisions/D-20261120-01-武器的作者碰撞塊與依剛體分組量測.md"
+    },
+    {
+      "from": "decisions/INDEX.md",
       "to": "decisions/README.md"
     },
     {
@@ -10463,6 +10539,10 @@
     {
       "from": "建模參數/零件與共用介面.md",
       "to": "decisions/D-20261118-01-零件碰撞塊改為作者資料與覆蓋規則.md"
+    },
+    {
+      "from": "建模參數/零件與共用介面.md",
+      "to": "decisions/D-20261120-01-武器的作者碰撞塊與依剛體分組量測.md"
     },
     {
       "from": "建模參數/零件與共用介面.md",

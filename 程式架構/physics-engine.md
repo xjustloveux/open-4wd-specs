@@ -237,12 +237,14 @@ chassis 與所有非 hinge 零件共用一個 primary dynamic body；每顆 tire
 **碰撞塊的來源與 admission 重建**（[D-20261118-01](../decisions/D-20261118-01-零件碰撞塊改為作者資料與覆蓋規則.md)）：
 非武器零件的碰撞塊是作者資料，由編輯器產生後烘入內嵌 manifest 的 `proxies[].colliders`，admission 不從網格節點
 推導碰撞塊。`derivePhysicsManifest(glb, { colliders })` 的作者碰撞塊取自選項，省略時取該 GLB 內嵌 manifest 的碰撞塊；
-兩者都沒有的非武器零件無法推導（`physics manifest part colliders missing`）。組成節點層時：
+兩者都沒有的非武器零件無法推導（`physics manifest part colliders missing`）；被動武器兩者都沒有時每個節點用一塊
+預設凸包。組成節點層時：
 
 - 判圓的 tire／roller 節點：作者清單為空＝只承載質量；非空＝一律使用由網格重算的 cylinder，不採用作者給的形狀。
 - 其餘節點：直接使用作者給的凸包塊；沒有列出的節點只承載質量。非判圓節點的碰撞塊帶 cylinder `shape` 即拒收。
 - 作者清單指名不存在的節點即拒收。
-- 武器：每個網格節點由推導取得一塊凸包，不讀作者碰撞塊。
+- 武器：被動武器讀節點層的作者碰撞塊（沒有就每個節點一塊預設凸包）；主動武器的碰撞塊在武器物理資料裡，節點層由它
+  帶出（帶作者碰撞塊的節點用同一批塊，其餘節點是一塊預設凸包），不讀另外傳入的作者碰撞塊。
 
 `verifyEmbeddedPhysicsManifest` 以內嵌 manifest 的碰撞塊加上由幾何重算的節點層（質量、質心、慣量、材質、熱、磨耗、
 接觸面積）與判圓 cylinder 重組清單，重組結果的 digest 必須等於內嵌 digest；內嵌的節點層或 cylinder 與重算值不同
@@ -250,7 +252,7 @@ chassis 與所有非 hinge 零件共用一個 primary dynamic body；每顆 tire
 節點是否只承載質量由產生碰撞塊的一方決定，admission 不另做包覆判定；碰撞塊與外觀是否
 相符由覆蓋規則量測（[零件與共用介面.md §4.2.1](../建模參數/零件與共用介面.md#421-共用-part-collider-proxies)）。
 這項量測只做記錄，與准入結果分開：admission worker 先送出驗證結果，呼叫端的准入即以它完成；之後 worker 才量測
-非武器零件的覆蓋，另送一則 `collider-coverage` 訊息。呼叫端在准入結果之後最多再保留 worker 20 秒，屆時終止，記錄
+零件的覆蓋（武器依剛體分組量測），另送一則 `collider-coverage` 訊息。呼叫端在准入結果之後最多再保留 worker 20 秒，屆時終止，記錄
 沒到就不寫；沒有 Worker 的環境先回傳准入結果，再以計時器排程量測。記錄帶覆蓋是否通過、兩個方向的最大距離、塊數與
 該類上限、量測預算已記帳的次數與是否超出預算；未通過、超出預算或塊數超過該類零件上限時寫一則主控台警告。覆蓋的
 結果、量測拋錯、超出預算或沒有做完，都不會改變或延後准入結果；30 秒的 worker 逾時只涵蓋重建與 digest 比對。
@@ -266,16 +268,20 @@ chassis 與所有非 hinge 零件共用一個 primary dynamic body；每顆 tire
 
 **節點層與質量**（[D-20261117-02](../decisions/D-20261117-02-零件碰撞改為節點層兩層格式.md)）：質量只在節點層。
 runtime 為每個節點的每塊碰撞建一顆 collider，這些零件節點 collider 一律以 `setDensity(0)` 建立、不帶質量
-（武器物理管線的 collider 仍各自帶質量，見 [§2.4](#24-active-weapon-拓樸)）；所屬剛體（主車體或
+（武器物理管線的節點質量由 collider 承載：不帶作者碰撞塊的節點由它唯一的那一塊承載，帶作者碰撞塊的節點由第一塊承載、
+其餘各塊不帶質量，見 [§2.4](#24-active-weapon-拓樸)）；所屬剛體（主車體或
 hinge body）上所有仍完好節點的質量性質，以平行軸定理合成後設為該剛體的 additional mass properties。節點的
 `centroidM` 與 `inertiaFrame` 屬 part（asset-local）frame，經 part pose 換到剛體 frame 後合成，與碰撞塊的擺位無關。
 零件損毀時，該零件所有節點一併退出附加質量；驗證外來快照時，附加質量與合成質量的期望值依快照宣告的損毀集合
 推導，零件節點 collider 的質量必須為零。同一 part 節點數須為 1 到 `PART_COLLIDER_PROXY_COUNT_MAX`，
-碰撞塊合計須為 1 到 `PART_COLLIDER_PROXY_COUNT_MAX` 塊，武器每個節點都要有碰撞。collider canonical key 為
-`vehicle:<車>:<零件>:<節點名>#<塊序>`，材質、六向接觸面積與 `wearCapacityJ` 取所屬節點，不得以整車單一密度平均分配。
+碰撞塊合計須為 1 到 `PART_COLLIDER_PROXY_COUNT_MAX` 塊，武器每個節點都要有碰撞。節點層零件的 collider canonical key 為
+`vehicle:<車>:<零件>:<節點名>#<塊序>`（武器物理管線裡帶作者碰撞塊的節點相同，即使只有一塊也帶 `#0`；不帶作者碰撞塊的節點是
+`vehicle:<車>:<零件>:<節點名>`，不帶塊序），材質、六向接觸面積與 `wearCapacityJ` 取所屬節點，不得以整車單一密度平均分配。
 
 磁性：鐵磁材質的節點是磁源的吸引目標，每個節點一個目標、位置取節點質心（剛體局部座標）再依剛體位姿換到世界
-座標，不隨碰撞塊數改變；零件損毀時一併退出。磁力武器走武器物理管線，磁場原點取主網格節點 collider 的幾何中心。
+座標，不隨碰撞塊數改變；零件損毀時一併退出。磁力武器走武器物理管線：主網格節點不帶作者碰撞塊時，磁場原點取那顆 collider 的幾何中心；帶作者碰撞塊時取節點質心。
+武器物理管線裡的鐵磁節點同理：不帶作者碰撞塊時每顆 collider 一個目標（幾何中心），帶作者碰撞塊時每個節點一個目標
+（節點質心）。經編輯器定稿的主動武器，固定件與不是圓的剛體轉子一律帶作者碰撞塊（即使只有一塊）。
 
 hinge anchor 與 axis 只由完整 Mount frame 決定：anchor 是 chassis-side Mount position，axis 是
 chassis-side Mount local `+X`，視覺與 collider attachment 則為
