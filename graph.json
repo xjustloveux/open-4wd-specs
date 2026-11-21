@@ -3389,6 +3389,46 @@
       "summary": null
     },
     {
+      "id": "decisions/D-20261120-02-武器物理資料由收件端重算比對.md",
+      "type": "decision",
+      "domain": [
+        "建模物理"
+      ],
+      "summary": null
+    },
+    {
+      "id": "decisions/D-20261120-03-保角支撐方向改取角點兩邊法線的平分方向.md",
+      "type": "decision",
+      "domain": [
+        "建模物理"
+      ],
+      "summary": null
+    },
+    {
+      "id": "decisions/D-20261120-04-保角凸包點以補點取代軸向傾斜支撐.md",
+      "type": "decision",
+      "domain": [
+        "建模物理"
+      ],
+      "summary": null
+    },
+    {
+      "id": "decisions/D-20261120-05-凸包改以整數微米精確判定並合併共面.md",
+      "type": "decision",
+      "domain": [
+        "建模物理"
+      ],
+      "summary": null
+    },
+    {
+      "id": "decisions/D-20261121-01-覆蓋量測的外側判定改以整數精確計算.md",
+      "type": "decision",
+      "domain": [
+        "建模物理"
+      ],
+      "summary": null
+    },
+    {
       "id": "decisions/INDEX.md",
       "type": null,
       "domain": [],
@@ -6865,6 +6905,14 @@
       "to": "decisions/D-20261117-01-零件碰撞形狀貼近外觀與編輯器物理形狀檢視.md"
     },
     {
+      "from": "decisions/D-20261020-02-旋轉面形狀分類移至烘焙期.md",
+      "to": "decisions/D-20261120-03-保角支撐方向改取角點兩邊法線的平分方向.md"
+    },
+    {
+      "from": "decisions/D-20261020-02-旋轉面形狀分類移至烘焙期.md",
+      "to": "decisions/D-20261120-04-保角凸包點以補點取代軸向傾斜支撐.md"
+    },
+    {
       "from": "decisions/D-20261021-01-場地碰撞體分段與邊界法線機制.md",
       "to": "decisions/D-20260524-03-DeterministicWorld與Rapier鎖版.md"
     },
@@ -8466,6 +8514,10 @@
     },
     {
       "from": "decisions/D-20261119-03-覆蓋量測預算改以運算次數記帳與自帶凸包.md",
+      "to": "decisions/D-20261120-05-凸包改以整數微米精確判定並合併共面.md"
+    },
+    {
+      "from": "decisions/D-20261119-03-覆蓋量測預算改以運算次數記帳與自帶凸包.md",
       "to": "建模參數/零件與共用介面.md"
     },
     {
@@ -8502,6 +8554,10 @@
     },
     {
       "from": "decisions/D-20261120-01-武器的作者碰撞塊與依剛體分組量測.md",
+      "to": "decisions/D-20261120-02-武器物理資料由收件端重算比對.md"
+    },
+    {
+      "from": "decisions/D-20261120-01-武器的作者碰撞塊與依剛體分組量測.md",
       "to": "建模參數/零件與共用介面.md"
     },
     {
@@ -8519,6 +8575,74 @@
     {
       "from": "decisions/D-20261120-01-武器的作者碰撞塊與依剛體分組量測.md",
       "to": "編輯器操作.md"
+    },
+    {
+      "from": "decisions/D-20261120-02-武器物理資料由收件端重算比對.md",
+      "to": "decisions/D-20261120-01-武器的作者碰撞塊與依剛體分組量測.md"
+    },
+    {
+      "from": "decisions/D-20261120-02-武器物理資料由收件端重算比對.md",
+      "to": "建模參數/零件與共用介面.md"
+    },
+    {
+      "from": "decisions/D-20261120-02-武器物理資料由收件端重算比對.md",
+      "to": "程式架構/physics-engine.md"
+    },
+    {
+      "from": "decisions/D-20261120-03-保角支撐方向改取角點兩邊法線的平分方向.md",
+      "to": "decisions/D-20261020-02-旋轉面形狀分類移至烘焙期.md"
+    },
+    {
+      "from": "decisions/D-20261120-03-保角支撐方向改取角點兩邊法線的平分方向.md",
+      "to": "decisions/D-20261120-04-保角凸包點以補點取代軸向傾斜支撐.md"
+    },
+    {
+      "from": "decisions/D-20261120-03-保角支撐方向改取角點兩邊法線的平分方向.md",
+      "to": "程式架構/physics-engine.md"
+    },
+    {
+      "from": "decisions/D-20261120-04-保角凸包點以補點取代軸向傾斜支撐.md",
+      "to": "decisions/D-20261020-02-旋轉面形狀分類移至烘焙期.md"
+    },
+    {
+      "from": "decisions/D-20261120-04-保角凸包點以補點取代軸向傾斜支撐.md",
+      "to": "decisions/D-20261120-03-保角支撐方向改取角點兩邊法線的平分方向.md"
+    },
+    {
+      "from": "decisions/D-20261120-04-保角凸包點以補點取代軸向傾斜支撐.md",
+      "to": "decisions/D-20261120-05-凸包改以整數微米精確判定並合併共面.md"
+    },
+    {
+      "from": "decisions/D-20261120-04-保角凸包點以補點取代軸向傾斜支撐.md",
+      "to": "程式架構/physics-engine.md"
+    },
+    {
+      "from": "decisions/D-20261120-05-凸包改以整數微米精確判定並合併共面.md",
+      "to": "decisions/D-20261119-03-覆蓋量測預算改以運算次數記帳與自帶凸包.md"
+    },
+    {
+      "from": "decisions/D-20261120-05-凸包改以整數微米精確判定並合併共面.md",
+      "to": "decisions/D-20261120-04-保角凸包點以補點取代軸向傾斜支撐.md"
+    },
+    {
+      "from": "decisions/D-20261120-05-凸包改以整數微米精確判定並合併共面.md",
+      "to": "decisions/D-20261121-01-覆蓋量測的外側判定改以整數精確計算.md"
+    },
+    {
+      "from": "decisions/D-20261120-05-凸包改以整數微米精確判定並合併共面.md",
+      "to": "建模參數/零件與共用介面.md"
+    },
+    {
+      "from": "decisions/D-20261120-05-凸包改以整數微米精確判定並合併共面.md",
+      "to": "程式架構/physics-engine.md"
+    },
+    {
+      "from": "decisions/D-20261121-01-覆蓋量測的外側判定改以整數精確計算.md",
+      "to": "decisions/D-20261120-05-凸包改以整數微米精確判定並合併共面.md"
+    },
+    {
+      "from": "decisions/D-20261121-01-覆蓋量測的外側判定改以整數精確計算.md",
+      "to": "建模參數/零件與共用介面.md"
     },
     {
       "from": "decisions/INDEX.md",
@@ -10118,6 +10242,26 @@
     },
     {
       "from": "decisions/INDEX.md",
+      "to": "decisions/D-20261120-02-武器物理資料由收件端重算比對.md"
+    },
+    {
+      "from": "decisions/INDEX.md",
+      "to": "decisions/D-20261120-03-保角支撐方向改取角點兩邊法線的平分方向.md"
+    },
+    {
+      "from": "decisions/INDEX.md",
+      "to": "decisions/D-20261120-04-保角凸包點以補點取代軸向傾斜支撐.md"
+    },
+    {
+      "from": "decisions/INDEX.md",
+      "to": "decisions/D-20261120-05-凸包改以整數微米精確判定並合併共面.md"
+    },
+    {
+      "from": "decisions/INDEX.md",
+      "to": "decisions/D-20261121-01-覆蓋量測的外側判定改以整數精確計算.md"
+    },
+    {
+      "from": "decisions/INDEX.md",
       "to": "decisions/README.md"
     },
     {
@@ -10543,6 +10687,10 @@
     {
       "from": "建模參數/零件與共用介面.md",
       "to": "decisions/D-20261120-01-武器的作者碰撞塊與依剛體分組量測.md"
+    },
+    {
+      "from": "建模參數/零件與共用介面.md",
+      "to": "decisions/D-20261120-05-凸包改以整數微米精確判定並合併共面.md"
     },
     {
       "from": "建模參數/零件與共用介面.md",
@@ -13411,6 +13559,14 @@
     {
       "from": "程式架構/physics-engine.md",
       "to": "decisions/D-20261119-01-動態目標持續接觸不再逼近時不求TOI.md"
+    },
+    {
+      "from": "程式架構/physics-engine.md",
+      "to": "decisions/D-20261120-03-保角支撐方向改取角點兩邊法線的平分方向.md"
+    },
+    {
+      "from": "程式架構/physics-engine.md",
+      "to": "decisions/D-20261120-04-保角凸包點以補點取代軸向傾斜支撐.md"
     },
     {
       "from": "程式架構/physics-engine.md",
