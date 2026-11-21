@@ -400,7 +400,7 @@ magnet、destructible-heavy、narrow、wide、short、long；仍只受共通字�
 
 ### 10.1.1 PhysicsManifest admission 與 runtime authority
 
-`UgcUploadEvent`／derived record 只保存 CID、`physicsManifestVersion` 與 `physicsManifestDigest` reference，不把完整 manifest 複製進 ledger。首次 CID 收件必忽略 embedded copy，在有界 Worker 內從解碼後幾何、材質、合法 mount／route empty 與作者宣告獨立重建並重跑正式 validator；只有重建 digest 同時符合 embedded 與 event reference 才接納。成功後可保存本機 `(CID,version,digest)` receipt，receipt 只作效能快取、不進共識。
+`UgcUploadEvent`／derived record 只保存 CID、`physicsManifestVersion` 與 `physicsManifestDigest` reference，不把完整 manifest 複製進 ledger。首次 CID 收件必忽略 embedded copy，在有界 Worker 內從解碼後幾何、材質、合法 mount／route empty 與作者宣告獨立重建並重跑正式 validator；只有重建 digest 同時符合 embedded 與 event reference 才接納。成功後可保存本機 `(CID,version,digest)` receipt（鍵另帶現行准入規則的識別），receipt 只作效能快取、不進共識。
 
 正式組車與場地載入只接受 `AdmittedAsset { bytes, manifest }`。race runtime 不解析 root/node extras、不跑 Wave A/B，也沒有缺欄 fallback。`meshFingerprint` 專責反複製，`PhysicsFingerprint` 專責 fork 差異，`physicsManifestDigest` 專責正式賽物理完整性；三者不得互相取代。
 
