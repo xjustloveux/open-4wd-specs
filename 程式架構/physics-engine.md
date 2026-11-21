@@ -217,7 +217,8 @@ config 與 restore 皆驗證，差異原子拒絕。
 mount、動力、電池、技能、武器、route、磁源、天氣與重力只可由 typed `PhysicsManifest`
 取得或由其中欄位作決定性推導；race runtime 禁止解析 GLB root/node extras 或重跑 Wave A/B。
 正式 UGC 還必須由 asset boundary 核對 ledger record 與 embedded manifest 的 version／digest，並命中
-同一 `(CID, version, digest)` 本機 admission receipt；缺 receipt、讀取失敗或參照不一致都拒絕。
+同一 `(CID, version, digest)` 與現行准入規則的本機 admission receipt；缺 receipt、讀取失敗或參照不一致都拒絕。
+receipt 的鍵帶准入規則的識別，准入檢查的內容改變後先前的 receipt 不再命中。
 GLB bytes 在此只提供 collider／ 視覺幾何。完整信任模型見
 [D-20260811-02](../decisions/D-20260811-02-Canonical-PhysicsManifest與一次性Admission.md)。
 
@@ -257,11 +258,12 @@ chassis 與所有非 hinge 零件共用一個 primary dynamic body；每顆 tire
 即拒收。沒有碰撞塊的節點保留材質、質量、centroid、質量性質、熱資料與 `wearCapacityJ`。
 節點是否只承載質量由產生碰撞塊的一方決定，admission 不另做包覆判定；碰撞塊與外觀是否
 相符由覆蓋規則量測（[零件與共用介面.md §4.2.1](../建模參數/零件與共用介面.md#421-共用-part-collider-proxies)）。
-這項量測只做記錄，與准入結果分開：admission worker 先送出驗證結果，呼叫端的准入即以它完成；之後 worker 才量測
-零件的覆蓋（武器依剛體分組量測），另送一則 `collider-coverage` 訊息。呼叫端在准入結果之後最多再保留 worker 20 秒，屆時終止，記錄
-沒到就不寫；沒有 Worker 的環境先回傳准入結果，再以計時器排程量測。記錄帶覆蓋是否通過、兩個方向的最大距離、塊數與
-該類上限、量測預算已記帳的次數與是否超出預算；未通過、超出預算或塊數超過該類零件上限時寫一則主控台警告。覆蓋的
-結果、量測拋錯、超出預算或沒有做完，都不會改變或延後准入結果；30 秒的 worker 逾時只涵蓋重建與 digest 比對。
+這項量測是准入的一部分（[D-20261121-02](../decisions/D-20261121-02-零件碰撞覆蓋與塊數上限改為准入條件.md)）：admission worker 在重建與 digest 比對通過後，對零件依序
+檢查外框（每軸 `PART_AABB_MIN_M` 到 `PART_AABB_MAX_M`）、塊數不超過該類零件上限、覆蓋量測（武器依剛體分組量測）；外框
+超出、塊數超過上限、任一方向超過門檻、量測超出預算或量不出來，都與重建比對失敗一樣回覆錯誤，呼叫端不准入。准入與否
+只由這些結果決定，量測以運算次數為上限，與執行時間無關。呼叫端等待 worker 的時限是 300 秒，只用來結束卡住的
+worker：逾時與 worker 本身失敗是本機錯誤（`PhysicsManifestAdmissionUnavailableError`），不寫 receipt、不記成拒收，過了重試窗後
+下次被問到時重新准入。沒有 Worker 的環境在同一個呼叫裡做完同樣的檢查。
 
 每塊碰撞另由清單驗證（`validColliderPiece`）做結構檢查，嵌入與 admission 時都執行、不合即拒收：4 到 98 個有限的點；
 第一個點與另外某三個點張成的平行六面體，行列式絕對值大於 1e-12 m³（`hasPositiveHullVolume`；全部相同或共面的點

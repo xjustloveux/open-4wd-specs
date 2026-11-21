@@ -3429,6 +3429,14 @@
       "summary": null
     },
     {
+      "id": "decisions/D-20261121-02-零件碰撞覆蓋與塊數上限改為准入條件.md",
+      "type": "decision",
+      "domain": [
+        "建模物理"
+      ],
+      "summary": null
+    },
+    {
       "id": "decisions/INDEX.md",
       "type": null,
       "domain": [],
@@ -8398,6 +8406,10 @@
     },
     {
       "from": "decisions/D-20261118-01-零件碰撞塊改為作者資料與覆蓋規則.md",
+      "to": "decisions/D-20261121-02-零件碰撞覆蓋與塊數上限改為准入條件.md"
+    },
+    {
+      "from": "decisions/D-20261118-01-零件碰撞塊改為作者資料與覆蓋規則.md",
       "to": "建模參數/零件與共用介面.md"
     },
     {
@@ -8558,6 +8570,10 @@
     },
     {
       "from": "decisions/D-20261120-01-武器的作者碰撞塊與依剛體分組量測.md",
+      "to": "decisions/D-20261121-02-零件碰撞覆蓋與塊數上限改為准入條件.md"
+    },
+    {
+      "from": "decisions/D-20261120-01-武器的作者碰撞塊與依剛體分組量測.md",
       "to": "建模參數/零件與共用介面.md"
     },
     {
@@ -8643,6 +8659,42 @@
     {
       "from": "decisions/D-20261121-01-覆蓋量測的外側判定改以整數精確計算.md",
       "to": "建模參數/零件與共用介面.md"
+    },
+    {
+      "from": "decisions/D-20261121-02-零件碰撞覆蓋與塊數上限改為准入條件.md",
+      "to": "decisions/D-20261118-01-零件碰撞塊改為作者資料與覆蓋規則.md"
+    },
+    {
+      "from": "decisions/D-20261121-02-零件碰撞覆蓋與塊數上限改為准入條件.md",
+      "to": "decisions/D-20261119-03-覆蓋量測預算改以運算次數記帳與自帶凸包.md"
+    },
+    {
+      "from": "decisions/D-20261121-02-零件碰撞覆蓋與塊數上限改為准入條件.md",
+      "to": "decisions/D-20261120-01-武器的作者碰撞塊與依剛體分組量測.md"
+    },
+    {
+      "from": "decisions/D-20261121-02-零件碰撞覆蓋與塊數上限改為准入條件.md",
+      "to": "專案生命週期.md"
+    },
+    {
+      "from": "decisions/D-20261121-02-零件碰撞覆蓋與塊數上限改為准入條件.md",
+      "to": "建模參數/零件與共用介面.md"
+    },
+    {
+      "from": "decisions/D-20261121-02-零件碰撞覆蓋與塊數上限改為准入條件.md",
+      "to": "程式參數/protocol.md"
+    },
+    {
+      "from": "decisions/D-20261121-02-零件碰撞覆蓋與塊數上限改為准入條件.md",
+      "to": "程式架構/editor.md"
+    },
+    {
+      "from": "decisions/D-20261121-02-零件碰撞覆蓋與塊數上限改為准入條件.md",
+      "to": "程式架構/physics-engine.md"
+    },
+    {
+      "from": "decisions/D-20261121-02-零件碰撞覆蓋與塊數上限改為准入條件.md",
+      "to": "編輯器操作.md"
     },
     {
       "from": "decisions/INDEX.md",
@@ -10262,6 +10314,10 @@
     },
     {
       "from": "decisions/INDEX.md",
+      "to": "decisions/D-20261121-02-零件碰撞覆蓋與塊數上限改為准入條件.md"
+    },
+    {
+      "from": "decisions/INDEX.md",
       "to": "decisions/README.md"
     },
     {
@@ -10691,6 +10747,10 @@
     {
       "from": "建模參數/零件與共用介面.md",
       "to": "decisions/D-20261120-05-凸包改以整數微米精確判定並合併共面.md"
+    },
+    {
+      "from": "建模參數/零件與共用介面.md",
+      "to": "decisions/D-20261121-02-零件碰撞覆蓋與塊數上限改為准入條件.md"
     },
     {
       "from": "建模參數/零件與共用介面.md",
@@ -11950,6 +12010,10 @@
     },
     {
       "from": "程式參數/protocol.md",
+      "to": "decisions/D-20261121-02-零件碰撞覆蓋與塊數上限改為准入條件.md"
+    },
+    {
+      "from": "程式參數/protocol.md",
       "to": "信譽系統.md"
     },
     {
@@ -12755,6 +12819,10 @@
     {
       "from": "程式架構/editor.md",
       "to": "decisions/D-20261118-01-零件碰撞塊改為作者資料與覆蓋規則.md"
+    },
+    {
+      "from": "程式架構/editor.md",
+      "to": "decisions/D-20261121-02-零件碰撞覆蓋與塊數上限改為准入條件.md"
     },
     {
       "from": "程式架構/editor.md",
@@ -13567,6 +13635,10 @@
     {
       "from": "程式架構/physics-engine.md",
       "to": "decisions/D-20261120-04-保角凸包點以補點取代軸向傾斜支撐.md"
+    },
+    {
+      "from": "程式架構/physics-engine.md",
+      "to": "decisions/D-20261121-02-零件碰撞覆蓋與塊數上限改為准入條件.md"
     },
     {
       "from": "程式架構/physics-engine.md",
