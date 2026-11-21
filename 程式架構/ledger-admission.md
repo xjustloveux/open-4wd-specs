@@ -142,7 +142,7 @@ workDigest = SHA-256("open4wd-ledger-admission-work-v1" || baseDigest || workNon
 
 **〔LEDGER-R-026〕** Admission v1 的 hash domain、shape 與難度是 protocol 常數，不是 `economy_config` 或動態 difficulty epoch。Public freeze 後若要變更，必須推出新 admission scheme 與新 access-controller manifest，公開 vectors，並由治理簽章指定 checkpoint 遷移；舊 v1 歷史仍永久可驗，未知 scheme fail-closed。
 
-**〔LEDGER-R-097〕** `ugc-upload` 的內容 admission 與 entry PoW admission 是不同層。事件 metadata 必須精確帶 `physicsManifestVersion` 與 64 位小寫 hex `physicsManifestDigest`；首次 CID 內容可得時，每個 peer 都在有界 Worker 內忽略 embedded manifest、從解碼後幾何與作者宣告獨立重建並重跑正式規則，重建 digest 必須同時等於 embedded 與 event reference。內容暫缺為 defer；schema、規則、型別、PhysicsFingerprint 或 digest 不符為 reject。成功後的 `(CID,version,digest)` receipt 只存在本機 IndexedDB，不寫進 event、DerivedState 或 checkpoint，也不得接受遠端自報 verified flag。完整決策見 [D-20260811-02](../decisions/D-20260811-02-Canonical-PhysicsManifest與一次性Admission.md)。
+**〔LEDGER-R-097〕** `ugc-upload` 的內容 admission 與 entry PoW admission 是不同層。事件 metadata 必須精確帶 `physicsManifestVersion` 與 64 位小寫 hex `physicsManifestDigest`；首次 CID 內容可得時，每個 peer 都在有界 Worker 內忽略 embedded manifest、從解碼後幾何與作者宣告獨立重建並重跑正式規則，重建 digest 必須同時等於 embedded 與 event reference。內容暫缺為 defer；schema、規則、型別、PhysicsFingerprint 或 digest 不符為 reject。成功後的 `(CID,version,digest)` receipt（鍵另帶現行准入規則的識別，規則改變後舊 receipt 不再命中）只存在本機 IndexedDB，不寫進 event、DerivedState 或 checkpoint，也不得接受遠端自報 verified flag。完整決策見 [D-20260811-02](../decisions/D-20260811-02-Canonical-PhysicsManifest與一次性Admission.md)。
 
 理由：CBOR canonical 編碼（RFC 8949 §4.2.1，map 鍵長度+字典序）→ deterministic；IPFS / OrbitDB 同棧；CBOR Tag 2/3 原生 bigint（economy minor units 不丟精度）；JS/Rust/Python 對齊實作。
 

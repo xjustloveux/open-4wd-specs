@@ -217,7 +217,8 @@ config 與 restore 皆驗證，差異原子拒絕。
 mount、動力、電池、技能、武器、route、磁源、天氣與重力只可由 typed `PhysicsManifest`
 取得或由其中欄位作決定性推導；race runtime 禁止解析 GLB root/node extras 或重跑 Wave A/B。
 正式 UGC 還必須由 asset boundary 核對 ledger record 與 embedded manifest 的 version／digest，並命中
-同一 `(CID, version, digest)` 本機 admission receipt；缺 receipt、讀取失敗或參照不一致都拒絕。
+同一 `(CID, version, digest)` 與現行准入規則的本機 admission receipt；缺 receipt、讀取失敗或參照不一致都拒絕。
+receipt 的鍵帶准入規則的識別，准入檢查的內容改變後先前的 receipt 不再命中。
 GLB bytes 在此只提供 collider／ 視覺幾何。完整信任模型見
 [D-20260811-02](../decisions/D-20260811-02-Canonical-PhysicsManifest與一次性Admission.md)。
 
@@ -229,51 +230,66 @@ chassis 與所有非 hinge 零件共用一個 primary dynamic body；每顆 tire
 標記建 `ColliderDesc.cylinder`（pose＝shape 中心經組裝變換 ＋hinge `cylinderRotationLocal`）；
 凸 hull 的離散圓周會把正圓輪變成多邊形、支撐半徑漣波遠超接觸容差並造成系統性偏航
 （[D-20261020-01](../decisions/D-20261020-01-輪類滾動面改掛保守cylinder.md)）。非圓滾動 proxy
-（方輪、齒輪等作者意圖）以保角支撐量化：hull 圓周站落在徑向剖面凸包角點（≤48、等角距裁減）
-上，忠實保留 authored 角形；非滾動 proxy（hub 等）維持固定 98 向 convex hull
+（方輪、齒輪等作者意圖）取保角凸包點：hull 圓周站落在徑向剖面凸包角點（凸出相鄰角點連線不超過 2 µm 的先移除；≤48、超出時依角點順序等間隔抽樣）
+上，忠實保留 authored 角形；角點由剖面多邊形決定，不看軸在剖面的哪裡
+（[D-20261120-03](../decisions/D-20261120-03-保角支撐方向改取角點兩邊法線的平分方向.md)）。每個角點取一個頂點當種子（投影
+落在該角點上的頂點裡軸向最大或最小的那個），再反覆補上到目前凸包各面所在平面距離最遠的頂點，到沒有頂點超過
+2 µm 或滿 98 點為止（[D-20261120-04](../decisions/D-20261120-04-保角凸包點以補點取代軸向傾斜支撐.md)）；非滾動 proxy（hub 等）維持固定 98 向 convex hull
 （[D-20261020-02](../decisions/D-20261020-02-旋轉面形狀分類移至烘焙期.md)）。以上是每個節點的**預設形狀**；
 節點在 manifest 實際帶哪些碰撞塊，依下段的作者資料決定。輪組不壓成單一 collider。
 
 **碰撞塊的來源與 admission 重建**（[D-20261118-01](../decisions/D-20261118-01-零件碰撞塊改為作者資料與覆蓋規則.md)）：
 非武器零件的碰撞塊是作者資料，由編輯器產生後烘入內嵌 manifest 的 `proxies[].colliders`，admission 不從網格節點
 推導碰撞塊。`derivePhysicsManifest(glb, { colliders })` 的作者碰撞塊取自選項，省略時取該 GLB 內嵌 manifest 的碰撞塊；
-兩者都沒有的非武器零件無法推導（`physics manifest part colliders missing`）。組成節點層時：
+兩者都沒有的非武器零件無法推導（`physics manifest part colliders missing`）；被動武器兩者都沒有時每個節點用一塊
+預設凸包。組成節點層時：
 
 - 判圓的 tire／roller 節點：作者清單為空＝只承載質量；非空＝一律使用由網格重算的 cylinder，不採用作者給的形狀。
 - 其餘節點：直接使用作者給的凸包塊；沒有列出的節點只承載質量。非判圓節點的碰撞塊帶 cylinder `shape` 即拒收。
 - 作者清單指名不存在的節點即拒收。
-- 武器：每個網格節點由推導取得一塊凸包，不讀作者碰撞塊。
+- 武器：被動武器讀節點層的作者碰撞塊（沒有就每個節點一塊預設凸包）；主動武器的碰撞塊在武器物理資料裡，節點層由它
+  帶出（帶作者碰撞塊的節點用同一批塊，其餘節點是一塊預設凸包），不讀另外傳入的作者碰撞塊。
+  武器物理資料去掉作者碰撞塊後，必須等於以零件檔的幾何與檔內的宣告（機制、主體節點、各節點材質、動作、離膛距離）重算的結果，
+  流體預載彈的體積必須等於該節點的幾何體積，否則拒收
+  （`physics manifest weapon physics does not match geometry`）。
 
 `verifyEmbeddedPhysicsManifest` 以內嵌 manifest 的碰撞塊加上由幾何重算的節點層（質量、質心、慣量、材質、熱、磨耗、
 接觸面積）與判圓 cylinder 重組清單，重組結果的 digest 必須等於內嵌 digest；內嵌的節點層或 cylinder 與重算值不同
 即拒收。沒有碰撞塊的節點保留材質、質量、centroid、質量性質、熱資料與 `wearCapacityJ`。
 節點是否只承載質量由產生碰撞塊的一方決定，admission 不另做包覆判定；碰撞塊與外觀是否
 相符由覆蓋規則量測（[零件與共用介面.md §4.2.1](../建模參數/零件與共用介面.md#421-共用-part-collider-proxies)）。
-這項量測只做記錄，與准入結果分開：admission worker 先送出驗證結果，呼叫端的准入即以它完成；之後 worker 才量測
-非武器零件的覆蓋，另送一則 `collider-coverage` 訊息。呼叫端在准入結果之後最多再保留 worker 20 秒，屆時終止，記錄
-沒到就不寫；沒有 Worker 的環境先回傳准入結果，再以計時器排程量測。記錄帶覆蓋是否通過、兩個方向的最大距離、塊數與
-該類上限、取樣預算已記帳的次數與是否超出預算；未通過、超出預算或塊數超過該類零件上限時寫一則主控台警告。覆蓋的
-結果、量測拋錯、超出預算或沒有做完，都不會改變或延後准入結果；30 秒的 worker 逾時只涵蓋重建與 digest 比對。
+這項量測是准入的一部分（[D-20261121-02](../decisions/D-20261121-02-零件碰撞覆蓋與塊數上限改為准入條件.md)）：admission worker 在重建與 digest 比對通過後，對零件依序
+檢查外框（每軸 `PART_AABB_MIN_M` 到 `PART_AABB_MAX_M`）、塊數不超過該類零件上限、覆蓋量測（武器依剛體分組量測）；外框
+超出、塊數超過上限、任一方向超過門檻、量測超出預算或量不出來，都與重建比對失敗一樣回覆錯誤，呼叫端不准入。准入與否
+只由這些結果決定，量測以運算次數為上限，與執行時間無關。呼叫端等待 worker 的時限是 300 秒，只用來結束卡住的
+worker：逾時與 worker 本身失敗是本機錯誤（`PhysicsManifestAdmissionUnavailableError`），不寫 receipt、不記成拒收，過了重試窗後
+下次被問到時重新准入。沒有 Worker 的環境在同一個呼叫裡做完同樣的檢查。
 
 每塊碰撞另由清單驗證（`validColliderPiece`）做結構檢查，嵌入與 admission 時都執行、不合即拒收：4 到 98 個有限的點；
 第一個點與另外某三個點張成的平行六面體，行列式絕對值大於 1e-12 m³（`hasPositiveHullVolume`；全部相同或共面的點
 不行）；且每個點落在零件 AABB（`geometry.aabbMinM`／`aabbMaxM`）各軸向外推 `PART_COLLIDER_COVERAGE_MAX_M` 的範圍內。
-這是結構規則，目的是拒絕無法構成凸包或離零件很遠的形狀。覆蓋量測另有取樣預算
-`PART_COLLIDER_COVERAGE_EVALUATION_MAX`：它只對取樣迴圈記帳，不是量測整體工作量或時間的上限
-（[零件與共用介面.md §4.2.1](../建模參數/零件與共用介面.md#421-共用-part-collider-proxies)）；量測慢或沒有做完時，依上段只是沒有記錄。
+這是結構規則，目的是拒絕無法構成凸包或離零件很遠的形狀。覆蓋量測另有預算
+`PART_COLLIDER_COVERAGE_EVALUATION_MAX`：量測裡次數隨輸入變動的迴圈都以運算次數記帳，超過即中止並記為不通過
+（[零件與共用介面.md §4.2.1](../建模參數/零件與共用介面.md#421-共用-part-collider-proxies)）；量測沒有做完時，依上段只是沒有記錄。
+覆蓋量測用的凸包三角面由本專案自帶的實作（`physics-manifest/quick-hull.ts`，以整數微米精確判定並合併共面的面）產生，不使用相依套件的實作；
+編輯器的拆塊、物理形狀檢視與線框用同一份。量測裡碰撞節點依節點名的 UTF-16 碼元順序走訪，與呼叫端給的順序無關。
 
 **節點層與質量**（[D-20261117-02](../decisions/D-20261117-02-零件碰撞改為節點層兩層格式.md)）：質量只在節點層。
 runtime 為每個節點的每塊碰撞建一顆 collider，這些零件節點 collider 一律以 `setDensity(0)` 建立、不帶質量
-（武器物理管線的 collider 仍各自帶質量，見 [§2.4](#24-active-weapon-拓樸)）；所屬剛體（主車體或
+（武器物理管線的節點質量由 collider 承載：不帶作者碰撞塊的節點由它唯一的那一塊承載，帶作者碰撞塊的節點由第一塊承載、
+其餘各塊不帶質量，見 [§2.4](#24-active-weapon-拓樸)）；所屬剛體（主車體或
 hinge body）上所有仍完好節點的質量性質，以平行軸定理合成後設為該剛體的 additional mass properties。節點的
 `centroidM` 與 `inertiaFrame` 屬 part（asset-local）frame，經 part pose 換到剛體 frame 後合成，與碰撞塊的擺位無關。
 零件損毀時，該零件所有節點一併退出附加質量；驗證外來快照時，附加質量與合成質量的期望值依快照宣告的損毀集合
 推導，零件節點 collider 的質量必須為零。同一 part 節點數須為 1 到 `PART_COLLIDER_PROXY_COUNT_MAX`，
-碰撞塊合計須為 1 到 `PART_COLLIDER_PROXY_COUNT_MAX` 塊，武器每個節點都要有碰撞。collider canonical key 為
-`vehicle:<車>:<零件>:<節點名>#<塊序>`，材質、六向接觸面積與 `wearCapacityJ` 取所屬節點，不得以整車單一密度平均分配。
+碰撞塊合計須為 1 到 `PART_COLLIDER_PROXY_COUNT_MAX` 塊，武器每個節點都要有碰撞。節點層零件的 collider canonical key 為
+`vehicle:<車>:<零件>:<節點名>#<塊序>`（武器物理管線裡帶作者碰撞塊的節點相同，即使只有一塊也帶 `#0`；不帶作者碰撞塊的節點是
+`vehicle:<車>:<零件>:<節點名>`，不帶塊序），材質、六向接觸面積與 `wearCapacityJ` 取所屬節點，不得以整車單一密度平均分配。
 
 磁性：鐵磁材質的節點是磁源的吸引目標，每個節點一個目標、位置取節點質心（剛體局部座標）再依剛體位姿換到世界
-座標，不隨碰撞塊數改變；零件損毀時一併退出。磁力武器走武器物理管線，磁場原點取主網格節點 collider 的幾何中心。
+座標，不隨碰撞塊數改變；零件損毀時一併退出。磁力武器走武器物理管線：主網格節點不帶作者碰撞塊時，磁場原點取那顆 collider 的幾何中心；帶作者碰撞塊時取節點質心。
+武器物理管線裡的鐵磁節點同理：不帶作者碰撞塊時每顆 collider 一個目標（幾何中心），帶作者碰撞塊時每個節點一個目標
+（節點質心）。經編輯器定稿的主動武器，固定件與不是圓的剛體轉子一律帶作者碰撞塊（即使只有一塊）。
 
 hinge anchor 與 axis 只由完整 Mount frame 決定：anchor 是 chassis-side Mount position，axis 是
 chassis-side Mount local `+X`，視覺與 collider attachment 則為
@@ -298,7 +314,7 @@ compatibility fallback。scale、freeze、teleport 與接觸 ／part world-posit
 
 ### 2.4 Active weapon 拓樸
 
-active weapon 的 manifest 必須帶經 Stage 3 `auto_weapon_physics` 重建與 descriptor 交叉驗證後的 typed `WeaponPhysicsSpec`；缺失、材質未知、actuator／projectile 不一致時 admission fail closed，runtime 不回讀原始 extras。固定 proxy 掛 primary body；每個 rotor／chain segment 建 auxiliary dynamic body 與 collider，依 descriptor 建 Revolute／Spherical joint。單體 revolute rotor 在 Stage 3 對 actuator 軸判圓：圓（平滑盤）＝payload proxy 帶 `shape` cylinder、runtime 建圓柱 collider；非圓（齒盤等）＝ 保角支撐量化 hull、齒尖全保留；chain 不分類。傷害輸出由幾何特徵決定——齒形 ＝ 離散高衝擊、平滑盤 ＝ 低傷害推擠，不另設研磨傷害機制（[D-20261020-02](../decisions/D-20261020-02-旋轉面形狀分類移至烘焙期.md)）。weapon aggregate AABB 不再同時包覆活動 payload，避免重複 collider／ 質量。
+active weapon 的 manifest 必須帶經 Stage 3 `auto_weapon_physics` 重建與 descriptor 交叉驗證後的 typed `WeaponPhysicsSpec`；缺失、材質未知、actuator／projectile 不一致時 admission fail closed，runtime 不回讀原始 extras。固定 proxy 掛 primary body；每個 rotor／chain segment 建 auxiliary dynamic body 與 collider，依 descriptor 建 Revolute／Spherical joint。單體 revolute rotor 在 Stage 3 對 actuator 軸判圓：圓（平滑盤）＝payload proxy 帶 `shape` cylinder、runtime 建圓柱 collider；非圓（齒盤等）＝保角凸包點的 hull（剖面角點不超過 48 個時齒尖都在種子裡）；chain 不分類。傷害輸出由幾何特徵決定——齒形 ＝ 離散高衝擊、平滑盤 ＝ 低傷害推擠，不另設研磨傷害機制（[D-20261020-02](../decisions/D-20261020-02-旋轉面形狀分類移至烘焙期.md)）。weapon aggregate AABB 不再同時包覆活動 payload，避免重複 collider／ 質量。
 
 launch 預載彈在 world 建立時全部預配置，每顆兩件：primary 上的**持彈 collider**（形狀、材質與質量
 取自該彈 canonical proxy，pose 為 authored 預載 pose，collision membership 用車體位，owner 記
