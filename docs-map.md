@@ -44,7 +44,7 @@ slug: null
 | [程式架構/程式流程/ledger.md](程式架構/程式流程/ledger.md) | impl-flow | 程式級流程圖：Checkpoint／Partition／Sync |
 | [資料系統.md](資料系統.md) | canon | ledger／IPFS／canonical 序列化／治理事件 |
 
-決策檔 44 筆——見 [decisions/INDEX.md](decisions/INDEX.md)。
+決策檔 45 筆——見 [decisions/INDEX.md](decisions/INDEX.md)。
 
 ```mermaid
 flowchart TB
@@ -557,7 +557,7 @@ flowchart TB
 | [程式架構/moderation.md](程式架構/moderation.md) | impl | 檢舉／純仲裁（隨機抽選＋加權）／黑名單×經濟 |
 | [程式架構/reputation.md](程式架構/reputation.md) | impl | 玩家信譽純 derive（來源事件→delta／新手保護／API） |
 
-決策檔 14 筆——見 [decisions/INDEX.md](decisions/INDEX.md)。
+決策檔 15 筆——見 [decisions/INDEX.md](decisions/INDEX.md)。
 
 ```mermaid
 flowchart TB

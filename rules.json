@@ -3801,7 +3801,7 @@
       "anchor": {
         "file": "程式架構/moderation.md",
         "line": 363,
-        "excerpt": "2. `timestamp` ≥ **程序下界**（面板案 ≥ 案錨 ＋ 抽籤延遲 ＋ 投票窗；池不足流局 ≥ 案錨 ＋ 抽籤延遲——與 fold 恆驗同式，硬"
+        "excerpt": "2. `timestamp` ≥ **程序下界**（面板案 ≥ 案錨 ＋ 抽籤延遲 ＋ 投票窗；無面板的池不足流局 ≥ 案錨 ＋ 抽籤延遲——與 fold 恆驗"
       },
       "refs": []
     },
@@ -3822,7 +3822,7 @@
       "anchor": {
         "file": "程式架構/moderation.md",
         "line": 364,
-        "excerpt": "3. `arbiters` **長度合法**（面板案 = `ARBITRATION_PANEL_SIZE`(7)；池不足流局 = `[]`）"
+        "excerpt": "3. `arbiters` **長度合法**（面板案 = `ARBITRATION_PANEL_SIZE`(7)，含重抽輪池不足的流局；第一輪抽籤點池不足的流局"
       },
       "refs": []
     },

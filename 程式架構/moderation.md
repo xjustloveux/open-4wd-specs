@@ -45,9 +45,9 @@ interface ArbitrationVoteEvent extends BaseEvent {
 interface ArbitrationResultEvent extends BaseEvent {
   type: "arbitration-result";
   reportEventId: EventId; // 檢舉案＝`${reporter}@${reportedAt}#${target}` 合成 id（綁 target 防跨標的簽章轉移）；上傳期案＝`upload:${cid}`（canonical、收件驗）
-  result: "pass" | "reject" | "no-quorum"; // no-quorum = 流局（期滿有效票 < 4 且重抽輪已盡、或合格池 < 7；§5.3）
-  passRatioX100: number; // 加權通過比例 × 100（門檻 60；no-quorum = 重算殘票比例、可為 0）
-  arbiters: PeerId[]; // 參與加權計算者（因池 < 7 流局 → []）
+  result: "pass" | "reject" | "no-quorum"; // no-quorum = 流局（期滿有效票 < 4 且重抽輪已盡、重抽輪合格池 < 7、或第一輪抽籤點合格池 < 7；§5.3）
+  passRatioX100: number; // 加權通過比例 × 100（門檻 60；面板流局 = 重算殘票比例、可為 0；無面板的池不足流局恆 0）
+  arbiters: PeerId[]; // 參與加權計算者（第一輪抽籤點池 < 7 流局 → []；重抽輪池 < 7 流局 → 第一輪面板）
   // 案錨摘要（fold 純函數性補欄——fold 不可查 ledger 原事件；§5.6 收件第 1 條驗「摘要與案錨事件逐位一致」、fold 對 state 案錄比對守門）
   caseKind: "report" | "upload-pending"; // 上傳期案同機器（§5.7）
   reporter?: PeerId; // 檢舉案＝檢舉者；上傳期案無（不進準確率）
@@ -110,7 +110,7 @@ interface ReportInfo {
   reportedAt: Timestamp;
   revoked: boolean;
   revokedAt?: Timestamp;
-  outcome?: "pass" | "reject" | "no-quorum"; // 仲裁結果（no-quorum = 流局，重抽一次仍不足）
+  outcome?: "pass" | "reject" | "no-quorum"; // 仲裁結果（no-quorum = 流局：重抽後仍票不足、重抽輪合格池不足，或第一輪抽籤點合格池不足）
 }
 ```
 
@@ -263,7 +263,7 @@ function isQualifiedArbiter(
 
 **〔MOD-R-029〕** 仲裁資格與投票 weight 一律取該輪抽籤檢查點的 `DerivedState` 快照，投票期間的信譽變動不得改變本案。
 
-抽籤點 = 檢舉後首個滿 24h 的帳本檢查點（[§4](#4-撤回抽籤前-重新檢舉) 撤回窗以此為界）；`ARBITRATION_PANEL_SIZE = 7`（[程式參數.md](../程式參數.md)，protocol 常數、非治理 config）。合格池 < 7 → 流局（寫 `result: 'no-quorum'` 結果事件、`arbiters: []`，[§5.3](#53-加權計票)／[§5.6](#56-結果事件寫入與驗證permissionless--全網驗算)；同對象可立即再檢舉——池未成長前再告仍會流局）。
+抽籤點 = 檢舉後首個滿 24h 的帳本檢查點（[§4](#4-撤回抽籤前-重新檢舉) 撤回窗以此為界）；`ARBITRATION_PANEL_SIZE = 7`（[程式參數.md](../程式參數.md)，protocol 常數、非治理 config）。第一輪抽籤點合格池 < 7 → 流局（寫 `result: 'no-quorum'` 結果事件、`arbiters: []`，[§5.3](#53-加權計票)／[§5.6](#56-結果事件寫入與驗證permissionless--全網驗算)；同對象可立即再檢舉——池未成長前再告仍會流局）。
 
 ### 5.3 加權計票
 
@@ -310,7 +310,7 @@ function tallyArbitration(
 
 **〔MOD-R-035〕** 達 quorum 後以整數權重計票，pass 權重必須嚴格大於有效票總權重的 60% 才通過。
 
-投票期滿有效票 < 4 → 重抽一輪（新檢查點 seed、**排除第一輪缺席者**；`ARBITRATION_REDRAW_MAX = 1`）；第二輪仍 < 4 → **流局**（非 reject、不進準確率、同對象可再檢舉）——**寫 `result: 'no-quorum'` 結果事件**（任一 peer 可寫 ＋ 全網驗算同 [§5.6](#56-結果事件寫入與驗證permissionless--全網驗算)）。流局不能只靠讀點 derive：`outcome` 入 state 需事件觸發 fold（否則流局案卡 open、同對象序列化擋點誤鎖再告 90 天），且上傳期案流局要解除 `similarity-pending`——**經濟共識值的變化必須由事件觸發**（結算過濾吃它，讀點 derive 會把檢查點時間線 ＋ 票集合拖進 economy 驗算路徑）。事件語意 ＝「仲裁程序已走完、未達 quorum」的可驗算程序事實（零 delta、零準確率足跡，[§5.4](#54-結果套用)）。加權因合格門檻（信譽 ≥ 200 → weight ∈ [2.32, 3.00]）面板內差距 ≤ 1.29×，近似人頭（見 [檢舉與仲裁.md §5/§6.3](../流程/檢舉與仲裁.md)）。
+投票期滿有效票 < 4 → 重抽一輪（新檢查點 seed、**排除第一輪缺席者**；`ARBITRATION_REDRAW_MAX = 1`）；第二輪仍 < 4 → **流局**（非 reject、不進準確率、同對象可再檢舉）；重抽輪的合格池 < 7（含因排除第一輪缺席者而不足）時不再抽籤，同樣視為票不足流局，以**第一輪面板**為 `arbiters`、比例以第一輪殘票重算、結案點為第一輪期滿檢查點，由第一輪面板 attest（attestation 是期滿後的機械簽署，缺席者上線即補簽；fold 的池不足驗證只看不排除缺席者的合格池上界，無法證明這種池不足）——**寫 `result: 'no-quorum'` 結果事件**（任一 peer 可寫 ＋ 全網驗算同 [§5.6](#56-結果事件寫入與驗證permissionless--全網驗算)）。流局不能只靠讀點 derive：`outcome` 入 state 需事件觸發 fold（否則流局案卡 open、同對象序列化擋點誤鎖再告 90 天），且上傳期案流局要解除 `similarity-pending`——**經濟共識值的變化必須由事件觸發**（結算過濾吃它，讀點 derive 會把檢查點時間線 ＋ 票集合拖進 economy 驗算路徑）。事件語意 ＝「仲裁程序已走完、未達 quorum」的可驗算程序事實（零 delta、零準確率足跡，[§5.4](#54-結果套用)）。加權因合格門檻（信譽 ≥ 200 → weight ∈ [2.32, 3.00]）面板內差距 ≤ 1.29×，近似人頭（見 [檢舉與仲裁.md §5/§6.3](../流程/檢舉與仲裁.md)）。
 
 ### 5.4 結果套用
 
@@ -360,12 +360,12 @@ function deriveGlobalPeerBlacklist(
 `appendEvent` 收件驗證（`arbitration-result`）＝ **shape＋冪等＋案錨摘要＋panel-signature-set**（live 與 fold 同組判定 ＝ 無分叉），任一條不符即拒收：
 
 1. **〔MOD-R-039〕** `reportEventId` 指向存在且**未撤回、尚無結果**的開放案錨（canonical caseId 反查）；**事件內案錨摘要（caseKind / reporter / target / targetKind / reason / anchoredAt）與案錨事件逐位一致**（[§1](#1-事件結構) 純函數性補欄——fold 另以摘要對 state 案錄比對守門：開放案存在 ／ 未撤回 ／ 無結果 ／ 摘要相符，不符 no-op）
-2. **〔MOD-R-040〕** `timestamp` ≥ **程序下界**（面板案 ≥ 案錨 ＋ 抽籤延遲 ＋ 投票窗；池不足流局 ≥ 案錨 ＋ 抽籤延遲——與 fold 恆驗同式，硬化段）
-3. **〔MOD-R-041〕** `arbiters` **長度合法**（面板案 = `ARBITRATION_PANEL_SIZE`(7)；池不足流局 = `[]`）
+2. **〔MOD-R-040〕** `timestamp` ≥ **程序下界**（面板案 ≥ 案錨 ＋ 抽籤延遲 ＋ 投票窗；無面板的池不足流局 ≥ 案錨 ＋ 抽籤延遲——與 fold 恆驗同式，硬化段）
+3. **〔MOD-R-041〕** `arbiters` **長度合法**（面板案 = `ARBITRATION_PANEL_SIZE`(7)，含重抽輪池不足的流局；第一輪抽籤點池不足的流局 = `[]`）
 4. **〔MOD-R-042〕** **panel-signature-set**：≥ quorum 面板 attestation——distinct、∈ `arbiters`、非兩造、簽章對 `(reportEventId, target, result, passRatioX100)` digest 有效。**期滿等值／面板重導／tally 全量重算由 attestation 流程承擔**：每位面板成員各自 replay 票序列後只簽自己算出的結果，簽章集背書下與逐條重算等效
 5. **〔MOD-R-043〕** 同 `reportEventId` 已有結果事件 → 拒收（**首筆有效**；並行寫入的競合由 ledger fork resolution 收斂，[ledger-checkpoint.md §4](ledger-checkpoint.md)）
 
-**〔MOD-R-044〕** `BlacklistEvent`：`triggeredBy` 必須指向 `result: 'pass'` 且 `targetKind: 'cid'` 的結果事件（**不得指向 no-quorum**）；同 `cid` 去重（首筆有效）。`result: 'no-quorum'`：**票不足流局**（面板存在）＝ 條 4 同適用（末輪面板足額 attest）；**池不足流局**（`arbiters: []`、無面板可簽）＝ 條 4 改驗**合格池上界 < 7**（僅穩定 ／ 單調欄位計數，硬化段）。
+**〔MOD-R-044〕** `BlacklistEvent`：`triggeredBy` 必須指向 `result: 'pass'` 且 `targetKind: 'cid'` 的結果事件（**不得指向 no-quorum**）；同 `cid` 去重（首筆有效）。`result: 'no-quorum'`：**票不足流局**（面板存在，含重抽輪池不足）＝ 條 4 同適用（末輪面板足額 attest；重抽輪池不足時為第一輪面板）；**池不足流局**（`arbiters: []`、無面板可簽）＝ 條 4 改驗**合格池上界 < 7**（僅穩定 ／ 單調欄位計數，硬化段）。
 
 > 對照：`MatchResultEvent` 靠完賽者多簽（參與者集合明確）；仲裁結果的「參與者」是全網（票公開），故用驗算取代多簽——與純 derive 哲學一致、零新增信任假設。
 
@@ -374,10 +374,10 @@ function deriveGlobalPeerBlacklist(
 > - **〔MOD-R-045〕** **digest**＝`signingDigest({type:'arbitration-result-attest', reportEventId, target, result, passRatioX100})`（域分離標籤防跨用途重放；`target` 綁定防同 caseId 跨標的簽章轉移。`reportEventId` 已含 `#${target}`、digest 再顯式帶 target＝ 雙重綁定；實作即權威）。
 > - **attestation 語意 ＝ 條 ④ 分散化**：每位面板成員以 coordinator replay 票序列、**只簽自己算出的結果**——結果事件的簽章集即 ≥ quorum 份獨立驗算證明；聲稱值與成員自算不符時該成員簽出的 digest 自然對不上。timestamp 不入 digest（改動無實質攻擊值、由程序下界 ＋ 首筆有效約束）。
 > - **〔MOD-R-046〕** **fold 驗**：面板案（pass／reject／ 票不足流局）＝`arbiters.length = 7`、簽章集 ≥ quorum(4)——distinct、∈ `arbiters`、**非兩造**（reporter＋cid 案作者 ／peer 案本人；上傳期案相似對象作者群不在 state、不入 fold 必要條件）、**逐 signer 穩定必要條件**（年資 `registeredAt ≤ 抽籤點 − 30 天`＝timeless 精確；場數 ≥ 10＝ 單調遞增必要條件）、簽章有效。信譽 ≥ 200／ 共賽過濾非單調、不入 fold（收件全量驗算 ＋attestation 承擔）——「可重導面板」的完整重導對 fold 位置 state 為近似（抽籤點與結果間的事件會挪動資格），故 fold 取**對合法結果永不誤拒**的必要條件子集。
-> - **池不足流局**（`arbiters: []`、無面板可簽）＝ 限 `result:'no-quorum'`、改驗**合格池上界** ＜ 7（只用穩定 ／ 單調欄位計數 ＝ 上界 ≥ 抽籤時真池數、偽造不誤放；fold 位置 state ≈ 事發當時歷史真值——所有 peer replay 同一 log 前綴得同一判定）。
-> - **timestamp 程序下界**：面板案 ≥ 案錨 ＋ 抽籤延遲 ＋ 投票窗、池不足 ≥ 案錨 ＋ 抽籤延遲——早於程序可能完成時點的預埋條目直接無效。
+> - **第一輪抽籤點池不足流局**（`arbiters: []`、無面板可簽）＝ 限 `result:'no-quorum'`、改驗**合格池上界** ＜ 7（只用穩定 ／ 單調欄位計數 ＝ 上界 ≥ 抽籤時真池數、偽造不誤放；fold 位置 state ≈ 事發當時歷史真值——所有 peer replay 同一 log 前綴得同一判定）。
+> - **timestamp 程序下界**：面板案 ≥ 案錨 ＋ 抽籤延遲 ＋ 投票窗、無面板的池不足流局 ≥ 案錨 ＋ 抽籤延遲——早於程序可能完成時點的預埋條目直接無效。
 >
-> 仲裁者本就簽自己的票、面板簽章集非新增信任假設、僅使結果於 fold **自證**（免於 fold 載入全票重算）。attestation 為期滿後的**機械事實簽署**（client 自動 replay 自動簽、無需人工判斷——與投票的人工審查不同），故票不足流局也由末輪面板足額 attest；蒐集無時窗（成員上線即補簽）。
+> 仲裁者本就簽自己的票、面板簽章集非新增信任假設、僅使結果於 fold **自證**（免於 fold 載入全票重算）。attestation 為期滿後的**機械事實簽署**（client 自動 replay 自動簽、無需人工判斷——與投票的人工審查不同），故票不足流局也由面板足額 attest（末輪面板；重抽輪池不足時為第一輪面板）；蒐集無時窗（成員上線即補簽）。
 
 ### 5.7 上傳期仲裁案（similarity-pending）
 
@@ -517,7 +517,7 @@ interface ModerationApi {
     successful: number;
     ratio: number;
   }>;
-  // no-quorum 同時涵蓋末輪票不足與合格池不足；兩者皆已結案、可立即再檢舉。
+  // no-quorum 涵蓋重抽後仍票不足、重抽輪合格池不足與第一輪抽籤點合格池不足；皆已結案、可立即再檢舉。
   getReportStatus(target: CID | PeerId): Promise<{ pendingReports: number; arbitrationOpen: boolean; result?: 'pass'|'reject'|'no-quorum' }>;
   listBlacklist(
     cursor?: string,
