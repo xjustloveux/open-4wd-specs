@@ -18,7 +18,7 @@ slug: null
 | --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
 | [共識帳本](#共識帳本10-檔) | — | 8 | 5 | 0 | 8 | 13 | 12 | 9 | 2 | 0 | 1 | 6 |
 | [經濟](#經濟8-檔) | 13 | — | 6 | 0 | 4 | 4 | 1 | 3 | 0 | 1 | 2 | 3 |
-| [UGC版權](#ugc版權17-檔) | 14 | 7 | — | 3 | 24 | 5 | 16 | 5 | 3 | 9 | 1 | 11 |
+| [UGC版權](#ugc版權17-檔) | 14 | 8 | — | 3 | 24 | 5 | 16 | 5 | 3 | 9 | 1 | 11 |
 | [材質](#材質2-檔) | 2 | 0 | 2 | — | 5 | 2 | 0 | 3 | 0 | 1 | 0 | 0 |
 | [建模物理](#建模物理12-檔) | 9 | 2 | 11 | 7 | — | 12 | 1 | 10 | 0 | 6 | 0 | 9 |
 | [比賽房間](#比賽房間28-檔) | 18 | 4 | 3 | 2 | 20 | — | 12 | 14 | 10 | 10 | 0 | 17 |
@@ -44,7 +44,7 @@ slug: null
 | [程式架構/程式流程/ledger.md](程式架構/程式流程/ledger.md) | impl-flow | 程式級流程圖：Checkpoint／Partition／Sync |
 | [資料系統.md](資料系統.md) | canon | ledger／IPFS／canonical 序列化／治理事件 |
 
-決策檔 42 筆——見 [decisions/INDEX.md](decisions/INDEX.md)。
+決策檔 44 筆——見 [decisions/INDEX.md](decisions/INDEX.md)。
 
 ```mermaid
 flowchart TB
@@ -161,7 +161,7 @@ flowchart TB
 | [編輯器操作.md](編輯器操作.md) | canon | Stage 2 編輯器互動與 UI 操作（零件＋場地共用、PC／Mobile 雙端） |
 | [資產政策.md](資產政策.md) | canon | 資產生命週期玩家面說明＋廢止材質登記（絕版品模型） |
 
-決策檔 42 筆——見 [decisions/INDEX.md](decisions/INDEX.md)。
+決策檔 43 筆——見 [decisions/INDEX.md](decisions/INDEX.md)。
 
 ### UGC版權依賴圖（1/2）
 
@@ -557,7 +557,7 @@ flowchart TB
 | [程式架構/moderation.md](程式架構/moderation.md) | impl | 檢舉／純仲裁（隨機抽選＋加權）／黑名單×經濟 |
 | [程式架構/reputation.md](程式架構/reputation.md) | impl | 玩家信譽純 derive（來源事件→delta／新手保護／API） |
 
-決策檔 13 筆——見 [decisions/INDEX.md](decisions/INDEX.md)。
+決策檔 14 筆——見 [decisions/INDEX.md](decisions/INDEX.md)。
 
 ```mermaid
 flowchart TB

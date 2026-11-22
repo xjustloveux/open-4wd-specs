@@ -3412,7 +3412,7 @@
       },
       "anchor": {
         "file": "程式架構/moderation.md",
-        "line": 118,
+        "line": 119,
         "excerpt": "未結案的 `report` 事件放在 `pendingReports`，**滿 90 天仍未結案 → derive 時自動視為過期**（不再列入、不再可觸發新仲"
       },
       "refs": []
@@ -3433,7 +3433,7 @@
       },
       "anchor": {
         "file": "程式架構/moderation.md",
-        "line": 144,
+        "line": 145,
         "excerpt": "撤回資格由檢舉時間與 fold 位置共識時鐘推導，撤回窗在仲裁抽籤前。"
       },
       "refs": []
@@ -3452,7 +3452,7 @@
       },
       "anchor": {
         "file": "程式架構/moderation.md",
-        "line": 146,
+        "line": 147,
         "excerpt": "`consensusNow >= 檢舉 + 24h` 時必須拒絕撤回，事件自報 timestamp 不得繞過窗界。"
       },
       "refs": []
@@ -3471,7 +3471,7 @@
       },
       "anchor": {
         "file": "程式架構/moderation.md",
-        "line": 148,
+        "line": 149,
         "excerpt": "窗內撤回不進準確率且允許同對象重新檢舉；抽籤後不得撤回。"
       },
       "refs": []
@@ -3490,7 +3490,7 @@
       },
       "anchor": {
         "file": "程式架構/moderation.md",
-        "line": 173,
+        "line": 174,
         "excerpt": "已終局下架、退役、進入安全港或不存在的 CID 不得再次成為有效檢舉目標。"
       },
       "refs": []
@@ -3509,7 +3509,7 @@
       },
       "anchor": {
         "file": "程式架構/moderation.md",
-        "line": 175,
+        "line": 176,
         "excerpt": "同一對象已有進行中或未過期終局案件時，必須序列化並拒絕重複檢舉。"
       },
       "refs": []
@@ -3528,7 +3528,7 @@
       },
       "anchor": {
         "file": "程式架構/moderation.md",
-        "line": 177,
+        "line": 178,
         "excerpt": "檢舉者超過 rolling 窗口額度時必須拒絕新案。"
       },
       "refs": []
@@ -3547,7 +3547,7 @@
       },
       "anchor": {
         "file": "程式架構/moderation.md",
-        "line": 179,
+        "line": 180,
         "excerpt": "檢舉理由與 target kind 的非法組合必須在表單服務層拒絕。"
       },
       "refs": []
@@ -3566,7 +3566,7 @@
       },
       "anchor": {
         "file": "程式架構/moderation.md",
-        "line": 261,
+        "line": 262,
         "excerpt": "仲裁面板必須以 `hash(reportId + 抽籤檢查點 timestamp)` 對 canonical 合格池決定性抽選 7 人。"
       },
       "refs": []
@@ -3585,7 +3585,7 @@
       },
       "anchor": {
         "file": "程式架構/moderation.md",
-        "line": 263,
+        "line": 264,
         "excerpt": "仲裁資格與投票 weight 一律取該輪抽籤檢查點的 `DerivedState` 快照，投票期間的信譽變動不得改變本案。"
       },
       "refs": []
@@ -3604,7 +3604,7 @@
       },
       "anchor": {
         "file": "程式架構/moderation.md",
-        "line": 269,
+        "line": 270,
         "excerpt": "**票集合（tally 的輸入，全網同規則、決定性）**："
       },
       "refs": []
@@ -3623,7 +3623,7 @@
       },
       "anchor": {
         "file": "程式架構/moderation.md",
-        "line": 276,
+        "line": 277,
         "excerpt": "`arbitration-vote` admission 必須排除檢舉者與責任人兩造的票。"
       },
       "refs": []
@@ -3642,7 +3642,7 @@
       },
       "anchor": {
         "file": "程式架構/moderation.md",
-        "line": 278,
+        "line": 279,
         "excerpt": "`arbitration-vote` admission 必須拒絕抽籤下界前、明確超出容許上界或已撤回案件的票。"
       },
       "refs": []
@@ -3661,7 +3661,7 @@
       },
       "anchor": {
         "file": "程式架構/moderation.md",
-        "line": 306,
+        "line": 307,
         "excerpt": "**投票期滿** = 抽籤點起首個 timestamp ≥ 抽籤點 + `ARBITRATION_VOTE_WINDOW_HOURS`（72，待 playtes"
       },
       "refs": []
@@ -3680,7 +3680,7 @@
       },
       "anchor": {
         "file": "程式架構/moderation.md",
-        "line": 308,
+        "line": 309,
         "excerpt": "Quorum 固定為 4 張有效票；pass 與 reject 計入，棄權不計。"
       },
       "refs": []
@@ -3699,7 +3699,7 @@
       },
       "anchor": {
         "file": "程式架構/moderation.md",
-        "line": 310,
+        "line": 311,
         "excerpt": "達 quorum 後以整數權重計票，pass 權重必須嚴格大於有效票總權重的 60% 才通過。"
       },
       "refs": []
@@ -3718,7 +3718,7 @@
       },
       "anchor": {
         "file": "程式架構/moderation.md",
-        "line": 316,
+        "line": 317,
         "excerpt": "罰則**依檢舉類型、不依 target 種類**（數值權威 [信譽系統.md §2.3](../信譽系統.md)；derive 函式見 [reputation."
       },
       "refs": []
@@ -3737,7 +3737,7 @@
       },
       "anchor": {
         "file": "程式架構/moderation.md",
-        "line": 335,
+        "line": 336,
         "excerpt": "同一責任人累積三次仲裁定罪後，必須由 fold 決定性推導為永久全域玩家黑名單："
       },
       "refs": []
@@ -3758,7 +3758,7 @@
       },
       "anchor": {
         "file": "程式架構/moderation.md",
-        "line": 355,
+        "line": 356,
         "excerpt": "`ArbitrationResultEvent` / `BlacklistEvent` **任一 peer 可寫**（無指定寫入者——通常由期滿檢查點的 pro"
       },
       "refs": []
@@ -3779,7 +3779,7 @@
       },
       "anchor": {
         "file": "程式架構/moderation.md",
-        "line": 359,
+        "line": 362,
         "excerpt": "1. `reportEventId` 指向存在且**未撤回、尚無結果**的開放案錨（canonical caseId 反查）；**事件內案錨摘要（caseKin"
       },
       "refs": []
@@ -3800,7 +3800,7 @@
       },
       "anchor": {
         "file": "程式架構/moderation.md",
-        "line": 360,
+        "line": 363,
         "excerpt": "2. `timestamp` ≥ **程序下界**（面板案 ≥ 案錨 ＋ 抽籤延遲 ＋ 投票窗；池不足流局 ≥ 案錨 ＋ 抽籤延遲——與 fold 恆驗同式，硬"
       },
       "refs": []
@@ -3821,7 +3821,7 @@
       },
       "anchor": {
         "file": "程式架構/moderation.md",
-        "line": 361,
+        "line": 364,
         "excerpt": "3. `arbiters` **長度合法**（面板案 = `ARBITRATION_PANEL_SIZE`(7)；池不足流局 = `[]`）"
       },
       "refs": []
@@ -3842,7 +3842,7 @@
       },
       "anchor": {
         "file": "程式架構/moderation.md",
-        "line": 362,
+        "line": 365,
         "excerpt": "4. **panel-signature-set**：≥ quorum 面板 attestation——distinct、∈ `arbiters`、非兩造、簽章"
       },
       "refs": []
@@ -3863,7 +3863,7 @@
       },
       "anchor": {
         "file": "程式架構/moderation.md",
-        "line": 363,
+        "line": 366,
         "excerpt": "5. 同 `reportEventId` 已有結果事件 → 拒收（**首筆有效**；並行寫入的競合由 ledger fork resolution 收斂，[le"
       },
       "refs": []
@@ -3884,7 +3884,7 @@
       },
       "anchor": {
         "file": "程式架構/moderation.md",
-        "line": 365,
+        "line": 368,
         "excerpt": "`BlacklistEvent`：`triggeredBy` 必須指向 `result: 'pass'` 且 `targetKind: 'cid'` 的結果事件"
       },
       "refs": []
@@ -3905,7 +3905,7 @@
       },
       "anchor": {
         "file": "程式架構/moderation.md",
-        "line": 371,
+        "line": 374,
         "excerpt": "> - **digest**＝`signingDigest({type:'arbitration-result-attest', reportEventId, "
       },
       "refs": []
@@ -3924,7 +3924,7 @@
       },
       "anchor": {
         "file": "程式架構/moderation.md",
-        "line": 373,
+        "line": 376,
         "excerpt": "> - **fold 驗**：面板案（pass／reject／ 票不足流局）＝`arbiters.length = 7`、簽章集 ≥ quorum(4)——di"
       },
       "refs": [
@@ -3948,7 +3948,7 @@
       },
       "anchor": {
         "file": "程式架構/moderation.md",
-        "line": 383,
+        "line": 386,
         "excerpt": "- **案錨 = 含 `similarityMatches` 宣告的 `UgcUploadEvent`**（**在鏈上**；無 `ReportEvent`、無檢"
       },
       "refs": []
@@ -3969,7 +3969,7 @@
       },
       "anchor": {
         "file": "程式架構/moderation.md",
-        "line": 385,
+        "line": 388,
         "excerpt": "- **結果**：`pass`（判抄）→ pending CID 寫 `BlacklistEvent` 下架、**不扣信譽**（灰區撞衫可能），並累積該上傳者的"
       },
       "refs": []
@@ -3988,7 +3988,7 @@
       },
       "anchor": {
         "file": "程式架構/moderation.md",
-        "line": 394,
+        "line": 397,
         "excerpt": "| 既有玩家餘額 | **不變動**（過去鑄幣保留）                                          |"
       },
       "refs": []
@@ -4007,7 +4007,7 @@
       },
       "anchor": {
         "file": "程式架構/moderation.md",
-        "line": 416,
+        "line": 419,
         "excerpt": "| A 黑名單後 B 仍被使用 | B 的 royalty 照舊（B 作者 70% + A 作者 20%，即使 A 在黑名單）                 "
       },
       "refs": []
@@ -4026,7 +4026,7 @@
       },
       "anchor": {
         "file": "程式架構/moderation.md",
-        "line": 424,
+        "line": 427,
         "excerpt": "`canUseUgc` 必須分別以 `blacklisted` 或 `retired` 原因拒絕不可用內容，且不承載 UI 文案："
       },
       "refs": []
@@ -4045,7 +4045,7 @@
       },
       "anchor": {
         "file": "程式架構/moderation.md",
-        "line": 490,
+        "line": 493,
         "excerpt": "| 復活 | 不能（事件溯源）                   | 可（付續租費 → `UgcMaintenanceEvent`）         |"
       },
       "refs": []

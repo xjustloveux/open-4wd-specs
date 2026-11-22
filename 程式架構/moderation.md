@@ -98,6 +98,7 @@ interface ArbitrationResultRecord {
   passRatioX100: number;
   caseKind: "report" | "upload-pending";
   target: CID | PeerId;
+  resultEntryCid: string | null; // fold 收下的那筆結果事件的 entry CID（canonical fold 套用時記下；BlacklistEvent.triggeredBy 的來源）
 }
 
 interface ReportInfo {
@@ -353,6 +354,8 @@ function deriveGlobalPeerBlacklist(
 ### 5.6 結果事件寫入與驗證（permissionless + 全網驗算）
 
 **〔MOD-R-038〕** `ArbitrationResultEvent` / `BlacklistEvent` **任一 peer 可寫**（無指定寫入者——通常由期滿檢查點的 proposer 順手寫，但非義務）；防偽不靠寫入者身分、靠**全網驗算**（票已上鏈、結果人人可重算）：
+
+**仲裁推進器（`src/moderation/advancer.ts`）**：每個線上且身分已解鎖的 client 在啟動時、每 5 分鐘與每收到一筆 `arbitration-result` 時掃描一次，自動寫入兩種不需要 attestation 的事件：期滿且合格池不足（`arbiters: []`）的 `no-quorum` 結果；判定 `pass` 且對象為作品、尚未下架的 `BlacklistEvent`（`triggeredBy` 取結果紀錄上的 `resultEntryCid`：canonical fold 收下結果時記下該 entry 的 CID，log 中搶先寫入、被拒收的條目不會產生紀錄；沒有 entry CID 的紀錄不寫下架）。多個 client 同時寫入時以首筆為準，其餘條目不生效（收件驗證拒收或延後，fold 不收或判為 no-op）；寫入失敗不保留紀錄，下次掃描依當時狀態重新判斷，仍符合條件就再寫一次。`BlacklistEvent` 的收件驗證在本機狀態鏡像還沒有對應的 `pass` 結果時延後重審（鏡像可能尚未反映同一批剛 fold 的結果），最終由 fold 的同一守門判定。需要面板 attestation 的結果尚未接線。
 
 `appendEvent` 收件驗證（`arbitration-result`）＝ **shape＋冪等＋案錨摘要＋panel-signature-set**（live 與 fold 同組判定 ＝ 無分叉），任一條不符即拒收：
 

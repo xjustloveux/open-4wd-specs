@@ -3454,6 +3454,24 @@
       "summary": null
     },
     {
+      "id": "decisions/D-20261122-03-評分資格改由fold以使用紀錄判定.md",
+      "type": "decision",
+      "domain": [
+        "UGC版權",
+        "共識帳本"
+      ],
+      "summary": null
+    },
+    {
+      "id": "decisions/D-20261122-04-仲裁推進器自動寫入流局結果與下架.md",
+      "type": "decision",
+      "domain": [
+        "信譽仲裁",
+        "共識帳本"
+      ],
+      "summary": null
+    },
+    {
       "id": "decisions/INDEX.md",
       "type": null,
       "domain": [],
@@ -8758,6 +8776,30 @@
       "to": "程式架構/ugc-fork.md"
     },
     {
+      "from": "decisions/D-20261122-03-評分資格改由fold以使用紀錄判定.md",
+      "to": "程式架構/bootstrap.md"
+    },
+    {
+      "from": "decisions/D-20261122-03-評分資格改由fold以使用紀錄判定.md",
+      "to": "程式架構/ledger.md"
+    },
+    {
+      "from": "decisions/D-20261122-03-評分資格改由fold以使用紀錄判定.md",
+      "to": "程式架構/ugc-rating.md"
+    },
+    {
+      "from": "decisions/D-20261122-03-評分資格改由fold以使用紀錄判定.md",
+      "to": "經濟系統.md"
+    },
+    {
+      "from": "decisions/D-20261122-04-仲裁推進器自動寫入流局結果與下架.md",
+      "to": "程式架構/ledger-checkpoint.md"
+    },
+    {
+      "from": "decisions/D-20261122-04-仲裁推進器自動寫入流局結果與下架.md",
+      "to": "程式架構/moderation.md"
+    },
+    {
       "from": "decisions/INDEX.md",
       "to": "decisions/D-20260428-01-初始企劃骨架與模組化規格基線.md"
     },
@@ -10384,6 +10426,14 @@
     {
       "from": "decisions/INDEX.md",
       "to": "decisions/D-20261122-02-帳本上傳紀錄只代表宣告與比賽端以內容一致為取用條件.md"
+    },
+    {
+      "from": "decisions/INDEX.md",
+      "to": "decisions/D-20261122-03-評分資格改由fold以使用紀錄判定.md"
+    },
+    {
+      "from": "decisions/INDEX.md",
+      "to": "decisions/D-20261122-04-仲裁推進器自動寫入流局結果與下架.md"
     },
     {
       "from": "decisions/INDEX.md",
@@ -14592,6 +14642,10 @@
     {
       "from": "程式架構/ugc-rating.md",
       "to": "程式參數/protocol.md"
+    },
+    {
+      "from": "程式架構/ugc-rating.md",
+      "to": "程式架構/economy.md"
     },
     {
       "from": "程式架構/ugc-rating.md",
