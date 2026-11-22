@@ -1,0 +1,1628 @@
+{
+  "rules": [
+    {
+      "id": "ECON-R-001",
+      "kind": "invariant",
+      "requiredLayers": ["schema-static"],
+      "implementationRepos": ["open-4wd"],
+      "testContracts": { "schema-static": "econ-r-001-schema-static" }
+    },
+    {
+      "id": "ECON-R-002",
+      "kind": "invariant",
+      "requiredLayers": ["service"],
+      "implementationRepos": ["open-4wd"],
+      "testContracts": { "service": "econ-r-002-service" }
+    },
+    {
+      "id": "ECON-R-003",
+      "kind": "derive",
+      "requiredLayers": ["service"],
+      "implementationRepos": ["open-4wd"],
+      "testContracts": { "service": "econ-r-003-service" }
+    },
+    {
+      "id": "ECON-R-004",
+      "kind": "behavior",
+      "requiredLayers": ["fold"],
+      "implementationRepos": ["open-4wd"],
+      "testContracts": { "fold": "econ-r-004-fold" }
+    },
+    {
+      "id": "ECON-R-005",
+      "kind": "invariant",
+      "requiredLayers": ["fold"],
+      "implementationRepos": ["open-4wd"],
+      "testContracts": { "fold": "econ-r-005-fold" }
+    },
+    {
+      "id": "ECON-R-006",
+      "kind": "derive",
+      "requiredLayers": ["fold"],
+      "implementationRepos": ["open-4wd"],
+      "testContracts": { "fold": "econ-r-006-fold" }
+    },
+    {
+      "id": "ECON-R-007",
+      "kind": "derive",
+      "requiredLayers": ["fold"],
+      "implementationRepos": ["open-4wd"],
+      "testContracts": { "fold": "econ-r-007-fold" }
+    },
+    {
+      "id": "ECON-R-008",
+      "kind": "derive",
+      "requiredLayers": ["service", "fold"],
+      "implementationRepos": ["open-4wd"],
+      "testContracts": {
+        "service": "econ-r-008-service",
+        "fold": "econ-r-008-fold"
+      }
+    },
+    {
+      "id": "ECON-R-009",
+      "kind": "derive",
+      "requiredLayers": ["service", "fold"],
+      "implementationRepos": ["open-4wd"],
+      "testContracts": {
+        "service": "econ-r-009-service",
+        "fold": "econ-r-009-fold"
+      }
+    },
+    {
+      "id": "ECON-R-010",
+      "kind": "invariant",
+      "requiredLayers": ["fold"],
+      "implementationRepos": ["open-4wd"],
+      "testContracts": { "fold": "econ-r-010-fold" }
+    },
+    {
+      "id": "ECON-R-011",
+      "kind": "derive",
+      "requiredLayers": ["service", "fold"],
+      "implementationRepos": ["open-4wd"],
+      "testContracts": {
+        "service": "econ-r-011-service",
+        "fold": "econ-r-011-fold"
+      }
+    },
+    {
+      "id": "ECON-R-012",
+      "kind": "derive",
+      "requiredLayers": ["service", "fold"],
+      "implementationRepos": ["open-4wd"],
+      "testContracts": {
+        "service": "econ-r-012-service",
+        "fold": "econ-r-012-fold"
+      }
+    },
+    {
+      "id": "ECON-R-013",
+      "kind": "behavior",
+      "requiredLayers": ["service", "fold"],
+      "implementationRepos": ["open-4wd"],
+      "testContracts": {
+        "service": "econ-r-013-service",
+        "fold": "econ-r-013-fold"
+      }
+    },
+    {
+      "id": "ECON-R-014",
+      "kind": "derive",
+      "requiredLayers": ["service"],
+      "implementationRepos": ["open-4wd"],
+      "testContracts": { "service": "econ-r-014-service" }
+    },
+    {
+      "id": "ECON-R-015",
+      "kind": "derive",
+      "requiredLayers": ["fold"],
+      "implementationRepos": ["open-4wd"],
+      "testContracts": { "fold": "econ-r-015-fold" }
+    },
+    {
+      "id": "ECON-R-016",
+      "kind": "derive",
+      "requiredLayers": ["service", "fold"],
+      "implementationRepos": ["open-4wd"],
+      "testContracts": {
+        "service": "econ-r-016-service",
+        "fold": "econ-r-016-fold"
+      }
+    },
+    {
+      "id": "ECON-R-017",
+      "kind": "behavior",
+      "requiredLayers": ["fold"],
+      "implementationRepos": ["open-4wd"],
+      "testContracts": { "fold": "econ-r-017-fold" }
+    },
+    {
+      "id": "ECON-R-018",
+      "kind": "derive",
+      "requiredLayers": ["service"],
+      "implementationRepos": ["open-4wd"],
+      "testContracts": { "service": "econ-r-018-service" }
+    },
+    {
+      "id": "ECON-R-019",
+      "kind": "derive",
+      "requiredLayers": ["service", "fold"],
+      "implementationRepos": ["open-4wd"],
+      "testContracts": {
+        "service": "econ-r-019-service",
+        "fold": "econ-r-019-fold"
+      }
+    },
+    {
+      "id": "ECON-R-020",
+      "kind": "derive",
+      "requiredLayers": ["service", "fold"],
+      "implementationRepos": ["open-4wd"],
+      "testContracts": {
+        "service": "econ-r-020-service",
+        "fold": "econ-r-020-fold"
+      }
+    },
+    {
+      "id": "ECON-R-021",
+      "kind": "invariant",
+      "requiredLayers": ["schema-static", "fold"],
+      "implementationRepos": ["open-4wd"],
+      "testContracts": {
+        "schema-static": "econ-r-021-schema-static",
+        "fold": "econ-r-021-fold"
+      }
+    },
+    {
+      "id": "ECON-R-022",
+      "kind": "invariant",
+      "requiredLayers": ["schema-static"],
+      "implementationRepos": ["open-4wd"],
+      "testContracts": { "schema-static": "econ-r-022-schema-static" }
+    },
+    {
+      "id": "ECON-R-023",
+      "kind": "behavior",
+      "requiredLayers": ["fold"],
+      "implementationRepos": ["open-4wd"],
+      "testContracts": { "fold": "econ-r-023-fold" }
+    },
+    {
+      "id": "ECON-R-024",
+      "kind": "derive",
+      "requiredLayers": ["fold"],
+      "implementationRepos": ["open-4wd"],
+      "testContracts": { "fold": "econ-r-024-fold" }
+    },
+    {
+      "id": "ECON-R-025",
+      "kind": "reject",
+      "requiredLayers": ["admission"],
+      "implementationRepos": ["open-4wd"],
+      "testContracts": { "admission": "econ-r-025-admission" }
+    },
+    {
+      "id": "ECON-R-026",
+      "kind": "reject",
+      "requiredLayers": ["service", "fold"],
+      "implementationRepos": ["open-4wd"],
+      "testContracts": {
+        "service": "econ-r-026-service",
+        "fold": "econ-r-026-fold"
+      }
+    },
+    {
+      "id": "ECON-R-027",
+      "kind": "reject",
+      "requiredLayers": ["service", "admission", "fold"],
+      "implementationRepos": ["open-4wd"],
+      "testContracts": {
+        "service": "econ-r-027-service",
+        "admission": "econ-r-027-admission",
+        "fold": "econ-r-027-fold"
+      }
+    },
+    {
+      "id": "ECON-R-028",
+      "kind": "behavior",
+      "requiredLayers": ["fold"],
+      "implementationRepos": ["open-4wd"],
+      "testContracts": { "fold": "econ-r-028-fold" }
+    },
+    {
+      "id": "ECON-R-029",
+      "kind": "invariant",
+      "requiredLayers": ["fold"],
+      "implementationRepos": ["open-4wd"],
+      "testContracts": { "fold": "econ-r-029-fold" }
+    },
+    {
+      "id": "ECON-R-030",
+      "kind": "derive",
+      "requiredLayers": ["service"],
+      "implementationRepos": ["open-4wd"],
+      "testContracts": { "service": "econ-r-030-service" }
+    },
+    {
+      "id": "ECON-R-031",
+      "kind": "derive",
+      "requiredLayers": ["service"],
+      "implementationRepos": ["open-4wd"],
+      "testContracts": { "service": "econ-r-031-service" }
+    },
+    {
+      "id": "ECON-R-032",
+      "kind": "derive",
+      "requiredLayers": ["service"],
+      "implementationRepos": ["open-4wd"],
+      "testContracts": { "service": "econ-r-032-service" }
+    },
+    {
+      "id": "ECON-R-033",
+      "kind": "derive",
+      "requiredLayers": ["service"],
+      "implementationRepos": ["open-4wd"],
+      "testContracts": { "service": "econ-r-033-service" }
+    },
+    {
+      "id": "ECON-R-034",
+      "kind": "derive",
+      "requiredLayers": ["service"],
+      "implementationRepos": ["open-4wd"],
+      "testContracts": { "service": "econ-r-034-service" }
+    },
+    {
+      "id": "ECON-R-035",
+      "kind": "derive",
+      "requiredLayers": ["service"],
+      "implementationRepos": ["open-4wd"],
+      "testContracts": { "service": "econ-r-035-service" }
+    },
+    {
+      "id": "ECON-R-036",
+      "kind": "invariant",
+      "requiredLayers": ["service"],
+      "implementationRepos": ["open-4wd"],
+      "testContracts": { "service": "econ-r-036-service" }
+    },
+    {
+      "id": "ECON-R-037",
+      "kind": "invariant",
+      "requiredLayers": ["admission"],
+      "implementationRepos": ["open-4wd"],
+      "testContracts": { "admission": "econ-r-037-admission" }
+    },
+    {
+      "id": "ECON-R-038",
+      "kind": "behavior",
+      "requiredLayers": ["fold"],
+      "implementationRepos": ["open-4wd"],
+      "testContracts": { "fold": "econ-r-038-fold" }
+    },
+    {
+      "id": "ECON-R-039",
+      "kind": "behavior",
+      "requiredLayers": ["fold"],
+      "implementationRepos": ["open-4wd"],
+      "testContracts": { "fold": "econ-r-039-fold" }
+    },
+    {
+      "id": "ECON-R-040",
+      "kind": "reject",
+      "requiredLayers": ["fold"],
+      "implementationRepos": ["open-4wd"],
+      "testContracts": { "fold": "econ-r-040-fold" }
+    },
+    {
+      "id": "ECON-R-041",
+      "kind": "reject",
+      "requiredLayers": ["fold"],
+      "implementationRepos": ["open-4wd"],
+      "testContracts": { "fold": "econ-r-041-fold" }
+    },
+    {
+      "id": "ECON-R-042",
+      "kind": "reject",
+      "requiredLayers": ["fold"],
+      "implementationRepos": ["open-4wd"],
+      "testContracts": { "fold": "econ-r-042-fold" }
+    },
+    {
+      "id": "ECON-R-043",
+      "kind": "reject",
+      "requiredLayers": ["fold"],
+      "implementationRepos": ["open-4wd"],
+      "testContracts": { "fold": "econ-r-043-fold" }
+    },
+    {
+      "id": "ECON-R-044",
+      "kind": "derive",
+      "requiredLayers": ["service"],
+      "implementationRepos": ["open-4wd"],
+      "testContracts": { "service": "econ-r-044-service" }
+    },
+    {
+      "id": "ECON-R-045",
+      "kind": "invariant",
+      "requiredLayers": ["service"],
+      "implementationRepos": ["open-4wd"],
+      "testContracts": { "service": "econ-r-045-service" }
+    },
+    {
+      "id": "ECON-R-046",
+      "kind": "derive",
+      "requiredLayers": ["service"],
+      "implementationRepos": ["open-4wd"],
+      "testContracts": { "service": "econ-r-046-service" }
+    },
+    {
+      "id": "ECON-R-047",
+      "kind": "derive",
+      "requiredLayers": ["service"],
+      "implementationRepos": ["open-4wd"],
+      "testContracts": { "service": "econ-r-047-service" }
+    },
+    {
+      "id": "ECON-R-048",
+      "kind": "reject",
+      "requiredLayers": ["service", "admission"],
+      "implementationRepos": ["open-4wd"],
+      "testContracts": {
+        "service": "econ-r-048-service",
+        "admission": "econ-r-048-admission"
+      }
+    },
+    {
+      "id": "ECON-R-049",
+      "kind": "behavior",
+      "requiredLayers": ["service"],
+      "implementationRepos": ["open-4wd"],
+      "testContracts": { "service": "econ-r-049-service" }
+    },
+    {
+      "id": "ECON-R-050",
+      "kind": "invariant",
+      "requiredLayers": ["service"],
+      "implementationRepos": ["open-4wd"],
+      "testContracts": { "service": "econ-r-050-service" }
+    },
+    {
+      "id": "ECON-R-051",
+      "kind": "reject",
+      "requiredLayers": ["schema-static"],
+      "implementationRepos": ["open-4wd"],
+      "testContracts": { "schema-static": "econ-r-051-schema-static" }
+    },
+    {
+      "id": "ECON-R-052",
+      "kind": "derive",
+      "requiredLayers": ["fold"],
+      "implementationRepos": ["open-4wd"],
+      "testContracts": { "fold": "econ-r-052-fold" }
+    },
+    {
+      "id": "ECON-R-053",
+      "kind": "derive",
+      "requiredLayers": ["service", "fold"],
+      "implementationRepos": ["open-4wd"],
+      "testContracts": {
+        "service": "econ-r-053-service",
+        "fold": "econ-r-053-fold"
+      }
+    },
+    {
+      "id": "LEDGER-R-001",
+      "kind": "reject",
+      "requiredLayers": ["service"],
+      "implementationRepos": ["open-4wd"],
+      "testContracts": { "service": "ledger-r-001-service" }
+    },
+    {
+      "id": "LEDGER-R-002",
+      "kind": "reject",
+      "requiredLayers": ["admission"],
+      "implementationRepos": ["open-4wd"],
+      "testContracts": { "admission": "ledger-r-002-admission" }
+    },
+    {
+      "id": "LEDGER-R-003",
+      "kind": "reject",
+      "requiredLayers": ["admission", "fold"],
+      "implementationRepos": ["open-4wd"],
+      "testContracts": {
+        "admission": "ledger-r-003-admission",
+        "fold": "ledger-r-003-fold"
+      }
+    },
+    {
+      "id": "LEDGER-R-004",
+      "kind": "behavior",
+      "requiredLayers": ["service"],
+      "implementationRepos": ["open-4wd"],
+      "testContracts": { "service": "ledger-r-004-service" }
+    },
+    {
+      "id": "LEDGER-R-005",
+      "kind": "derive",
+      "requiredLayers": ["fold"],
+      "implementationRepos": ["open-4wd"],
+      "testContracts": { "fold": "ledger-r-005-fold" }
+    },
+    {
+      "id": "LEDGER-R-006",
+      "kind": "invariant",
+      "requiredLayers": ["service"],
+      "implementationRepos": ["open-4wd"],
+      "testContracts": { "service": "ledger-r-006-service" }
+    },
+    {
+      "id": "LEDGER-R-007",
+      "kind": "behavior",
+      "requiredLayers": ["runtime"],
+      "implementationRepos": ["open-4wd"],
+      "testContracts": { "runtime": "ledger-r-007-runtime" }
+    },
+    {
+      "id": "LEDGER-R-008",
+      "kind": "reject",
+      "requiredLayers": ["runtime"],
+      "implementationRepos": ["open-4wd"],
+      "testContracts": { "runtime": "ledger-r-008-runtime" }
+    },
+    {
+      "id": "LEDGER-R-009",
+      "kind": "reject",
+      "requiredLayers": ["admission"],
+      "implementationRepos": ["open-4wd"],
+      "testContracts": { "admission": "ledger-r-009-admission" }
+    },
+    {
+      "id": "LEDGER-R-010",
+      "kind": "behavior",
+      "requiredLayers": ["admission"],
+      "implementationRepos": ["open-4wd"],
+      "testContracts": { "admission": "ledger-r-010-admission" }
+    },
+    {
+      "id": "LEDGER-R-011",
+      "kind": "reject",
+      "requiredLayers": ["admission", "runtime"],
+      "implementationRepos": ["open-4wd"],
+      "testContracts": {
+        "admission": "ledger-r-011-admission",
+        "runtime": "ledger-r-011-runtime"
+      }
+    },
+    {
+      "id": "LEDGER-R-012",
+      "kind": "behavior",
+      "requiredLayers": ["fold"],
+      "implementationRepos": ["open-4wd"],
+      "testContracts": { "fold": "ledger-r-012-fold" }
+    },
+    {
+      "id": "LEDGER-R-013",
+      "kind": "reject",
+      "requiredLayers": ["admission"],
+      "implementationRepos": ["open-4wd"],
+      "testContracts": { "admission": "ledger-r-013-admission" }
+    },
+    {
+      "id": "LEDGER-R-014",
+      "kind": "reject",
+      "requiredLayers": ["fold"],
+      "implementationRepos": ["open-4wd"],
+      "testContracts": { "fold": "ledger-r-014-fold" }
+    },
+    {
+      "id": "LEDGER-R-015",
+      "kind": "behavior",
+      "requiredLayers": ["service"],
+      "implementationRepos": ["open-4wd"],
+      "testContracts": { "service": "ledger-r-015-service" }
+    },
+    {
+      "id": "LEDGER-R-016",
+      "kind": "derive",
+      "requiredLayers": ["service"],
+      "implementationRepos": ["open-4wd"],
+      "testContracts": { "service": "ledger-r-016-service" }
+    },
+    {
+      "id": "LEDGER-R-017",
+      "kind": "invariant",
+      "requiredLayers": ["runtime"],
+      "implementationRepos": ["open-4wd"],
+      "testContracts": { "runtime": "ledger-r-017-runtime" }
+    },
+    {
+      "id": "LEDGER-R-018",
+      "kind": "behavior",
+      "requiredLayers": ["service"],
+      "implementationRepos": ["open-4wd"],
+      "testContracts": { "service": "ledger-r-018-service" }
+    },
+    {
+      "id": "LEDGER-R-019",
+      "kind": "invariant",
+      "requiredLayers": ["fold"],
+      "implementationRepos": ["open-4wd"],
+      "testContracts": { "fold": "ledger-r-019-fold" }
+    },
+    {
+      "id": "LEDGER-R-020",
+      "kind": "invariant",
+      "requiredLayers": ["fold"],
+      "implementationRepos": ["open-4wd"],
+      "testContracts": { "fold": "ledger-r-020-fold" }
+    },
+    {
+      "id": "LEDGER-R-021",
+      "kind": "invariant",
+      "requiredLayers": ["fold"],
+      "implementationRepos": ["open-4wd"],
+      "testContracts": { "fold": "ledger-r-021-fold" }
+    },
+    {
+      "id": "LEDGER-R-022",
+      "kind": "reject",
+      "requiredLayers": ["service"],
+      "implementationRepos": ["open-4wd"],
+      "testContracts": { "service": "ledger-r-022-service" }
+    },
+    {
+      "id": "LEDGER-R-023",
+      "kind": "reject",
+      "requiredLayers": ["admission"],
+      "implementationRepos": ["open-4wd"],
+      "testContracts": { "admission": "ledger-r-023-admission" }
+    },
+    {
+      "id": "LEDGER-R-024",
+      "kind": "invariant",
+      "requiredLayers": ["service"],
+      "implementationRepos": ["open-4wd"],
+      "testContracts": { "service": "ledger-r-024-service" }
+    },
+    {
+      "id": "LEDGER-R-025",
+      "kind": "reject",
+      "requiredLayers": ["admission"],
+      "implementationRepos": ["open-4wd"],
+      "testContracts": { "admission": "ledger-r-025-admission" }
+    },
+    {
+      "id": "LEDGER-R-026",
+      "kind": "invariant",
+      "requiredLayers": ["admission"],
+      "implementationRepos": ["open-4wd"],
+      "testContracts": { "admission": "ledger-r-026-admission" }
+    },
+    {
+      "id": "LEDGER-R-027",
+      "kind": "reject",
+      "requiredLayers": ["admission", "fold"],
+      "implementationRepos": ["open-4wd"],
+      "testContracts": {
+        "admission": "ledger-r-027-admission",
+        "fold": "ledger-r-027-fold"
+      }
+    },
+    {
+      "id": "LEDGER-R-028",
+      "kind": "reject",
+      "requiredLayers": ["admission"],
+      "implementationRepos": ["open-4wd"],
+      "testContracts": { "admission": "ledger-r-028-admission" }
+    },
+    {
+      "id": "LEDGER-R-029",
+      "kind": "reject",
+      "requiredLayers": ["admission"],
+      "implementationRepos": ["open-4wd"],
+      "testContracts": { "admission": "ledger-r-029-admission" }
+    },
+    {
+      "id": "LEDGER-R-030",
+      "kind": "reject",
+      "requiredLayers": ["admission"],
+      "implementationRepos": ["open-4wd"],
+      "testContracts": { "admission": "ledger-r-030-admission" }
+    },
+    {
+      "id": "LEDGER-R-031",
+      "kind": "reject",
+      "requiredLayers": ["admission"],
+      "implementationRepos": ["open-4wd"],
+      "testContracts": { "admission": "ledger-r-031-admission" }
+    },
+    {
+      "id": "LEDGER-R-032",
+      "kind": "reject",
+      "requiredLayers": ["admission"],
+      "implementationRepos": ["open-4wd"],
+      "testContracts": { "admission": "ledger-r-032-admission" }
+    },
+    {
+      "id": "LEDGER-R-033",
+      "kind": "invariant",
+      "requiredLayers": ["service"],
+      "implementationRepos": ["open-4wd"],
+      "testContracts": { "service": "ledger-r-033-service" }
+    },
+    {
+      "id": "LEDGER-R-034",
+      "kind": "derive",
+      "requiredLayers": ["service"],
+      "implementationRepos": ["open-4wd"],
+      "testContracts": { "service": "ledger-r-034-service" }
+    },
+    {
+      "id": "LEDGER-R-035",
+      "kind": "invariant",
+      "requiredLayers": ["service"],
+      "implementationRepos": ["open-4wd"],
+      "testContracts": { "service": "ledger-r-035-service" }
+    },
+    {
+      "id": "LEDGER-R-036",
+      "kind": "behavior",
+      "requiredLayers": ["service"],
+      "implementationRepos": ["open-4wd"],
+      "testContracts": { "service": "ledger-r-036-service" }
+    },
+    {
+      "id": "LEDGER-R-037",
+      "kind": "reject",
+      "requiredLayers": ["schema-static"],
+      "implementationRepos": ["open-4wd"],
+      "testContracts": { "schema-static": "ledger-r-037-schema-static" }
+    },
+    {
+      "id": "LEDGER-R-038",
+      "kind": "behavior",
+      "requiredLayers": ["service"],
+      "implementationRepos": ["open-4wd"],
+      "testContracts": { "service": "ledger-r-038-service" }
+    },
+    {
+      "id": "LEDGER-R-039",
+      "kind": "reject",
+      "requiredLayers": ["service"],
+      "implementationRepos": ["open-4wd"],
+      "testContracts": { "service": "ledger-r-039-service" }
+    },
+    {
+      "id": "LEDGER-R-040",
+      "kind": "invariant",
+      "requiredLayers": ["service"],
+      "implementationRepos": ["open-4wd"],
+      "testContracts": { "service": "ledger-r-040-service" }
+    },
+    {
+      "id": "LEDGER-R-041",
+      "kind": "behavior",
+      "requiredLayers": ["service"],
+      "implementationRepos": ["open-4wd"],
+      "testContracts": { "service": "ledger-r-041-service" }
+    },
+    {
+      "id": "LEDGER-R-042",
+      "kind": "reject",
+      "requiredLayers": ["service"],
+      "implementationRepos": ["open-4wd"],
+      "testContracts": { "service": "ledger-r-042-service" }
+    },
+    {
+      "id": "LEDGER-R-043",
+      "kind": "invariant",
+      "requiredLayers": ["service"],
+      "implementationRepos": ["open-4wd"],
+      "testContracts": { "service": "ledger-r-043-service" }
+    },
+    {
+      "id": "LEDGER-R-044",
+      "kind": "invariant",
+      "requiredLayers": ["service"],
+      "implementationRepos": ["open-4wd"],
+      "testContracts": { "service": "ledger-r-044-service" }
+    },
+    {
+      "id": "LEDGER-R-045",
+      "kind": "reject",
+      "requiredLayers": ["service"],
+      "implementationRepos": ["open-4wd"],
+      "testContracts": { "service": "ledger-r-045-service" }
+    },
+    {
+      "id": "LEDGER-R-046",
+      "kind": "reject",
+      "requiredLayers": ["admission"],
+      "implementationRepos": ["open-4wd"],
+      "testContracts": { "admission": "ledger-r-046-admission" }
+    },
+    {
+      "id": "LEDGER-R-047",
+      "kind": "invariant",
+      "requiredLayers": ["service"],
+      "implementationRepos": ["open-4wd"],
+      "testContracts": { "service": "ledger-r-047-service" }
+    },
+    {
+      "id": "LEDGER-R-048",
+      "kind": "behavior",
+      "requiredLayers": ["service"],
+      "implementationRepos": ["open-4wd"],
+      "testContracts": { "service": "ledger-r-048-service" }
+    },
+    {
+      "id": "LEDGER-R-049",
+      "kind": "reject",
+      "requiredLayers": ["service"],
+      "implementationRepos": ["open-4wd"],
+      "testContracts": { "service": "ledger-r-049-service" }
+    },
+    {
+      "id": "LEDGER-R-050",
+      "kind": "invariant",
+      "requiredLayers": ["service", "fold"],
+      "implementationRepos": ["open-4wd"],
+      "testContracts": {
+        "service": "ledger-r-050-service",
+        "fold": "ledger-r-050-fold"
+      }
+    },
+    {
+      "id": "LEDGER-R-051",
+      "kind": "invariant",
+      "requiredLayers": ["service"],
+      "implementationRepos": ["open-4wd"],
+      "testContracts": { "service": "ledger-r-051-service" }
+    },
+    {
+      "id": "LEDGER-R-052",
+      "kind": "behavior",
+      "requiredLayers": ["service"],
+      "implementationRepos": ["open-4wd"],
+      "testContracts": { "service": "ledger-r-052-service" }
+    },
+    {
+      "id": "LEDGER-R-053",
+      "kind": "derive",
+      "requiredLayers": ["service"],
+      "implementationRepos": ["open-4wd"],
+      "testContracts": { "service": "ledger-r-053-service" }
+    },
+    {
+      "id": "LEDGER-R-054",
+      "kind": "invariant",
+      "requiredLayers": ["fold"],
+      "implementationRepos": ["open-4wd"],
+      "testContracts": { "fold": "ledger-r-054-fold" }
+    },
+    {
+      "id": "LEDGER-R-055",
+      "kind": "invariant",
+      "requiredLayers": ["service"],
+      "implementationRepos": ["open-4wd"],
+      "testContracts": { "service": "ledger-r-055-service" }
+    },
+    {
+      "id": "LEDGER-R-056",
+      "kind": "invariant",
+      "requiredLayers": ["fold"],
+      "implementationRepos": ["open-4wd"],
+      "testContracts": { "fold": "ledger-r-056-fold" }
+    },
+    {
+      "id": "LEDGER-R-057",
+      "kind": "invariant",
+      "requiredLayers": ["admission", "fold"],
+      "implementationRepos": ["open-4wd"],
+      "testContracts": {
+        "admission": "ledger-r-057-admission",
+        "fold": "ledger-r-057-fold"
+      }
+    },
+    {
+      "id": "LEDGER-R-058",
+      "kind": "invariant",
+      "requiredLayers": ["fold"],
+      "implementationRepos": ["open-4wd"],
+      "testContracts": { "fold": "ledger-r-058-fold" }
+    },
+    {
+      "id": "LEDGER-R-059",
+      "kind": "reject",
+      "requiredLayers": ["fold"],
+      "implementationRepos": ["open-4wd"],
+      "testContracts": { "fold": "ledger-r-059-fold" }
+    },
+    {
+      "id": "LEDGER-R-060",
+      "kind": "reject",
+      "requiredLayers": ["fold"],
+      "implementationRepos": ["open-4wd"],
+      "testContracts": { "fold": "ledger-r-060-fold" }
+    },
+    {
+      "id": "LEDGER-R-061",
+      "kind": "invariant",
+      "requiredLayers": ["fold"],
+      "implementationRepos": ["open-4wd"],
+      "testContracts": { "fold": "ledger-r-061-fold" }
+    },
+    {
+      "id": "LEDGER-R-062",
+      "kind": "reject",
+      "requiredLayers": ["fold"],
+      "implementationRepos": ["open-4wd"],
+      "testContracts": { "fold": "ledger-r-062-fold" }
+    },
+    {
+      "id": "LEDGER-R-063",
+      "kind": "reject",
+      "requiredLayers": ["fold"],
+      "implementationRepos": ["open-4wd"],
+      "testContracts": { "fold": "ledger-r-063-fold" }
+    },
+    {
+      "id": "LEDGER-R-064",
+      "kind": "reject",
+      "requiredLayers": ["fold"],
+      "implementationRepos": ["open-4wd"],
+      "testContracts": { "fold": "ledger-r-064-fold" }
+    },
+    {
+      "id": "LEDGER-R-065",
+      "kind": "reject",
+      "requiredLayers": ["admission", "fold"],
+      "implementationRepos": ["open-4wd"],
+      "testContracts": {
+        "admission": "ledger-r-065-admission",
+        "fold": "ledger-r-065-fold"
+      }
+    },
+    {
+      "id": "LEDGER-R-066",
+      "kind": "reject",
+      "requiredLayers": ["admission", "fold"],
+      "implementationRepos": ["open-4wd"],
+      "testContracts": {
+        "admission": "ledger-r-066-admission",
+        "fold": "ledger-r-066-fold"
+      }
+    },
+    {
+      "id": "LEDGER-R-067",
+      "kind": "reject",
+      "requiredLayers": ["fold"],
+      "implementationRepos": ["open-4wd"],
+      "testContracts": { "fold": "ledger-r-067-fold" }
+    },
+    {
+      "id": "LEDGER-R-068",
+      "kind": "invariant",
+      "requiredLayers": ["fold"],
+      "implementationRepos": ["open-4wd"],
+      "testContracts": { "fold": "ledger-r-068-fold" }
+    },
+    {
+      "id": "LEDGER-R-069",
+      "kind": "derive",
+      "requiredLayers": ["service"],
+      "implementationRepos": ["open-4wd"],
+      "testContracts": { "service": "ledger-r-069-service" }
+    },
+    {
+      "id": "LEDGER-R-070",
+      "kind": "reject",
+      "requiredLayers": ["fold"],
+      "implementationRepos": ["open-4wd"],
+      "testContracts": { "fold": "ledger-r-070-fold" }
+    },
+    {
+      "id": "LEDGER-R-071",
+      "kind": "reject",
+      "requiredLayers": ["admission", "fold"],
+      "implementationRepos": ["open-4wd"],
+      "testContracts": {
+        "admission": "ledger-r-071-admission",
+        "fold": "ledger-r-071-fold"
+      }
+    },
+    {
+      "id": "LEDGER-R-072",
+      "kind": "behavior",
+      "requiredLayers": ["admission"],
+      "implementationRepos": ["open-4wd"],
+      "testContracts": { "admission": "ledger-r-072-admission" }
+    },
+    {
+      "id": "LEDGER-R-073",
+      "kind": "behavior",
+      "requiredLayers": ["service"],
+      "implementationRepos": ["open-4wd"],
+      "testContracts": { "service": "ledger-r-073-service" }
+    },
+    {
+      "id": "LEDGER-R-074",
+      "kind": "reject",
+      "requiredLayers": ["admission"],
+      "implementationRepos": ["open-4wd"],
+      "testContracts": { "admission": "ledger-r-074-admission" }
+    },
+    {
+      "id": "LEDGER-R-075",
+      "kind": "invariant",
+      "requiredLayers": ["service"],
+      "implementationRepos": ["open-4wd"],
+      "testContracts": { "service": "ledger-r-075-service" }
+    },
+    {
+      "id": "LEDGER-R-076",
+      "kind": "invariant",
+      "requiredLayers": ["service"],
+      "implementationRepos": ["open-4wd"],
+      "testContracts": { "service": "ledger-r-076-service" }
+    },
+    {
+      "id": "LEDGER-R-077",
+      "kind": "behavior",
+      "requiredLayers": ["service"],
+      "implementationRepos": ["open-4wd"],
+      "testContracts": { "service": "ledger-r-077-service" }
+    },
+    {
+      "id": "LEDGER-R-078",
+      "kind": "behavior",
+      "requiredLayers": ["service"],
+      "implementationRepos": ["open-4wd"],
+      "testContracts": { "service": "ledger-r-078-service" }
+    },
+    {
+      "id": "LEDGER-R-079",
+      "kind": "behavior",
+      "requiredLayers": ["runtime"],
+      "implementationRepos": ["open-4wd"],
+      "testContracts": { "runtime": "ledger-r-079-runtime" }
+    },
+    {
+      "id": "LEDGER-R-080",
+      "kind": "invariant",
+      "requiredLayers": ["runtime"],
+      "implementationRepos": ["open-4wd"],
+      "testContracts": { "runtime": "ledger-r-080-runtime" }
+    },
+    {
+      "id": "LEDGER-R-081",
+      "kind": "behavior",
+      "requiredLayers": ["runtime"],
+      "implementationRepos": ["open-4wd"],
+      "testContracts": { "runtime": "ledger-r-081-runtime" }
+    },
+    {
+      "id": "LEDGER-R-082",
+      "kind": "derive",
+      "requiredLayers": ["runtime"],
+      "implementationRepos": ["open-4wd"],
+      "testContracts": { "runtime": "ledger-r-082-runtime" }
+    },
+    {
+      "id": "LEDGER-R-083",
+      "kind": "behavior",
+      "requiredLayers": ["runtime"],
+      "implementationRepos": ["open-4wd"],
+      "testContracts": { "runtime": "ledger-r-083-runtime" }
+    },
+    {
+      "id": "LEDGER-R-084",
+      "kind": "derive",
+      "requiredLayers": ["service"],
+      "implementationRepos": ["open-4wd"],
+      "testContracts": { "service": "ledger-r-084-service" }
+    },
+    {
+      "id": "LEDGER-R-085",
+      "kind": "behavior",
+      "requiredLayers": ["runtime"],
+      "implementationRepos": ["open-4wd"],
+      "testContracts": { "runtime": "ledger-r-085-runtime" }
+    },
+    {
+      "id": "LEDGER-R-086",
+      "kind": "behavior",
+      "requiredLayers": ["runtime"],
+      "implementationRepos": ["open-4wd"],
+      "testContracts": { "runtime": "ledger-r-086-runtime" }
+    },
+    {
+      "id": "LEDGER-R-087",
+      "kind": "reject",
+      "requiredLayers": ["runtime"],
+      "implementationRepos": ["open-4wd"],
+      "testContracts": { "runtime": "ledger-r-087-runtime" }
+    },
+    {
+      "id": "LEDGER-R-088",
+      "kind": "reject",
+      "requiredLayers": ["runtime"],
+      "implementationRepos": ["open-4wd"],
+      "testContracts": { "runtime": "ledger-r-088-runtime" }
+    },
+    {
+      "id": "LEDGER-R-089",
+      "kind": "reject",
+      "requiredLayers": ["runtime"],
+      "implementationRepos": ["open-4wd"],
+      "testContracts": { "runtime": "ledger-r-089-runtime" }
+    },
+    {
+      "id": "LEDGER-R-090",
+      "kind": "reject",
+      "requiredLayers": ["service"],
+      "implementationRepos": ["open-4wd-pinning"],
+      "testContracts": { "service": "ledger-r-090-service" }
+    },
+    {
+      "id": "LEDGER-R-091",
+      "kind": "invariant",
+      "requiredLayers": ["service"],
+      "implementationRepos": ["open-4wd"],
+      "testContracts": { "service": "ledger-r-091-service" }
+    },
+    {
+      "id": "LEDGER-R-092",
+      "kind": "invariant",
+      "requiredLayers": ["service"],
+      "implementationRepos": ["open-4wd"],
+      "testContracts": { "service": "ledger-r-092-service" }
+    },
+    {
+      "id": "LEDGER-R-093",
+      "kind": "invariant",
+      "requiredLayers": ["service"],
+      "implementationRepos": ["open-4wd"],
+      "testContracts": { "service": "ledger-r-093-service" }
+    },
+    {
+      "id": "LEDGER-R-094",
+      "kind": "reject",
+      "requiredLayers": ["admission"],
+      "implementationRepos": ["open-4wd"],
+      "testContracts": { "admission": "ledger-r-094-admission" }
+    },
+    {
+      "id": "LEDGER-R-095",
+      "kind": "reject",
+      "requiredLayers": ["admission", "fold"],
+      "implementationRepos": ["open-4wd"],
+      "testContracts": {
+        "admission": "ledger-r-095-admission",
+        "fold": "ledger-r-095-fold"
+      }
+    },
+    {
+      "id": "LEDGER-R-096",
+      "kind": "invariant",
+      "requiredLayers": ["fold"],
+      "implementationRepos": ["open-4wd"],
+      "testContracts": { "fold": "ledger-r-096-fold" }
+    },
+    {
+      "id": "LEDGER-R-097",
+      "kind": "invariant",
+      "requiredLayers": ["admission"],
+      "implementationRepos": ["open-4wd"],
+      "testContracts": { "admission": "ledger-r-097-admission" }
+    },
+    {
+      "id": "LEDGER-R-098",
+      "kind": "reject",
+      "requiredLayers": ["service"],
+      "implementationRepos": ["open-4wd"],
+      "testContracts": { "service": "ledger-r-098-service" }
+    },
+    {
+      "id": "MOD-R-001",
+      "kind": "invariant",
+      "requiredLayers": ["fold"],
+      "implementationRepos": ["open-4wd"],
+      "testContracts": { "fold": "mod-r-001-fold" }
+    },
+    {
+      "id": "MOD-R-002",
+      "kind": "derive",
+      "requiredLayers": ["fold"],
+      "implementationRepos": ["open-4wd"],
+      "testContracts": { "fold": "mod-r-002-fold" }
+    },
+    {
+      "id": "MOD-R-003",
+      "kind": "derive",
+      "requiredLayers": ["fold"],
+      "implementationRepos": ["open-4wd"],
+      "testContracts": { "fold": "mod-r-003-fold" }
+    },
+    {
+      "id": "MOD-R-004",
+      "kind": "derive",
+      "requiredLayers": ["fold"],
+      "implementationRepos": ["open-4wd"],
+      "testContracts": { "fold": "mod-r-004-fold" }
+    },
+    {
+      "id": "MOD-R-005",
+      "kind": "derive",
+      "requiredLayers": ["fold"],
+      "implementationRepos": ["open-4wd"],
+      "testContracts": { "fold": "mod-r-005-fold" }
+    },
+    {
+      "id": "MOD-R-006",
+      "kind": "derive",
+      "requiredLayers": ["fold"],
+      "implementationRepos": ["open-4wd"],
+      "testContracts": { "fold": "mod-r-006-fold" }
+    },
+    {
+      "id": "MOD-R-007",
+      "kind": "invariant",
+      "requiredLayers": ["fold"],
+      "implementationRepos": ["open-4wd"],
+      "testContracts": { "fold": "mod-r-007-fold" }
+    },
+    {
+      "id": "MOD-R-008",
+      "kind": "derive",
+      "requiredLayers": ["fold"],
+      "implementationRepos": ["open-4wd"],
+      "testContracts": { "fold": "mod-r-008-fold" }
+    },
+    {
+      "id": "MOD-R-009",
+      "kind": "derive",
+      "requiredLayers": ["fold"],
+      "implementationRepos": ["open-4wd"],
+      "testContracts": { "fold": "mod-r-009-fold" }
+    },
+    {
+      "id": "MOD-R-010",
+      "kind": "derive",
+      "requiredLayers": ["service"],
+      "implementationRepos": ["open-4wd"],
+      "testContracts": { "service": "mod-r-010-service" }
+    },
+    {
+      "id": "MOD-R-011",
+      "kind": "derive",
+      "requiredLayers": ["fold"],
+      "implementationRepos": ["open-4wd"],
+      "testContracts": { "fold": "mod-r-011-fold" }
+    },
+    {
+      "id": "MOD-R-012",
+      "kind": "derive",
+      "requiredLayers": ["service"],
+      "implementationRepos": ["open-4wd"],
+      "testContracts": { "service": "mod-r-012-service" }
+    },
+    {
+      "id": "MOD-R-013",
+      "kind": "derive",
+      "requiredLayers": ["fold"],
+      "implementationRepos": ["open-4wd"],
+      "testContracts": { "fold": "mod-r-013-fold" }
+    },
+    {
+      "id": "MOD-R-014",
+      "kind": "invariant",
+      "requiredLayers": ["service"],
+      "implementationRepos": ["open-4wd"],
+      "testContracts": { "service": "mod-r-014-service" }
+    },
+    {
+      "id": "MOD-R-015",
+      "kind": "derive",
+      "requiredLayers": ["service"],
+      "implementationRepos": ["open-4wd"],
+      "testContracts": { "service": "mod-r-015-service" }
+    },
+    {
+      "id": "MOD-R-016",
+      "kind": "reject",
+      "requiredLayers": ["service", "admission"],
+      "implementationRepos": ["open-4wd"],
+      "testContracts": {
+        "service": "mod-r-016-service",
+        "admission": "mod-r-016-admission"
+      }
+    },
+    {
+      "id": "MOD-R-017",
+      "kind": "derive",
+      "requiredLayers": ["service"],
+      "implementationRepos": ["open-4wd"],
+      "testContracts": { "service": "mod-r-017-service" }
+    },
+    {
+      "id": "MOD-R-018",
+      "kind": "invariant",
+      "requiredLayers": ["fold"],
+      "implementationRepos": ["open-4wd"],
+      "testContracts": { "fold": "mod-r-018-fold" }
+    },
+    {
+      "id": "MOD-R-019",
+      "kind": "behavior",
+      "requiredLayers": ["service"],
+      "implementationRepos": ["open-4wd"],
+      "testContracts": { "service": "mod-r-019-service" }
+    },
+    {
+      "id": "MOD-R-020",
+      "kind": "derive",
+      "requiredLayers": ["service"],
+      "implementationRepos": ["open-4wd"],
+      "testContracts": { "service": "mod-r-020-service" }
+    },
+    {
+      "id": "MOD-R-021",
+      "kind": "derive",
+      "requiredLayers": ["service", "fold"],
+      "implementationRepos": ["open-4wd"],
+      "testContracts": {
+        "service": "mod-r-021-service",
+        "fold": "mod-r-021-fold"
+      }
+    },
+    {
+      "id": "MOD-R-022",
+      "kind": "reject",
+      "requiredLayers": ["fold"],
+      "implementationRepos": ["open-4wd"],
+      "testContracts": { "fold": "mod-r-022-fold" }
+    },
+    {
+      "id": "MOD-R-023",
+      "kind": "reject",
+      "requiredLayers": ["fold"],
+      "implementationRepos": ["open-4wd"],
+      "testContracts": { "fold": "mod-r-023-fold" }
+    },
+    {
+      "id": "MOD-R-024",
+      "kind": "reject",
+      "requiredLayers": ["service"],
+      "implementationRepos": ["open-4wd"],
+      "testContracts": { "service": "mod-r-024-service" }
+    },
+    {
+      "id": "MOD-R-025",
+      "kind": "reject",
+      "requiredLayers": ["service"],
+      "implementationRepos": ["open-4wd"],
+      "testContracts": { "service": "mod-r-025-service" }
+    },
+    {
+      "id": "MOD-R-026",
+      "kind": "reject",
+      "requiredLayers": ["service"],
+      "implementationRepos": ["open-4wd"],
+      "testContracts": { "service": "mod-r-026-service" }
+    },
+    {
+      "id": "MOD-R-027",
+      "kind": "reject",
+      "requiredLayers": ["service"],
+      "implementationRepos": ["open-4wd"],
+      "testContracts": { "service": "mod-r-027-service" }
+    },
+    {
+      "id": "MOD-R-028",
+      "kind": "derive",
+      "requiredLayers": ["service"],
+      "implementationRepos": ["open-4wd"],
+      "testContracts": { "service": "mod-r-028-service" }
+    },
+    {
+      "id": "MOD-R-029",
+      "kind": "invariant",
+      "requiredLayers": ["service"],
+      "implementationRepos": ["open-4wd"],
+      "testContracts": { "service": "mod-r-029-service" }
+    },
+    {
+      "id": "MOD-R-030",
+      "kind": "derive",
+      "requiredLayers": ["service"],
+      "implementationRepos": ["open-4wd"],
+      "testContracts": { "service": "mod-r-030-service" }
+    },
+    {
+      "id": "MOD-R-031",
+      "kind": "reject",
+      "requiredLayers": ["admission"],
+      "implementationRepos": ["open-4wd"],
+      "testContracts": { "admission": "mod-r-031-admission" }
+    },
+    {
+      "id": "MOD-R-032",
+      "kind": "reject",
+      "requiredLayers": ["admission"],
+      "implementationRepos": ["open-4wd"],
+      "testContracts": { "admission": "mod-r-032-admission" }
+    },
+    {
+      "id": "MOD-R-033",
+      "kind": "derive",
+      "requiredLayers": ["service"],
+      "implementationRepos": ["open-4wd"],
+      "testContracts": { "service": "mod-r-033-service" }
+    },
+    {
+      "id": "MOD-R-034",
+      "kind": "invariant",
+      "requiredLayers": ["service"],
+      "implementationRepos": ["open-4wd"],
+      "testContracts": { "service": "mod-r-034-service" }
+    },
+    {
+      "id": "MOD-R-035",
+      "kind": "derive",
+      "requiredLayers": ["service"],
+      "implementationRepos": ["open-4wd"],
+      "testContracts": { "service": "mod-r-035-service" }
+    },
+    {
+      "id": "MOD-R-036",
+      "kind": "derive",
+      "requiredLayers": ["fold"],
+      "implementationRepos": ["open-4wd"],
+      "testContracts": { "fold": "mod-r-036-fold" }
+    },
+    {
+      "id": "MOD-R-037",
+      "kind": "derive",
+      "requiredLayers": ["fold"],
+      "implementationRepos": ["open-4wd"],
+      "testContracts": { "fold": "mod-r-037-fold" }
+    },
+    {
+      "id": "MOD-R-038",
+      "kind": "reject",
+      "requiredLayers": ["admission", "fold"],
+      "implementationRepos": ["open-4wd"],
+      "testContracts": {
+        "admission": "mod-r-038-admission",
+        "fold": "mod-r-038-fold"
+      }
+    },
+    {
+      "id": "MOD-R-039",
+      "kind": "reject",
+      "requiredLayers": ["admission", "fold"],
+      "implementationRepos": ["open-4wd"],
+      "testContracts": {
+        "admission": "mod-r-039-admission",
+        "fold": "mod-r-039-fold"
+      }
+    },
+    {
+      "id": "MOD-R-040",
+      "kind": "reject",
+      "requiredLayers": ["admission", "fold"],
+      "implementationRepos": ["open-4wd"],
+      "testContracts": {
+        "admission": "mod-r-040-admission",
+        "fold": "mod-r-040-fold"
+      }
+    },
+    {
+      "id": "MOD-R-041",
+      "kind": "reject",
+      "requiredLayers": ["admission", "fold"],
+      "implementationRepos": ["open-4wd"],
+      "testContracts": {
+        "admission": "mod-r-041-admission",
+        "fold": "mod-r-041-fold"
+      }
+    },
+    {
+      "id": "MOD-R-042",
+      "kind": "reject",
+      "requiredLayers": ["admission", "fold"],
+      "implementationRepos": ["open-4wd"],
+      "testContracts": {
+        "admission": "mod-r-042-admission",
+        "fold": "mod-r-042-fold"
+      }
+    },
+    {
+      "id": "MOD-R-043",
+      "kind": "reject",
+      "requiredLayers": ["admission", "fold"],
+      "implementationRepos": ["open-4wd"],
+      "testContracts": {
+        "admission": "mod-r-043-admission",
+        "fold": "mod-r-043-fold"
+      }
+    },
+    {
+      "id": "MOD-R-044",
+      "kind": "reject",
+      "requiredLayers": ["admission", "fold"],
+      "implementationRepos": ["open-4wd"],
+      "testContracts": {
+        "admission": "mod-r-044-admission",
+        "fold": "mod-r-044-fold"
+      }
+    },
+    {
+      "id": "MOD-R-045",
+      "kind": "invariant",
+      "requiredLayers": ["admission", "fold"],
+      "implementationRepos": ["open-4wd"],
+      "testContracts": {
+        "admission": "mod-r-045-admission",
+        "fold": "mod-r-045-fold"
+      }
+    },
+    {
+      "id": "MOD-R-046",
+      "kind": "reject",
+      "requiredLayers": ["fold"],
+      "implementationRepos": ["open-4wd"],
+      "testContracts": { "fold": "mod-r-046-fold" }
+    },
+    {
+      "id": "MOD-R-047",
+      "kind": "behavior",
+      "requiredLayers": ["fold"],
+      "implementationRepos": ["open-4wd"],
+      "testContracts": { "fold": "mod-r-047-fold" }
+    },
+    {
+      "id": "MOD-R-048",
+      "kind": "behavior",
+      "requiredLayers": ["admission", "fold"],
+      "implementationRepos": ["open-4wd"],
+      "testContracts": {
+        "admission": "mod-r-048-admission",
+        "fold": "mod-r-048-fold"
+      }
+    },
+    {
+      "id": "MOD-R-049",
+      "kind": "invariant",
+      "requiredLayers": ["fold"],
+      "implementationRepos": ["open-4wd"],
+      "testContracts": { "fold": "mod-r-049-fold" }
+    },
+    {
+      "id": "MOD-R-050",
+      "kind": "behavior",
+      "requiredLayers": ["service"],
+      "implementationRepos": ["open-4wd"],
+      "testContracts": { "service": "mod-r-050-service" }
+    },
+    {
+      "id": "MOD-R-051",
+      "kind": "behavior",
+      "requiredLayers": ["service"],
+      "implementationRepos": ["open-4wd"],
+      "testContracts": { "service": "mod-r-051-service" }
+    },
+    {
+      "id": "MOD-R-052",
+      "kind": "reject",
+      "requiredLayers": ["service"],
+      "implementationRepos": ["open-4wd"],
+      "testContracts": { "service": "mod-r-052-service" }
+    },
+    {
+      "id": "MOD-R-053",
+      "kind": "derive",
+      "requiredLayers": ["fold"],
+      "implementationRepos": ["open-4wd"],
+      "testContracts": { "fold": "mod-r-053-fold" }
+    },
+    {
+      "id": "MOD-R-054",
+      "kind": "behavior",
+      "requiredLayers": ["service"],
+      "implementationRepos": ["open-4wd"],
+      "testContracts": { "service": "mod-r-054-service" }
+    },
+    {
+      "id": "MOD-R-055",
+      "kind": "derive",
+      "requiredLayers": ["fold"],
+      "implementationRepos": ["open-4wd"],
+      "testContracts": { "fold": "mod-r-055-fold" }
+    },
+    {
+      "id": "MOD-R-056",
+      "kind": "derive",
+      "requiredLayers": ["fold"],
+      "implementationRepos": ["open-4wd"],
+      "testContracts": { "fold": "mod-r-056-fold" }
+    },
+    {
+      "id": "MOD-R-057",
+      "kind": "derive",
+      "requiredLayers": ["fold"],
+      "implementationRepos": ["open-4wd"],
+      "testContracts": { "fold": "mod-r-057-fold" }
+    },
+    {
+      "id": "PART-R-001",
+      "kind": "reject",
+      "requiredLayers": ["finalizer", "admission", "runtime"],
+      "implementationRepos": ["open-4wd"],
+      "testContracts": {
+        "finalizer": "part-r-001-finalizer",
+        "admission": "part-r-001-admission",
+        "runtime": "part-r-001-runtime"
+      }
+    },
+    {
+      "id": "PHYS-R-001",
+      "kind": "reject",
+      "requiredLayers": ["finalizer", "admission", "runtime"],
+      "implementationRepos": ["open-4wd"],
+      "testContracts": {
+        "finalizer": "phys-r-001-finalizer",
+        "admission": "phys-r-001-admission",
+        "runtime": "phys-r-001-runtime"
+      }
+    },
+    {
+      "id": "TRACK-R-001",
+      "kind": "reject",
+      "requiredLayers": ["finalizer", "admission", "runtime"],
+      "implementationRepos": ["open-4wd"],
+      "testContracts": {
+        "finalizer": "track-r-001-finalizer",
+        "admission": "track-r-001-admission",
+        "runtime": "track-r-001-runtime"
+      }
+    },
+    {
+      "id": "UGC-R-001",
+      "kind": "reject",
+      "requiredLayers": ["schema-static"],
+      "implementationRepos": ["open-4wd"],
+      "testContracts": { "schema-static": "ugc-r-001-schema-static" }
+    },
+    {
+      "id": "UGC-R-002",
+      "kind": "reject",
+      "requiredLayers": ["admission"],
+      "implementationRepos": ["open-4wd"],
+      "testContracts": { "admission": "ugc-r-002-admission" }
+    },
+    {
+      "id": "UGC-R-003",
+      "kind": "behavior",
+      "requiredLayers": ["service"],
+      "implementationRepos": ["open-4wd"],
+      "testContracts": { "service": "ugc-r-003-service" }
+    },
+    {
+      "id": "UGC-R-004",
+      "kind": "invariant",
+      "requiredLayers": ["fold"],
+      "implementationRepos": ["open-4wd"],
+      "testContracts": { "fold": "ugc-r-004-fold" }
+    },
+    {
+      "id": "UGC-R-005",
+      "kind": "reject",
+      "requiredLayers": ["service"],
+      "implementationRepos": ["open-4wd"],
+      "testContracts": { "service": "ugc-r-005-service" }
+    }
+  ]
+}

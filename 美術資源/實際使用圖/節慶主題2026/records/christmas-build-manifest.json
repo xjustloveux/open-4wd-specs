@@ -1,0 +1,195 @@
+{
+  "themeId": "christmas-workshop-2026-75fe9c",
+  "approvedDesign": "Halloween v5 / Christmas v9",
+  "rasterOrigin": "OpenAI image_gen, approved in the seasonal-theme design conversation",
+  "vectorOrigin": "Project-authored SVG; no external references",
+  "rasterConversion": {
+    "tool": "Pillow",
+    "format": "WebP",
+    "quality": 88,
+    "method": 6
+  },
+  "fallback": "Theme audio is registered from assets/audio; reserved gameplay SFX and the three surface loops inherit default. All visual slots have local assets. Reserved gameplay tokens and neutral PBR are unchanged.",
+  "files": {
+    "assets/audio/bgm-home.ogg": {
+      "bytes": 1588501,
+      "sha256": "cfbba2fbb350298e82a544c9719e74882a9aabdc44cdf3177f62968028e9e14f"
+    },
+    "assets/audio/bgm-race.ogg": {
+      "bytes": 2016701,
+      "sha256": "1a220970210d3d4f5bd1ae2764795764dd6678b45ee769640ad9aa948bd02af5"
+    },
+    "assets/audio/sfx-cancel.ogg": {
+      "bytes": 10435,
+      "sha256": "b82b4a57fbb6dbff345b87436f31e2834cbb5d3b03c85f30578522276a4e91ba"
+    },
+    "assets/audio/sfx-checkpoint.ogg": {
+      "bytes": 13216,
+      "sha256": "7f319087902ff6ee38c1c6a83fb1c3f8ed6589d0fb2a55fa3d039780ca9ce35d"
+    },
+    "assets/audio/sfx-click.ogg": {
+      "bytes": 1403,
+      "sha256": "11bcd6234a6bbe30dc5b0417c7eed1d918a2cc3c68afcd44cb056a9b533f2491"
+    },
+    "assets/audio/sfx-collision-heavy.ogg": {
+      "bytes": 8844,
+      "sha256": "c71b1c8c1f219dc84e0aec0ef2ec6e079bb1570d1b3482b068bdfec944dfea44"
+    },
+    "assets/audio/sfx-collision-light.ogg": {
+      "bytes": 4605,
+      "sha256": "6353eb3a80193c05c5be9659d85ae047a03803dd7ba4b25f445ad29a9e13aba4"
+    },
+    "assets/audio/sfx-confirm.ogg": {
+      "bytes": 10585,
+      "sha256": "84f6cc7a87e4e5d683fd9a0963fc2550637f21cc7f283f3b64cbfc2a1d2e38ff"
+    },
+    "assets/audio/sfx-error.ogg": {
+      "bytes": 6560,
+      "sha256": "835f520ecb8268c16d21e7a3791bbd9a70b3274f18661e42360a474ff5967019"
+    },
+    "assets/audio/sfx-motor-loop.ogg": {
+      "bytes": 39551,
+      "sha256": "f470338d4bb92172521d2e556811f816e836ea0df8f2491630e68f852489d78b"
+    },
+    "assets/audio/sfx-race-finish.ogg": {
+      "bytes": 37080,
+      "sha256": "b6ba37b5f7a14bd7dcc57ee8230cc7717ac1fa1831d997dab3d6a92b7d194334"
+    },
+    "assets/audio/sfx-skill-boost.ogg": {
+      "bytes": 12977,
+      "sha256": "0c9e6ac11450ad44ab232364e4966aa7b16194328f9adfb3e276387c22726ba0"
+    },
+    "assets/audio/sfx-skill-brake.ogg": {
+      "bytes": 8321,
+      "sha256": "2a228e64c41a179d4b18f7aab9d59d4891550cdfb7b59b19f0ed273edd8ffc51"
+    },
+    "assets/audio/sfx-skill-jump.ogg": {
+      "bytes": 8192,
+      "sha256": "3c7844d162c2420a9a6c247625082558f5454806e2cd5b7f672102e4bf356754"
+    },
+    "assets/audio/sfx-skill-slam.ogg": {
+      "bytes": 9762,
+      "sha256": "048233b7ca543f323331da94c9d6a4df0bad41a2bb1b86f11581d3891ba41682"
+    },
+    "assets/audio/sfx-skill-stabilize.ogg": {
+      "bytes": 14872,
+      "sha256": "244f3d0ebe389ce3372206bb69d02354ea01448771d3d15d94cebf0e815fc6c9"
+    },
+    "assets/audio/sfx-skill-swerve.ogg": {
+      "bytes": 6472,
+      "sha256": "f40913386e6e2d3941d28bb5eeae1e194b4f90ae1528d1841aef01140f91ac59"
+    },
+    "assets/audio/sfx-toast.ogg": {
+      "bytes": 16204,
+      "sha256": "f7ad923f17622d75241c602faefa4292cc7cb966b8c52fc0ec5f0bff7d50db0c"
+    },
+    "assets/audio/sfx-weapon-melee-impact.ogg": {
+      "bytes": 10015,
+      "sha256": "d56816848ae8571364f35c08db04826f8481a44b09581c1f99cea1292fc01b23"
+    },
+    "assets/audio/sfx-weapon-melee-launch.ogg": {
+      "bytes": 6015,
+      "sha256": "de198ef91f8bef1422aac6bab3f07851566a78f8c933b42737806c0800ebf321"
+    },
+    "assets/audio/sfx-weapon-projectile-impact.ogg": {
+      "bytes": 8607,
+      "sha256": "862395cab57c2bae43714725839ad99c96c6940263fbfedb3b958495e5d0d9cf"
+    },
+    "assets/audio/sfx-weapon-projectile-launch.ogg": {
+      "bytes": 6902,
+      "sha256": "b3f3a91863dcf74e5ee40d72a7466517f8d17c547fe9ca688155dffc1115cf7e"
+    },
+    "assets/brand-emblem.svg": {
+      "bytes": 1193,
+      "sha256": "57ba38a9bd806ea53fc677ae47b02fe2bbbe7f3aa10ad06a4db3720101be04db"
+    },
+    "assets/core-loop-assembly.svg": {
+      "bytes": 412,
+      "sha256": "e33d92b2298ccbfc5e99708e1282d3bfd0ad1070ad2d67eca92a2f36c10025ef"
+    },
+    "assets/core-loop-race.svg": {
+      "bytes": 348,
+      "sha256": "146fab4a5df32c06bd270c6f2b52c0a42ee803c70d3a6a1606fdec9327d9aad4"
+    },
+    "assets/core-loop-tuning.svg": {
+      "bytes": 375,
+      "sha256": "3271860a2c03d69bfc4451388b6d18d57c6d68a42631141339b178d4733440a9"
+    },
+    "assets/empty-connection.webp": {
+      "bytes": 51886,
+      "sha256": "3de5ebf8d7be8670a9d64568ad078b3771d8c3f7d03920e7e1c8576a66011312"
+    },
+    "assets/empty-garage.webp": {
+      "bytes": 72894,
+      "sha256": "3698f272312e9262dfc8c8c1720763220b0bf5b61a449485f19b107f5b936046"
+    },
+    "assets/empty-generic.webp": {
+      "bytes": 67870,
+      "sha256": "fdcb3b5b922511bbf5d38a30922ff30913c8ef908eeca3ec020cfec0dd6218a5"
+    },
+    "assets/landing-hero.webp": {
+      "bytes": 268202,
+      "sha256": "aa12e0c779942f4d4f92da564d6f1e7908e9b7bf44aa45fd118c4bccec3ab4e8"
+    },
+    "assets/panel-surface.svg": {
+      "bytes": 69113,
+      "sha256": "6f51c7e4f494930f9d4e1add372d0a31194d17e23ed9d8ba48f5322aae300945"
+    },
+    "assets/primary-action-decoration.svg": {
+      "bytes": 547,
+      "sha256": "416459327f448f962a582410c131eec638864e4d436c16ec70098be23506849f"
+    },
+    "assets/race-countdown/1-static.webp": {
+      "bytes": 49102,
+      "sha256": "1d104447e652c18c4254a1c871cfe6d4eedd32d4d2ffe128ecf38e251a1a76ad"
+    },
+    "assets/race-countdown/1.webp": {
+      "bytes": 287734,
+      "sha256": "51883416229b46e527f6a4c2be00cf5888526b8b025a9951b0ce054dac4bbdbc"
+    },
+    "assets/race-countdown/2-static.webp": {
+      "bytes": 67258,
+      "sha256": "e10590b263ba7c0cdce0854485265d733e61b6002009b66287b56f0dc7ce47e8"
+    },
+    "assets/race-countdown/2.webp": {
+      "bytes": 394940,
+      "sha256": "c5b1ae7d87288302d36b116f0eb811d38e5cb2d809c1e0ad2fe3a6a9e672a23a"
+    },
+    "assets/race-countdown/3-static.webp": {
+      "bytes": 65026,
+      "sha256": "40ede43328be2f41654a1e50df4e8265aa0c4e33ec15a084a06b0d2388b78093"
+    },
+    "assets/race-countdown/3.webp": {
+      "bytes": 380314,
+      "sha256": "b6c7d1b1535dae3bd9cce0ec1e63b5cd4bf113bc7ba5865bbc8afe85fedbca40"
+    },
+    "assets/race-countdown/start-static.webp": {
+      "bytes": 65194,
+      "sha256": "c4ecd5463535066ed95bd6862252d82b1a8eb57c4182b757f7f3f2632d62cc88"
+    },
+    "assets/race-countdown/start.webp": {
+      "bytes": 450736,
+      "sha256": "efc80430441842249ed5823232fdaae6082858fa2f63f0316473935647760cbb"
+    },
+    "assets/scene-ugc.webp": {
+      "bytes": 493154,
+      "sha256": "2594fd0c97216fa2bb72f89cde9227705bde397ee92fed56b50a67dd8291280e"
+    },
+    "assets/workshop-background.webp": {
+      "bytes": 577922,
+      "sha256": "6eefd2bdd21d8661135e47824a67317d6594a52af38810244ec37ceb851235b8"
+    },
+    "assets/workshop-entry-icon.svg": {
+      "bytes": 535,
+      "sha256": "58f8a8660ff5e70ec20b5ef9f24c83b64be535a3685a7a89433b4e7725e397cc"
+    },
+    "theme.css": {
+      "bytes": 19817,
+      "sha256": "ba6ac70b593eafc89fb26da55ff50cc6c0c39ee11af33d040226d8f6603c9ffd"
+    },
+    "theme.json": {
+      "bytes": 6619,
+      "sha256": "b6f42037a84401df12250ff59c585c24e6139e6d28052b7da402590a4935ab22"
+    }
+  }
+}

@@ -1,0 +1,242 @@
+{
+  "release-input/ui/race-countdown/halloween/source/1.png": {
+    "sha256": "033ecef6f2659fded0f5643306928b645631e88b1ca262f61cd7eb4c7d82136e",
+    "bytes": 1331284,
+    "size": [
+      1254,
+      1254
+    ]
+  },
+  "release-input/ui/race-countdown/halloween/source/2.png": {
+    "sha256": "19702d72bedca42a764585be526c14c8c0075addd9e30632a7f1cc9c8cd9a320",
+    "bytes": 2084729,
+    "size": [
+      1254,
+      1254
+    ]
+  },
+  "release-input/ui/race-countdown/halloween/source/3.png": {
+    "sha256": "7655e84cc4ebe1f207169e021038cf10d2f84ad8fe1bbf6e4fcda99250461552",
+    "bytes": 2354404,
+    "size": [
+      1254,
+      1254
+    ]
+  },
+  "release-input/ui/race-countdown/halloween/source/start.png": {
+    "sha256": "60d0cffb65a315459931a718316b4f10c4b6551c6a56dcfc8f944837b8370110",
+    "bytes": 1700255,
+    "size": [
+      1254,
+      1254
+    ]
+  },
+  "release-input/ui/race-countdown/halloween/source/start/00.png": {
+    "sha256": "8c6d1a282662608bb655b938b6de00f1a13bf06eacb3567729f1503d8b0b0740",
+    "bytes": 1398196,
+    "size": [
+      1254,
+      1254
+    ]
+  },
+  "release-input/ui/race-countdown/halloween/source/start/01.png": {
+    "sha256": "093ae2166fc5fc5481662e7aeff6cde9b548eeaeca55efc572322104dd998a7c",
+    "bytes": 1398462,
+    "size": [
+      1254,
+      1254
+    ]
+  },
+  "release-input/ui/race-countdown/halloween/source/start/02.png": {
+    "sha256": "1acfcfb10e7a899b47499e99f360b0a90bbdcf4532c05d90c16c16a7e6ab7dcc",
+    "bytes": 1429843,
+    "size": [
+      1254,
+      1254
+    ]
+  },
+  "release-input/ui/race-countdown/halloween/source/start/03.png": {
+    "sha256": "43a9d526844a04b733ee88c7db25393f2ec1a0911b821b6bf0fd9346eec98b32",
+    "bytes": 1563026,
+    "size": [
+      1254,
+      1254
+    ]
+  },
+  "release-input/ui/race-countdown/halloween/source/start/04.png": {
+    "sha256": "98247e60f0294c9bfa053bc205b91560ee1a977456d62b8b1d752871569f56a6",
+    "bytes": 1690108,
+    "size": [
+      1254,
+      1254
+    ]
+  },
+  "release-input/ui/race-countdown/halloween/source/start/05.png": {
+    "sha256": "88caec365f0a6807bdf553c2f8ca6cbd377af6eb67c5db4d6e935e015a7a2dbb",
+    "bytes": 1641733,
+    "size": [
+      1254,
+      1254
+    ]
+  },
+  "release-input/ui/race-countdown/halloween/source/start/06.png": {
+    "sha256": "4b1e192c86be2615f1916007ce5dee43627bc67e89b8399edbc4fedec510369d",
+    "bytes": 1454423,
+    "size": [
+      1254,
+      1254
+    ]
+  },
+  "release-input/ui/race-countdown/halloween/source/start/07.png": {
+    "sha256": "0eb6078d691dec9672c3498553afcc8727d6a95bb4d72f83af5948d046a53682",
+    "bytes": 1377457,
+    "size": [
+      1254,
+      1254
+    ]
+  },
+  "release-input/ui/themes/halloween/empty-garage-illustration.png": {
+    "sha256": "a4f80a0027aa921e08024ef977e95324879ac5f5f820b4eea77e67e9085fe7f7",
+    "bytes": 1990895,
+    "size": [
+      1672,
+      941
+    ]
+  },
+  "release-input/ui/race-countdown/christmas/source/1.png": {
+    "sha256": "c87e1287be16618ad71cfd9a9694fcff8be7e5da14fe17d3d0fb105af2d921cd",
+    "bytes": 1753831,
+    "size": [
+      1254,
+      1254
+    ]
+  },
+  "release-input/ui/race-countdown/christmas/source/2.png": {
+    "sha256": "04cc20621709b1cba933b93746377f9a9cb0b8775cf859dcae98c94dcf53d2cf",
+    "bytes": 2626620,
+    "size": [
+      1254,
+      1254
+    ]
+  },
+  "release-input/ui/race-countdown/christmas/source/3.png": {
+    "sha256": "0c7b6a3f5920ddf50146d9b33190f6ce0513edd35f24660bbb02f8c392abc450",
+    "bytes": 2501659,
+    "size": [
+      1254,
+      1254
+    ]
+  },
+  "release-input/ui/race-countdown/christmas/source/start.png": {
+    "sha256": "bafed7beff5a228accd84ff2e63c9f58babb4803215d279a932ca9682c2b37f0",
+    "bytes": 2372750,
+    "size": [
+      1254,
+      1254
+    ]
+  },
+  "release-input/ui/race-countdown/christmas/source/start/00.png": {
+    "sha256": "7fb7540fbdabc244f35850ebcbb6671b05aa6e8a0bbccaa1429ea069f29e433f",
+    "bytes": 1977215,
+    "size": [
+      1254,
+      1254
+    ]
+  },
+  "release-input/ui/race-countdown/christmas/source/start/01.png": {
+    "sha256": "170d16337a924f3da38e3b9f3ce843470c45581b7194a6e6179c4fd731e6bf31",
+    "bytes": 1936943,
+    "size": [
+      1254,
+      1254
+    ]
+  },
+  "release-input/ui/race-countdown/christmas/source/start/02.png": {
+    "sha256": "a216f8d1f8884f37f2b2808fecbded26e4ab861d9410f748d005fc6f5e5c1806",
+    "bytes": 2003469,
+    "size": [
+      1254,
+      1254
+    ]
+  },
+  "release-input/ui/race-countdown/christmas/source/start/03.png": {
+    "sha256": "ac844062a351ed163f814ca460cd6b8a60eabb98e732460470c0f93d59d7ab6b",
+    "bytes": 2115459,
+    "size": [
+      1254,
+      1254
+    ]
+  },
+  "release-input/ui/race-countdown/christmas/source/start/04.png": {
+    "sha256": "b9b00dd1902826cabd149eb9e3e1b53ce7593549bc1f49381186a4265ecd2bed",
+    "bytes": 2153683,
+    "size": [
+      1254,
+      1254
+    ]
+  },
+  "release-input/ui/race-countdown/christmas/source/start/05.png": {
+    "sha256": "253e8caca9e0541d8fb2f95db5c0015c1dc6887413f510c3acd919bb73ceb237",
+    "bytes": 2258338,
+    "size": [
+      1254,
+      1254
+    ]
+  },
+  "release-input/ui/race-countdown/christmas/source/start/06.png": {
+    "sha256": "6c86cef912f60bd4f96f683cb92356ec60b7807b61c29f24f712aa0e89693f02",
+    "bytes": 2019226,
+    "size": [
+      1254,
+      1254
+    ]
+  },
+  "release-input/ui/race-countdown/christmas/source/start/07.png": {
+    "sha256": "45f55d27a20d7332ed4189a7aad8c06d1d9b7d51ee830927b89fcb8ba913d076",
+    "bytes": 1984020,
+    "size": [
+      1254,
+      1254
+    ]
+  },
+  "release-input/ui/themes/christmas/empty-garage-illustration.png": {
+    "sha256": "48292f9adec35c58abec996d4a34177fecd7582df0c8b0d56af6e935d8bd6540",
+    "bytes": 2311313,
+    "size": [
+      1672,
+      941
+    ]
+  },
+  "release-input/ui/themes/halloween/empty-connection-illustration.png": {
+    "sha256": "76fd216b0f7e9975ac399b26d48aa64955ae33a8f7966640b0a2e71965202bae",
+    "bytes": 1085817,
+    "size": [
+      1672,
+      941
+    ]
+  },
+  "release-input/ui/themes/halloween/empty-generic-illustration.png": {
+    "sha256": "5d61e3d36aec52ecc55eca06004c295caa9ef37da0db4c338e704fca95e91636",
+    "bytes": 2031905,
+    "size": [
+      1672,
+      941
+    ]
+  },
+  "release-input/ui/themes/christmas/empty-connection-illustration.png": {
+    "sha256": "d8f25614364d1c6b0582d5bc64b6a45e98c90e6ec51a145a4760504badafdd25",
+    "bytes": 1530989,
+    "size": [
+      1672,
+      941
+    ]
+  },
+  "release-input/ui/themes/christmas/empty-generic-illustration.png": {
+    "sha256": "73659375dcd0e4db222e2e5dffc1762e60a50c55b1c82e528f3cedf96a27526e",
+    "bytes": 2738856,
+    "size": [
+      1672,
+      941
+    ]
+  }
+}

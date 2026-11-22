@@ -1,0 +1,17 @@
+* text=auto eol=lf
+
+# 大型 authoring master 不進 Git；由 immutable GitHub Release 保存。
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.webp binary
+*.gif binary
+*.ico binary
+*.glb binary
+*.gltf binary
+*.wav binary
+*.flac binary
+*.ktx2 binary
+*.wasm binary
+*.woff binary
+*.woff2 binary

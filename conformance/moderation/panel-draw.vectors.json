@@ -1,0 +1,96 @@
+{
+  "family": "moderation/panel-draw",
+  "spec": [
+    "信譽系統.md",
+    "程式架構/moderation.md"
+  ],
+  "formatVersion": 1,
+  "encoding": {
+    "bytes": "hex-lower",
+    "bigint": "decimal-string"
+  },
+  "generatedBy": "open-4wd@0.0.0",
+  "vectors": [
+    {
+      "name": "nine-pool-draw",
+      "input": {
+        "caseId": "conformance-case-alpha",
+        "checkpointTimestamp": 1700000000000,
+        "pool": [
+          "arb-01",
+          "arb-02",
+          "arb-03",
+          "arb-04",
+          "arb-05",
+          "arb-06",
+          "arb-07",
+          "arb-08",
+          "arb-09"
+        ],
+        "excluded": []
+      },
+      "expected": {
+        "panel": [
+          "arb-02",
+          "arb-09",
+          "arb-01",
+          "arb-04",
+          "arb-03",
+          "arb-07",
+          "arb-06"
+        ]
+      }
+    },
+    {
+      "name": "excluded-redraw",
+      "input": {
+        "caseId": "conformance-case-alpha",
+        "checkpointTimestamp": 1700000000000,
+        "pool": [
+          "arb-01",
+          "arb-02",
+          "arb-03",
+          "arb-04",
+          "arb-05",
+          "arb-06",
+          "arb-07",
+          "arb-08",
+          "arb-09"
+        ],
+        "excluded": [
+          "arb-02"
+        ]
+      },
+      "expected": {
+        "panel": [
+          "arb-09",
+          "arb-01",
+          "arb-04",
+          "arb-03",
+          "arb-07",
+          "arb-06",
+          "arb-08"
+        ]
+      }
+    },
+    {
+      "name": "insufficient-pool-null",
+      "input": {
+        "caseId": "conformance-case-alpha",
+        "checkpointTimestamp": 1700000000000,
+        "pool": [
+          "arb-01",
+          "arb-02",
+          "arb-03",
+          "arb-04",
+          "arb-05",
+          "arb-06"
+        ],
+        "excluded": []
+      },
+      "expected": {
+        "panel": null
+      }
+    }
+  ]
+}

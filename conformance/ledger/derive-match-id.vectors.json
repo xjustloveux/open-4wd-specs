@@ -1,0 +1,96 @@
+{
+  "family": "ledger/derive-match-id",
+  "spec": [
+    "資料系統.md",
+    "程式架構/ledger-admission.md"
+  ],
+  "formatVersion": 1,
+  "encoding": {
+    "bytes": "hex-lower",
+    "bigint": "decimal-string"
+  },
+  "generatedBy": "open-4wd@0.0.0",
+  "vectors": [
+    {
+      "name": "two-peer-basic",
+      "input": {
+        "roster": [
+          "peer-bravo",
+          "peer-alpha"
+        ],
+        "startedAt": 1700000000000,
+        "matchRules": {},
+        "gridContextDigest": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "gridSeed": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+      },
+      "expected": {
+        "matchId": "7d5fa803e82af9ffe347176c3cf2f558b226fe193d1dd75e885ae84c0e9d07df"
+      }
+    },
+    {
+      "name": "roster-order-and-dup-insensitive",
+      "input": {
+        "rosterVariants": [
+          [
+            "peer-alpha",
+            "peer-bravo"
+          ],
+          [
+            "peer-bravo",
+            "peer-alpha"
+          ],
+          [
+            "peer-alpha",
+            "peer-bravo",
+            "peer-alpha"
+          ]
+        ],
+        "startedAt": 1700000000000,
+        "matchRules": {},
+        "gridContextDigest": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "gridSeed": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+      },
+      "expected": {
+        "matchId": "7d5fa803e82af9ffe347176c3cf2f558b226fe193d1dd75e885ae84c0e9d07df"
+      }
+    },
+    {
+      "name": "startedAt-sensitive",
+      "input": {
+        "roster": [
+          "peer-alpha",
+          "peer-bravo"
+        ],
+        "startedAt": 1700000000001,
+        "matchRules": {},
+        "gridContextDigest": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "gridSeed": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+      },
+      "expected": {
+        "matchId": "92c1066cf52a37b6903aa26b8342fb8cc27fda2ed6d4622293edd263d81b6e7c"
+      }
+    },
+    {
+      "name": "eight-peer-roster",
+      "input": {
+        "roster": [
+          "peer-04",
+          "peer-01",
+          "peer-07",
+          "peer-02",
+          "peer-08",
+          "peer-03",
+          "peer-06",
+          "peer-05"
+        ],
+        "startedAt": 1700000000000,
+        "matchRules": {},
+        "gridContextDigest": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "gridSeed": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+      },
+      "expected": {
+        "matchId": "ad8490c4f5aab0aaa61756206ded4ea2fb1a8d10276715fa0c870f0e0a3f21c7"
+      }
+    }
+  ]
+}

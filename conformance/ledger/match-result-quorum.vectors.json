@@ -1,0 +1,112 @@
+{
+  "family": "ledger/match-result-quorum",
+  "spec": [
+    "流程/比賽進行.md",
+    "程式架構/ledger-admission.md",
+    "程式架構/ledger-settlement.md"
+  ],
+  "formatVersion": 1,
+  "encoding": {
+    "bytes": "hex-lower",
+    "bigint": "decimal-string"
+  },
+  "generatedBy": "open-4wd@0.0.0",
+  "vectors": [
+    {
+      "name": "disconnect-reason-independent-thresholds",
+      "input": {
+        "rows": [
+          {
+            "ranking": [
+              "a",
+              "b",
+              "c"
+            ],
+            "disconnects": []
+          },
+          {
+            "ranking": [
+              "a",
+              "b",
+              "c"
+            ],
+            "disconnects": [
+              {
+                "peerId": "c",
+                "reason": "network"
+              }
+            ]
+          },
+          {
+            "ranking": [
+              "a",
+              "b",
+              "c",
+              "d"
+            ],
+            "disconnects": [
+              {
+                "peerId": "d",
+                "reason": "network"
+              }
+            ]
+          },
+          {
+            "ranking": [
+              "a",
+              "b",
+              "c",
+              "d"
+            ],
+            "disconnects": [
+              {
+                "peerId": "c",
+                "reason": "network"
+              },
+              {
+                "peerId": "d",
+                "reason": "network"
+              }
+            ]
+          },
+          {
+            "ranking": [
+              "a",
+              "b"
+            ],
+            "disconnects": [
+              {
+                "peerId": "b",
+                "reason": "network"
+              }
+            ]
+          },
+          {
+            "ranking": [
+              "a",
+              "b",
+              "c",
+              "d"
+            ],
+            "disconnects": [
+              {
+                "peerId": "d",
+                "reason": "voluntary"
+              }
+            ]
+          }
+        ]
+      },
+      "expected": {
+        "thresholds": [
+          2,
+          2,
+          3,
+          3,
+          2,
+          3
+        ]
+      }
+    }
+  ]
+}

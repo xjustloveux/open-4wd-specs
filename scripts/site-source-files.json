@@ -1,0 +1,10 @@
+[
+  {
+    "source": ".github/workflows/docs-ci.yml",
+    "publicPath": "repo-source/github/workflows/docs-ci.yml"
+  },
+  {
+    "source": "scripts/check-decisions.mjs",
+    "publicPath": "repo-source/scripts/check-decisions.mjs"
+  }
+]

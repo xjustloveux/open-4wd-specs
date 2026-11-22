@@ -1,0 +1,5 @@
+{
+  "status": "historical-non-executable",
+  "supersededBy": "rule-contracts.json",
+  "note": "Ownership is declared by each complete rule contract; generators and checks do not read this file."
+}

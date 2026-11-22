@@ -1,0 +1,395 @@
+/* 站台樣式微調（由 scripts/build-site.mjs 複製進 .site-src/assets/）。 */
+
+/* 頁尾列與左側導覽重疊：Material 的 .md-sidebar--primary 是 sticky、可視高度貼齊視窗，
+   捲到頁底時 .md-footer-meta 進入同一段視窗空間；頁尾在 DOM 後方、繪製於上層，
+   於是把導覽最後幾項蓋掉。此站不需要 footer meta（產生器標示已由 extra.generator
+   關閉、亦未設 copyright），整條隱藏即可同時解掉重疊與空白列。
+   上下頁導覽 .md-footer__inner 不受影響，保留。
+   ⚠️ 日後若要在頁尾放內容（copyright、連結等），重疊會跟著回來——sticky 側欄的可視
+   區仍延伸到視窗底部，屆時要改的是側欄高度而不是把這條註解刪掉了事。 */
+.md-footer-meta {
+  display: none;
+}
+
+/* 側欄捲不到底：Material 靠 JS 替 .md-sidebar__scrollwrap 定高，但在本站的部分頁面
+   （實測根層 版權.html 正常 1114px、兩層深的 程式架構/程式流程/chat-system.html 卻是
+   3028px）沒有套用。容器高度等於內容高度時內部就無可捲空間，而外層是 sticky、不隨頁面
+   移動，於是視窗以下的導覽項目永遠碰不到。
+   這裡不依賴那段 JS，直接以 CSS 把可視高度鎖進視窗；導覽比視窗高時自然出現內部捲軸。
+   4.8rem ＝ 標頭 2.4rem ＋ 上下留白，Material 的 1rem 為 20px。 */
+.md-sidebar__scrollwrap {
+  max-height: calc(100vh - 4.8rem);
+  overflow-y: auto;
+}
+
+/* Mermaid 保留自然尺寸，文章內直接捲動；固定框讓具名放大按鈕不隨圖面水平捲動。 */
+.o4-mermaid-frame {
+  position: relative;
+  max-width: 100%;
+  margin: 1em 0;
+  padding-top: 2.6rem;
+  border: 1px solid var(--md-default-fg-color--lightest);
+  border-radius: 0.4rem;
+}
+
+.o4-mermaid-frame > .mermaid-diagram {
+  max-width: 100%;
+  margin: 0;
+  overflow-x: auto;
+  overscroll-behavior-inline: contain;
+  padding: 0 0.8rem 0.8rem;
+  border: 0;
+  scrollbar-gutter: stable;
+}
+
+.mermaid-diagram > svg {
+  display: block;
+  max-width: none;
+  height: auto;
+}
+
+.mermaid-diagram:focus-visible {
+  outline: 0.12rem solid var(--md-accent-fg-color);
+  outline-offset: 0.12rem;
+}
+
+.o4-mermaid-viewer-button {
+  position: absolute;
+  top: 0.45rem;
+  right: 0.45rem;
+  z-index: 1;
+  min-height: 1.7rem;
+  padding: 0.25rem 0.65rem;
+  border: 1px solid var(--md-primary-fg-color);
+  border-radius: 999px;
+  background: var(--md-default-bg-color);
+  color: var(--md-primary-fg-color);
+  cursor: pointer;
+  font: inherit;
+  font-size: 0.68rem;
+  font-weight: 700;
+}
+
+.o4-mermaid-viewer-button:hover,
+.o4-mermaid-viewer-button:focus-visible,
+.o4-mermaid-dialog__control:hover,
+.o4-mermaid-dialog__control:focus-visible {
+  background: var(--md-primary-fg-color);
+  color: var(--md-primary-bg-color);
+  outline: 0.12rem solid var(--md-accent-fg-color);
+  outline-offset: 0.1rem;
+}
+
+.o4-mermaid-dialog {
+  width: min(96vw, 90rem);
+  height: min(92vh, 60rem);
+  max-width: none;
+  max-height: none;
+  padding: 0;
+  border: 1px solid var(--md-default-fg-color--lightest);
+  border-radius: 0.6rem;
+  background: var(--md-default-bg-color);
+  color: var(--md-default-fg-color);
+  box-shadow: 0 1rem 3rem rgb(0 0 0 / 35%);
+}
+
+.o4-mermaid-dialog::backdrop {
+  background: rgb(0 0 0 / 62%);
+}
+
+.o4-mermaid-dialog__toolbar {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.4rem;
+  padding: 0.55rem;
+  border-bottom: 1px solid var(--md-default-fg-color--lightest);
+  background: var(--md-default-bg-color);
+}
+
+.o4-mermaid-dialog__control {
+  min-width: 3.2rem;
+  min-height: 1.8rem;
+  padding: 0.25rem 0.55rem;
+  border: 1px solid var(--md-primary-fg-color);
+  border-radius: 0.25rem;
+  background: var(--md-default-bg-color);
+  color: var(--md-primary-fg-color);
+  cursor: pointer;
+  font: inherit;
+  font-size: 0.72rem;
+  font-weight: 700;
+}
+
+.o4-mermaid-dialog__viewport {
+  width: 100%;
+  height: calc(100% - 3rem);
+  overflow: auto;
+  padding: 1rem;
+  overscroll-behavior: contain;
+}
+
+.o4-mermaid-dialog__viewport > svg {
+  display: block;
+  max-width: none;
+  transform-origin: top left;
+}
+
+@media print {
+  .o4-mermaid-frame {
+    margin: 1em 0;
+    padding: 0;
+    border: 0;
+  }
+
+  .mermaid-diagram {
+    overflow: visible;
+    padding: 0;
+    border: 0;
+  }
+
+  .mermaid-diagram > svg {
+    width: auto !important;
+    max-width: 100%;
+    height: auto !important;
+  }
+
+  .o4-mermaid-viewer-button,
+  .o4-mermaid-dialog {
+    display: none !important;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .o4-mermaid-viewer-button,
+  .o4-mermaid-dialog__control {
+    scroll-behavior: auto;
+    transition: none;
+  }
+}
+
+/* 首頁專案沿革：以賽道／路書為語彙的純 CSS 時間線。
+   HTML 由 history:generate 產生；data-side 明確記錄左右位置，避免年份節點改變
+   :nth-child 的計數後破壞交錯順序。 */
+.o4-project-timeline {
+  --o4-timeline-accent: var(--md-primary-fg-color);
+  --o4-timeline-rail: color-mix(
+    in srgb,
+    var(--md-primary-fg-color) 58%,
+    var(--md-default-fg-color--lighter)
+  );
+  --o4-timeline-stagger: 7.5rem;
+  margin: 2.4rem 0 3rem;
+}
+
+.md-typeset ol.o4-project-timeline__list {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 3rem minmax(0, 1fr);
+  gap: 1.15rem 0;
+  margin: 0;
+  padding: 0 0 calc(var(--o4-timeline-stagger) + 1rem);
+  list-style: none;
+}
+
+.o4-project-timeline__list::before {
+  position: absolute;
+  inset: 0 auto 0 50%;
+  width: 0.16rem;
+  border-radius: 999px;
+  background: linear-gradient(
+    to bottom,
+    transparent,
+    var(--o4-timeline-rail) 1.4rem,
+    var(--o4-timeline-rail) calc(100% - 1.4rem),
+    transparent
+  );
+  content: "";
+  transform: translateX(-50%);
+}
+
+.o4-project-timeline__year {
+  z-index: 1;
+  grid-column: 2;
+  justify-self: center;
+  margin: 0.55rem 0 0.15rem;
+  padding: 0;
+  list-style: none;
+}
+
+.md-typeset ol.o4-project-timeline__list > li.o4-project-timeline__year {
+  margin: 0.55rem 0 0.15rem;
+}
+
+.o4-project-timeline__year > span {
+  display: inline-flex;
+  min-width: 2.7rem;
+  min-height: 2rem;
+  align-items: center;
+  justify-content: center;
+  border: 0.12rem solid var(--o4-timeline-accent);
+  border-radius: 999px;
+  background: var(--md-default-bg-color);
+  color: var(--o4-timeline-accent);
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+}
+
+.o4-project-timeline__item {
+  position: relative;
+  min-width: 0;
+  margin: 0;
+  padding: 1rem 1.1rem 0.95rem;
+  border: 1px solid
+    color-mix(in srgb, var(--md-default-fg-color) 16%, transparent);
+  border-radius: 0.65rem;
+  background:
+    linear-gradient(
+      135deg,
+      color-mix(in srgb, var(--o4-timeline-accent) 7%, transparent),
+      transparent 45%
+    ),
+    var(--md-default-bg-color);
+  box-shadow: 0 0.28rem 0.9rem
+    color-mix(in srgb, var(--md-default-fg-color) 9%, transparent);
+  list-style: none;
+}
+
+.md-typeset ol.o4-project-timeline__list > li.o4-project-timeline__item {
+  margin: 0;
+}
+
+.o4-project-timeline__item[data-side="left"] {
+  grid-column: 1;
+}
+
+.o4-project-timeline__item[data-side="right"] {
+  grid-column: 3;
+  /* 固定位移避免各列內容高度不同時，同側卡片互相重疊。 */
+  transform: translateY(var(--o4-timeline-stagger));
+}
+
+.o4-project-timeline__item::before {
+  position: absolute;
+  top: 1.18rem;
+  z-index: 2;
+  width: 0.62rem;
+  height: 0.62rem;
+  border: 0.14rem solid var(--md-default-bg-color);
+  border-radius: 50%;
+  background: var(--o4-timeline-accent);
+  box-shadow: 0 0 0 0.1rem var(--o4-timeline-rail);
+  content: "";
+}
+
+.o4-project-timeline__item::after {
+  position: absolute;
+  top: 1.48rem;
+  width: 1.5rem;
+  height: 0.08rem;
+  background: var(--o4-timeline-rail);
+  content: "";
+}
+
+.o4-project-timeline__item[data-side="left"]::before {
+  right: -1.85rem;
+}
+
+.o4-project-timeline__item[data-side="left"]::after {
+  right: -1.5rem;
+}
+
+.o4-project-timeline__item[data-side="right"]::before {
+  left: -1.85rem;
+}
+
+.o4-project-timeline__item[data-side="right"]::after {
+  left: -1.5rem;
+}
+
+.o4-project-timeline__item[data-importance="5"] {
+  border-color: color-mix(in srgb, var(--o4-timeline-accent) 55%, transparent);
+  box-shadow:
+    inset 0.18rem 0 0 var(--o4-timeline-accent),
+    0 0.32rem 1rem
+      color-mix(in srgb, var(--o4-timeline-accent) 16%, transparent);
+}
+
+.o4-project-timeline__date {
+  display: block;
+  margin-bottom: 0.35rem;
+  color: var(--o4-timeline-accent);
+  font-family: var(--md-code-font-family);
+  font-size: 0.67rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+}
+
+.o4-project-timeline__item > p {
+  margin: 0.45rem 0 0;
+  color: var(--md-default-fg-color--light);
+  font-size: 0.76rem;
+  line-height: 1.65;
+  overflow-wrap: anywhere;
+}
+
+.o4-project-timeline__item > p:first-of-type {
+  margin-top: 0;
+  color: var(--md-default-fg-color);
+  font-size: 0.9rem;
+  line-height: 1.4;
+}
+
+.o4-project-timeline__item a {
+  text-underline-offset: 0.16em;
+}
+
+.o4-project-timeline__item a:focus-visible {
+  border-radius: 0.15rem;
+  outline: 0.14rem solid var(--o4-timeline-accent);
+  outline-offset: 0.15rem;
+}
+
+@media screen and (max-width: 52rem) {
+  .md-typeset ol.o4-project-timeline__list {
+    grid-template-columns: 1.4rem minmax(0, 1fr);
+    gap: 0.9rem 0;
+    padding: 0;
+  }
+
+  .o4-project-timeline__list::before {
+    left: 0.7rem;
+  }
+
+  .o4-project-timeline__year {
+    grid-column: 1 / -1;
+    justify-self: start;
+  }
+
+  .o4-project-timeline__year > span {
+    min-width: 2.8rem;
+    transform: translateX(-0.7rem);
+  }
+
+  .o4-project-timeline__item[data-side="left"],
+  .o4-project-timeline__item[data-side="right"] {
+    grid-column: 2;
+    transform: none;
+  }
+
+  .o4-project-timeline__item[data-side="left"]::before,
+  .o4-project-timeline__item[data-side="right"]::before {
+    right: auto;
+    left: -0.97rem;
+  }
+
+  .o4-project-timeline__item[data-side="left"]::after,
+  .o4-project-timeline__item[data-side="right"]::after {
+    right: auto;
+    left: -0.7rem;
+    width: 0.7rem;
+  }
+}

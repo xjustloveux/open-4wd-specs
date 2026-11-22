@@ -1,0 +1,1154 @@
+[
+  {
+    "season": "halloween",
+    "messageKey": "yes",
+    "authoringFile": "release-input/ui/race-messages/halloween/yes.png",
+    "prompt": "Single original game HUD sticker, square RGBA with actual transparent background. Centered subject, generous 12% transparent margins; clean silhouette readable at 64 pixels. American vintage Halloween engraving illustration, bold plum ink outlines, pumpkin orange, antique gold and cream, restrained crosshatching. Recurring character: friendly pumpkin-headed miniature racing mechanic with brass goggles and plum overalls, expressive mitten hands. Vehicles are original pumpkin-themed miniature four-wheel racing cars. No rabbits, moons, carrots or Chinese architecture. Semantic message: yes. Specific composition: 技師角色開心點頭，抱著發亮的勾形小工具葉剪影. No text, letters, numerals, punctuation, logos, watermark, UI panel, background scene, gore or realistic violence. One composition only; do not include the message label as text."
+  },
+  {
+    "season": "halloween",
+    "messageKey": "no",
+    "authoringFile": "release-input/ui/race-messages/halloween/no.png",
+    "prompt": "Single original game HUD sticker, square RGBA with actual transparent background. Centered subject, generous 12% transparent margins; clean silhouette readable at 64 pixels. American vintage Halloween engraving illustration, bold plum ink outlines, pumpkin orange, antique gold and cream, restrained crosshatching. Recurring character: friendly pumpkin-headed miniature racing mechanic with brass goggles and plum overalls, expressive mitten hands. Vehicles are original pumpkin-themed miniature four-wheel racing cars. No rabbits, moons, carrots or Chinese architecture. Semantic message: no. Specific composition: 技師角色搖頭，雙手交叉成阻擋姿態. No text, letters, numerals, punctuation, logos, watermark, UI panel, background scene, gore or realistic violence. One composition only; do not include the message label as text."
+  },
+  {
+    "season": "halloween",
+    "messageKey": "okay",
+    "authoringFile": "release-input/ui/race-messages/halloween/okay.png",
+    "prompt": "Single original game HUD sticker, square RGBA with actual transparent background. Centered subject, generous 12% transparent margins; clean silhouette readable at 64 pixels. American vintage Halloween engraving illustration, bold plum ink outlines, pumpkin orange, antique gold and cream, restrained crosshatching. Recurring character: friendly pumpkin-headed miniature racing mechanic with brass goggles and plum overalls, expressive mitten hands. Vehicles are original pumpkin-themed miniature four-wheel racing cars. No rabbits, moons, carrots or Chinese architecture. Semantic message: okay. Specific composition: 技師角色豎起拇指，背後一輪完整小圓形光環. No text, letters, numerals, punctuation, logos, watermark, UI panel, background scene, gore or realistic violence. One composition only; do not include the message label as text."
+  },
+  {
+    "season": "halloween",
+    "messageKey": "understood",
+    "authoringFile": "release-input/ui/race-messages/halloween/understood.png",
+    "prompt": "Single original game HUD sticker, square RGBA with actual transparent background. Centered subject, generous 12% transparent margins; clean silhouette readable at 64 pixels. American vintage Halloween engraving illustration, bold plum ink outlines, pumpkin orange, antique gold and cream, restrained crosshatching. Recurring character: friendly pumpkin-headed miniature racing mechanic with brass goggles and plum overalls, expressive mitten hands. Vehicles are original pumpkin-themed miniature four-wheel racing cars. No rabbits, moons, carrots or Chinese architecture. Semantic message: understood. Specific composition: 技師角色頭頂亮起燈，手臂接成完整光路. No text, letters, numerals, punctuation, logos, watermark, UI panel, background scene, gore or realistic violence. One composition only; do not include the message label as text."
+  },
+  {
+    "season": "halloween",
+    "messageKey": "not-sure",
+    "authoringFile": "release-input/ui/race-messages/halloween/not-sure.png",
+    "prompt": "Single original game HUD sticker, square RGBA with actual transparent background. Centered subject, generous 12% transparent margins; clean silhouette readable at 64 pixels. American vintage Halloween engraving illustration, bold plum ink outlines, pumpkin orange, antique gold and cream, restrained crosshatching. Recurring character: friendly pumpkin-headed miniature racing mechanic with brass goggles and plum overalls, expressive mitten hands. Vehicles are original pumpkin-themed miniature four-wheel racing cars. No rabbits, moons, carrots or Chinese architecture. Semantic message: not-sure. Specific composition: 技師角色左右歪頭，兩耳分別指向相反方向. No text, letters, numerals, punctuation, logos, watermark, UI panel, background scene, gore or realistic violence. One composition only; do not include the message label as text."
+  },
+  {
+    "season": "halloween",
+    "messageKey": "maybe",
+    "authoringFile": "release-input/ui/race-messages/halloween/maybe.png",
+    "prompt": "Single original game HUD sticker, square RGBA with actual transparent background. Centered subject, generous 12% transparent margins; clean silhouette readable at 64 pixels. American vintage Halloween engraving illustration, bold plum ink outlines, pumpkin orange, antique gold and cream, restrained crosshatching. Recurring character: friendly pumpkin-headed miniature racing mechanic with brass goggles and plum overalls, expressive mitten hands. Vehicles are original pumpkin-themed miniature four-wheel racing cars. No rabbits, moons, carrots or Chinese architecture. Semantic message: maybe. Specific composition: the mechanic tilts their head uncertainly, one mitten hand held up and the other held down, considering two small unlabelled wrapped parcels, one light and one dark. Only the mechanic and two parcels, no road, scenery, moon, sky or celestial symbol. No text, letters, numerals, punctuation, logos, watermark, UI panel, background scene, gore or realistic violence. One composition only; do not include the message label as text."
+  },
+  {
+    "season": "halloween",
+    "messageKey": "please",
+    "authoringFile": "release-input/ui/race-messages/halloween/please.png",
+    "prompt": "Single original game HUD sticker, square RGBA with actual transparent background. Centered subject, generous 12% transparent margins; clean silhouette readable at 64 pixels. American vintage Halloween engraving illustration, bold plum ink outlines, pumpkin orange, antique gold and cream, restrained crosshatching. Recurring character: friendly pumpkin-headed miniature racing mechanic with brass goggles and plum overalls, expressive mitten hands. Vehicles are original pumpkin-themed miniature four-wheel racing cars. No rabbits, moons, carrots or Chinese architecture. Semantic message: please. Specific composition: 技師角色雙掌合十，柔和暖色光落下. No text, letters, numerals, punctuation, logos, watermark, UI panel, background scene, gore or realistic violence. One composition only; do not include the message label as text."
+  },
+  {
+    "season": "halloween",
+    "messageKey": "one-more-time",
+    "authoringFile": "release-input/ui/race-messages/halloween/one-more-time.png",
+    "prompt": "Single original game HUD sticker, square RGBA with actual transparent background. Centered subject, generous 12% transparent margins; clean silhouette readable at 64 pixels. American vintage Halloween engraving illustration, bold plum ink outlines, pumpkin orange, antique gold and cream, restrained crosshatching. Recurring character: friendly pumpkin-headed miniature racing mechanic with brass goggles and plum overalls, expressive mitten hands. Vehicles are original pumpkin-themed miniature four-wheel racing cars. No rabbits, moons, carrots or Chinese architecture. Semantic message: one-more-time. Specific composition: 技師角色賽車沿環形賽道再繞一圈. No text, letters, numerals, punctuation, logos, watermark, UI panel, background scene, gore or realistic violence. One composition only; do not include the message label as text."
+  },
+  {
+    "season": "halloween",
+    "messageKey": "hello",
+    "authoringFile": "release-input/ui/race-messages/halloween/hello.png",
+    "prompt": "Single original game HUD sticker, square RGBA with actual transparent background. Centered subject, generous 12% transparent margins; clean silhouette readable at 64 pixels. American vintage Halloween engraving illustration, bold plum ink outlines, pumpkin orange, antique gold and cream, restrained crosshatching. Recurring character: friendly pumpkin-headed miniature racing mechanic with brass goggles and plum overalls, expressive mitten hands. Vehicles are original pumpkin-themed miniature four-wheel racing cars. No rabbits, moons, carrots or Chinese architecture. Semantic message: hello. Specific composition: 技師角色大力揮手，手臂隨動作飄起. No text, letters, numerals, punctuation, logos, watermark, UI panel, background scene, gore or realistic violence. One composition only; do not include the message label as text."
+  },
+  {
+    "season": "halloween",
+    "messageKey": "welcome",
+    "authoringFile": "release-input/ui/race-messages/halloween/welcome.png",
+    "prompt": "Single original game HUD sticker, square RGBA with actual transparent background. Centered subject, generous 12% transparent margins; clean silhouette readable at 64 pixels. American vintage Halloween engraving illustration, bold plum ink outlines, pumpkin orange, antique gold and cream, restrained crosshatching. Recurring character: friendly pumpkin-headed miniature racing mechanic with brass goggles and plum overalls, expressive mitten hands. Vehicles are original pumpkin-themed miniature four-wheel racing cars. No rabbits, moons, carrots or Chinese architecture. Semantic message: welcome. Specific composition: 工坊形閘門打開，技師角色側身迎接. No text, letters, numerals, punctuation, logos, watermark, UI panel, background scene, gore or realistic violence. One composition only; do not include the message label as text."
+  },
+  {
+    "season": "halloween",
+    "messageKey": "nice-to-meet-you",
+    "authoringFile": "release-input/ui/race-messages/halloween/nice-to-meet-you.png",
+    "prompt": "Single original game HUD sticker, square RGBA with actual transparent background. Centered subject, generous 12% transparent margins; clean silhouette readable at 64 pixels. American vintage Halloween engraving illustration, bold plum ink outlines, pumpkin orange, antique gold and cream, restrained crosshatching. Recurring character: friendly pumpkin-headed miniature racing mechanic with brass goggles and plum overalls, expressive mitten hands. Vehicles are original pumpkin-themed miniature four-wheel racing cars. No rabbits, moons, carrots or Chinese architecture. Semantic message: nice-to-meet-you. Specific composition: 兩隻不同配色技師角色友善握手. No text, letters, numerals, punctuation, logos, watermark, UI panel, background scene, gore or realistic violence. One composition only; do not include the message label as text."
+  },
+  {
+    "season": "halloween",
+    "messageKey": "good-luck",
+    "authoringFile": "release-input/ui/race-messages/halloween/good-luck.png",
+    "prompt": "Single original game HUD sticker, square RGBA with actual transparent background. Centered subject, generous 12% transparent margins; clean silhouette readable at 64 pixels. American vintage Halloween engraving illustration, bold plum ink outlines, pumpkin orange, antique gold and cream, restrained crosshatching. Recurring character: friendly pumpkin-headed miniature racing mechanic with brass goggles and plum overalls, expressive mitten hands. Vehicles are original pumpkin-themed miniature four-wheel racing cars. No rabbits, moons, carrots or Chinese architecture. Semantic message: good-luck. Specific composition: 技師角色抱著四葉草與小石塊御守，不含文字. No text, letters, numerals, punctuation, logos, watermark, UI panel, background scene, gore or realistic violence. One composition only; do not include the message label as text."
+  },
+  {
+    "season": "halloween",
+    "messageKey": "have-fun",
+    "authoringFile": "release-input/ui/race-messages/halloween/have-fun.png",
+    "prompt": "Single original game HUD sticker, square RGBA with actual transparent background. Centered subject, generous 12% transparent margins; clean silhouette readable at 64 pixels. American vintage Halloween engraving illustration, bold plum ink outlines, pumpkin orange, antique gold and cream, restrained crosshatching. Recurring character: friendly pumpkin-headed miniature racing mechanic with brass goggles and plum overalls, expressive mitten hands. Vehicles are original pumpkin-themed miniature four-wheel racing cars. No rabbits, moons, carrots or Chinese architecture. Semantic message: have-fun. Specific composition: 技師角色戴護目鏡開懷跳起，周圍紙花與星屑. No text, letters, numerals, punctuation, logos, watermark, UI panel, background scene, gore or realistic violence. One composition only; do not include the message label as text."
+  },
+  {
+    "season": "halloween",
+    "messageKey": "lets-go",
+    "authoringFile": "release-input/ui/race-messages/halloween/lets-go.png",
+    "prompt": "Single original game HUD sticker, square RGBA with actual transparent background. Centered subject, generous 12% transparent margins; clean silhouette readable at 64 pixels. American vintage Halloween engraving illustration, bold plum ink outlines, pumpkin orange, antique gold and cream, restrained crosshatching. Recurring character: friendly pumpkin-headed miniature racing mechanic with brass goggles and plum overalls, expressive mitten hands. Vehicles are original pumpkin-themed miniature four-wheel racing cars. No rabbits, moons, carrots or Chinese architecture. Semantic message: lets-go. Specific composition: 技師角色賽車從拱門起跑，強烈向前暖色光軌跡. No text, letters, numerals, punctuation, logos, watermark, UI panel, background scene, gore or realistic violence. One composition only; do not include the message label as text."
+  },
+  {
+    "season": "halloween",
+    "messageKey": "wait-a-moment",
+    "authoringFile": "release-input/ui/race-messages/halloween/wait-a-moment.png",
+    "prompt": "Single original game HUD sticker, square RGBA with actual transparent background. Centered subject, generous 12% transparent margins; clean silhouette readable at 64 pixels. American vintage Halloween engraving illustration, bold plum ink outlines, pumpkin orange, antique gold and cream, restrained crosshatching. Recurring character: friendly pumpkin-headed miniature racing mechanic with brass goggles and plum overalls, expressive mitten hands. Vehicles are original pumpkin-themed miniature four-wheel racing cars. No rabbits, moons, carrots or Chinese architecture. Semantic message: wait-a-moment. Specific composition: 技師角色伸掌示意等待，旁邊小月沙漏. No text, letters, numerals, punctuation, logos, watermark, UI panel, background scene, gore or realistic violence. One composition only; do not include the message label as text."
+  },
+  {
+    "season": "halloween",
+    "messageKey": "here-we-go",
+    "authoringFile": "release-input/ui/race-messages/halloween/here-we-go.png",
+    "prompt": "Single original game HUD sticker, square RGBA with actual transparent background. Centered subject, generous 12% transparent margins; clean silhouette readable at 64 pixels. American vintage Halloween engraving illustration, bold plum ink outlines, pumpkin orange, antique gold and cream, restrained crosshatching. Recurring character: friendly pumpkin-headed miniature racing mechanic with brass goggles and plum overalls, expressive mitten hands. Vehicles are original pumpkin-themed miniature four-wheel racing cars. No rabbits, moons, carrots or Chinese architecture. Semantic message: here-we-go. Specific composition: 技師角色抓緊方向盤衝出雲霧起跑門. No text, letters, numerals, punctuation, logos, watermark, UI panel, background scene, gore or realistic violence. One composition only; do not include the message label as text."
+  },
+  {
+    "season": "halloween",
+    "messageKey": "on-your-left",
+    "authoringFile": "release-input/ui/race-messages/halloween/on-your-left.png",
+    "prompt": "Single original game HUD sticker, square RGBA with actual transparent background. Centered subject, generous 12% transparent margins; clean silhouette readable at 64 pixels. American vintage Halloween engraving illustration, bold plum ink outlines, pumpkin orange, antique gold and cream, restrained crosshatching. Recurring character: friendly pumpkin-headed miniature racing mechanic with brass goggles and plum overalls, expressive mitten hands. Vehicles are original pumpkin-themed miniature four-wheel racing cars. No rabbits, moons, carrots or Chinese architecture. Semantic message: on-your-left. Specific composition: 俯視兩台迷你四驅車，左車以櫻粉暖色光高亮. No text, letters, numerals, punctuation, logos, watermark, UI panel, background scene, gore or realistic violence. One composition only; do not include the message label as text."
+  },
+  {
+    "season": "halloween",
+    "messageKey": "on-your-right",
+    "authoringFile": "release-input/ui/race-messages/halloween/on-your-right.png",
+    "prompt": "Single original game HUD sticker, square RGBA with actual transparent background. Centered subject, generous 12% transparent margins; clean silhouette readable at 64 pixels. American vintage Halloween engraving illustration, bold plum ink outlines, pumpkin orange, antique gold and cream, restrained crosshatching. Recurring character: friendly pumpkin-headed miniature racing mechanic with brass goggles and plum overalls, expressive mitten hands. Vehicles are original pumpkin-themed miniature four-wheel racing cars. No rabbits, moons, carrots or Chinese architecture. Semantic message: on-your-right. Specific composition: 俯視兩台迷你四驅車，右車以金色暖色光高亮. No text, letters, numerals, punctuation, logos, watermark, UI panel, background scene, gore or realistic violence. One composition only; do not include the message label as text."
+  },
+  {
+    "season": "halloween",
+    "messageKey": "coming-through",
+    "authoringFile": "release-input/ui/race-messages/halloween/coming-through.png",
+    "prompt": "Single original game HUD sticker, square RGBA with actual transparent background. Centered subject, generous 12% transparent margins; clean silhouette readable at 64 pixels. American vintage Halloween engraving illustration, bold plum ink outlines, pumpkin orange, antique gold and cream, restrained crosshatching. Recurring character: friendly pumpkin-headed miniature racing mechanic with brass goggles and plum overalls, expressive mitten hands. Vehicles are original pumpkin-themed miniature four-wheel racing cars. No rabbits, moons, carrots or Chinese architecture. Semantic message: coming-through. Specific composition: 技師角色車從兩車中央靈巧穿過. No text, letters, numerals, punctuation, logos, watermark, UI panel, background scene, gore or realistic violence. One composition only; do not include the message label as text."
+  },
+  {
+    "season": "halloween",
+    "messageKey": "go-ahead",
+    "authoringFile": "release-input/ui/race-messages/halloween/go-ahead.png",
+    "prompt": "Single original game HUD sticker, square RGBA with actual transparent background. Centered subject, generous 12% transparent margins; clean silhouette readable at 64 pixels. American vintage Halloween engraving illustration, bold plum ink outlines, pumpkin orange, antique gold and cream, restrained crosshatching. Recurring character: friendly pumpkin-headed miniature racing mechanic with brass goggles and plum overalls, expressive mitten hands. Vehicles are original pumpkin-themed miniature four-wheel racing cars. No rabbits, moons, carrots or Chinese architecture. Semantic message: go-ahead. Specific composition: 技師角色伸手禮讓，前方暖色光道路敞開. No text, letters, numerals, punctuation, logos, watermark, UI panel, background scene, gore or realistic violence. One composition only; do not include the message label as text."
+  },
+  {
+    "season": "halloween",
+    "messageKey": "after-you",
+    "authoringFile": "release-input/ui/race-messages/halloween/after-you.png",
+    "prompt": "Single original game HUD sticker, square RGBA with actual transparent background. Centered subject, generous 12% transparent margins; clean silhouette readable at 64 pixels. American vintage Halloween engraving illustration, bold plum ink outlines, pumpkin orange, antique gold and cream, restrained crosshatching. Recurring character: friendly pumpkin-headed miniature racing mechanic with brass goggles and plum overalls, expressive mitten hands. Vehicles are original pumpkin-themed miniature four-wheel racing cars. No rabbits, moons, carrots or Chinese architecture. Semantic message: after-you. Specific composition: 前方迷你四驅車先走，後方技師角色保持禮貌距離. No text, letters, numerals, punctuation, logos, watermark, UI panel, background scene, gore or realistic violence. One composition only; do not include the message label as text."
+  },
+  {
+    "season": "halloween",
+    "messageKey": "slowing-down",
+    "authoringFile": "release-input/ui/race-messages/halloween/slowing-down.png",
+    "prompt": "Single original game HUD sticker, square RGBA with actual transparent background. Centered subject, generous 12% transparent margins; clean silhouette readable at 64 pixels. American vintage Halloween engraving illustration, bold plum ink outlines, pumpkin orange, antique gold and cream, restrained crosshatching. Recurring character: friendly pumpkin-headed miniature racing mechanic with brass goggles and plum overalls, expressive mitten hands. Vehicles are original pumpkin-themed miniature four-wheel racing cars. No rabbits, moons, carrots or Chinese architecture. Semantic message: slowing-down. Specific composition: 技師角色車尾燈亮起，星屑軌跡逐漸縮短. No text, letters, numerals, punctuation, logos, watermark, UI panel, background scene, gore or realistic violence. One composition only; do not include the message label as text."
+  },
+  {
+    "season": "halloween",
+    "messageKey": "stopping",
+    "authoringFile": "release-input/ui/race-messages/halloween/stopping.png",
+    "prompt": "Single original game HUD sticker, square RGBA with actual transparent background. Centered subject, generous 12% transparent margins; clean silhouette readable at 64 pixels. American vintage Halloween engraving illustration, bold plum ink outlines, pumpkin orange, antique gold and cream, restrained crosshatching. Recurring character: friendly pumpkin-headed miniature racing mechanic with brass goggles and plum overalls, expressive mitten hands. Vehicles are original pumpkin-themed miniature four-wheel racing cars. No rabbits, moons, carrots or Chinese architecture. Semantic message: stopping. Specific composition: 技師角色拉下柔軟煞車繩，車輪在雲上停住. No text, letters, numerals, punctuation, logos, watermark, UI panel, background scene, gore or realistic violence. One composition only; do not include the message label as text."
+  },
+  {
+    "season": "halloween",
+    "messageKey": "make-way",
+    "authoringFile": "release-input/ui/race-messages/halloween/make-way.png",
+    "prompt": "Single original game HUD sticker, square RGBA with actual transparent background. Centered subject, generous 12% transparent margins; clean silhouette readable at 64 pixels. American vintage Halloween engraving illustration, bold plum ink outlines, pumpkin orange, antique gold and cream, restrained crosshatching. Recurring character: friendly pumpkin-headed miniature racing mechanic with brass goggles and plum overalls, expressive mitten hands. Vehicles are original pumpkin-themed miniature four-wheel racing cars. No rabbits, moons, carrots or Chinese architecture. Semantic message: make-way. Specific composition: 兩隻技師角色各向左右跳開，中央道路清楚. No text, letters, numerals, punctuation, logos, watermark, UI panel, background scene, gore or realistic violence. One composition only; do not include the message label as text."
+  },
+  {
+    "season": "halloween",
+    "messageKey": "watch-out",
+    "authoringFile": "release-input/ui/race-messages/halloween/watch-out.png",
+    "prompt": "Single original game HUD sticker, square RGBA with actual transparent background. Centered subject, generous 12% transparent margins; clean silhouette readable at 64 pixels. American vintage Halloween engraving illustration, bold plum ink outlines, pumpkin orange, antique gold and cream, restrained crosshatching. Recurring character: friendly pumpkin-headed miniature racing mechanic with brass goggles and plum overalls, expressive mitten hands. Vehicles are original pumpkin-themed miniature four-wheel racing cars. No rabbits, moons, carrots or Chinese architecture. Semantic message: watch-out. Specific composition: 技師角色豎起雙手警戒，身後暖色光尖芒爆開. No text, letters, numerals, punctuation, logos, watermark, UI panel, background scene, gore or realistic violence. One composition only; do not include the message label as text."
+  },
+  {
+    "season": "halloween",
+    "messageKey": "danger",
+    "authoringFile": "release-input/ui/race-messages/halloween/danger.png",
+    "prompt": "Single original game HUD sticker, square RGBA with actual transparent background. Centered subject, generous 12% transparent margins; clean silhouette readable at 64 pixels. American vintage Halloween engraving illustration, bold plum ink outlines, pumpkin orange, antique gold and cream, restrained crosshatching. Recurring character: friendly pumpkin-headed miniature racing mechanic with brass goggles and plum overalls, expressive mitten hands. Vehicles are original pumpkin-themed miniature four-wheel racing cars. No rabbits, moons, carrots or Chinese architecture. Semantic message: danger. Specific composition: 破裂石塊警示牌與紅紫脈衝，不含字形符號. No text, letters, numerals, punctuation, logos, watermark, UI panel, background scene, gore or realistic violence. One composition only; do not include the message label as text."
+  },
+  {
+    "season": "halloween",
+    "messageKey": "obstacle-ahead",
+    "authoringFile": "release-input/ui/race-messages/halloween/obstacle-ahead.png",
+    "prompt": "Single original game HUD sticker, square RGBA with actual transparent background. Centered subject, generous 12% transparent margins; clean silhouette readable at 64 pixels. American vintage Halloween engraving illustration, bold plum ink outlines, pumpkin orange, antique gold and cream, restrained crosshatching. Recurring character: friendly pumpkin-headed miniature racing mechanic with brass goggles and plum overalls, expressive mitten hands. Vehicles are original pumpkin-themed miniature four-wheel racing cars. No rabbits, moons, carrots or Chinese architecture. Semantic message: obstacle-ahead. Specific composition: 賽道中央巨大隕石，技師角色車及時煞停. No text, letters, numerals, punctuation, logos, watermark, UI panel, background scene, gore or realistic violence. One composition only; do not include the message label as text."
+  },
+  {
+    "season": "halloween",
+    "messageKey": "crash-ahead",
+    "authoringFile": "release-input/ui/race-messages/halloween/crash-ahead.png",
+    "prompt": "Single original game HUD sticker, square RGBA with actual transparent background. Centered subject, generous 12% transparent margins; clean silhouette readable at 64 pixels. American vintage Halloween engraving illustration, bold plum ink outlines, pumpkin orange, antique gold and cream, restrained crosshatching. Recurring character: friendly pumpkin-headed miniature racing mechanic with brass goggles and plum overalls, expressive mitten hands. Vehicles are original pumpkin-themed miniature four-wheel racing cars. No rabbits, moons, carrots or Chinese architecture. Semantic message: crash-ahead. Specific composition: 前方兩台迷你四驅車碰出卡通星星，無受傷畫面. No text, letters, numerals, punctuation, logos, watermark, UI panel, background scene, gore or realistic violence. One composition only; do not include the message label as text."
+  },
+  {
+    "season": "halloween",
+    "messageKey": "debris-ahead",
+    "authoringFile": "release-input/ui/race-messages/halloween/debris-ahead.png",
+    "prompt": "Single original game HUD sticker, square RGBA with actual transparent background. Centered subject, generous 12% transparent margins; clean silhouette readable at 64 pixels. American vintage Halloween engraving illustration, bold plum ink outlines, pumpkin orange, antique gold and cream, restrained crosshatching. Recurring character: friendly pumpkin-headed miniature racing mechanic with brass goggles and plum overalls, expressive mitten hands. Vehicles are original pumpkin-themed miniature four-wheel racing cars. No rabbits, moons, carrots or Chinese architecture. Semantic message: debris-ahead. Specific composition: 賽道散落小石塊與小工具車殼，繞行軌跡. No text, letters, numerals, punctuation, logos, watermark, UI panel, background scene, gore or realistic violence. One composition only; do not include the message label as text."
+  },
+  {
+    "season": "halloween",
+    "messageKey": "slippery-road",
+    "authoringFile": "release-input/ui/race-messages/halloween/slippery-road.png",
+    "prompt": "Single original game HUD sticker, square RGBA with actual transparent background. Centered subject, generous 12% transparent margins; clean silhouette readable at 64 pixels. American vintage Halloween engraving illustration, bold plum ink outlines, pumpkin orange, antique gold and cream, restrained crosshatching. Recurring character: friendly pumpkin-headed miniature racing mechanic with brass goggles and plum overalls, expressive mitten hands. Vehicles are original pumpkin-themed miniature four-wheel racing cars. No rabbits, moons, carrots or Chinese architecture. Semantic message: slippery-road. Specific composition: 迷你四驅車在結霜賽道左右滑動，留下彎曲星痕. No text, letters, numerals, punctuation, logos, watermark, UI panel, background scene, gore or realistic violence. One composition only; do not include the message label as text."
+  },
+  {
+    "season": "halloween",
+    "messageKey": "rough-road",
+    "authoringFile": "release-input/ui/race-messages/halloween/rough-road.png",
+    "prompt": "Single original game HUD sticker, square RGBA with actual transparent background. Centered subject, generous 12% transparent margins; clean silhouette readable at 64 pixels. American vintage Halloween engraving illustration, bold plum ink outlines, pumpkin orange, antique gold and cream, restrained crosshatching. Recurring character: friendly pumpkin-headed miniature racing mechanic with brass goggles and plum overalls, expressive mitten hands. Vehicles are original pumpkin-themed miniature four-wheel racing cars. No rabbits, moons, carrots or Chinese architecture. Semantic message: rough-road. Specific composition: 凹坑路面讓技師角色與車輪上下彈跳. No text, letters, numerals, punctuation, logos, watermark, UI panel, background scene, gore or realistic violence. One composition only; do not include the message label as text."
+  },
+  {
+    "season": "halloween",
+    "messageKey": "narrow-path",
+    "authoringFile": "release-input/ui/race-messages/halloween/narrow-path.png",
+    "prompt": "Single original game HUD sticker, square RGBA with actual transparent background. Centered subject, generous 12% transparent margins; clean silhouette readable at 64 pixels. American vintage Halloween engraving illustration, bold plum ink outlines, pumpkin orange, antique gold and cream, restrained crosshatching. Recurring character: friendly pumpkin-headed miniature racing mechanic with brass goggles and plum overalls, expressive mitten hands. Vehicles are original pumpkin-themed miniature four-wheel racing cars. No rabbits, moons, carrots or Chinese architecture. Semantic message: narrow-path. Specific composition: 兩側岩石收窄，只容一台迷你四驅車通行. No text, letters, numerals, punctuation, logos, watermark, UI panel, background scene, gore or realistic violence. One composition only; do not include the message label as text."
+  },
+  {
+    "season": "halloween",
+    "messageKey": "jump-ahead",
+    "authoringFile": "release-input/ui/race-messages/halloween/jump-ahead.png",
+    "prompt": "Single original game HUD sticker, square RGBA with actual transparent background. Centered subject, generous 12% transparent margins; clean silhouette readable at 64 pixels. American vintage Halloween engraving illustration, bold plum ink outlines, pumpkin orange, antique gold and cream, restrained crosshatching. Recurring character: friendly pumpkin-headed miniature racing mechanic with brass goggles and plum overalls, expressive mitten hands. Vehicles are original pumpkin-themed miniature four-wheel racing cars. No rabbits, moons, carrots or Chinese architecture. Semantic message: jump-ahead. Specific composition: 技師角色車躍過弧形光環斜坡，形成柔和拋物線. No text, letters, numerals, punctuation, logos, watermark, UI panel, background scene, gore or realistic violence. One composition only; do not include the message label as text."
+  },
+  {
+    "season": "halloween",
+    "messageKey": "trap-ahead",
+    "authoringFile": "release-input/ui/race-messages/halloween/trap-ahead.png",
+    "prompt": "Single original game HUD sticker, square RGBA with actual transparent background. Centered subject, generous 12% transparent margins; clean silhouette readable at 64 pixels. American vintage Halloween engraving illustration, bold plum ink outlines, pumpkin orange, antique gold and cream, restrained crosshatching. Recurring character: friendly pumpkin-headed miniature racing mechanic with brass goggles and plum overalls, expressive mitten hands. Vehicles are original pumpkin-themed miniature four-wheel racing cars. No rabbits, moons, carrots or Chinese architecture. Semantic message: trap-ahead. Specific composition: 賽道藏著張開的紙雕捕捉網，技師角色繞開. No text, letters, numerals, punctuation, logos, watermark, UI panel, background scene, gore or realistic violence. One composition only; do not include the message label as text."
+  },
+  {
+    "season": "halloween",
+    "messageKey": "incoming-attack",
+    "authoringFile": "release-input/ui/race-messages/halloween/incoming-attack.png",
+    "prompt": "Single original game HUD sticker, square RGBA with actual transparent background. Centered subject, generous 12% transparent margins; clean silhouette readable at 64 pixels. American vintage Halloween engraving illustration, bold plum ink outlines, pumpkin orange, antique gold and cream, restrained crosshatching. Recurring character: friendly pumpkin-headed miniature racing mechanic with brass goggles and plum overalls, expressive mitten hands. Vehicles are original pumpkin-themed miniature four-wheel racing cars. No rabbits, moons, carrots or Chinese architecture. Semantic message: incoming-attack. Specific composition: 後方流星能量沿軌跡逼近迷你四驅車，尚未命中. No text, letters, numerals, punctuation, logos, watermark, UI panel, background scene, gore or realistic violence. One composition only; do not include the message label as text."
+  },
+  {
+    "season": "halloween",
+    "messageKey": "behind-you",
+    "authoringFile": "release-input/ui/race-messages/halloween/behind-you.png",
+    "prompt": "Single original game HUD sticker, square RGBA with actual transparent background. Centered subject, generous 12% transparent margins; clean silhouette readable at 64 pixels. American vintage Halloween engraving illustration, bold plum ink outlines, pumpkin orange, antique gold and cream, restrained crosshatching. Recurring character: friendly pumpkin-headed miniature racing mechanic with brass goggles and plum overalls, expressive mitten hands. Vehicles are original pumpkin-themed miniature four-wheel racing cars. No rabbits, moons, carrots or Chinese architecture. Semantic message: behind-you. Specific composition: 技師角色回頭，身後追車被光環高亮. No text, letters, numerals, punctuation, logos, watermark, UI panel, background scene, gore or realistic violence. One composition only; do not include the message label as text."
+  },
+  {
+    "season": "halloween",
+    "messageKey": "wrong-way",
+    "authoringFile": "release-input/ui/race-messages/halloween/wrong-way.png",
+    "prompt": "Single original game HUD sticker, square RGBA with actual transparent background. Centered subject, generous 12% transparent margins; clean silhouette readable at 64 pixels. American vintage Halloween engraving illustration, bold plum ink outlines, pumpkin orange, antique gold and cream, restrained crosshatching. Recurring character: friendly pumpkin-headed miniature racing mechanic with brass goggles and plum overalls, expressive mitten hands. Vehicles are original pumpkin-themed miniature four-wheel racing cars. No rabbits, moons, carrots or Chinese architecture. Semantic message: wrong-way. Specific composition: 技師角色車與塵主流方向相反，雙手驚訝豎起. No text, letters, numerals, punctuation, logos, watermark, UI panel, background scene, gore or realistic violence. One composition only; do not include the message label as text."
+  },
+  {
+    "season": "halloween",
+    "messageKey": "blocked-path",
+    "authoringFile": "release-input/ui/race-messages/halloween/blocked-path.png",
+    "prompt": "Single original game HUD sticker, square RGBA with actual transparent background. Centered subject, generous 12% transparent margins; clean silhouette readable at 64 pixels. American vintage Halloween engraving illustration, bold plum ink outlines, pumpkin orange, antique gold and cream, restrained crosshatching. Recurring character: friendly pumpkin-headed miniature racing mechanic with brass goggles and plum overalls, expressive mitten hands. Vehicles are original pumpkin-themed miniature four-wheel racing cars. No rabbits, moons, carrots or Chinese architecture. Semantic message: blocked-path. Specific composition: 倒下的工坊門完全擋路，技師角色尋找兩側小徑. No text, letters, numerals, punctuation, logos, watermark, UI panel, background scene, gore or realistic violence. One composition only; do not include the message label as text."
+  },
+  {
+    "season": "halloween",
+    "messageKey": "wait-for-me",
+    "authoringFile": "release-input/ui/race-messages/halloween/wait-for-me.png",
+    "prompt": "Single original game HUD sticker, square RGBA with actual transparent background. Centered subject, generous 12% transparent margins; clean silhouette readable at 64 pixels. American vintage Halloween engraving illustration, bold plum ink outlines, pumpkin orange, antique gold and cream, restrained crosshatching. Recurring character: friendly pumpkin-headed miniature racing mechanic with brass goggles and plum overalls, expressive mitten hands. Vehicles are original pumpkin-themed miniature four-wheel racing cars. No rabbits, moons, carrots or Chinese architecture. Semantic message: wait-for-me. Specific composition: 後方技師角色揮手追趕，前車回頭減速. No text, letters, numerals, punctuation, logos, watermark, UI panel, background scene, gore or realistic violence. One composition only; do not include the message label as text."
+  },
+  {
+    "season": "halloween",
+    "messageKey": "catching-up",
+    "authoringFile": "release-input/ui/race-messages/halloween/catching-up.png",
+    "prompt": "Single original game HUD sticker, square RGBA with actual transparent background. Centered subject, generous 12% transparent margins; clean silhouette readable at 64 pixels. American vintage Halloween engraving illustration, bold plum ink outlines, pumpkin orange, antique gold and cream, restrained crosshatching. Recurring character: friendly pumpkin-headed miniature racing mechanic with brass goggles and plum overalls, expressive mitten hands. Vehicles are original pumpkin-themed miniature four-wheel racing cars. No rabbits, moons, carrots or Chinese architecture. Semantic message: catching-up. Specific composition: 技師角色車乘暖色光尾焰快速拉近距離. No text, letters, numerals, punctuation, logos, watermark, UI panel, background scene, gore or realistic violence. One composition only; do not include the message label as text."
+  },
+  {
+    "season": "halloween",
+    "messageKey": "im-stuck",
+    "authoringFile": "release-input/ui/race-messages/halloween/im-stuck.png",
+    "prompt": "Single original game HUD sticker, square RGBA with actual transparent background. Centered subject, generous 12% transparent margins; clean silhouette readable at 64 pixels. American vintage Halloween engraving illustration, bold plum ink outlines, pumpkin orange, antique gold and cream, restrained crosshatching. Recurring character: friendly pumpkin-headed miniature racing mechanic with brass goggles and plum overalls, expressive mitten hands. Vehicles are original pumpkin-themed miniature four-wheel racing cars. No rabbits, moons, carrots or Chinese architecture. Semantic message: im-stuck. Specific composition: 迷你四驅車輪陷進凹坑，技師角色用力推車. No text, letters, numerals, punctuation, logos, watermark, UI panel, background scene, gore or realistic violence. One composition only; do not include the message label as text."
+  },
+  {
+    "season": "halloween",
+    "messageKey": "im-lost",
+    "authoringFile": "release-input/ui/race-messages/halloween/im-lost.png",
+    "prompt": "Single original game HUD sticker, square RGBA with actual transparent background. Centered subject, generous 12% transparent margins; clean silhouette readable at 64 pixels. American vintage Halloween engraving illustration, bold plum ink outlines, pumpkin orange, antique gold and cream, restrained crosshatching. Recurring character: friendly pumpkin-headed miniature racing mechanic with brass goggles and plum overalls, expressive mitten hands. Vehicles are original pumpkin-themed miniature four-wheel racing cars. No rabbits, moons, carrots or Chinese architecture. Semantic message: im-lost. Specific composition: 技師角色站在多岔賽道中央，兩耳各指不同方向. No text, letters, numerals, punctuation, logos, watermark, UI panel, background scene, gore or realistic violence. One composition only; do not include the message label as text."
+  },
+  {
+    "season": "halloween",
+    "messageKey": "i-crashed",
+    "authoringFile": "release-input/ui/race-messages/halloween/i-crashed.png",
+    "prompt": "Single original game HUD sticker, square RGBA with actual transparent background. Centered subject, generous 12% transparent margins; clean silhouette readable at 64 pixels. American vintage Halloween engraving illustration, bold plum ink outlines, pumpkin orange, antique gold and cream, restrained crosshatching. Recurring character: friendly pumpkin-headed miniature racing mechanic with brass goggles and plum overalls, expressive mitten hands. Vehicles are original pumpkin-themed miniature four-wheel racing cars. No rabbits, moons, carrots or Chinese architecture. Semantic message: i-crashed. Specific composition: 迷你四驅車撞進柔軟雲堆，只冒出卡通星星. No text, letters, numerals, punctuation, logos, watermark, UI panel, background scene, gore or realistic violence. One composition only; do not include the message label as text."
+  },
+  {
+    "season": "halloween",
+    "messageKey": "im-damaged",
+    "authoringFile": "release-input/ui/race-messages/halloween/im-damaged.png",
+    "prompt": "Single original game HUD sticker, square RGBA with actual transparent background. Centered subject, generous 12% transparent margins; clean silhouette readable at 64 pixels. American vintage Halloween engraving illustration, bold plum ink outlines, pumpkin orange, antique gold and cream, restrained crosshatching. Recurring character: friendly pumpkin-headed miniature racing mechanic with brass goggles and plum overalls, expressive mitten hands. Vehicles are original pumpkin-themed miniature four-wheel racing cars. No rabbits, moons, carrots or Chinese architecture. Semantic message: im-damaged. Specific composition: 迷你四驅車護板有裂紋，技師角色拿出小修理槌. No text, letters, numerals, punctuation, logos, watermark, UI panel, background scene, gore or realistic violence. One composition only; do not include the message label as text."
+  },
+  {
+    "season": "halloween",
+    "messageKey": "low-energy",
+    "authoringFile": "release-input/ui/race-messages/halloween/low-energy.png",
+    "prompt": "Single original game HUD sticker, square RGBA with actual transparent background. Centered subject, generous 12% transparent margins; clean silhouette readable at 64 pixels. American vintage Halloween engraving illustration, bold plum ink outlines, pumpkin orange, antique gold and cream, restrained crosshatching. Recurring character: friendly pumpkin-headed miniature racing mechanic with brass goggles and plum overalls, expressive mitten hands. Vehicles are original pumpkin-themed miniature four-wheel racing cars. No rabbits, moons, carrots or Chinese architecture. Semantic message: low-energy. Specific composition: 小燈幾乎熄滅，技師角色疲倦低頭. No text, letters, numerals, punctuation, logos, watermark, UI panel, background scene, gore or realistic violence. One composition only; do not include the message label as text."
+  },
+  {
+    "season": "halloween",
+    "messageKey": "cant-move",
+    "authoringFile": "release-input/ui/race-messages/halloween/cant-move.png",
+    "prompt": "Single original game HUD sticker, square RGBA with actual transparent background. Centered subject, generous 12% transparent margins; clean silhouette readable at 64 pixels. American vintage Halloween engraving illustration, bold plum ink outlines, pumpkin orange, antique gold and cream, restrained crosshatching. Recurring character: friendly pumpkin-headed miniature racing mechanic with brass goggles and plum overalls, expressive mitten hands. Vehicles are original pumpkin-themed miniature four-wheel racing cars. No rabbits, moons, carrots or Chinese architecture. Semantic message: cant-move. Specific composition: 車輪被繩索纏住，技師角色無奈攤手. No text, letters, numerals, punctuation, logos, watermark, UI panel, background scene, gore or realistic violence. One composition only; do not include the message label as text."
+  },
+  {
+    "season": "halloween",
+    "messageKey": "recovering",
+    "authoringFile": "release-input/ui/race-messages/halloween/recovering.png",
+    "prompt": "Single original game HUD sticker, square RGBA with actual transparent background. Centered subject, generous 12% transparent margins; clean silhouette readable at 64 pixels. American vintage Halloween engraving illustration, bold plum ink outlines, pumpkin orange, antique gold and cream, restrained crosshatching. Recurring character: friendly pumpkin-headed miniature racing mechanic with brass goggles and plum overalls, expressive mitten hands. Vehicles are original pumpkin-themed miniature four-wheel racing cars. No rabbits, moons, carrots or Chinese architecture. Semantic message: recovering. Specific composition: 技師角色修理車輛，滿暖色光環逐步恢復完整. No text, letters, numerals, punctuation, logos, watermark, UI panel, background scene, gore or realistic violence. One composition only; do not include the message label as text."
+  },
+  {
+    "season": "halloween",
+    "messageKey": "im-out",
+    "authoringFile": "release-input/ui/race-messages/halloween/im-out.png",
+    "prompt": "Single original game HUD sticker, square RGBA with actual transparent background. Centered subject, generous 12% transparent margins; clean silhouette readable at 64 pixels. American vintage Halloween engraving illustration, bold plum ink outlines, pumpkin orange, antique gold and cream, restrained crosshatching. Recurring character: friendly pumpkin-headed miniature racing mechanic with brass goggles and plum overalls, expressive mitten hands. Vehicles are original pumpkin-themed miniature four-wheel racing cars. No rabbits, moons, carrots or Chinese architecture. Semantic message: im-out. Specific composition: 技師角色與車停在安全雲台，競速燈熄滅. No text, letters, numerals, punctuation, logos, watermark, UI panel, background scene, gore or realistic violence. One composition only; do not include the message label as text."
+  },
+  {
+    "season": "halloween",
+    "messageKey": "nice",
+    "authoringFile": "release-input/ui/race-messages/halloween/nice.png",
+    "prompt": "Single original game HUD sticker, square RGBA with actual transparent background. Centered subject, generous 12% transparent margins; clean silhouette readable at 64 pixels. American vintage Halloween engraving illustration, bold plum ink outlines, pumpkin orange, antique gold and cream, restrained crosshatching. Recurring character: friendly pumpkin-headed miniature racing mechanic with brass goggles and plum overalls, expressive mitten hands. Vehicles are original pumpkin-themed miniature four-wheel racing cars. No rabbits, moons, carrots or Chinese architecture. Semantic message: nice. Specific composition: 技師角色豎拇指，身後一顆大星芒. No text, letters, numerals, punctuation, logos, watermark, UI panel, background scene, gore or realistic violence. One composition only; do not include the message label as text."
+  },
+  {
+    "season": "halloween",
+    "messageKey": "great",
+    "authoringFile": "release-input/ui/race-messages/halloween/great.png",
+    "prompt": "Single original game HUD sticker, square RGBA with actual transparent background. Centered subject, generous 12% transparent margins; clean silhouette readable at 64 pixels. American vintage Halloween engraving illustration, bold plum ink outlines, pumpkin orange, antique gold and cream, restrained crosshatching. Recurring character: friendly pumpkin-headed miniature racing mechanic with brass goggles and plum overalls, expressive mitten hands. Vehicles are original pumpkin-themed miniature four-wheel racing cars. No rabbits, moons, carrots or Chinese architecture. Semantic message: great. Specific composition: 技師角色雙拇指向上，圓形光環與金粉環繞. No text, letters, numerals, punctuation, logos, watermark, UI panel, background scene, gore or realistic violence. One composition only; do not include the message label as text."
+  },
+  {
+    "season": "halloween",
+    "messageKey": "amazing",
+    "authoringFile": "release-input/ui/race-messages/halloween/amazing.png",
+    "prompt": "Single original game HUD sticker, square RGBA with actual transparent background. Centered subject, generous 12% transparent margins; clean silhouette readable at 64 pixels. American vintage Halloween engraving illustration, bold plum ink outlines, pumpkin orange, antique gold and cream, restrained crosshatching. Recurring character: friendly pumpkin-headed miniature racing mechanic with brass goggles and plum overalls, expressive mitten hands. Vehicles are original pumpkin-themed miniature four-wheel racing cars. No rabbits, moons, carrots or Chinese architecture. Semantic message: amazing. Specific composition: 技師角色驚喜躍起，周圍多層暖色光與星星. No text, letters, numerals, punctuation, logos, watermark, UI panel, background scene, gore or realistic violence. One composition only; do not include the message label as text."
+  },
+  {
+    "season": "halloween",
+    "messageKey": "awesome",
+    "authoringFile": "release-input/ui/race-messages/halloween/awesome.png",
+    "prompt": "Single original game HUD sticker, square RGBA with actual transparent background. Centered subject, generous 12% transparent margins; clean silhouette readable at 64 pixels. American vintage Halloween engraving illustration, bold plum ink outlines, pumpkin orange, antique gold and cream, restrained crosshatching. Recurring character: friendly pumpkin-headed miniature racing mechanic with brass goggles and plum overalls, expressive mitten hands. Vehicles are original pumpkin-themed miniature four-wheel racing cars. No rabbits, moons, carrots or Chinese architecture. Semantic message: awesome. Specific composition: 技師角色高舉月桂齒輪獎盃，不含文字. No text, letters, numerals, punctuation, logos, watermark, UI panel, background scene, gore or realistic violence. One composition only; do not include the message label as text."
+  },
+  {
+    "season": "halloween",
+    "messageKey": "impressive",
+    "authoringFile": "release-input/ui/race-messages/halloween/impressive.png",
+    "prompt": "Single original game HUD sticker, square RGBA with actual transparent background. Centered subject, generous 12% transparent margins; clean silhouette readable at 64 pixels. American vintage Halloween engraving illustration, bold plum ink outlines, pumpkin orange, antique gold and cream, restrained crosshatching. Recurring character: friendly pumpkin-headed miniature racing mechanic with brass goggles and plum overalls, expressive mitten hands. Vehicles are original pumpkin-themed miniature four-wheel racing cars. No rabbits, moons, carrots or Chinese architecture. Semantic message: impressive. Specific composition: 迷你四驅車完美落地，兩道對稱暖色光弧線. No text, letters, numerals, punctuation, logos, watermark, UI panel, background scene, gore or realistic violence. One composition only; do not include the message label as text."
+  },
+  {
+    "season": "halloween",
+    "messageKey": "well-done",
+    "authoringFile": "release-input/ui/race-messages/halloween/well-done.png",
+    "prompt": "Single original game HUD sticker, square RGBA with actual transparent background. Centered subject, generous 12% transparent margins; clean silhouette readable at 64 pixels. American vintage Halloween engraving illustration, bold plum ink outlines, pumpkin orange, antique gold and cream, restrained crosshatching. Recurring character: friendly pumpkin-headed miniature racing mechanic with brass goggles and plum overalls, expressive mitten hands. Vehicles are original pumpkin-themed miniature four-wheel racing cars. No rabbits, moons, carrots or Chinese architecture. Semantic message: well-done. Specific composition: 技師角色開心鼓掌，掌間飛出金色星屑. No text, letters, numerals, punctuation, logos, watermark, UI panel, background scene, gore or realistic violence. One composition only; do not include the message label as text."
+  },
+  {
+    "season": "halloween",
+    "messageKey": "clean-move",
+    "authoringFile": "release-input/ui/race-messages/halloween/clean-move.png",
+    "prompt": "Single original game HUD sticker, square RGBA with actual transparent background. Centered subject, generous 12% transparent margins; clean silhouette readable at 64 pixels. American vintage Halloween engraving illustration, bold plum ink outlines, pumpkin orange, antique gold and cream, restrained crosshatching. Recurring character: friendly pumpkin-headed miniature racing mechanic with brass goggles and plum overalls, expressive mitten hands. Vehicles are original pumpkin-themed miniature four-wheel racing cars. No rabbits, moons, carrots or Chinese architecture. Semantic message: clean-move. Specific composition: 迷你四驅車沿無碰撞的完美月弧完成超車. No text, letters, numerals, punctuation, logos, watermark, UI panel, background scene, gore or realistic violence. One composition only; do not include the message label as text."
+  },
+  {
+    "season": "halloween",
+    "messageKey": "respect",
+    "authoringFile": "release-input/ui/race-messages/halloween/respect.png",
+    "prompt": "Single original game HUD sticker, square RGBA with actual transparent background. Centered subject, generous 12% transparent margins; clean silhouette readable at 64 pixels. American vintage Halloween engraving illustration, bold plum ink outlines, pumpkin orange, antique gold and cream, restrained crosshatching. Recurring character: friendly pumpkin-headed miniature racing mechanic with brass goggles and plum overalls, expressive mitten hands. Vehicles are original pumpkin-themed miniature four-wheel racing cars. No rabbits, moons, carrots or Chinese architecture. Semantic message: respect. Specific composition: 兩隻技師角色並肩互相點頭致意. No text, letters, numerals, punctuation, logos, watermark, UI panel, background scene, gore or realistic violence. One composition only; do not include the message label as text."
+  },
+  {
+    "season": "halloween",
+    "messageKey": "wow",
+    "authoringFile": "release-input/ui/race-messages/halloween/wow.png",
+    "prompt": "Single original game HUD sticker, square RGBA with actual transparent background. Centered subject, generous 12% transparent margins; clean silhouette readable at 64 pixels. American vintage Halloween engraving illustration, bold plum ink outlines, pumpkin orange, antique gold and cream, restrained crosshatching. Recurring character: friendly pumpkin-headed miniature racing mechanic with brass goggles and plum overalls, expressive mitten hands. Vehicles are original pumpkin-themed miniature four-wheel racing cars. No rabbits, moons, carrots or Chinese architecture. Semantic message: wow. Specific composition: 技師角色瞪大眼、雙手張開，圓形光環星芒放射. No text, letters, numerals, punctuation, logos, watermark, UI panel, background scene, gore or realistic violence. One composition only; do not include the message label as text."
+  },
+  {
+    "season": "halloween",
+    "messageKey": "lol",
+    "authoringFile": "release-input/ui/race-messages/halloween/lol.png",
+    "prompt": "Single original game HUD sticker, square RGBA with actual transparent background. Centered subject, generous 12% transparent margins; clean silhouette readable at 64 pixels. American vintage Halloween engraving illustration, bold plum ink outlines, pumpkin orange, antique gold and cream, restrained crosshatching. Recurring character: friendly pumpkin-headed miniature racing mechanic with brass goggles and plum overalls, expressive mitten hands. Vehicles are original pumpkin-themed miniature four-wheel racing cars. No rabbits, moons, carrots or Chinese architecture. Semantic message: lol. Specific composition: 技師角色笑到後仰，手臂與身體出現跳動線. No text, letters, numerals, punctuation, logos, watermark, UI panel, background scene, gore or realistic violence. One composition only; do not include the message label as text."
+  },
+  {
+    "season": "halloween",
+    "messageKey": "oops",
+    "authoringFile": "release-input/ui/race-messages/halloween/oops.png",
+    "prompt": "Single original game HUD sticker, square RGBA with actual transparent background. Centered subject, generous 12% transparent margins; clean silhouette readable at 64 pixels. American vintage Halloween engraving illustration, bold plum ink outlines, pumpkin orange, antique gold and cream, restrained crosshatching. Recurring character: friendly pumpkin-headed miniature racing mechanic with brass goggles and plum overalls, expressive mitten hands. Vehicles are original pumpkin-themed miniature four-wheel racing cars. No rabbits, moons, carrots or Chinese architecture. Semantic message: oops. Specific composition: 技師角色不小心讓一根小工具滾走，尷尬抓頭. No text, letters, numerals, punctuation, logos, watermark, UI panel, background scene, gore or realistic violence. One composition only; do not include the message label as text."
+  },
+  {
+    "season": "halloween",
+    "messageKey": "no-way",
+    "authoringFile": "release-input/ui/race-messages/halloween/no-way.png",
+    "prompt": "Single original game HUD sticker, square RGBA with actual transparent background. Centered subject, generous 12% transparent margins; clean silhouette readable at 64 pixels. American vintage Halloween engraving illustration, bold plum ink outlines, pumpkin orange, antique gold and cream, restrained crosshatching. Recurring character: friendly pumpkin-headed miniature racing mechanic with brass goggles and plum overalls, expressive mitten hands. Vehicles are original pumpkin-themed miniature four-wheel racing cars. No rabbits, moons, carrots or Chinese architecture. Semantic message: no-way. Specific composition: 技師角色震驚張開雙掌，背後出現不可思議月漩渦. No text, letters, numerals, punctuation, logos, watermark, UI panel, background scene, gore or realistic violence. One composition only; do not include the message label as text."
+  },
+  {
+    "season": "halloween",
+    "messageKey": "close-one",
+    "authoringFile": "release-input/ui/race-messages/halloween/close-one.png",
+    "prompt": "Single original game HUD sticker, square RGBA with actual transparent background. Centered subject, generous 12% transparent margins; clean silhouette readable at 64 pixels. American vintage Halloween engraving illustration, bold plum ink outlines, pumpkin orange, antique gold and cream, restrained crosshatching. Recurring character: friendly pumpkin-headed miniature racing mechanic with brass goggles and plum overalls, expressive mitten hands. Vehicles are original pumpkin-themed miniature four-wheel racing cars. No rabbits, moons, carrots or Chinese architecture. Semantic message: close-one. Specific composition: 迷你四驅車以極小距離擦過岩石，窄縫發亮. No text, letters, numerals, punctuation, logos, watermark, UI panel, background scene, gore or realistic violence. One composition only; do not include the message label as text."
+  },
+  {
+    "season": "halloween",
+    "messageKey": "lucky",
+    "authoringFile": "release-input/ui/race-messages/halloween/lucky.png",
+    "prompt": "Single original game HUD sticker, square RGBA with actual transparent background. Centered subject, generous 12% transparent margins; clean silhouette readable at 64 pixels. American vintage Halloween engraving illustration, bold plum ink outlines, pumpkin orange, antique gold and cream, restrained crosshatching. Recurring character: friendly pumpkin-headed miniature racing mechanic with brass goggles and plum overalls, expressive mitten hands. Vehicles are original pumpkin-themed miniature four-wheel racing cars. No rabbits, moons, carrots or Chinese architecture. Semantic message: lucky. Specific composition: 技師角色車剛好躲過隕石，四葉草飄過. No text, letters, numerals, punctuation, logos, watermark, UI panel, background scene, gore or realistic violence. One composition only; do not include the message label as text."
+  },
+  {
+    "season": "halloween",
+    "messageKey": "unlucky",
+    "authoringFile": "release-input/ui/race-messages/halloween/unlucky.png",
+    "prompt": "Single original game HUD sticker, square RGBA with actual transparent background. Centered subject, generous 12% transparent margins; clean silhouette readable at 64 pixels. American vintage Halloween engraving illustration, bold plum ink outlines, pumpkin orange, antique gold and cream, restrained crosshatching. Recurring character: friendly pumpkin-headed miniature racing mechanic with brass goggles and plum overalls, expressive mitten hands. Vehicles are original pumpkin-themed miniature four-wheel racing cars. No rabbits, moons, carrots or Chinese architecture. Semantic message: unlucky. Specific composition: 迷你四驅車剛好陷入小凹坑，技師角色手臂垂下. No text, letters, numerals, punctuation, logos, watermark, UI panel, background scene, gore or realistic violence. One composition only; do not include the message label as text."
+  },
+  {
+    "season": "halloween",
+    "messageKey": "facepalm",
+    "authoringFile": "release-input/ui/race-messages/halloween/facepalm.png",
+    "prompt": "Single original game HUD sticker, square RGBA with actual transparent background. Centered subject, generous 12% transparent margins; clean silhouette readable at 64 pixels. American vintage Halloween engraving illustration, bold plum ink outlines, pumpkin orange, antique gold and cream, restrained crosshatching. Recurring character: friendly pumpkin-headed miniature racing mechanic with brass goggles and plum overalls, expressive mitten hands. Vehicles are original pumpkin-themed miniature four-wheel racing cars. No rabbits, moons, carrots or Chinese architecture. Semantic message: facepalm. Specific composition: 技師角色用手掌按住護目鏡與額頭. No text, letters, numerals, punctuation, logos, watermark, UI panel, background scene, gore or realistic violence. One composition only; do not include the message label as text."
+  },
+  {
+    "season": "halloween",
+    "messageKey": "thanks",
+    "authoringFile": "release-input/ui/race-messages/halloween/thanks.png",
+    "prompt": "Single original game HUD sticker, square RGBA with actual transparent background. Centered subject, generous 12% transparent margins; clean silhouette readable at 64 pixels. American vintage Halloween engraving illustration, bold plum ink outlines, pumpkin orange, antique gold and cream, restrained crosshatching. Recurring character: friendly pumpkin-headed miniature racing mechanic with brass goggles and plum overalls, expressive mitten hands. Vehicles are original pumpkin-themed miniature four-wheel racing cars. No rabbits, moons, carrots or Chinese architecture. Semantic message: thanks. Specific composition: Two friendly pumpkin-headed mechanics, one gratefully offering a small wrapped wrench gift to the other. Both have pumpkin heads and brass goggles. No animals.. No text, letters, numerals, punctuation, logos, watermark, UI panel, background scene, gore or realistic violence. One composition only; do not include the message label as text."
+  },
+  {
+    "season": "halloween",
+    "messageKey": "sorry",
+    "authoringFile": "release-input/ui/race-messages/halloween/sorry.png",
+    "prompt": "Single original game HUD sticker, square RGBA with actual transparent background. Centered subject, generous 12% transparent margins; clean silhouette readable at 64 pixels. American vintage Halloween engraving illustration, bold plum ink outlines, pumpkin orange, antique gold and cream, restrained crosshatching. Recurring character: friendly pumpkin-headed miniature racing mechanic with brass goggles and plum overalls, expressive mitten hands. Vehicles are original pumpkin-themed miniature four-wheel racing cars. No rabbits, moons, carrots or Chinese architecture. Semantic message: sorry. Specific composition: 技師角色低頭低頭，雙掌放在身前致歉. No text, letters, numerals, punctuation, logos, watermark, UI panel, background scene, gore or realistic violence. One composition only; do not include the message label as text."
+  },
+  {
+    "season": "halloween",
+    "messageKey": "my-bad",
+    "authoringFile": "release-input/ui/race-messages/halloween/my-bad.png",
+    "prompt": "Single original game HUD sticker, square RGBA with actual transparent background. Centered subject, generous 12% transparent margins; clean silhouette readable at 64 pixels. American vintage Halloween engraving illustration, bold plum ink outlines, pumpkin orange, antique gold and cream, restrained crosshatching. Recurring character: friendly pumpkin-headed miniature racing mechanic with brass goggles and plum overalls, expressive mitten hands. Vehicles are original pumpkin-themed miniature four-wheel racing cars. No rabbits, moons, carrots or Chinese architecture. Semantic message: my-bad. Specific composition: 技師角色指向自己並尷尬舉另一手認錯. No text, letters, numerals, punctuation, logos, watermark, UI panel, background scene, gore or realistic violence. One composition only; do not include the message label as text."
+  },
+  {
+    "season": "halloween",
+    "messageKey": "excuse-me",
+    "authoringFile": "release-input/ui/race-messages/halloween/excuse-me.png",
+    "prompt": "Single original game HUD sticker, square RGBA with actual transparent background. Centered subject, generous 12% transparent margins; clean silhouette readable at 64 pixels. American vintage Halloween engraving illustration, bold plum ink outlines, pumpkin orange, antique gold and cream, restrained crosshatching. Recurring character: friendly pumpkin-headed miniature racing mechanic with brass goggles and plum overalls, expressive mitten hands. Vehicles are original pumpkin-themed miniature four-wheel racing cars. No rabbits, moons, carrots or Chinese architecture. Semantic message: excuse-me. Specific composition: 技師角色側身禮貌通過，對方讓出賽道. No text, letters, numerals, punctuation, logos, watermark, UI panel, background scene, gore or realistic violence. One composition only; do not include the message label as text."
+  },
+  {
+    "season": "halloween",
+    "messageKey": "no-problem",
+    "authoringFile": "release-input/ui/race-messages/halloween/no-problem.png",
+    "prompt": "Single original game HUD sticker, square RGBA with actual transparent background. Centered subject, generous 12% transparent margins; clean silhouette readable at 64 pixels. American vintage Halloween engraving illustration, bold plum ink outlines, pumpkin orange, antique gold and cream, restrained crosshatching. Recurring character: friendly pumpkin-headed miniature racing mechanic with brass goggles and plum overalls, expressive mitten hands. Vehicles are original pumpkin-themed miniature four-wheel racing cars. No rabbits, moons, carrots or Chinese architecture. Semantic message: no-problem. Specific composition: 技師角色輕鬆擺手，背後圓形光環保持平穩. No text, letters, numerals, punctuation, logos, watermark, UI panel, background scene, gore or realistic violence. One composition only; do not include the message label as text."
+  },
+  {
+    "season": "halloween",
+    "messageKey": "its-okay",
+    "authoringFile": "release-input/ui/race-messages/halloween/its-okay.png",
+    "prompt": "Single original game HUD sticker, square RGBA with actual transparent background. Centered subject, generous 12% transparent margins; clean silhouette readable at 64 pixels. American vintage Halloween engraving illustration, bold plum ink outlines, pumpkin orange, antique gold and cream, restrained crosshatching. Recurring character: friendly pumpkin-headed miniature racing mechanic with brass goggles and plum overalls, expressive mitten hands. Vehicles are original pumpkin-themed miniature four-wheel racing cars. No rabbits, moons, carrots or Chinese architecture. Semantic message: its-okay. Specific composition: 兩隻技師角色碰拳和解，柔和光環包住彼此. No text, letters, numerals, punctuation, logos, watermark, UI panel, background scene, gore or realistic violence. One composition only; do not include the message label as text."
+  },
+  {
+    "season": "halloween",
+    "messageKey": "please-stop",
+    "authoringFile": "release-input/ui/race-messages/halloween/please-stop.png",
+    "prompt": "Single original game HUD sticker, square RGBA with actual transparent background. Centered subject, generous 12% transparent margins; clean silhouette readable at 64 pixels. American vintage Halloween engraving illustration, bold plum ink outlines, pumpkin orange, antique gold and cream, restrained crosshatching. Recurring character: friendly pumpkin-headed miniature racing mechanic with brass goggles and plum overalls, expressive mitten hands. Vehicles are original pumpkin-themed miniature four-wheel racing cars. No rabbits, moons, carrots or Chinese architecture. Semantic message: please-stop. Specific composition: 技師角色雙掌做停止手勢，迷你四驅車安全停下. No text, letters, numerals, punctuation, logos, watermark, UI panel, background scene, gore or realistic violence. One composition only; do not include the message label as text."
+  },
+  {
+    "season": "halloween",
+    "messageKey": "no-hard-feelings",
+    "authoringFile": "release-input/ui/race-messages/halloween/no-hard-feelings.png",
+    "prompt": "Single original game HUD sticker, square RGBA with actual transparent background. Centered subject, generous 12% transparent margins; clean silhouette readable at 64 pixels. American vintage Halloween engraving illustration, bold plum ink outlines, pumpkin orange, antique gold and cream, restrained crosshatching. Recurring character: friendly pumpkin-headed miniature racing mechanic with brass goggles and plum overalls, expressive mitten hands. Vehicles are original pumpkin-themed miniature four-wheel racing cars. No rabbits, moons, carrots or Chinese architecture. Semantic message: no-hard-feelings. Specific composition: 兩隻技師角色友善碰拳，破裂小石塊被光修復. No text, letters, numerals, punctuation, logos, watermark, UI panel, background scene, gore or realistic violence. One composition only; do not include the message label as text."
+  },
+  {
+    "season": "halloween",
+    "messageKey": "nice-hit",
+    "authoringFile": "release-input/ui/race-messages/halloween/nice-hit.png",
+    "prompt": "Single original game HUD sticker, square RGBA with actual transparent background. Centered subject, generous 12% transparent margins; clean silhouette readable at 64 pixels. American vintage Halloween engraving illustration, bold plum ink outlines, pumpkin orange, antique gold and cream, restrained crosshatching. Recurring character: friendly pumpkin-headed miniature racing mechanic with brass goggles and plum overalls, expressive mitten hands. Vehicles are original pumpkin-themed miniature four-wheel racing cars. No rabbits, moons, carrots or Chinese architecture. Semantic message: nice-hit. Specific composition: 小工具形能量精準命中護盾中央，只有星形火花. No text, letters, numerals, punctuation, logos, watermark, UI panel, background scene, gore or realistic violence. One composition only; do not include the message label as text."
+  },
+  {
+    "season": "halloween",
+    "messageKey": "good-dodge",
+    "authoringFile": "release-input/ui/race-messages/halloween/good-dodge.png",
+    "prompt": "Single original game HUD sticker, square RGBA with actual transparent background. Centered subject, generous 12% transparent margins; clean silhouette readable at 64 pixels. American vintage Halloween engraving illustration, bold plum ink outlines, pumpkin orange, antique gold and cream, restrained crosshatching. Recurring character: friendly pumpkin-headed miniature racing mechanic with brass goggles and plum overalls, expressive mitten hands. Vehicles are original pumpkin-themed miniature four-wheel racing cars. No rabbits, moons, carrots or Chinese architecture. Semantic message: good-dodge. Specific composition: 技師角色車沿月弧閃過流星能量. No text, letters, numerals, punctuation, logos, watermark, UI panel, background scene, gore or realistic violence. One composition only; do not include the message label as text."
+  },
+  {
+    "season": "halloween",
+    "messageKey": "good-save",
+    "authoringFile": "release-input/ui/race-messages/halloween/good-save.png",
+    "prompt": "Single original game HUD sticker, square RGBA with actual transparent background. Centered subject, generous 12% transparent margins; clean silhouette readable at 64 pixels. American vintage Halloween engraving illustration, bold plum ink outlines, pumpkin orange, antique gold and cream, restrained crosshatching. Recurring character: friendly pumpkin-headed miniature racing mechanic with brass goggles and plum overalls, expressive mitten hands. Vehicles are original pumpkin-themed miniature four-wheel racing cars. No rabbits, moons, carrots or Chinese architecture. Semantic message: good-save. Specific composition: 技師角色車在邊緣被雲朵與繩索安全拉回. No text, letters, numerals, punctuation, logos, watermark, UI panel, background scene, gore or realistic violence. One composition only; do not include the message label as text."
+  },
+  {
+    "season": "halloween",
+    "messageKey": "good-defense",
+    "authoringFile": "release-input/ui/race-messages/halloween/good-defense.png",
+    "prompt": "Single original game HUD sticker, square RGBA with actual transparent background. Centered subject, generous 12% transparent margins; clean silhouette readable at 64 pixels. American vintage Halloween engraving illustration, bold plum ink outlines, pumpkin orange, antique gold and cream, restrained crosshatching. Recurring character: friendly pumpkin-headed miniature racing mechanic with brass goggles and plum overalls, expressive mitten hands. Vehicles are original pumpkin-themed miniature four-wheel racing cars. No rabbits, moons, carrots or Chinese architecture. Semantic message: good-defense. Specific composition: 圓形光環形護盾完整擋住流星波. No text, letters, numerals, punctuation, logos, watermark, UI panel, background scene, gore or realistic violence. One composition only; do not include the message label as text."
+  },
+  {
+    "season": "halloween",
+    "messageKey": "that-hurt",
+    "authoringFile": "release-input/ui/race-messages/halloween/that-hurt.png",
+    "prompt": "Single original game HUD sticker, square RGBA with actual transparent background. Centered subject, generous 12% transparent margins; clean silhouette readable at 64 pixels. American vintage Halloween engraving illustration, bold plum ink outlines, pumpkin orange, antique gold and cream, restrained crosshatching. Recurring character: friendly pumpkin-headed miniature racing mechanic with brass goggles and plum overalls, expressive mitten hands. Vehicles are original pumpkin-themed miniature four-wheel racing cars. No rabbits, moons, carrots or Chinese architecture. Semantic message: that-hurt. Specific composition: 技師角色車受擊震動，技師角色皺眉但沒有傷口. No text, letters, numerals, punctuation, logos, watermark, UI panel, background scene, gore or realistic violence. One composition only; do not include the message label as text."
+  },
+  {
+    "season": "halloween",
+    "messageKey": "comeback",
+    "authoringFile": "release-input/ui/race-messages/halloween/comeback.png",
+    "prompt": "Single original game HUD sticker, square RGBA with actual transparent background. Centered subject, generous 12% transparent margins; clean silhouette readable at 64 pixels. American vintage Halloween engraving illustration, bold plum ink outlines, pumpkin orange, antique gold and cream, restrained crosshatching. Recurring character: friendly pumpkin-headed miniature racing mechanic with brass goggles and plum overalls, expressive mitten hands. Vehicles are original pumpkin-themed miniature four-wheel racing cars. No rabbits, moons, carrots or Chinese architecture. Semantic message: comeback. Specific composition: 落後技師角色沿大弧形賽道反超前車. No text, letters, numerals, punctuation, logos, watermark, UI panel, background scene, gore or realistic violence. One composition only; do not include the message label as text."
+  },
+  {
+    "season": "halloween",
+    "messageKey": "great-overtake",
+    "authoringFile": "release-input/ui/race-messages/halloween/great-overtake.png",
+    "prompt": "Single original game HUD sticker, square RGBA with actual transparent background. Centered subject, generous 12% transparent margins; clean silhouette readable at 64 pixels. American vintage Halloween engraving illustration, bold plum ink outlines, pumpkin orange, antique gold and cream, restrained crosshatching. Recurring character: friendly pumpkin-headed miniature racing mechanic with brass goggles and plum overalls, expressive mitten hands. Vehicles are original pumpkin-themed miniature four-wheel racing cars. No rabbits, moons, carrots or Chinese architecture. Semantic message: great-overtake. Specific composition: 兩台迷你四驅車交錯，外線車以金色暖色光超越. No text, letters, numerals, punctuation, logos, watermark, UI panel, background scene, gore or realistic violence. One composition only; do not include the message label as text."
+  },
+  {
+    "season": "halloween",
+    "messageKey": "photo-finish",
+    "authoringFile": "release-input/ui/race-messages/halloween/photo-finish.png",
+    "prompt": "Single original game HUD sticker, square RGBA with actual transparent background. Centered subject, generous 12% transparent margins; clean silhouette readable at 64 pixels. American vintage Halloween engraving illustration, bold plum ink outlines, pumpkin orange, antique gold and cream, restrained crosshatching. Recurring character: friendly pumpkin-headed miniature racing mechanic with brass goggles and plum overalls, expressive mitten hands. Vehicles are original pumpkin-themed miniature four-wheel racing cars. No rabbits, moons, carrots or Chinese architecture. Semantic message: photo-finish. Specific composition: 兩台迷你四驅車鼻尖同時穿過黑白幾何終點帶. No text, letters, numerals, punctuation, logos, watermark, UI panel, background scene, gore or realistic violence. One composition only; do not include the message label as text."
+  },
+  {
+    "season": "halloween",
+    "messageKey": "keep-going",
+    "authoringFile": "release-input/ui/race-messages/halloween/keep-going.png",
+    "prompt": "Single original game HUD sticker, square RGBA with actual transparent background. Centered subject, generous 12% transparent margins; clean silhouette readable at 64 pixels. American vintage Halloween engraving illustration, bold plum ink outlines, pumpkin orange, antique gold and cream, restrained crosshatching. Recurring character: friendly pumpkin-headed miniature racing mechanic with brass goggles and plum overalls, expressive mitten hands. Vehicles are original pumpkin-themed miniature four-wheel racing cars. No rabbits, moons, carrots or Chinese architecture. Semantic message: keep-going. Specific composition: 技師角色車持續前進，後方三段暖色光逐段增亮. No text, letters, numerals, punctuation, logos, watermark, UI panel, background scene, gore or realistic violence. One composition only; do not include the message label as text."
+  },
+  {
+    "season": "halloween",
+    "messageKey": "dont-give-up",
+    "authoringFile": "release-input/ui/race-messages/halloween/dont-give-up.png",
+    "prompt": "Single original game HUD sticker, square RGBA with actual transparent background. Centered subject, generous 12% transparent margins; clean silhouette readable at 64 pixels. American vintage Halloween engraving illustration, bold plum ink outlines, pumpkin orange, antique gold and cream, restrained crosshatching. Recurring character: friendly pumpkin-headed miniature racing mechanic with brass goggles and plum overalls, expressive mitten hands. Vehicles are original pumpkin-themed miniature four-wheel racing cars. No rabbits, moons, carrots or Chinese architecture. Semantic message: dont-give-up. Specific composition: 技師角色推車爬上陡峭月坡，握拳鼓勵自己. No text, letters, numerals, punctuation, logos, watermark, UI panel, background scene, gore or realistic violence. One composition only; do not include the message label as text."
+  },
+  {
+    "season": "halloween",
+    "messageKey": "you-can-do-it",
+    "authoringFile": "release-input/ui/race-messages/halloween/you-can-do-it.png",
+    "prompt": "Single original game HUD sticker, square RGBA with actual transparent background. Centered subject, generous 12% transparent margins; clean silhouette readable at 64 pixels. American vintage Halloween engraving illustration, bold plum ink outlines, pumpkin orange, antique gold and cream, restrained crosshatching. Recurring character: friendly pumpkin-headed miniature racing mechanic with brass goggles and plum overalls, expressive mitten hands. Vehicles are original pumpkin-themed miniature four-wheel racing cars. No rabbits, moons, carrots or Chinese architecture. Semantic message: you-can-do-it. Specific composition: 技師角色指向遠方明亮拱門，另一手握拳. No text, letters, numerals, punctuation, logos, watermark, UI panel, background scene, gore or realistic violence. One composition only; do not include the message label as text."
+  },
+  {
+    "season": "halloween",
+    "messageKey": "take-your-time",
+    "authoringFile": "release-input/ui/race-messages/halloween/take-your-time.png",
+    "prompt": "Single original game HUD sticker, square RGBA with actual transparent background. Centered subject, generous 12% transparent margins; clean silhouette readable at 64 pixels. American vintage Halloween engraving illustration, bold plum ink outlines, pumpkin orange, antique gold and cream, restrained crosshatching. Recurring character: friendly pumpkin-headed miniature racing mechanic with brass goggles and plum overalls, expressive mitten hands. Vehicles are original pumpkin-themed miniature four-wheel racing cars. No rabbits, moons, carrots or Chinese architecture. Semantic message: take-your-time. Specific composition: 技師角色車平穩行駛，旁邊緩慢旋轉的新光環. No text, letters, numerals, punctuation, logos, watermark, UI panel, background scene, gore or realistic violence. One composition only; do not include the message label as text."
+  },
+  {
+    "season": "halloween",
+    "messageKey": "almost-there",
+    "authoringFile": "release-input/ui/race-messages/halloween/almost-there.png",
+    "prompt": "Single original game HUD sticker, square RGBA with actual transparent background. Centered subject, generous 12% transparent margins; clean silhouette readable at 64 pixels. American vintage Halloween engraving illustration, bold plum ink outlines, pumpkin orange, antique gold and cream, restrained crosshatching. Recurring character: friendly pumpkin-headed miniature racing mechanic with brass goggles and plum overalls, expressive mitten hands. Vehicles are original pumpkin-themed miniature four-wheel racing cars. No rabbits, moons, carrots or Chinese architecture. Semantic message: almost-there. Specific composition: 迷你四驅車接近發光拱門，只剩很短距離. No text, letters, numerals, punctuation, logos, watermark, UI panel, background scene, gore or realistic violence. One composition only; do not include the message label as text."
+  },
+  {
+    "season": "halloween",
+    "messageKey": "nice-try",
+    "authoringFile": "release-input/ui/race-messages/halloween/nice-try.png",
+    "prompt": "Single original game HUD sticker, square RGBA with actual transparent background. Centered subject, generous 12% transparent margins; clean silhouette readable at 64 pixels. American vintage Halloween engraving illustration, bold plum ink outlines, pumpkin orange, antique gold and cream, restrained crosshatching. Recurring character: friendly pumpkin-headed miniature racing mechanic with brass goggles and plum overalls, expressive mitten hands. Vehicles are original pumpkin-themed miniature four-wheel racing cars. No rabbits, moons, carrots or Chinese architecture. Semantic message: nice-try. Specific composition: 技師角色車稍微偏離但安全落地，技師角色仍豎拇指. No text, letters, numerals, punctuation, logos, watermark, UI panel, background scene, gore or realistic violence. One composition only; do not include the message label as text."
+  },
+  {
+    "season": "halloween",
+    "messageKey": "all-good",
+    "authoringFile": "release-input/ui/race-messages/halloween/all-good.png",
+    "prompt": "Single original game HUD sticker, square RGBA with actual transparent background. Centered subject, generous 12% transparent margins; clean silhouette readable at 64 pixels. American vintage Halloween engraving illustration, bold plum ink outlines, pumpkin orange, antique gold and cream, restrained crosshatching. Recurring character: friendly pumpkin-headed miniature racing mechanic with brass goggles and plum overalls, expressive mitten hands. Vehicles are original pumpkin-themed miniature four-wheel racing cars. No rabbits, moons, carrots or Chinese architecture. Semantic message: all-good. Specific composition: 技師角色與完整迷你四驅車被柔和滿護盾包覆. No text, letters, numerals, punctuation, logos, watermark, UI panel, background scene, gore or realistic violence. One composition only; do not include the message label as text."
+  },
+  {
+    "season": "halloween",
+    "messageKey": "next-time",
+    "authoringFile": "release-input/ui/race-messages/halloween/next-time.png",
+    "prompt": "Single original game HUD sticker, square RGBA with actual transparent background. Centered subject, generous 12% transparent margins; clean silhouette readable at 64 pixels. American vintage Halloween engraving illustration, bold plum ink outlines, pumpkin orange, antique gold and cream, restrained crosshatching. Recurring character: friendly pumpkin-headed miniature racing mechanic with brass goggles and plum overalls, expressive mitten hands. Vehicles are original pumpkin-themed miniature four-wheel racing cars. No rabbits, moons, carrots or Chinese architecture. Semantic message: next-time. Specific composition: 技師角色車沿循環賽道回到新的起跑雲台. No text, letters, numerals, punctuation, logos, watermark, UI panel, background scene, gore or realistic violence. One composition only; do not include the message label as text."
+  },
+  {
+    "season": "halloween",
+    "messageKey": "good-game",
+    "authoringFile": "release-input/ui/race-messages/halloween/good-game.png",
+    "prompt": "Single original game HUD sticker, square RGBA with actual transparent background. Centered subject, generous 12% transparent margins; clean silhouette readable at 64 pixels. American vintage Halloween engraving illustration, bold plum ink outlines, pumpkin orange, antique gold and cream, restrained crosshatching. Recurring character: friendly pumpkin-headed miniature racing mechanic with brass goggles and plum overalls, expressive mitten hands. Vehicles are original pumpkin-themed miniature four-wheel racing cars. No rabbits, moons, carrots or Chinese architecture. Semantic message: good-game. Specific composition: 多台迷你四驅車在終點後並排閃燈致意. No text, letters, numerals, punctuation, logos, watermark, UI panel, background scene, gore or realistic violence. One composition only; do not include the message label as text."
+  },
+  {
+    "season": "halloween",
+    "messageKey": "well-played",
+    "authoringFile": "release-input/ui/race-messages/halloween/well-played.png",
+    "prompt": "Single original game HUD sticker, square RGBA with actual transparent background. Centered subject, generous 12% transparent margins; clean silhouette readable at 64 pixels. American vintage Halloween engraving illustration, bold plum ink outlines, pumpkin orange, antique gold and cream, restrained crosshatching. Recurring character: friendly pumpkin-headed miniature racing mechanic with brass goggles and plum overalls, expressive mitten hands. Vehicles are original pumpkin-themed miniature four-wheel racing cars. No rabbits, moons, carrots or Chinese architecture. Semantic message: well-played. Specific composition: 兩隻戴護目鏡技師角色在終點握手. No text, letters, numerals, punctuation, logos, watermark, UI panel, background scene, gore or realistic violence. One composition only; do not include the message label as text."
+  },
+  {
+    "season": "halloween",
+    "messageKey": "congratulations",
+    "authoringFile": "release-input/ui/race-messages/halloween/congratulations.png",
+    "prompt": "Single original game HUD sticker, square RGBA with actual transparent background. Centered subject, generous 12% transparent margins; clean silhouette readable at 64 pixels. American vintage Halloween engraving illustration, bold plum ink outlines, pumpkin orange, antique gold and cream, restrained crosshatching. Recurring character: friendly pumpkin-headed miniature racing mechanic with brass goggles and plum overalls, expressive mitten hands. Vehicles are original pumpkin-themed miniature four-wheel racing cars. No rabbits, moons, carrots or Chinese architecture. Semantic message: congratulations. Specific composition: 技師角色高舉無字月桂獎盃，紙花與星屑飄落. No text, letters, numerals, punctuation, logos, watermark, UI panel, background scene, gore or realistic violence. One composition only; do not include the message label as text."
+  },
+  {
+    "season": "halloween",
+    "messageKey": "nice-race",
+    "authoringFile": "release-input/ui/race-messages/halloween/nice-race.png",
+    "prompt": "Single original game HUD sticker, square RGBA with actual transparent background. Centered subject, generous 12% transparent margins; clean silhouette readable at 64 pixels. American vintage Halloween engraving illustration, bold plum ink outlines, pumpkin orange, antique gold and cream, restrained crosshatching. Recurring character: friendly pumpkin-headed miniature racing mechanic with brass goggles and plum overalls, expressive mitten hands. Vehicles are original pumpkin-themed miniature four-wheel racing cars. No rabbits, moons, carrots or Chinese architecture. Semantic message: nice-race. Specific composition: 迷你四驅車沿完整優美賽道穿越終點. No text, letters, numerals, punctuation, logos, watermark, UI panel, background scene, gore or realistic violence. One composition only; do not include the message label as text."
+  },
+  {
+    "season": "halloween",
+    "messageKey": "great-finish",
+    "authoringFile": "release-input/ui/race-messages/halloween/great-finish.png",
+    "prompt": "Single original game HUD sticker, square RGBA with actual transparent background. Centered subject, generous 12% transparent margins; clean silhouette readable at 64 pixels. American vintage Halloween engraving illustration, bold plum ink outlines, pumpkin orange, antique gold and cream, restrained crosshatching. Recurring character: friendly pumpkin-headed miniature racing mechanic with brass goggles and plum overalls, expressive mitten hands. Vehicles are original pumpkin-themed miniature four-wheel racing cars. No rabbits, moons, carrots or Chinese architecture. Semantic message: great-finish. Specific composition: 技師角色車乘強烈金色暖色光穿過終點門. No text, letters, numerals, punctuation, logos, watermark, UI panel, background scene, gore or realistic violence. One composition only; do not include the message label as text."
+  },
+  {
+    "season": "halloween",
+    "messageKey": "good-effort",
+    "authoringFile": "release-input/ui/race-messages/halloween/good-effort.png",
+    "prompt": "Single original game HUD sticker, square RGBA with actual transparent background. Centered subject, generous 12% transparent margins; clean silhouette readable at 64 pixels. American vintage Halloween engraving illustration, bold plum ink outlines, pumpkin orange, antique gold and cream, restrained crosshatching. Recurring character: friendly pumpkin-headed miniature racing mechanic with brass goggles and plum overalls, expressive mitten hands. Vehicles are original pumpkin-themed miniature four-wheel racing cars. No rabbits, moons, carrots or Chinese architecture. Semantic message: good-effort. Specific composition: 有磨損但完整的迷你四驅車抵達終點，技師角色握拳. No text, letters, numerals, punctuation, logos, watermark, UI panel, background scene, gore or realistic violence. One composition only; do not include the message label as text."
+  },
+  {
+    "season": "halloween",
+    "messageKey": "rematch",
+    "authoringFile": "release-input/ui/race-messages/halloween/rematch.png",
+    "prompt": "Single original game HUD sticker, square RGBA with actual transparent background. Centered subject, generous 12% transparent margins; clean silhouette readable at 64 pixels. American vintage Halloween engraving illustration, bold plum ink outlines, pumpkin orange, antique gold and cream, restrained crosshatching. Recurring character: friendly pumpkin-headed miniature racing mechanic with brass goggles and plum overalls, expressive mitten hands. Vehicles are original pumpkin-themed miniature four-wheel racing cars. No rabbits, moons, carrots or Chinese architecture. Semantic message: rematch. Specific composition: 兩台迷你四驅車繞循環賽道回到並列起跑雲台. No text, letters, numerals, punctuation, logos, watermark, UI panel, background scene, gore or realistic violence. One composition only; do not include the message label as text."
+  },
+  {
+    "season": "halloween",
+    "messageKey": "goodbye",
+    "authoringFile": "release-input/ui/race-messages/halloween/goodbye.png",
+    "prompt": "Single original game HUD sticker, square RGBA with actual transparent background. Centered subject, generous 12% transparent margins; clean silhouette readable at 64 pixels. American vintage Halloween engraving illustration, bold plum ink outlines, pumpkin orange, antique gold and cream, restrained crosshatching. Recurring character: friendly pumpkin-headed miniature racing mechanic with brass goggles and plum overalls, expressive mitten hands. Vehicles are original pumpkin-themed miniature four-wheel racing cars. No rabbits, moons, carrots or Chinese architecture. Semantic message: goodbye. Specific composition: 技師角色揮手，迷你四驅車沿雲路駛向遠方小燈光. No text, letters, numerals, punctuation, logos, watermark, UI panel, background scene, gore or realistic violence. One composition only; do not include the message label as text."
+  },
+  {
+    "season": "christmas",
+    "messageKey": "yes",
+    "authoringFile": "release-input/ui/race-messages/christmas/yes.png",
+    "prompt": "Single original game HUD sticker, square RGBA with actual transparent background. Centered subject, generous 12% transparent margins; clean silhouette readable at 64 pixels. Hand-drawn colored-pencil Christmas illustration with visible dry pencil grain and layered crosshatching, forest green and cranberry red, warm ivory highlights. Recurring character: friendly little reindeer racing mechanic wearing goggles, green overalls and a red scarf, expressive mitten hands and small antlers. Vehicles are original Christmas miniature four-wheel racing cars. No rabbits, moons, carrots or Chinese architecture; no watercolor, no glossy 3D or smooth vector. Semantic message: yes. Specific composition: 技師角色開心點頭，抱著發亮的勾形小工具葉剪影. No text, letters, numerals, punctuation, logos, watermark, UI panel, background scene, gore or realistic violence. One composition only; do not include the message label as text."
+  },
+  {
+    "season": "christmas",
+    "messageKey": "no",
+    "authoringFile": "release-input/ui/race-messages/christmas/no.png",
+    "prompt": "Single original game HUD sticker, square RGBA with actual transparent background. Centered subject, generous 12% transparent margins; clean silhouette readable at 64 pixels. Hand-drawn colored-pencil Christmas illustration with visible dry pencil grain and layered crosshatching, forest green and cranberry red, warm ivory highlights. Recurring character: friendly little reindeer racing mechanic wearing goggles, green overalls and a red scarf, expressive mitten hands and small antlers. Vehicles are original Christmas miniature four-wheel racing cars. No rabbits, moons, carrots or Chinese architecture; no watercolor, no glossy 3D or smooth vector. Semantic message: no. Specific composition: 技師角色搖頭，雙手交叉成阻擋姿態. No text, letters, numerals, punctuation, logos, watermark, UI panel, background scene, gore or realistic violence. One composition only; do not include the message label as text."
+  },
+  {
+    "season": "christmas",
+    "messageKey": "okay",
+    "authoringFile": "release-input/ui/race-messages/christmas/okay.png",
+    "prompt": "Single original game HUD sticker, square RGBA with actual transparent background. Centered subject, generous 12% transparent margins; clean silhouette readable at 64 pixels. Hand-drawn colored-pencil Christmas illustration with visible dry pencil grain and layered crosshatching, forest green and cranberry red, warm ivory highlights. Recurring character: friendly little reindeer racing mechanic wearing goggles, green overalls and a red scarf, expressive mitten hands and small antlers. Vehicles are original Christmas miniature four-wheel racing cars. No rabbits, moons, carrots or Chinese architecture; no watercolor, no glossy 3D or smooth vector. Semantic message: okay. Specific composition: 技師角色豎起拇指，背後一輪完整小圓形光環. No text, letters, numerals, punctuation, logos, watermark, UI panel, background scene, gore or realistic violence. One composition only; do not include the message label as text."
+  },
+  {
+    "season": "christmas",
+    "messageKey": "understood",
+    "authoringFile": "release-input/ui/race-messages/christmas/understood.png",
+    "prompt": "Single original game HUD sticker, square RGBA with actual transparent background. Centered subject, generous 12% transparent margins; clean silhouette readable at 64 pixels. Hand-drawn colored-pencil Christmas illustration with visible dry pencil grain and layered crosshatching, forest green and cranberry red, warm ivory highlights. Recurring character: friendly little reindeer racing mechanic wearing goggles, green overalls and a red scarf, expressive mitten hands and small antlers. Vehicles are original Christmas miniature four-wheel racing cars. No rabbits, moons, carrots or Chinese architecture; no watercolor, no glossy 3D or smooth vector. Semantic message: understood. Specific composition: 技師角色頭頂亮起燈，手臂接成完整光路. No text, letters, numerals, punctuation, logos, watermark, UI panel, background scene, gore or realistic violence. One composition only; do not include the message label as text."
+  },
+  {
+    "season": "christmas",
+    "messageKey": "not-sure",
+    "authoringFile": "release-input/ui/race-messages/christmas/not-sure.png",
+    "prompt": "Single original game HUD sticker, square RGBA with actual transparent background. Centered subject, generous 12% transparent margins; clean silhouette readable at 64 pixels. Hand-drawn colored-pencil Christmas illustration with visible dry pencil grain and layered crosshatching, forest green and cranberry red, warm ivory highlights. Recurring character: friendly little reindeer racing mechanic wearing goggles, green overalls and a red scarf, expressive mitten hands and small antlers. Vehicles are original Christmas miniature four-wheel racing cars. No rabbits, moons, carrots or Chinese architecture; no watercolor, no glossy 3D or smooth vector. Semantic message: not-sure. Specific composition: 技師角色左右歪頭，兩耳分別指向相反方向. No text, letters, numerals, punctuation, logos, watermark, UI panel, background scene, gore or realistic violence. One composition only; do not include the message label as text."
+  },
+  {
+    "season": "christmas",
+    "messageKey": "maybe",
+    "authoringFile": "release-input/ui/race-messages/christmas/maybe.png",
+    "prompt": "Single original game HUD sticker, square RGBA with actual transparent background. Centered subject, generous 12% transparent margins; clean silhouette readable at 64 pixels. Hand-drawn colored-pencil Christmas illustration with visible dry pencil grain and layered crosshatching, forest green and cranberry red, warm ivory highlights. Recurring character: friendly little reindeer racing mechanic wearing goggles, green overalls and a red scarf, expressive mitten hands and small antlers. Vehicles are original Christmas miniature four-wheel racing cars. No rabbits, moons, carrots or Chinese architecture; no watercolor, no glossy 3D or smooth vector. Semantic message: maybe. Specific composition: the mechanic tilts their head uncertainly, one mitten hand held up and the other held down, considering two small unlabelled wrapped parcels, one light and one dark. Only the mechanic and two parcels, no road, scenery, moon, sky or celestial symbol. No text, letters, numerals, punctuation, logos, watermark, UI panel, background scene, gore or realistic violence. One composition only; do not include the message label as text."
+  },
+  {
+    "season": "christmas",
+    "messageKey": "please",
+    "authoringFile": "release-input/ui/race-messages/christmas/please.png",
+    "prompt": "Single original game HUD sticker, square RGBA with actual transparent background. Centered subject, generous 12% transparent margins; clean silhouette readable at 64 pixels. Hand-drawn colored-pencil Christmas illustration with visible dry pencil grain and layered crosshatching, forest green and cranberry red, warm ivory highlights. Recurring character: friendly little reindeer racing mechanic wearing goggles, green overalls and a red scarf, expressive mitten hands and small antlers. Vehicles are original Christmas miniature four-wheel racing cars. No rabbits, moons, carrots or Chinese architecture; no watercolor, no glossy 3D or smooth vector. Semantic message: please. Specific composition: 技師角色雙掌合十，柔和暖色光落下. No text, letters, numerals, punctuation, logos, watermark, UI panel, background scene, gore or realistic violence. One composition only; do not include the message label as text."
+  },
+  {
+    "season": "christmas",
+    "messageKey": "one-more-time",
+    "authoringFile": "release-input/ui/race-messages/christmas/one-more-time.png",
+    "prompt": "Single original game HUD sticker, square RGBA with actual transparent background. Centered subject, generous 12% transparent margins; clean silhouette readable at 64 pixels. Hand-drawn colored-pencil Christmas illustration with visible dry pencil grain and layered crosshatching, forest green and cranberry red, warm ivory highlights. Recurring character: friendly little reindeer racing mechanic wearing goggles, green overalls and a red scarf, expressive mitten hands and small antlers. Vehicles are original Christmas miniature four-wheel racing cars. No rabbits, moons, carrots or Chinese architecture; no watercolor, no glossy 3D or smooth vector. Semantic message: one-more-time. Specific composition: 技師角色賽車沿環形賽道再繞一圈. No text, letters, numerals, punctuation, logos, watermark, UI panel, background scene, gore or realistic violence. One composition only; do not include the message label as text."
+  },
+  {
+    "season": "christmas",
+    "messageKey": "hello",
+    "authoringFile": "release-input/ui/race-messages/christmas/hello.png",
+    "prompt": "Single original game HUD sticker, square RGBA with actual transparent background. Centered subject, generous 12% transparent margins; clean silhouette readable at 64 pixels. Hand-drawn colored-pencil Christmas illustration with visible dry pencil grain and layered crosshatching, forest green and cranberry red, warm ivory highlights. Recurring character: friendly little reindeer racing mechanic wearing goggles, green overalls and a red scarf, expressive mitten hands and small antlers. Vehicles are original Christmas miniature four-wheel racing cars. No rabbits, moons, carrots or Chinese architecture; no watercolor, no glossy 3D or smooth vector. Semantic message: hello. Specific composition: 技師角色大力揮手，手臂隨動作飄起. No text, letters, numerals, punctuation, logos, watermark, UI panel, background scene, gore or realistic violence. One composition only; do not include the message label as text."
+  },
+  {
+    "season": "christmas",
+    "messageKey": "welcome",
+    "authoringFile": "release-input/ui/race-messages/christmas/welcome.png",
+    "prompt": "Single original game HUD sticker, square RGBA with actual transparent background. Centered subject, generous 12% transparent margins; clean silhouette readable at 64 pixels. Hand-drawn colored-pencil Christmas illustration with visible dry pencil grain and layered crosshatching, forest green and cranberry red, warm ivory highlights. Recurring character: friendly little reindeer racing mechanic wearing goggles, green overalls and a red scarf, expressive mitten hands and small antlers. Vehicles are original Christmas miniature four-wheel racing cars. No rabbits, moons, carrots or Chinese architecture; no watercolor, no glossy 3D or smooth vector. Semantic message: welcome. Specific composition: 工坊形閘門打開，技師角色側身迎接. No text, letters, numerals, punctuation, logos, watermark, UI panel, background scene, gore or realistic violence. One composition only; do not include the message label as text."
+  },
+  {
+    "season": "christmas",
+    "messageKey": "nice-to-meet-you",
+    "authoringFile": "release-input/ui/race-messages/christmas/nice-to-meet-you.png",
+    "prompt": "Single original game HUD sticker, square RGBA with actual transparent background. Centered subject, generous 12% transparent margins; clean silhouette readable at 64 pixels. Hand-drawn colored-pencil Christmas illustration with visible dry pencil grain and layered crosshatching, forest green and cranberry red, warm ivory highlights. Recurring character: friendly little reindeer racing mechanic wearing goggles, green overalls and a red scarf, expressive mitten hands and small antlers. Vehicles are original Christmas miniature four-wheel racing cars. No rabbits, moons, carrots or Chinese architecture; no watercolor, no glossy 3D or smooth vector. Semantic message: nice-to-meet-you. Specific composition: 兩隻不同配色技師角色友善握手. No text, letters, numerals, punctuation, logos, watermark, UI panel, background scene, gore or realistic violence. One composition only; do not include the message label as text."
+  },
+  {
+    "season": "christmas",
+    "messageKey": "good-luck",
+    "authoringFile": "release-input/ui/race-messages/christmas/good-luck.png",
+    "prompt": "Single original game HUD sticker, square RGBA with actual transparent background. Centered subject, generous 12% transparent margins; clean silhouette readable at 64 pixels. Hand-drawn colored-pencil Christmas illustration with visible dry pencil grain and layered crosshatching, forest green and cranberry red, warm ivory highlights. Recurring character: friendly little reindeer racing mechanic wearing goggles, green overalls and a red scarf, expressive mitten hands and small antlers. Vehicles are original Christmas miniature four-wheel racing cars. No rabbits, moons, carrots or Chinese architecture; no watercolor, no glossy 3D or smooth vector. Semantic message: good-luck. Specific composition: 技師角色抱著四葉草與小石塊御守，不含文字. No text, letters, numerals, punctuation, logos, watermark, UI panel, background scene, gore or realistic violence. One composition only; do not include the message label as text."
+  },
+  {
+    "season": "christmas",
+    "messageKey": "have-fun",
+    "authoringFile": "release-input/ui/race-messages/christmas/have-fun.png",
+    "prompt": "Single original game HUD sticker, square RGBA with actual transparent background. Centered subject, generous 12% transparent margins; clean silhouette readable at 64 pixels. Hand-drawn colored-pencil Christmas illustration with visible dry pencil grain and layered crosshatching, forest green and cranberry red, warm ivory highlights. Recurring character: friendly little reindeer racing mechanic wearing goggles, green overalls and a red scarf, expressive mitten hands and small antlers. Vehicles are original Christmas miniature four-wheel racing cars. No rabbits, moons, carrots or Chinese architecture; no watercolor, no glossy 3D or smooth vector. Semantic message: have-fun. Specific composition: 技師角色戴護目鏡開懷跳起，周圍紙花與星屑. No text, letters, numerals, punctuation, logos, watermark, UI panel, background scene, gore or realistic violence. One composition only; do not include the message label as text."
+  },
+  {
+    "season": "christmas",
+    "messageKey": "lets-go",
+    "authoringFile": "release-input/ui/race-messages/christmas/lets-go.png",
+    "prompt": "Single original game HUD sticker, square RGBA with actual transparent background. Centered subject, generous 12% transparent margins; clean silhouette readable at 64 pixels. Hand-drawn colored-pencil Christmas illustration with visible dry pencil grain and layered crosshatching, forest green and cranberry red, warm ivory highlights. Recurring character: friendly little reindeer racing mechanic wearing goggles, green overalls and a red scarf, expressive mitten hands and small antlers. Vehicles are original Christmas miniature four-wheel racing cars. No rabbits, moons, carrots or Chinese architecture; no watercolor, no glossy 3D or smooth vector. Semantic message: lets-go. Specific composition: 技師角色賽車從拱門起跑，強烈向前暖色光軌跡. No text, letters, numerals, punctuation, logos, watermark, UI panel, background scene, gore or realistic violence. One composition only; do not include the message label as text."
+  },
+  {
+    "season": "christmas",
+    "messageKey": "wait-a-moment",
+    "authoringFile": "release-input/ui/race-messages/christmas/wait-a-moment.png",
+    "prompt": "Single original game HUD sticker, square RGBA with actual transparent background. Centered subject, generous 12% transparent margins; clean silhouette readable at 64 pixels. Hand-drawn colored-pencil Christmas illustration with visible dry pencil grain and layered crosshatching, forest green and cranberry red, warm ivory highlights. Recurring character: friendly little reindeer racing mechanic wearing goggles, green overalls and a red scarf, expressive mitten hands and small antlers. Vehicles are original Christmas miniature four-wheel racing cars. No rabbits, moons, carrots or Chinese architecture; no watercolor, no glossy 3D or smooth vector. Semantic message: wait-a-moment. Specific composition: 技師角色伸掌示意等待，旁邊小月沙漏. No text, letters, numerals, punctuation, logos, watermark, UI panel, background scene, gore or realistic violence. One composition only; do not include the message label as text."
+  },
+  {
+    "season": "christmas",
+    "messageKey": "here-we-go",
+    "authoringFile": "release-input/ui/race-messages/christmas/here-we-go.png",
+    "prompt": "Single original game HUD sticker, square RGBA with actual transparent background. Centered subject, generous 12% transparent margins; clean silhouette readable at 64 pixels. Hand-drawn colored-pencil Christmas illustration with visible dry pencil grain and layered crosshatching, forest green and cranberry red, warm ivory highlights. Recurring character: friendly little reindeer racing mechanic wearing goggles, green overalls and a red scarf, expressive mitten hands and small antlers. Vehicles are original Christmas miniature four-wheel racing cars. No rabbits, moons, carrots or Chinese architecture; no watercolor, no glossy 3D or smooth vector. Semantic message: here-we-go. Specific composition: 技師角色抓緊方向盤衝出雲霧起跑門. No text, letters, numerals, punctuation, logos, watermark, UI panel, background scene, gore or realistic violence. One composition only; do not include the message label as text."
+  },
+  {
+    "season": "christmas",
+    "messageKey": "on-your-left",
+    "authoringFile": "release-input/ui/race-messages/christmas/on-your-left.png",
+    "prompt": "Single original game HUD sticker, square RGBA with actual transparent background. Centered subject, generous 12% transparent margins; clean silhouette readable at 64 pixels. Hand-drawn colored-pencil Christmas illustration with visible dry pencil grain and layered crosshatching, forest green and cranberry red, warm ivory highlights. Recurring character: friendly little reindeer racing mechanic wearing goggles, green overalls and a red scarf, expressive mitten hands and small antlers. Vehicles are original Christmas miniature four-wheel racing cars. No rabbits, moons, carrots or Chinese architecture; no watercolor, no glossy 3D or smooth vector. Semantic message: on-your-left. Specific composition: 俯視兩台迷你四驅車，左車以櫻粉暖色光高亮. No text, letters, numerals, punctuation, logos, watermark, UI panel, background scene, gore or realistic violence. One composition only; do not include the message label as text."
+  },
+  {
+    "season": "christmas",
+    "messageKey": "on-your-right",
+    "authoringFile": "release-input/ui/race-messages/christmas/on-your-right.png",
+    "prompt": "Single original game HUD sticker, square RGBA with actual transparent background. Centered subject, generous 12% transparent margins; clean silhouette readable at 64 pixels. Hand-drawn colored-pencil Christmas illustration with visible dry pencil grain and layered crosshatching, forest green and cranberry red, warm ivory highlights. Recurring character: friendly little reindeer racing mechanic wearing goggles, green overalls and a red scarf, expressive mitten hands and small antlers. Vehicles are original Christmas miniature four-wheel racing cars. No rabbits, moons, carrots or Chinese architecture; no watercolor, no glossy 3D or smooth vector. Semantic message: on-your-right. Specific composition: 俯視兩台迷你四驅車，右車以金色暖色光高亮. No text, letters, numerals, punctuation, logos, watermark, UI panel, background scene, gore or realistic violence. One composition only; do not include the message label as text."
+  },
+  {
+    "season": "christmas",
+    "messageKey": "coming-through",
+    "authoringFile": "release-input/ui/race-messages/christmas/coming-through.png",
+    "prompt": "Single original game HUD sticker, square RGBA with actual transparent background. Centered subject, generous 12% transparent margins; clean silhouette readable at 64 pixels. Hand-drawn colored-pencil Christmas illustration with visible dry pencil grain and layered crosshatching, forest green and cranberry red, warm ivory highlights. Recurring character: friendly little reindeer racing mechanic wearing goggles, green overalls and a red scarf, expressive mitten hands and small antlers. Vehicles are original Christmas miniature four-wheel racing cars. No rabbits, moons, carrots or Chinese architecture; no watercolor, no glossy 3D or smooth vector. Semantic message: coming-through. Specific composition: 技師角色車從兩車中央靈巧穿過. No text, letters, numerals, punctuation, logos, watermark, UI panel, background scene, gore or realistic violence. One composition only; do not include the message label as text."
+  },
+  {
+    "season": "christmas",
+    "messageKey": "go-ahead",
+    "authoringFile": "release-input/ui/race-messages/christmas/go-ahead.png",
+    "prompt": "Single original game HUD sticker, square RGBA with actual transparent background. Centered subject, generous 12% transparent margins; clean silhouette readable at 64 pixels. Hand-drawn colored-pencil Christmas illustration with visible dry pencil grain and layered crosshatching, forest green and cranberry red, warm ivory highlights. Recurring character: friendly little reindeer racing mechanic wearing goggles, green overalls and a red scarf, expressive mitten hands and small antlers. Vehicles are original Christmas miniature four-wheel racing cars. No rabbits, moons, carrots or Chinese architecture; no watercolor, no glossy 3D or smooth vector. Semantic message: go-ahead. Specific composition: 技師角色伸手禮讓，前方暖色光道路敞開. No text, letters, numerals, punctuation, logos, watermark, UI panel, background scene, gore or realistic violence. One composition only; do not include the message label as text."
+  },
+  {
+    "season": "christmas",
+    "messageKey": "after-you",
+    "authoringFile": "release-input/ui/race-messages/christmas/after-you.png",
+    "prompt": "Single original game HUD sticker, square RGBA with actual transparent background. Centered subject, generous 12% transparent margins; clean silhouette readable at 64 pixels. Hand-drawn colored-pencil Christmas illustration with visible dry pencil grain and layered crosshatching, forest green and cranberry red, warm ivory highlights. Recurring character: friendly little reindeer racing mechanic wearing goggles, green overalls and a red scarf, expressive mitten hands and small antlers. Vehicles are original Christmas miniature four-wheel racing cars. No rabbits, moons, carrots or Chinese architecture; no watercolor, no glossy 3D or smooth vector. Semantic message: after-you. Specific composition: 前方迷你四驅車先走，後方技師角色保持禮貌距離. No text, letters, numerals, punctuation, logos, watermark, UI panel, background scene, gore or realistic violence. One composition only; do not include the message label as text."
+  },
+  {
+    "season": "christmas",
+    "messageKey": "slowing-down",
+    "authoringFile": "release-input/ui/race-messages/christmas/slowing-down.png",
+    "prompt": "Single original game HUD sticker, square RGBA with actual transparent background. Centered subject, generous 12% transparent margins; clean silhouette readable at 64 pixels. Hand-drawn colored-pencil Christmas illustration with visible dry pencil grain and layered crosshatching, forest green and cranberry red, warm ivory highlights. Recurring character: friendly little reindeer racing mechanic wearing goggles, green overalls and a red scarf, expressive mitten hands and small antlers. Vehicles are original Christmas miniature four-wheel racing cars. No rabbits, moons, carrots or Chinese architecture; no watercolor, no glossy 3D or smooth vector. Semantic message: slowing-down. Specific composition: 技師角色車尾燈亮起，星屑軌跡逐漸縮短. No text, letters, numerals, punctuation, logos, watermark, UI panel, background scene, gore or realistic violence. One composition only; do not include the message label as text."
+  },
+  {
+    "season": "christmas",
+    "messageKey": "stopping",
+    "authoringFile": "release-input/ui/race-messages/christmas/stopping.png",
+    "prompt": "Single original game HUD sticker, square RGBA with actual transparent background. Centered subject, generous 12% transparent margins; clean silhouette readable at 64 pixels. Hand-drawn colored-pencil Christmas illustration with visible dry pencil grain and layered crosshatching, forest green and cranberry red, warm ivory highlights. Recurring character: friendly little reindeer racing mechanic wearing goggles, green overalls and a red scarf, expressive mitten hands and small antlers. Vehicles are original Christmas miniature four-wheel racing cars. No rabbits, moons, carrots or Chinese architecture; no watercolor, no glossy 3D or smooth vector. Semantic message: stopping. Specific composition: 技師角色拉下柔軟煞車繩，車輪在雲上停住. No text, letters, numerals, punctuation, logos, watermark, UI panel, background scene, gore or realistic violence. One composition only; do not include the message label as text."
+  },
+  {
+    "season": "christmas",
+    "messageKey": "make-way",
+    "authoringFile": "release-input/ui/race-messages/christmas/make-way.png",
+    "prompt": "Single original game HUD sticker, square RGBA with actual transparent background. Centered subject, generous 12% transparent margins; clean silhouette readable at 64 pixels. Hand-drawn colored-pencil Christmas illustration with visible dry pencil grain and layered crosshatching, forest green and cranberry red, warm ivory highlights. Recurring character: friendly little reindeer racing mechanic wearing goggles, green overalls and a red scarf, expressive mitten hands and small antlers. Vehicles are original Christmas miniature four-wheel racing cars. No rabbits, moons, carrots or Chinese architecture; no watercolor, no glossy 3D or smooth vector. Semantic message: make-way. Specific composition: 兩隻技師角色各向左右跳開，中央道路清楚. No text, letters, numerals, punctuation, logos, watermark, UI panel, background scene, gore or realistic violence. One composition only; do not include the message label as text."
+  },
+  {
+    "season": "christmas",
+    "messageKey": "watch-out",
+    "authoringFile": "release-input/ui/race-messages/christmas/watch-out.png",
+    "prompt": "Single original game HUD sticker, square RGBA with actual transparent background. Centered subject, generous 12% transparent margins; clean silhouette readable at 64 pixels. Hand-drawn colored-pencil Christmas illustration with visible dry pencil grain and layered crosshatching, forest green and cranberry red, warm ivory highlights. Recurring character: friendly little reindeer racing mechanic wearing goggles, green overalls and a red scarf, expressive mitten hands and small antlers. Vehicles are original Christmas miniature four-wheel racing cars. No rabbits, moons, carrots or Chinese architecture; no watercolor, no glossy 3D or smooth vector. Semantic message: watch-out. Specific composition: 技師角色豎起雙手警戒，身後暖色光尖芒爆開. No text, letters, numerals, punctuation, logos, watermark, UI panel, background scene, gore or realistic violence. One composition only; do not include the message label as text."
+  },
+  {
+    "season": "christmas",
+    "messageKey": "danger",
+    "authoringFile": "release-input/ui/race-messages/christmas/danger.png",
+    "prompt": "Single original game HUD sticker, square RGBA with actual transparent background. Centered subject, generous 12% transparent margins; clean silhouette readable at 64 pixels. Hand-drawn colored-pencil Christmas illustration with visible dry pencil grain and layered crosshatching, forest green and cranberry red, warm ivory highlights. Recurring character: friendly little reindeer racing mechanic wearing goggles, green overalls and a red scarf, expressive mitten hands and small antlers. Vehicles are original Christmas miniature four-wheel racing cars. No rabbits, moons, carrots or Chinese architecture; no watercolor, no glossy 3D or smooth vector. Semantic message: danger. Specific composition: 破裂石塊警示牌與紅紫脈衝，不含字形符號. No text, letters, numerals, punctuation, logos, watermark, UI panel, background scene, gore or realistic violence. One composition only; do not include the message label as text."
+  },
+  {
+    "season": "christmas",
+    "messageKey": "obstacle-ahead",
+    "authoringFile": "release-input/ui/race-messages/christmas/obstacle-ahead.png",
+    "prompt": "Single original game HUD sticker, square RGBA with actual transparent background. Centered subject, generous 12% transparent margins; clean silhouette readable at 64 pixels. Hand-drawn colored-pencil Christmas illustration with visible dry pencil grain and layered crosshatching, forest green and cranberry red, warm ivory highlights. Recurring character: friendly little reindeer racing mechanic wearing goggles, green overalls and a red scarf, expressive mitten hands and small antlers. Vehicles are original Christmas miniature four-wheel racing cars. No rabbits, moons, carrots or Chinese architecture; no watercolor, no glossy 3D or smooth vector. Semantic message: obstacle-ahead. Specific composition: 賽道中央巨大隕石，技師角色車及時煞停. No text, letters, numerals, punctuation, logos, watermark, UI panel, background scene, gore or realistic violence. One composition only; do not include the message label as text."
+  },
+  {
+    "season": "christmas",
+    "messageKey": "crash-ahead",
+    "authoringFile": "release-input/ui/race-messages/christmas/crash-ahead.png",
+    "prompt": "Single original game HUD sticker, square RGBA with actual transparent background. Centered subject, generous 12% transparent margins; clean silhouette readable at 64 pixels. Hand-drawn colored-pencil Christmas illustration with visible dry pencil grain and layered crosshatching, forest green and cranberry red, warm ivory highlights. Recurring character: friendly little reindeer racing mechanic wearing goggles, green overalls and a red scarf, expressive mitten hands and small antlers. Vehicles are original Christmas miniature four-wheel racing cars. No rabbits, moons, carrots or Chinese architecture; no watercolor, no glossy 3D or smooth vector. Semantic message: crash-ahead. Specific composition: 前方兩台迷你四驅車碰出卡通星星，無受傷畫面. No text, letters, numerals, punctuation, logos, watermark, UI panel, background scene, gore or realistic violence. One composition only; do not include the message label as text."
+  },
+  {
+    "season": "christmas",
+    "messageKey": "debris-ahead",
+    "authoringFile": "release-input/ui/race-messages/christmas/debris-ahead.png",
+    "prompt": "Single original game HUD sticker, square RGBA with actual transparent background. Centered subject, generous 12% transparent margins; clean silhouette readable at 64 pixels. Hand-drawn colored-pencil Christmas illustration with visible dry pencil grain and layered crosshatching, forest green and cranberry red, warm ivory highlights. Recurring character: friendly little reindeer racing mechanic wearing goggles, green overalls and a red scarf, expressive mitten hands and small antlers. Vehicles are original Christmas miniature four-wheel racing cars. No rabbits, moons, carrots or Chinese architecture; no watercolor, no glossy 3D or smooth vector. Semantic message: debris-ahead. Specific composition: 賽道散落小石塊與小工具車殼，繞行軌跡. No text, letters, numerals, punctuation, logos, watermark, UI panel, background scene, gore or realistic violence. One composition only; do not include the message label as text."
+  },
+  {
+    "season": "christmas",
+    "messageKey": "slippery-road",
+    "authoringFile": "release-input/ui/race-messages/christmas/slippery-road.png",
+    "prompt": "Single original game HUD sticker, square RGBA with actual transparent background. Centered subject, generous 12% transparent margins; clean silhouette readable at 64 pixels. Hand-drawn colored-pencil Christmas illustration with visible dry pencil grain and layered crosshatching, forest green and cranberry red, warm ivory highlights. Recurring character: friendly little reindeer racing mechanic wearing goggles, green overalls and a red scarf, expressive mitten hands and small antlers. Vehicles are original Christmas miniature four-wheel racing cars. No rabbits, moons, carrots or Chinese architecture; no watercolor, no glossy 3D or smooth vector. Semantic message: slippery-road. Specific composition: 迷你四驅車在結霜賽道左右滑動，留下彎曲星痕. No text, letters, numerals, punctuation, logos, watermark, UI panel, background scene, gore or realistic violence. One composition only; do not include the message label as text."
+  },
+  {
+    "season": "christmas",
+    "messageKey": "rough-road",
+    "authoringFile": "release-input/ui/race-messages/christmas/rough-road.png",
+    "prompt": "Single original game HUD sticker, square RGBA with actual transparent background. Centered subject, generous 12% transparent margins; clean silhouette readable at 64 pixels. Hand-drawn colored-pencil Christmas illustration with visible dry pencil grain and layered crosshatching, forest green and cranberry red, warm ivory highlights. Recurring character: friendly little reindeer racing mechanic wearing goggles, green overalls and a red scarf, expressive mitten hands and small antlers. Vehicles are original Christmas miniature four-wheel racing cars. No rabbits, moons, carrots or Chinese architecture; no watercolor, no glossy 3D or smooth vector. Semantic message: rough-road. Specific composition: 凹坑路面讓技師角色與車輪上下彈跳. No text, letters, numerals, punctuation, logos, watermark, UI panel, background scene, gore or realistic violence. One composition only; do not include the message label as text."
+  },
+  {
+    "season": "christmas",
+    "messageKey": "narrow-path",
+    "authoringFile": "release-input/ui/race-messages/christmas/narrow-path.png",
+    "prompt": "Single original game HUD sticker, square RGBA with actual transparent background. Centered subject, generous 12% transparent margins; clean silhouette readable at 64 pixels. Hand-drawn colored-pencil Christmas illustration with visible dry pencil grain and layered crosshatching, forest green and cranberry red, warm ivory highlights. Recurring character: friendly little reindeer racing mechanic wearing goggles, green overalls and a red scarf, expressive mitten hands and small antlers. Vehicles are original Christmas miniature four-wheel racing cars. No rabbits, moons, carrots or Chinese architecture; no watercolor, no glossy 3D or smooth vector. Semantic message: narrow-path. Specific composition: 兩側岩石收窄，只容一台迷你四驅車通行. No text, letters, numerals, punctuation, logos, watermark, UI panel, background scene, gore or realistic violence. One composition only; do not include the message label as text."
+  },
+  {
+    "season": "christmas",
+    "messageKey": "jump-ahead",
+    "authoringFile": "release-input/ui/race-messages/christmas/jump-ahead.png",
+    "prompt": "Single original game HUD sticker, square RGBA with actual transparent background. Centered subject, generous 12% transparent margins; clean silhouette readable at 64 pixels. Hand-drawn colored-pencil Christmas illustration with visible dry pencil grain and layered crosshatching, forest green and cranberry red, warm ivory highlights. Recurring character: friendly little reindeer racing mechanic wearing goggles, green overalls and a red scarf, expressive mitten hands and small antlers. Vehicles are original Christmas miniature four-wheel racing cars. No rabbits, moons, carrots or Chinese architecture; no watercolor, no glossy 3D or smooth vector. Semantic message: jump-ahead. Specific composition: 技師角色車躍過弧形光環斜坡，形成柔和拋物線. No text, letters, numerals, punctuation, logos, watermark, UI panel, background scene, gore or realistic violence. One composition only; do not include the message label as text."
+  },
+  {
+    "season": "christmas",
+    "messageKey": "trap-ahead",
+    "authoringFile": "release-input/ui/race-messages/christmas/trap-ahead.png",
+    "prompt": "Single original game HUD sticker, square RGBA with actual transparent background. Centered subject, generous 12% transparent margins; clean silhouette readable at 64 pixels. Hand-drawn colored-pencil Christmas illustration with visible dry pencil grain and layered crosshatching, forest green and cranberry red, warm ivory highlights. Recurring character: friendly little reindeer racing mechanic wearing goggles, green overalls and a red scarf, expressive mitten hands and small antlers. Vehicles are original Christmas miniature four-wheel racing cars. No rabbits, moons, carrots or Chinese architecture; no watercolor, no glossy 3D or smooth vector. Semantic message: trap-ahead. Specific composition: 賽道藏著張開的紙雕捕捉網，技師角色繞開. No text, letters, numerals, punctuation, logos, watermark, UI panel, background scene, gore or realistic violence. One composition only; do not include the message label as text."
+  },
+  {
+    "season": "christmas",
+    "messageKey": "incoming-attack",
+    "authoringFile": "release-input/ui/race-messages/christmas/incoming-attack.png",
+    "prompt": "Single original game HUD sticker, square RGBA with actual transparent background. Centered subject, generous 12% transparent margins; clean silhouette readable at 64 pixels. Hand-drawn colored-pencil Christmas illustration with visible dry pencil grain and layered crosshatching, forest green and cranberry red, warm ivory highlights. Recurring character: friendly little reindeer racing mechanic wearing goggles, green overalls and a red scarf, expressive mitten hands and small antlers. Vehicles are original Christmas miniature four-wheel racing cars. No rabbits, moons, carrots or Chinese architecture; no watercolor, no glossy 3D or smooth vector. Semantic message: incoming-attack. Specific composition: 後方流星能量沿軌跡逼近迷你四驅車，尚未命中. No text, letters, numerals, punctuation, logos, watermark, UI panel, background scene, gore or realistic violence. One composition only; do not include the message label as text."
+  },
+  {
+    "season": "christmas",
+    "messageKey": "behind-you",
+    "authoringFile": "release-input/ui/race-messages/christmas/behind-you.png",
+    "prompt": "Single original game HUD sticker, square RGBA with actual transparent background. Centered subject, generous 12% transparent margins; clean silhouette readable at 64 pixels. Hand-drawn colored-pencil Christmas illustration with visible dry pencil grain and layered crosshatching, forest green and cranberry red, warm ivory highlights. Recurring character: friendly little reindeer racing mechanic wearing goggles, green overalls and a red scarf, expressive mitten hands and small antlers. Vehicles are original Christmas miniature four-wheel racing cars. No rabbits, moons, carrots or Chinese architecture; no watercolor, no glossy 3D or smooth vector. Semantic message: behind-you. Specific composition: 技師角色回頭，身後追車被光環高亮. No text, letters, numerals, punctuation, logos, watermark, UI panel, background scene, gore or realistic violence. One composition only; do not include the message label as text."
+  },
+  {
+    "season": "christmas",
+    "messageKey": "wrong-way",
+    "authoringFile": "release-input/ui/race-messages/christmas/wrong-way.png",
+    "prompt": "Single original game HUD sticker, square RGBA with actual transparent background. Centered subject, generous 12% transparent margins; clean silhouette readable at 64 pixels. Hand-drawn colored-pencil Christmas illustration with visible dry pencil grain and layered crosshatching, forest green and cranberry red, warm ivory highlights. Recurring character: friendly little reindeer racing mechanic wearing goggles, green overalls and a red scarf, expressive mitten hands and small antlers. Vehicles are original Christmas miniature four-wheel racing cars. No rabbits, moons, carrots or Chinese architecture; no watercolor, no glossy 3D or smooth vector. Semantic message: wrong-way. Specific composition: 技師角色車與塵主流方向相反，雙手驚訝豎起. No text, letters, numerals, punctuation, logos, watermark, UI panel, background scene, gore or realistic violence. One composition only; do not include the message label as text."
+  },
+  {
+    "season": "christmas",
+    "messageKey": "blocked-path",
+    "authoringFile": "release-input/ui/race-messages/christmas/blocked-path.png",
+    "prompt": "Single original game HUD sticker, square RGBA with actual transparent background. Centered subject, generous 12% transparent margins; clean silhouette readable at 64 pixels. Hand-drawn colored-pencil Christmas illustration with visible dry pencil grain and layered crosshatching, forest green and cranberry red, warm ivory highlights. Recurring character: friendly little reindeer racing mechanic wearing goggles, green overalls and a red scarf, expressive mitten hands and small antlers. Vehicles are original Christmas miniature four-wheel racing cars. No rabbits, moons, carrots or Chinese architecture; no watercolor, no glossy 3D or smooth vector. Semantic message: blocked-path. Specific composition: 倒下的工坊門完全擋路，技師角色尋找兩側小徑. No text, letters, numerals, punctuation, logos, watermark, UI panel, background scene, gore or realistic violence. One composition only; do not include the message label as text."
+  },
+  {
+    "season": "christmas",
+    "messageKey": "wait-for-me",
+    "authoringFile": "release-input/ui/race-messages/christmas/wait-for-me.png",
+    "prompt": "Single original game HUD sticker, square RGBA with actual transparent background. Centered subject, generous 12% transparent margins; clean silhouette readable at 64 pixels. Hand-drawn colored-pencil Christmas illustration with visible dry pencil grain and layered crosshatching, forest green and cranberry red, warm ivory highlights. Recurring character: friendly little reindeer racing mechanic wearing goggles, green overalls and a red scarf, expressive mitten hands and small antlers. Vehicles are original Christmas miniature four-wheel racing cars. No rabbits, moons, carrots or Chinese architecture; no watercolor, no glossy 3D or smooth vector. Semantic message: wait-for-me. Specific composition: 後方技師角色揮手追趕，前車回頭減速. No text, letters, numerals, punctuation, logos, watermark, UI panel, background scene, gore or realistic violence. One composition only; do not include the message label as text."
+  },
+  {
+    "season": "christmas",
+    "messageKey": "catching-up",
+    "authoringFile": "release-input/ui/race-messages/christmas/catching-up.png",
+    "prompt": "Single original game HUD sticker, square RGBA with actual transparent background. Centered subject, generous 12% transparent margins; clean silhouette readable at 64 pixels. Hand-drawn colored-pencil Christmas illustration with visible dry pencil grain and layered crosshatching, forest green and cranberry red, warm ivory highlights. Recurring character: friendly little reindeer racing mechanic wearing goggles, green overalls and a red scarf, expressive mitten hands and small antlers. Vehicles are original Christmas miniature four-wheel racing cars. No rabbits, moons, carrots or Chinese architecture; no watercolor, no glossy 3D or smooth vector. Semantic message: catching-up. Specific composition: 技師角色車乘暖色光尾焰快速拉近距離. No text, letters, numerals, punctuation, logos, watermark, UI panel, background scene, gore or realistic violence. One composition only; do not include the message label as text."
+  },
+  {
+    "season": "christmas",
+    "messageKey": "im-stuck",
+    "authoringFile": "release-input/ui/race-messages/christmas/im-stuck.png",
+    "prompt": "Single original game HUD sticker, square RGBA with actual transparent background. Centered subject, generous 12% transparent margins; clean silhouette readable at 64 pixels. Hand-drawn colored-pencil Christmas illustration with visible dry pencil grain and layered crosshatching, forest green and cranberry red, warm ivory highlights. Recurring character: friendly little reindeer racing mechanic wearing goggles, green overalls and a red scarf, expressive mitten hands and small antlers. Vehicles are original Christmas miniature four-wheel racing cars. No rabbits, moons, carrots or Chinese architecture; no watercolor, no glossy 3D or smooth vector. Semantic message: im-stuck. Specific composition: 迷你四驅車輪陷進凹坑，技師角色用力推車. No text, letters, numerals, punctuation, logos, watermark, UI panel, background scene, gore or realistic violence. One composition only; do not include the message label as text."
+  },
+  {
+    "season": "christmas",
+    "messageKey": "im-lost",
+    "authoringFile": "release-input/ui/race-messages/christmas/im-lost.png",
+    "prompt": "Single original game HUD sticker, square RGBA with actual transparent background. Centered subject, generous 12% transparent margins; clean silhouette readable at 64 pixels. Hand-drawn colored-pencil Christmas illustration with visible dry pencil grain and layered crosshatching, forest green and cranberry red, warm ivory highlights. Recurring character: friendly little reindeer racing mechanic wearing goggles, green overalls and a red scarf, expressive mitten hands and small antlers. Vehicles are original Christmas miniature four-wheel racing cars. No rabbits, moons, carrots or Chinese architecture; no watercolor, no glossy 3D or smooth vector. Semantic message: im-lost. Specific composition: 技師角色站在多岔賽道中央，兩耳各指不同方向. No text, letters, numerals, punctuation, logos, watermark, UI panel, background scene, gore or realistic violence. One composition only; do not include the message label as text."
+  },
+  {
+    "season": "christmas",
+    "messageKey": "i-crashed",
+    "authoringFile": "release-input/ui/race-messages/christmas/i-crashed.png",
+    "prompt": "Single original game HUD sticker, square RGBA with actual transparent background. Centered subject, generous 12% transparent margins; clean silhouette readable at 64 pixels. Hand-drawn colored-pencil Christmas illustration with visible dry pencil grain and layered crosshatching, forest green and cranberry red, warm ivory highlights. Recurring character: friendly little reindeer racing mechanic wearing goggles, green overalls and a red scarf, expressive mitten hands and small antlers. Vehicles are original Christmas miniature four-wheel racing cars. No rabbits, moons, carrots or Chinese architecture; no watercolor, no glossy 3D or smooth vector. Semantic message: i-crashed. Specific composition: 迷你四驅車撞進柔軟雲堆，只冒出卡通星星. No text, letters, numerals, punctuation, logos, watermark, UI panel, background scene, gore or realistic violence. One composition only; do not include the message label as text."
+  },
+  {
+    "season": "christmas",
+    "messageKey": "im-damaged",
+    "authoringFile": "release-input/ui/race-messages/christmas/im-damaged.png",
+    "prompt": "Single original game HUD sticker, square RGBA with actual transparent background. Centered subject, generous 12% transparent margins; clean silhouette readable at 64 pixels. Hand-drawn colored-pencil Christmas illustration with visible dry pencil grain and layered crosshatching, forest green and cranberry red, warm ivory highlights. Recurring character: friendly little reindeer racing mechanic wearing goggles, green overalls and a red scarf, expressive mitten hands and small antlers. Vehicles are original Christmas miniature four-wheel racing cars. No rabbits, moons, carrots or Chinese architecture; no watercolor, no glossy 3D or smooth vector. Semantic message: im-damaged. Specific composition: 迷你四驅車護板有裂紋，技師角色拿出小修理槌. No text, letters, numerals, punctuation, logos, watermark, UI panel, background scene, gore or realistic violence. One composition only; do not include the message label as text."
+  },
+  {
+    "season": "christmas",
+    "messageKey": "low-energy",
+    "authoringFile": "release-input/ui/race-messages/christmas/low-energy.png",
+    "prompt": "Single original game HUD sticker, square RGBA with actual transparent background. Centered subject, generous 12% transparent margins; clean silhouette readable at 64 pixels. Hand-drawn colored-pencil Christmas illustration with visible dry pencil grain and layered crosshatching, forest green and cranberry red, warm ivory highlights. Recurring character: friendly little reindeer racing mechanic wearing goggles, green overalls and a red scarf, expressive mitten hands and small antlers. Vehicles are original Christmas miniature four-wheel racing cars. No rabbits, moons, carrots or Chinese architecture; no watercolor, no glossy 3D or smooth vector. Semantic message: low-energy. Specific composition: 小燈幾乎熄滅，技師角色疲倦低頭. No text, letters, numerals, punctuation, logos, watermark, UI panel, background scene, gore or realistic violence. One composition only; do not include the message label as text."
+  },
+  {
+    "season": "christmas",
+    "messageKey": "cant-move",
+    "authoringFile": "release-input/ui/race-messages/christmas/cant-move.png",
+    "prompt": "Single original game HUD sticker, square RGBA with actual transparent background. Centered subject, generous 12% transparent margins; clean silhouette readable at 64 pixels. Hand-drawn colored-pencil Christmas illustration with visible dry pencil grain and layered crosshatching, forest green and cranberry red, warm ivory highlights. Recurring character: friendly little reindeer racing mechanic wearing goggles, green overalls and a red scarf, expressive mitten hands and small antlers. Vehicles are original Christmas miniature four-wheel racing cars. No rabbits, moons, carrots or Chinese architecture; no watercolor, no glossy 3D or smooth vector. Semantic message: cant-move. Specific composition: 車輪被繩索纏住，技師角色無奈攤手. No text, letters, numerals, punctuation, logos, watermark, UI panel, background scene, gore or realistic violence. One composition only; do not include the message label as text."
+  },
+  {
+    "season": "christmas",
+    "messageKey": "recovering",
+    "authoringFile": "release-input/ui/race-messages/christmas/recovering.png",
+    "prompt": "Single original game HUD sticker, square RGBA with actual transparent background. Centered subject, generous 12% transparent margins; clean silhouette readable at 64 pixels. Hand-drawn colored-pencil Christmas illustration with visible dry pencil grain and layered crosshatching, forest green and cranberry red, warm ivory highlights. Recurring character: friendly little reindeer racing mechanic wearing goggles, green overalls and a red scarf, expressive mitten hands and small antlers. Vehicles are original Christmas miniature four-wheel racing cars. No rabbits, moons, carrots or Chinese architecture; no watercolor, no glossy 3D or smooth vector. Semantic message: recovering. Specific composition: 技師角色修理車輛，滿暖色光環逐步恢復完整. No text, letters, numerals, punctuation, logos, watermark, UI panel, background scene, gore or realistic violence. One composition only; do not include the message label as text."
+  },
+  {
+    "season": "christmas",
+    "messageKey": "im-out",
+    "authoringFile": "release-input/ui/race-messages/christmas/im-out.png",
+    "prompt": "Single original game HUD sticker, square RGBA with actual transparent background. Centered subject, generous 12% transparent margins; clean silhouette readable at 64 pixels. Hand-drawn colored-pencil Christmas illustration with visible dry pencil grain and layered crosshatching, forest green and cranberry red, warm ivory highlights. Recurring character: friendly little reindeer racing mechanic wearing goggles, green overalls and a red scarf, expressive mitten hands and small antlers. Vehicles are original Christmas miniature four-wheel racing cars. No rabbits, moons, carrots or Chinese architecture; no watercolor, no glossy 3D or smooth vector. Semantic message: im-out. Specific composition: 技師角色與車停在安全雲台，競速燈熄滅. No text, letters, numerals, punctuation, logos, watermark, UI panel, background scene, gore or realistic violence. One composition only; do not include the message label as text."
+  },
+  {
+    "season": "christmas",
+    "messageKey": "nice",
+    "authoringFile": "release-input/ui/race-messages/christmas/nice.png",
+    "prompt": "Single original game HUD sticker, square RGBA with actual transparent background. Centered subject, generous 12% transparent margins; clean silhouette readable at 64 pixels. Hand-drawn colored-pencil Christmas illustration with visible dry pencil grain and layered crosshatching, forest green and cranberry red, warm ivory highlights. Recurring character: friendly little reindeer racing mechanic wearing goggles, green overalls and a red scarf, expressive mitten hands and small antlers. Vehicles are original Christmas miniature four-wheel racing cars. No rabbits, moons, carrots or Chinese architecture; no watercolor, no glossy 3D or smooth vector. Semantic message: nice. Specific composition: 技師角色豎拇指，身後一顆大星芒. No text, letters, numerals, punctuation, logos, watermark, UI panel, background scene, gore or realistic violence. One composition only; do not include the message label as text."
+  },
+  {
+    "season": "christmas",
+    "messageKey": "great",
+    "authoringFile": "release-input/ui/race-messages/christmas/great.png",
+    "prompt": "Single original game HUD sticker, square RGBA with actual transparent background. Centered subject, generous 12% transparent margins; clean silhouette readable at 64 pixels. Hand-drawn colored-pencil Christmas illustration with visible dry pencil grain and layered crosshatching, forest green and cranberry red, warm ivory highlights. Recurring character: friendly little reindeer racing mechanic wearing goggles, green overalls and a red scarf, expressive mitten hands and small antlers. Vehicles are original Christmas miniature four-wheel racing cars. No rabbits, moons, carrots or Chinese architecture; no watercolor, no glossy 3D or smooth vector. Semantic message: great. Specific composition: 技師角色雙拇指向上，圓形光環與金粉環繞. No text, letters, numerals, punctuation, logos, watermark, UI panel, background scene, gore or realistic violence. One composition only; do not include the message label as text."
+  },
+  {
+    "season": "christmas",
+    "messageKey": "amazing",
+    "authoringFile": "release-input/ui/race-messages/christmas/amazing.png",
+    "prompt": "Single original game HUD sticker, square RGBA with actual transparent background. Centered subject, generous 12% transparent margins; clean silhouette readable at 64 pixels. Hand-drawn colored-pencil Christmas illustration with visible dry pencil grain and layered crosshatching, forest green and cranberry red, warm ivory highlights. Recurring character: friendly little reindeer racing mechanic wearing goggles, green overalls and a red scarf, expressive mitten hands and small antlers. Vehicles are original Christmas miniature four-wheel racing cars. No rabbits, moons, carrots or Chinese architecture; no watercolor, no glossy 3D or smooth vector. Semantic message: amazing. Specific composition: 技師角色驚喜躍起，周圍多層暖色光與星星. No text, letters, numerals, punctuation, logos, watermark, UI panel, background scene, gore or realistic violence. One composition only; do not include the message label as text."
+  },
+  {
+    "season": "christmas",
+    "messageKey": "awesome",
+    "authoringFile": "release-input/ui/race-messages/christmas/awesome.png",
+    "prompt": "Single original game HUD sticker, square RGBA with actual transparent background. Centered subject, generous 12% transparent margins; clean silhouette readable at 64 pixels. Hand-drawn colored-pencil Christmas illustration with visible dry pencil grain and layered crosshatching, forest green and cranberry red, warm ivory highlights. Recurring character: friendly little reindeer racing mechanic wearing goggles, green overalls and a red scarf, expressive mitten hands and small antlers. Vehicles are original Christmas miniature four-wheel racing cars. No rabbits, moons, carrots or Chinese architecture; no watercolor, no glossy 3D or smooth vector. Semantic message: awesome. Specific composition: 技師角色高舉月桂齒輪獎盃，不含文字. No text, letters, numerals, punctuation, logos, watermark, UI panel, background scene, gore or realistic violence. One composition only; do not include the message label as text."
+  },
+  {
+    "season": "christmas",
+    "messageKey": "impressive",
+    "authoringFile": "release-input/ui/race-messages/christmas/impressive.png",
+    "prompt": "Single original game HUD sticker, square RGBA with actual transparent background. Centered subject, generous 12% transparent margins; clean silhouette readable at 64 pixels. Hand-drawn colored-pencil Christmas illustration with visible dry pencil grain and layered crosshatching, forest green and cranberry red, warm ivory highlights. Recurring character: friendly little reindeer racing mechanic wearing goggles, green overalls and a red scarf, expressive mitten hands and small antlers. Vehicles are original Christmas miniature four-wheel racing cars. No rabbits, moons, carrots or Chinese architecture; no watercolor, no glossy 3D or smooth vector. Semantic message: impressive. Specific composition: 迷你四驅車完美落地，兩道對稱暖色光弧線. No text, letters, numerals, punctuation, logos, watermark, UI panel, background scene, gore or realistic violence. One composition only; do not include the message label as text."
+  },
+  {
+    "season": "christmas",
+    "messageKey": "well-done",
+    "authoringFile": "release-input/ui/race-messages/christmas/well-done.png",
+    "prompt": "Single original game HUD sticker, square RGBA with actual transparent background. Centered subject, generous 12% transparent margins; clean silhouette readable at 64 pixels. Hand-drawn colored-pencil Christmas illustration with visible dry pencil grain and layered crosshatching, forest green and cranberry red, warm ivory highlights. Recurring character: friendly little reindeer racing mechanic wearing goggles, green overalls and a red scarf, expressive mitten hands and small antlers. Vehicles are original Christmas miniature four-wheel racing cars. No rabbits, moons, carrots or Chinese architecture; no watercolor, no glossy 3D or smooth vector. Semantic message: well-done. Specific composition: 技師角色開心鼓掌，掌間飛出金色星屑. No text, letters, numerals, punctuation, logos, watermark, UI panel, background scene, gore or realistic violence. One composition only; do not include the message label as text."
+  },
+  {
+    "season": "christmas",
+    "messageKey": "clean-move",
+    "authoringFile": "release-input/ui/race-messages/christmas/clean-move.png",
+    "prompt": "Single original game HUD sticker, square RGBA with actual transparent background. Centered subject, generous 12% transparent margins; clean silhouette readable at 64 pixels. Hand-drawn colored-pencil Christmas illustration with visible dry pencil grain and layered crosshatching, forest green and cranberry red, warm ivory highlights. Recurring character: friendly little reindeer racing mechanic wearing goggles, green overalls and a red scarf, expressive mitten hands and small antlers. Vehicles are original Christmas miniature four-wheel racing cars. No rabbits, moons, carrots or Chinese architecture; no watercolor, no glossy 3D or smooth vector. Semantic message: clean-move. Specific composition: 迷你四驅車沿無碰撞的完美月弧完成超車. No text, letters, numerals, punctuation, logos, watermark, UI panel, background scene, gore or realistic violence. One composition only; do not include the message label as text."
+  },
+  {
+    "season": "christmas",
+    "messageKey": "respect",
+    "authoringFile": "release-input/ui/race-messages/christmas/respect.png",
+    "prompt": "Single original game HUD sticker, square RGBA with actual transparent background. Centered subject, generous 12% transparent margins; clean silhouette readable at 64 pixels. Hand-drawn colored-pencil Christmas illustration with visible dry pencil grain and layered crosshatching, forest green and cranberry red, warm ivory highlights. Recurring character: friendly little reindeer racing mechanic wearing goggles, green overalls and a red scarf, expressive mitten hands and small antlers. Vehicles are original Christmas miniature four-wheel racing cars. No rabbits, moons, carrots or Chinese architecture; no watercolor, no glossy 3D or smooth vector. Semantic message: respect. Specific composition: 兩隻技師角色並肩互相點頭致意. No text, letters, numerals, punctuation, logos, watermark, UI panel, background scene, gore or realistic violence. One composition only; do not include the message label as text."
+  },
+  {
+    "season": "christmas",
+    "messageKey": "wow",
+    "authoringFile": "release-input/ui/race-messages/christmas/wow.png",
+    "prompt": "Single original game HUD sticker, square RGBA with actual transparent background. Centered subject, generous 12% transparent margins; clean silhouette readable at 64 pixels. Hand-drawn colored-pencil Christmas illustration with visible dry pencil grain and layered crosshatching, forest green and cranberry red, warm ivory highlights. Recurring character: friendly little reindeer racing mechanic wearing goggles, green overalls and a red scarf, expressive mitten hands and small antlers. Vehicles are original Christmas miniature four-wheel racing cars. No rabbits, moons, carrots or Chinese architecture; no watercolor, no glossy 3D or smooth vector. Semantic message: wow. Specific composition: 技師角色瞪大眼、雙手張開，圓形光環星芒放射. No text, letters, numerals, punctuation, logos, watermark, UI panel, background scene, gore or realistic violence. One composition only; do not include the message label as text."
+  },
+  {
+    "season": "christmas",
+    "messageKey": "lol",
+    "authoringFile": "release-input/ui/race-messages/christmas/lol.png",
+    "prompt": "Single original game HUD sticker, square RGBA with actual transparent background. Centered subject, generous 12% transparent margins; clean silhouette readable at 64 pixels. Hand-drawn colored-pencil Christmas illustration with visible dry pencil grain and layered crosshatching, forest green and cranberry red, warm ivory highlights. Recurring character: friendly little reindeer racing mechanic wearing goggles, green overalls and a red scarf, expressive mitten hands and small antlers. Vehicles are original Christmas miniature four-wheel racing cars. No rabbits, moons, carrots or Chinese architecture; no watercolor, no glossy 3D or smooth vector. Semantic message: lol. Specific composition: 技師角色笑到後仰，手臂與身體出現跳動線. No text, letters, numerals, punctuation, logos, watermark, UI panel, background scene, gore or realistic violence. One composition only; do not include the message label as text."
+  },
+  {
+    "season": "christmas",
+    "messageKey": "oops",
+    "authoringFile": "release-input/ui/race-messages/christmas/oops.png",
+    "prompt": "Single original game HUD sticker, square RGBA with actual transparent background. Centered subject, generous 12% transparent margins; clean silhouette readable at 64 pixels. Hand-drawn colored-pencil Christmas illustration with visible dry pencil grain and layered crosshatching, forest green and cranberry red, warm ivory highlights. Recurring character: friendly little reindeer racing mechanic wearing goggles, green overalls and a red scarf, expressive mitten hands and small antlers. Vehicles are original Christmas miniature four-wheel racing cars. No rabbits, moons, carrots or Chinese architecture; no watercolor, no glossy 3D or smooth vector. Semantic message: oops. Specific composition: 技師角色不小心讓一根小工具滾走，尷尬抓頭. No text, letters, numerals, punctuation, logos, watermark, UI panel, background scene, gore or realistic violence. One composition only; do not include the message label as text."
+  },
+  {
+    "season": "christmas",
+    "messageKey": "no-way",
+    "authoringFile": "release-input/ui/race-messages/christmas/no-way.png",
+    "prompt": "Single original game HUD sticker, square RGBA with actual transparent background. Centered subject, generous 12% transparent margins; clean silhouette readable at 64 pixels. Hand-drawn colored-pencil Christmas illustration with visible dry pencil grain and layered crosshatching, forest green and cranberry red, warm ivory highlights. Recurring character: friendly little reindeer racing mechanic wearing goggles, green overalls and a red scarf, expressive mitten hands and small antlers. Vehicles are original Christmas miniature four-wheel racing cars. No rabbits, moons, carrots or Chinese architecture; no watercolor, no glossy 3D or smooth vector. Semantic message: no-way. Specific composition: 技師角色震驚張開雙掌，背後出現不可思議月漩渦. No text, letters, numerals, punctuation, logos, watermark, UI panel, background scene, gore or realistic violence. One composition only; do not include the message label as text."
+  },
+  {
+    "season": "christmas",
+    "messageKey": "close-one",
+    "authoringFile": "release-input/ui/race-messages/christmas/close-one.png",
+    "prompt": "Single original game HUD sticker, square RGBA with actual transparent background. Centered subject, generous 12% transparent margins; clean silhouette readable at 64 pixels. Hand-drawn colored-pencil Christmas illustration with visible dry pencil grain and layered crosshatching, forest green and cranberry red, warm ivory highlights. Recurring character: friendly little reindeer racing mechanic wearing goggles, green overalls and a red scarf, expressive mitten hands and small antlers. Vehicles are original Christmas miniature four-wheel racing cars. No rabbits, moons, carrots or Chinese architecture; no watercolor, no glossy 3D or smooth vector. Semantic message: close-one. Specific composition: 迷你四驅車以極小距離擦過岩石，窄縫發亮. No text, letters, numerals, punctuation, logos, watermark, UI panel, background scene, gore or realistic violence. One composition only; do not include the message label as text."
+  },
+  {
+    "season": "christmas",
+    "messageKey": "lucky",
+    "authoringFile": "release-input/ui/race-messages/christmas/lucky.png",
+    "prompt": "Single original game HUD sticker, square RGBA with actual transparent background. Centered subject, generous 12% transparent margins; clean silhouette readable at 64 pixels. Hand-drawn colored-pencil Christmas illustration with visible dry pencil grain and layered crosshatching, forest green and cranberry red, warm ivory highlights. Recurring character: friendly little reindeer racing mechanic wearing goggles, green overalls and a red scarf, expressive mitten hands and small antlers. Vehicles are original Christmas miniature four-wheel racing cars. No rabbits, moons, carrots or Chinese architecture; no watercolor, no glossy 3D or smooth vector. Semantic message: lucky. Specific composition: 技師角色車剛好躲過隕石，四葉草飄過. No text, letters, numerals, punctuation, logos, watermark, UI panel, background scene, gore or realistic violence. One composition only; do not include the message label as text."
+  },
+  {
+    "season": "christmas",
+    "messageKey": "unlucky",
+    "authoringFile": "release-input/ui/race-messages/christmas/unlucky.png",
+    "prompt": "Single original game HUD sticker, square RGBA with actual transparent background. Centered subject, generous 12% transparent margins; clean silhouette readable at 64 pixels. Hand-drawn colored-pencil Christmas illustration with visible dry pencil grain and layered crosshatching, forest green and cranberry red, warm ivory highlights. Recurring character: friendly little reindeer racing mechanic wearing goggles, green overalls and a red scarf, expressive mitten hands and small antlers. Vehicles are original Christmas miniature four-wheel racing cars. No rabbits, moons, carrots or Chinese architecture; no watercolor, no glossy 3D or smooth vector. Semantic message: unlucky. Specific composition: 迷你四驅車剛好陷入小凹坑，技師角色手臂垂下. No text, letters, numerals, punctuation, logos, watermark, UI panel, background scene, gore or realistic violence. One composition only; do not include the message label as text."
+  },
+  {
+    "season": "christmas",
+    "messageKey": "facepalm",
+    "authoringFile": "release-input/ui/race-messages/christmas/facepalm.png",
+    "prompt": "Single original game HUD sticker, square RGBA with actual transparent background. Centered subject, generous 12% transparent margins; clean silhouette readable at 64 pixels. Hand-drawn colored-pencil Christmas illustration with visible dry pencil grain and layered crosshatching, forest green and cranberry red, warm ivory highlights. Recurring character: friendly little reindeer racing mechanic wearing goggles, green overalls and a red scarf, expressive mitten hands and small antlers. Vehicles are original Christmas miniature four-wheel racing cars. No rabbits, moons, carrots or Chinese architecture; no watercolor, no glossy 3D or smooth vector. Semantic message: facepalm. Specific composition: 技師角色用手掌按住護目鏡與額頭. No text, letters, numerals, punctuation, logos, watermark, UI panel, background scene, gore or realistic violence. One composition only; do not include the message label as text."
+  },
+  {
+    "season": "christmas",
+    "messageKey": "thanks",
+    "authoringFile": "release-input/ui/race-messages/christmas/thanks.png",
+    "prompt": "Single original game HUD sticker, square RGBA with actual transparent background. Centered subject, generous 12% transparent margins; clean silhouette readable at 64 pixels. Hand-drawn colored-pencil Christmas illustration with visible dry pencil grain and layered crosshatching, forest green and cranberry red, warm ivory highlights. Recurring character: friendly little reindeer racing mechanic wearing goggles, green overalls and a red scarf, expressive mitten hands and small antlers. Vehicles are original Christmas miniature four-wheel racing cars. No rabbits, moons, carrots or Chinese architecture; no watercolor, no glossy 3D or smooth vector. Semantic message: thanks. Specific composition: Two friendly reindeer mechanics, one gratefully offering a small wrapped wrench gift to the other. Both have antlers, green overalls and red scarves. No rabbits.. No text, letters, numerals, punctuation, logos, watermark, UI panel, background scene, gore or realistic violence. One composition only; do not include the message label as text."
+  },
+  {
+    "season": "christmas",
+    "messageKey": "sorry",
+    "authoringFile": "release-input/ui/race-messages/christmas/sorry.png",
+    "prompt": "Single original game HUD sticker, square RGBA with actual transparent background. Centered subject, generous 12% transparent margins; clean silhouette readable at 64 pixels. Hand-drawn colored-pencil Christmas illustration with visible dry pencil grain and layered crosshatching, forest green and cranberry red, warm ivory highlights. Recurring character: friendly little reindeer racing mechanic wearing goggles, green overalls and a red scarf, expressive mitten hands and small antlers. Vehicles are original Christmas miniature four-wheel racing cars. No rabbits, moons, carrots or Chinese architecture; no watercolor, no glossy 3D or smooth vector. Semantic message: sorry. Specific composition: 技師角色低頭低頭，雙掌放在身前致歉. No text, letters, numerals, punctuation, logos, watermark, UI panel, background scene, gore or realistic violence. One composition only; do not include the message label as text."
+  },
+  {
+    "season": "christmas",
+    "messageKey": "my-bad",
+    "authoringFile": "release-input/ui/race-messages/christmas/my-bad.png",
+    "prompt": "Single original game HUD sticker, square RGBA with actual transparent background. Centered subject, generous 12% transparent margins; clean silhouette readable at 64 pixels. Hand-drawn colored-pencil Christmas illustration with visible dry pencil grain and layered crosshatching, forest green and cranberry red, warm ivory highlights. Recurring character: friendly little reindeer racing mechanic wearing goggles, green overalls and a red scarf, expressive mitten hands and small antlers. Vehicles are original Christmas miniature four-wheel racing cars. No rabbits, moons, carrots or Chinese architecture; no watercolor, no glossy 3D or smooth vector. Semantic message: my-bad. Specific composition: 技師角色指向自己並尷尬舉另一手認錯. No text, letters, numerals, punctuation, logos, watermark, UI panel, background scene, gore or realistic violence. One composition only; do not include the message label as text."
+  },
+  {
+    "season": "christmas",
+    "messageKey": "excuse-me",
+    "authoringFile": "release-input/ui/race-messages/christmas/excuse-me.png",
+    "prompt": "Single original game HUD sticker, square RGBA with actual transparent background. Centered subject, generous 12% transparent margins; clean silhouette readable at 64 pixels. Hand-drawn colored-pencil Christmas illustration with visible dry pencil grain and layered crosshatching, forest green and cranberry red, warm ivory highlights. Recurring character: friendly little reindeer racing mechanic wearing goggles, green overalls and a red scarf, expressive mitten hands and small antlers. Vehicles are original Christmas miniature four-wheel racing cars. No rabbits, moons, carrots or Chinese architecture; no watercolor, no glossy 3D or smooth vector. Semantic message: excuse-me. Specific composition: 技師角色側身禮貌通過，對方讓出賽道. No text, letters, numerals, punctuation, logos, watermark, UI panel, background scene, gore or realistic violence. One composition only; do not include the message label as text."
+  },
+  {
+    "season": "christmas",
+    "messageKey": "no-problem",
+    "authoringFile": "release-input/ui/race-messages/christmas/no-problem.png",
+    "prompt": "Single original game HUD sticker, square RGBA with actual transparent background. Centered subject, generous 12% transparent margins; clean silhouette readable at 64 pixels. Hand-drawn colored-pencil Christmas illustration with visible dry pencil grain and layered crosshatching, forest green and cranberry red, warm ivory highlights. Recurring character: friendly little reindeer racing mechanic wearing goggles, green overalls and a red scarf, expressive mitten hands and small antlers. Vehicles are original Christmas miniature four-wheel racing cars. No rabbits, moons, carrots or Chinese architecture; no watercolor, no glossy 3D or smooth vector. Semantic message: no-problem. Specific composition: 技師角色輕鬆擺手，背後圓形光環保持平穩. No text, letters, numerals, punctuation, logos, watermark, UI panel, background scene, gore or realistic violence. One composition only; do not include the message label as text."
+  },
+  {
+    "season": "christmas",
+    "messageKey": "its-okay",
+    "authoringFile": "release-input/ui/race-messages/christmas/its-okay.png",
+    "prompt": "Single original game HUD sticker, square RGBA with actual transparent background. Centered subject, generous 12% transparent margins; clean silhouette readable at 64 pixels. Hand-drawn colored-pencil Christmas illustration with visible dry pencil grain and layered crosshatching, forest green and cranberry red, warm ivory highlights. Recurring character: friendly little reindeer racing mechanic wearing goggles, green overalls and a red scarf, expressive mitten hands and small antlers. Vehicles are original Christmas miniature four-wheel racing cars. No rabbits, moons, carrots or Chinese architecture; no watercolor, no glossy 3D or smooth vector. Semantic message: its-okay. Specific composition: 兩隻技師角色碰拳和解，柔和光環包住彼此. No text, letters, numerals, punctuation, logos, watermark, UI panel, background scene, gore or realistic violence. One composition only; do not include the message label as text."
+  },
+  {
+    "season": "christmas",
+    "messageKey": "please-stop",
+    "authoringFile": "release-input/ui/race-messages/christmas/please-stop.png",
+    "prompt": "Single original game HUD sticker, square RGBA with actual transparent background. Centered subject, generous 12% transparent margins; clean silhouette readable at 64 pixels. Hand-drawn colored-pencil Christmas illustration with visible dry pencil grain and layered crosshatching, forest green and cranberry red, warm ivory highlights. Recurring character: friendly little reindeer racing mechanic wearing goggles, green overalls and a red scarf, expressive mitten hands and small antlers. Vehicles are original Christmas miniature four-wheel racing cars. No rabbits, moons, carrots or Chinese architecture; no watercolor, no glossy 3D or smooth vector. Semantic message: please-stop. Specific composition: 技師角色雙掌做停止手勢，迷你四驅車安全停下. No text, letters, numerals, punctuation, logos, watermark, UI panel, background scene, gore or realistic violence. One composition only; do not include the message label as text."
+  },
+  {
+    "season": "christmas",
+    "messageKey": "no-hard-feelings",
+    "authoringFile": "release-input/ui/race-messages/christmas/no-hard-feelings.png",
+    "prompt": "Single original game HUD sticker, square RGBA with actual transparent background. Centered subject, generous 12% transparent margins; clean silhouette readable at 64 pixels. Hand-drawn colored-pencil Christmas illustration with visible dry pencil grain and layered crosshatching, forest green and cranberry red, warm ivory highlights. Recurring character: friendly little reindeer racing mechanic wearing goggles, green overalls and a red scarf, expressive mitten hands and small antlers. Vehicles are original Christmas miniature four-wheel racing cars. No rabbits, moons, carrots or Chinese architecture; no watercolor, no glossy 3D or smooth vector. Semantic message: no-hard-feelings. Specific composition: 兩隻技師角色友善碰拳，破裂小石塊被光修復. No text, letters, numerals, punctuation, logos, watermark, UI panel, background scene, gore or realistic violence. One composition only; do not include the message label as text."
+  },
+  {
+    "season": "christmas",
+    "messageKey": "nice-hit",
+    "authoringFile": "release-input/ui/race-messages/christmas/nice-hit.png",
+    "prompt": "Single original game HUD sticker, square RGBA with actual transparent background. Centered subject, generous 12% transparent margins; clean silhouette readable at 64 pixels. Hand-drawn colored-pencil Christmas illustration with visible dry pencil grain and layered crosshatching, forest green and cranberry red, warm ivory highlights. Recurring character: friendly little reindeer racing mechanic wearing goggles, green overalls and a red scarf, expressive mitten hands and small antlers. Vehicles are original Christmas miniature four-wheel racing cars. No rabbits, moons, carrots or Chinese architecture; no watercolor, no glossy 3D or smooth vector. Semantic message: nice-hit. Specific composition: 小工具形能量精準命中護盾中央，只有星形火花. No text, letters, numerals, punctuation, logos, watermark, UI panel, background scene, gore or realistic violence. One composition only; do not include the message label as text."
+  },
+  {
+    "season": "christmas",
+    "messageKey": "good-dodge",
+    "authoringFile": "release-input/ui/race-messages/christmas/good-dodge.png",
+    "prompt": "Single original game HUD sticker, square RGBA with actual transparent background. Centered subject, generous 12% transparent margins; clean silhouette readable at 64 pixels. Hand-drawn colored-pencil Christmas illustration with visible dry pencil grain and layered crosshatching, forest green and cranberry red, warm ivory highlights. Recurring character: friendly little reindeer racing mechanic wearing goggles, green overalls and a red scarf, expressive mitten hands and small antlers. Vehicles are original Christmas miniature four-wheel racing cars. No rabbits, moons, carrots or Chinese architecture; no watercolor, no glossy 3D or smooth vector. Semantic message: good-dodge. Specific composition: 技師角色車沿月弧閃過流星能量. No text, letters, numerals, punctuation, logos, watermark, UI panel, background scene, gore or realistic violence. One composition only; do not include the message label as text."
+  },
+  {
+    "season": "christmas",
+    "messageKey": "good-save",
+    "authoringFile": "release-input/ui/race-messages/christmas/good-save.png",
+    "prompt": "Single original game HUD sticker, square RGBA with actual transparent background. Centered subject, generous 12% transparent margins; clean silhouette readable at 64 pixels. Hand-drawn colored-pencil Christmas illustration with visible dry pencil grain and layered crosshatching, forest green and cranberry red, warm ivory highlights. Recurring character: friendly little reindeer racing mechanic wearing goggles, green overalls and a red scarf, expressive mitten hands and small antlers. Vehicles are original Christmas miniature four-wheel racing cars. No rabbits, moons, carrots or Chinese architecture; no watercolor, no glossy 3D or smooth vector. Semantic message: good-save. Specific composition: 技師角色車在邊緣被雲朵與繩索安全拉回. No text, letters, numerals, punctuation, logos, watermark, UI panel, background scene, gore or realistic violence. One composition only; do not include the message label as text."
+  },
+  {
+    "season": "christmas",
+    "messageKey": "good-defense",
+    "authoringFile": "release-input/ui/race-messages/christmas/good-defense.png",
+    "prompt": "Single original game HUD sticker, square RGBA with actual transparent background. Centered subject, generous 12% transparent margins; clean silhouette readable at 64 pixels. Hand-drawn colored-pencil Christmas illustration with visible dry pencil grain and layered crosshatching, forest green and cranberry red, warm ivory highlights. Recurring character: friendly little reindeer racing mechanic wearing goggles, green overalls and a red scarf, expressive mitten hands and small antlers. Vehicles are original Christmas miniature four-wheel racing cars. No rabbits, moons, carrots or Chinese architecture; no watercolor, no glossy 3D or smooth vector. Semantic message: good-defense. Specific composition: 圓形光環形護盾完整擋住流星波. No text, letters, numerals, punctuation, logos, watermark, UI panel, background scene, gore or realistic violence. One composition only; do not include the message label as text."
+  },
+  {
+    "season": "christmas",
+    "messageKey": "that-hurt",
+    "authoringFile": "release-input/ui/race-messages/christmas/that-hurt.png",
+    "prompt": "Single original game HUD sticker, square RGBA with actual transparent background. Centered subject, generous 12% transparent margins; clean silhouette readable at 64 pixels. Hand-drawn colored-pencil Christmas illustration with visible dry pencil grain and layered crosshatching, forest green and cranberry red, warm ivory highlights. Recurring character: friendly little reindeer racing mechanic wearing goggles, green overalls and a red scarf, expressive mitten hands and small antlers. Vehicles are original Christmas miniature four-wheel racing cars. No rabbits, moons, carrots or Chinese architecture; no watercolor, no glossy 3D or smooth vector. Semantic message: that-hurt. Specific composition: 技師角色車受擊震動，技師角色皺眉但沒有傷口. No text, letters, numerals, punctuation, logos, watermark, UI panel, background scene, gore or realistic violence. One composition only; do not include the message label as text."
+  },
+  {
+    "season": "christmas",
+    "messageKey": "comeback",
+    "authoringFile": "release-input/ui/race-messages/christmas/comeback.png",
+    "prompt": "Single original game HUD sticker, square RGBA with actual transparent background. Centered subject, generous 12% transparent margins; clean silhouette readable at 64 pixels. Hand-drawn colored-pencil Christmas illustration with visible dry pencil grain and layered crosshatching, forest green and cranberry red, warm ivory highlights. Recurring character: friendly little reindeer racing mechanic wearing goggles, green overalls and a red scarf, expressive mitten hands and small antlers. Vehicles are original Christmas miniature four-wheel racing cars. No rabbits, moons, carrots or Chinese architecture; no watercolor, no glossy 3D or smooth vector. Semantic message: comeback. Specific composition: 落後技師角色沿大弧形賽道反超前車. No text, letters, numerals, punctuation, logos, watermark, UI panel, background scene, gore or realistic violence. One composition only; do not include the message label as text."
+  },
+  {
+    "season": "christmas",
+    "messageKey": "great-overtake",
+    "authoringFile": "release-input/ui/race-messages/christmas/great-overtake.png",
+    "prompt": "Single original game HUD sticker, square RGBA with actual transparent background. Centered subject, generous 12% transparent margins; clean silhouette readable at 64 pixels. Hand-drawn colored-pencil Christmas illustration with visible dry pencil grain and layered crosshatching, forest green and cranberry red, warm ivory highlights. Recurring character: friendly little reindeer racing mechanic wearing goggles, green overalls and a red scarf, expressive mitten hands and small antlers. Vehicles are original Christmas miniature four-wheel racing cars. No rabbits, moons, carrots or Chinese architecture; no watercolor, no glossy 3D or smooth vector. Semantic message: great-overtake. Specific composition: 兩台迷你四驅車交錯，外線車以金色暖色光超越. No text, letters, numerals, punctuation, logos, watermark, UI panel, background scene, gore or realistic violence. One composition only; do not include the message label as text."
+  },
+  {
+    "season": "christmas",
+    "messageKey": "photo-finish",
+    "authoringFile": "release-input/ui/race-messages/christmas/photo-finish.png",
+    "prompt": "Single original game HUD sticker, square RGBA with actual transparent background. Centered subject, generous 12% transparent margins; clean silhouette readable at 64 pixels. Hand-drawn colored-pencil Christmas illustration with visible dry pencil grain and layered crosshatching, forest green and cranberry red, warm ivory highlights. Recurring character: friendly little reindeer racing mechanic wearing goggles, green overalls and a red scarf, expressive mitten hands and small antlers. Vehicles are original Christmas miniature four-wheel racing cars. No rabbits, moons, carrots or Chinese architecture; no watercolor, no glossy 3D or smooth vector. Semantic message: photo-finish. Specific composition: 兩台迷你四驅車鼻尖同時穿過黑白幾何終點帶. No text, letters, numerals, punctuation, logos, watermark, UI panel, background scene, gore or realistic violence. One composition only; do not include the message label as text."
+  },
+  {
+    "season": "christmas",
+    "messageKey": "keep-going",
+    "authoringFile": "release-input/ui/race-messages/christmas/keep-going.png",
+    "prompt": "Single original game HUD sticker, square RGBA with actual transparent background. Centered subject, generous 12% transparent margins; clean silhouette readable at 64 pixels. Hand-drawn colored-pencil Christmas illustration with visible dry pencil grain and layered crosshatching, forest green and cranberry red, warm ivory highlights. Recurring character: friendly little reindeer racing mechanic wearing goggles, green overalls and a red scarf, expressive mitten hands and small antlers. Vehicles are original Christmas miniature four-wheel racing cars. No rabbits, moons, carrots or Chinese architecture; no watercolor, no glossy 3D or smooth vector. Semantic message: keep-going. Specific composition: 技師角色車持續前進，後方三段暖色光逐段增亮. No text, letters, numerals, punctuation, logos, watermark, UI panel, background scene, gore or realistic violence. One composition only; do not include the message label as text."
+  },
+  {
+    "season": "christmas",
+    "messageKey": "dont-give-up",
+    "authoringFile": "release-input/ui/race-messages/christmas/dont-give-up.png",
+    "prompt": "Single original game HUD sticker, square RGBA with actual transparent background. Centered subject, generous 12% transparent margins; clean silhouette readable at 64 pixels. Hand-drawn colored-pencil Christmas illustration with visible dry pencil grain and layered crosshatching, forest green and cranberry red, warm ivory highlights. Recurring character: friendly little reindeer racing mechanic wearing goggles, green overalls and a red scarf, expressive mitten hands and small antlers. Vehicles are original Christmas miniature four-wheel racing cars. No rabbits, moons, carrots or Chinese architecture; no watercolor, no glossy 3D or smooth vector. Semantic message: dont-give-up. Specific composition: 技師角色推車爬上陡峭月坡，握拳鼓勵自己. No text, letters, numerals, punctuation, logos, watermark, UI panel, background scene, gore or realistic violence. One composition only; do not include the message label as text."
+  },
+  {
+    "season": "christmas",
+    "messageKey": "you-can-do-it",
+    "authoringFile": "release-input/ui/race-messages/christmas/you-can-do-it.png",
+    "prompt": "Single original game HUD sticker, square RGBA with actual transparent background. Centered subject, generous 12% transparent margins; clean silhouette readable at 64 pixels. Hand-drawn colored-pencil Christmas illustration with visible dry pencil grain and layered crosshatching, forest green and cranberry red, warm ivory highlights. Recurring character: friendly little reindeer racing mechanic wearing goggles, green overalls and a red scarf, expressive mitten hands and small antlers. Vehicles are original Christmas miniature four-wheel racing cars. No rabbits, moons, carrots or Chinese architecture; no watercolor, no glossy 3D or smooth vector. Semantic message: you-can-do-it. Specific composition: 技師角色指向遠方明亮拱門，另一手握拳. No text, letters, numerals, punctuation, logos, watermark, UI panel, background scene, gore or realistic violence. One composition only; do not include the message label as text."
+  },
+  {
+    "season": "christmas",
+    "messageKey": "take-your-time",
+    "authoringFile": "release-input/ui/race-messages/christmas/take-your-time.png",
+    "prompt": "Single original game HUD sticker, square RGBA with actual transparent background. Centered subject, generous 12% transparent margins; clean silhouette readable at 64 pixels. Hand-drawn colored-pencil Christmas illustration with visible dry pencil grain and layered crosshatching, forest green and cranberry red, warm ivory highlights. Recurring character: friendly little reindeer racing mechanic wearing goggles, green overalls and a red scarf, expressive mitten hands and small antlers. Vehicles are original Christmas miniature four-wheel racing cars. No rabbits, moons, carrots or Chinese architecture; no watercolor, no glossy 3D or smooth vector. Semantic message: take-your-time. Specific composition: 技師角色車平穩行駛，旁邊緩慢旋轉的新光環. No text, letters, numerals, punctuation, logos, watermark, UI panel, background scene, gore or realistic violence. One composition only; do not include the message label as text."
+  },
+  {
+    "season": "christmas",
+    "messageKey": "almost-there",
+    "authoringFile": "release-input/ui/race-messages/christmas/almost-there.png",
+    "prompt": "Single original game HUD sticker, square RGBA with actual transparent background. Centered subject, generous 12% transparent margins; clean silhouette readable at 64 pixels. Hand-drawn colored-pencil Christmas illustration with visible dry pencil grain and layered crosshatching, forest green and cranberry red, warm ivory highlights. Recurring character: friendly little reindeer racing mechanic wearing goggles, green overalls and a red scarf, expressive mitten hands and small antlers. Vehicles are original Christmas miniature four-wheel racing cars. No rabbits, moons, carrots or Chinese architecture; no watercolor, no glossy 3D or smooth vector. Semantic message: almost-there. Specific composition: 迷你四驅車接近發光拱門，只剩很短距離. No text, letters, numerals, punctuation, logos, watermark, UI panel, background scene, gore or realistic violence. One composition only; do not include the message label as text."
+  },
+  {
+    "season": "christmas",
+    "messageKey": "nice-try",
+    "authoringFile": "release-input/ui/race-messages/christmas/nice-try.png",
+    "prompt": "Single original game HUD sticker, square RGBA with actual transparent background. Centered subject, generous 12% transparent margins; clean silhouette readable at 64 pixels. Hand-drawn colored-pencil Christmas illustration with visible dry pencil grain and layered crosshatching, forest green and cranberry red, warm ivory highlights. Recurring character: friendly little reindeer racing mechanic wearing goggles, green overalls and a red scarf, expressive mitten hands and small antlers. Vehicles are original Christmas miniature four-wheel racing cars. No rabbits, moons, carrots or Chinese architecture; no watercolor, no glossy 3D or smooth vector. Semantic message: nice-try. Specific composition: 技師角色車稍微偏離但安全落地，技師角色仍豎拇指. No text, letters, numerals, punctuation, logos, watermark, UI panel, background scene, gore or realistic violence. One composition only; do not include the message label as text."
+  },
+  {
+    "season": "christmas",
+    "messageKey": "all-good",
+    "authoringFile": "release-input/ui/race-messages/christmas/all-good.png",
+    "prompt": "Single original game HUD sticker, square RGBA with actual transparent background. Centered subject, generous 12% transparent margins; clean silhouette readable at 64 pixels. Hand-drawn colored-pencil Christmas illustration with visible dry pencil grain and layered crosshatching, forest green and cranberry red, warm ivory highlights. Recurring character: friendly little reindeer racing mechanic wearing goggles, green overalls and a red scarf, expressive mitten hands and small antlers. Vehicles are original Christmas miniature four-wheel racing cars. No rabbits, moons, carrots or Chinese architecture; no watercolor, no glossy 3D or smooth vector. Semantic message: all-good. Specific composition: 技師角色與完整迷你四驅車被柔和滿護盾包覆. No text, letters, numerals, punctuation, logos, watermark, UI panel, background scene, gore or realistic violence. One composition only; do not include the message label as text."
+  },
+  {
+    "season": "christmas",
+    "messageKey": "next-time",
+    "authoringFile": "release-input/ui/race-messages/christmas/next-time.png",
+    "prompt": "Single original game HUD sticker, square RGBA with actual transparent background. Centered subject, generous 12% transparent margins; clean silhouette readable at 64 pixels. Hand-drawn colored-pencil Christmas illustration with visible dry pencil grain and layered crosshatching, forest green and cranberry red, warm ivory highlights. Recurring character: friendly little reindeer racing mechanic wearing goggles, green overalls and a red scarf, expressive mitten hands and small antlers. Vehicles are original Christmas miniature four-wheel racing cars. No rabbits, moons, carrots or Chinese architecture; no watercolor, no glossy 3D or smooth vector. Semantic message: next-time. Specific composition: 技師角色車沿循環賽道回到新的起跑雲台. No text, letters, numerals, punctuation, logos, watermark, UI panel, background scene, gore or realistic violence. One composition only; do not include the message label as text."
+  },
+  {
+    "season": "christmas",
+    "messageKey": "good-game",
+    "authoringFile": "release-input/ui/race-messages/christmas/good-game.png",
+    "prompt": "Single original game HUD sticker, square RGBA with actual transparent background. Centered subject, generous 12% transparent margins; clean silhouette readable at 64 pixels. Hand-drawn colored-pencil Christmas illustration with visible dry pencil grain and layered crosshatching, forest green and cranberry red, warm ivory highlights. Recurring character: friendly little reindeer racing mechanic wearing goggles, green overalls and a red scarf, expressive mitten hands and small antlers. Vehicles are original Christmas miniature four-wheel racing cars. No rabbits, moons, carrots or Chinese architecture; no watercolor, no glossy 3D or smooth vector. Semantic message: good-game. Specific composition: 多台迷你四驅車在終點後並排閃燈致意. No text, letters, numerals, punctuation, logos, watermark, UI panel, background scene, gore or realistic violence. One composition only; do not include the message label as text."
+  },
+  {
+    "season": "christmas",
+    "messageKey": "well-played",
+    "authoringFile": "release-input/ui/race-messages/christmas/well-played.png",
+    "prompt": "Single original game HUD sticker, square RGBA with actual transparent background. Centered subject, generous 12% transparent margins; clean silhouette readable at 64 pixels. Hand-drawn colored-pencil Christmas illustration with visible dry pencil grain and layered crosshatching, forest green and cranberry red, warm ivory highlights. Recurring character: friendly little reindeer racing mechanic wearing goggles, green overalls and a red scarf, expressive mitten hands and small antlers. Vehicles are original Christmas miniature four-wheel racing cars. No rabbits, moons, carrots or Chinese architecture; no watercolor, no glossy 3D or smooth vector. Semantic message: well-played. Specific composition: 兩隻戴護目鏡技師角色在終點握手. No text, letters, numerals, punctuation, logos, watermark, UI panel, background scene, gore or realistic violence. One composition only; do not include the message label as text."
+  },
+  {
+    "season": "christmas",
+    "messageKey": "congratulations",
+    "authoringFile": "release-input/ui/race-messages/christmas/congratulations.png",
+    "prompt": "Single original game HUD sticker, square RGBA with actual transparent background. Centered subject, generous 12% transparent margins; clean silhouette readable at 64 pixels. Hand-drawn colored-pencil Christmas illustration with visible dry pencil grain and layered crosshatching, forest green and cranberry red, warm ivory highlights. Recurring character: friendly little reindeer racing mechanic wearing goggles, green overalls and a red scarf, expressive mitten hands and small antlers. Vehicles are original Christmas miniature four-wheel racing cars. No rabbits, moons, carrots or Chinese architecture; no watercolor, no glossy 3D or smooth vector. Semantic message: congratulations. Specific composition: 技師角色高舉無字月桂獎盃，紙花與星屑飄落. No text, letters, numerals, punctuation, logos, watermark, UI panel, background scene, gore or realistic violence. One composition only; do not include the message label as text."
+  },
+  {
+    "season": "christmas",
+    "messageKey": "nice-race",
+    "authoringFile": "release-input/ui/race-messages/christmas/nice-race.png",
+    "prompt": "Single original game HUD sticker, square RGBA with actual transparent background. Centered subject, generous 12% transparent margins; clean silhouette readable at 64 pixels. Hand-drawn colored-pencil Christmas illustration with visible dry pencil grain and layered crosshatching, forest green and cranberry red, warm ivory highlights. Recurring character: friendly little reindeer racing mechanic wearing goggles, green overalls and a red scarf, expressive mitten hands and small antlers. Vehicles are original Christmas miniature four-wheel racing cars. No rabbits, moons, carrots or Chinese architecture; no watercolor, no glossy 3D or smooth vector. Semantic message: nice-race. Specific composition: 迷你四驅車沿完整優美賽道穿越終點. No text, letters, numerals, punctuation, logos, watermark, UI panel, background scene, gore or realistic violence. One composition only; do not include the message label as text."
+  },
+  {
+    "season": "christmas",
+    "messageKey": "great-finish",
+    "authoringFile": "release-input/ui/race-messages/christmas/great-finish.png",
+    "prompt": "Single original game HUD sticker, square RGBA with actual transparent background. Centered subject, generous 12% transparent margins; clean silhouette readable at 64 pixels. Hand-drawn colored-pencil Christmas illustration with visible dry pencil grain and layered crosshatching, forest green and cranberry red, warm ivory highlights. Recurring character: friendly little reindeer racing mechanic wearing goggles, green overalls and a red scarf, expressive mitten hands and small antlers. Vehicles are original Christmas miniature four-wheel racing cars. No rabbits, moons, carrots or Chinese architecture; no watercolor, no glossy 3D or smooth vector. Semantic message: great-finish. Specific composition: 技師角色車乘強烈金色暖色光穿過終點門. No text, letters, numerals, punctuation, logos, watermark, UI panel, background scene, gore or realistic violence. One composition only; do not include the message label as text."
+  },
+  {
+    "season": "christmas",
+    "messageKey": "good-effort",
+    "authoringFile": "release-input/ui/race-messages/christmas/good-effort.png",
+    "prompt": "Single original game HUD sticker, square RGBA with actual transparent background. Centered subject, generous 12% transparent margins; clean silhouette readable at 64 pixels. Hand-drawn colored-pencil Christmas illustration with visible dry pencil grain and layered crosshatching, forest green and cranberry red, warm ivory highlights. Recurring character: friendly little reindeer racing mechanic wearing goggles, green overalls and a red scarf, expressive mitten hands and small antlers. Vehicles are original Christmas miniature four-wheel racing cars. No rabbits, moons, carrots or Chinese architecture; no watercolor, no glossy 3D or smooth vector. Semantic message: good-effort. Specific composition: 有磨損但完整的迷你四驅車抵達終點，技師角色握拳. No text, letters, numerals, punctuation, logos, watermark, UI panel, background scene, gore or realistic violence. One composition only; do not include the message label as text."
+  },
+  {
+    "season": "christmas",
+    "messageKey": "rematch",
+    "authoringFile": "release-input/ui/race-messages/christmas/rematch.png",
+    "prompt": "Single original game HUD sticker, square RGBA with actual transparent background. Centered subject, generous 12% transparent margins; clean silhouette readable at 64 pixels. Hand-drawn colored-pencil Christmas illustration with visible dry pencil grain and layered crosshatching, forest green and cranberry red, warm ivory highlights. Recurring character: friendly little reindeer racing mechanic wearing goggles, green overalls and a red scarf, expressive mitten hands and small antlers. Vehicles are original Christmas miniature four-wheel racing cars. No rabbits, moons, carrots or Chinese architecture; no watercolor, no glossy 3D or smooth vector. Semantic message: rematch. Specific composition: 兩台迷你四驅車繞循環賽道回到並列起跑雲台. No text, letters, numerals, punctuation, logos, watermark, UI panel, background scene, gore or realistic violence. One composition only; do not include the message label as text."
+  },
+  {
+    "season": "christmas",
+    "messageKey": "goodbye",
+    "authoringFile": "release-input/ui/race-messages/christmas/goodbye.png",
+    "prompt": "Single original game HUD sticker, square RGBA with actual transparent background. Centered subject, generous 12% transparent margins; clean silhouette readable at 64 pixels. Hand-drawn colored-pencil Christmas illustration with visible dry pencil grain and layered crosshatching, forest green and cranberry red, warm ivory highlights. Recurring character: friendly little reindeer racing mechanic wearing goggles, green overalls and a red scarf, expressive mitten hands and small antlers. Vehicles are original Christmas miniature four-wheel racing cars. No rabbits, moons, carrots or Chinese architecture; no watercolor, no glossy 3D or smooth vector. Semantic message: goodbye. Specific composition: 技師角色揮手，迷你四驅車沿雲路駛向遠方小燈光. No text, letters, numerals, punctuation, logos, watermark, UI panel, background scene, gore or realistic violence. One composition only; do not include the message label as text."
+  }
+]

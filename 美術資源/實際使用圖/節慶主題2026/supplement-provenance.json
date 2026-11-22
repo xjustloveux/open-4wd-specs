@@ -1,0 +1,51 @@
+{
+  "date": "2026-10-24",
+  "reason": "Parity correction against default and moon-rabbit themes",
+  "tool": "image_gen",
+  "assets": [
+    {
+      "season": "halloween",
+      "file": "scene-workshop-source.png",
+      "source": "openai-image-generation export (temporary export id removed; D-20261104-02)",
+      "authoringFile": "release-input/ui/themes/halloween/scene-workshop-source.png",
+      "sha256": "dea4cb350e94b643c1e2a42eacb4996b9e4cec306dff96910eb2083d791996e2",
+      "direction": "American vintage engraved Halloween workshop; empty central platform, no vehicles, edge pumpkins and bats."
+    },
+    {
+      "season": "christmas",
+      "file": "scene-workshop-source.png",
+      "source": "openai-image-generation export (temporary export id removed; D-20261104-02)",
+      "authoringFile": "release-input/ui/themes/christmas/scene-workshop-source.png",
+      "sha256": "a7d65e94a6035d07c0a8ecab05f28f02703695882cb403d4a25591bb82bedc86",
+      "direction": "Colored pencil Christmas workshop; ivory paper, pigment grain and crosshatching; empty central platform, no vehicles."
+    },
+    {
+      "season": "halloween",
+      "file": "scene-ugc-source.png",
+      "source": "openai-image-generation export (temporary export id removed; D-20261104-02)",
+      "authoringFile": "release-input/ui/themes/halloween/scene-ugc-source.png",
+      "sha256": "b0a9ff77decc31049e411f15cc32aed26ffbe2f86c4c9ef8597eeb78f555bbae",
+      "direction": "Overhead Halloween track designer desk; engraved track pieces and tools at edges; quiet plum drafting mat."
+    },
+    {
+      "season": "christmas",
+      "file": "scene-ugc-source.png",
+      "source": "openai-image-generation export (temporary export id removed; D-20261104-02)",
+      "authoringFile": "release-input/ui/themes/christmas/scene-ugc-source.png",
+      "sha256": "2f1c87c49fe5b09ebceb5fd86ee79cceb050b03ee0d910c879c1e4fdf7278143",
+      "direction": "Overhead colored-pencil Christmas track designer desk; track pieces, fir, ribbons and pencils at edges, ivory drafting sheet."
+    }
+  ],
+  "countdown": {
+    "source": "render-countdown.cjs",
+    "type": "Authored SVG paths, existing theme emblems; no font dependency",
+    "frames": 8,
+    "durationMs": 800,
+    "loop": 1,
+    "canvas": [
+      512,
+      512
+    ],
+    "static": "Last frame; reduced-motion counterpart"
+  }
+}

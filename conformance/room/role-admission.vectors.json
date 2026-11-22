@@ -1,0 +1,39 @@
+{
+  "family": "room/role-admission",
+  "spec": [
+    "程式架構/room-runtime.md",
+    "decisions/D-20260806-01-OPAQUE角色邀請驗證.md"
+  ],
+  "formatVersion": 1,
+  "encoding": {
+    "bytes": "hex-lower",
+    "bigint": "decimal-string"
+  },
+  "generatedBy": "open-4wd@0.0.0",
+  "vectors": [
+    {
+      "name": "role-invitations-are-distinct-192-bit-values",
+      "input": {
+        "participant": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+        "spectator": "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+      },
+      "expected": {
+        "participantCanonical": true,
+        "spectatorCanonical": true,
+        "distinct": true,
+        "decodedBytes": 24
+      }
+    },
+    {
+      "name": "weak-and-malformed-invitations-fail-closed",
+      "input": {
+        "weak": "watchers",
+        "padded": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA="
+      },
+      "expected": {
+        "weakAccepted": false,
+        "paddedAccepted": false
+      }
+    }
+  ]
+}

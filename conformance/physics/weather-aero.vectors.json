@@ -1,0 +1,119 @@
+{
+  "family": "physics/weather-aero",
+  "spec": [
+    "算式表.md",
+    "建模參數/場地.md",
+    "decisions/D-20260811-07-相對氣流六軸Aero與決定性Weather-Patch.md"
+  ],
+  "formatVersion": 1,
+  "encoding": {
+    "bytes": "hex-lower",
+    "bigint": "decimal-string"
+  },
+  "generatedBy": "open-4wd@0.0.0",
+  "vectors": [
+    {
+      "name": "rain-schedule-and-still-air-drag",
+      "expected": {
+        "seed": 416588127,
+        "scheduler": {
+          "accumulatorX1000": 0,
+          "spawnOrdinal": 3,
+          "active": [
+            {
+              "id": 0,
+              "type": "rain",
+              "pointM": [
+                -0.5,
+                0,
+                0.5
+              ],
+              "normal": [
+                0,
+                1,
+                0
+              ],
+              "radiusM": 0.75,
+              "bornFrame": 0,
+              "expiresFrame": 3600,
+              "frictionModifier": 0.65,
+              "rollingModifier": 1.5
+            },
+            {
+              "id": 1,
+              "type": "rain",
+              "pointM": [
+                0.5,
+                0,
+                -0.5
+              ],
+              "normal": [
+                0,
+                1,
+                0
+              ],
+              "radiusM": 0.75,
+              "bornFrame": 120,
+              "expiresFrame": 3720,
+              "frictionModifier": 0.65,
+              "rollingModifier": 1.5
+            },
+            {
+              "id": 2,
+              "type": "rain",
+              "pointM": [
+                0.5,
+                0,
+                0.5
+              ],
+              "normal": [
+                0,
+                1,
+                0
+              ],
+              "radiusM": 0.75,
+              "bornFrame": 240,
+              "expiresFrame": 3840,
+              "frictionModifier": 0.65,
+              "rollingModifier": 1.5
+            }
+          ]
+        },
+        "aerodynamic": {
+          "applications": [
+            {
+              "pointWorldM": [
+                0,
+                0.02,
+                0
+              ],
+              "impulseNs": [
+                0,
+                0,
+                0.01
+              ]
+            },
+            {
+              "pointWorldM": [
+                0,
+                0.02,
+                0
+              ],
+              "impulseNs": [
+                0,
+                -0.002,
+                0
+              ]
+            }
+          ],
+          "totalImpulseNs": [
+            0,
+            -0.002,
+            0.01
+          ],
+          "forceScale": 1
+        }
+      }
+    }
+  ]
+}

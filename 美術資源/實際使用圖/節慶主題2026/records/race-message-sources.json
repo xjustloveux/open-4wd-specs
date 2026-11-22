@@ -1,0 +1,1734 @@
+{
+  "halloween": {
+    "after-you": {
+      "source": "release-input/ui/race-messages/halloween/after-you.png",
+      "sha256": "fba272c3a61b35af29d833caa495bddf621967be381be5ae63839745ea1c5ddb",
+      "bytes": 1549990,
+      "size": [
+        1254,
+        1254
+      ]
+    },
+    "all-good": {
+      "source": "release-input/ui/race-messages/halloween/all-good.png",
+      "sha256": "2d98c7886e75822f27f29b512d649722a7be4bf58deb18f67420d3a617080d0b",
+      "bytes": 2526474,
+      "size": [
+        1254,
+        1254
+      ]
+    },
+    "almost-there": {
+      "source": "release-input/ui/race-messages/halloween/almost-there.png",
+      "sha256": "8470574d9c9afa0b7d9e0f4ecbb50032fc1c206904b38a00cb37689f7239a025",
+      "bytes": 1989915,
+      "size": [
+        1254,
+        1254
+      ]
+    },
+    "amazing": {
+      "source": "release-input/ui/race-messages/halloween/amazing.png",
+      "sha256": "35893d98cbeeba99ca2c80d0dd90c7add458058f4d1acd35749cf5962268138e",
+      "bytes": 2153400,
+      "size": [
+        1254,
+        1254
+      ]
+    },
+    "awesome": {
+      "source": "release-input/ui/race-messages/halloween/awesome.png",
+      "sha256": "d40290fe8a0e9568b92ca178c774e6d2d6a9d9409a1ad1b9a02d51eaf304cefb",
+      "bytes": 1835058,
+      "size": [
+        1254,
+        1254
+      ]
+    },
+    "behind-you": {
+      "source": "release-input/ui/race-messages/halloween/behind-you.png",
+      "sha256": "d83edcabcf15826ab6c0d35333257fa76d7dc669cb2499222055e33a19ebb2f9",
+      "bytes": 1934102,
+      "size": [
+        1254,
+        1254
+      ]
+    },
+    "blocked-path": {
+      "source": "release-input/ui/race-messages/halloween/blocked-path.png",
+      "sha256": "1ae3719b5193d5d652de4d06a9745e1ca8c1b080611bb1d16d8e64d142d1b802",
+      "bytes": 2612200,
+      "size": [
+        1254,
+        1254
+      ]
+    },
+    "cant-move": {
+      "source": "release-input/ui/race-messages/halloween/cant-move.png",
+      "sha256": "f012c5261f530f6b08f77604187558152aabf114fbc663e2fec60a07c3ab4413",
+      "bytes": 1867092,
+      "size": [
+        1254,
+        1254
+      ]
+    },
+    "catching-up": {
+      "source": "release-input/ui/race-messages/halloween/catching-up.png",
+      "sha256": "b37e44e48cb3b0cd0fe1502fab2a76ec1da0cdf1e9a7290178b24f7b8dfb3a1c",
+      "bytes": 1918757,
+      "size": [
+        1254,
+        1254
+      ]
+    },
+    "clean-move": {
+      "source": "release-input/ui/race-messages/halloween/clean-move.png",
+      "sha256": "9d57c2dc2b52420c1a19f87037059911371ec11a44402c080d0e927f5f2e3e21",
+      "bytes": 1694410,
+      "size": [
+        1254,
+        1254
+      ]
+    },
+    "close-one": {
+      "source": "release-input/ui/race-messages/halloween/close-one.png",
+      "sha256": "f2b56f7faee8624fd2128ff2e86971953d35361ab50218db81b70262e7ffe8d0",
+      "bytes": 2322374,
+      "size": [
+        1254,
+        1254
+      ]
+    },
+    "comeback": {
+      "source": "release-input/ui/race-messages/halloween/comeback.png",
+      "sha256": "6bc44e7c5efc686fbd5a36d457c6c9d0d1f78d8ffa08cda9ae77e7ec38ef4fa2",
+      "bytes": 2355696,
+      "size": [
+        1254,
+        1254
+      ]
+    },
+    "coming-through": {
+      "source": "release-input/ui/race-messages/halloween/coming-through.png",
+      "sha256": "f6b4539f660f4ba030b7838bc297ca40f77cd1618e8474a2d073b1a89e1624d3",
+      "bytes": 1816361,
+      "size": [
+        1254,
+        1254
+      ]
+    },
+    "congratulations": {
+      "source": "release-input/ui/race-messages/halloween/congratulations.png",
+      "sha256": "ff353a6759100ae8c1d125a0b5aace6030f4a7fab779e359fd461d4b6475b95c",
+      "bytes": 2164871,
+      "size": [
+        1254,
+        1254
+      ]
+    },
+    "crash-ahead": {
+      "source": "release-input/ui/race-messages/halloween/crash-ahead.png",
+      "sha256": "f858fead8b6403a7a336fa385881b5e35631b5e2179a382c104c0e8f151e0343",
+      "bytes": 1813970,
+      "size": [
+        1254,
+        1254
+      ]
+    },
+    "danger": {
+      "source": "release-input/ui/race-messages/halloween/danger.png",
+      "sha256": "596f5b5b56d70c18acb534f356b129452de3b388e3ff7a82a59626452350b5fa",
+      "bytes": 2188690,
+      "size": [
+        1254,
+        1254
+      ]
+    },
+    "debris-ahead": {
+      "source": "release-input/ui/race-messages/halloween/debris-ahead.png",
+      "sha256": "77a74f60beef555515fe6617746e0ed72e132317c9cfd8e1d3e75b87b013944a",
+      "bytes": 1956189,
+      "size": [
+        1254,
+        1254
+      ]
+    },
+    "dont-give-up": {
+      "source": "release-input/ui/race-messages/halloween/dont-give-up.png",
+      "sha256": "905412893482c7b3d365047b578e71f58e9004b52abd3b47bd40d11a60046726",
+      "bytes": 2256613,
+      "size": [
+        1254,
+        1254
+      ]
+    },
+    "excuse-me": {
+      "source": "release-input/ui/race-messages/halloween/excuse-me.png",
+      "sha256": "86c7ea58237ef6b3ad6b9114137007a0432661a1fc60b7dd48836383a28ffc57",
+      "bytes": 1545912,
+      "size": [
+        1254,
+        1254
+      ]
+    },
+    "facepalm": {
+      "source": "release-input/ui/race-messages/halloween/facepalm.png",
+      "sha256": "03e06ea52731948ccc46f5fe3ef130e076184566f01a64526ef145bd1d026287",
+      "bytes": 1827313,
+      "size": [
+        1254,
+        1254
+      ]
+    },
+    "go-ahead": {
+      "source": "release-input/ui/race-messages/halloween/go-ahead.png",
+      "sha256": "ccc050c01d56799d5f133bce2c42dd13b2c45fbcfc677637254f9cdddfc4e14b",
+      "bytes": 1790522,
+      "size": [
+        1254,
+        1254
+      ]
+    },
+    "good-defense": {
+      "source": "release-input/ui/race-messages/halloween/good-defense.png",
+      "sha256": "8afa94201a41dccf0c0400f323b8ae629d9f0576bf9003fd677b0851acf70e9a",
+      "bytes": 2143182,
+      "size": [
+        1254,
+        1254
+      ]
+    },
+    "good-dodge": {
+      "source": "release-input/ui/race-messages/halloween/good-dodge.png",
+      "sha256": "06e0cd24b41e58bdef920ebe8189992666bee5826230022ff4892faaa6a1931c",
+      "bytes": 1927586,
+      "size": [
+        1254,
+        1254
+      ]
+    },
+    "good-effort": {
+      "source": "release-input/ui/race-messages/halloween/good-effort.png",
+      "sha256": "e4663fcf3a8041699876e41f56ae9285eeac8f1e0768963b5daeedc6ac1e712b",
+      "bytes": 1835203,
+      "size": [
+        1254,
+        1254
+      ]
+    },
+    "good-game": {
+      "source": "release-input/ui/race-messages/halloween/good-game.png",
+      "sha256": "821b35799362f229d76fcebb510fb68f1c2f3af908bc32ce24031e3856c062d6",
+      "bytes": 1474433,
+      "size": [
+        1254,
+        1254
+      ]
+    },
+    "good-luck": {
+      "source": "release-input/ui/race-messages/halloween/good-luck.png",
+      "sha256": "366fe76e3671dde4b1314b3316b01b46043e4cff0b25c813e4009595ea372caa",
+      "bytes": 2027809,
+      "size": [
+        1254,
+        1254
+      ]
+    },
+    "good-save": {
+      "source": "release-input/ui/race-messages/halloween/good-save.png",
+      "sha256": "b1509644bc1e0d8c61543c83a7238a6f05844100eed94d1d4adb461a77fc99ae",
+      "bytes": 1929643,
+      "size": [
+        1254,
+        1254
+      ]
+    },
+    "goodbye": {
+      "source": "release-input/ui/race-messages/halloween/goodbye.png",
+      "sha256": "308786e9e5a3e99c1a6a62c754dbd15b00e66ce761c1a5634a878863f8cf13ae",
+      "bytes": 1873543,
+      "size": [
+        1254,
+        1254
+      ]
+    },
+    "great-finish": {
+      "source": "release-input/ui/race-messages/halloween/great-finish.png",
+      "sha256": "5b4ce3754e0c8f878747d3ab2f99a97ddca87d2e4fbcb4c56940f4773ecedd3a",
+      "bytes": 2664544,
+      "size": [
+        1254,
+        1254
+      ]
+    },
+    "great-overtake": {
+      "source": "release-input/ui/race-messages/halloween/great-overtake.png",
+      "sha256": "c7e5fa9fc35be7ead69f13ab270d67154173664ed7c25cc5fd55268c072e994a",
+      "bytes": 2103762,
+      "size": [
+        1254,
+        1254
+      ]
+    },
+    "great": {
+      "source": "release-input/ui/race-messages/halloween/great.png",
+      "sha256": "ab586b1de1d605ea394ab2e9beaf63b997760f253bbdac259397065b8decc05b",
+      "bytes": 2592282,
+      "size": [
+        1254,
+        1254
+      ]
+    },
+    "have-fun": {
+      "source": "release-input/ui/race-messages/halloween/have-fun.png",
+      "sha256": "00ce346056a8e5cfd6cdbffac8d72c44fbbf0847080ae5df6870fb09ff5eb066",
+      "bytes": 2255382,
+      "size": [
+        1254,
+        1254
+      ]
+    },
+    "hello": {
+      "source": "release-input/ui/race-messages/halloween/hello.png",
+      "sha256": "2a521bf95ffdb31a1250beed17fcb5ad63a6e8b91562ffa7444f50d6bec07616",
+      "bytes": 2228918,
+      "size": [
+        1254,
+        1254
+      ]
+    },
+    "here-we-go": {
+      "source": "release-input/ui/race-messages/halloween/here-we-go.png",
+      "sha256": "2ab75cf17f53d41a04a3300e427d13b65a027fe977e4b7ea33729a533fea3332",
+      "bytes": 2656198,
+      "size": [
+        1254,
+        1254
+      ]
+    },
+    "i-crashed": {
+      "source": "release-input/ui/race-messages/halloween/i-crashed.png",
+      "sha256": "8a75e0b604a32ab955cd9d50531077d03b88aac76b46e03cf7af83a61b7111b2",
+      "bytes": 1578292,
+      "size": [
+        1254,
+        1254
+      ]
+    },
+    "im-damaged": {
+      "source": "release-input/ui/race-messages/halloween/im-damaged.png",
+      "sha256": "21c821e37c97d64137a2cdf0a1ec591e56707e597aa721360fb652703bafcf8b",
+      "bytes": 1635854,
+      "size": [
+        1254,
+        1254
+      ]
+    },
+    "im-lost": {
+      "source": "release-input/ui/race-messages/halloween/im-lost.png",
+      "sha256": "afa6a0425ffdba56e9c899d992c0070103b6f09da99d4bb3bce322110c4412f6",
+      "bytes": 1615401,
+      "size": [
+        1254,
+        1254
+      ]
+    },
+    "im-out": {
+      "source": "release-input/ui/race-messages/halloween/im-out.png",
+      "sha256": "77b5e5005e821ccc34c172c9690464e51cc65a228842cbc025dae6a2852ea6fc",
+      "bytes": 2016408,
+      "size": [
+        1254,
+        1254
+      ]
+    },
+    "im-stuck": {
+      "source": "release-input/ui/race-messages/halloween/im-stuck.png",
+      "sha256": "48da3b1a47472068a6033aba84e651ee8db385534fc46b4fe666efd90a6792c4",
+      "bytes": 1926332,
+      "size": [
+        1254,
+        1254
+      ]
+    },
+    "impressive": {
+      "source": "release-input/ui/race-messages/halloween/impressive.png",
+      "sha256": "1964ff88e44e5e2e91c4f21b6079927a5cc5ca830b0cff0021925ca5215ff380",
+      "bytes": 2105690,
+      "size": [
+        1254,
+        1254
+      ]
+    },
+    "incoming-attack": {
+      "source": "release-input/ui/race-messages/halloween/incoming-attack.png",
+      "sha256": "be6a1bfe72249c2769a18d88b419e3104b04433556b5332115bb589e21fee548",
+      "bytes": 1958660,
+      "size": [
+        1254,
+        1254
+      ]
+    },
+    "its-okay": {
+      "source": "release-input/ui/race-messages/halloween/its-okay.png",
+      "sha256": "6de8b1de62ec896782b929ded945d141ac2411f994f6e8532ffe76fc933888f0",
+      "bytes": 2138955,
+      "size": [
+        1254,
+        1254
+      ]
+    },
+    "jump-ahead": {
+      "source": "release-input/ui/race-messages/halloween/jump-ahead.png",
+      "sha256": "9c595964d5642e71e9c85057f1d4036926f970dea06d57fb5602a0ea5c0f281a",
+      "bytes": 1870505,
+      "size": [
+        1254,
+        1254
+      ]
+    },
+    "keep-going": {
+      "source": "release-input/ui/race-messages/halloween/keep-going.png",
+      "sha256": "466a4b73233581ace0e4a204d753276c0a9d0e86ee64b8ab06a3b323b4c76132",
+      "bytes": 1681402,
+      "size": [
+        1254,
+        1254
+      ]
+    },
+    "lets-go": {
+      "source": "release-input/ui/race-messages/halloween/lets-go.png",
+      "sha256": "c5d05f9762863babbaece1a13caf4daa4bb56f6843413882db7f268273bc0acb",
+      "bytes": 2803239,
+      "size": [
+        1254,
+        1254
+      ]
+    },
+    "lol": {
+      "source": "release-input/ui/race-messages/halloween/lol.png",
+      "sha256": "4539ba8f0c46439837803d6dc49834ed86bc584fb151c60a592159921d0a3af2",
+      "bytes": 2085148,
+      "size": [
+        1254,
+        1254
+      ]
+    },
+    "low-energy": {
+      "source": "release-input/ui/race-messages/halloween/low-energy.png",
+      "sha256": "6a83d6cd4d5ba9cd2ef9a89b457fabfcad1e8bdf348502e1a25f919b59440bf0",
+      "bytes": 1896248,
+      "size": [
+        1254,
+        1254
+      ]
+    },
+    "lucky": {
+      "source": "release-input/ui/race-messages/halloween/lucky.png",
+      "sha256": "bd11350b6a7e2fcbec79f32c1baa3a74b4b7ff46d7fb571d16ab15b2c611661a",
+      "bytes": 2332497,
+      "size": [
+        1254,
+        1254
+      ]
+    },
+    "make-way": {
+      "source": "release-input/ui/race-messages/halloween/make-way.png",
+      "sha256": "68b35f0b257a7e93a0b62546cb0773d5225b9d257abfc2a66c707bfd40b3812f",
+      "bytes": 1703424,
+      "size": [
+        1254,
+        1254
+      ]
+    },
+    "maybe": {
+      "source": "release-input/ui/race-messages/halloween/maybe.png",
+      "sha256": "d20f117c2a6032e7b3dd0f90efcc6141ebedb46b031fab53f4fb4b3385e7f7d1",
+      "bytes": 1801184,
+      "size": [
+        1254,
+        1254
+      ]
+    },
+    "my-bad": {
+      "source": "release-input/ui/race-messages/halloween/my-bad.png",
+      "sha256": "12d6cf90027eb52fe7d1741ba8db52efa59a52589e01b270bfd0d7f71dcfaba4",
+      "bytes": 1870219,
+      "size": [
+        1254,
+        1254
+      ]
+    },
+    "narrow-path": {
+      "source": "release-input/ui/race-messages/halloween/narrow-path.png",
+      "sha256": "1421bfd70fbef65ea3d89a19f53436b599222f279ad142e46c794461dab964ff",
+      "bytes": 3035113,
+      "size": [
+        1254,
+        1254
+      ]
+    },
+    "next-time": {
+      "source": "release-input/ui/race-messages/halloween/next-time.png",
+      "sha256": "0f471a30b991676f005b6cb97a939ded4691a539bd7930a4b08a3a66d5818998",
+      "bytes": 3043148,
+      "size": [
+        1254,
+        1254
+      ]
+    },
+    "nice-hit": {
+      "source": "release-input/ui/race-messages/halloween/nice-hit.png",
+      "sha256": "6c813392a1c4bd9b461ca3151afcd6d2c84d128ea15d73237e34a94972797395",
+      "bytes": 1848577,
+      "size": [
+        1254,
+        1254
+      ]
+    },
+    "nice-race": {
+      "source": "release-input/ui/race-messages/halloween/nice-race.png",
+      "sha256": "94f6a973e9d8cc17fcd5896762afde54eb0d6cf50cf5597a44fdf0eb21007825",
+      "bytes": 2127347,
+      "size": [
+        1254,
+        1254
+      ]
+    },
+    "nice-to-meet-you": {
+      "source": "release-input/ui/race-messages/halloween/nice-to-meet-you.png",
+      "sha256": "a3e328b046e1b6b43f5397f7dd51533008cc54b2c3f3f765f0e484251d628c66",
+      "bytes": 1676197,
+      "size": [
+        1254,
+        1254
+      ]
+    },
+    "nice-try": {
+      "source": "release-input/ui/race-messages/halloween/nice-try.png",
+      "sha256": "2c0f170d0fc6a840d21bbc1789288a0e5b19d18c78b0d125bc1c5b8713048e53",
+      "bytes": 1864748,
+      "size": [
+        1254,
+        1254
+      ]
+    },
+    "nice": {
+      "source": "release-input/ui/race-messages/halloween/nice.png",
+      "sha256": "e5ae94f428b271d6c7fdaad866b895ad137850962ee61ce4a601a80955dc8a78",
+      "bytes": 1987780,
+      "size": [
+        1254,
+        1254
+      ]
+    },
+    "no-hard-feelings": {
+      "source": "release-input/ui/race-messages/halloween/no-hard-feelings.png",
+      "sha256": "944b5d9d73bc2d84b85815a33e463bfa90e4bcc998edb3b642e95f262cefdc95",
+      "bytes": 2001304,
+      "size": [
+        1254,
+        1254
+      ]
+    },
+    "no-problem": {
+      "source": "release-input/ui/race-messages/halloween/no-problem.png",
+      "sha256": "73146f7d5dd9bac0fae9dcd0c46c3ba3f5c8d64996608ad3cf3e0c1581b6d818",
+      "bytes": 1856086,
+      "size": [
+        1254,
+        1254
+      ]
+    },
+    "no-way": {
+      "source": "release-input/ui/race-messages/halloween/no-way.png",
+      "sha256": "ddd3079d43276b8eef3f069228136ab18fccbe60cc8c699105bde11f072b7ad9",
+      "bytes": 2718991,
+      "size": [
+        1254,
+        1254
+      ]
+    },
+    "no": {
+      "source": "release-input/ui/race-messages/halloween/no.png",
+      "sha256": "24fc51fe56d1d0b7ae34ceeb02cc09d138f80b37ec29e0e95e5dd9bba13aceb3",
+      "bytes": 1871311,
+      "size": [
+        1254,
+        1254
+      ]
+    },
+    "not-sure": {
+      "source": "release-input/ui/race-messages/halloween/not-sure.png",
+      "sha256": "f69dde527468c33b02658d3cdfca7a56d747f9dc320266bd2b542639cf58cd9f",
+      "bytes": 1881928,
+      "size": [
+        1254,
+        1254
+      ]
+    },
+    "obstacle-ahead": {
+      "source": "release-input/ui/race-messages/halloween/obstacle-ahead.png",
+      "sha256": "101ce1f3aa4766085c674d172be1e11e56555872ab99972bbc1637b6d18c4ea9",
+      "bytes": 2227235,
+      "size": [
+        1254,
+        1254
+      ]
+    },
+    "okay": {
+      "source": "release-input/ui/race-messages/halloween/okay.png",
+      "sha256": "7ce0bcc24d2d4c8d9843ef5cf67446d50b2e528a4b9c41584474a4e00637c672",
+      "bytes": 1939609,
+      "size": [
+        1254,
+        1254
+      ]
+    },
+    "on-your-left": {
+      "source": "release-input/ui/race-messages/halloween/on-your-left.png",
+      "sha256": "b63c99551b52fa4cef9d7da1dc25a0adbcd33750a584be4c47590b5a2bd285e4",
+      "bytes": 1997063,
+      "size": [
+        1254,
+        1254
+      ]
+    },
+    "on-your-right": {
+      "source": "release-input/ui/race-messages/halloween/on-your-right.png",
+      "sha256": "d083a5c4dde02ba0e225d080a32807e9ecbe0a1d465090800544deed355af87b",
+      "bytes": 2001925,
+      "size": [
+        1254,
+        1254
+      ]
+    },
+    "one-more-time": {
+      "source": "release-input/ui/race-messages/halloween/one-more-time.png",
+      "sha256": "cdaef8b1c3f7f4d707d6bf900792768c4e1c8674ee02406157e56441ef7edbbf",
+      "bytes": 2357501,
+      "size": [
+        1254,
+        1254
+      ]
+    },
+    "oops": {
+      "source": "release-input/ui/race-messages/halloween/oops.png",
+      "sha256": "f97a2552f2a8020ff29b3d45c82fb9b83a85e9d65fc1b9cec63c5a34fc247fd7",
+      "bytes": 1392341,
+      "size": [
+        1254,
+        1254
+      ]
+    },
+    "photo-finish": {
+      "source": "release-input/ui/race-messages/halloween/photo-finish.png",
+      "sha256": "6e198ecd54f7b30a6b272cdd579764643af07ba8e0d54e7791d991d8cf049f47",
+      "bytes": 1614817,
+      "size": [
+        1254,
+        1254
+      ]
+    },
+    "please-stop": {
+      "source": "release-input/ui/race-messages/halloween/please-stop.png",
+      "sha256": "fb1e49b30787628b7cf02f43c3fa72a7094675ced85c2329d57bf263a279ef67",
+      "bytes": 1840436,
+      "size": [
+        1254,
+        1254
+      ]
+    },
+    "please": {
+      "source": "release-input/ui/race-messages/halloween/please.png",
+      "sha256": "f3a289fd4288c908bb3c37a8c079a71bcd6e932635c2090ca2f5e59b941cf6e6",
+      "bytes": 1863173,
+      "size": [
+        1254,
+        1254
+      ]
+    },
+    "recovering": {
+      "source": "release-input/ui/race-messages/halloween/recovering.png",
+      "sha256": "3c89a5a091e37bb3f41a12b7e3931d78cd9fbd42a0261b80af0c8bdd9388fcb3",
+      "bytes": 2287319,
+      "size": [
+        1254,
+        1254
+      ]
+    },
+    "rematch": {
+      "source": "release-input/ui/race-messages/halloween/rematch.png",
+      "sha256": "11978b27c01fbc2fd604d811eaf4614830c0682df14e3a61c2287144f5b6dc52",
+      "bytes": 2101094,
+      "size": [
+        1254,
+        1254
+      ]
+    },
+    "respect": {
+      "source": "release-input/ui/race-messages/halloween/respect.png",
+      "sha256": "27548877bb90bdb60b1ea7fa7d6cd2cc70f08ad455cd557bbcd355eb83824466",
+      "bytes": 1939127,
+      "size": [
+        1254,
+        1254
+      ]
+    },
+    "rough-road": {
+      "source": "release-input/ui/race-messages/halloween/rough-road.png",
+      "sha256": "d66515d2e1cdac2ef85a4fdefae52d38e96e2aaa44982d88f63b548f26c43f26",
+      "bytes": 1749372,
+      "size": [
+        1254,
+        1254
+      ]
+    },
+    "slippery-road": {
+      "source": "release-input/ui/race-messages/halloween/slippery-road.png",
+      "sha256": "4ddc8ef47ceab2167c84a63e7ee1314bee6d3f46b4e4e2bf87d05e2a4cb2721b",
+      "bytes": 2241689,
+      "size": [
+        1254,
+        1254
+      ]
+    },
+    "slowing-down": {
+      "source": "release-input/ui/race-messages/halloween/slowing-down.png",
+      "sha256": "978ae2dbacf79d20051a75b103b4728c84f544ad00e05bd239fa3a90f75152f3",
+      "bytes": 1645041,
+      "size": [
+        1254,
+        1254
+      ]
+    },
+    "sorry": {
+      "source": "release-input/ui/race-messages/halloween/sorry.png",
+      "sha256": "95b86117fecceaed95afca60b9385983667ef2719cc55dbd1937e1a7a91c6ef0",
+      "bytes": 1347173,
+      "size": [
+        1254,
+        1254
+      ]
+    },
+    "stopping": {
+      "source": "release-input/ui/race-messages/halloween/stopping.png",
+      "sha256": "0e831493930cfb0276e2747915799a80b6b3de6db489c3e5965e063b42896825",
+      "bytes": 1932527,
+      "size": [
+        1254,
+        1254
+      ]
+    },
+    "take-your-time": {
+      "source": "release-input/ui/race-messages/halloween/take-your-time.png",
+      "sha256": "1b7714d9c1b16c8d0427bfec64c5272f89188cbb04e56866235568317041a0be",
+      "bytes": 1837446,
+      "size": [
+        1254,
+        1254
+      ]
+    },
+    "thanks": {
+      "source": "release-input/ui/race-messages/halloween/thanks.png",
+      "sha256": "5c28dd886881f178e171de7180f78ff5b8fa517bf4ae6d1fde83ac3e224e1063",
+      "bytes": 2012956,
+      "size": [
+        1254,
+        1254
+      ]
+    },
+    "that-hurt": {
+      "source": "release-input/ui/race-messages/halloween/that-hurt.png",
+      "sha256": "9b6096ee75772c8f7b8f8319f6a62d2f6c9158c6b136c0372b30c4b0220a474f",
+      "bytes": 1649114,
+      "size": [
+        1254,
+        1254
+      ]
+    },
+    "trap-ahead": {
+      "source": "release-input/ui/race-messages/halloween/trap-ahead.png",
+      "sha256": "39ee41a83c4621bb112d9c0dd2df9ae7dc550d3b44a2d8bca6e9a44acab4c1ad",
+      "bytes": 1573917,
+      "size": [
+        1254,
+        1254
+      ]
+    },
+    "understood": {
+      "source": "release-input/ui/race-messages/halloween/understood.png",
+      "sha256": "a78b78175a1ade67ef5e02dcc1b17413c141f7e6eece594ffff16fd509a3edc7",
+      "bytes": 2034480,
+      "size": [
+        1254,
+        1254
+      ]
+    },
+    "unlucky": {
+      "source": "release-input/ui/race-messages/halloween/unlucky.png",
+      "sha256": "8d92a081e6c40d23baa16538e29a1d62868d768c12a4e64f293c8c18baaca0af",
+      "bytes": 1674659,
+      "size": [
+        1254,
+        1254
+      ]
+    },
+    "wait-a-moment": {
+      "source": "release-input/ui/race-messages/halloween/wait-a-moment.png",
+      "sha256": "16f0df7edd31308dcd043617f31589919033228bfdd0f6cbde78ae45d4adfeb2",
+      "bytes": 1815673,
+      "size": [
+        1254,
+        1254
+      ]
+    },
+    "wait-for-me": {
+      "source": "release-input/ui/race-messages/halloween/wait-for-me.png",
+      "sha256": "7c27e4a60fb631cd2b8cad61acb4aedf404d3454cebb9301ca39d57a0e6d191b",
+      "bytes": 1995887,
+      "size": [
+        1254,
+        1254
+      ]
+    },
+    "watch-out": {
+      "source": "release-input/ui/race-messages/halloween/watch-out.png",
+      "sha256": "a3e95b8d2d5a458af8a81d83f66e83164829fd8fee6f92c440512663fb1a022f",
+      "bytes": 1931283,
+      "size": [
+        1254,
+        1254
+      ]
+    },
+    "welcome": {
+      "source": "release-input/ui/race-messages/halloween/welcome.png",
+      "sha256": "d1a95ad5305d6645c8f45020cfdcfe84bf51efe4088b73c5ac824a347e8e02e4",
+      "bytes": 2164893,
+      "size": [
+        1254,
+        1254
+      ]
+    },
+    "well-done": {
+      "source": "release-input/ui/race-messages/halloween/well-done.png",
+      "sha256": "5da735dcff7d0a291f6a3f2cfbbc8120637df0960c241d66c5ea3b97456ee828",
+      "bytes": 2125456,
+      "size": [
+        1254,
+        1254
+      ]
+    },
+    "well-played": {
+      "source": "release-input/ui/race-messages/halloween/well-played.png",
+      "sha256": "e716935089dac101316d076b25ce50fa407097c2adc60e47328c673eef764c00",
+      "bytes": 1986129,
+      "size": [
+        1254,
+        1254
+      ]
+    },
+    "wow": {
+      "source": "release-input/ui/race-messages/halloween/wow.png",
+      "sha256": "4712a88eb432a667ef0ab30ab0b9fe13ee78b8436c1363554f33824a3b3d9f32",
+      "bytes": 2270880,
+      "size": [
+        1254,
+        1254
+      ]
+    },
+    "wrong-way": {
+      "source": "release-input/ui/race-messages/halloween/wrong-way.png",
+      "sha256": "dd99f1cd5d094431c5e3529028b4c760f4e9044df0726202af5a7edfb7a0b06f",
+      "bytes": 1969173,
+      "size": [
+        1254,
+        1254
+      ]
+    },
+    "yes": {
+      "source": "release-input/ui/race-messages/halloween/yes.png",
+      "sha256": "70649e138019b2ed770f43b585feb43d478f52fff7567c90999149dcb2f1ffd3",
+      "bytes": 1692903,
+      "size": [
+        1254,
+        1254
+      ]
+    },
+    "you-can-do-it": {
+      "source": "release-input/ui/race-messages/halloween/you-can-do-it.png",
+      "sha256": "d901d02878957d9f3c99a25cfbf59f8ceb022dd5a15fc5e7669b207be9d6098d",
+      "bytes": 2272301,
+      "size": [
+        1254,
+        1254
+      ]
+    }
+  },
+  "christmas": {
+    "after-you": {
+      "source": "release-input/ui/race-messages/christmas/after-you.png",
+      "sha256": "8361cf7f10256b8c43383d66d71e3896ba48af769438aaf47b69e4158da62735",
+      "bytes": 2155906,
+      "size": [
+        1254,
+        1254
+      ]
+    },
+    "all-good": {
+      "source": "release-input/ui/race-messages/christmas/all-good.png",
+      "sha256": "cea5866330676029700b05f033201d0383458d340a27b1810bd0e78b588a1f94",
+      "bytes": 2918340,
+      "size": [
+        1254,
+        1254
+      ]
+    },
+    "almost-there": {
+      "source": "release-input/ui/race-messages/christmas/almost-there.png",
+      "sha256": "e4a2cfcd8dea545331996430ae693b0a20a1f6cfd02bf03a91b6f42b607a94c3",
+      "bytes": 2456947,
+      "size": [
+        1254,
+        1254
+      ]
+    },
+    "amazing": {
+      "source": "release-input/ui/race-messages/christmas/amazing.png",
+      "sha256": "9b422d55ec6ad9a5a1e977119f1726e08272e45770a13e33a3559e5eb89f5731",
+      "bytes": 2823935,
+      "size": [
+        1254,
+        1254
+      ]
+    },
+    "awesome": {
+      "source": "release-input/ui/race-messages/christmas/awesome.png",
+      "sha256": "ef34d6f589a9c26af07863fe3d7afb89fb42f64ef25334ccacf16b5578eabef5",
+      "bytes": 2379380,
+      "size": [
+        1254,
+        1254
+      ]
+    },
+    "behind-you": {
+      "source": "release-input/ui/race-messages/christmas/behind-you.png",
+      "sha256": "1f9c7f8a60efa7dc37ea7cdc0ec3017c14b0d8dd4bfef479cb3f170ece6a0600",
+      "bytes": 2282484,
+      "size": [
+        1254,
+        1254
+      ]
+    },
+    "blocked-path": {
+      "source": "release-input/ui/race-messages/christmas/blocked-path.png",
+      "sha256": "703724f44cb3ec2931fb32fc4f8d1c682d5ff8df6bbcf59e550d8f935bacd12e",
+      "bytes": 2657617,
+      "size": [
+        1254,
+        1254
+      ]
+    },
+    "cant-move": {
+      "source": "release-input/ui/race-messages/christmas/cant-move.png",
+      "sha256": "c1587b4a3629f12857d93d3474d03325459011d13ef5d36749124712030168ed",
+      "bytes": 2194153,
+      "size": [
+        1254,
+        1254
+      ]
+    },
+    "catching-up": {
+      "source": "release-input/ui/race-messages/christmas/catching-up.png",
+      "sha256": "12d61a407b444b5410bcfea2e1b32387e3a04e0fa69461f834348b4225d9bd8c",
+      "bytes": 2068460,
+      "size": [
+        1254,
+        1254
+      ]
+    },
+    "clean-move": {
+      "source": "release-input/ui/race-messages/christmas/clean-move.png",
+      "sha256": "fd7b3c7072c3ef625fffd4c051e76623404a008a424419278834c0de1f71e589",
+      "bytes": 2316227,
+      "size": [
+        1254,
+        1254
+      ]
+    },
+    "close-one": {
+      "source": "release-input/ui/race-messages/christmas/close-one.png",
+      "sha256": "cd944e7865895d721524c200223af65426ca2d613163f6291354767c10bff058",
+      "bytes": 3031923,
+      "size": [
+        1254,
+        1254
+      ]
+    },
+    "comeback": {
+      "source": "release-input/ui/race-messages/christmas/comeback.png",
+      "sha256": "7282819be2f405645a80abacaa219f8682b33fe5142f418ca96efd8875adfd63",
+      "bytes": 2609278,
+      "size": [
+        1254,
+        1254
+      ]
+    },
+    "coming-through": {
+      "source": "release-input/ui/race-messages/christmas/coming-through.png",
+      "sha256": "25fd5dbda5a3a5888899c6437dcb50c80b0218f1af3c4098df502dc5ae2e75b8",
+      "bytes": 2857471,
+      "size": [
+        1254,
+        1254
+      ]
+    },
+    "congratulations": {
+      "source": "release-input/ui/race-messages/christmas/congratulations.png",
+      "sha256": "47853774f8400d52ff1d8b9b3dea57e069cbc3fedb653cdc3b443556a9d2c40c",
+      "bytes": 2406678,
+      "size": [
+        1254,
+        1254
+      ]
+    },
+    "crash-ahead": {
+      "source": "release-input/ui/race-messages/christmas/crash-ahead.png",
+      "sha256": "01c33cf12c09dc21e98a881f8859f1192726feb5c9e4f9c3e8249cf9f3575968",
+      "bytes": 2233754,
+      "size": [
+        1254,
+        1254
+      ]
+    },
+    "danger": {
+      "source": "release-input/ui/race-messages/christmas/danger.png",
+      "sha256": "b85cfdb142858b47b9e03bc3db355fc5eeed660e4670e1a0ab7d0ab03d1a0ed3",
+      "bytes": 2793188,
+      "size": [
+        1254,
+        1254
+      ]
+    },
+    "debris-ahead": {
+      "source": "release-input/ui/race-messages/christmas/debris-ahead.png",
+      "sha256": "5ef7870e834b84d821740d394a704d9c64735d0cb3e94644a6a5467266ab67b9",
+      "bytes": 2209392,
+      "size": [
+        1254,
+        1254
+      ]
+    },
+    "dont-give-up": {
+      "source": "release-input/ui/race-messages/christmas/dont-give-up.png",
+      "sha256": "bbb286b7708dae63e2c96f6878d3f2493df4f7776cdd956d72a90c7e4ebd7f8c",
+      "bytes": 2624504,
+      "size": [
+        1254,
+        1254
+      ]
+    },
+    "excuse-me": {
+      "source": "release-input/ui/race-messages/christmas/excuse-me.png",
+      "sha256": "cc95dbb18b4075a6fb53dd2a4bf04237ee455ed99d8fdba8f5ab45caf6b83476",
+      "bytes": 2165996,
+      "size": [
+        1254,
+        1254
+      ]
+    },
+    "facepalm": {
+      "source": "release-input/ui/race-messages/christmas/facepalm.png",
+      "sha256": "8e26d891f51aa0f10dc96a1f157d509b3d7d0d0c084c59dcf41d2c20fbbf9feb",
+      "bytes": 2231325,
+      "size": [
+        1254,
+        1254
+      ]
+    },
+    "go-ahead": {
+      "source": "release-input/ui/race-messages/christmas/go-ahead.png",
+      "sha256": "54028a5416c9a6d373ffb170f4b3cf1fe8728096cd73724ea664dfcb80dcffd8",
+      "bytes": 2239044,
+      "size": [
+        1254,
+        1254
+      ]
+    },
+    "good-defense": {
+      "source": "release-input/ui/race-messages/christmas/good-defense.png",
+      "sha256": "7d0abab5dc5e21939959153d60f727038fe9a5893b02d8b6b9d492755c92f8fb",
+      "bytes": 3157985,
+      "size": [
+        1254,
+        1254
+      ]
+    },
+    "good-dodge": {
+      "source": "release-input/ui/race-messages/christmas/good-dodge.png",
+      "sha256": "c260ca771ca6d8cda83e2b58f226fa4e62abbb67dc5f9b56d5c79f86b9f78c9b",
+      "bytes": 2484291,
+      "size": [
+        1254,
+        1254
+      ]
+    },
+    "good-effort": {
+      "source": "release-input/ui/race-messages/christmas/good-effort.png",
+      "sha256": "68e913431529f21a5dba331b7f67b991048e0916b0c8c747a1063c2cfb8dd20b",
+      "bytes": 2626603,
+      "size": [
+        1254,
+        1254
+      ]
+    },
+    "good-game": {
+      "source": "release-input/ui/race-messages/christmas/good-game.png",
+      "sha256": "3cc8ffc79f34049ca649d4ed519fab36309a0abf57e5ffdbd8319c79d3b7d607",
+      "bytes": 1960551,
+      "size": [
+        1254,
+        1254
+      ]
+    },
+    "good-luck": {
+      "source": "release-input/ui/race-messages/christmas/good-luck.png",
+      "sha256": "2fe2eb2983e1ff2f522d12c0e84f868eebbed74f55482b7aeba063c403a92daa",
+      "bytes": 2472178,
+      "size": [
+        1254,
+        1254
+      ]
+    },
+    "good-save": {
+      "source": "release-input/ui/race-messages/christmas/good-save.png",
+      "sha256": "579491f846100263ddfe8a6cc834c682c6359431e805c977d6ff7953381079e5",
+      "bytes": 2225330,
+      "size": [
+        1254,
+        1254
+      ]
+    },
+    "goodbye": {
+      "source": "release-input/ui/race-messages/christmas/goodbye.png",
+      "sha256": "f4680f526b497c06169bef0e4bb453f19d52a9184f8ec5a0ac71d9cd46ff93f5",
+      "bytes": 2444492,
+      "size": [
+        1254,
+        1254
+      ]
+    },
+    "great-finish": {
+      "source": "release-input/ui/race-messages/christmas/great-finish.png",
+      "sha256": "ac93eaa1dd71ab7f17aabd84a13dfd603bc428e126120aa3fd18df23b86a76b1",
+      "bytes": 2975401,
+      "size": [
+        1254,
+        1254
+      ]
+    },
+    "great-overtake": {
+      "source": "release-input/ui/race-messages/christmas/great-overtake.png",
+      "sha256": "bc3a4bdf0a9f678db3f75a71bab850b73d94de1e41b665ad09c4102af52bb814",
+      "bytes": 2313600,
+      "size": [
+        1254,
+        1254
+      ]
+    },
+    "great": {
+      "source": "release-input/ui/race-messages/christmas/great.png",
+      "sha256": "1619f77c0cd069886b4c5b3c5c7ae58d0660a5ebd119ebc63cb1027ddb911d05",
+      "bytes": 2862713,
+      "size": [
+        1254,
+        1254
+      ]
+    },
+    "have-fun": {
+      "source": "release-input/ui/race-messages/christmas/have-fun.png",
+      "sha256": "5f5d089cd56a8c8bfcc2b777361f6fc0fa7da934bf637eacdc9162d135f2d63f",
+      "bytes": 2347522,
+      "size": [
+        1254,
+        1254
+      ]
+    },
+    "hello": {
+      "source": "release-input/ui/race-messages/christmas/hello.png",
+      "sha256": "81426048678476c606aa9988ef1ff8263286f8852a878d67c8d41f298817dfef",
+      "bytes": 2412369,
+      "size": [
+        1254,
+        1254
+      ]
+    },
+    "here-we-go": {
+      "source": "release-input/ui/race-messages/christmas/here-we-go.png",
+      "sha256": "d9f48fe208df32c55f615c91749d71c547b5f497dcd74de9544d76854e1e9369",
+      "bytes": 3075972,
+      "size": [
+        1254,
+        1254
+      ]
+    },
+    "i-crashed": {
+      "source": "release-input/ui/race-messages/christmas/i-crashed.png",
+      "sha256": "d8ae9998814c4e0eef9c2766cc8969f31d6020638b67f89f1222261449b6a4ce",
+      "bytes": 1952034,
+      "size": [
+        1254,
+        1254
+      ]
+    },
+    "im-damaged": {
+      "source": "release-input/ui/race-messages/christmas/im-damaged.png",
+      "sha256": "82b50690b5e448354b8a2b147057d4b53e54a36f62df9fb73e2e6d699122c3fc",
+      "bytes": 2506145,
+      "size": [
+        1254,
+        1254
+      ]
+    },
+    "im-lost": {
+      "source": "release-input/ui/race-messages/christmas/im-lost.png",
+      "sha256": "275744975d5e7e6a0f1d89577faee110495bebb5dcdd67e698eaa40644a64622",
+      "bytes": 2439723,
+      "size": [
+        1254,
+        1254
+      ]
+    },
+    "im-out": {
+      "source": "release-input/ui/race-messages/christmas/im-out.png",
+      "sha256": "92b77a1b3ca4154fe6f6b8758b255202a08222f2da72fdd76bfe14eb684dfba1",
+      "bytes": 2320280,
+      "size": [
+        1254,
+        1254
+      ]
+    },
+    "im-stuck": {
+      "source": "release-input/ui/race-messages/christmas/im-stuck.png",
+      "sha256": "1e553c38005b077a7f07993a506c001145748d76f8452daf375535df45eff094",
+      "bytes": 2341474,
+      "size": [
+        1254,
+        1254
+      ]
+    },
+    "impressive": {
+      "source": "release-input/ui/race-messages/christmas/impressive.png",
+      "sha256": "9c84a682150936b8c41eab0e44fa94f1ed4ca6dbf183592b27addca3194d8226",
+      "bytes": 2289272,
+      "size": [
+        1254,
+        1254
+      ]
+    },
+    "incoming-attack": {
+      "source": "release-input/ui/race-messages/christmas/incoming-attack.png",
+      "sha256": "3d1be7775211c2962738de039890beba666bc000b3c58971f3ed42529df74e3b",
+      "bytes": 2460242,
+      "size": [
+        1254,
+        1254
+      ]
+    },
+    "its-okay": {
+      "source": "release-input/ui/race-messages/christmas/its-okay.png",
+      "sha256": "59fa651d1fe8ef0c1fd6e8a227be1b39e32242535ab0d9e3c2dd0718c690f103",
+      "bytes": 2487142,
+      "size": [
+        1254,
+        1254
+      ]
+    },
+    "jump-ahead": {
+      "source": "release-input/ui/race-messages/christmas/jump-ahead.png",
+      "sha256": "4fdf4b6416acf2fe6bdcf8384b1c0b1c79ad25a3285408a4be0bbb49cb127438",
+      "bytes": 2249222,
+      "size": [
+        1254,
+        1254
+      ]
+    },
+    "keep-going": {
+      "source": "release-input/ui/race-messages/christmas/keep-going.png",
+      "sha256": "adcdf45f8156bf48dd586b9bc466ea09ce9806244d5382c32383ac8d543e8fdc",
+      "bytes": 2152304,
+      "size": [
+        1254,
+        1254
+      ]
+    },
+    "lets-go": {
+      "source": "release-input/ui/race-messages/christmas/lets-go.png",
+      "sha256": "cd2ddd73f44a7e93c9c4ff1293aed210716b3a64ebe32a741af8c016d166a8dc",
+      "bytes": 3005740,
+      "size": [
+        1254,
+        1254
+      ]
+    },
+    "lol": {
+      "source": "release-input/ui/race-messages/christmas/lol.png",
+      "sha256": "d095691925de9b6b718656c17a0bd3014918134ef218ef23b7f9287c556a86b5",
+      "bytes": 2340322,
+      "size": [
+        1254,
+        1254
+      ]
+    },
+    "low-energy": {
+      "source": "release-input/ui/race-messages/christmas/low-energy.png",
+      "sha256": "48fe401ce10221edde7650892aba213f1a598bb52846bcf5113cd5e2230d7e18",
+      "bytes": 2393725,
+      "size": [
+        1254,
+        1254
+      ]
+    },
+    "lucky": {
+      "source": "release-input/ui/race-messages/christmas/lucky.png",
+      "sha256": "e714fc350b0eeef198f474a003e7791df4b2296510752bf4c87e7fd82f9e2d00",
+      "bytes": 2892006,
+      "size": [
+        1254,
+        1254
+      ]
+    },
+    "make-way": {
+      "source": "release-input/ui/race-messages/christmas/make-way.png",
+      "sha256": "9f959b9ffa76e685b2aa979a74a0a6e3bd1e01243cc04f018c3b3fe9b3fe36c6",
+      "bytes": 1634620,
+      "size": [
+        1254,
+        1254
+      ]
+    },
+    "maybe": {
+      "source": "release-input/ui/race-messages/christmas/maybe.png",
+      "sha256": "7a91ac443b5bc0b50f5f3c23672f6c9655ab67fa62be90df3cb426164429e09a",
+      "bytes": 1930572,
+      "size": [
+        1254,
+        1254
+      ]
+    },
+    "my-bad": {
+      "source": "release-input/ui/race-messages/christmas/my-bad.png",
+      "sha256": "91e1245985982b9dfc83959b36a54a09ac3b4804e5a8d825d47188a7f5b9e170",
+      "bytes": 2366465,
+      "size": [
+        1254,
+        1254
+      ]
+    },
+    "narrow-path": {
+      "source": "release-input/ui/race-messages/christmas/narrow-path.png",
+      "sha256": "c843863fc904b53eff42e048ec0ee2d5412578a139a2f01e28980893c8d4038c",
+      "bytes": 2936267,
+      "size": [
+        1254,
+        1254
+      ]
+    },
+    "next-time": {
+      "source": "release-input/ui/race-messages/christmas/next-time.png",
+      "sha256": "69e59c5eacbdbac3a223c0291c568d879b09276da736fef1c87844ffc6448f8b",
+      "bytes": 2707804,
+      "size": [
+        1254,
+        1254
+      ]
+    },
+    "nice-hit": {
+      "source": "release-input/ui/race-messages/christmas/nice-hit.png",
+      "sha256": "313e05f568912d7f2cf62e3983f256709d1230a4117e5ceaf26d24c87d25ec44",
+      "bytes": 1977790,
+      "size": [
+        1254,
+        1254
+      ]
+    },
+    "nice-race": {
+      "source": "release-input/ui/race-messages/christmas/nice-race.png",
+      "sha256": "19bf802901c0f2419efb399d814fb157e1e9b6bb541e926848138d6b7933332b",
+      "bytes": 3407907,
+      "size": [
+        1254,
+        1254
+      ]
+    },
+    "nice-to-meet-you": {
+      "source": "release-input/ui/race-messages/christmas/nice-to-meet-you.png",
+      "sha256": "16a4e782ed73320ae3e6462440e7514d8ee55e5be84511bb6dd7d9f41834dbd4",
+      "bytes": 1995682,
+      "size": [
+        1254,
+        1254
+      ]
+    },
+    "nice-try": {
+      "source": "release-input/ui/race-messages/christmas/nice-try.png",
+      "sha256": "2998f108732fa53c5312005ca31e52d9f494a25b482455a45158e93a19581d2a",
+      "bytes": 2147525,
+      "size": [
+        1254,
+        1254
+      ]
+    },
+    "nice": {
+      "source": "release-input/ui/race-messages/christmas/nice.png",
+      "sha256": "c8c1e8371f38a51e74b214c604b515c58e947b697eaf489a977c9ba3c5b4fdd4",
+      "bytes": 2480087,
+      "size": [
+        1254,
+        1254
+      ]
+    },
+    "no-hard-feelings": {
+      "source": "release-input/ui/race-messages/christmas/no-hard-feelings.png",
+      "sha256": "3918f3d0e529044c761110947b9be671f024fc1a7f53c37db13e7d5180788cf6",
+      "bytes": 2106769,
+      "size": [
+        1254,
+        1254
+      ]
+    },
+    "no-problem": {
+      "source": "release-input/ui/race-messages/christmas/no-problem.png",
+      "sha256": "8cbdc9e7433fa1864c62b1012d02a37e77ce85469349bd0fe5e92919940e7389",
+      "bytes": 2587032,
+      "size": [
+        1254,
+        1254
+      ]
+    },
+    "no-way": {
+      "source": "release-input/ui/race-messages/christmas/no-way.png",
+      "sha256": "4eb7d3ed8148070cbfaf11fc5d3ab2e086d8e71e38c96cae5ae63d35c2bac9f4",
+      "bytes": 3018431,
+      "size": [
+        1254,
+        1254
+      ]
+    },
+    "no": {
+      "source": "release-input/ui/race-messages/christmas/no.png",
+      "sha256": "7130810810bc11ef449434b55b28f5a0235bd55c4215401d93cd2b83a50352d5",
+      "bytes": 2439565,
+      "size": [
+        1254,
+        1254
+      ]
+    },
+    "not-sure": {
+      "source": "release-input/ui/race-messages/christmas/not-sure.png",
+      "sha256": "ba3891bd2fe13ab48cad8f120f371caa1ff6168f65b7f7d5696908dcdfdd858d",
+      "bytes": 2158095,
+      "size": [
+        1254,
+        1254
+      ]
+    },
+    "obstacle-ahead": {
+      "source": "release-input/ui/race-messages/christmas/obstacle-ahead.png",
+      "sha256": "eb7385a0adab7f2b5ff38738723d637348c2721f27064e10f60d1c0d5a0ac3c1",
+      "bytes": 2563336,
+      "size": [
+        1254,
+        1254
+      ]
+    },
+    "okay": {
+      "source": "release-input/ui/race-messages/christmas/okay.png",
+      "sha256": "01a578375156eccb079d51529ee3fb3922ea3d3fe60fcc604a9994ada7e69f33",
+      "bytes": 2504752,
+      "size": [
+        1254,
+        1254
+      ]
+    },
+    "on-your-left": {
+      "source": "release-input/ui/race-messages/christmas/on-your-left.png",
+      "sha256": "9b048b05f8a6cb116882bb4868997e1182b44299ba223bce7071e5d58ca5e98f",
+      "bytes": 2507269,
+      "size": [
+        1254,
+        1254
+      ]
+    },
+    "on-your-right": {
+      "source": "release-input/ui/race-messages/christmas/on-your-right.png",
+      "sha256": "5241511542860d2ad178a2cb6128864f34660819caa53c66c7bdbd3183c741ef",
+      "bytes": 2440704,
+      "size": [
+        1254,
+        1254
+      ]
+    },
+    "one-more-time": {
+      "source": "release-input/ui/race-messages/christmas/one-more-time.png",
+      "sha256": "92a3eca09c6273db2141b40a4162d47a2efdb302bc802a32120f56f52828a148",
+      "bytes": 2736257,
+      "size": [
+        1254,
+        1254
+      ]
+    },
+    "oops": {
+      "source": "release-input/ui/race-messages/christmas/oops.png",
+      "sha256": "f7eb352606c251356cf926adcda13c8783e55efc5ad118f37cb84fe1c444c021",
+      "bytes": 1710364,
+      "size": [
+        1254,
+        1254
+      ]
+    },
+    "photo-finish": {
+      "source": "release-input/ui/race-messages/christmas/photo-finish.png",
+      "sha256": "28e47821aa664fd46c7b169c5f2e84ef1b93ef990ea0b058625e6970c6b15183",
+      "bytes": 2129714,
+      "size": [
+        1254,
+        1254
+      ]
+    },
+    "please-stop": {
+      "source": "release-input/ui/race-messages/christmas/please-stop.png",
+      "sha256": "c4267f105752be8197280c9bff8a198bb37f67830eb273cce494c209fabbc789",
+      "bytes": 2238215,
+      "size": [
+        1254,
+        1254
+      ]
+    },
+    "please": {
+      "source": "release-input/ui/race-messages/christmas/please.png",
+      "sha256": "820b4a1c8ca4492dc3e66c5bddb1600ead228ea2e6f4d0dacbbfd1d57df6ebf0",
+      "bytes": 2274014,
+      "size": [
+        1254,
+        1254
+      ]
+    },
+    "recovering": {
+      "source": "release-input/ui/race-messages/christmas/recovering.png",
+      "sha256": "c495eb02066b64ebe191e60c9fa49d5b698a11ae2c168d91ff544f9d8c33ece0",
+      "bytes": 2757060,
+      "size": [
+        1254,
+        1254
+      ]
+    },
+    "rematch": {
+      "source": "release-input/ui/race-messages/christmas/rematch.png",
+      "sha256": "f54a949d51bbf640ce32c31742c0912a102d339e051a70e2275011d2779c2733",
+      "bytes": 3027289,
+      "size": [
+        1254,
+        1254
+      ]
+    },
+    "respect": {
+      "source": "release-input/ui/race-messages/christmas/respect.png",
+      "sha256": "3ca17e02c192f7d59d827935df6cc69867824b8bd4632e7427e7323acfa8ff38",
+      "bytes": 2070689,
+      "size": [
+        1254,
+        1254
+      ]
+    },
+    "rough-road": {
+      "source": "release-input/ui/race-messages/christmas/rough-road.png",
+      "sha256": "1ca248612f92d7aea481b6279b00e1d5b140838a7dc4dad8c570312d3891cf2c",
+      "bytes": 2758983,
+      "size": [
+        1254,
+        1254
+      ]
+    },
+    "slippery-road": {
+      "source": "release-input/ui/race-messages/christmas/slippery-road.png",
+      "sha256": "7817c08558e03841c0881b81a97114514853b2e2d6ba295992c18e857939ccfc",
+      "bytes": 2269233,
+      "size": [
+        1254,
+        1254
+      ]
+    },
+    "slowing-down": {
+      "source": "release-input/ui/race-messages/christmas/slowing-down.png",
+      "sha256": "7fac76d330ab78d78ca2cacd2323668443b0203f522a536f5bf4bd26717907c3",
+      "bytes": 1621036,
+      "size": [
+        1254,
+        1254
+      ]
+    },
+    "sorry": {
+      "source": "release-input/ui/race-messages/christmas/sorry.png",
+      "sha256": "5c4ce18e06c96ea59ef2f6ee737993288b982892e008c9d350376142ceffc307",
+      "bytes": 2357222,
+      "size": [
+        1254,
+        1254
+      ]
+    },
+    "stopping": {
+      "source": "release-input/ui/race-messages/christmas/stopping.png",
+      "sha256": "9d72114eff9371ae85354763ca3aaf3fff870f6c1e77eff2fac3f02b42a7b2b3",
+      "bytes": 2161167,
+      "size": [
+        1254,
+        1254
+      ]
+    },
+    "take-your-time": {
+      "source": "release-input/ui/race-messages/christmas/take-your-time.png",
+      "sha256": "c0992813da4b037102c8b4dde2bf3fb194c3995bc3e2556e24bb4bf0f0d94edd",
+      "bytes": 1864512,
+      "size": [
+        1254,
+        1254
+      ]
+    },
+    "thanks": {
+      "source": "release-input/ui/race-messages/christmas/thanks.png",
+      "sha256": "99dd81e88cb22a53a9ad55e583bac899c5e3b7d4f60097baddd0ffcc1175b2fd",
+      "bytes": 1987127,
+      "size": [
+        1254,
+        1254
+      ]
+    },
+    "that-hurt": {
+      "source": "release-input/ui/race-messages/christmas/that-hurt.png",
+      "sha256": "4608e556e3ea33e497a191635648d696625e81ce4afe754995a3851183831f42",
+      "bytes": 1863286,
+      "size": [
+        1254,
+        1254
+      ]
+    },
+    "trap-ahead": {
+      "source": "release-input/ui/race-messages/christmas/trap-ahead.png",
+      "sha256": "a8012816ba24f7009be4ff93f83655ab006560576c0c32d2fe853a3bbca0fe40",
+      "bytes": 2414922,
+      "size": [
+        1254,
+        1254
+      ]
+    },
+    "understood": {
+      "source": "release-input/ui/race-messages/christmas/understood.png",
+      "sha256": "8e81519f3da6b02cbd14b211092b02fd8a04bd90901369024a461bf8e7ab7df2",
+      "bytes": 2230653,
+      "size": [
+        1254,
+        1254
+      ]
+    },
+    "unlucky": {
+      "source": "release-input/ui/race-messages/christmas/unlucky.png",
+      "sha256": "569448b3c372d6c009869d397aca7fe0d9526e72ae7b4879be83bd78126e12ca",
+      "bytes": 1976198,
+      "size": [
+        1254,
+        1254
+      ]
+    },
+    "wait-a-moment": {
+      "source": "release-input/ui/race-messages/christmas/wait-a-moment.png",
+      "sha256": "00d07d9c10269be562114454fff1fc656debdf7aee426eebb7e9a313c1a4fe28",
+      "bytes": 2553889,
+      "size": [
+        1254,
+        1254
+      ]
+    },
+    "wait-for-me": {
+      "source": "release-input/ui/race-messages/christmas/wait-for-me.png",
+      "sha256": "2d35d11074ef04c5633cf08e8b65aa04912a47074bf6e463947b45f6129cc450",
+      "bytes": 2502984,
+      "size": [
+        1254,
+        1254
+      ]
+    },
+    "watch-out": {
+      "source": "release-input/ui/race-messages/christmas/watch-out.png",
+      "sha256": "9792e1a8b8d492ce616b3892ef478d3e0ef00ff3b848381d253d4cbe95ddbf04",
+      "bytes": 2778875,
+      "size": [
+        1254,
+        1254
+      ]
+    },
+    "welcome": {
+      "source": "release-input/ui/race-messages/christmas/welcome.png",
+      "sha256": "53be02961ad9348b9c058827e022ba6aa6f1bbc859543f94568186e55df48673",
+      "bytes": 3154025,
+      "size": [
+        1254,
+        1254
+      ]
+    },
+    "well-done": {
+      "source": "release-input/ui/race-messages/christmas/well-done.png",
+      "sha256": "a5ea40b98fdddcb3ef93bf5b120cf832cc18397680d4fc76254bcb696820c618",
+      "bytes": 2496914,
+      "size": [
+        1254,
+        1254
+      ]
+    },
+    "well-played": {
+      "source": "release-input/ui/race-messages/christmas/well-played.png",
+      "sha256": "021c69c3a1a7d1c4a4492a4ad8b13d4950d3254e063ce6fd77a7de12fe8a3f52",
+      "bytes": 2314762,
+      "size": [
+        1254,
+        1254
+      ]
+    },
+    "wow": {
+      "source": "release-input/ui/race-messages/christmas/wow.png",
+      "sha256": "afed83413c03292cebf3ea4f72a445f372a969c3739c5b75007f5528c7c18492",
+      "bytes": 2733858,
+      "size": [
+        1254,
+        1254
+      ]
+    },
+    "wrong-way": {
+      "source": "release-input/ui/race-messages/christmas/wrong-way.png",
+      "sha256": "cdda6e9580999173b2a55f01fef01e5472c4043d566df0cc4458b73ca4d1901a",
+      "bytes": 2185400,
+      "size": [
+        1254,
+        1254
+      ]
+    },
+    "yes": {
+      "source": "release-input/ui/race-messages/christmas/yes.png",
+      "sha256": "8f13ac9f9e140b96d87a0e44414fb9fdf54077cc4157fd77008f823f93fa9f16",
+      "bytes": 2404938,
+      "size": [
+        1254,
+        1254
+      ]
+    },
+    "you-can-do-it": {
+      "source": "release-input/ui/race-messages/christmas/you-can-do-it.png",
+      "sha256": "fbac18c103bd7c7f568c1a74b905d800cf67c9cabaaa7cfa8705f67d8258695a",
+      "bytes": 2770744,
+      "size": [
+        1254,
+        1254
+      ]
+    }
+  }
+}

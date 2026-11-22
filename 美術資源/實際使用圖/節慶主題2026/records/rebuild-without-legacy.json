@@ -1,0 +1,24 @@
+{
+  "blockedFiles": [
+    "render-empty.cjs",
+    "sources/christmas/empty-connection.svg",
+    "sources/christmas/empty-garage.svg",
+    "sources/christmas/empty-generic.svg",
+    "sources/christmas/race-countdown/1.svg",
+    "sources/christmas/race-countdown/2.svg",
+    "sources/christmas/race-countdown/3.svg",
+    "sources/christmas/race-countdown/start.svg",
+    "sources/halloween/empty-connection.svg",
+    "sources/halloween/empty-garage.svg",
+    "sources/halloween/empty-generic.svg",
+    "sources/halloween/race-countdown/1.svg",
+    "sources/halloween/race-countdown/2.svg",
+    "sources/halloween/race-countdown/3.svg",
+    "sources/halloween/race-countdown/start.svg"
+  ],
+  "legacyEmptySourcePngBlocked": true,
+  "buildCompleted": true,
+  "retiredFilesAbsentBeforeAndAfter": true,
+  "runtimeFiles": 46,
+  "runtimeHashesUnchanged": true
+}

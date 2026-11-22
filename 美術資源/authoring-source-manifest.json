@@ -1,0 +1,258 @@
+{
+  "schemaVersion": 1,
+  "candidateEpoch": 6,
+  "assets": [
+    {
+      "assetId": "builtin:battery-01",
+      "logicalPath": "release-input/parts/part-battery-speed/part-battery-speed-procedural-v1.glb",
+      "releaseAsset": "part-battery-speed-procedural-v1.glb",
+      "sha256": "473c5ddc1cd043674a2eb275afb9740c6f291b478fd1740c31fe98558f48539f",
+      "size": 239604
+    },
+    {
+      "assetId": "builtin:battery-02",
+      "logicalPath": "release-input/parts/part-battery-heavy/part-battery-heavy-procedural-v1.glb",
+      "releaseAsset": "part-battery-heavy-procedural-v1.glb",
+      "sha256": "6f21f5312438acdcb0e76615496ee7f60b96e2ea0309a069bdd0d318f1035a75",
+      "size": 319208
+    },
+    {
+      "assetId": "builtin:battery-03",
+      "logicalPath": "release-input/parts/part-battery-control/part-battery-control-procedural-v3.glb",
+      "releaseAsset": "part-battery-control-procedural-v3.glb",
+      "sha256": "a773e3bce44ed3f51ca23093e6ce936f7b8b3c7ca568496a9a84b1be003ac8c1",
+      "size": 389244
+    },
+    {
+      "assetId": "builtin:body-01",
+      "logicalPath": "release-input/parts/part-body-speed/part-body-speed-procedural-r14.glb",
+      "releaseAsset": "part-body-speed-procedural-r14.glb",
+      "sha256": "eeab14452d22f2ed4c03b7e94c2a2c8132ac4c2e680fa7e710bb7603dd96e608",
+      "size": 675440
+    },
+    {
+      "assetId": "builtin:body-02",
+      "logicalPath": "release-input/parts/part-body-heavy/part-body-heavy-procedural-r8.glb",
+      "releaseAsset": "part-body-heavy-procedural-r8.glb",
+      "sha256": "089e2c1b7732303fded2525666ae91f97735f84f5e02afaade00f75a53ee9824",
+      "size": 905748
+    },
+    {
+      "assetId": "builtin:body-03",
+      "logicalPath": "release-input/parts/part-body-control/part-body-control-procedural-r9.glb",
+      "releaseAsset": "part-body-control-procedural-r9.glb",
+      "sha256": "561dbdeae69625191541bfb1a1863ea19891eac6a78b67f1d4fd0b5154b2548d",
+      "size": 692088
+    },
+    {
+      "assetId": "builtin:chassis-01",
+      "logicalPath": "release-input/parts/part-chassis-speed/part-chassis-speed-procedural-v5.glb",
+      "releaseAsset": "part-chassis-speed-procedural-v5.glb",
+      "sha256": "28311990f89022ece58b69a4ae2287f04239a85536a8443f01ea0a929374f323",
+      "size": 597076
+    },
+    {
+      "assetId": "builtin:chassis-02",
+      "logicalPath": "release-input/parts/part-chassis-heavy/part-chassis-heavy-procedural-v5.glb",
+      "releaseAsset": "part-chassis-heavy-procedural-v5.glb",
+      "sha256": "54c3fe6dd309add5af1b7e74ef54839309e0da02c4a65ce92e752103d3f07d59",
+      "size": 613116
+    },
+    {
+      "assetId": "builtin:chassis-03",
+      "logicalPath": "release-input/parts/part-chassis-control/part-chassis-control-procedural-v5.glb",
+      "releaseAsset": "part-chassis-control-procedural-v5.glb",
+      "sha256": "891ea588e674b2ba26d01e0576c2e46c749a8d5db26d880c320b65e029c67ccb",
+      "size": 641064
+    },
+    {
+      "assetId": "builtin:chip-01",
+      "logicalPath": "release-input/parts/part-chip-speed/part-chip-speed-procedural-v2.glb",
+      "releaseAsset": "part-chip-speed-procedural-v2.glb",
+      "sha256": "e6d32eb8c628f524eff9f10634e0257c36988eb1ebbab71331f849f2bbc17753",
+      "size": 401200
+    },
+    {
+      "assetId": "builtin:chip-02",
+      "logicalPath": "release-input/parts/part-chip-heavy/part-chip-heavy-procedural-v2.glb",
+      "releaseAsset": "part-chip-heavy-procedural-v2.glb",
+      "sha256": "13530c9b378a1877677f0201d337c34ffcbecf64c165c09db00f4b6841ea254d",
+      "size": 244812
+    },
+    {
+      "assetId": "builtin:chip-03",
+      "logicalPath": "release-input/parts/part-chip-control/part-chip-control-procedural-v2.glb",
+      "releaseAsset": "part-chip-control-procedural-v2.glb",
+      "sha256": "1e79bd1d1fddd875d17b710e2c0e2e67cb53f9def36d0ec92c98a4198c3e5925",
+      "size": 321376
+    },
+    {
+      "assetId": "builtin:motor-01",
+      "logicalPath": "release-input/parts/part-motor-speed/part-motor-speed-procedural-v2.glb",
+      "releaseAsset": "part-motor-speed-procedural-v2.glb",
+      "sha256": "be7d1fc057ada36f530729973c06df10e5578d88dda29c08ddd132a478253f2a",
+      "size": 357864
+    },
+    {
+      "assetId": "builtin:motor-02",
+      "logicalPath": "release-input/parts/part-motor-heavy/part-motor-heavy-procedural-v2.glb",
+      "releaseAsset": "part-motor-heavy-procedural-v2.glb",
+      "sha256": "28f14a71a3e2bfb8059d53fbf74aee62777eb8959994651c79672940fc529b4f",
+      "size": 342020
+    },
+    {
+      "assetId": "builtin:motor-03",
+      "logicalPath": "release-input/parts/part-motor-control/part-motor-control-procedural-v3.glb",
+      "releaseAsset": "part-motor-control-procedural-v3.glb",
+      "sha256": "94b37926a699adb04117e74cb5d5b232176d7055b3661f5a2a5ad40655856116",
+      "size": 370824
+    },
+    {
+      "assetId": "builtin:roller-01",
+      "logicalPath": "release-input/parts/part-roller-speed/part-roller-speed-procedural-v4.glb",
+      "releaseAsset": "part-roller-speed-procedural-v4.glb",
+      "sha256": "28e115b19085b55a6d74d8ea9e1d173d3c47967f4f05943ce2f04fec97597883",
+      "size": 285432
+    },
+    {
+      "assetId": "builtin:roller-02",
+      "logicalPath": "release-input/parts/part-roller-heavy/part-roller-heavy-procedural-v5.glb",
+      "releaseAsset": "part-roller-heavy-procedural-v5.glb",
+      "sha256": "90ed876e5971083fbecd30faa780c426ae3a481dc8f5308cc8fb89a166928e18",
+      "size": 312424
+    },
+    {
+      "assetId": "builtin:roller-03",
+      "logicalPath": "release-input/parts/part-roller-control/part-roller-control-procedural-v4.glb",
+      "releaseAsset": "part-roller-control-procedural-v4.glb",
+      "sha256": "3c41ac351a71ecdd9b1ec1afaa4a99a809961a91502c80631ebc82e0820cb38f",
+      "size": 286012
+    },
+    {
+      "assetId": "builtin:tire-01",
+      "logicalPath": "release-input/parts/part-tire-speed/part-tire-speed-procedural-v1.glb",
+      "releaseAsset": "part-tire-speed-procedural-v1.glb",
+      "sha256": "8e8205d5016e6cfa25ecc227a03a8bbd439e4af703bd47d5e51e619d7547fa62",
+      "size": 186912
+    },
+    {
+      "assetId": "builtin:tire-02",
+      "logicalPath": "release-input/parts/part-tire-heavy/part-tire-heavy-procedural-v2.glb",
+      "releaseAsset": "part-tire-heavy-procedural-v2.glb",
+      "sha256": "8cbd877049848de486f4883e9b1e6cc5e2e64bfd35325299e94169a0b68e6064",
+      "size": 234556
+    },
+    {
+      "assetId": "builtin:tire-03",
+      "logicalPath": "release-input/parts/part-tire-control/part-tire-control-procedural-v1.glb",
+      "releaseAsset": "part-tire-control-procedural-v1.glb",
+      "sha256": "6680bdea538f77ec270f5cc290f33dfb51f61aec3caa6837de773da0d3920305",
+      "size": 272864
+    },
+    {
+      "assetId": "builtin:track-01",
+      "logicalPath": "release-input/tracks/track-snowy-field/track-snowy-field-procedural-v8.glb",
+      "releaseAsset": "track-snowy-field-procedural-v8.glb",
+      "sha256": "73260bf6eca536863ea8759c4c67783166bb9b3916d6268aff6797f95e51addd",
+      "size": 2596136
+    },
+    {
+      "assetId": "builtin:track-02",
+      "logicalPath": "release-input/tracks/track-urban-circuit/track-urban-circuit-procedural-v8.glb",
+      "releaseAsset": "track-urban-circuit-procedural-v8.glb",
+      "sha256": "e3c4d0e1c3dd8bbd1d344057a92355278080613acc0e23c0f4a9ce3c1c25ecd3",
+      "size": 4160872
+    },
+    {
+      "assetId": "builtin:track-03",
+      "logicalPath": "release-input/tracks/track-jungle-mud/track-jungle-mud-procedural-v10.glb",
+      "releaseAsset": "track-jungle-mud-procedural-v10.glb",
+      "sha256": "8adf8437977a40c58dc9deb12acb090266c976e9489f894e07418fa15c192fde",
+      "size": 5311748
+    },
+    {
+      "assetId": "builtin:weapon-01",
+      "logicalPath": "release-input/parts/part-weapon-speed/part-weapon-speed-procedural-v6.glb",
+      "releaseAsset": "part-weapon-speed-procedural-v6.glb",
+      "sha256": "2778dad854f2e7816b169fbcc40c5233314e92ea2399ddc3274423e72bd7b1eb",
+      "size": 292308
+    },
+    {
+      "assetId": "builtin:weapon-02",
+      "logicalPath": "release-input/parts/part-weapon-heavy/part-weapon-heavy-procedural-v5.glb",
+      "releaseAsset": "part-weapon-heavy-procedural-v5.glb",
+      "sha256": "5c645a8eb4575192676a58d32cd1dd556045ad6c12aea15407234a2f27c4f95b",
+      "size": 409944
+    },
+    {
+      "assetId": "builtin:weapon-03",
+      "logicalPath": "release-input/parts/part-weapon-control/part-weapon-control-procedural-v4.glb",
+      "releaseAsset": "part-weapon-control-procedural-v4.glb",
+      "sha256": "afa44bc076df4ba121435bde000978333d17a382821063e35d2c1e20e2860516",
+      "size": 212636
+    },
+    {
+      "assetId": "e2e:part-battery",
+      "logicalPath": "release-input/e2e/e2e-part-battery/e2e-part-battery.glb",
+      "releaseAsset": "e2e-part-battery.glb",
+      "sha256": "54688d59accd22e3fcc0aca30511da99083c7dce8ba240de28bec9ded2d59be7",
+      "size": 12370744
+    },
+    {
+      "assetId": "e2e:part-body",
+      "logicalPath": "release-input/e2e/e2e-part-body/e2e-part-body.glb",
+      "releaseAsset": "e2e-part-body.glb",
+      "sha256": "0e3aa5e8ee62b21b3af3c85970a7dc5102ff7c45dcc2e7a597bd509bbf32bf09",
+      "size": 6262884
+    },
+    {
+      "assetId": "e2e:part-chassis",
+      "logicalPath": "release-input/e2e/e2e-part-chassis/e2e-part-chassis.glb",
+      "releaseAsset": "e2e-part-chassis.glb",
+      "sha256": "7d0e7869b260e64112884e8689e85483e89d85f41c91f0f256744da1e6f297e3",
+      "size": 4538564
+    },
+    {
+      "assetId": "e2e:part-chip",
+      "logicalPath": "release-input/e2e/e2e-part-chip/e2e-part-chip.glb",
+      "releaseAsset": "e2e-part-chip.glb",
+      "sha256": "7131cfb35e436ca8ec016e330d381fc14dd48fdaca07b71611e77b7abeb3bbe5",
+      "size": 13778528
+    },
+    {
+      "assetId": "e2e:part-motor",
+      "logicalPath": "release-input/e2e/e2e-part-motor/e2e-part-motor.glb",
+      "releaseAsset": "e2e-part-motor.glb",
+      "sha256": "bf83edffe2028aa5a75b9039cfe6c44adc5e209347f0a269c9a5257e676ade5f",
+      "size": 13734444
+    },
+    {
+      "assetId": "e2e:part-roller",
+      "logicalPath": "release-input/e2e/e2e-part-roller/e2e-part-roller.glb",
+      "releaseAsset": "e2e-part-roller.glb",
+      "sha256": "1c4c754a7c020b7d7b0fb3cfdcf298a7a9f74944dbc916e5fcf958297d157f3c",
+      "size": 9484384
+    },
+    {
+      "assetId": "e2e:part-tire",
+      "logicalPath": "release-input/e2e/e2e-part-tire/e2e-part-tire.glb",
+      "releaseAsset": "e2e-part-tire.glb",
+      "sha256": "3736c7e2500ca344ef6bb88289f37230d40c3e9d5b4f8f86786f8565bae2b1bd",
+      "size": 5380616
+    },
+    {
+      "assetId": "e2e:part-weapon",
+      "logicalPath": "release-input/e2e/e2e-part-weapon/e2e-part-weapon.glb",
+      "releaseAsset": "e2e-part-weapon.glb",
+      "sha256": "7275165a8abe2ea1e872beb749ef73ae17285ae421b714479eb3317f64505b0b",
+      "size": 7444332
+    },
+    {
+      "assetId": "e2e:track-urban",
+      "logicalPath": "release-input/e2e/e2e-track-urban/e2e-track-urban.glb",
+      "releaseAsset": "e2e-track-urban.glb",
+      "sha256": "9089e84d0a4b90a108da17d2e5b8a93277733bb3fbfc7204e1c56d938b8efb26",
+      "size": 9126904
+    }
+  ]
+}

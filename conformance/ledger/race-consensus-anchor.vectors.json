@@ -1,0 +1,92 @@
+{
+  "family": "ledger/race-consensus-anchor",
+  "spec": [
+    "資料系統.md",
+    "流程/比賽進行.md",
+    "程式架構/ledger-admission.md",
+    "程式架構/ledger-settlement.md"
+  ],
+  "formatVersion": 1,
+  "encoding": {
+    "bytes": "hex-lower",
+    "bigint": "decimal-string"
+  },
+  "generatedBy": "open-4wd@0.0.0",
+  "vectors": [
+    {
+      "name": "quorum-tail-and-canonical-roster",
+      "input": {
+        "rosterCounts": [
+          1,
+          2,
+          3,
+          4,
+          8
+        ],
+        "terminalFrames": [
+          0,
+          8,
+          128,
+          239,
+          368
+        ],
+        "tailChecks": [
+          {
+            "frame": 0,
+            "terminalFrame": 8
+          },
+          {
+            "frame": 0,
+            "terminalFrame": 128
+          },
+          {
+            "frame": 240,
+            "terminalFrame": 368
+          },
+          {
+            "frame": 120,
+            "terminalFrame": 368
+          },
+          {
+            "frame": 0,
+            "terminalFrame": 368
+          }
+        ],
+        "peers": [
+          "peer-c",
+          "peer-a",
+          "peer-b",
+          "peer-a"
+        ]
+      },
+      "expected": {
+        "quorums": [
+          1,
+          2,
+          2,
+          3,
+          5
+        ],
+        "latestFinalFrames": [
+          0,
+          0,
+          120,
+          120,
+          360
+        ],
+        "withinTail": [
+          true,
+          true,
+          true,
+          false,
+          false
+        ],
+        "canonicalPeers": [
+          "peer-a",
+          "peer-b",
+          "peer-c"
+        ]
+      }
+    }
+  ]
+}
