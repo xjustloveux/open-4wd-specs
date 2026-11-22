@@ -226,7 +226,7 @@ function canFileReport(
 
 ### 5.1 合格仲裁者
 
-四條門檻（信譽 ≥ 200 / 比賽 ≥ 10 / 註冊 ≥ 30 天 / 非全域黑名單）權威見 [信譽系統.md §8.1](../信譽系統.md)。
+四條門檻（信譽 ≥ 200 / 比賽 ≥ 10 / 註冊 ≥ 30 天 / 非全域黑名單）權威見 [信譽系統.md §8.1](../信譽系統.md)。年資一律以**名義抽籤點**（案錨 ＋ 抽籤延遲，重抽輪亦同）計，其餘門檻以實際抽籤檢查點計——與 fold 的逐 signer 年資條件及合格池上界同一時點，抽出的面板必定通過 fold（MOD-R-046）。
 
 ```typescript
 // state / at 一律取「抽籤檢查點」快照（§5.2）——投票期間信譽變動不影響本案資格與 weight
@@ -235,6 +235,7 @@ function isQualifiedArbiter(
   report: ReportEvent,
   state: DerivedState,
   at: Timestamp,
+  tenureAt: Timestamp, // 名義抽籤點（案錨 ＋ 抽籤延遲）
 ): boolean {
   const offender =
     report.targetKind === "cid" // 責任人：UGC 案先解析作者，再做本人排除 / 共賽過濾
@@ -246,7 +247,7 @@ function isQualifiedArbiter(
   if (rep < 200) return false; // 信譽門檻
   if ((state.reputation.matchCount.get(peer) ?? 0) < 10) return false; // 比賽場數
   const days =
-    (at - (state.reputation.registeredAt.get(peer) ?? at)) / (1000 * 86400);
+    (tenureAt - (state.reputation.registeredAt.get(peer) ?? tenureAt)) / (1000 * 86400);
   if (days < 30) return false; // 帳號年資（防 Sybil，與 7 天新手保護無關；registeredAt 定義見 ledger.md §6）
   if (
     hadRecentSharedMatch(peer, report.reporter, at) || // 與檢舉者 / 責任人最近 24h 無共同比賽（防報復串）
@@ -373,7 +374,7 @@ function deriveGlobalPeerBlacklist(
 >
 > - **〔MOD-R-045〕** **digest**＝`signingDigest({type:'arbitration-result-attest', reportEventId, target, result, passRatioX100})`（域分離標籤防跨用途重放；`target` 綁定防同 caseId 跨標的簽章轉移。`reportEventId` 已含 `#${target}`、digest 再顯式帶 target＝ 雙重綁定；實作即權威）。
 > - **attestation 語意 ＝ 條 ④ 分散化**：每位面板成員以 coordinator replay 票序列、**只簽自己算出的結果**——結果事件的簽章集即 ≥ quorum 份獨立驗算證明；聲稱值與成員自算不符時該成員簽出的 digest 自然對不上。timestamp 不入 digest（改動無實質攻擊值、由程序下界 ＋ 首筆有效約束）。
-> - **〔MOD-R-046〕** **fold 驗**：面板案（pass／reject／ 票不足流局）＝`arbiters.length = 7`、簽章集 ≥ quorum(4)——distinct、∈ `arbiters`、**非兩造**（reporter＋cid 案作者 ／peer 案本人；上傳期案相似對象作者群不在 state、不入 fold 必要條件）、**逐 signer 穩定必要條件**（年資 `registeredAt ≤ 抽籤點 − 30 天`＝timeless 精確；場數 ≥ 10＝ 單調遞增必要條件）、簽章有效。信譽 ≥ 200／ 共賽過濾非單調、不入 fold（收件全量驗算 ＋attestation 承擔）——「可重導面板」的完整重導對 fold 位置 state 為近似（抽籤點與結果間的事件會挪動資格），故 fold 取**對合法結果永不誤拒**的必要條件子集。
+> - **〔MOD-R-046〕** **fold 驗**：面板案（pass／reject／ 票不足流局）＝`arbiters.length = 7`、簽章集 ≥ quorum(4)——distinct、∈ `arbiters`、**非兩造**（reporter＋cid 案作者 ／peer 案本人；上傳期案相似對象作者群不在 state、不入 fold 必要條件）、**逐 signer 穩定必要條件**（年資 `registeredAt ≤ 名義抽籤點（案錨 ＋ 抽籤延遲）− 30 天`＝timeless 精確，與抽選資格同一時點；場數 ≥ 10＝ 單調遞增必要條件）、簽章有效。信譽 ≥ 200／ 共賽過濾非單調、不入 fold（收件全量驗算 ＋attestation 承擔）——「可重導面板」的完整重導對 fold 位置 state 為近似（抽籤點與結果間的事件會挪動資格），故 fold 取**對合法結果永不誤拒**的必要條件子集。
 > - **第一輪抽籤點池不足流局**（`arbiters: []`、無面板可簽）＝ 限 `result:'no-quorum'`、改驗**合格池上界** ＜ 7（只用穩定 ／ 單調欄位計數 ＝ 上界 ≥ 抽籤時真池數、偽造不誤放；fold 位置 state ≈ 事發當時歷史真值——所有 peer replay 同一 log 前綴得同一判定）。
 > - **timestamp 程序下界**：面板案 ≥ 案錨 ＋ 抽籤延遲 ＋ 投票窗、無面板的池不足流局 ≥ 案錨 ＋ 抽籤延遲——早於程序可能完成時點的預埋條目直接無效。
 >
