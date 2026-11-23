@@ -66,6 +66,7 @@ interface ModerationDerivedState {
   reportsByReporter: ReadonlyMap<PeerId, ReadonlyMap<CID | PeerId, ReportInfo>>;
   reportAccuracy: ReadonlyMap<PeerId, { reports: number; successful: number }>;
   arbitrationResults: ReadonlyMap<EventId, ArbitrationResultRecord>; // 結果摘要（不存全事件；含收下該結果的 entry CID）
+  pendingAttestations: ReadonlyMap<EventId, ReadonlyMap<PeerId, { result: "pass" | "reject" | "no-quorum"; passRatioX100: number; attestation: Signature }>>; // 仍待結案的案件上待採用的 attestation（moderation.md §5.6；結果收下時清除）
   convictionsByOffender: ReadonlyMap<PeerId, number>; // 規則索引：三振依據（moderation.md §5.5）
   uploadPendingConvictions: ReadonlyMap<PeerId, Timestamp[]>; // 規則索引：安全港 30 天窗（anti-piracy.md §5.1）
 }

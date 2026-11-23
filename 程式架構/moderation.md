@@ -42,6 +42,16 @@ interface ArbitrationVoteEvent extends BaseEvent {
   vote: "pass" | "reject" | "abstain";
 }
 
+interface ArbitrationAttestEvent extends BaseEvent {
+  // 期滿後對自己 replay 出的結案內容所做的 attestation；fold 通過守門後記入 state 的 pendingAttestations，供任何節點收集（§5.6）
+  type: "arbitration-attest";
+  reportEventId: EventId;
+  attester: PeerId; // 必須等於簽署者本人
+  result: "pass" | "reject" | "no-quorum";
+  passRatioX100: number;
+  attestation: Signature; // 對 §5.6 attestation digest 的簽章
+}
+
 interface ArbitrationResultEvent extends BaseEvent {
   type: "arbitration-result";
   reportEventId: EventId; // 檢舉案＝`${reporter}@${reportedAt}#${target}` 合成 id（綁 target 防跨標的簽章轉移）；上傳期案＝`upload:${cid}`（canonical、收件驗）
@@ -87,7 +97,8 @@ interface ModerationDerivedState {
   pendingReports: ReadonlyMap<CID | PeerId, ReportInfo[]>; // 仲裁中 / 未結案
   reportsByReporter: ReadonlyMap<PeerId, ReadonlyMap<CID | PeerId, ReportInfo>>;
   reportAccuracy: ReadonlyMap<PeerId, { reports: number; successful: number }>;
-  arbitrationResults: ReadonlyMap<EventId, ArbitrationResultRecord>; // 結果摘要（fold 冪等鍵；不存全事件——state 不揹簽章）
+  arbitrationResults: ReadonlyMap<EventId, ArbitrationResultRecord>; // 結果摘要（fold 冪等鍵；不存全事件，這筆紀錄不含簽章）
+  pendingAttestations: ReadonlyMap<EventId, ReadonlyMap<PeerId, { result: "pass" | "reject" | "no-quorum"; passRatioX100: number; attestation: Signature }>>; // 仍待結案的案件上待採用的 attestation（每案每位簽署者留最新一份；結果收下時清除）
   convictionsByOffender: ReadonlyMap<PeerId, number>; // 規則索引：責任人定罪數（三振 §5.5 依據；結果套用時累加）
   uploadPendingConvictions: ReadonlyMap<PeerId, Timestamp[]>; // 規則索引：上傳期案判抄時間戳（安全港 30 天窗 anti-piracy.md §5.1；寫入時修剪）
 }
@@ -356,7 +367,9 @@ function deriveGlobalPeerBlacklist(
 
 **〔MOD-R-038〕** `ArbitrationResultEvent` / `BlacklistEvent` **任一 peer 可寫**（無指定寫入者——通常由期滿檢查點的 proposer 順手寫，但非義務）；防偽不靠寫入者身分、靠**全網驗算**（票已上鏈、結果人人可重算）：
 
-**仲裁推進器（`src/moderation/advancer.ts`）**：每個線上且身分已解鎖的 client 在啟動時、每 5 分鐘與每收到一筆 `arbitration-result` 時掃描一次，自動寫入兩種不需要 attestation 的事件：期滿且合格池不足（`arbiters: []`）的 `no-quorum` 結果；判定 `pass` 且對象為作品、尚未下架的 `BlacklistEvent`（`triggeredBy` 取結果紀錄上的 `resultEntryCid`：canonical fold 收下結果時記下該 entry 的 CID，log 中搶先寫入、被拒收的條目不會產生紀錄；沒有 entry CID 的紀錄不寫下架）。多個 client 同時寫入時以首筆為準，其餘條目不生效（收件驗證拒收或延後，fold 不收或判為 no-op）；寫入失敗不保留紀錄，下次掃描依當時狀態重新判斷，仍符合條件就再寫一次。`BlacklistEvent` 的收件驗證在本機狀態鏡像還沒有對應的 `pass` 結果時延後重審（鏡像可能尚未反映同一批剛 fold 的結果），最終由 fold 的同一守門判定。需要面板 attestation 的結果尚未接線。
+**仲裁推進器（`src/moderation/advancer.ts`）**：每個線上且身分已解鎖的 client 在啟動時、每 5 分鐘、每收到一筆 `arbitration-result` 與每收到一筆 `arbitration-attest` 時掃描一次。不需要 attestation 的事件有兩種，掃描時直接寫入：期滿且合格池不足（`arbiters: []`）的 `no-quorum` 結果；判定 `pass` 且對象為作品、尚未下架的 `BlacklistEvent`（`triggeredBy` 取結果紀錄上的 `resultEntryCid`：canonical fold 收下結果時記下該 entry 的 CID，log 中搶先寫入、被拒收的條目不會產生紀錄；沒有 entry CID 的紀錄不寫下架）。多個 client 同時寫入時以首筆為準，其餘條目不生效（收件驗證拒收或延後，fold 不收或判為 no-op）；寫入失敗不保留紀錄，下次掃描依當時狀態重新判斷，仍符合條件就再寫一次。`BlacklistEvent` 的收件驗證在本機狀態鏡像還沒有對應的 `pass` 結果時延後重審（鏡像可能尚未反映同一批剛 fold 的結果），最終由 fold 的同一守門判定。面板案（含票不足流局）另有兩步：本機是該案面板成員、而帳本狀態的 `pendingAttestations` 裡沒有自己那份與本機 replay 相符的 attestation 時，先寫一筆 `arbitration-attest`（送出成功後，同一個推進器對同一案不再重送同樣的結果與比例；本機 replay 出的結果或比例與送過的不同時會再送一筆）；再從 `pendingAttestations` 讀該案的 attestation，只採用面板成員、聲稱的結果與比例和自己 replay 相同的（每位成員一份），達 quorum 就組結果事件寫入。收集只讀帳本狀態，不讀 log。面板成員不需要同時在線：各自上線時送出 attestation，湊滿 quorum 的那一位（或任何其他節點）寫入結果。
+
+**`arbitration-attest` 的守門（收件驗證與 fold 共用同一判定）**：`attester` 等於簽署者本人、`result` 為三個字串值之一且 `passRatioX100` 為 0–100 的整數、案件仍待結案（案錨存在、未撤回、案錄尚無結果、這個案件 id 在 `arbitrationResults` 中沒有結果、檢舉案未逾期〔MOD-R-020〕，以帳本共識時鐘與事件時戳取大者計，fold 套用事件前會先把時鐘推到事件時戳，在同一份狀態上兩邊因此同結論；檢舉案的案件 id 必須逐字等於 `reporter@reportedAt#target`，時間戳的其他數字寫法不算同一案；上傳期案以標的比對既有的上傳期結果，因為判定成立的上傳期案在下架前仍留在相似審查中）、簽署者非兩造、簽署者通過仲裁者的穩定資格（年資與場數，與 panel-signature-set 逐 signer 檢查相同）、時戳不早於面板案可能結案的下界（案錨 ＋ 抽籤延遲 ＋ 投票窗，再減去訊息時戳容差），且 attestation 簽章對 digest 有效。准入層另外以案件 id 推出標的後實際驗 attestation 簽章。fold 通過守門才記入 `pendingAttestations`：同一案同一簽署者只留最新一份，條目只記在案件的 canonical id 下（守門只認這個寫法）；結果事件收下時清除該案 canonical id 下的條目；已不再待結案的案件上若還有條目（例如逾期未結的檢舉案），在下一筆任何案件的 attestation 被記入時清掉。收件驗證在本機狀態鏡像看不到待結案的案件或簽署者資格時延後重審（鏡像可能尚未反映同一批剛 fold 的事件），其餘拒因直接拒收。簽署者是否為面板成員、聲稱的結果是否正確，守門無法判定（需要檢查點時間線與抽籤快照），由收集端過濾，結果事件再經 panel-signature-set 恆驗。
 
 `appendEvent` 收件驗證（`arbitration-result`）＝ **shape＋冪等＋案錨摘要＋panel-signature-set**（live 與 fold 同組判定 ＝ 無分叉），任一條不符即拒收：
 

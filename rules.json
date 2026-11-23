@@ -1557,7 +1557,7 @@
       "anchor": {
         "file": "程式架構/ledger-admission.md",
         "line": 131,
-        "excerpt": "封閉目錄內 21 種事件型別中，20 種永久事件一律使用同一套 entry-level Admission v1，**不由治理者逐筆核准或簽署**。事件完成原有"
+        "excerpt": "封閉目錄內 22 種事件型別中，21 種永久事件一律使用同一套 entry-level Admission v1，**不由治理者逐筆核准或簽署**。事件完成原有"
       },
       "refs": []
     },
@@ -1702,7 +1702,7 @@
       "anchor": {
         "file": "程式架構/ledger-admission.md",
         "line": 172,
-        "excerpt": "**未啟用保留案：`asset-version-upgrade`**。下列六條只保留未來設計脈絡；此型別列在 21 型別事件目錄供設計追蹤，但不在現行 20 型"
+        "excerpt": "**未啟用保留案：`asset-version-upgrade`**。下列六條只保留未來設計脈絡；此型別列在 22 型別事件目錄供設計追蹤，但不在現行 21 型"
       },
       "refs": [
         {
@@ -1744,13 +1744,13 @@
       },
       "anchor": {
         "file": "程式架構/ledger-checkpoint.md",
-        "line": 116,
+        "line": 117,
         "excerpt": "`AssetVersionDerivedState.minSupportedByType` 依每個 asset type 的破壞牆推導：跨越牆 V 的不同創作者"
       },
       "refs": [
         {
           "file": "程式架構/ledger-checkpoint.md",
-          "line": 104
+          "line": 105
         }
       ]
     },
@@ -1768,7 +1768,7 @@
       },
       "anchor": {
         "file": "程式架構/ledger-checkpoint.md",
-        "line": 167,
+        "line": 168,
         "excerpt": "冷分區鍵固定使用事件 timestamp 的 UTC 年份與季度，hot window 也依同一函式切分："
       },
       "refs": []
@@ -1787,7 +1787,7 @@
       },
       "anchor": {
         "file": "程式架構/ledger-checkpoint.md",
-        "line": 187,
+        "line": 188,
         "excerpt": "> **帳本檢查點 ≠ 回合共識錨**：本節是**全網 ledger 狀態整併**機制（治理 signer set：初期 `N=1 → quorum 1`；`N"
       },
       "refs": []
@@ -1806,7 +1806,7 @@
       },
       "anchor": {
         "file": "程式架構/ledger-checkpoint.md",
-        "line": 212,
+        "line": 213,
         "excerpt": "- **公開凍結前的 exact v1 baseline**：只接受上列 exact closed shape；`checkpoint_version: 0`／"
       },
       "refs": []
@@ -1825,7 +1825,7 @@
       },
       "anchor": {
         "file": "程式架構/ledger-checkpoint.md",
-        "line": 211,
+        "line": 212,
         "excerpt": "- **提案觸發**：任一治理 signer 見「本地時鐘 − 上一檢查點 timestamp ≥ `LEDGER_CHECKPOINT_INTERVAL_HO"
       },
       "refs": []
@@ -1844,7 +1844,7 @@
       },
       "anchor": {
         "file": "程式架構/ledger-checkpoint.md",
-        "line": 215,
+        "line": 216,
         "excerpt": "- `reviewAndSign`：驗 proposer 簽章 → 驗 head-set frontier 與前一 frontier 雙向連續 → 以完整 DA"
       },
       "refs": []
@@ -1863,7 +1863,7 @@
       },
       "anchor": {
         "file": "程式架構/ledger-checkpoint.md",
-        "line": 217,
+        "line": 218,
         "excerpt": "- **CheckpointStore control envelope**：`{ version, revision, latest, effective, "
       },
       "refs": []
@@ -1882,7 +1882,7 @@
       },
       "anchor": {
         "file": "程式架構/ledger-checkpoint.md",
-        "line": 218,
+        "line": 219,
         "excerpt": "- **遠端 adoption 與啟動 watermark**：live `LedgerCheckpointEvent` 與 open 時的 historica"
       },
       "refs": []
@@ -1901,7 +1901,7 @@
       },
       "anchor": {
         "file": "程式架構/ledger-checkpoint.md",
-        "line": 219,
+        "line": 220,
         "excerpt": "- **同 previous sibling quarantine**：若兩個不同 checkpoint CID 都完整有效且 `previous_checkp"
       },
       "refs": []
@@ -1920,7 +1920,7 @@
       },
       "anchor": {
         "file": "程式架構/ledger-checkpoint.md",
-        "line": 220,
+        "line": 221,
         "excerpt": "- **crash redo 與 pre-open reconciliation**：跨 Orbit log／CheckpointStore 不宣稱單一 tra"
       },
       "refs": []
@@ -1939,7 +1939,7 @@
       },
       "anchor": {
         "file": "程式架構/ledger-checkpoint.md",
-        "line": 228,
+        "line": 229,
         "excerpt": "- Orbit entry 使用獨立 IndexedDB blockstore `open4wd/ledger/entries`；不得與 Helia/Bitsw"
       },
       "refs": []
@@ -1958,7 +1958,7 @@
       },
       "anchor": {
         "file": "程式架構/ledger-checkpoint.md",
-        "line": 230,
+        "line": 231,
         "excerpt": "- remote join 必須接到目前任一 head 或 finalized checkpoint boundary；isolated fork 拒絕。hea"
       },
       "refs": []
@@ -1977,7 +1977,7 @@
       },
       "anchor": {
         "file": "程式架構/ledger-checkpoint.md",
-        "line": 231,
+        "line": 232,
         "excerpt": "- remote join 與 local `commitPrepared(finalEntryBytes, cid)` 都先經 canonical Admis"
       },
       "refs": []
@@ -1996,7 +1996,7 @@
       },
       "anchor": {
         "file": "程式架構/ledger-checkpoint.md",
-        "line": 232,
+        "line": 233,
         "excerpt": "- quota eviction 只刪 finalized-checkpoint-covered entry，且呼叫專屬 entry blockstore 的真"
       },
       "refs": []
@@ -2015,7 +2015,7 @@
       },
       "anchor": {
         "file": "程式架構/ledger-checkpoint.md",
-        "line": 234,
+        "line": 235,
         "excerpt": "- `syncFromCheckpoint`：取 effective latest checkpoint（無則從 genesis/log 重建）→ 載已驗 de"
       },
       "refs": []
@@ -2034,7 +2034,7 @@
       },
       "anchor": {
         "file": "程式架構/ledger-checkpoint.md",
-        "line": 235,
+        "line": 236,
         "excerpt": "- **accepted／pending／notified 分離**：只有 decode 成功、非 checkpoint、未來時戳排除、所有 timeless "
       },
       "refs": []
@@ -2055,7 +2055,7 @@
       },
       "anchor": {
         "file": "程式架構/ledger-checkpoint.md",
-        "line": 237,
+        "line": 238,
         "excerpt": "- **Orbit multi-head 與 full-DAG fold**：所有已連到任一 verified head／checkpoint boundary"
       },
       "refs": []
@@ -2959,13 +2959,13 @@
       },
       "anchor": {
         "file": "程式架構/ledger-checkpoint.md",
-        "line": 100,
+        "line": 101,
         "excerpt": "`processedDisconnectEffects` 以 `(matchId, peerId)` 作持久冪等鍵，`match-result` 與本人自簽 `"
       },
       "refs": [
         {
           "file": "程式架構/ledger-checkpoint.md",
-          "line": 97
+          "line": 98
         }
       ]
     },
@@ -3008,7 +3008,7 @@
       "refs": [
         {
           "file": "程式架構/ledger-checkpoint.md",
-          "line": 222
+          "line": 223
         }
       ]
     },
@@ -3412,10 +3412,15 @@
       },
       "anchor": {
         "file": "程式架構/moderation.md",
-        "line": 119,
+        "line": 130,
         "excerpt": "未結案的 `report` 事件放在 `pendingReports`，**滿 90 天仍未結案 → derive 時自動視為過期**（不再列入、不再可觸發新仲"
       },
-      "refs": []
+      "refs": [
+        {
+          "file": "程式架構/moderation.md",
+          "line": 372
+        }
+      ]
     },
     {
       "id": "MOD-R-021",
@@ -3433,7 +3438,7 @@
       },
       "anchor": {
         "file": "程式架構/moderation.md",
-        "line": 145,
+        "line": 156,
         "excerpt": "撤回資格由檢舉時間與 fold 位置共識時鐘推導，撤回窗在仲裁抽籤前。"
       },
       "refs": []
@@ -3452,7 +3457,7 @@
       },
       "anchor": {
         "file": "程式架構/moderation.md",
-        "line": 147,
+        "line": 158,
         "excerpt": "`consensusNow >= 檢舉 + 24h` 時必須拒絕撤回，事件自報 timestamp 不得繞過窗界。"
       },
       "refs": []
@@ -3471,7 +3476,7 @@
       },
       "anchor": {
         "file": "程式架構/moderation.md",
-        "line": 149,
+        "line": 160,
         "excerpt": "窗內撤回不進準確率且允許同對象重新檢舉；抽籤後不得撤回。"
       },
       "refs": []
@@ -3490,7 +3495,7 @@
       },
       "anchor": {
         "file": "程式架構/moderation.md",
-        "line": 174,
+        "line": 185,
         "excerpt": "已終局下架、退役、進入安全港或不存在的 CID 不得再次成為有效檢舉目標。"
       },
       "refs": []
@@ -3509,7 +3514,7 @@
       },
       "anchor": {
         "file": "程式架構/moderation.md",
-        "line": 176,
+        "line": 187,
         "excerpt": "同一對象已有進行中或未過期終局案件時，必須序列化並拒絕重複檢舉。"
       },
       "refs": []
@@ -3528,7 +3533,7 @@
       },
       "anchor": {
         "file": "程式架構/moderation.md",
-        "line": 178,
+        "line": 189,
         "excerpt": "檢舉者超過 rolling 窗口額度時必須拒絕新案。"
       },
       "refs": []
@@ -3547,7 +3552,7 @@
       },
       "anchor": {
         "file": "程式架構/moderation.md",
-        "line": 180,
+        "line": 191,
         "excerpt": "檢舉理由與 target kind 的非法組合必須在表單服務層拒絕。"
       },
       "refs": []
@@ -3566,7 +3571,7 @@
       },
       "anchor": {
         "file": "程式架構/moderation.md",
-        "line": 263,
+        "line": 274,
         "excerpt": "仲裁面板必須以 `hash(reportId + 抽籤檢查點 timestamp)` 對 canonical 合格池決定性抽選 7 人。"
       },
       "refs": []
@@ -3585,7 +3590,7 @@
       },
       "anchor": {
         "file": "程式架構/moderation.md",
-        "line": 265,
+        "line": 276,
         "excerpt": "仲裁資格與投票 weight 一律取該輪抽籤檢查點的 `DerivedState` 快照，投票期間的信譽變動不得改變本案。"
       },
       "refs": []
@@ -3604,7 +3609,7 @@
       },
       "anchor": {
         "file": "程式架構/moderation.md",
-        "line": 271,
+        "line": 282,
         "excerpt": "**票集合（tally 的輸入，全網同規則、決定性）**："
       },
       "refs": []
@@ -3623,7 +3628,7 @@
       },
       "anchor": {
         "file": "程式架構/moderation.md",
-        "line": 278,
+        "line": 289,
         "excerpt": "`arbitration-vote` admission 必須排除檢舉者與責任人兩造的票。"
       },
       "refs": []
@@ -3642,7 +3647,7 @@
       },
       "anchor": {
         "file": "程式架構/moderation.md",
-        "line": 280,
+        "line": 291,
         "excerpt": "`arbitration-vote` admission 必須拒絕抽籤下界前、明確超出容許上界或已撤回案件的票。"
       },
       "refs": []
@@ -3661,7 +3666,7 @@
       },
       "anchor": {
         "file": "程式架構/moderation.md",
-        "line": 308,
+        "line": 319,
         "excerpt": "**投票期滿** = 抽籤點起首個 timestamp ≥ 抽籤點 + `ARBITRATION_VOTE_WINDOW_HOURS`（72，待 playtes"
       },
       "refs": []
@@ -3680,7 +3685,7 @@
       },
       "anchor": {
         "file": "程式架構/moderation.md",
-        "line": 310,
+        "line": 321,
         "excerpt": "Quorum 固定為 4 張有效票；pass 與 reject 計入，棄權不計。"
       },
       "refs": []
@@ -3699,7 +3704,7 @@
       },
       "anchor": {
         "file": "程式架構/moderation.md",
-        "line": 312,
+        "line": 323,
         "excerpt": "達 quorum 後以整數權重計票，pass 權重必須嚴格大於有效票總權重的 60% 才通過。"
       },
       "refs": []
@@ -3718,7 +3723,7 @@
       },
       "anchor": {
         "file": "程式架構/moderation.md",
-        "line": 318,
+        "line": 329,
         "excerpt": "罰則**依檢舉類型、不依 target 種類**（數值權威 [信譽系統.md §2.3](../信譽系統.md)；derive 函式見 [reputation."
       },
       "refs": []
@@ -3737,7 +3742,7 @@
       },
       "anchor": {
         "file": "程式架構/moderation.md",
-        "line": 337,
+        "line": 348,
         "excerpt": "同一責任人累積三次仲裁定罪後，必須由 fold 決定性推導為永久全域玩家黑名單："
       },
       "refs": []
@@ -3758,7 +3763,7 @@
       },
       "anchor": {
         "file": "程式架構/moderation.md",
-        "line": 357,
+        "line": 368,
         "excerpt": "`ArbitrationResultEvent` / `BlacklistEvent` **任一 peer 可寫**（無指定寫入者——通常由期滿檢查點的 pro"
       },
       "refs": []
@@ -3779,7 +3784,7 @@
       },
       "anchor": {
         "file": "程式架構/moderation.md",
-        "line": 363,
+        "line": 376,
         "excerpt": "1. `reportEventId` 指向存在且**未撤回、尚無結果**的開放案錨（canonical caseId 反查）；**事件內案錨摘要（caseKin"
       },
       "refs": []
@@ -3800,7 +3805,7 @@
       },
       "anchor": {
         "file": "程式架構/moderation.md",
-        "line": 364,
+        "line": 377,
         "excerpt": "2. `timestamp` ≥ **程序下界**（面板案 ≥ 案錨 ＋ 抽籤延遲 ＋ 投票窗；無面板的池不足流局 ≥ 案錨 ＋ 抽籤延遲——與 fold 恆驗"
       },
       "refs": []
@@ -3821,7 +3826,7 @@
       },
       "anchor": {
         "file": "程式架構/moderation.md",
-        "line": 365,
+        "line": 378,
         "excerpt": "3. `arbiters` **長度合法**（面板案 = `ARBITRATION_PANEL_SIZE`(7)，含重抽輪池不足的流局；第一輪抽籤點池不足的流局"
       },
       "refs": []
@@ -3842,7 +3847,7 @@
       },
       "anchor": {
         "file": "程式架構/moderation.md",
-        "line": 366,
+        "line": 379,
         "excerpt": "4. **panel-signature-set**：≥ quorum 面板 attestation——distinct、∈ `arbiters`、非兩造、簽章"
       },
       "refs": []
@@ -3863,7 +3868,7 @@
       },
       "anchor": {
         "file": "程式架構/moderation.md",
-        "line": 367,
+        "line": 380,
         "excerpt": "5. 同 `reportEventId` 已有結果事件 → 拒收（**首筆有效**；並行寫入的競合由 ledger fork resolution 收斂，[le"
       },
       "refs": []
@@ -3884,7 +3889,7 @@
       },
       "anchor": {
         "file": "程式架構/moderation.md",
-        "line": 369,
+        "line": 382,
         "excerpt": "`BlacklistEvent`：`triggeredBy` 必須指向 `result: 'pass'` 且 `targetKind: 'cid'` 的結果事件"
       },
       "refs": []
@@ -3905,7 +3910,7 @@
       },
       "anchor": {
         "file": "程式架構/moderation.md",
-        "line": 375,
+        "line": 388,
         "excerpt": "> - **digest**＝`signingDigest({type:'arbitration-result-attest', reportEventId, "
       },
       "refs": []
@@ -3924,7 +3929,7 @@
       },
       "anchor": {
         "file": "程式架構/moderation.md",
-        "line": 377,
+        "line": 390,
         "excerpt": "> - **fold 驗**：面板案（pass／reject／ 票不足流局）＝`arbiters.length = 7`、簽章集 ≥ quorum(4)——di"
       },
       "refs": [
@@ -3948,7 +3953,7 @@
       },
       "anchor": {
         "file": "程式架構/moderation.md",
-        "line": 387,
+        "line": 400,
         "excerpt": "- **案錨 = 含 `similarityMatches` 宣告的 `UgcUploadEvent`**（**在鏈上**；無 `ReportEvent`、無檢"
       },
       "refs": []
@@ -3969,7 +3974,7 @@
       },
       "anchor": {
         "file": "程式架構/moderation.md",
-        "line": 389,
+        "line": 402,
         "excerpt": "- **結果**：`pass`（判抄）→ pending CID 寫 `BlacklistEvent` 下架、**不扣信譽**（灰區撞衫可能），並累積該上傳者的"
       },
       "refs": []
@@ -3988,7 +3993,7 @@
       },
       "anchor": {
         "file": "程式架構/moderation.md",
-        "line": 398,
+        "line": 411,
         "excerpt": "| 既有玩家餘額 | **不變動**（過去鑄幣保留）                                          |"
       },
       "refs": []
@@ -4007,7 +4012,7 @@
       },
       "anchor": {
         "file": "程式架構/moderation.md",
-        "line": 420,
+        "line": 433,
         "excerpt": "| A 黑名單後 B 仍被使用 | B 的 royalty 照舊（B 作者 70% + A 作者 20%，即使 A 在黑名單）                 "
       },
       "refs": []
@@ -4026,7 +4031,7 @@
       },
       "anchor": {
         "file": "程式架構/moderation.md",
-        "line": 428,
+        "line": 441,
         "excerpt": "`canUseUgc` 必須分別以 `blacklisted` 或 `retired` 原因拒絕不可用內容，且不承載 UI 文案："
       },
       "refs": []
@@ -4045,7 +4050,7 @@
       },
       "anchor": {
         "file": "程式架構/moderation.md",
-        "line": 494,
+        "line": 507,
         "excerpt": "| 復活 | 不能（事件溯源）                   | 可（付續租費 → `UgcMaintenanceEvent`）         |"
       },
       "refs": []

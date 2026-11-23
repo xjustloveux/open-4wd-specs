@@ -3490,6 +3490,15 @@
       "summary": null
     },
     {
+      "id": "decisions/D-20261122-07-仲裁attestation以帳本事件收集.md",
+      "type": "decision",
+      "domain": [
+        "信譽仲裁",
+        "共識帳本"
+      ],
+      "summary": null
+    },
+    {
       "id": "decisions/INDEX.md",
       "type": null,
       "domain": [],
@@ -8815,6 +8824,10 @@
     },
     {
       "from": "decisions/D-20261122-04-仲裁推進器自動寫入流局結果與下架.md",
+      "to": "decisions/D-20261122-07-仲裁attestation以帳本事件收集.md"
+    },
+    {
+      "from": "decisions/D-20261122-04-仲裁推進器自動寫入流局結果與下架.md",
       "to": "程式架構/ledger-checkpoint.md"
     },
     {
@@ -8840,6 +8853,30 @@
     {
       "from": "decisions/D-20261122-06-仲裁年資以名義抽籤點計.md",
       "to": "程式架構/moderation.md"
+    },
+    {
+      "from": "decisions/D-20261122-07-仲裁attestation以帳本事件收集.md",
+      "to": "信譽系統.md"
+    },
+    {
+      "from": "decisions/D-20261122-07-仲裁attestation以帳本事件收集.md",
+      "to": "流程/檢舉與仲裁.md"
+    },
+    {
+      "from": "decisions/D-20261122-07-仲裁attestation以帳本事件收集.md",
+      "to": "程式架構/ledger-admission.md"
+    },
+    {
+      "from": "decisions/D-20261122-07-仲裁attestation以帳本事件收集.md",
+      "to": "程式架構/ledger-checkpoint.md"
+    },
+    {
+      "from": "decisions/D-20261122-07-仲裁attestation以帳本事件收集.md",
+      "to": "程式架構/moderation.md"
+    },
+    {
+      "from": "decisions/D-20261122-07-仲裁attestation以帳本事件收集.md",
+      "to": "資料系統.md"
     },
     {
       "from": "decisions/INDEX.md",
@@ -10484,6 +10521,10 @@
     {
       "from": "decisions/INDEX.md",
       "to": "decisions/D-20261122-06-仲裁年資以名義抽籤點計.md"
+    },
+    {
+      "from": "decisions/INDEX.md",
+      "to": "decisions/D-20261122-07-仲裁attestation以帳本事件收集.md"
     },
     {
       "from": "decisions/INDEX.md",

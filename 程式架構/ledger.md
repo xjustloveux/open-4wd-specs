@@ -218,7 +218,7 @@ const LRU_HEADS_LIMIT = 64;
 - **〔LEDGER-R-076〕** finalized checkpoint 完整驗簽後先 prepare boundary；content-addressed artifacts 與唯一宣告完成後同步 commit boundary，再寫 latest pointer。latest 失敗即同步 rollback boundary；重試以 checkpoint CID 掃 log 復用已存在宣告。新 boundary 必須是舊 boundary 在本地已驗 next 鏈上的單調後繼；驗證、prepare、announcement 或 latest 失敗皆不留下錯誤 eviction boundary。
 - LRU miss 只查專屬本機 entry IDB；remote ancestor 只能向送出該 head 的 authenticated peer 走有界 entry-fetch protocol，禁止回退到 Helia/Bitswap 任意 provider。peer 離線或 frame/CID 不符即整次 join fail-closed；derived state／cold CID 等一般內容塊才可走 Bitswap/pinning。
 - **〔LEDGER-R-075〕** **Checkpoint + 簽章永遠保留**（獨立 `LevelStorage`、不走 LRU），否則新玩家無法驗 derived state。
-- **〔LEDGER-R-074〕** persistence admission 使用 `open4wd-ledger` custom access-controller：manifest `write:['*']` 只代表 permissionless author，不代表任意 payload。落盤前強制 Orbit identity、operation exact shape、event `64 KiB / depth 16 / 2,048 entries`、**封閉 20 種已實作 event allowlist**、逐型別 exact deep schema／CID／PeerId／ 整數 ／ 容器上限與 stateless intrinsic authorization；unknown 與未啟用 `asset-version-upgrade` 拒絕。match-result／desync／config／arbitration 等簽章容器須實際驗章，不只驗 64-byte 外形。AC reject 時 entry/index/heads 零寫入。live 時效與 state-dependent 業務共識仍由收件/fold 層負責。
+- **〔LEDGER-R-074〕** persistence admission 使用 `open4wd-ledger` custom access-controller：manifest `write:['*']` 只代表 permissionless author，不代表任意 payload。落盤前強制 Orbit identity、operation exact shape、event `64 KiB / depth 16 / 2,048 entries`、**封閉 21 種已實作 event allowlist**、逐型別 exact deep schema／CID／PeerId／ 整數 ／ 容器上限與 stateless intrinsic authorization；unknown 與未啟用 `asset-version-upgrade` 拒絕。match-result／desync／config／arbitration 等簽章容器須實際驗章，不只驗 64-byte 外形。AC reject 時 entry/index/heads 零寫入。live 時效與 state-dependent 業務共識仍由收件/fold 層負責。
 
 ### 10.1 Anti-spam 完成邊界與殘餘風險
 
