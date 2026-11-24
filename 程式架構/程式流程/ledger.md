@@ -69,32 +69,24 @@ sequenceDiagram
 
 ```mermaid
 sequenceDiagram
-    participant A as 治理 signer proposer
+    participant A as 指定提案者（本輪）
+    participant L as 帳本（OrbitDB log）
     participant B as 其他治理 signer
-    participant C as 其他治理 signer
-    participant Ds as 其餘治理 signers
+    participant F as 任一節點（定稿者）
     participant P as Pinning
 
-    A->>A: 計算當前 derived_state
-    A->>A: 上傳 derived_state 到 IPFS → CID
-    A->>A: 建立 Checkpoint 提案 + 自簽
-    A->>B: 廣播提案
-    A->>C: 廣播提案
-    A->>Ds: 廣播提案
-
-    B->>B: 驗證 proposal
-    B->>A: 簽章
-    C->>C: 驗證
-    C->>A: 簽章
-    Ds->>Ds: 各自驗證 + 簽章
-    Ds->>A: 簽章
-
-    A->>A: 收集到治理 quorum 簽章
-
-    A->>P: pin checkpoint CID
-    A->>B: 廣播 finalized
-    A->>C: 廣播 finalized
-    A->>Ds: 廣播 finalized
+    A->>A: 先定 timestamp 與 round，以候選折疊成形狀態
+    A->>A: 檢查觸發條件，寫入並 pin 狀態與 signer set 塊
+    A->>A: 寫鎖 → 簽本體
+    A->>L: ledger-checkpoint-proposal（本體 + 提案者一票）
+    L-->>B: 複寫條目，待定稿索引收錄本體
+    B->>B: 覆核（便宜檢查 → 重算比對）
+    B->>B: 寫鎖 → 簽本體
+    B->>L: ledger-checkpoint-signature（一票）
+    L-->>F: 待定稿索引見本體達 quorum
+    F->>F: 組憑證並裁成 quorum 份，journal → pointer → boundary
+    F->>L: ledger-checkpoint-certificate（定稿公告）
+    L-->>P: 採納公告並 pin 本體、狀態與 cold 分區
 ```
 
 ## 新玩家 Sync 流程
@@ -217,5 +209,7 @@ mindmap
       ConfigUpdateEvent
       AssetVersionUpgradeEvent
     Checkpoint
-      LedgerCheckpointEvent 帳本檢查點
+      LedgerCheckpointProposalEvent 提案（本體 + 提案者一票）
+      LedgerCheckpointSignatureEvent 投票
+      LedgerCheckpointCertificateEvent 定稿公告
 ```

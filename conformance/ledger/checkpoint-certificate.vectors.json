@@ -1,0 +1,296 @@
+{
+  "family": "ledger/checkpoint-certificate",
+  "spec": [
+    "程式架構/ledger-checkpoint.md"
+  ],
+  "formatVersion": 1,
+  "encoding": {
+    "bytes": "hex-lower",
+    "bigint": "decimal-string"
+  },
+  "generatedBy": "open-4wd@0.0.0",
+  "vectors": [
+    {
+      "name": "quorum-of-four-accepted",
+      "input": {
+        "ledgerAddress": "/orbitdb/zdpuAw6ZdQ6cEFTCgmCf1LYAwP7VweSF8fzMN4Kzw22k1Hk8x",
+        "body": {
+          "checkpoint_version": 1,
+          "timestamp": 1700000000000,
+          "round": 0,
+          "log_head_cids": [
+            "zdpuAw6ZdQ6cEFTCgmCf1LYAwP7VweSF8fzMN4Kzw22k1Hk8x"
+          ],
+          "derived_state_cid": "bafyreihdwdcefgh4dqkjv67uzcmw7ojee6xedzdetojuzjevtenxquvyku",
+          "previous_checkpoint_cid": "bafyreigdmqpykrgxyaxtlafqpqhzrb7qy2rh75nxomzwh5kxtapztmyhbe",
+          "signer_set_cid": "bafyreigxg5cpw2wws4lflsnkmdgvzpsfanjykrznfeodixpgz5kfkgleqi",
+          "signer_set_size": 4,
+          "quorum": 3,
+          "proposer": "z6Mkt6316e2PN3mZdB6N9CrzomJYUd1s5yBZi1XYHmwT9TUP",
+          "next_signer_set_cid": "bafyreigxg5cpw2wws4lflsnkmdgvzpsfanjykrznfeodixpgz5kfkgleqi"
+        },
+        "signerSet": [
+          "z6Mkt6316e2PN3mZdB6N9CrzomJYUd1s5yBZi1XYHmwT9TUP",
+          "z6Mkon3Necd6NkkyfoGoHxid2znGc59LU3K7mubaRcFbLfLX",
+          "z6MkvRXNYcE7MMduynWTgeKbDaT1iijDSC8pZqXZc8rHPrf2",
+          "z6Mko9hTggMwjSTEaJaPUfE6tqcy2xvU6BnNq3e3o8qVBiyH"
+        ],
+        "signatures": [
+          {
+            "signer": "z6Mkon3Necd6NkkyfoGoHxid2znGc59LU3K7mubaRcFbLfLX",
+            "sig": "61735d73785f10d923269978d5fc279b06cf8dfc32a88f8d8c37171fa5a85902af0cfc31f43fe40832ad191c136656c3756b4401f8c6cba7ac665f37c45a7504"
+          },
+          {
+            "signer": "z6Mkt6316e2PN3mZdB6N9CrzomJYUd1s5yBZi1XYHmwT9TUP",
+            "sig": "64432728358f83d5b432822b3ea2f04b11de8e1f38578a1a723075a9b44d1208cec9e12847d15e763ce663348e1a54161b8f0da728d7fb4a19fb623cd2d8e203"
+          },
+          {
+            "signer": "z6MkvRXNYcE7MMduynWTgeKbDaT1iijDSC8pZqXZc8rHPrf2",
+            "sig": "7f9b9d326631d40ded5700dd9d5583ba77198cb78731e7baa0cb6a5f2483f6f12c891c662e770f880f6d9dc44644601c7897ee447dc81fb3dfa414c71f4b8101"
+          }
+        ]
+      },
+      "expected": {
+        "valid": true,
+        "trimmedSigners": [
+          "z6Mkon3Necd6NkkyfoGoHxid2znGc59LU3K7mubaRcFbLfLX",
+          "z6Mkt6316e2PN3mZdB6N9CrzomJYUd1s5yBZi1XYHmwT9TUP",
+          "z6MkvRXNYcE7MMduynWTgeKbDaT1iijDSC8pZqXZc8rHPrf2"
+        ]
+      }
+    },
+    {
+      "name": "all-four-trimmed-to-quorum",
+      "input": {
+        "ledgerAddress": "/orbitdb/zdpuAw6ZdQ6cEFTCgmCf1LYAwP7VweSF8fzMN4Kzw22k1Hk8x",
+        "body": {
+          "checkpoint_version": 1,
+          "timestamp": 1700000000000,
+          "round": 0,
+          "log_head_cids": [
+            "zdpuAw6ZdQ6cEFTCgmCf1LYAwP7VweSF8fzMN4Kzw22k1Hk8x"
+          ],
+          "derived_state_cid": "bafyreihdwdcefgh4dqkjv67uzcmw7ojee6xedzdetojuzjevtenxquvyku",
+          "previous_checkpoint_cid": "bafyreigdmqpykrgxyaxtlafqpqhzrb7qy2rh75nxomzwh5kxtapztmyhbe",
+          "signer_set_cid": "bafyreigxg5cpw2wws4lflsnkmdgvzpsfanjykrznfeodixpgz5kfkgleqi",
+          "signer_set_size": 4,
+          "quorum": 3,
+          "proposer": "z6Mkt6316e2PN3mZdB6N9CrzomJYUd1s5yBZi1XYHmwT9TUP",
+          "next_signer_set_cid": "bafyreigxg5cpw2wws4lflsnkmdgvzpsfanjykrznfeodixpgz5kfkgleqi"
+        },
+        "signerSet": [
+          "z6Mkt6316e2PN3mZdB6N9CrzomJYUd1s5yBZi1XYHmwT9TUP",
+          "z6Mkon3Necd6NkkyfoGoHxid2znGc59LU3K7mubaRcFbLfLX",
+          "z6MkvRXNYcE7MMduynWTgeKbDaT1iijDSC8pZqXZc8rHPrf2",
+          "z6Mko9hTggMwjSTEaJaPUfE6tqcy2xvU6BnNq3e3o8qVBiyH"
+        ],
+        "signatures": [
+          {
+            "signer": "z6Mko9hTggMwjSTEaJaPUfE6tqcy2xvU6BnNq3e3o8qVBiyH",
+            "sig": "99b8980eb67af0ee79be33fe4ffb4a394b7fc764f23c4bfca876aedf7f160749cc35fdcca2c93543f0c44800953366544917da1229e18b3875d24cbbb42de00e"
+          },
+          {
+            "signer": "z6Mkon3Necd6NkkyfoGoHxid2znGc59LU3K7mubaRcFbLfLX",
+            "sig": "61735d73785f10d923269978d5fc279b06cf8dfc32a88f8d8c37171fa5a85902af0cfc31f43fe40832ad191c136656c3756b4401f8c6cba7ac665f37c45a7504"
+          },
+          {
+            "signer": "z6Mkt6316e2PN3mZdB6N9CrzomJYUd1s5yBZi1XYHmwT9TUP",
+            "sig": "64432728358f83d5b432822b3ea2f04b11de8e1f38578a1a723075a9b44d1208cec9e12847d15e763ce663348e1a54161b8f0da728d7fb4a19fb623cd2d8e203"
+          },
+          {
+            "signer": "z6MkvRXNYcE7MMduynWTgeKbDaT1iijDSC8pZqXZc8rHPrf2",
+            "sig": "7f9b9d326631d40ded5700dd9d5583ba77198cb78731e7baa0cb6a5f2483f6f12c891c662e770f880f6d9dc44644601c7897ee447dc81fb3dfa414c71f4b8101"
+          }
+        ]
+      },
+      "expected": {
+        "valid": true,
+        "trimmedSigners": [
+          "z6Mko9hTggMwjSTEaJaPUfE6tqcy2xvU6BnNq3e3o8qVBiyH",
+          "z6Mkon3Necd6NkkyfoGoHxid2znGc59LU3K7mubaRcFbLfLX",
+          "z6Mkt6316e2PN3mZdB6N9CrzomJYUd1s5yBZi1XYHmwT9TUP"
+        ]
+      }
+    },
+    {
+      "name": "below-quorum-rejected",
+      "input": {
+        "ledgerAddress": "/orbitdb/zdpuAw6ZdQ6cEFTCgmCf1LYAwP7VweSF8fzMN4Kzw22k1Hk8x",
+        "body": {
+          "checkpoint_version": 1,
+          "timestamp": 1700000000000,
+          "round": 0,
+          "log_head_cids": [
+            "zdpuAw6ZdQ6cEFTCgmCf1LYAwP7VweSF8fzMN4Kzw22k1Hk8x"
+          ],
+          "derived_state_cid": "bafyreihdwdcefgh4dqkjv67uzcmw7ojee6xedzdetojuzjevtenxquvyku",
+          "previous_checkpoint_cid": "bafyreigdmqpykrgxyaxtlafqpqhzrb7qy2rh75nxomzwh5kxtapztmyhbe",
+          "signer_set_cid": "bafyreigxg5cpw2wws4lflsnkmdgvzpsfanjykrznfeodixpgz5kfkgleqi",
+          "signer_set_size": 4,
+          "quorum": 3,
+          "proposer": "z6Mkt6316e2PN3mZdB6N9CrzomJYUd1s5yBZi1XYHmwT9TUP",
+          "next_signer_set_cid": "bafyreigxg5cpw2wws4lflsnkmdgvzpsfanjykrznfeodixpgz5kfkgleqi"
+        },
+        "signerSet": [
+          "z6Mkt6316e2PN3mZdB6N9CrzomJYUd1s5yBZi1XYHmwT9TUP",
+          "z6Mkon3Necd6NkkyfoGoHxid2znGc59LU3K7mubaRcFbLfLX",
+          "z6MkvRXNYcE7MMduynWTgeKbDaT1iijDSC8pZqXZc8rHPrf2",
+          "z6Mko9hTggMwjSTEaJaPUfE6tqcy2xvU6BnNq3e3o8qVBiyH"
+        ],
+        "signatures": [
+          {
+            "signer": "z6Mkon3Necd6NkkyfoGoHxid2znGc59LU3K7mubaRcFbLfLX",
+            "sig": "61735d73785f10d923269978d5fc279b06cf8dfc32a88f8d8c37171fa5a85902af0cfc31f43fe40832ad191c136656c3756b4401f8c6cba7ac665f37c45a7504"
+          },
+          {
+            "signer": "z6Mkt6316e2PN3mZdB6N9CrzomJYUd1s5yBZi1XYHmwT9TUP",
+            "sig": "64432728358f83d5b432822b3ea2f04b11de8e1f38578a1a723075a9b44d1208cec9e12847d15e763ce663348e1a54161b8f0da728d7fb4a19fb623cd2d8e203"
+          }
+        ]
+      },
+      "expected": {
+        "valid": false,
+        "trimmedSigners": null
+      }
+    },
+    {
+      "name": "unsorted-rejected",
+      "input": {
+        "ledgerAddress": "/orbitdb/zdpuAw6ZdQ6cEFTCgmCf1LYAwP7VweSF8fzMN4Kzw22k1Hk8x",
+        "body": {
+          "checkpoint_version": 1,
+          "timestamp": 1700000000000,
+          "round": 0,
+          "log_head_cids": [
+            "zdpuAw6ZdQ6cEFTCgmCf1LYAwP7VweSF8fzMN4Kzw22k1Hk8x"
+          ],
+          "derived_state_cid": "bafyreihdwdcefgh4dqkjv67uzcmw7ojee6xedzdetojuzjevtenxquvyku",
+          "previous_checkpoint_cid": "bafyreigdmqpykrgxyaxtlafqpqhzrb7qy2rh75nxomzwh5kxtapztmyhbe",
+          "signer_set_cid": "bafyreigxg5cpw2wws4lflsnkmdgvzpsfanjykrznfeodixpgz5kfkgleqi",
+          "signer_set_size": 4,
+          "quorum": 3,
+          "proposer": "z6Mkt6316e2PN3mZdB6N9CrzomJYUd1s5yBZi1XYHmwT9TUP",
+          "next_signer_set_cid": "bafyreigxg5cpw2wws4lflsnkmdgvzpsfanjykrznfeodixpgz5kfkgleqi"
+        },
+        "signerSet": [
+          "z6Mkt6316e2PN3mZdB6N9CrzomJYUd1s5yBZi1XYHmwT9TUP",
+          "z6Mkon3Necd6NkkyfoGoHxid2znGc59LU3K7mubaRcFbLfLX",
+          "z6MkvRXNYcE7MMduynWTgeKbDaT1iijDSC8pZqXZc8rHPrf2",
+          "z6Mko9hTggMwjSTEaJaPUfE6tqcy2xvU6BnNq3e3o8qVBiyH"
+        ],
+        "signatures": [
+          {
+            "signer": "z6MkvRXNYcE7MMduynWTgeKbDaT1iijDSC8pZqXZc8rHPrf2",
+            "sig": "7f9b9d326631d40ded5700dd9d5583ba77198cb78731e7baa0cb6a5f2483f6f12c891c662e770f880f6d9dc44644601c7897ee447dc81fb3dfa414c71f4b8101"
+          },
+          {
+            "signer": "z6Mkt6316e2PN3mZdB6N9CrzomJYUd1s5yBZi1XYHmwT9TUP",
+            "sig": "64432728358f83d5b432822b3ea2f04b11de8e1f38578a1a723075a9b44d1208cec9e12847d15e763ce663348e1a54161b8f0da728d7fb4a19fb623cd2d8e203"
+          },
+          {
+            "signer": "z6Mkon3Necd6NkkyfoGoHxid2znGc59LU3K7mubaRcFbLfLX",
+            "sig": "61735d73785f10d923269978d5fc279b06cf8dfc32a88f8d8c37171fa5a85902af0cfc31f43fe40832ad191c136656c3756b4401f8c6cba7ac665f37c45a7504"
+          }
+        ]
+      },
+      "expected": {
+        "valid": false,
+        "trimmedSigners": null
+      }
+    },
+    {
+      "name": "outsider-rejected",
+      "input": {
+        "ledgerAddress": "/orbitdb/zdpuAw6ZdQ6cEFTCgmCf1LYAwP7VweSF8fzMN4Kzw22k1Hk8x",
+        "body": {
+          "checkpoint_version": 1,
+          "timestamp": 1700000000000,
+          "round": 0,
+          "log_head_cids": [
+            "zdpuAw6ZdQ6cEFTCgmCf1LYAwP7VweSF8fzMN4Kzw22k1Hk8x"
+          ],
+          "derived_state_cid": "bafyreihdwdcefgh4dqkjv67uzcmw7ojee6xedzdetojuzjevtenxquvyku",
+          "previous_checkpoint_cid": "bafyreigdmqpykrgxyaxtlafqpqhzrb7qy2rh75nxomzwh5kxtapztmyhbe",
+          "signer_set_cid": "bafyreigxg5cpw2wws4lflsnkmdgvzpsfanjykrznfeodixpgz5kfkgleqi",
+          "signer_set_size": 4,
+          "quorum": 3,
+          "proposer": "z6Mkt6316e2PN3mZdB6N9CrzomJYUd1s5yBZi1XYHmwT9TUP",
+          "next_signer_set_cid": "bafyreigxg5cpw2wws4lflsnkmdgvzpsfanjykrznfeodixpgz5kfkgleqi"
+        },
+        "signerSet": [
+          "z6Mkt6316e2PN3mZdB6N9CrzomJYUd1s5yBZi1XYHmwT9TUP",
+          "z6Mkon3Necd6NkkyfoGoHxid2znGc59LU3K7mubaRcFbLfLX",
+          "z6MkvRXNYcE7MMduynWTgeKbDaT1iijDSC8pZqXZc8rHPrf2",
+          "z6Mko9hTggMwjSTEaJaPUfE6tqcy2xvU6BnNq3e3o8qVBiyH"
+        ],
+        "signatures": [
+          {
+            "signer": "z6MkmtWtY63GQVBrpMyRJWEzsnxfsGkemu6CtMDwGTv4RYj2",
+            "sig": "7030663db58711cc3e0ca48d77c6c7c5dfd759f4b15f7f627306c0c16db91ee98e5133ff5b697397372b5c9437417620065f7519d3c6afd5b4dea0886a39de0d"
+          },
+          {
+            "signer": "z6Mkon3Necd6NkkyfoGoHxid2znGc59LU3K7mubaRcFbLfLX",
+            "sig": "61735d73785f10d923269978d5fc279b06cf8dfc32a88f8d8c37171fa5a85902af0cfc31f43fe40832ad191c136656c3756b4401f8c6cba7ac665f37c45a7504"
+          },
+          {
+            "signer": "z6Mkt6316e2PN3mZdB6N9CrzomJYUd1s5yBZi1XYHmwT9TUP",
+            "sig": "64432728358f83d5b432822b3ea2f04b11de8e1f38578a1a723075a9b44d1208cec9e12847d15e763ce663348e1a54161b8f0da728d7fb4a19fb623cd2d8e203"
+          },
+          {
+            "signer": "z6MkvRXNYcE7MMduynWTgeKbDaT1iijDSC8pZqXZc8rHPrf2",
+            "sig": "7f9b9d326631d40ded5700dd9d5583ba77198cb78731e7baa0cb6a5f2483f6f12c891c662e770f880f6d9dc44644601c7897ee447dc81fb3dfa414c71f4b8101"
+          }
+        ]
+      },
+      "expected": {
+        "valid": false,
+        "trimmedSigners": null
+      }
+    },
+    {
+      "name": "duplicate-signer-rejected",
+      "input": {
+        "ledgerAddress": "/orbitdb/zdpuAw6ZdQ6cEFTCgmCf1LYAwP7VweSF8fzMN4Kzw22k1Hk8x",
+        "body": {
+          "checkpoint_version": 1,
+          "timestamp": 1700000000000,
+          "round": 0,
+          "log_head_cids": [
+            "zdpuAw6ZdQ6cEFTCgmCf1LYAwP7VweSF8fzMN4Kzw22k1Hk8x"
+          ],
+          "derived_state_cid": "bafyreihdwdcefgh4dqkjv67uzcmw7ojee6xedzdetojuzjevtenxquvyku",
+          "previous_checkpoint_cid": "bafyreigdmqpykrgxyaxtlafqpqhzrb7qy2rh75nxomzwh5kxtapztmyhbe",
+          "signer_set_cid": "bafyreigxg5cpw2wws4lflsnkmdgvzpsfanjykrznfeodixpgz5kfkgleqi",
+          "signer_set_size": 4,
+          "quorum": 3,
+          "proposer": "z6Mkt6316e2PN3mZdB6N9CrzomJYUd1s5yBZi1XYHmwT9TUP",
+          "next_signer_set_cid": "bafyreigxg5cpw2wws4lflsnkmdgvzpsfanjykrznfeodixpgz5kfkgleqi"
+        },
+        "signerSet": [
+          "z6Mkt6316e2PN3mZdB6N9CrzomJYUd1s5yBZi1XYHmwT9TUP",
+          "z6Mkon3Necd6NkkyfoGoHxid2znGc59LU3K7mubaRcFbLfLX",
+          "z6MkvRXNYcE7MMduynWTgeKbDaT1iijDSC8pZqXZc8rHPrf2",
+          "z6Mko9hTggMwjSTEaJaPUfE6tqcy2xvU6BnNq3e3o8qVBiyH"
+        ],
+        "signatures": [
+          {
+            "signer": "z6Mkt6316e2PN3mZdB6N9CrzomJYUd1s5yBZi1XYHmwT9TUP",
+            "sig": "64432728358f83d5b432822b3ea2f04b11de8e1f38578a1a723075a9b44d1208cec9e12847d15e763ce663348e1a54161b8f0da728d7fb4a19fb623cd2d8e203"
+          },
+          {
+            "signer": "z6Mkt6316e2PN3mZdB6N9CrzomJYUd1s5yBZi1XYHmwT9TUP",
+            "sig": "64432728358f83d5b432822b3ea2f04b11de8e1f38578a1a723075a9b44d1208cec9e12847d15e763ce663348e1a54161b8f0da728d7fb4a19fb623cd2d8e203"
+          },
+          {
+            "signer": "z6Mkon3Necd6NkkyfoGoHxid2znGc59LU3K7mubaRcFbLfLX",
+            "sig": "61735d73785f10d923269978d5fc279b06cf8dfc32a88f8d8c37171fa5a85902af0cfc31f43fe40832ad191c136656c3756b4401f8c6cba7ac665f37c45a7504"
+          }
+        ]
+      },
+      "expected": {
+        "valid": false,
+        "trimmedSigners": null
+      }
+    }
+  ]
+}

@@ -467,12 +467,14 @@ export interface Ledger {
   getLatestLogHeads(): Promise<ReadonlyArray<CID>>; // 診斷／同步用完整 frontier；空帳本回 []
   onEvent(handler: (event: LedgerEvent) => void): Unsubscribe;
   getRecoveryStatus(): LedgerRecoveryStatus; // 自動復原狀態（ingest recovery／啟動掃描重試），供介面顯示
-  proposeCheckpoint(): Promise<Result<CheckpointProposal>>;
-  signCheckpoint(proposal: CheckpointProposal): Promise<Result<Signature>>;
-  finalizeCheckpoint(
-    proposal: CheckpointProposal,
-    signatures: ReadonlyArray<Signature>,
-  ): Promise<Result<CID>>;
+  proposeCheckpoint(): Promise<Result<CheckpointProposeOutcome>>; // 已鎖定回表內得票最多者；未鎖定依票數序覆核並投第一個通過者；無本體通過覆核時須為本輪指定提案者才產生新本體；quorum 1 直接定稿
+  signCheckpoint(checkpointCid: CID): Promise<Result<CheckpointSignOutcome>>; // 覆核（便宜檢查後重算比對）並寫入投票事件
+  finalizeCheckpoint(checkpointCid: CID): Promise<Result<CID>>; // 以待定稿表中的票組憑證定稿；已是最新檢查點時冪等成功
+  getPendingCheckpoints(): Promise<Result<object>>; // 實作層回 PendingCheckpointView（ledger.md §11）
+  getCheckpointRound(): Promise<Result<CheckpointRoundSummary>>;
+  releaseCheckpointVoteLock(
+    request: CheckpointVoteLockReleaseRequest,
+  ): Promise<Result<void>>; // 卡死滿 24 小時後人工釋放本節點的投票鎖定（需逐字確認）
   getLatestCheckpoint(): Promise<Result<CID>>;
   syncFromCheckpoint(): Promise<Result<void>>;
   syncEventsSince(cids: ReadonlyArray<CID>): Promise<Result<number>>; // 從完整 frontier 同步，不得把 multi-head 壓成單一 CID
@@ -485,14 +487,40 @@ export interface LedgerRecoveryStatus {
   lastError: string | null; // 錯誤名稱與訊息的截短摘要，不含事件內容
 }
 
-export interface CheckpointProposal {
-  proposalId: string;
-  checkpoint: Omit<LedgerCheckpoint, "signatures">; // checkpoint 本體結構＝ledger-checkpoint.md §3 LedgerCheckpoint
-  proposer: PeerId;
-  proposerSignature: Signature;
-  expiresAt: Timestamp;
+export interface CheckpointProposeOutcome {
+  readonly checkpointCid: CID; // 檢查點 CID ＝本體 CID（本體結構＝ledger-checkpoint.md §3 LedgerCheckpoint）
+  readonly kind: "proposed" | "existing";
+  readonly voted: boolean; // 本次呼叫是否寫入了本節點的一票
+  readonly finalizedCid: CID | null; // quorum 為 1 時本次直接定稿的檢查點 CID
+}
+
+export interface CheckpointSignOutcome {
+  readonly checkpointCid: CID;
+  readonly kind: "signed" | "already-signed";
+}
+
+export interface CheckpointRoundSummary {
+  readonly previousCheckpointCid: CID | null;
+  readonly round: number | null; // 本機時鐘早於輪次起點時為 null
+  readonly proposer: PeerId | null; // 目前輪次的指定提案者
+  readonly roundStartsAt: Timestamp | null;
+  readonly roundEndsAt: Timestamp | null;
+  readonly trigger: {
+    readonly satisfied: boolean;
+    readonly reason: "genesis" | "interval" | "entry-count" | null;
+    readonly entryCount: number;
+  };
+}
+
+export interface CheckpointVoteLockReleaseRequest {
+  readonly previousCheckpointCid: CID | null;
+  readonly fromCheckpointCid: CID;
+  readonly toCheckpointCid: CID;
+  readonly confirmation: string; // 逐字等於 `release-checkpoint-lock <previous 或 genesis> <from> -> <to>`
 }
 ```
+
+檢查點協定方法的失敗以 `CheckpointProtocolError`（`src/ledger`）回報，其 `code` 共 19 種：`reconciliation-pending`、`conflict`、`ingest-failure`、`lock-store-unavailable`、`state-unavailable`、`not-signer`、`not-designated`、`trigger-not-met`、`invalid-checkpoint`、`locked`、`self-equivocation`、`unknown-checkpoint`、`stale-previous`、`below-quorum`、`recompute-mismatch`、`not-stalled`、`stall-too-short`、`release-not-allowed`、`confirmation-mismatch`。各 code 的判定順序見 [ledger-checkpoint.md §3](ledger-checkpoint.md)；未開啟或待定稿索引尚未建立同樣回 `ingest-failure`。儲存或簽章等非協定失敗以一般 `Error` 回報。
 
 方法面 ＝ 完整 `LedgerApi` 中以介面層型別可表達的子集——比賽記錄查詢 ／`appendPreSigned` 等需實作層型別的方法屬 `src/ledger` 具體類（[ledger.md §11](ledger.md)）。
 

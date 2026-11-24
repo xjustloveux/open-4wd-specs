@@ -14,6 +14,9 @@ deprecates: []
 
 # D-20260725-03｜checkpoint 前代 authority 與 pinning 切換完成
 
+> **2026-11-24 關聯追補**：下一代 signer set 改由檢查點本體的 `next_signer_set_cid` 記錄，`full-refold` 與 `quorum-follow`
+> 都驗它與採納後狀態的治理集合相符，見 [D-20261124-01](D-20261124-01-帳本檢查點身分與簽章憑證分離.md)；本代 authority 仍讀前一個已採納檢查點的狀態。
+
 ## 背景與驅動力
 
 [D-20260721-01](D-20260721-01-pinning-quorum-follow.md) 已採納

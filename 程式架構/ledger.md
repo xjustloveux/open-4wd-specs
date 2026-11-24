@@ -98,13 +98,15 @@ function lastEventTimestampOf(peerId: PeerId, state: DerivedState): Timestamp {
 // registeredAt：該 peer 首筆事件「套用時」的 consensusNow（= max(先前 head, 該事件自報 timestamp)）
 // —— 自報 timestamp 倒填無效（防偽造年資過 30 天仲裁門檻 / 濫用 7 天新手下限；ledger-admission.md §1 收件容差為第一道防線、本定義為第二道）
 // applyEvent 時：if (!state.reputation.registeredAt.has(e.peerId)) registeredAt.set(e.peerId, consensusNow(eventsUpTo(e)))
-// 多簽事件（match-result／config-update／race-consensus-anchor／desync／ledger-checkpoint）BaseEvent.peerId＝發布者、
+// 多簽事件（match-result／config-update／race-consensus-anchor／desync／ledger-checkpoint-certificate）BaseEvent.peerId＝發布者、
 //    非密碼學綁定身分（fold 不驗其單簽）：共通 fold **不以其驅動 registeredAt／lastEventAt 歸屬**——否則冒名
 //    peerId 重新發布的他人多簽事件會被誤記為該 peer 的活動（影響 UGC 退役）或註冊時點。finisher 場數改由
 //    reputation reducer 以已驗 ranking 記、註冊時點由本人單簽事件定；多簽事件僅推進 clock／套用計數。
 ```
 
 > **〔LEDGER-R-054〕** **不變式**：所有 time-based derive 規則（退役判定、24h 覆蓋防抖、cold 切分、pendingReports expire）**必須用 `consensusNow`，不得用 `Date.now()`**。此為跨 peer 共識安全的硬規則。
+
+**檢查點協定的本機時鐘**：檢查點多簽協定是治理者的操作流程，不是 derive，下列四處讀本機時鐘並影響協定判定：提案者以本機時鐘**先定**本體 `timestamp`（狀態再以此 timestamp 為 fold 時鐘成形，不讀牆鐘）；提案者與 `getCheckpointRound` 以本機時鐘判斷目前輪次與指定提案者；覆核只接受 timestamp 不晚於本機時鐘加 30 秒的本體；人工釋放鎖定以本機時鐘判斷卡死是否已滿 24 小時。另有只作紀錄、不影響任何判定的讀取：本機鎖定紀錄的 `lockedAt`（投票、人工釋放補寫鎖定，以及啟動對齊時找不到該票事件 timestamp 的補寫）。待定稿索引的收錄、卡死判定與卡死起點只由帳本條目推出，不讀牆鐘（[ledger-checkpoint.md §3](ledger-checkpoint.md)〔LEDGER-R-099〕〔LEDGER-R-104〕）。
 
 ### 6.1 fold 守門（foldGuard）—— 歷史 append 繞過收件驗證的最後防線
 
@@ -178,6 +180,8 @@ interface UgcMaintenanceEvent extends BaseEvent {
 
 ## 8. Config Update
 
+帳本檢查點的提案、投票與定稿公告是三種帳本事件（`ledger-checkpoint-proposal`／`ledger-checkpoint-signature`／`ledger-checkpoint-certificate`，wire 見 [ledger-admission.md §1](ledger-admission.md#1-baseevent-與簽章)、協定見 [ledger-checkpoint.md §3](ledger-checkpoint.md)）；簽章歷史因此可由帳本推出，簽署者不必同時在線。
+
 economy-config 變更走治理 multisig，事件結構（epoch 模型、含 `rationale`）見 [資料系統.md §12](../資料系統.md) `ConfigUpdateEvent`——**單一事件族**（config 值 / signer set / 緊急回滾 ＝ 設回舊值，皆同型別）。治理 signer set 由 genesis config 初始化（`EconomyConfig.governanceSigners`）：只允許 `N = 1`（初期單一真治理者，quorum 1）或 `N >= 3`（quorum `floor(2N/3)+1`），`N = 2` 拒絕。不得由同一人為湊數量來製造三個虛假獨立身分。增減 signer 須透過 `ConfigUpdateEvent`（改該欄）並達**既有（prevEpoch）** signer set quorum。
 
 **〔LEDGER-R-071〕** **簽章與上鏈形（實作即權威，src/economy/governance.ts）**：提案流程定稿 `timestamp`／`peerId`（提案者）後，各 signer 對 `ledgerSigningDigest(ledgerAddress, 事件剔 signature|signatures)` 簽章（`signers[]`／`newConfig`／`rationale` 全在涵蓋內——簽後任何篡改使簽章失效，且不可跨 chain 重放）；達 quorum 以 `appendPreSigned` **原樣上鏈**（不得重 stamp）。**fold 守門 ＝reducer 首行（timeless）**：epoch 連號 ＋ 結構逐欄驗 ＋ 不變式 ＋ 簽章集 quorum（[§6.1](#61-fold-守門foldguard-歷史-append-繞過收件驗證的最後防線) 目錄）——歷史 append 與 live 首播同一判定；epoch 化後 `DerivedState.economyConfig`（[§2](#2-derivedstate-巢狀結構hot--cold-兩層)）即 fold 位置的生效 config，固定費率事件（slot／maintenance／upload 費）對其精確驗證。
@@ -218,7 +222,7 @@ const LRU_HEADS_LIMIT = 64;
 - **〔LEDGER-R-076〕** finalized checkpoint 完整驗簽後先 prepare boundary；content-addressed artifacts 與唯一宣告完成後同步 commit boundary，再寫 latest pointer。latest 失敗即同步 rollback boundary；重試在本次 checkpoint 的 `log_head_cids` 到目前 heads 之間以 checkpoint CID 找既有宣告並復用（本機寫入的宣告以當時的 heads 為 parent，必在這一段），不讀更早的 entry。區間走訪因目前 heads 含有不經過該 `log_head_cids` 的分支而以連續性錯誤拒絕時，這一段無法界定，視為沒有既有宣告並照常寫出宣告；既有宣告若存在就會多出一則，重複的宣告在採納時冪等。這項處理只適用連續性錯誤：走訪因其他原因失敗時（例如走訪經過的 entry 不可得）不視為沒有宣告，本次定稿失敗。新 boundary 必須是舊 boundary 在本地已驗 next 鏈上的單調後繼；驗證、prepare、announcement 或 latest 失敗皆不留下錯誤 eviction boundary。
 - LRU miss 只查專屬本機 entry IDB；remote ancestor 只能向送出該 head 的 authenticated peer 走有界 entry-fetch protocol，禁止回退到 Helia/Bitswap 任意 provider。peer 離線或 frame/CID 不符即整次 join fail-closed；derived state／cold CID 等一般內容塊才可走 Bitswap/pinning。
 - **〔LEDGER-R-075〕** **Checkpoint + 簽章永遠保留**（獨立 `LevelStorage`、不走 LRU），否則新玩家無法驗 derived state。
-- **〔LEDGER-R-074〕** persistence admission 使用 `open4wd-ledger` custom access-controller：manifest `write:['*']` 只代表 permissionless author，不代表任意 payload。落盤前強制 Orbit identity、operation exact shape、event `64 KiB / depth 16 / 2,048 entries`、**封閉 21 種已實作 event allowlist**、逐型別 exact deep schema／CID／PeerId／ 整數 ／ 容器上限與 stateless intrinsic authorization；unknown 與未啟用 `asset-version-upgrade` 拒絕。match-result／desync／config／arbitration 等簽章容器須實際驗章，不只驗 64-byte 外形。AC reject 時 entry/index/heads 零寫入。live 時效與 state-dependent 業務共識仍由收件/fold 層負責。
+- **〔LEDGER-R-074〕** persistence admission 使用 `open4wd-ledger` custom access-controller：manifest `write:['*']` 只代表 permissionless author，不代表任意 payload。落盤前強制 Orbit identity、operation exact shape、event `64 KiB / depth 16 / 2,048 entries`、**封閉 23 種已實作 event allowlist**、逐型別 exact deep schema／CID／PeerId／ 整數 ／ 容器上限與 stateless intrinsic authorization；unknown 與未啟用 `asset-version-upgrade` 拒絕。match-result／desync／config／arbitration 等簽章容器須實際驗章，不只驗 64-byte 外形。AC reject 時 entry/index/heads 零寫入。live 時效與 state-dependent 業務共識仍由收件/fold 層負責。
 
 ### 10.1 Anti-spam 完成邊界與殘餘風險
 
@@ -252,12 +256,12 @@ interface LedgerApi {
     failedPartitions: ReadonlyArray<ColdPartitionKey>;
   }>; // hot＋quarter-desc bounded cold lazy fetch；排序／去重／游標規則見資料系統 §10.1
   deriveStateAt(logHeadCids: ReadonlyArray<CID>): Promise<DerivedState | null>; // 完整 frontier 純函數（見 資料系統 §15.1）；支援的目標見本節下方
-  proposeCheckpoint(): Promise<Result<LedgerCheckpointProposal>>;
-  signCheckpoint(p: LedgerCheckpointProposal): Promise<Result<Signature>>;
-  finalizeCheckpoint(
-    p: LedgerCheckpointProposal,
-    sigs: Signature[],
-  ): Promise<Result<CID>>;
+  proposeCheckpoint(): Promise<Result<CheckpointProposeOutcome>>; // 先回表內通過覆核的本體（existing）；無本體通過時須為指定提案者（ledger-checkpoint.md §3）
+  signCheckpoint(checkpointCid: CID): Promise<Result<CheckpointSignOutcome>>; // 覆核後寫入投票事件
+  finalizeCheckpoint(checkpointCid: CID): Promise<Result<CID>>; // 以索引中的票組憑證定稿；回傳本體 CID
+  getPendingCheckpoints(): Promise<Result<PendingCheckpointView>>;
+  getCheckpointRound(): Promise<Result<CheckpointRoundInfo>>;
+  releaseCheckpointVoteLock(request: CheckpointVoteLockReleaseInput): Promise<Result<void>>; // 卡死滿 24 小時後的人工釋放
   getLatestCheckpoint(): Promise<Result<CID>>;
   getCheckpointHistory(limit: number): Promise<LedgerCheckpoint[]>;
   syncFromCheckpoint(): Promise<Result<void>>;
@@ -273,6 +277,8 @@ interface LedgerRecoveryStatus {
 }
 ```
 
+檢查點協定方法的型別與錯誤碼見 [interfaces.md §5](interfaces.md#5-ledger)；失敗一律以帶 `code` 的 `CheckpointProtocolError` 回報，規則見 [ledger-checkpoint.md §3](ledger-checkpoint.md)。`getCheckpointCertificate(cid)`（本機保存的憑證）與 `onCheckpointVotingChange(handler)`（待定稿索引改變通知）只在具體類 `Open4wdLedger` 上提供。
+
 **〔LEDGER-R-078〕** `getDerivedState`、`getMatchRecord`、`getMatchFromPartition`、`getRecentMatchesForPlayer` 共用同一 business-read readiness gate：呼叫前與 state queue drain 後都檢查。startup checkpoint reconciliation 未達 stable watermark 時以 `checkpoint startup reconciliation 尚未完成` 拒絕；durable sibling conflict 時以 `checkpoint sibling conflict：帳本已隔離` 拒絕；ingest recovery 尚未完成時原樣拋出其 ingest error。不得在這三種狀態下回傳 stale／fallback business view；gate 清除後恢復正常讀取。`readEvents`、head、`getRecoveryStatus` 與 sync/checkpoint 診斷面不屬 business view，仍可用於同步與修復；其中沒有讀全部事件的入口（§10）。`readEvents` 讀指定 checkpoint 的 `log_head_cids` 到目前 heads：這組 heads 就是 log 的 boundary 時（一般是最新已採納的 checkpoint），讀到的是本機保留範圍；指定較舊的 checkpoint 時，這一段含 boundary 之前的 entry，本機仍留著就一併回傳，已被淘汰則拋錯、不回傳部分結果。
 
 `deriveStateAt` **純函數**（不改本機 cache、每次產生新 DerivedState object），依目標 `logHeadCids` 分三種情形：
@@ -281,4 +287,4 @@ interface LedgerRecoveryStatus {
 - **目標在最新檢查點之後**：載最新檢查點的 derived_state → replay 其 `log_head_cids` 到目標之間的完整 DAG。尚無任何檢查點時，才從 genesis replay 到目標。
 - **其餘目標不支援**：已有檢查點，而目標既不是某個檢查點、也不在最新檢查點之後（例如落在兩個較舊檢查點之間）→ 回 null，不退回 genesis replay。那一段的 entry 依 〔LEDGER-R-073〕 可被本機淘汰，求值結果不得取決於它們是否剛好還在本機。
 
-本機未同步則等 OrbitDB + IPFS 拉，總超時 10 秒，超時回 null。需要較早時點狀態的功能一律以該時點的檢查點為目標（仲裁取抽籤檢查點的快照即是，[moderation.md §5](moderation.md)）。它供 checkpoint review、復原稽核與診斷使用；B 軸房間閘直接讀已驗 pinned checkpoint，match settlement 禁止事件指定 frontier。
+本機未同步則等 OrbitDB + IPFS 拉；`DERIVE_STATE_TIMEOUT_MS`（10 秒）是整次呼叫的總時限，涵蓋取塊、取條目與折疊，逾時回 null。檢查點的提案與覆核不經 `deriveStateAt`，以本體 timestamp 為 fold 時鐘做候選折疊，不受此時限。需要較早時點狀態的功能一律以該時點的檢查點為目標（仲裁取抽籤檢查點的快照即是，[moderation.md §5](moderation.md)）。目前正式程式的呼叫端只有仲裁協調器（取抽籤檢查點的快照）；比賽執行期的 ledger 埠也由組裝層接上 `deriveStateAt`，但比賽流程沒有呼叫點。B 軸房間閘直接讀已驗 pinned checkpoint，match settlement 禁止事件指定 frontier。
