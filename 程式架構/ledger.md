@@ -128,7 +128,7 @@ fold 守門目錄（各 reducer 於 apply 首行判定、無效 ＝ 回傳原 st
 | **〔LEDGER-R-065〕** `config-update`（economy 治理）                         | `prevEpoch === state.economyConfig.epoch` 且 `epoch === prevEpoch+1`（連號；重播天然 no-op）；`newConfig` 結構逐欄驗（壞形入 state＝毒化後續費率驗證／治理斷鏈）＋`newConfig.epoch === epoch`＋revShare 總和 100；簽章集：distinct 有效 signer ∈ **prevEpoch** `governanceSigners` 達門檻（N=1 時 1；N>=3 時 ⌊2N/3⌋+1；N=2 非法；digest＝ledgerSigningDigest(ledgerAddress, 事件剔 signature\|signatures)）                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              |
 | 〔MOD-R-046〕 `arbitration-result`（moderation）                             | panel-signature-set **恆驗**：≥ quorum 面板 attestation（distinct、∈ arbiters、非兩造、年資／場數穩定必要條件、簽章對 `(reportEventId, target, result, passRatioX100)` digest 有效）；池不足流局（arbiters=[]）＝限 no-quorum＋合格池上界 < 7；timestamp ≥ 程序下界；案錨摘要與 state 案錄逐位一致＋同案首筆有效（[moderation.md §5.6](moderation.md)）                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  |
 | **〔LEDGER-R-066〕** `blacklist-cid`（anti-piracy）                          | 須存在一筆 `result === 'pass'` 且 `target === cid` 的仲裁結果，否則整筆 no-op（其信任根＝上列 arbitration-result 恆驗）                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      |
-| **〔LEDGER-R-067〕** `report`（moderation）                                  | `targetKind ∈ {cid, peer}`；其餘資格門檻見 [moderation.md §5.6](moderation.md)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           |
+| **〔LEDGER-R-067〕** `report`（moderation）                                  | `targetKind ∈ {cid, peer}`；同一檢舉者對同一對象已有案錄時，`timestamp` 必須晚於該案錄的檢舉時戳，否則整筆 no-op（[moderation.md §4](moderation.md)）；其餘資格門檻見 [moderation.md §5.6](moderation.md)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
 
 **〔LEDGER-R-068〕** **畸形事件 fold 韌性**：fold 迴圈對每筆事件的 applier 呼叫包 try/catch——applier 拋錯（欄位缺失 ／ 型別違規 ／ 簽章畸形）時**確定性跳過該筆**、繼續 fold，而非整鏈 brick。確定性來自「所有 peer 對同一畸形輸入都拋錯」；跳過是純函數行為、不寫狀態。對應 `src/ledger/`（`#applyEntry`／`#foldEntries`）。
 
@@ -199,7 +199,7 @@ interface DesyncEvent extends BaseEvent {
 
 ## 10. 客戶端 Storage 與同步安全邊界
 
-**〔LEDGER-R-073〕** OrbitDB log append-only 永久累積；客戶端不必本地保留已被 finalized checkpoint 覆蓋的事件。runtime 使用 wire-compatible 的 bounded Events/Sync adapter，entry fallback 是**專屬本機** IDB blockstore，不是 Helia/Bitswap broker；不得直接換回 stock Sync（stock 路徑會在 raw size admission 前 decode remote entry）：
+**〔LEDGER-R-073〕** OrbitDB log append-only 永久累積；客戶端不必本地保留已被 finalized checkpoint 覆蓋的事件。因此本機對 log 的讀取一律以**本機保留範圍**為界：從 log 自己的 eviction boundary（不含 boundary entry）到目前 heads，尚無 boundary 時才是 genesis 到 heads。event log 埠與 `LedgerApi` 都沒有讀全部事件的專用入口，任何路徑不得假設本機有完整歷史。以空的起點呼叫區間走訪（`entriesBetween` 的起點為空集合、`entriesAfter` 不帶起點、`syncEventsSince` 傳空集合）仍等於從 genesis 走訪：尚無 checkpoint 時的重建與 `deriveStateAt` 即如此讀取；已有 checkpoint 後，走訪經過已被淘汰的 entry 就會拋錯，呼叫端不得依賴它成功。保留範圍的起點取 log 自己的 boundary，不讀 CheckpointStore 的 effective 指標。兩者只在同一個 runtime 內可能不同：sibling 衝突隔離把 effective 退回共同 previous 時，log 的 boundary 不隨之後退，已淘汰的 entry 也不會因此回到本機；重啟時 log 的 boundary 則是以 effective checkpoint 的 `log_head_cids` 重建的（[ledger-checkpoint.md](ledger-checkpoint.md) 〔LEDGER-R-043〕），兩者相同。runtime 使用 wire-compatible 的 bounded Events/Sync adapter，entry fallback 是**專屬本機** IDB blockstore，不是 Helia/Bitswap broker；不得直接換回 stock Sync（stock 路徑會在 raw size admission 前 decode remote entry）：
 
 ```typescript
 const LRU_ENTRY_LIMIT = 10000; // protocol-adjacent 固定本機硬上限；不得依裝置動態改共識可得性
@@ -207,18 +207,18 @@ const LRU_HEADS_LIMIT = 64;
 // entryStorage = TraversalBudgetStorage(ComposedStorage(LRUStorage, boundedLocalEntryStorage))
 ```
 
-- 單 entry block `256 KiB`；本機 ledger blockstore `128 MiB / 10,000 blocks`；單次 remote traversal `64 MiB / 2,048 entries`。串流 block 在累計超限當下中止，不先全量配置；重啟時由 `getAll()` 重建 conservative accounting，無法確認時飽和 fail-closed。
-- quota eviction **只可**淘汰已被目前 checkpoint 覆蓋且非 boundary 的 block；沒有安全 victim 就拒絕新寫入。explicit delete 同步更新 byte/count accounting。
+- 單 entry block `256 KiB`；本機 ledger blockstore `128 MiB / 10,000 blocks`；單次 remote traversal `64 MiB / 2,048 entries`。串流 block 在累計超限當下中止，不先全量配置。開庫時由 `getAll()` 列舉既有 block 重建 byte/count accounting；列舉讀取失敗、單塊超過上限或記帳後超過 byte/count 上限時自動重試一次列舉，仍中斷即開庫失敗，拋出固定 `code` 為 `entry-store-bootstrap-interrupted`、附中斷原因（`read-failed`／`block-too-large`／`entry-limit`／`byte-limit`）的錯誤供上層辨識，不以記帳不完整的狀態開庫。列舉回來的 CID 無法解析屬資料損毀，不重試，立即以同一 `code`、原因 `invalid-key` 開庫失敗，原始錯誤保留在 `cause`。每次列舉前清空記帳，前一次列舉多出的 block 不留作淘汰候選。
+- quota eviction **只可**淘汰已被目前 checkpoint 覆蓋且非 boundary 的 block；沒有安全 victim 就拒絕新寫入。explicit delete 同步更新 byte/count accounting。entry block 只經寫入進入專屬 store；讀取時底層讀取失敗、未命中或 quota 檢查失敗都只拋錯，不刪除被讀取的 block；淘汰仍只依上述 quota eviction 規則（只淘汰已被涵蓋者）。
 - Admission outbox 的 row、查詢、quota、更新與刪除一律以完整 `chainId` scope；共用同一
   IndexedDB 時，row key 形如 `<chainId>:<entryCid>`，list 不得回傳其他 chain 的 prepared
   entry。CID-keyed entry/content blockstore 仍以 CID 去重，不為相同 bytes 建立鏈別副本。
 - remote head 在 `Entry.decode` 前先過 `256 KiB/head`、每 authenticated libp2p peer `1 MiB + 256 messages / 60s`，最多追蹤 4,096 peer state；另有全來源 `16 MiB + 4,096 messages / 60s` 與等待 queue `4 MiB / 64 messages` 硬上限，source LRU churn 不會重置 global budget。dial/receive 失敗必須 abort/close stream 並釋放 peer state，允許後續重連。
 - remote join 只沿 `next` 因果 parent traversal；`refs` 是 skip-list 查詢捷徑，不決定完整性，故不跟隨，但仍驗 canonical CID、禁止 self/duplicate，且上限 `next=64`、`refs=128`。checkpoint boundary 每次使用前 canonicalize，遇到 boundary 即停止往前抓取。
-- remote join 先完成 canonical Admission proof、shape、access-controller、Orbit identity signature、CID/encode 與 traversal 驗證，再 staged commit entry/index/heads；本機只接受 `commitPrepared(finalEntryBytes, cid)`，同樣在 transaction view 完成後才 commit 三層，禁止 direct `Log.append`／`db.add` 旁路。任一步驟失敗回滾，回滾本身失敗即寫 durable poison、當前與重啟 runtime 都 fail-closed。checkpoint 後本機 prepare 固定 `referencesCount=0`，不依賴負數的未文件化 core 行為，也不穿越 boundary 產生 refs。
-- **〔LEDGER-R-076〕** finalized checkpoint 完整驗簽後先 prepare boundary；content-addressed artifacts 與唯一宣告完成後同步 commit boundary，再寫 latest pointer。latest 失敗即同步 rollback boundary；重試以 checkpoint CID 掃 log 復用已存在宣告。新 boundary 必須是舊 boundary 在本地已驗 next 鏈上的單調後繼；驗證、prepare、announcement 或 latest 失敗皆不留下錯誤 eviction boundary。
+- remote join 先完成 canonical Admission proof、shape、access-controller、Orbit identity signature、CID/encode 與 traversal 驗證，再 staged commit entry/index/heads；本機只接受 `commitPrepared(finalEntryBytes, cid)`，同樣在 transaction view 完成後才 commit 三層，禁止 direct `Log.append`／`db.add` 旁路。任一步驟失敗回滾，回滾本身失敗即寫 durable poison、當前與重啟 runtime 都 fail-closed。本機 prepare 以當下全部 heads 為 `next`，`refs` 固定為空陣列，不分有無 checkpoint boundary。
+- **〔LEDGER-R-076〕** finalized checkpoint 完整驗簽後先 prepare boundary；content-addressed artifacts 與唯一宣告完成後同步 commit boundary，再寫 latest pointer。latest 失敗即同步 rollback boundary；重試在本次 checkpoint 的 `log_head_cids` 到目前 heads 之間以 checkpoint CID 找既有宣告並復用（本機寫入的宣告以當時的 heads 為 parent，必在這一段），不讀更早的 entry。區間走訪因目前 heads 含有不經過該 `log_head_cids` 的分支而以連續性錯誤拒絕時，這一段無法界定，視為沒有既有宣告並照常寫出宣告；既有宣告若存在就會多出一則，重複的宣告在採納時冪等。這項處理只適用連續性錯誤：走訪因其他原因失敗時（例如走訪經過的 entry 不可得）不視為沒有宣告，本次定稿失敗。新 boundary 必須是舊 boundary 在本地已驗 next 鏈上的單調後繼；驗證、prepare、announcement 或 latest 失敗皆不留下錯誤 eviction boundary。
 - LRU miss 只查專屬本機 entry IDB；remote ancestor 只能向送出該 head 的 authenticated peer 走有界 entry-fetch protocol，禁止回退到 Helia/Bitswap 任意 provider。peer 離線或 frame/CID 不符即整次 join fail-closed；derived state／cold CID 等一般內容塊才可走 Bitswap/pinning。
 - **〔LEDGER-R-075〕** **Checkpoint + 簽章永遠保留**（獨立 `LevelStorage`、不走 LRU），否則新玩家無法驗 derived state。
-- **〔LEDGER-R-074〕** persistence admission 使用 `open4wd-ledger` custom access-controller：manifest `write:['*']` 只代表 permissionless author，不代表任意 payload。落盤前強制 Orbit identity、operation exact shape、event `64 KiB / depth 16 / 2,048 entries`、**封閉 20 種已實作 event allowlist**、逐型別 exact deep schema／CID／PeerId／ 整數 ／ 容器上限與 stateless intrinsic authorization；unknown 與未啟用 `asset-version-upgrade` 拒絕。match-result／desync／config／arbitration 等簽章容器須實際驗章，不只驗 64-byte 外形。AC reject 時 entry/index/heads 零寫入。live 時效與 state-dependent 業務共識仍由收件/fold 層負責。
+- **〔LEDGER-R-074〕** persistence admission 使用 `open4wd-ledger` custom access-controller：manifest `write:['*']` 只代表 permissionless author，不代表任意 payload。落盤前強制 Orbit identity、operation exact shape、event `64 KiB / depth 16 / 2,048 entries`、**封閉 21 種已實作 event allowlist**、逐型別 exact deep schema／CID／PeerId／ 整數 ／ 容器上限與 stateless intrinsic authorization；unknown 與未啟用 `asset-version-upgrade` 拒絕。match-result／desync／config／arbitration 等簽章容器須實際驗章，不只驗 64-byte 外形。AC reject 時 entry/index/heads 零寫入。live 時效與 state-dependent 業務共識仍由收件/fold 層負責。
 
 ### 10.1 Anti-spam 完成邊界與殘餘風險
 
@@ -235,8 +235,7 @@ interface LedgerApi {
     event: Omit<T, "signature" | "peerId" | "timestamp">,
   ): Promise<Result<EventId>>;
   appendPreSigned(event: LedgerEvent): Promise<Result<EventId>>; // 治理等預簽定稿事件原樣上鏈（不重 stamp / 不重簽，§8）
-  readEvents(sinceCheckpoint?: CID): AsyncIterable<LedgerEvent>;
-  getAllEvents(): Promise<ReadonlyArray<LedgerEvent>>; // consensusNow / derive 用；entry miss 由 bounded peer fetch 補齊
+  readEvents(sinceCheckpoint: CID): AsyncIterable<LedgerEvent>; // 該 checkpoint 之後到目前 heads；checkpoint 不在本機即拋錯，沒有全史讀取（§10）
   getDerivedState(): Promise<DerivedState>; // economy config 讀點＝DerivedState.economyConfig（無獨立 getter）
   getMatchRecord(matchId: string): Promise<MatchRecord | null>; // hot miss → 推 partition key → cold lazy fetch
   getMatchFromPartition(
@@ -252,7 +251,7 @@ interface LedgerApi {
     nextCursor: MatchHistoryCursor | null;
     failedPartitions: ReadonlyArray<ColdPartitionKey>;
   }>; // hot＋quarter-desc bounded cold lazy fetch；排序／去重／游標規則見資料系統 §10.1
-  deriveStateAt(logHeadCids: ReadonlyArray<CID>): Promise<DerivedState | null>; // 完整 frontier 純函數（見 資料系統 §15.1）
+  deriveStateAt(logHeadCids: ReadonlyArray<CID>): Promise<DerivedState | null>; // 完整 frontier 純函數（見 資料系統 §15.1）；支援的目標見本節下方
   proposeCheckpoint(): Promise<Result<LedgerCheckpointProposal>>;
   signCheckpoint(p: LedgerCheckpointProposal): Promise<Result<Signature>>;
   finalizeCheckpoint(
@@ -265,9 +264,21 @@ interface LedgerApi {
   syncEventsSince(cids: ReadonlyArray<CID>): Promise<Result<number>>; // 完整 multi-head frontier
   getLatestLogHeads(): Promise<ReadonlyArray<CID>>; // 診斷／同步用完整 frontier；空帳本回 []
   onEvent(handler: (e: LedgerEvent) => void): Unsubscribe;
+  getRecoveryStatus(): LedgerRecoveryStatus; // 自動復原狀態，供介面顯示（ledger-checkpoint.md §4.1）
+}
+interface LedgerRecoveryStatus {
+  phase: "idle" | "ingest-recovery" | "checkpoint-scan-retry";
+  attempts: number; // 該階段已失敗並排定下一次重試的重建（啟動掃描為掃描）次數；第一次立即 recovery 的失敗也計入
+  lastError: string | null; // 錯誤名稱與訊息的截短摘要，不含事件內容
 }
 ```
 
-**〔LEDGER-R-078〕** `getDerivedState`、`getMatchRecord`、`getMatchFromPartition`、`getRecentMatchesForPlayer` 共用同一 business-read readiness gate：呼叫前與 state queue drain 後都檢查。startup checkpoint reconciliation 未達 stable watermark 時以 `checkpoint startup reconciliation 尚未完成` 拒絕；durable sibling conflict 時以 `checkpoint sibling conflict：帳本已隔離` 拒絕；ingest recovery 尚未完成時原樣拋出其 ingest error。不得在這三種狀態下回傳 stale／fallback business view；gate 清除後恢復正常讀取。`readEvents`／`getAllEvents`／head 與 sync/checkpoint 診斷面不屬 business view，仍可用於同步與修復。
+**〔LEDGER-R-078〕** `getDerivedState`、`getMatchRecord`、`getMatchFromPartition`、`getRecentMatchesForPlayer` 共用同一 business-read readiness gate：呼叫前與 state queue drain 後都檢查。startup checkpoint reconciliation 未達 stable watermark 時以 `checkpoint startup reconciliation 尚未完成` 拒絕；durable sibling conflict 時以 `checkpoint sibling conflict：帳本已隔離` 拒絕；ingest recovery 尚未完成時原樣拋出其 ingest error。不得在這三種狀態下回傳 stale／fallback business view；gate 清除後恢復正常讀取。`readEvents`、head、`getRecoveryStatus` 與 sync/checkpoint 診斷面不屬 business view，仍可用於同步與修復；其中沒有讀全部事件的入口（§10）。`readEvents` 讀指定 checkpoint 的 `log_head_cids` 到目前 heads：這組 heads 就是 log 的 boundary 時（一般是最新已採納的 checkpoint），讀到的是本機保留範圍；指定較舊的 checkpoint 時，這一段含 boundary 之前的 entry，本機仍留著就一併回傳，已被淘汰則拋錯、不回傳部分結果。
 
-`deriveStateAt` **純函數**（不改本機 cache）：找不晚於目標 frontier 的最近帳本檢查點 → 載其 derived_state → replay 完整 DAG 到目標 `logHeadCids`（本機未同步則等 OrbitDB + IPFS 拉，總超時 10 秒，超時回 null）→ 產生新 DerivedState object。它供 checkpoint review、復原稽核與診斷使用；B 軸房間閘直接讀已驗 pinned checkpoint，match settlement 禁止事件指定 frontier。
+`deriveStateAt` **純函數**（不改本機 cache、每次產生新 DerivedState object），依目標 `logHeadCids` 分三種情形：
+
+- **目標恰為某個帳本檢查點**：目標的 head 集合與本機檢查點鏈上某個檢查點的 `log_head_cids` 完全相同（不限最新的；比對與順序無關）→ 取**該檢查點自己的** derived_state 塊，驗 CID 與 canonical bytes 後解碼回傳，不 replay 任何 entry。該塊本機沒有時由內容儲存向網路取，取不到回 null。
+- **目標在最新檢查點之後**：載最新檢查點的 derived_state → replay 其 `log_head_cids` 到目標之間的完整 DAG。尚無任何檢查點時，才從 genesis replay 到目標。
+- **其餘目標不支援**：已有檢查點，而目標既不是某個檢查點、也不在最新檢查點之後（例如落在兩個較舊檢查點之間）→ 回 null，不退回 genesis replay。那一段的 entry 依 〔LEDGER-R-073〕 可被本機淘汰，求值結果不得取決於它們是否剛好還在本機。
+
+本機未同步則等 OrbitDB + IPFS 拉，總超時 10 秒，超時回 null。需要較早時點狀態的功能一律以該時點的檢查點為目標（仲裁取抽籤檢查點的快照即是，[moderation.md §5](moderation.md)）。它供 checkpoint review、復原稽核與診斷使用；B 軸房間閘直接讀已驗 pinned checkpoint，match settlement 禁止事件指定 frontier。

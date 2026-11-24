@@ -33,8 +33,8 @@ interface BaseEvent {
 
 ### 1.0 事件目錄與 ledger 自有結構
 
-現行封閉設計目錄共 21 型別；其中 `asset-version-upgrade` 是未啟用保留案，故
-`LEDGER_EVENT_TYPES` persistence allowlist 實際接受 20 種。跨域事件的欄位權威仍由其責任模組
+現行封閉設計目錄共 22 型別；其中 `asset-version-upgrade` 是未啟用保留案，故
+`LEDGER_EVENT_TYPES` persistence allowlist 實際接受 21 種。跨域事件的欄位權威仍由其責任模組
 維護；下列列出 ledger／UGC／消耗入口必須共用的完整 current wire，避免流程文件各自抄一份：
 
 ```typescript
@@ -128,7 +128,7 @@ function serializeForSigning(
 
 ### 1.1 永久 entry 的 Admission v1
 
-**〔LEDGER-R-025〕** 封閉目錄內 21 種事件型別中，20 種永久事件一律使用同一套 entry-level Admission v1，**不由治理者逐筆核准或簽署**。事件完成原有單簽 ／ 多簽後，local prepared writer 凍結並由 Orbit identity 簽署唯一 BaseEntry（`id / payload / next / refs / clock / v / key / identity / sig`）；Web Worker 再搜尋頂層 proof：
+**〔LEDGER-R-025〕** 封閉目錄內 22 種事件型別中，21 種永久事件一律使用同一套 entry-level Admission v1，**不由治理者逐筆核准或簽署**。事件完成原有單簽 ／ 多簽後，local prepared writer 凍結並由 Orbit identity 簽署唯一 BaseEntry（`id / payload / next / refs / clock / v / key / identity / sig`）；Web Worker 再搜尋頂層 proof：
 
 ```text
 admission: { version: 1, workNonce: Uint8Array(8) }
@@ -169,4 +169,4 @@ workDigest = SHA-256("open4wd-ledger-admission-work-v1" || baseDigest || workNon
 
 `RaceConsensusAnchorEvent` 的 `BaseEvent.signature` 固定空值，signed payload 含 `matchId`、`gridContextDigest`、`gridSeed`、`roundIndex`、120-frame 對齊 `frame`、`checksum`、canonical `presentPeers`、`timestamp` 與發布者 `peerId`；`signatures[]` 必須由 `presentPeers` 的嚴格多數不同 signer 組成。外層 `MatchResultEvent` 只保存一份完整 `gridProof`，anchor 保存固定大小 binding，避免 8 人 × 5 回合合法事件超過 64 KiB。
 
-**〔LEDGER-R-032〕** **未啟用保留案：`asset-version-upgrade`**。下列六條只保留未來設計脈絡；此型別列在 21 型別事件目錄供設計追蹤，但不在現行 20 型別 admission allowlist，custom access-controller 必須拒絕，不能 persist 或 apply。若未來啟用，須先依 Admission scheme 的事件目錄 ／deep schema／ 簽章 ／reducer／ 測試與 protocol 升版流程完整落地：① 舊 CID `open4wd_version` **低於該 type 最新破壞牆**；② `event.peerId` = 舊 CID 血緣節點創作者；③ 新舊同 `type`；④ 新 CID `open4wd_version` > 舊；⑤ 舊 CID 不在仲裁黑名單；⑥ 新舊 CID mesh 幾何指紋一致（僅 extras 差異）。在正式啟用前，跨版本資產仍走一般上傳 ／fork 的既有有效流程，不得由 client 自行產生此事件。
+**〔LEDGER-R-032〕** **未啟用保留案：`asset-version-upgrade`**。下列六條只保留未來設計脈絡；此型別列在 22 型別事件目錄供設計追蹤，但不在現行 21 型別 admission allowlist，custom access-controller 必須拒絕，不能 persist 或 apply。若未來啟用，須先依 Admission scheme 的事件目錄 ／deep schema／ 簽章 ／reducer／ 測試與 protocol 升版流程完整落地：① 舊 CID `open4wd_version` **低於該 type 最新破壞牆**；② `event.peerId` = 舊 CID 血緣節點創作者；③ 新舊同 `type`；④ 新 CID `open4wd_version` > 舊；⑤ 舊 CID 不在仲裁黑名單；⑥ 新舊 CID mesh 幾何指紋一致（僅 extras 差異）。在正式啟用前，跨版本資產仍走一般上傳 ／fork 的既有有效流程，不得由 client 自行產生此事件。

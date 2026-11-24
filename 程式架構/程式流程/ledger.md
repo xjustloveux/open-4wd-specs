@@ -205,6 +205,7 @@ mindmap
       ReportEvent
       ReportRevokeEvent
       ArbitrationVoteEvent
+      ArbitrationAttestEvent
       ArbitrationResultEvent
       BlacklistEvent
     信譽

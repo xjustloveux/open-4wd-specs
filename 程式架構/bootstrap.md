@@ -15,7 +15,7 @@ slug: null
 站點依既有順序組裝
 `economy → ugc-fork → ugc-rating → reputation → moderation → matchmaking → anti-piracy`；
 順序是共識的一部分。live 收件驗證總組合維持 match-result 的 matchId／roster 綁定、loadout
-參與證明、既有三道驗證、仲裁 panel-signature-set、blacklist 與評分背書，並維護 state 同步
+參與證明、既有三道驗證、仲裁 panel-signature-set、blacklist 與評分資格，並維護 state 同步
 鏡像與指紋索引。
 
 ## 2. Browser runtime 與資產來源

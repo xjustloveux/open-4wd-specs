@@ -461,12 +461,12 @@ export interface Ledger {
   appendEvent<T extends LedgerEvent>(
     event: Omit<T, "signature" | "peerId" | "timestamp">,
   ): Promise<Result<EventId>>; // 標準單簽：自動 stamp＋自動簽章
-  readEvents(sinceCheckpoint?: CID): AsyncIterable<LedgerEvent>; // 事件自帶 BaseEvent.signature（非 SignedPayload，資料系統 §11）
-  getAllEvents(): Promise<ReadonlyArray<LedgerEvent>>; // consensusNow / derive 用全量；LRU miss 只查專屬本機 IDB，遠端 ancestor 走 authenticated bounded entry-fetch
+  readEvents(sinceCheckpoint: CID): AsyncIterable<LedgerEvent>; // 該 checkpoint 之後的事件；checkpoint 不在本機即拋錯，沒有全史讀取（ledger.md §10）。事件自帶 BaseEvent.signature（非 SignedPayload，資料系統 §11）
   getDerivedState(): Promise<DerivedState>;
-  deriveStateAt(logHeadCids: ReadonlyArray<CID>): Promise<DerivedState | null>; // 完整 frontier 純函數重算；拉不齊回 null
+  deriveStateAt(logHeadCids: ReadonlyArray<CID>): Promise<DerivedState | null>; // 完整 frontier 純函數；目標須恰為某個檢查點或在最新檢查點之後（ledger.md §11），其餘目標或拉不齊回 null
   getLatestLogHeads(): Promise<ReadonlyArray<CID>>; // 診斷／同步用完整 frontier；空帳本回 []
   onEvent(handler: (event: LedgerEvent) => void): Unsubscribe;
+  getRecoveryStatus(): LedgerRecoveryStatus; // 自動復原狀態（ingest recovery／啟動掃描重試），供介面顯示
   proposeCheckpoint(): Promise<Result<CheckpointProposal>>;
   signCheckpoint(proposal: CheckpointProposal): Promise<Result<Signature>>;
   finalizeCheckpoint(
@@ -478,6 +478,12 @@ export interface Ledger {
   syncEventsSince(cids: ReadonlyArray<CID>): Promise<Result<number>>; // 從完整 frontier 同步，不得把 multi-head 壓成單一 CID
 }
 export type EventId = string;
+
+export interface LedgerRecoveryStatus {
+  phase: "idle" | "ingest-recovery" | "checkpoint-scan-retry";
+  attempts: number; // 該階段已失敗並排定下一次重試的重建（啟動掃描為掃描）次數；第一次立即 recovery 的失敗也計入
+  lastError: string | null; // 錯誤名稱與訊息的截短摘要，不含事件內容
+}
 
 export interface CheckpointProposal {
   proposalId: string;

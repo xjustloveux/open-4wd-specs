@@ -29,7 +29,7 @@ UI 顯示時除以 100 還原成「★4.6」。
 interface UgcRateEvent extends BaseEvent {
   type: 'ugc-rate';
   rater: PeerId;  cid: CID;  score: 1 | 2 | 3 | 4 | 5;
-  useMatchId: string;       // 背書：該玩家在哪場比賽用過此 UGC
+  useMatchId: string;       // 稽核欄：評分者自述用過此 UGC 的比賽；資格判定不讀此欄（見第 4 節）
 }
 
 interface UgcRateRevokeEvent extends BaseEvent {
@@ -90,7 +90,7 @@ function computeRatingX100(stat: UgcRatingStat, ugcUsageCount: number): { rating
 ```typescript
 async function submitRating(cid: CID, score: 1|2|3|4|5, useMatchId: string, ledger: Ledger, state: DerivedState): Promise<Result<EventId>> {
   const rater = keyManager.getPeerId();
-  const now = consensusNow(await ledger.getAllEvents());
+  const now = state.derivedAt; // 共識時鐘＝已折疊狀態的 derivedAt；不讀 raw log（ledger.md §10）
   const RATE_DEBOUNCE_MS = 24 * 3600 * 1000;
 
   if (cid.startsWith('builtin:')) return error('公版資產不可評分');
@@ -102,15 +102,19 @@ async function submitRating(cid: CID, score: 1|2|3|4|5, useMatchId: string, ledg
   const prev = state.ratings.ugcRatings.get(cid)?.explicitVotes.get(rater);
   if (prev && (now - prev.ratedAt) < RATE_DEBOUNCE_MS) return error('24 小時內已評分過，請先撤回再重評');
 
-  // useMatchId 背書：必須參賽且該場用過此 UGC（collectAllUgcUsedInMatch 見 ledger.md）
-  const match = await ledger.getMatchRecord(useMatchId);
-  if (!match) return error('比賽不存在');
-  if (!match.ranking.includes(rater)) return error('你未參與此比賽');
-  if (!collectAllUgcUsedInMatch(match).has(cid)) return error('此比賽未使用該 UGC');
+  // 評分資格：與 fold 同一個判定（isRatingEligible，見下）
+  if (!isRatingEligible(state, rater, cid)) return error('僅限曾在有此作品出場、且符合結算條件的比賽中完賽的玩家評分');
 
   return ok(await ledger.appendEvent({ type: 'ugc-rate', rater, cid, score, useMatchId }));
 }
 ```
+
+**評分資格（`isRatingEligible`）**：評分者必須曾以非 forfeit 完賽者身分參加 `mintEligible` 成立、且該作品（或同一血緣節點的
+其他版本）出現在其中的比賽——作品由任何參賽者的配裝或場地帶入都算（`collectAllUgcUsedInMatch`），當時在相似審查中
+（`similarity-pending`）或當時還沒有上傳紀錄的作品不記錄。即 `ugcUsageStats.get(resolveLineageNode(cid)).uniqueUsers` 含評分者
+（`recordUgcUsage` 的寫入條件見 [economy.md](economy.md) ECON-R-050）。`uniqueUsers` 是永久欄位、隨檢查點序列化，
+不隨 hot 窗輪轉，所以 fold 與 builder 都用這個判定，refold 與首播的結果一致。`useMatchId` 只是稽核欄，
+不參與判定。
 
 ## 5. 撤回評分
 
@@ -127,7 +131,7 @@ async function revokeRating(cid: CID, ledger: Ledger, state: DerivedState): Prom
 
 無時間限制（與 moderation 24h 撤回不同）：評分不像檢舉直接懲罰他人，撤回成本低、惡意空間小。
 
-> **builder／收件契約（`src/ugc-rating/builder.ts`）**：退役檢查使用 `deriveRetireStatus` 完整 derive（含自動退役）；useMatchId 背書收件驗證 ＝hot（`recentMatches`）同步驗三條、hot miss＝defer（呼叫端 cold 補查重驗）；**背書只在收件層驗證**——hot 窗隨檢查點輪轉，若放入 fold 守門會使 refold 與首播分歧（同 7d「票不入 state」哲學）。
+> **builder／收件契約（`src/ugc-rating/builder.ts`）**：退役檢查使用 `deriveRetireStatus` 完整 derive（含自動退役）；評分資格在 builder、收件驗證與 fold 都用同一個 `isRatingEligible`（第 4 節），不查 hot 或 cold 比賽紀錄；收件驗證讀的是本機狀態鏡像，可能尚未反映同一批剛 fold 的 match-result，所以符合即 accept、不符合時 defer，最終由 fold 判定，不在收件即時面拒收。
 
 ## 6. Derived State
 
@@ -153,8 +157,10 @@ interface CreatorRatingMilestone { peerId: PeerId; awardedCids: ReadonlySet<CID>
 ### 6.1 事件套用（覆蓋 = 先扣舊投票再加新）
 
 ```typescript
-function applyRatingEvent(state, event, reputationState, ugcUsageStats, ugcRecords): RatingDerivedState {   // 純函數：不吃 ledger
+function applyRatingEvent(state, event, reputationState, ugcUsageStats, ugcRecords, assetVersion): RatingDerivedState {   // 純函數：不吃 ledger
   if (event.type === 'ugc-rate') {
+    const node = resolveLineageNode(event.cid, assetVersion);                  // 血緣節點（資料系統.md 第 4.1 節）
+    if (!ugcUsageStats.get(node)?.uniqueUsers.has(event.rater)) return state;  // 評分資格（第 4 節，isRatingEligible）：不符＝no-op
     const stat = state.ugcRatings.get(event.cid) ?? newEmptyStat(event.cid);
     const weightX100 = ratingWeightX100(getEffectiveScore(event.rater, reputationState, event.timestamp));  // 保護後分數（reputation.md §4 讀點契約）
 
@@ -228,7 +234,6 @@ interface UgcRatingApi extends RatingApi {
   getRatingDetail(cid: CID): Promise<RatingDetail>;
   submitRating(cid: CID, score: 1|2|3|4|5, useMatchId: string): Promise<Result<EventId>>;
   revokeRating(cid: CID): Promise<Result<void>>;               // 以 (我, cid) 定位現行投票撤回（§5）
-  canRate(cid: CID, requester: PeerId): Promise<{ allowed: boolean; lastMatchId?: string }>;
   getMyRating(cid: CID): Promise<{ score: 1|2|3|4|5; ratedAt: Timestamp } | null>;
 }
 
@@ -236,16 +241,28 @@ interface RatingDetail {
   cid: CID;  ratingX100: number;  voteCount: number;
   distribution: { [score in 1|2|3|4|5]: number };  isImplicit: boolean;
 }
-
-// canRate：找最近一場 requester 參與且用過該 cid 的比賽
-async function canRate(cid: CID, requester: PeerId, ledger: Ledger): Promise<{ allowed: boolean; lastMatchId?: string }> {
-  if (cid.startsWith('builtin:')) return { allowed: false };
-  for (const match of await ledger.getRecentMatchesForPlayer(requester, 50)) {
-    if (collectAllUgcUsedInMatch(match).has(cid)) return { allowed: true, lastMatchId: match.matchId };
-  }
-  return { allowed: false };
-}
 ```
+
+**稽核欄補位（介面層，不屬共識判定）**：介面送出評分而沒有指定 `useMatchId` 時，先從本機保留的最近比賽找一場填入，
+再交給第 4 節的提交流程：
+
+```typescript
+// state＝呼叫當下的已折疊狀態；me＝評分者
+const useMatchId =
+  given ??
+  [...state.match.recentMatches.values()]
+    .filter((match) => match.ranking.includes(me) && collectAllUgcUsedInMatch(match, state.ugc.ugcRecords).has(cid))
+    .sort((a, b) => b.finishedAt - a.finishedAt)[0]?.matchId;   // 取 finishedAt 最大的一場
+if (useMatchId === undefined) return error('找不到可填入稽核欄的比賽');   // 不送出評分
+return submitRating(cid, score, useMatchId);                    // 資格在這裡由 isRatingEligible 判定
+```
+
+- 掃場只為了填稽核欄，掃到的場不代表評分資格。這裡用的是呼叫當下的上傳紀錄，不是各場事件位置的前態，所以作品上傳前
+  引用它的場次也會被掃到；那種場次不為該作品記使用量（[ledger-settlement.md](ledger-settlement.md) LEDGER-R-053），評分者若不在
+  該作品使用量的 `uniqueUsers` 裡，`submitRating` 會以資格不符擋下。
+- 評分資格只由第 4 節的 `isRatingEligible` 判定（讀使用量的 `uniqueUsers`）；fold 與收件驗證都不以 `useMatchId`
+  判定評分是否成立：fold 只把它原樣存入投票紀錄，schema 只檢查它是 1 到 256 位元組的字串；填哪一場不影響評分
+  是否成立。
 
 ## 9. UI 顯示規則
 
@@ -266,7 +283,7 @@ async function canRate(cid: CID, requester: PeerId, ledger: Ledger): Promise<{ a
 | 風險 | 緩解 |
 |---|---|
 | 評分極稀少 | 隱式 fallback（整數查表）+ Bayesian 平均 |
-| 多開刷高/低分 | 需實際使用背書 + reputation 權重 + Bayesian + milestone 樣本 `voteCount ≥ 10` |
+| 多開刷高/低分 | 評分資格需在合格場用過該作品（fold 判定）+ reputation 權重 + Bayesian + milestone 樣本 `voteCount ≥ 10` |
 | 早期樣本太少失真 | Bayesian + 隱式 fallback |
 | 評分跨閾值反覆刷 +20 | `creatorMilestones.awardedCids` 記錄已計入 CID、永不退回 |
 | 跨 peer 浮點誤差 | 全整數 × 100 量化 |
