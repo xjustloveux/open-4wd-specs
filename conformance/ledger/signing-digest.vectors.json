@@ -134,6 +134,30 @@
       "expected": {
         "digestHex": "88636161c7ad7609baec0a8a0ac99763691799a323f469e3220ea6895ad118e0"
       }
+    },
+    {
+      "name": "checkpoint-body",
+      "input": {
+        "ledgerAddress": "/orbitdb/zdpuAw6ZdQ6cEFTCgmCf1LYAwP7VweSF8fzMN4Kzw22k1Hk8x",
+        "event": {
+          "checkpoint_version": 1,
+          "timestamp": 1700000000000,
+          "round": 0,
+          "log_head_cids": [
+            "zdpuAw6ZdQ6cEFTCgmCf1LYAwP7VweSF8fzMN4Kzw22k1Hk8x"
+          ],
+          "derived_state_cid": "bafyreihdwdcefgh4dqkjv67uzcmw7ojee6xedzdetojuzjevtenxquvyku",
+          "previous_checkpoint_cid": "bafyreigdmqpykrgxyaxtlafqpqhzrb7qy2rh75nxomzwh5kxtapztmyhbe",
+          "signer_set_cid": "bafyreigxg5cpw2wws4lflsnkmdgvzpsfanjykrznfeodixpgz5kfkgleqi",
+          "signer_set_size": 4,
+          "quorum": 3,
+          "proposer": "z6Mkt6316e2PN3mZdB6N9CrzomJYUd1s5yBZi1XYHmwT9TUP",
+          "next_signer_set_cid": "bafyreigxg5cpw2wws4lflsnkmdgvzpsfanjykrznfeodixpgz5kfkgleqi"
+        }
+      },
+      "expected": {
+        "digestHex": "a8966c800b1a46a8415a8b80a72ecf652a073c681c21c8c14fb04c82110fcb37"
+      }
     }
   ]
 }

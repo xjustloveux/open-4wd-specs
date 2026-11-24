@@ -1,0 +1,102 @@
+{
+  "family": "ledger/checkpoint-trigger",
+  "spec": [
+    "程式架構/ledger-checkpoint.md"
+  ],
+  "formatVersion": 1,
+  "encoding": {
+    "bytes": "hex-lower",
+    "bigint": "decimal-string"
+  },
+  "generatedBy": "open-4wd@0.0.0",
+  "vectors": [
+    {
+      "name": "genesis-ignores-interval",
+      "input": {
+        "previousTimestamp": null,
+        "timestamp": 1700000000000,
+        "entryCount": 0
+      },
+      "expected": {
+        "reason": "genesis"
+      }
+    },
+    {
+      "name": "interval-exactly-24h",
+      "input": {
+        "previousTimestamp": 1700000000000,
+        "timestamp": 1700086400000,
+        "entryCount": 0
+      },
+      "expected": {
+        "reason": "interval"
+      }
+    },
+    {
+      "name": "interval-one-ms-short",
+      "input": {
+        "previousTimestamp": 1700000000000,
+        "timestamp": 1700086399999,
+        "entryCount": 5999
+      },
+      "expected": {
+        "reason": null
+      }
+    },
+    {
+      "name": "interval-takes-precedence",
+      "input": {
+        "previousTimestamp": 1700000000000,
+        "timestamp": 1700086400000,
+        "entryCount": 6000
+      },
+      "expected": {
+        "reason": "interval"
+      }
+    },
+    {
+      "name": "entry-count-exact-thresholds",
+      "input": {
+        "previousTimestamp": 1700000000000,
+        "timestamp": 1700003600000,
+        "entryCount": 6000
+      },
+      "expected": {
+        "reason": "entry-count"
+      }
+    },
+    {
+      "name": "entry-count-one-ms-short",
+      "input": {
+        "previousTimestamp": 1700000000000,
+        "timestamp": 1700003599999,
+        "entryCount": 6000
+      },
+      "expected": {
+        "reason": null
+      }
+    },
+    {
+      "name": "entry-count-one-entry-short",
+      "input": {
+        "previousTimestamp": 1700000000000,
+        "timestamp": 1700003600000,
+        "entryCount": 5999
+      },
+      "expected": {
+        "reason": null
+      }
+    },
+    {
+      "name": "timestamp-before-previous",
+      "input": {
+        "previousTimestamp": 1700000000000,
+        "timestamp": 1699999999999,
+        "entryCount": 10000
+      },
+      "expected": {
+        "reason": null
+      }
+    }
+  ]
+}

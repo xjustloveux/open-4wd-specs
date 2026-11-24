@@ -196,7 +196,7 @@ AbortSignal 於來源讀取、CID 驗證、Kubo 查詢／寫入等非同步步�
 
 ## 7. 訂閱帳本檢查點：自動 pin
 
-**機制**：`LedgerCheckpointEvent` 沒有獨立廣播頻道——它與其他永久事件一樣走**帳本自身的 OrbitDB 複寫**（gossipsub topic＝ 帳本 address、自訂 heads／entry-fetch 協定、Admission 准入）。app 節點以 vendored 帳本棧作為真 OrbitDB peer 同步事件鏈，checkpoint 事件（薄指標：`checkpointCid`＋ 多簽）經採納路徑驗證後，觸發 reconcile，pin 三類資料：
+**機制**：定稿公告 `ledger-checkpoint-certificate`（`LedgerCheckpointCertificateEvent`）沒有獨立廣播頻道——它與其他永久事件一樣走**帳本自身的 OrbitDB 複寫**（gossipsub topic＝ 帳本 address、自訂 heads／entry-fetch 協定、Admission 准入）。app 節點以 vendored 帳本棧作為真 OrbitDB peer 同步事件鏈，定稿公告（薄指標：本體 CID `checkpointCid`＋ 附 signer 的憑證簽章 `{ signer, sig }[]`，至少 quorum 份，[ledger-checkpoint.md §3](ledger-checkpoint.md)〔LEDGER-R-106〕）經採納路徑驗證後，觸發 reconcile，pin 三類資料：
 
 **採納模式**：帳本檢查點採納分兩級——`full-refold`（驗證者語意：驗多簽後以全域
 applier registry 重摺整窗、逐位比對 derived state；主 repo 客戶端預設）與
@@ -208,6 +208,10 @@ replica 採納 canonical state 與觸發 auto-pin，避免退回「兩端剛好�
 信任根 bootstrap 由部署 config `GOVERNANCE_SIGNERS` 提供，啟動時固定排序並寫入 ledger
 genesis；它不是可在 ledger options 旁路注入的 signer callback。空值就是 genesis 的空集合，
 遠端 checkpoint 採納與自動 pin 均 fail-closed。
+pinning 的定位不變：只採納與 pin，不提案、不投票、不定稿，`ledger-checkpoint-proposal` 與
+`ledger-checkpoint-signature` 只隨帳本複寫保存。兩種採納模式都驗本體的 `next_signer_set_cid` 與採納後狀態的
+`governanceSigners` 相符，`quorum-follow` 因此可由本體推進下一代信任根。pinning 的 vendored 帳本棧與本節
+所述本體、憑證與事件格式的程式同步屬 issue 001488。
 
 1. **檢查點本體** — `checkpointCid`、`checkpoint.derived_state_cid`、`checkpoint.signer_set_cid`
 2. **Cold match partitions** — 從 `DerivedState.coldMatchPartitions` 解出每個 quarter 的 partition CID 全 pin
@@ -242,7 +246,7 @@ async function onCheckpointAdopted(cp: LedgerCheckpoint): Promise<void> {
 Cold partition 引用的唯一 block bytes 計入 `global_max_size_tb` 配額；隨年數每季 +1
 partition 線性增長，單 partition 容量受時間切片上限。
 
-> **註**：pinning 訂閱的 `LedgerCheckpointEvent` 是**治理層帳本檢查點**（≠ 賽道 `Checkpoint_<n>` / 回合錨 `RaceConsensusAnchorEvent`，見 [ledger.md](ledger.md)）。
+> **註**：pinning 訂閱的 `ledger-checkpoint-certificate` 是**治理層帳本檢查點**的定稿公告（≠ 賽道 `Checkpoint_<n>` / 回合錨 `RaceConsensusAnchorEvent`，見 [ledger.md](ledger.md)）。
 
 ## 8. P5：UGC 退役自動 unpin
 

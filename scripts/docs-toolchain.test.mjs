@@ -1570,7 +1570,7 @@ test("testing and ledger canon describe the live runner and state contracts", ()
     /playerSlotCounts: ReadonlyMap<PeerId, \{ vehicle: number; track: number \}>/u,
   );
   assert.doesNotMatch(ledger, /playerFormalSlotCounts/u);
-  assert.match(`${ledger}\n${data}`, /22[^\n]*型別目錄[^\n]*21[^\n]*准入/u);
+  assert.match(`${ledger}\n${data}`, /24[^\n]*型別目錄[^\n]*23[^\n]*准入/u);
   assert.match(parameters, /TRACK_GLB_SIZE_MAX_MB[^\n]*80 MiB/u);
 });
 

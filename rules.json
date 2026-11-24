@@ -1,7 +1,7 @@
 {
   "generatedBy": "rules:generate",
   "counts": {
-    "LEDGER": 98,
+    "LEDGER": 106,
     "ECON": 53,
     "MOD": 57,
     "PHYS": 1,
@@ -435,7 +435,7 @@
       "refs": [
         {
           "file": "資料系統.md",
-          "line": 326
+          "line": 333
         }
       ]
     },
@@ -845,7 +845,7 @@
       "refs": [
         {
           "file": "程式架構/ledger.md",
-          "line": 123
+          "line": 125
         }
       ]
     },
@@ -869,7 +869,7 @@
       "refs": [
         {
           "file": "程式架構/ledger.md",
-          "line": 123
+          "line": 125
         }
       ]
     },
@@ -1145,8 +1145,8 @@
       },
       "anchor": {
         "file": "資料系統.md",
-        "line": 109,
-        "excerpt": "> **B 軸版本閘門使用房間 pin 的已驗 `LedgerCheckpointEvent`**：host 開房時 pin 已同步的最新帳本檢查點 CID，所"
+        "line": 115,
+        "excerpt": "> **B 軸版本閘門使用房間 pin 的已驗帳本檢查點**：host 開房時 pin 已同步的最新帳本檢查點 CID（本體 CID），所有 peer 驗證其 "
       },
       "refs": []
     },
@@ -1164,7 +1164,7 @@
       },
       "anchor": {
         "file": "資料系統.md",
-        "line": 116,
+        "line": 122,
         "excerpt": "- fork record 的 `parent` / `ancestors` 釘**具體 CID**；解析 royalty 收受者與 fork 樹位置時，先把該"
       },
       "refs": []
@@ -1183,7 +1183,7 @@
       },
       "anchor": {
         "file": "資料系統.md",
-        "line": 122,
+        "line": 128,
         "excerpt": "跨 peer 共識必須完全一致："
       },
       "refs": [
@@ -1207,7 +1207,7 @@
       },
       "anchor": {
         "file": "資料系統.md",
-        "line": 135,
+        "line": 141,
         "excerpt": "- 每 120 frame 的 ephemeral checksum 投票只做 desync 偵測，不寫 ledger。正式錨只在每回合終局建立一張 `Race"
       },
       "refs": []
@@ -1226,7 +1226,7 @@
       },
       "anchor": {
         "file": "資料系統.md",
-        "line": 137,
+        "line": 143,
         "excerpt": "- 每個 peer 對同一 `(matchId, roundIndex)` 最多簽一份 anchor，不論 frame 或 checksum。signer 只在"
       },
       "refs": []
@@ -1245,7 +1245,7 @@
       },
       "anchor": {
         "file": "資料系統.md",
-        "line": 139,
+        "line": 145,
         "excerpt": "- `MatchResultEvent.rounds[].terminalFrame` 是 tail 驗證基準；`roundAnchors` 長度必須等於回合數"
       },
       "refs": []
@@ -1264,7 +1264,7 @@
       },
       "anchor": {
         "file": "資料系統.md",
-        "line": 147,
+        "line": 153,
         "excerpt": "同一回合若只出現一張達 quorum 的證書即採該證書；bounded 收集窗結束仍無證書則該回合錨缺失，允許非鑄幣 MatchResult，但不得鑄幣。"
       },
       "refs": []
@@ -1285,7 +1285,7 @@
       },
       "anchor": {
         "file": "資料系統.md",
-        "line": 149,
+        "line": 155,
         "excerpt": "同一 `(matchId, roundIndex)` 出現兩張不同的完整有效證書時，保存兩張原始證書與重疊簽署者於 `RaceAbortEvidenceEven"
       },
       "refs": []
@@ -1304,7 +1304,7 @@
       },
       "anchor": {
         "file": "資料系統.md",
-        "line": 183,
+        "line": 189,
         "excerpt": "| **Apply 階段**（套用 match-result 事件時） | **一律放進 `hot.match.recentMatches`**，不在此階段判斷"
       },
       "refs": []
@@ -1323,7 +1323,7 @@
       },
       "anchor": {
         "file": "資料系統.md",
-        "line": 227,
+        "line": 233,
         "excerpt": "所有 P2P 訊息帶 `timestamp` + `nonce`："
       },
       "refs": []
@@ -1342,7 +1342,7 @@
       },
       "anchor": {
         "file": "資料系統.md",
-        "line": 257,
+        "line": 263,
         "excerpt": "- **手動**（創作者意志 / 非違規下架）：**創作者本人**付費寫一筆 `UgcMaintenanceEvent`（`reason: 'retire'`）"
       },
       "refs": []
@@ -1361,7 +1361,7 @@
       },
       "anchor": {
         "file": "資料系統.md",
-        "line": 259,
+        "line": 265,
         "excerpt": "退役效果：既有 royalty 不回收（既得權益）、後續使用不算 royalty、仍可觀看但 loadout 阻擋、pinning 自動 unpin、保留歷史僅"
       },
       "refs": []
@@ -1380,8 +1380,8 @@
       },
       "anchor": {
         "file": "資料系統.md",
-        "line": 285,
-        "excerpt": "`deriveStateAt` 供 checkpoint review、復原稽核與診斷使用；B 軸房間閘直接讀已驗 pinned checkpoint，matc"
+        "line": 291,
+        "excerpt": "`deriveStateAt` 目前正式程式只由仲裁協調器呼叫（取抽籤檢查點的快照）；檢查點的提案與覆核以候選折疊重算，不經此 API；B 軸房間閘直接讀已驗 "
       },
       "refs": []
     },
@@ -1399,7 +1399,7 @@
       },
       "anchor": {
         "file": "資料系統.md",
-        "line": 306,
+        "line": 313,
         "excerpt": "| 超越函數禁入共識 | 浮點 `log10` 等跨硬體 libm 不一致——一律整數預算表（隱式評分查表 [算式表.md §19](算式表.md)、仲裁 `w"
       },
       "refs": []
@@ -1418,7 +1418,7 @@
       },
       "anchor": {
         "file": "資料系統.md",
-        "line": 310,
+        "line": 317,
         "excerpt": "| derive 規則變更  | 隨 `derive_logic` major 出貨（同 major 全網同規則，[版本規範.md §5](版本規範.md)）；"
       },
       "refs": [
@@ -1442,7 +1442,7 @@
       },
       "anchor": {
         "file": "資料系統.md",
-        "line": 320,
+        "line": 327,
         "excerpt": "`totalMinted` 必須等於產出型與補助型鑄幣總和。"
       },
       "refs": []
@@ -1461,7 +1461,7 @@
       },
       "anchor": {
         "file": "資料系統.md",
-        "line": 322,
+        "line": 329,
         "excerpt": "`monthMinted` 只累計當月產出型鑄幣，並依月份邊界重置。"
       },
       "refs": []
@@ -1480,7 +1480,7 @@
       },
       "anchor": {
         "file": "資料系統.md",
-        "line": 324,
+        "line": 331,
         "excerpt": "每個 peer 的餘額不得低於零，唯一例外是首次上鏈負資產不得低於該次上鏈費。"
       },
       "refs": []
@@ -1518,7 +1518,7 @@
       },
       "anchor": {
         "file": "程式架構/ledger-admission.md",
-        "line": 102,
+        "line": 122,
         "excerpt": "**`timestamp` 收件驗證**：新事件**首次廣播**收件時，`|event.timestamp − 收件端本地時鐘| ≤ P2P_MESSAGE_T"
       },
       "refs": []
@@ -1537,7 +1537,7 @@
       },
       "anchor": {
         "file": "程式架構/ledger-admission.md",
-        "line": 106,
+        "line": 126,
         "excerpt": "跨 peer 須產生**位元組完全一致**的序列化（否則驗簽失敗）："
       },
       "refs": []
@@ -1556,10 +1556,15 @@
       },
       "anchor": {
         "file": "程式架構/ledger-admission.md",
-        "line": 131,
-        "excerpt": "封閉目錄內 22 種事件型別中，21 種永久事件一律使用同一套 entry-level Admission v1，**不由治理者逐筆核准或簽署**。事件完成原有"
+        "line": 151,
+        "excerpt": "封閉目錄內 24 種事件型別中，23 種永久事件一律使用同一套 entry-level Admission v1，**不由治理者逐筆核准或簽署**。事件完成原有"
       },
-      "refs": []
+      "refs": [
+        {
+          "file": "程式架構/ledger-checkpoint.md",
+          "line": 219
+        }
+      ]
     },
     {
       "id": "LEDGER-R-026",
@@ -1575,7 +1580,7 @@
       },
       "anchor": {
         "file": "程式架構/ledger-admission.md",
-        "line": 143,
+        "line": 163,
         "excerpt": "Admission v1 的 hash domain、shape 與難度是 protocol 常數，不是 `economy_config` 或動態 diffic"
       },
       "refs": []
@@ -1596,7 +1601,7 @@
       },
       "anchor": {
         "file": "程式架構/ledger-admission.md",
-        "line": 156,
+        "line": 176,
         "excerpt": "`matchId` 必須綁定 `ranking ∪ disconnects` 的 original active roster、`startedAt`、`mat"
       },
       "refs": []
@@ -1615,7 +1620,7 @@
       },
       "anchor": {
         "file": "程式架構/ledger-admission.md",
-        "line": 158,
+        "line": 178,
         "excerpt": "每位 original active roster 成員都必須有有效的 `loadoutSignatures` 參與證明。"
       },
       "refs": []
@@ -1634,7 +1639,7 @@
       },
       "anchor": {
         "file": "程式架構/ledger-admission.md",
-        "line": 160,
+        "line": 180,
         "excerpt": "外層 `MatchResultEvent` 必須由 original active roster 的嚴格多數簽署，且 signer 只能是非 forfeit 完"
       },
       "refs": [
@@ -1658,7 +1663,7 @@
       },
       "anchor": {
         "file": "程式架構/ledger-admission.md",
-        "line": 162,
+        "line": 182,
         "excerpt": "`roundAnchors` 必須與 rounds 等長；每個非 null inline anchor 都要驗 match／round、120-frame ta"
       },
       "refs": [
@@ -1682,7 +1687,7 @@
       },
       "anchor": {
         "file": "程式架構/ledger-admission.md",
-        "line": 164,
+        "line": 184,
         "excerpt": "`MatchResultEvent` 的時間必須滿足 `startedAt <= finishedAt <= event.timestamp`。"
       },
       "refs": []
@@ -1701,8 +1706,8 @@
       },
       "anchor": {
         "file": "程式架構/ledger-admission.md",
-        "line": 172,
-        "excerpt": "**未啟用保留案：`asset-version-upgrade`**。下列六條只保留未來設計脈絡；此型別列在 22 型別事件目錄供設計追蹤，但不在現行 21 型"
+        "line": 192,
+        "excerpt": "**未啟用保留案：`asset-version-upgrade`**。下列六條只保留未來設計脈絡；此型別列在 24 型別事件目錄供設計追蹤，但不在現行 23 型"
       },
       "refs": [
         {
@@ -1806,10 +1811,15 @@
       },
       "anchor": {
         "file": "程式架構/ledger-checkpoint.md",
-        "line": 213,
-        "excerpt": "- **公開凍結前的 exact v1 baseline**：只接受上列 exact closed shape；`checkpoint_version: 0`／"
+        "line": 214,
+        "excerpt": "- **公開凍結前的 exact v1 baseline**：本體只接受上列 exact closed shape（恰 11 個欄位）；`checkpoint_"
       },
-      "refs": []
+      "refs": [
+        {
+          "file": "程式架構/ledger-admission.md",
+          "line": 102
+        }
+      ]
     },
     {
       "id": "LEDGER-R-038",
@@ -1825,10 +1835,19 @@
       },
       "anchor": {
         "file": "程式架構/ledger-checkpoint.md",
-        "line": 212,
-        "excerpt": "- **提案觸發**：任一治理 signer 見「本地時鐘 − 上一檢查點 timestamp ≥ `LEDGER_CHECKPOINT_INTERVAL_HO"
+        "line": 215,
+        "excerpt": "- **觸發條件**：`checkpointTriggerSatisfied({ previousTimestamp, timestamp, entryCoun"
       },
-      "refs": []
+      "refs": [
+        {
+          "file": "程式架構/ledger-checkpoint.md",
+          "line": 220
+        },
+        {
+          "file": "程式架構/ledger-checkpoint.md",
+          "line": 229
+        }
+      ]
     },
     {
       "id": "LEDGER-R-039",
@@ -1844,10 +1863,15 @@
       },
       "anchor": {
         "file": "程式架構/ledger-checkpoint.md",
-        "line": 216,
-        "excerpt": "- `reviewAndSign`：驗提案形狀 → 驗 `previous_checkpoint_cid` 等於本機最新已採納的 checkpoint → 驗提"
+        "line": 222,
+        "excerpt": "- `signCheckpoint(checkpointCid)`：固定順序為共同閘門 → 缺投票鎖定紀錄回 `lock-store-unavailable` "
       },
-      "refs": []
+      "refs": [
+        {
+          "file": "程式架構/ledger-checkpoint.md",
+          "line": 221
+        }
+      ]
     },
     {
       "id": "LEDGER-R-040",
@@ -1863,7 +1887,7 @@
       },
       "anchor": {
         "file": "程式架構/ledger-checkpoint.md",
-        "line": 218,
+        "line": 228,
         "excerpt": "- **CheckpointStore control envelope**：`{ version, revision, latest, effective, "
       },
       "refs": []
@@ -1882,10 +1906,15 @@
       },
       "anchor": {
         "file": "程式架構/ledger-checkpoint.md",
-        "line": 219,
-        "excerpt": "- **遠端 adoption 與啟動 watermark**：live `LedgerCheckpointEvent` 與 open 時的 historica"
+        "line": 229,
+        "excerpt": "- **遠端 adoption 與啟動 watermark**：live `ledger-checkpoint-certificate` 公告與 open 時的"
       },
-      "refs": []
+      "refs": [
+        {
+          "file": "程式架構/ledger-checkpoint.md",
+          "line": 220
+        }
+      ]
     },
     {
       "id": "LEDGER-R-042",
@@ -1901,13 +1930,17 @@
       },
       "anchor": {
         "file": "程式架構/ledger-checkpoint.md",
-        "line": 220,
-        "excerpt": "- **同 previous sibling quarantine**：若兩個不同 checkpoint CID 都完整有效且 `previous_checkp"
+        "line": 230,
+        "excerpt": "- **同 previous sibling quarantine**：衝突以**本體 CID** 判定：若兩個不同本體 CID 都完整有效且 `previou"
       },
       "refs": [
         {
           "file": "程式架構/ledger-checkpoint.md",
-          "line": 219
+          "line": 225
+        },
+        {
+          "file": "程式架構/ledger-checkpoint.md",
+          "line": 229
         }
       ]
     },
@@ -1925,13 +1958,13 @@
       },
       "anchor": {
         "file": "程式架構/ledger-checkpoint.md",
-        "line": 221,
+        "line": 231,
         "excerpt": "- **crash redo 與 pre-open reconciliation**：跨 Orbit log／CheckpointStore 不宣稱單一 tra"
       },
       "refs": [
         {
           "file": "程式架構/ledger.md",
-          "line": 202
+          "line": 206
         }
       ]
     },
@@ -1949,7 +1982,7 @@
       },
       "anchor": {
         "file": "程式架構/ledger-checkpoint.md",
-        "line": 229,
+        "line": 239,
         "excerpt": "- Orbit entry 使用獨立 IndexedDB blockstore `open4wd/ledger/entries`；不得與 Helia/Bitsw"
       },
       "refs": []
@@ -1968,7 +2001,7 @@
       },
       "anchor": {
         "file": "程式架構/ledger-checkpoint.md",
-        "line": 231,
+        "line": 241,
         "excerpt": "- remote join 必須接到目前任一 head 或 finalized checkpoint boundary；isolated fork 拒絕。hea"
       },
       "refs": []
@@ -1987,7 +2020,7 @@
       },
       "anchor": {
         "file": "程式架構/ledger-checkpoint.md",
-        "line": 232,
+        "line": 242,
         "excerpt": "- remote join 與 local `commitPrepared(finalEntryBytes, cid)` 都先經 canonical Admis"
       },
       "refs": []
@@ -2006,7 +2039,7 @@
       },
       "anchor": {
         "file": "程式架構/ledger-checkpoint.md",
-        "line": 233,
+        "line": 243,
         "excerpt": "- quota eviction 只刪 finalized-checkpoint-covered entry，且呼叫專屬 entry blockstore 的真"
       },
       "refs": []
@@ -2025,13 +2058,13 @@
       },
       "anchor": {
         "file": "程式架構/ledger-checkpoint.md",
-        "line": 235,
+        "line": 245,
         "excerpt": "- `syncFromCheckpoint`：取 effective latest checkpoint（無則從 genesis/log 重建）；已有 chec"
       },
       "refs": [
         {
           "file": "程式架構/ledger-checkpoint.md",
-          "line": 219
+          "line": 229
         }
       ]
     },
@@ -2049,8 +2082,8 @@
       },
       "anchor": {
         "file": "程式架構/ledger-checkpoint.md",
-        "line": 236,
-        "excerpt": "- **accepted／pending／notified 分離**：只有 decode 成功、非 checkpoint、未來時戳排除、所有 timeless "
+        "line": 246,
+        "excerpt": "- **accepted／pending／notified 分離**：只有 decode 成功、非檢查點控制事件（〔LEDGER-R-100〕）、未來時戳排除、"
       },
       "refs": []
     },
@@ -2070,7 +2103,7 @@
       },
       "anchor": {
         "file": "程式架構/ledger-checkpoint.md",
-        "line": 238,
+        "line": 248,
         "excerpt": "- **Orbit multi-head 與 full-DAG fold**：所有已連到任一 verified head／checkpoint boundary"
       },
       "refs": []
@@ -2210,7 +2243,7 @@
       },
       "anchor": {
         "file": "程式架構/ledger.md",
-        "line": 111,
+        "line": 113,
         "excerpt": "log 的 access controller 為 `write:['*']`；live 收件的 ±30 秒時間窗只在首播時檢查、歷史同步不重驗，不構成共識邊界"
       },
       "refs": []
@@ -2229,7 +2262,7 @@
       },
       "anchor": {
         "file": "程式架構/ledger.md",
-        "line": 113,
+        "line": 115,
         "excerpt": "**Admission 不取代業務冪等**：完全相同的 final entry 由 CID 去重，同一 proof 也不能跨 clock／parents／Orb"
       },
       "refs": []
@@ -2248,7 +2281,7 @@
       },
       "anchor": {
         "file": "程式架構/ledger.md",
-        "line": 117,
+        "line": 119,
         "excerpt": "**fold 迴圈前置時鐘防毒閘**：fold 於 reducer 之前一律排除**未來時戳**（`event.timestamp > fold 時鐘`）條目—"
       },
       "refs": []
@@ -2267,7 +2300,7 @@
       },
       "anchor": {
         "file": "程式架構/ledger.md",
-        "line": 123,
+        "line": 125,
         "excerpt": "| 〔ECON-R-043〕 〔ECON-R-042〕 `match-result`（economy） | timeless 自包含驗證：matchId/gri"
       },
       "refs": [
@@ -2291,7 +2324,7 @@
       },
       "anchor": {
         "file": "程式架構/ledger.md",
-        "line": 124,
+        "line": 126,
         "excerpt": "| `ugc-upload`（economy 費）                              | `cid` record 已存在＝已收過費、重"
       },
       "refs": []
@@ -2310,7 +2343,7 @@
       },
       "anchor": {
         "file": "程式架構/ledger.md",
-        "line": 125,
+        "line": 127,
         "excerpt": "| `slot-purchase`（economy）                              | `payer === peerId`（冒名守"
       },
       "refs": []
@@ -2329,7 +2362,7 @@
       },
       "anchor": {
         "file": "程式架構/ledger.md",
-        "line": 126,
+        "line": 128,
         "excerpt": "| `ugc-sponsor-burn`（economy）                           | `paymentIntentDigest` "
       },
       "refs": []
@@ -2348,7 +2381,7 @@
       },
       "anchor": {
         "file": "程式架構/ledger.md",
-        "line": 127,
+        "line": 129,
         "excerpt": "| `ugc-maintenance`（economy）                            | `paymentIntentDigest` "
       },
       "refs": []
@@ -2369,7 +2402,7 @@
       },
       "anchor": {
         "file": "程式架構/ledger.md",
-        "line": 128,
+        "line": 130,
         "excerpt": "| `config-update`（economy 治理）                         | `prevEpoch === state.eco"
       },
       "refs": []
@@ -2390,7 +2423,7 @@
       },
       "anchor": {
         "file": "程式架構/ledger.md",
-        "line": 130,
+        "line": 132,
         "excerpt": "| `blacklist-cid`（anti-piracy）                          | 須存在一筆 `result === 'pas"
       },
       "refs": []
@@ -2409,7 +2442,7 @@
       },
       "anchor": {
         "file": "程式架構/ledger.md",
-        "line": 131,
+        "line": 133,
         "excerpt": "| `report`（moderation）                                  | `targetKind ∈ {cid, pe"
       },
       "refs": []
@@ -2428,7 +2461,7 @@
       },
       "anchor": {
         "file": "程式架構/ledger.md",
-        "line": 133,
+        "line": 135,
         "excerpt": "**畸形事件 fold 韌性**：fold 迴圈對每筆事件的 applier 呼叫包 try/catch——applier 拋錯（欄位缺失 ／ 型別違規 ／ 簽"
       },
       "refs": []
@@ -2447,7 +2480,7 @@
       },
       "anchor": {
         "file": "程式架構/ledger.md",
-        "line": 137,
+        "line": 139,
         "excerpt": "退役判定**完全自動、純 derive、不寫事件**；pinning service 看到 `retired: true` 自動 unpin。"
       },
       "refs": []
@@ -2466,7 +2499,7 @@
       },
       "anchor": {
         "file": "程式架構/ledger.md",
-        "line": 177,
+        "line": 179,
         "excerpt": "apply 時：扣 payer `burnAmount`（**費率收口**：必須 ＝`state.economyConfig.ugc_lifecycle.mai"
       },
       "refs": []
@@ -2487,7 +2520,7 @@
       },
       "anchor": {
         "file": "程式架構/ledger.md",
-        "line": 183,
+        "line": 187,
         "excerpt": "**簽章與上鏈形（實作即權威，src/economy/governance.ts）**：提案流程定稿 `timestamp`／`peerId`（提案者）後，各 "
       },
       "refs": []
@@ -2506,7 +2539,7 @@
       },
       "anchor": {
         "file": "程式架構/ledger.md",
-        "line": 198,
+        "line": 202,
         "excerpt": "不影響玩家信譽，純供開發者調查 desync。寫入者 ＝ 被踢者本人（自報其觀測的 hash 票面；無法強制他人為調查記錄簽章）——無 state reduce"
       },
       "refs": []
@@ -2525,13 +2558,13 @@
       },
       "anchor": {
         "file": "程式架構/ledger.md",
-        "line": 202,
+        "line": 206,
         "excerpt": "OrbitDB log append-only 永久累積；客戶端不必本地保留已被 finalized checkpoint 覆蓋的事件。因此本機對 log 的讀"
       },
       "refs": [
         {
           "file": "程式架構/ledger.md",
-          "line": 282
+          "line": 288
         }
       ]
     },
@@ -2549,7 +2582,7 @@
       },
       "anchor": {
         "file": "程式架構/ledger.md",
-        "line": 221,
+        "line": 225,
         "excerpt": "- persistence admission 使用 `open4wd-ledger` custom access-controller：manifest `w"
       },
       "refs": []
@@ -2568,7 +2601,7 @@
       },
       "anchor": {
         "file": "程式架構/ledger.md",
-        "line": 220,
+        "line": 224,
         "excerpt": "- **Checkpoint + 簽章永遠保留**（獨立 `LevelStorage`、不走 LRU），否則新玩家無法驗 derived state。"
       },
       "refs": []
@@ -2587,7 +2620,7 @@
       },
       "anchor": {
         "file": "程式架構/ledger.md",
-        "line": 218,
+        "line": 222,
         "excerpt": "- finalized checkpoint 完整驗簽後先 prepare boundary；content-addressed artifacts 與唯一宣告"
       },
       "refs": []
@@ -2606,7 +2639,7 @@
       },
       "anchor": {
         "file": "程式架構/ledger.md",
-        "line": 227,
+        "line": 231,
         "excerpt": "這是**成本與損害上限**，不是絕對阻擋大型攻擊者：有足夠 CPU／ 裝置的攻擊者仍可為大量不同 entry 逐筆付費；本機 quota 滿載會 fail-cl"
       },
       "refs": []
@@ -2625,7 +2658,7 @@
       },
       "anchor": {
         "file": "程式架構/ledger.md",
-        "line": 276,
+        "line": 282,
         "excerpt": "`getDerivedState`、`getMatchRecord`、`getMatchFromPartition`、`getRecentMatchesForP"
       },
       "refs": []
@@ -2915,7 +2948,7 @@
       },
       "anchor": {
         "file": "程式架構/ledger-admission.md",
-        "line": 125,
+        "line": 145,
         "excerpt": "`ledgerSigningDigest` 是 ledger-only API，與通用"
       },
       "refs": []
@@ -2955,7 +2988,7 @@
       },
       "anchor": {
         "file": "程式架構/ledger-admission.md",
-        "line": 166,
+        "line": 186,
         "excerpt": "voluntary removal 不得縮小 MatchResult quorum；門檻仍以 original active roster 計算。"
       },
       "refs": [
@@ -3003,7 +3036,7 @@
       },
       "anchor": {
         "file": "程式架構/ledger-admission.md",
-        "line": 145,
+        "line": 165,
         "excerpt": "`ugc-upload` 的內容 admission 與 entry PoW admission 是不同層。事件 metadata 必須精確帶 `physics"
       },
       "refs": []
@@ -3022,13 +3055,260 @@
       },
       "anchor": {
         "file": "資料系統.md",
-        "line": 346,
+        "line": 353,
         "excerpt": "3. 建新 OrbitDB log（**新位址**）；ordinary genesis 與 rebirth genesis 互斥，rebirth 缺任一 pro"
       },
       "refs": [
         {
           "file": "程式架構/ledger-checkpoint.md",
+          "line": 233
+        }
+      ]
+    },
+    {
+      "id": "LEDGER-R-099",
+      "kind": "derive",
+      "requiredLayers": [
+        "service"
+      ],
+      "implementationRepos": [
+        "open-4wd"
+      ],
+      "testContracts": {
+        "service": "ledger-r-099-service"
+      },
+      "anchor": {
+        "file": "程式架構/ledger-checkpoint.md",
+        "line": 219,
+        "excerpt": "- **待定稿索引**：每個節點以最新已採納檢查點 CID 為錨（null 為創世），從錨之後的 `ledger-checkpoint-proposal` 與 "
+      },
+      "refs": [
+        {
+          "file": "程式架構/ledger-admission.md",
+          "line": 107
+        },
+        {
+          "file": "程式架構/ledger-checkpoint.md",
+          "line": 221
+        },
+        {
+          "file": "程式架構/ledger-checkpoint.md",
+          "line": 222
+        },
+        {
+          "file": "程式架構/ledger.md",
+          "line": 109
+        }
+      ]
+    },
+    {
+      "id": "LEDGER-R-100",
+      "kind": "invariant",
+      "requiredLayers": [
+        "fold"
+      ],
+      "implementationRepos": [
+        "open-4wd"
+      ],
+      "testContracts": {
+        "fold": "ledger-r-100-fold"
+      },
+      "anchor": {
+        "file": "程式架構/ledger-checkpoint.md",
+        "line": 220,
+        "excerpt": "- **控制事件不進業務 fold**：`ledger-checkpoint-proposal`、`ledger-checkpoint-signature` 與"
+      },
+      "refs": [
+        {
+          "file": "程式架構/ledger-admission.md",
+          "line": 108
+        },
+        {
+          "file": "程式架構/ledger-checkpoint.md",
+          "line": 246
+        }
+      ]
+    },
+    {
+      "id": "LEDGER-R-101",
+      "kind": "derive",
+      "requiredLayers": [
+        "service"
+      ],
+      "implementationRepos": [
+        "open-4wd"
+      ],
+      "testContracts": {
+        "service": "ledger-r-101-service"
+      },
+      "anchor": {
+        "file": "程式架構/ledger-checkpoint.md",
+        "line": 216,
+        "excerpt": "- **輪次與提案者輪替**：輪次起點 `T0` 為前一檢查點的 timestamp；previous 為 null 時取本代 authority 狀態（創世）"
+      },
+      "refs": []
+    },
+    {
+      "id": "LEDGER-R-102",
+      "kind": "behavior",
+      "requiredLayers": [
+        "service"
+      ],
+      "implementationRepos": [
+        "open-4wd"
+      ],
+      "testContracts": {
+        "service": "ledger-r-102-service"
+      },
+      "anchor": {
+        "file": "程式架構/ledger-checkpoint.md",
+        "line": 221,
+        "excerpt": "- **重提案**：待定稿索引有候選本體時，`proposeCheckpoint` 不論本節點是否為指定提案者，都先回到候選本體（〔LEDGER-R-099〕；"
+      },
+      "refs": [
+        {
+          "file": "程式架構/ledger-checkpoint.md",
+          "line": 216
+        },
+        {
+          "file": "程式架構/ledger-checkpoint.md",
+          "line": 217
+        },
+        {
+          "file": "程式架構/ledger-checkpoint.md",
+          "line": 219
+        },
+        {
+          "file": "程式架構/ledger-checkpoint.md",
+          "line": 219
+        }
+      ]
+    },
+    {
+      "id": "LEDGER-R-103",
+      "kind": "invariant",
+      "requiredLayers": [
+        "service"
+      ],
+      "implementationRepos": [
+        "open-4wd"
+      ],
+      "testContracts": {
+        "service": "ledger-r-103-service"
+      },
+      "anchor": {
+        "file": "程式架構/ledger-checkpoint.md",
+        "line": 223,
+        "excerpt": "- **鎖定與本機鎖定紀錄**：一位 signer 對同一 previous 只投一個本體，不論輪次。本節點受約束的本體為「本機鎖定紀錄」與「索引中自己的票」的"
+      },
+      "refs": [
+        {
+          "file": "程式架構/ledger-checkpoint.md",
+          "line": 216
+        },
+        {
+          "file": "程式架構/ledger-checkpoint.md",
+          "line": 217
+        },
+        {
+          "file": "程式架構/ledger-checkpoint.md",
+          "line": 221
+        }
+      ]
+    },
+    {
+      "id": "LEDGER-R-104",
+      "kind": "behavior",
+      "requiredLayers": [
+        "service"
+      ],
+      "implementationRepos": [
+        "open-4wd"
+      ],
+      "testContracts": {
+        "service": "ledger-r-104-service"
+      },
+      "anchor": {
+        "file": "程式架構/ledger-checkpoint.md",
+        "line": 224,
+        "excerpt": "- **卡死與人工釋放**：沒有候選本體達 quorum `Q`，且 `max(各候選本體票數) + 尚未投票的 signer 數 < Q` 時判定卡死（只計前"
+      },
+      "refs": [
+        {
+          "file": "程式架構/ledger-checkpoint.md",
+          "line": 219
+        },
+        {
+          "file": "程式架構/ledger-checkpoint.md",
+          "line": 219
+        },
+        {
+          "file": "程式架構/ledger-checkpoint.md",
           "line": 223
+        },
+        {
+          "file": "程式架構/ledger.md",
+          "line": 109
+        }
+      ]
+    },
+    {
+      "id": "LEDGER-R-105",
+      "kind": "reject",
+      "requiredLayers": [
+        "service"
+      ],
+      "implementationRepos": [
+        "open-4wd"
+      ],
+      "testContracts": {
+        "service": "ledger-r-105-service"
+      },
+      "anchor": {
+        "file": "程式架構/ledger-checkpoint.md",
+        "line": 225,
+        "excerpt": "- **自身重複簽署**：索引中本節點對目前錨投過兩個以上未釋放的本體時為 `selfEquivocation`（代表同一金鑰在別處運作或外洩）；此時 `pro"
+      },
+      "refs": [
+        {
+          "file": "程式架構/ledger-checkpoint.md",
+          "line": 217
+        },
+        {
+          "file": "程式架構/ledger-checkpoint.md",
+          "line": 219
+        }
+      ]
+    },
+    {
+      "id": "LEDGER-R-106",
+      "kind": "reject",
+      "requiredLayers": [
+        "service"
+      ],
+      "implementationRepos": [
+        "open-4wd"
+      ],
+      "testContracts": {
+        "service": "ledger-r-106-service"
+      },
+      "anchor": {
+        "file": "程式架構/ledger-checkpoint.md",
+        "line": 227,
+        "excerpt": "- **憑證格式、驗證與保存**：`LedgerCheckpointCertificate` 是 canonical dag-cbor（`checkpoint_"
+      },
+      "refs": [
+        {
+          "file": "程式架構/ledger-checkpoint.md",
+          "line": 226
+        },
+        {
+          "file": "程式架構/ledger-checkpoint.md",
+          "line": 229
+        },
+        {
+          "file": "程式架構/pinning-service.md",
+          "line": 199
         }
       ]
     },
@@ -3056,7 +3336,7 @@
         },
         {
           "file": "資料系統.md",
-          "line": 326
+          "line": 333
         }
       ]
     },
@@ -3955,7 +4235,7 @@
       "refs": [
         {
           "file": "程式架構/ledger.md",
-          "line": 129
+          "line": 131
         }
       ]
     },

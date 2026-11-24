@@ -1125,6 +1125,62 @@
       "testContracts": { "service": "ledger-r-098-service" }
     },
     {
+      "id": "LEDGER-R-099",
+      "kind": "derive",
+      "requiredLayers": ["service"],
+      "implementationRepos": ["open-4wd"],
+      "testContracts": { "service": "ledger-r-099-service" }
+    },
+    {
+      "id": "LEDGER-R-100",
+      "kind": "invariant",
+      "requiredLayers": ["fold"],
+      "implementationRepos": ["open-4wd"],
+      "testContracts": { "fold": "ledger-r-100-fold" }
+    },
+    {
+      "id": "LEDGER-R-101",
+      "kind": "derive",
+      "requiredLayers": ["service"],
+      "implementationRepos": ["open-4wd"],
+      "testContracts": { "service": "ledger-r-101-service" }
+    },
+    {
+      "id": "LEDGER-R-102",
+      "kind": "behavior",
+      "requiredLayers": ["service"],
+      "implementationRepos": ["open-4wd"],
+      "testContracts": { "service": "ledger-r-102-service" }
+    },
+    {
+      "id": "LEDGER-R-103",
+      "kind": "invariant",
+      "requiredLayers": ["service"],
+      "implementationRepos": ["open-4wd"],
+      "testContracts": { "service": "ledger-r-103-service" }
+    },
+    {
+      "id": "LEDGER-R-104",
+      "kind": "behavior",
+      "requiredLayers": ["service"],
+      "implementationRepos": ["open-4wd"],
+      "testContracts": { "service": "ledger-r-104-service" }
+    },
+    {
+      "id": "LEDGER-R-105",
+      "kind": "reject",
+      "requiredLayers": ["service"],
+      "implementationRepos": ["open-4wd"],
+      "testContracts": { "service": "ledger-r-105-service" }
+    },
+    {
+      "id": "LEDGER-R-106",
+      "kind": "reject",
+      "requiredLayers": ["service"],
+      "implementationRepos": ["open-4wd"],
+      "testContracts": { "service": "ledger-r-106-service" }
+    },
+    {
       "id": "MOD-R-001",
       "kind": "invariant",
       "requiredLayers": ["fold"],

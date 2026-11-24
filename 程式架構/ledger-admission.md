@@ -33,15 +33,25 @@ interface BaseEvent {
 
 ### 1.0 事件目錄與 ledger 自有結構
 
-現行封閉設計目錄共 22 型別；其中 `asset-version-upgrade` 是未啟用保留案，故
-`LEDGER_EVENT_TYPES` persistence allowlist 實際接受 21 種。跨域事件的欄位權威仍由其責任模組
+現行封閉設計目錄共 24 型別；其中 `asset-version-upgrade` 是未啟用保留案，故
+`LEDGER_EVENT_TYPES` persistence allowlist 實際接受 23 種。跨域事件的欄位權威仍由其責任模組
 維護；下列列出 ledger／UGC／消耗入口必須共用的完整 current wire，避免流程文件各自抄一份：
 
 ```typescript
-interface LedgerCheckpointEvent extends BaseEvent {
-  type: "ledger-checkpoint";
-  checkpointCid: CID;
-  signatures: Signature[];
+interface LedgerCheckpointProposalEvent extends BaseEvent {
+  type: "ledger-checkpoint-proposal"; // 單簽；peerId 必須等於 checkpoint.proposer
+  checkpoint: LedgerCheckpoint; // 本體（ledger-checkpoint.md §3）
+  checkpointSignature: Signature; // proposer 對 ledgerSigningDigest(ledgerAddress, 本體) 的簽章；算提案者一票
+}
+interface LedgerCheckpointSignatureEvent extends BaseEvent {
+  type: "ledger-checkpoint-signature"; // 單簽
+  checkpointCid: CID; // 本體 CID
+  checkpointSignature: Signature; // 投票者對該本體 signing digest 的簽章
+}
+interface LedgerCheckpointCertificateEvent extends BaseEvent {
+  type: "ledger-checkpoint-certificate"; // 多簽型定稿公告；BaseEvent.signature 固定為空
+  checkpointCid: CID; // 本體 CID
+  signatures: SignerSignature[]; // { signer, sig }；signer 嚴格升冪、不重複；裁成 quorum 份
 }
 interface UgcUploadEvent extends BaseEvent {
   type: "ugc-upload";
@@ -87,6 +97,16 @@ interface AssetVersionUpgradeEvent extends BaseEvent { // 未啟用、不得 per
 }
 ```
 
+三種檢查點控制事件的准入與即時驗證：`ledger-checkpoint-proposal` 與 `ledger-checkpoint-signature`
+是單簽事件，schema 以 exact 欄位定義（提案的 `checkpoint` 必須通過本體 shape 閘，
+[ledger-checkpoint.md](ledger-checkpoint.md)〔LEDGER-R-037〕），准入驗 base 單簽；提案另驗 `peerId` 等於
+`checkpoint.proposer`，有帳本位址時再驗 `checkpointSignature` 是 proposer 對本體 signing digest 的簽章。
+`ledger-checkpoint-certificate` 走多簽型路徑：`BaseEvent.signature` 必須為空，`signatures` 為
+`{ signer, sig }` 陣列且 signer 嚴格升冪。准入只驗事件內一致性與工作量，不讀帳本狀態，因此非 signer
+寫入的提案或投票仍可落盤；是否屬前代 signer set、輪次與指定提案者由待定稿索引判定，非成員事件在即時路徑與
+重建都不採計（[ledger-checkpoint.md](ledger-checkpoint.md)〔LEDGER-R-099〕）。即時路徑對提案與投票只在首播
+時間窗內套用標準時戳與單簽檢查；三者都不進業務 fold（〔LEDGER-R-100〕）。
+
 `ugc-metadata-update` 是原作者另行 chain-bound 單簽的 presentation
 revision，不會改寫原 `UgcUploadEvent`、內容 CID 或既有 upload 簽章。fold 只接受 exact CID 的
 下一個 revision、距上次成功 presentation 至少 1 小時、作者相同且 CID 未進全域 blacklist；未知、
@@ -128,7 +148,7 @@ function serializeForSigning(
 
 ### 1.1 永久 entry 的 Admission v1
 
-**〔LEDGER-R-025〕** 封閉目錄內 22 種事件型別中，21 種永久事件一律使用同一套 entry-level Admission v1，**不由治理者逐筆核准或簽署**。事件完成原有單簽 ／ 多簽後，local prepared writer 凍結並由 Orbit identity 簽署唯一 BaseEntry（`id / payload / next / refs / clock / v / key / identity / sig`）；Web Worker 再搜尋頂層 proof：
+**〔LEDGER-R-025〕** 封閉目錄內 24 種事件型別中，23 種永久事件一律使用同一套 entry-level Admission v1，**不由治理者逐筆核准或簽署**。事件完成原有單簽 ／ 多簽後，local prepared writer 凍結並由 Orbit identity 簽署唯一 BaseEntry（`id / payload / next / refs / clock / v / key / identity / sig`）；Web Worker 再搜尋頂層 proof：
 
 ```text
 admission: { version: 1, workNonce: Uint8Array(8) }
@@ -169,4 +189,4 @@ workDigest = SHA-256("open4wd-ledger-admission-work-v1" || baseDigest || workNon
 
 `RaceConsensusAnchorEvent` 的 `BaseEvent.signature` 固定空值，signed payload 含 `matchId`、`gridContextDigest`、`gridSeed`、`roundIndex`、120-frame 對齊 `frame`、`checksum`、canonical `presentPeers`、`timestamp` 與發布者 `peerId`；`signatures[]` 必須由 `presentPeers` 的嚴格多數不同 signer 組成。外層 `MatchResultEvent` 只保存一份完整 `gridProof`，anchor 保存固定大小 binding，避免 8 人 × 5 回合合法事件超過 64 KiB。
 
-**〔LEDGER-R-032〕** **未啟用保留案：`asset-version-upgrade`**。下列六條只保留未來設計脈絡；此型別列在 22 型別事件目錄供設計追蹤，但不在現行 21 型別 admission allowlist，custom access-controller 必須拒絕，不能 persist 或 apply。若未來啟用，須先依 Admission scheme 的事件目錄 ／deep schema／ 簽章 ／reducer／ 測試與 protocol 升版流程完整落地：① 舊 CID `open4wd_version` **低於該 type 最新破壞牆**；② `event.peerId` = 舊 CID 血緣節點創作者；③ 新舊同 `type`；④ 新 CID `open4wd_version` > 舊；⑤ 舊 CID 不在仲裁黑名單；⑥ 新舊 CID mesh 幾何指紋一致（僅 extras 差異）。在正式啟用前，跨版本資產仍走一般上傳 ／fork 的既有有效流程，不得由 client 自行產生此事件。
+**〔LEDGER-R-032〕** **未啟用保留案：`asset-version-upgrade`**。下列六條只保留未來設計脈絡；此型別列在 24 型別事件目錄供設計追蹤，但不在現行 23 型別 admission allowlist，custom access-controller 必須拒絕，不能 persist 或 apply。若未來啟用，須先依 Admission scheme 的事件目錄 ／deep schema／ 簽章 ／reducer／ 測試與 protocol 升版流程完整落地：① 舊 CID `open4wd_version` **低於該 type 最新破壞牆**；② `event.peerId` = 舊 CID 血緣節點創作者；③ 新舊同 `type`；④ 新 CID `open4wd_version` > 舊；⑤ 舊 CID 不在仲裁黑名單；⑥ 新舊 CID mesh 幾何指紋一致（僅 extras 差異）。在正式啟用前，跨版本資產仍走一般上傳 ／fork 的既有有效流程，不得由 client 自行產生此事件。

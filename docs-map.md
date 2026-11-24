@@ -16,7 +16,7 @@ slug: null
 
 | 來源 \ 目標 | [共識帳本](#共識帳本10-檔) | [經濟](#經濟8-檔) | [UGC版權](#ugc版權17-檔) | [材質](#材質2-檔) | [建模物理](#建模物理12-檔) | [比賽房間](#比賽房間28-檔) | [信譽仲裁](#信譽仲裁8-檔) | [版本部署](#版本部署18-檔) | [資安](#資安6-檔) | [前端主題](#前端主題43-檔) | [治理營運](#治理營運3-檔) | [跨域](#跨域16-檔) |
 | --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
-| [共識帳本](#共識帳本10-檔) | — | 8 | 6 | 0 | 8 | 13 | 13 | 9 | 2 | 0 | 1 | 6 |
+| [共識帳本](#共識帳本10-檔) | — | 8 | 6 | 0 | 8 | 13 | 13 | 9 | 2 | 0 | 1 | 7 |
 | [經濟](#經濟8-檔) | 14 | — | 6 | 0 | 4 | 4 | 1 | 3 | 0 | 1 | 2 | 3 |
 | [UGC版權](#ugc版權17-檔) | 15 | 8 | — | 3 | 24 | 5 | 16 | 5 | 3 | 9 | 1 | 11 |
 | [材質](#材質2-檔) | 2 | 0 | 2 | — | 5 | 2 | 0 | 3 | 0 | 1 | 0 | 0 |
@@ -44,7 +44,7 @@ slug: null
 | [程式架構/程式流程/ledger.md](程式架構/程式流程/ledger.md) | impl-flow | 程式級流程圖：Checkpoint／Partition／Sync |
 | [資料系統.md](資料系統.md) | canon | ledger／IPFS／canonical 序列化／治理事件 |
 
-決策檔 53 筆——見 [decisions/INDEX.md](decisions/INDEX.md)。
+決策檔 55 筆——見 [decisions/INDEX.md](decisions/INDEX.md)。
 
 ```mermaid
 flowchart TB
@@ -60,6 +60,7 @@ flowchart TB
   n9["資料系統"]
   n0 --> n2
   n0 --> n4
+  n0 --> n5
   n0 --> n6
   n0 --> n9
   n1 --> n2
@@ -75,6 +76,7 @@ flowchart TB
   n3 --> n5
   n3 --> n6
   n4 --> n3
+  n4 --> n5
   n4 --> n7
   n4 --> n9
   n5 --> n3
@@ -997,7 +999,7 @@ flowchart TB
 | [流程/治理事件.md](流程/治理事件.md) | flow | economy-config 治理多簽變更 |
 | [程式參數/economy-config.md](程式參數/economy-config.md) | registry | OrbitDB 動態治理 economy config |
 
-決策檔 52 筆——見 [decisions/INDEX.md](decisions/INDEX.md)。
+決策檔 53 筆——見 [decisions/INDEX.md](decisions/INDEX.md)。
 
 ```mermaid
 flowchart TB
