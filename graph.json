@@ -3499,6 +3499,57 @@
       "summary": null
     },
     {
+      "id": "decisions/D-20261123-01-重新檢舉的時戳須晚於既有案錄.md",
+      "type": "decision",
+      "domain": [
+        "信譽仲裁",
+        "共識帳本"
+      ],
+      "summary": null
+    },
+    {
+      "id": "decisions/D-20261123-02-使用量與回饋金只計已有上傳紀錄的CID.md",
+      "type": "decision",
+      "domain": [
+        "經濟",
+        "共識帳本",
+        "信譽仲裁"
+      ],
+      "summary": null
+    },
+    {
+      "id": "decisions/D-20261123-03-帳本讀取以本機保留範圍為界.md",
+      "type": "decision",
+      "domain": [
+        "共識帳本"
+      ],
+      "summary": null
+    },
+    {
+      "id": "decisions/D-20261123-04-帳本recovery失敗後依退避重試.md",
+      "type": "decision",
+      "domain": [
+        "共識帳本"
+      ],
+      "summary": null
+    },
+    {
+      "id": "decisions/D-20261123-05-deriveStateAt的目標限於檢查點本身與最新檢查點之後.md",
+      "type": "decision",
+      "domain": [
+        "共識帳本"
+      ],
+      "summary": null
+    },
+    {
+      "id": "decisions/D-20261124-06-定稿與採納後的重建失敗計入退避.md",
+      "type": "decision",
+      "domain": [
+        "共識帳本"
+      ],
+      "summary": null
+    },
+    {
       "id": "decisions/INDEX.md",
       "type": null,
       "domain": [],
@@ -8879,6 +8930,114 @@
       "to": "資料系統.md"
     },
     {
+      "from": "decisions/D-20261123-01-重新檢舉的時戳須晚於既有案錄.md",
+      "to": "信譽系統.md"
+    },
+    {
+      "from": "decisions/D-20261123-01-重新檢舉的時戳須晚於既有案錄.md",
+      "to": "流程/檢舉與仲裁.md"
+    },
+    {
+      "from": "decisions/D-20261123-01-重新檢舉的時戳須晚於既有案錄.md",
+      "to": "程式架構/ledger.md"
+    },
+    {
+      "from": "decisions/D-20261123-01-重新檢舉的時戳須晚於既有案錄.md",
+      "to": "程式架構/moderation.md"
+    },
+    {
+      "from": "decisions/D-20261123-02-使用量與回饋金只計已有上傳紀錄的CID.md",
+      "to": "decisions/D-20261122-02-帳本上傳紀錄只代表宣告與比賽端以內容一致為取用條件.md"
+    },
+    {
+      "from": "decisions/D-20261123-02-使用量與回饋金只計已有上傳紀錄的CID.md",
+      "to": "decisions/D-20261122-03-評分資格改由fold以使用紀錄判定.md"
+    },
+    {
+      "from": "decisions/D-20261123-02-使用量與回饋金只計已有上傳紀錄的CID.md",
+      "to": "流程/比賽結算.md"
+    },
+    {
+      "from": "decisions/D-20261123-02-使用量與回饋金只計已有上傳紀錄的CID.md",
+      "to": "程式架構/economy.md"
+    },
+    {
+      "from": "decisions/D-20261123-02-使用量與回饋金只計已有上傳紀錄的CID.md",
+      "to": "程式架構/ledger-settlement.md"
+    },
+    {
+      "from": "decisions/D-20261123-02-使用量與回饋金只計已有上傳紀錄的CID.md",
+      "to": "程式架構/reputation.md"
+    },
+    {
+      "from": "decisions/D-20261123-02-使用量與回饋金只計已有上傳紀錄的CID.md",
+      "to": "程式架構/ugc-rating.md"
+    },
+    {
+      "from": "decisions/D-20261123-02-使用量與回饋金只計已有上傳紀錄的CID.md",
+      "to": "經濟系統.md"
+    },
+    {
+      "from": "decisions/D-20261123-03-帳本讀取以本機保留範圍為界.md",
+      "to": "decisions/D-20261123-04-帳本recovery失敗後依退避重試.md"
+    },
+    {
+      "from": "decisions/D-20261123-03-帳本讀取以本機保留範圍為界.md",
+      "to": "程式架構/interfaces.md"
+    },
+    {
+      "from": "decisions/D-20261123-03-帳本讀取以本機保留範圍為界.md",
+      "to": "程式架構/ledger-checkpoint.md"
+    },
+    {
+      "from": "decisions/D-20261123-03-帳本讀取以本機保留範圍為界.md",
+      "to": "程式架構/ledger.md"
+    },
+    {
+      "from": "decisions/D-20261123-04-帳本recovery失敗後依退避重試.md",
+      "to": "decisions/D-20261124-06-定稿與採納後的重建失敗計入退避.md"
+    },
+    {
+      "from": "decisions/D-20261123-04-帳本recovery失敗後依退避重試.md",
+      "to": "程式參數/protocol.md"
+    },
+    {
+      "from": "decisions/D-20261123-04-帳本recovery失敗後依退避重試.md",
+      "to": "程式架構/ledger-checkpoint.md"
+    },
+    {
+      "from": "decisions/D-20261123-04-帳本recovery失敗後依退避重試.md",
+      "to": "程式架構/ledger.md"
+    },
+    {
+      "from": "decisions/D-20261123-05-deriveStateAt的目標限於檢查點本身與最新檢查點之後.md",
+      "to": "程式架構/interfaces.md"
+    },
+    {
+      "from": "decisions/D-20261123-05-deriveStateAt的目標限於檢查點本身與最新檢查點之後.md",
+      "to": "程式架構/ledger-checkpoint.md"
+    },
+    {
+      "from": "decisions/D-20261123-05-deriveStateAt的目標限於檢查點本身與最新檢查點之後.md",
+      "to": "程式架構/ledger.md"
+    },
+    {
+      "from": "decisions/D-20261123-05-deriveStateAt的目標限於檢查點本身與最新檢查點之後.md",
+      "to": "程式架構/moderation.md"
+    },
+    {
+      "from": "decisions/D-20261123-05-deriveStateAt的目標限於檢查點本身與最新檢查點之後.md",
+      "to": "資料系統.md"
+    },
+    {
+      "from": "decisions/D-20261124-06-定稿與採納後的重建失敗計入退避.md",
+      "to": "decisions/D-20261123-04-帳本recovery失敗後依退避重試.md"
+    },
+    {
+      "from": "decisions/D-20261124-06-定稿與採納後的重建失敗計入退避.md",
+      "to": "程式架構/ledger-checkpoint.md"
+    },
+    {
       "from": "decisions/INDEX.md",
       "to": "decisions/D-20260428-01-初始企劃骨架與模組化規格基線.md"
     },
@@ -10528,6 +10687,30 @@
     },
     {
       "from": "decisions/INDEX.md",
+      "to": "decisions/D-20261123-01-重新檢舉的時戳須晚於既有案錄.md"
+    },
+    {
+      "from": "decisions/INDEX.md",
+      "to": "decisions/D-20261123-02-使用量與回饋金只計已有上傳紀錄的CID.md"
+    },
+    {
+      "from": "decisions/INDEX.md",
+      "to": "decisions/D-20261123-03-帳本讀取以本機保留範圍為界.md"
+    },
+    {
+      "from": "decisions/INDEX.md",
+      "to": "decisions/D-20261123-04-帳本recovery失敗後依退避重試.md"
+    },
+    {
+      "from": "decisions/INDEX.md",
+      "to": "decisions/D-20261123-05-deriveStateAt的目標限於檢查點本身與最新檢查點之後.md"
+    },
+    {
+      "from": "decisions/INDEX.md",
+      "to": "decisions/D-20261124-06-定稿與採納後的重建失敗計入退避.md"
+    },
+    {
+      "from": "decisions/INDEX.md",
       "to": "decisions/README.md"
     },
     {
@@ -11557,6 +11740,10 @@
     {
       "from": "流程/比賽結算.md",
       "to": "程式架構/ledger-admission.md"
+    },
+    {
+      "from": "流程/比賽結算.md",
+      "to": "程式架構/ledger-settlement.md"
     },
     {
       "from": "流程/比賽結算.md",
@@ -12972,6 +13159,10 @@
     },
     {
       "from": "程式架構/economy.md",
+      "to": "程式架構/ledger-settlement.md"
+    },
+    {
+      "from": "程式架構/economy.md",
       "to": "程式架構/ledger.md"
     },
     {
@@ -13300,6 +13491,10 @@
     },
     {
       "from": "程式架構/ledger-settlement.md",
+      "to": "decisions/D-20261123-02-使用量與回饋金只計已有上傳紀錄的CID.md"
+    },
+    {
+      "from": "程式架構/ledger-settlement.md",
       "to": "程式架構/economy.md"
     },
     {
@@ -13309,6 +13504,14 @@
     {
       "from": "程式架構/ledger-settlement.md",
       "to": "程式架構/matchmaking.md"
+    },
+    {
+      "from": "程式架構/ledger-settlement.md",
+      "to": "程式架構/moderation.md"
+    },
+    {
+      "from": "程式架構/ledger-settlement.md",
+      "to": "程式架構/ugc-rating.md"
     },
     {
       "from": "程式架構/ledger.md",
@@ -14088,6 +14291,10 @@
     },
     {
       "from": "程式架構/reputation.md",
+      "to": "程式架構/ledger-settlement.md"
+    },
+    {
+      "from": "程式架構/reputation.md",
       "to": "程式架構/ledger.md"
     },
     {
@@ -14737,6 +14944,10 @@
     {
       "from": "程式架構/ugc-rating.md",
       "to": "程式架構/economy.md"
+    },
+    {
+      "from": "程式架構/ugc-rating.md",
+      "to": "程式架構/ledger-settlement.md"
     },
     {
       "from": "程式架構/ugc-rating.md",

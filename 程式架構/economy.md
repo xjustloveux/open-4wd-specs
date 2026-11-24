@@ -210,14 +210,17 @@ function computeMatchSettlement(
       if (amount > 0n)
         matchPrizes.push({ recipient: peerId, amount, rank: idx + 1 });
     });
-    // 創作回饋金：過濾黑名單 + 退役；N 回合 track+car UGC 累加去重；niche 線性；70/20/10 拆分
-    const ugcsUsed = Array.from(collectAllUgcUsedInMatch(match))
+    // 創作回饋金：只收前態已有上傳紀錄的 CID（ledger-settlement.md LEDGER-R-053），再過濾黑名單 + 退役；
+    // N 回合 track+car UGC 累加去重；niche 線性；70/20/10 拆分
+    const ugcsUsed = Array.from(
+      collectAllUgcUsedInMatch(match, derived.ugc.ugcRecords),
+    )
       .filter((cid) => !derived.moderation.blacklist.has(cid))
       .filter((cid) => {
-        // 退役過濾（共識 now＝derived.derivedAt、禁牆鐘）
+        // 退役過濾（共識 now＝derived.derivedAt、禁牆鐘）；查不到紀錄的 CID 一併濾除
         const rec = derived.ugc.ugcRecords.get(cid);
         return (
-          rec === undefined ||
+          rec !== undefined &&
           !deriveRetireStatus(rec, derived, config, now).retired
         );
       })
@@ -355,7 +358,7 @@ async function processSponsor(
 
 ## 6. Derived state 輔助函數
 
-**〔ECON-R-050〕** `addBalance` / `subBalance`（ReadonlyMap 不可變更新）、`appendRecentMatchCombo`（24h 視窗過濾）、`appendRecentPrizedMatches` / `countPrizedMatches24h`（per-player 有獎場數窗，經濟系統 §6.1b）、`recordUgcUsage`（totalUses/uniqueUsers/lastUsedAt；只在場級 `mintEligible` 成立時記錄，[§2](#2-applyevent經濟相關-case)）、`recordRoyaltyMint`（只在實際鑄出時更新 `lastRoyaltyAtByPlayer` 去重錨）、`accumulateRoyaltyMinted`、`incrementSlot`（未出現 vehicle = 1）、`incrementUploadCount`。有效 `ugc-sponsor-burn` 必須把金額、事件數與單調時間直接累加到 target `UgcRecord`；不可保存逐贊助者集合，也不可在 fold 時以 top-N 裁掉榜外作品。實作見 `src/economy/`（純函數、immutable）。
+**〔ECON-R-050〕** `addBalance` / `subBalance`（ReadonlyMap 不可變更新）、`appendRecentMatchCombo`（24h 視窗過濾）、`appendRecentPrizedMatches` / `countPrizedMatches24h`（per-player 有獎場數窗，經濟系統 §6.1b）、`recordUgcUsage`（totalUses/uniqueUsers/lastUsedAt；只在場級 `mintEligible` 成立時記錄，且只記該事件位置前態已有上傳紀錄的 CID——見 [ledger-settlement.md](ledger-settlement.md) LEDGER-R-053，[§2](#2-applyevent經濟相關-case)）、`recordRoyaltyMint`（只在實際鑄出時更新 `lastRoyaltyAtByPlayer` 去重錨）、`accumulateRoyaltyMinted`、`incrementSlot`（未出現 vehicle = 1）、`incrementUploadCount`。有效 `ugc-sponsor-burn` 必須把金額、事件數與單調時間直接累加到 target `UgcRecord`；不可保存逐贊助者集合，也不可在 fold 時以 top-N 裁掉榜外作品。實作見 `src/economy/`（純函數、immutable）。
 
 **〔ECON-R-053〕** 月流水與創作者收益是 fold 時同步維護的衍生讀模型，不得在 provider 掃描 raw log 重建：`monthlyFlowsByMonth: Map<YYYY-MM, Map<PeerId, { mintedMinor, burnedMinor }>>` 以事件 UTC 月份累加**實際被 reducer 接受**的 match prize、royalty、upload、slot purchase、maintenance 與 sponsor 流量，只保留當月含往前 11 個月；`lifetimeRoyaltyMintedByPeer` 只累加實際鑄出的 royalty，永久保留。被拒絕／no-op 的事件兩者都不可改變。月流水在 append 與 checkpoint 以同一 protocol 常數裁剪，lifetime 不 GC；兩欄都納入 canonical bigint codec 與 checkpoint，缺欄 fail-closed，開發期不讀舊 checkpoint fallback。
 
@@ -363,7 +366,7 @@ async function processSponsor(
 
 ## 7. 查詢面與 UI
 
-- **頁面資料入口 ＝`pages/contracts` 的 `EconomyData` 契約**（餘額 ／ 流水等投影；頁面不直呼本模組）。`monthlyFlows(peer)` 直讀 `monthlyFlowsByMonth`並依月份升序回傳；創作者 `totalEarnedX100` 直讀 `lifetimeRoyaltyMintedByPeer`。兩者都不得取 `getAllEvents()` 或以 log heads memo 重算。作品贊助榜由 economy query 即時掃 `ugc.ugcRecords`，依 `sponsoredTotalMinor` 降序、CID 字典序平手裁決後才套 caller 的 top-N；榜是作品能見度／支持度訊號，不是作者收入。贊助者／人物榜與 `EconomyData.sponsorBoard()` 不存在。
+- **頁面資料入口 ＝`pages/contracts` 的 `EconomyData` 契約**（餘額 ／ 流水等投影；頁面不直呼本模組）。`monthlyFlows(peer)` 直讀 `monthlyFlowsByMonth`並依月份升序回傳；創作者 `totalEarnedX100` 直讀 `lifetimeRoyaltyMintedByPeer`。兩者都不得掃 raw log 的事件或以 log heads memo 重算。作品贊助榜由 economy query 即時掃 `ugc.ugcRecords`，依 `sponsoredTotalMinor` 降序、CID 字典序平手裁決後才套 caller 的 top-N；榜是作品能見度／支持度訊號，不是作者收入。贊助者／人物榜與 `EconomyData.sponsorBoard()` 不存在。
 - **貨幣格式化 ＝i18n `formatMoney(minor, lang)`**（minor units → 帶千分位 ＋ 兩位小數；UI 除以 100，[i18n.md](i18n.md)）。
 - `ratingX100`（0–500 整數）由 `ugc-rating` 模組經 `RatingApi` **依賴注入**（避免循環依賴）；`high-rated-ugc +20` 信譽由 ugc-rating 自己觸發、非 economy 責任。
 

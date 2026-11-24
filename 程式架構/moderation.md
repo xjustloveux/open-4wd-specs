@@ -166,7 +166,8 @@ const canRevoke = (report: ReportEvent, latestCheckpointAt: Timestamp) =>
   latestCheckpointAt <
   report.timestamp + ARBITRATION_DRAW_DELAY_HOURS * 3600 * 1000; // 尚未到抽籤點（24h，protocol.md §5）
 
-// 撤回 / 流局 / 過期皆無懲罰、同對象可再檢舉；僅「仲裁中 / 已有 pass·reject 結果且未過期」不可重複告
+// 撤回 / 流局 / 過期皆無懲罰、同對象可再檢舉；僅「仲裁中 / 已有 pass·reject 結果且未過期」不可重複告。
+// now ＝ 檢舉事件的 timestamp（收件驗證與 fold 傳入同一個值）
 function canReportAgain(
   reporter: PeerId,
   target: CID | PeerId,
@@ -175,12 +176,15 @@ function canReportAgain(
 ): boolean {
   const prev = state.reportsByReporter.get(reporter)?.get(target);
   if (!prev) return true;
+  if (now <= prev.reportedAt) return false; // 重新檢舉必須是既有案錄之後的新檢舉事件
   if (prev.revoked) return true; // 抽籤前撤回 → 可再（無懲罰）
   if (prev.outcome === "no-quorum") return true; // 流局 → 可再（沒人投票 ≠ 檢舉不實）
   if (isReportExpired(prev, now)) return true; // 社群未跟進過期 → 可再（無懲罰）
   return false; // 仲裁中 / 已有結果未過期
 }
 ```
+
+**重新檢舉的時戳條件**：同一檢舉者對同一對象已有案錄時，新的檢舉事件 `timestamp` 必須晚於該案錄的檢舉時戳，否則收件拒收、fold no-op。檢舉案的案件 id 由檢舉者、檢舉時戳與對象合成，這個條件讓每個案件 id 至多開案一次：已撤回或已結案的檢舉事件再次進入帳本不會改動案錄，撤回與結果維持有效；正常的重新檢舉是一筆新簽的事件、帶新的 `timestamp`，不受影響。不同檢舉者之間不比較時戳。
 
 **〔MOD-R-024〕** 已終局下架、退役、進入安全港或不存在的 CID 不得再次成為有效檢舉目標。
 
@@ -373,7 +377,7 @@ function deriveGlobalPeerBlacklist(
 
 `appendEvent` 收件驗證（`arbitration-result`）＝ **shape＋冪等＋案錨摘要＋panel-signature-set**（live 與 fold 同組判定 ＝ 無分叉），任一條不符即拒收：
 
-1. **〔MOD-R-039〕** `reportEventId` 指向存在且**未撤回、尚無結果**的開放案錨（canonical caseId 反查）；**事件內案錨摘要（caseKind / reporter / target / targetKind / reason / anchoredAt）與案錨事件逐位一致**（[§1](#1-事件結構) 純函數性補欄——fold 另以摘要對 state 案錄比對守門：開放案存在 ／ 未撤回 ／ 無結果 ／ 摘要相符，不符 no-op）
+1. **〔MOD-R-039〕** `reportEventId` 指向存在且**未撤回、尚無結果**的開放案錨（canonical caseId 反查）；**事件內案錨摘要（caseKind / reporter / target / targetKind / reason / anchoredAt）與案錨事件逐位一致**（[§1](#1-事件結構) 純函數性補欄——fold 另以摘要對 state 案錄比對守門：`reportEventId` 為該案的 canonical caseId ／ 開放案存在 ／ 未撤回 ／ 無結果 ／ 摘要相符，不符 no-op）
 2. **〔MOD-R-040〕** `timestamp` ≥ **程序下界**（面板案 ≥ 案錨 ＋ 抽籤延遲 ＋ 投票窗；無面板的池不足流局 ≥ 案錨 ＋ 抽籤延遲——與 fold 恆驗同式，硬化段）
 3. **〔MOD-R-041〕** `arbiters` **長度合法**（面板案 = `ARBITRATION_PANEL_SIZE`(7)，含重抽輪池不足的流局；第一輪抽籤點池不足的流局 = `[]`）
 4. **〔MOD-R-042〕** **panel-signature-set**：≥ quorum 面板 attestation——distinct、∈ `arbiters`、非兩造、簽章對 `(reportEventId, target, result, passRatioX100)` digest 有效。**期滿等值／面板重導／tally 全量重算由 attestation 流程承擔**：每位面板成員各自 replay 票序列後只簽自己算出的結果，簽章集背書下與逐條重算等效
@@ -418,8 +422,10 @@ function deriveGlobalPeerBlacklist(
 economy 結算過濾點（見 [economy.md](economy.md) `computeMatchSettlement`）：
 
 ```typescript
-// collectAllUgcUsedInMatch 已濾 builtin:* / local:*（見 ledger.md）
-const ugcsUsed = Array.from(collectAllUgcUsedInMatch(match)).filter(
+// collectAllUgcUsedInMatch 已濾 builtin:* / local:*，且只收已有上傳紀錄的 CID（見 ledger-settlement.md）
+const ugcsUsed = Array.from(
+  collectAllUgcUsedInMatch(match, state.ugc.ugcRecords),
+).filter(
   (cid) => !state.moderation.blacklist.has(cid),
 ); // 再濾黑名單 → 不再 mint 創作回饋金
 ```

@@ -273,7 +273,7 @@ Fork 授權、血緣、深度與經濟政策只由 [版權.md §3–§4](版權.
 | GLB Root Extras（結構性 metadata） | 同上                                                               | ❌ immutable                            |
 | 顯示名稱 / 描述 / tag              | `UgcUploadEvent.presentation` revision 0＋`UgcMetadataUpdateEvent` | ✏️ exact CID 可改；每次更新由原作者另簽 |
 | 創作者署名 / fork 關係             | ledger record                                                      | ❌ 不可改                               |
-| Rating / 使用統計                  | ledger 衍生狀態                                                    | 自動累積                                |
+| Rating / 使用統計                  | ledger 衍生狀態                                                    | 自動累積（上傳紀錄成立後的合格場起算）  |
 | 信譽分數                           | ledger 事件鏈                                                      | 自動累積                                |
 
 ## 8. 工具

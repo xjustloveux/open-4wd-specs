@@ -195,6 +195,9 @@ function deriveMatchReputation(
 
 ### 5.2 UGC 使用門檻（每 100 次 +5；`ugcUsageStats` 更新後推導）
 
+檢查對象是該場 `collectAllUgcUsedInMatch` 的結果：只含事件位置前態已有上傳紀錄的 CID（[ledger-settlement.md](ledger-settlement.md) LEDGER-R-053），
+作品上傳前被引用的場次不累計使用量，也不推進門檻。
+
 ```typescript
 // cause / at = 觸發 ugcUsageStats 更新的來源事件（MatchResultEvent）——appliedAt 綁事件、跨 peer history 一致（不得用 derivedAt）
 function deriveMilestoneReputation(

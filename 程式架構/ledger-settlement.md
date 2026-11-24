@@ -116,15 +116,20 @@ interface DisconnectInfo {
 
 ### `collectAllUgcUsedInMatch`（純函數）
 
-下游（economy / moderation / ugc-rating）需「該場比賽 N 回合用到的所有非公版 UGC CID」：
+fold 內的 economy（創作回饋金結算與使用量記錄）與 reputation（使用里程碑）需「該場比賽 N 回合用到、且已有上傳紀錄的非公版 UGC CID」：
 
 ```typescript
 function collectAllUgcUsedInMatch(
   match: Pick<MatchResultEvent, "rounds" | "loadouts">,
+  ugcRecords: Pick<ReadonlyMap<CID, UgcRecord>, "has">, // 判定當下的狀態；fold = 該事件位置的前態
 ): ReadonlySet<CID> {
   const cids = new Set<CID>();
   const addIfUgc = (ref: string) => {
-    if (!ref.startsWith("builtin:") && !ref.startsWith("local:"))
+    if (
+      !ref.startsWith("builtin:") &&
+      !ref.startsWith("local:") &&
+      ugcRecords.has(ref as CID) // 無上傳紀錄的 CID 不收
+    )
       cids.add(ref as CID);
   };
   for (const r of match.rounds) addIfUgc(r.trackRef); // N 回合各自場地
@@ -138,9 +143,15 @@ function collectAllUgcUsedInMatch(
 }
 ```
 
-- **〔LEDGER-R-053〕** `builtin:*` 過濾 → 公版不算 UGC 使用、不觸發 royalty；`local:*` 過濾 → defense in depth（不該出現在線上賽）。
+- **〔LEDGER-R-053〕** `builtin:*` 過濾 → 公版不算 UGC 使用、不觸發 royalty；`local:*` 過濾 → defense in depth（不該出現在線上賽）；**只收 `ugcRecords` 已有上傳紀錄的 CID** → 事件引用但帳本上沒有上傳紀錄的 CID 不計入使用量、創作回饋金與使用里程碑。
+- **「已有上傳紀錄」以判定當下的狀態為準**：fold 讀該 `MatchResultEvent` 位置的前態，所有節點在同一位置得到同一結果。上傳事件排在比賽結果事件之後時，該場不為這個 CID 記任何使用；上傳之後的比賽才開始累計，不回補先前的場次。比賽結果事件引用的是自報的 CID，作品是否存在只能由帳本上的上傳紀錄認定（[D-20261123-02](../decisions/D-20261123-02-使用量與回饋金只計已有上傳紀錄的CID.md)）。
+- 這個條件在收集階段執行，早於呼叫端各自的過濾：創作回饋金結算之後再濾黑名單、退役與 `similarity-pending`，使用量記錄之後再濾 `similarity-pending`。這些過濾都是對單一 CID 判定去留、不新增 CID，所以新條件排在最前不改變它們對已有紀錄的 CID 的判定，只是先排除沒有上傳紀錄的 CID。資產升版產生的新版 CID 由升版事件建立紀錄，視同已有上傳紀錄。
+- 宣告的資產種類與配裝格位是否相符不在此比對：種類是上傳者自報，比對不能提高偽造成本（同上決策）。
 - **Set 去重 → 同一軌 / 同一台車跨多回合重複用，royalty 只算一次（per-match 去重）**；match 含越多回合 → 自然用到越多**不同** UGC → royalty 累加。
-- 純函數 → economy / moderation / ugc-rating 各自呼叫結果一致。
+- 純函數，結果只由傳入的事件與 `ugcRecords` 決定。呼叫端分兩類：
+  - **fold 內（共識判定）**：economy 的創作回饋金結算與使用量記錄、reputation 的使用里程碑。三者處理同一個 `MatchResultEvent` 時讀到的都是該事件位置前態的上傳紀錄（套用比賽結果事件不改動上傳紀錄），所以取得同一個集合。
+  - **介面層（不屬共識判定）**：送出評分而未指定 `useMatchId` 時，以呼叫當下的狀態掃本機保留的最近比賽，找一場填入稽核欄（[ugc-rating.md §8](ugc-rating.md)）。這裡讀的不是各場事件位置的前態，作品上傳前引用它的場次也會被找到；找到的場不代表評分資格。
+- moderation 與 ugc-rating 的 fold 不呼叫本函式：黑名單由 economy 結算對本函式的結果再過濾（[moderation.md §6](moderation.md)）；評分資格只讀使用量的 `uniqueUsers`（[ugc-rating.md §4](ugc-rating.md)），因使用量只為已有上傳紀錄的 CID 累計而受同一條件約束。
 - loadout 欄位用 `chip`。
 
 ### 比賽結算簽章交換協議（實作）

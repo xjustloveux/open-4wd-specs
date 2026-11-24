@@ -90,7 +90,7 @@ function computeRatingX100(stat: UgcRatingStat, ugcUsageCount: number): { rating
 ```typescript
 async function submitRating(cid: CID, score: 1|2|3|4|5, useMatchId: string, ledger: Ledger, state: DerivedState): Promise<Result<EventId>> {
   const rater = keyManager.getPeerId();
-  const now = consensusNow(await ledger.getAllEvents());
+  const now = state.derivedAt; // 共識時鐘＝已折疊狀態的 derivedAt；不讀 raw log（ledger.md §10）
   const RATE_DEBOUNCE_MS = 24 * 3600 * 1000;
 
   if (cid.startsWith('builtin:')) return error('公版資產不可評分');
@@ -111,7 +111,7 @@ async function submitRating(cid: CID, score: 1|2|3|4|5, useMatchId: string, ledg
 
 **評分資格（`isRatingEligible`）**：評分者必須曾以非 forfeit 完賽者身分參加 `mintEligible` 成立、且該作品（或同一血緣節點的
 其他版本）出現在其中的比賽——作品由任何參賽者的配裝或場地帶入都算（`collectAllUgcUsedInMatch`），當時在相似審查中
-（`similarity-pending`）的作品不記錄。即 `ugcUsageStats.get(resolveLineageNode(cid)).uniqueUsers` 含評分者
+（`similarity-pending`）或當時還沒有上傳紀錄的作品不記錄。即 `ugcUsageStats.get(resolveLineageNode(cid)).uniqueUsers` 含評分者
 （`recordUgcUsage` 的寫入條件見 [economy.md](economy.md) ECON-R-050）。`uniqueUsers` 是永久欄位、隨檢查點序列化，
 不隨 hot 窗輪轉，所以 fold 與 builder 都用這個判定，refold 與首播的結果一致。`useMatchId` 只是稽核欄，
 不參與判定。
@@ -234,7 +234,6 @@ interface UgcRatingApi extends RatingApi {
   getRatingDetail(cid: CID): Promise<RatingDetail>;
   submitRating(cid: CID, score: 1|2|3|4|5, useMatchId: string): Promise<Result<EventId>>;
   revokeRating(cid: CID): Promise<Result<void>>;               // 以 (我, cid) 定位現行投票撤回（§5）
-  canRate(cid: CID, requester: PeerId): Promise<{ allowed: boolean; lastMatchId?: string }>;
   getMyRating(cid: CID): Promise<{ score: 1|2|3|4|5; ratedAt: Timestamp } | null>;
 }
 
@@ -242,16 +241,28 @@ interface RatingDetail {
   cid: CID;  ratingX100: number;  voteCount: number;
   distribution: { [score in 1|2|3|4|5]: number };  isImplicit: boolean;
 }
-
-// canRate：找最近一場 requester 參與且用過該 cid 的比賽
-async function canRate(cid: CID, requester: PeerId, ledger: Ledger): Promise<{ allowed: boolean; lastMatchId?: string }> {
-  if (cid.startsWith('builtin:')) return { allowed: false };
-  for (const match of await ledger.getRecentMatchesForPlayer(requester, 50)) {
-    if (collectAllUgcUsedInMatch(match).has(cid)) return { allowed: true, lastMatchId: match.matchId };
-  }
-  return { allowed: false };
-}
 ```
+
+**稽核欄補位（介面層，不屬共識判定）**：介面送出評分而沒有指定 `useMatchId` 時，先從本機保留的最近比賽找一場填入，
+再交給第 4 節的提交流程：
+
+```typescript
+// state＝呼叫當下的已折疊狀態；me＝評分者
+const useMatchId =
+  given ??
+  [...state.match.recentMatches.values()]
+    .filter((match) => match.ranking.includes(me) && collectAllUgcUsedInMatch(match, state.ugc.ugcRecords).has(cid))
+    .sort((a, b) => b.finishedAt - a.finishedAt)[0]?.matchId;   // 取 finishedAt 最大的一場
+if (useMatchId === undefined) return error('找不到可填入稽核欄的比賽');   // 不送出評分
+return submitRating(cid, score, useMatchId);                    // 資格在這裡由 isRatingEligible 判定
+```
+
+- 掃場只為了填稽核欄，掃到的場不代表評分資格。這裡用的是呼叫當下的上傳紀錄，不是各場事件位置的前態，所以作品上傳前
+  引用它的場次也會被掃到；那種場次不為該作品記使用量（[ledger-settlement.md](ledger-settlement.md) LEDGER-R-053），評分者若不在
+  該作品使用量的 `uniqueUsers` 裡，`submitRating` 會以資格不符擋下。
+- 評分資格只由第 4 節的 `isRatingEligible` 判定（讀使用量的 `uniqueUsers`）；fold 與收件驗證都不以 `useMatchId`
+  判定評分是否成立：fold 只把它原樣存入投票紀錄，schema 只檢查它是 1 到 256 位元組的字串；填哪一場不影響評分
+  是否成立。
 
 ## 9. UI 顯示規則
 
