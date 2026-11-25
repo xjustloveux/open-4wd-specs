@@ -23,8 +23,8 @@ Open4WD 的設計規格（spec）corpus——開源四驅車（mini 4WD 風格�
 
 文檔工程紀律（單一權威、現況-歷史分離、機器執法、貢獻流程）集中於 [文檔工程.md](文檔工程.md)——本 repo 同時是一個可複用的開源文檔工程範例。常用要點：
 
-- 規範性規則可用九域 ID：`LEDGER`、`ECON`、`MOD`、`PHYS`、`TRACK`、`PART`、
-  `UGC`、`VERSION`、`SEC`。先在業務域 canon 掛唯一主錨，再於 `rule-contracts.json`
+- 規範性規則可用十域 ID：`LEDGER`、`ECON`、`MOD`、`PHYS`、`TRACK`、`PART`、
+  `UGC`、`VERSION`、`SEC`、`GSIGN`。先在業務域 canon 掛唯一主錨，再於 `rule-contracts.json`
   完整宣告 `kind`、`requiredLayers`、唯一 `implementationRepos` 與逐層 `testContracts`；
   canon anchor 與 contract 必須是 exact set，`rules.json` 只是生成物。
 - Owner repo 的 `*.conformance.spec.ts` 必須匯入 helper，以 literal `ruleConformance`

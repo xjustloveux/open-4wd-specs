@@ -3559,6 +3559,17 @@
       "summary": null
     },
     {
+      "id": "decisions/D-20261124-03-常駐治理簽署工具.md",
+      "type": "decision",
+      "domain": [
+        "共識帳本",
+        "版本部署",
+        "資安",
+        "治理營運"
+      ],
+      "summary": null
+    },
+    {
       "id": "decisions/D-20261124-06-定稿與採納後的重建失敗計入退避.md",
       "type": "decision",
       "domain": [
@@ -3934,6 +3945,15 @@
         "UGC版權"
       ],
       "summary": "Stage 2 編輯器（wave 管線／幾何工具／逐 sub-mesh 材質／三出口送出）"
+    },
+    {
+      "id": "程式架構/governance-signer.md",
+      "type": "impl",
+      "domain": [
+        "共識帳本",
+        "治理營運"
+      ],
+      "summary": "常駐治理簽署工具：信任根、金鑰、單一實例、同步閘、主迴圈、halt、人工釋放、config-update 與打包"
     },
     {
       "id": "程式架構/i18n.md",
@@ -4639,6 +4659,15 @@
         "版本部署"
       ],
       "summary": "signaling 公版模板 repo 規格（scoped signed v1）"
+    },
+    {
+      "id": "部署資訊/open-4wd-signer.md",
+      "type": "deploy",
+      "domain": [
+        "治理營運",
+        "版本部署"
+      ],
+      "summary": "治理簽署工具部署 repo 規格（映像引用、k8s／systemd、部署 workflow 與營運程序）"
     },
     {
       "id": "部署資訊/open-4wd-turn.md",
@@ -9111,6 +9140,26 @@
       "to": "程式架構/ledger.md"
     },
     {
+      "from": "decisions/D-20261124-03-常駐治理簽署工具.md",
+      "to": "decisions/D-20260803-06-runtime-provider全面社群化.md"
+    },
+    {
+      "from": "decisions/D-20261124-03-常駐治理簽署工具.md",
+      "to": "decisions/D-20261124-02-檢查點多簽協定以帳本事件與輪次鎖定運作.md"
+    },
+    {
+      "from": "decisions/D-20261124-03-常駐治理簽署工具.md",
+      "to": "流程/升版.md"
+    },
+    {
+      "from": "decisions/D-20261124-03-常駐治理簽署工具.md",
+      "to": "程式架構/governance-signer.md"
+    },
+    {
+      "from": "decisions/D-20261124-03-常駐治理簽署工具.md",
+      "to": "部署資訊/open-4wd-signer.md"
+    },
+    {
       "from": "decisions/D-20261124-06-定稿與採納後的重建失敗計入退避.md",
       "to": "decisions/D-20261123-04-帳本recovery失敗後依退避重試.md"
     },
@@ -10796,6 +10845,10 @@
     },
     {
       "from": "decisions/INDEX.md",
+      "to": "decisions/D-20261124-03-常駐治理簽署工具.md"
+    },
+    {
+      "from": "decisions/INDEX.md",
       "to": "decisions/D-20261124-06-定稿與採納後的重建失敗計入退避.md"
     },
     {
@@ -11037,6 +11090,10 @@
     {
       "from": "專案生命週期.md",
       "to": "decisions/D-20260811-17-專案生命週期與首次公開發布鏈.md"
+    },
+    {
+      "from": "專案生命週期.md",
+      "to": "程式架構/governance-signer.md"
     },
     {
       "from": "建模參數.md",
@@ -11724,6 +11781,10 @@
     },
     {
       "from": "流程/升版.md",
+      "to": "程式架構/governance-signer.md"
+    },
+    {
+      "from": "流程/升版.md",
       "to": "程式架構/pwa-offline.md"
     },
     {
@@ -11745,6 +11806,10 @@
     {
       "from": "流程/升版.md",
       "to": "部署資訊.md"
+    },
+    {
+      "from": "流程/升版.md",
+      "to": "部署資訊/open-4wd-signer.md"
     },
     {
       "from": "流程/檢舉與仲裁.md",
@@ -11968,6 +12033,10 @@
     },
     {
       "from": "流程/治理事件.md",
+      "to": "程式架構/governance-signer.md"
+    },
+    {
+      "from": "流程/治理事件.md",
       "to": "程式架構/ledger-admission.md"
     },
     {
@@ -11985,6 +12054,10 @@
     {
       "from": "流程/治理事件.md",
       "to": "資料系統.md"
+    },
+    {
+      "from": "流程/治理事件.md",
+      "to": "部署資訊/open-4wd-signer.md"
     },
     {
       "from": "流程/玩家整體旅程.md",
@@ -12385,6 +12458,10 @@
     {
       "from": "程式參數/economy-config.md",
       "to": "程式架構/economy.md"
+    },
+    {
+      "from": "程式參數/economy-config.md",
+      "to": "程式架構/governance-signer.md"
     },
     {
       "from": "程式參數/economy-config.md",
@@ -12797,6 +12874,10 @@
     {
       "from": "程式架構.md",
       "to": "程式架構/editor.md"
+    },
+    {
+      "from": "程式架構.md",
+      "to": "程式架構/governance-signer.md"
     },
     {
       "from": "程式架構.md",
@@ -13383,6 +13464,46 @@
       "to": "編輯器操作.md"
     },
     {
+      "from": "程式架構/governance-signer.md",
+      "to": "decisions/D-20261124-03-常駐治理簽署工具.md"
+    },
+    {
+      "from": "程式架構/governance-signer.md",
+      "to": "流程/升版.md"
+    },
+    {
+      "from": "程式架構/governance-signer.md",
+      "to": "流程/治理事件.md"
+    },
+    {
+      "from": "程式架構/governance-signer.md",
+      "to": "程式參數/economy-config.md"
+    },
+    {
+      "from": "程式架構/governance-signer.md",
+      "to": "程式架構/ledger-checkpoint.md"
+    },
+    {
+      "from": "程式架構/governance-signer.md",
+      "to": "程式架構/ledger.md"
+    },
+    {
+      "from": "程式架構/governance-signer.md",
+      "to": "程式架構/peer-discovery.md"
+    },
+    {
+      "from": "程式架構/governance-signer.md",
+      "to": "程式架構/toolchain.md"
+    },
+    {
+      "from": "程式架構/governance-signer.md",
+      "to": "部署資訊/open-4wd-signer.md"
+    },
+    {
+      "from": "程式架構/governance-signer.md",
+      "to": "部署資訊/部署實際值與初始拓撲.md"
+    },
+    {
       "from": "程式架構/i18n.md",
       "to": "程式參數.md"
     },
@@ -13568,6 +13689,10 @@
     },
     {
       "from": "程式架構/ledger-checkpoint.md",
+      "to": "程式架構/governance-signer.md"
+    },
+    {
+      "from": "程式架構/ledger-checkpoint.md",
       "to": "程式架構/ledger-admission.md"
     },
     {
@@ -13617,6 +13742,10 @@
     {
       "from": "程式架構/ledger.md",
       "to": "程式架構/economy.md"
+    },
+    {
+      "from": "程式架構/ledger.md",
+      "to": "程式架構/governance-signer.md"
     },
     {
       "from": "程式架構/ledger.md",
@@ -13953,6 +14082,10 @@
     {
       "from": "程式架構/peer-discovery.md",
       "to": "程式參數/network.md"
+    },
+    {
+      "from": "程式架構/peer-discovery.md",
+      "to": "程式架構/governance-signer.md"
     },
     {
       "from": "程式架構/peer-discovery.md",
@@ -14941,6 +15074,10 @@
     {
       "from": "程式架構/toolchain.md",
       "to": "程式架構/builtin-assets.md"
+    },
+    {
+      "from": "程式架構/toolchain.md",
+      "to": "程式架構/governance-signer.md"
     },
     {
       "from": "程式架構/toolchain.md",
@@ -16264,6 +16401,10 @@
     },
     {
       "from": "資安規範.md",
+      "to": "程式架構/governance-signer.md"
+    },
+    {
+      "from": "資安規範.md",
       "to": "程式架構/key-manager.md"
     },
     {
@@ -16325,6 +16466,10 @@
     {
       "from": "資安規範.md",
       "to": "部署資訊/open-4wd-signaling.md"
+    },
+    {
+      "from": "資安規範.md",
+      "to": "部署資訊/open-4wd-signer.md"
     },
     {
       "from": "資安規範.md",
@@ -16748,6 +16893,10 @@
     },
     {
       "from": "部署資訊.md",
+      "to": "程式架構/governance-signer.md"
+    },
+    {
+      "from": "部署資訊.md",
       "to": "程式架構/ledger.md"
     },
     {
@@ -16797,6 +16946,10 @@
     {
       "from": "部署資訊.md",
       "to": "部署資訊/open-4wd-signaling.md"
+    },
+    {
+      "from": "部署資訊.md",
+      "to": "部署資訊/open-4wd-signer.md"
     },
     {
       "from": "部署資訊.md",
@@ -16871,6 +17024,26 @@
       "to": "部署資訊/open-4wd-turn.md"
     },
     {
+      "from": "部署資訊/open-4wd-signer.md",
+      "to": "流程/升版.md"
+    },
+    {
+      "from": "部署資訊/open-4wd-signer.md",
+      "to": "程式架構/governance-signer.md"
+    },
+    {
+      "from": "部署資訊/open-4wd-signer.md",
+      "to": "資安規範.md"
+    },
+    {
+      "from": "部署資訊/open-4wd-signer.md",
+      "to": "部署資訊.md"
+    },
+    {
+      "from": "部署資訊/open-4wd-signer.md",
+      "to": "部署資訊/部署實際值與初始拓撲.md"
+    },
+    {
       "from": "部署資訊/open-4wd-turn.md",
       "to": "程式架構/signaling-service.md"
     },
@@ -16889,6 +17062,10 @@
     {
       "from": "部署資訊/部署實際值與初始拓撲.md",
       "to": "專案生命週期.md"
+    },
+    {
+      "from": "部署資訊/部署實際值與初始拓撲.md",
+      "to": "程式架構/governance-signer.md"
     },
     {
       "from": "零件與場景.md",

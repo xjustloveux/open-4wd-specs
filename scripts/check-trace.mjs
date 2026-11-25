@@ -4,7 +4,7 @@ import { dirname, relative, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 
 const repoRoot = resolve(dirname(fileURLToPath(import.meta.url)), "..");
-const RULE_PREFIX = "(?:LEDGER|ECON|MOD|PHYS|TRACK|PART|UGC|VERSION|SEC)";
+const RULE_PREFIX = "(?:LEDGER|ECON|MOD|PHYS|TRACK|PART|UGC|VERSION|SEC|GSIGN)";
 const ID_RE = new RegExp(`〔(${RULE_PREFIX}-R-\\d{3})〕`, "g");
 const CONFORMANCE_RE = new RegExp(
   `ruleConformance\\s*\\(\\s*\\{\\s*ruleId:\\s*["'](${RULE_PREFIX}-R-\\d{3})["']\\s*,\\s*layer:\\s*["']([a-z-]+)["']\\s*,\\s*contract:\\s*["']([a-z0-9-]+)["']`,

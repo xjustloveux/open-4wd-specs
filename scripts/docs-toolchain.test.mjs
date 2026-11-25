@@ -847,13 +847,13 @@ test("technology inventory names only current implementations and repository too
   assert.match(security, /`room-runtime\/`[\s\S]*RFC 9807 OPAQUE/);
 });
 
-test("contributor guidance describes the nine-domain rule contract workflow", () => {
+test("contributor guidance describes the ten-domain rule contract workflow", () => {
   const readme = readFileSync(join(REPO_ROOT, "README.md"), "utf8");
   const engineering = readFileSync(join(REPO_ROOT, "文檔工程.md"), "utf8");
   const ownership = JSON.parse(readFileSync(join(REPO_ROOT, "rule-ownership.json"), "utf8"));
   const combined = `${readme}\n${engineering}`;
 
-  for (const prefix of ["LEDGER", "ECON", "MOD", "PHYS", "TRACK", "PART", "UGC", "VERSION", "SEC"]) {
+  for (const prefix of ["LEDGER", "ECON", "MOD", "PHYS", "TRACK", "PART", "UGC", "VERSION", "SEC", "GSIGN"]) {
     assert.match(combined, new RegExp(`\\b${prefix}\\b`));
   }
   assert.match(readme, /rule-contracts\.json/);

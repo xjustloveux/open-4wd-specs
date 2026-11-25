@@ -117,4 +117,5 @@ interface EconomyConfig {
 - 治理變更走 multisig：提案定稿 → 各 signer 對 `ledgerSigningDigest(ledgerAddress, event)` 簽章 → 達 quorum `appendPreSigned` 原樣上鏈；每次 epoch +1（digest 定義見 [程式架構/ledger-admission.md §1](../程式架構/ledger-admission.md)，治理流程見 [程式架構/ledger.md §8](../程式架構/ledger.md)）
 - `forkDetection` 為治理「門檻值」（原創 / fork 經濟邊界）；fork **判定演算法 / 指紋**（`fingerprintVersion`）屬 `derive_logic`（client 發版），不在此 config
 - **本 [§17](#17-economy-configorbitdb-動態治理) 為 `EconomyConfig` 介面 + 預設的單一 authority**（政策參數群組 + 經濟值群組全含）；[程式架構/economy.md](../程式架構/economy.md) 引用本表、不另定義介面。`EconomyConfig` 是治理 config 的 umbrella，涵蓋經濟與非經濟政策群組
+- **`signedAt` 與 `signers` 的語意**：genesis 的 `signedAt` 為部署值的 genesis 時戳、`signers` 為空陣列。`config-update` 的 `newConfig` 中，設定檔（`config-export` 範本）兩者留空（`signedAt` 為 0、`signers` 為空陣列），簽署時由治理簽署工具填入：`signedAt` 為事件時戳，`signers` 為實際簽署者（與事件 `signers` 相同）。收件端只驗兩者結構，不另與事件比對（工具行為見 [程式架構/governance-signer.md](../程式架構/governance-signer.md) 第 12 節）
 - `epoch`（`EconomyConfigEpoch`）對外即 **`economy_config_version`**（[版本規範.md §1](../版本規範.md) 6 版本欄位之一）；每次治理更新 epoch +1、`economy_config_version` 同步

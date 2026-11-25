@@ -412,6 +412,62 @@
       }
     },
     {
+      "id": "GSIGN-R-001",
+      "kind": "invariant",
+      "requiredLayers": ["schema-static"],
+      "implementationRepos": ["open-4wd"],
+      "testContracts": { "schema-static": "gsign-r-001-schema-static" }
+    },
+    {
+      "id": "GSIGN-R-002",
+      "kind": "invariant",
+      "requiredLayers": ["service"],
+      "implementationRepos": ["open-4wd"],
+      "testContracts": { "service": "gsign-r-002-service" }
+    },
+    {
+      "id": "GSIGN-R-003",
+      "kind": "behavior",
+      "requiredLayers": ["service"],
+      "implementationRepos": ["open-4wd"],
+      "testContracts": { "service": "gsign-r-003-service" }
+    },
+    {
+      "id": "GSIGN-R-004",
+      "kind": "behavior",
+      "requiredLayers": ["service"],
+      "implementationRepos": ["open-4wd"],
+      "testContracts": { "service": "gsign-r-004-service" }
+    },
+    {
+      "id": "GSIGN-R-005",
+      "kind": "behavior",
+      "requiredLayers": ["service"],
+      "implementationRepos": ["open-4wd"],
+      "testContracts": { "service": "gsign-r-005-service" }
+    },
+    {
+      "id": "GSIGN-R-006",
+      "kind": "reject",
+      "requiredLayers": ["service"],
+      "implementationRepos": ["open-4wd"],
+      "testContracts": { "service": "gsign-r-006-service" }
+    },
+    {
+      "id": "GSIGN-R-007",
+      "kind": "reject",
+      "requiredLayers": ["service"],
+      "implementationRepos": ["open-4wd"],
+      "testContracts": { "service": "gsign-r-007-service" }
+    },
+    {
+      "id": "GSIGN-R-008",
+      "kind": "reject",
+      "requiredLayers": ["schema-static"],
+      "implementationRepos": ["open-4wd"],
+      "testContracts": { "schema-static": "gsign-r-008-schema-static" }
+    },
+    {
       "id": "LEDGER-R-001",
       "kind": "reject",
       "requiredLayers": ["service"],

@@ -79,6 +79,13 @@ async function createNode(opts: {
 
 `appSpecificWeight` 接 [§5](#5-peer-scoring信譽--黑名單加權) 的信譽 / 黑名單加權。
 
+**撥號閘（connection gater）**：`buildNodeOptions` 依建置時部署值的 `stage` 決定。`development` 覆寫
+`denyDialMultiaddr`，只多放行一種位址：IP 恰為 `127.0.0.1` 或 `::1`、接 `/tcp/<port>/ws`、之後只能接 `/p2p/<id>`；
+其他位址照 libp2p 瀏覽器預設精神拒絕不加密 WebSocket 與私有位址（含其他 loopback、`::ffff:` 對映位址與
+`localhost` 名稱）。`private-playtest`、`public` 與未指定 stage 時不帶 `connectionGater`，沿用 libp2p 預設閘
+（瀏覽器拒絕 `/ws` 與私有位址）。這個放行讓本機開發能連上 `pnpm start:signer` 啟動的治理簽署工具，用法見
+[governance-signer.md](governance-signer.md) 第 13 節。
+
 ## 2. Topics 與訊息結構
 
 ```typescript
