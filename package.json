@@ -32,7 +32,7 @@
     "check:docs": "node scripts/generate-impl-flow-index.mjs --check && node scripts/generate-docs.mjs --check",
     "rules:generate": "node scripts/generate-rules.mjs",
     "check:rules": "node scripts/generate-rules.mjs --check",
-    "check:trace:workspace": "node scripts/check-trace.mjs --target open-4wd=../open-4wd/src --target open-4wd-pinning=../open-4wd-pinning/scripts --target open-4wd-pinning=../open-4wd-pinning/integration",
+    "check:trace:workspace": "node scripts/check-trace.mjs --target open-4wd=../open-4wd/src --target open-4wd=../open-4wd/tools/governance-signer/src --target open-4wd-pinning=../open-4wd-pinning/scripts --target open-4wd-pinning=../open-4wd-pinning/integration",
     "check": "pnpm run test:docs && pnpm run check:prelaunch-versions && pnpm run check:conformance && pnpm run lint:md && pnpm run lint:terms && pnpm run lint:zh:strict && pnpm run check:refs && pnpm run check:history && pnpm run check:decisions && pnpm run check:frontmatter && pnpm run check:workflows && pnpm run check:docs && pnpm run check:rules && pnpm run check:mermaid",
     "check:mermaid": "node scripts/check-mermaid.mjs"
   },

@@ -29,6 +29,7 @@ const PREFIXES = [
   "UGC",
   "VERSION",
   "SEC",
+  "GSIGN",
 ];
 
 const rules = new Map(); // id -> { anchor: {file,line,excerpt} | null, refs: [{file,line}] }
@@ -45,7 +46,7 @@ for (const full of walkMd(REPO_ROOT)) {
   for (let i = 0; i < lines.length; i++) {
     const line = lines[i];
     const re =
-      /〔((?:LEDGER|ECON|MOD|PHYS|TRACK|PART|UGC|VERSION|SEC)-R-\d{3})〕/g;
+      /〔((?:LEDGER|ECON|MOD|PHYS|TRACK|PART|UGC|VERSION|SEC|GSIGN)-R-\d{3})〕/g;
     const markers = [...line.matchAll(re)].map((m) => ({
       match: m,
       bold:

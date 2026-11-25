@@ -1,4 +1,4 @@
-const RULE_ID_RE = /^(?:LEDGER|ECON|MOD|PHYS|TRACK|PART|UGC|VERSION|SEC)-R-\d{3}$/u;
+const RULE_ID_RE = /^(?:LEDGER|ECON|MOD|PHYS|TRACK|PART|UGC|VERSION|SEC|GSIGN)-R-\d{3}$/u;
 const KINDS = new Set([
   "reject",
   "derive",

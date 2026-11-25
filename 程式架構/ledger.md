@@ -213,6 +213,7 @@ const LRU_HEADS_LIMIT = 64;
 
 - 單 entry block `256 KiB`；本機 ledger blockstore `128 MiB / 10,000 blocks`；單次 remote traversal `64 MiB / 2,048 entries`。串流 block 在累計超限當下中止，不先全量配置。開庫時由 `getAll()` 列舉既有 block 重建 byte/count accounting；列舉讀取失敗、單塊超過上限或記帳後超過 byte/count 上限時自動重試一次列舉，仍中斷即開庫失敗，拋出固定 `code` 為 `entry-store-bootstrap-interrupted`、附中斷原因（`read-failed`／`block-too-large`／`entry-limit`／`byte-limit`）的錯誤供上層辨識，不以記帳不完整的狀態開庫。列舉回來的 CID 無法解析屬資料損毀，不重試，立即以同一 `code`、原因 `invalid-key` 開庫失敗，原始錯誤保留在 `cause`。每次列舉前清空記帳，前一次列舉多出的 block 不留作淘汰候選。
 - quota eviction **只可**淘汰已被目前 checkpoint 覆蓋且非 boundary 的 block；沒有安全 victim 就拒絕新寫入。explicit delete 同步更新 byte/count accounting。entry block 只經寫入進入專屬 store；讀取時底層讀取失敗、未命中或 quota 檢查失敗都只拋錯，不刪除被讀取的 block；淘汰仍只依上述 quota eviction 規則（只淘汰已被涵蓋者）。
+- Orbit identity：`openOrbitEventLog` 的選填 `orbitId`（非空字串，空字串在建立任何資源前拒絕）原樣傳給 `createOrbitDB` 的 `id`，同一 keystore 加同一 id 得到同一 identity；不傳時 OrbitDB 每次開庫隨機產生。瀏覽器不傳；治理簽署工具在資料目錄保存首次以 `randomUUID` 產生的 id 並沿用，使准入 outbox 的待送出紀錄與寫入者 identity 在重啟後一致（[governance-signer.md](governance-signer.md) 第 6 節）。連線流程由 `src/bootstrap/ledger-stack.ts` 的 `createLedgerStack` 提供，瀏覽器 `createBrowserLedgerStack` 是帶瀏覽器預設 factory 的薄包裝，工具注入 node 版 factory。
 - Admission outbox 的 row、查詢、quota、更新與刪除一律以完整 `chainId` scope；共用同一
   IndexedDB 時，row key 形如 `<chainId>:<entryCid>`，list 不得回傳其他 chain 的 prepared
   entry。CID-keyed entry/content blockstore 仍以 CID 去重，不為相同 bytes 建立鏈別副本。

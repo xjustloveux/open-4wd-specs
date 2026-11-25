@@ -14,22 +14,22 @@ slug: null
 
 列＝引用來源、欄＝引用目標；數字是 current canon 文件間的有向連結數，歷史與決策檔不計。
 
-| 來源 \ 目標 | [共識帳本](#共識帳本10-檔) | [經濟](#經濟8-檔) | [UGC版權](#ugc版權17-檔) | [材質](#材質2-檔) | [建模物理](#建模物理12-檔) | [比賽房間](#比賽房間28-檔) | [信譽仲裁](#信譽仲裁8-檔) | [版本部署](#版本部署18-檔) | [資安](#資安6-檔) | [前端主題](#前端主題43-檔) | [治理營運](#治理營運3-檔) | [跨域](#跨域16-檔) |
+| 來源 \ 目標 | [共識帳本](#共識帳本11-檔) | [經濟](#經濟8-檔) | [UGC版權](#ugc版權17-檔) | [材質](#材質2-檔) | [建模物理](#建模物理12-檔) | [比賽房間](#比賽房間28-檔) | [信譽仲裁](#信譽仲裁8-檔) | [版本部署](#版本部署19-檔) | [資安](#資安6-檔) | [前端主題](#前端主題43-檔) | [治理營運](#治理營運5-檔) | [跨域](#跨域16-檔) |
 | --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
-| [共識帳本](#共識帳本10-檔) | — | 8 | 6 | 0 | 8 | 13 | 13 | 9 | 2 | 0 | 1 | 7 |
-| [經濟](#經濟8-檔) | 14 | — | 6 | 0 | 4 | 4 | 1 | 3 | 0 | 1 | 2 | 3 |
+| [共識帳本](#共識帳本11-檔) | — | 9 | 6 | 0 | 8 | 14 | 13 | 11 | 2 | 0 | 3 | 8 |
+| [經濟](#經濟8-檔) | 15 | — | 6 | 0 | 4 | 4 | 1 | 3 | 0 | 1 | 2 | 3 |
 | [UGC版權](#ugc版權17-檔) | 15 | 8 | — | 3 | 24 | 5 | 16 | 5 | 3 | 9 | 1 | 11 |
 | [材質](#材質2-檔) | 2 | 0 | 2 | — | 5 | 2 | 0 | 3 | 0 | 1 | 0 | 0 |
 | [建模物理](#建模物理12-檔) | 9 | 2 | 11 | 7 | — | 12 | 1 | 10 | 0 | 6 | 0 | 9 |
-| [比賽房間](#比賽房間28-檔) | 18 | 4 | 3 | 2 | 20 | — | 12 | 14 | 10 | 10 | 0 | 17 |
+| [比賽房間](#比賽房間28-檔) | 19 | 4 | 3 | 2 | 20 | — | 12 | 14 | 10 | 10 | 0 | 17 |
 | [信譽仲裁](#信譽仲裁8-檔) | 13 | 3 | 11 | 0 | 4 | 8 | — | 1 | 2 | 0 | 0 | 2 |
-| [版本部署](#版本部署18-檔) | 10 | 5 | 1 | 2 | 3 | 13 | 6 | — | 10 | 6 | 1 | 8 |
-| [資安](#資安6-檔) | 10 | 1 | 5 | 1 | 4 | 9 | 4 | 5 | — | 1 | 1 | 1 |
+| [版本部署](#版本部署19-檔) | 14 | 5 | 1 | 2 | 3 | 13 | 6 | — | 10 | 6 | 3 | 8 |
+| [資安](#資安6-檔) | 11 | 1 | 5 | 1 | 4 | 9 | 4 | 5 | — | 1 | 2 | 1 |
 | [前端主題](#前端主題43-檔) | 2 | 2 | 12 | 2 | 23 | 9 | 0 | 17 | 3 | — | 0 | 15 |
-| [治理營運](#治理營運3-檔) | 4 | 2 | 1 | 1 | 2 | 0 | 0 | 2 | 0 | 0 | — | 0 |
-| [跨域](#跨域16-檔) | 16 | 6 | 24 | 2 | 16 | 42 | 12 | 31 | 13 | 31 | 1 | — |
+| [治理營運](#治理營運5-檔) | 6 | 2 | 1 | 1 | 2 | 0 | 0 | 5 | 1 | 0 | — | 0 |
+| [跨域](#跨域16-檔) | 18 | 6 | 24 | 2 | 16 | 42 | 12 | 31 | 13 | 31 | 1 | — |
 
-## 共識帳本（10 檔）
+## 共識帳本（11 檔）
 
 | 檔案 | type | 說明 |
 |---|---|---|
@@ -37,6 +37,7 @@ slug: null
 | [流程/比賽結算.md](流程/比賽結算.md) | flow | 名次／鑄幣／分潤／信譽／TrueSkill |
 | [流程/比賽進行.md](流程/比賽進行.md) | flow | LockedStartPackage 二次驗證＋GO 前 race-ready 屏障＋Rollback＋回合唯一共識錨 |
 | [程式參數/protocol.md](程式參數/protocol.md) | registry | 共識、物理、UGC、安全、帳本、配對與比賽參數 |
+| [程式架構/governance-signer.md](程式架構/governance-signer.md) | impl | 常駐治理簽署工具：信任根、金鑰、單一實例、同步閘、主迴圈、halt、人工釋放、config-update 與打包 |
 | [程式架構/ledger-admission.md](程式架構/ledger-admission.md) | impl | ledger 事件 wire、簽章、永久 entry admission 與 anti-spam 邊界 |
 | [程式架構/ledger-checkpoint.md](程式架構/ledger-checkpoint.md) | impl | DerivedState、partition、帳本檢查點與 sync/fork resolution |
 | [程式架構/ledger-settlement.md](程式架構/ledger-settlement.md) | impl | 比賽結果、經濟結算結構與簽章交換協議 |
@@ -44,7 +45,7 @@ slug: null
 | [程式架構/程式流程/ledger.md](程式架構/程式流程/ledger.md) | impl-flow | 程式級流程圖：Checkpoint／Partition／Sync |
 | [資料系統.md](資料系統.md) | canon | ledger／IPFS／canonical 序列化／治理事件 |
 
-決策檔 55 筆——見 [decisions/INDEX.md](decisions/INDEX.md)。
+決策檔 56 筆——見 [decisions/INDEX.md](decisions/INDEX.md)。
 
 ```mermaid
 flowchart TB
@@ -52,52 +53,57 @@ flowchart TB
   n1["比賽結算"]
   n2["比賽進行"]
   n3["protocol"]
-  n4["ledger-admission"]
-  n5["ledger-checkpoint"]
-  n6["ledger-settlement"]
-  n7["ledger"]
+  n4["governance-signer"]
+  n5["ledger-admission"]
+  n6["ledger-checkpoint"]
+  n7["ledger-settlement"]
   n8["ledger"]
-  n9["資料系統"]
+  n9["ledger"]
+  n10["資料系統"]
   n0 --> n2
-  n0 --> n4
   n0 --> n5
   n0 --> n6
-  n0 --> n9
+  n0 --> n7
+  n0 --> n10
   n1 --> n2
   n1 --> n3
-  n1 --> n4
-  n1 --> n6
+  n1 --> n5
+  n1 --> n7
   n2 --> n1
-  n2 --> n4
-  n2 --> n7
-  n2 --> n9
+  n2 --> n5
+  n2 --> n8
+  n2 --> n10
   n3 --> n1
   n3 --> n2
-  n3 --> n5
   n3 --> n6
-  n4 --> n3
-  n4 --> n5
-  n4 --> n7
-  n4 --> n9
+  n3 --> n7
+  n4 --> n6
+  n4 --> n8
   n5 --> n3
-  n5 --> n4
-  n5 --> n7
-  n5 --> n9
-  n6 --> n7
-  n7 --> n2
-  n7 --> n4
-  n7 --> n5
-  n7 --> n6
+  n5 --> n6
+  n5 --> n8
+  n5 --> n10
+  n6 --> n3
+  n6 --> n4
+  n6 --> n5
+  n6 --> n8
+  n6 --> n10
   n7 --> n8
-  n7 --> n9
-  n8 --> n1
+  n8 --> n2
+  n8 --> n4
+  n8 --> n5
+  n8 --> n6
   n8 --> n7
   n8 --> n9
+  n8 --> n10
   n9 --> n1
-  n9 --> n3
-  n9 --> n4
-  n9 --> n5
-  n9 --> n7
+  n9 --> n8
+  n9 --> n10
+  n10 --> n1
+  n10 --> n3
+  n10 --> n5
+  n10 --> n6
+  n10 --> n8
 ```
 
 ## 經濟（8 檔）
@@ -601,7 +607,7 @@ flowchart TB
   n7 --> n6
 ```
 
-## 版本部署（18 檔）
+## 版本部署（19 檔）
 
 | 檔案 | type | 說明 |
 |---|---|---|
@@ -621,10 +627,11 @@ flowchart TB
 | [部署資訊/Graphify Release 聚合.md](部署資訊/Graphify%20Release%20聚合.md) | deploy | 四個產品 repo 的不可變 Graphify Release、specs 部分成功聚合與 GitHub App 喚醒 runbook |
 | [部署資訊/open-4wd-pinning.md](部署資訊/open-4wd-pinning.md) | deploy | pinning 公版模板 repo 規格（TypeScript app＋kubo＋cluster） |
 | [部署資訊/open-4wd-signaling.md](部署資訊/open-4wd-signaling.md) | deploy | signaling 公版模板 repo 規格（scoped signed v1） |
+| [部署資訊/open-4wd-signer.md](部署資訊/open-4wd-signer.md) | deploy | 治理簽署工具部署 repo 規格（映像引用、k8s／systemd、部署 workflow 與營運程序） |
 | [部署資訊/open-4wd-turn.md](部署資訊/open-4wd-turn.md) | deploy | TURN 公版模板 repo 規格（coturn、社群營運者自行部署） |
 | [部署資訊/部署實際值與初始拓撲.md](部署資訊/部署實際值與初始拓撲.md) | deploy | 首次公開 trust root 與社群服務拓撲 |
 
-決策檔 85 筆——見 [decisions/INDEX.md](decisions/INDEX.md)。
+決策檔 86 筆——見 [decisions/INDEX.md](decisions/INDEX.md)。
 
 ### 版本部署依賴圖（1/2）
 
@@ -643,11 +650,12 @@ flowchart TB
   n10["部署資訊"]
   n11["open-4wd-pinning"]
   n12["open-4wd-signaling"]
-  n13["open-4wd-turn"]
+  n13["open-4wd-signer"]
   n1 --> n0
   n1 --> n2
   n1 --> n7
   n1 --> n10
+  n1 --> n13
   n2 --> n0
   n2 --> n3
   n2 --> n7
@@ -690,8 +698,7 @@ flowchart TB
   n12 --> n3
   n12 --> n6
   n12 --> n10
-  n12 --> n13
-  n13 --> n6
+  n13 --> n1
   n13 --> n10
 ```
 
@@ -699,15 +706,21 @@ flowchart TB
 
 ```mermaid
 flowchart TB
-  n0["部署實際值與初始拓撲"]
+  n0["open-4wd-turn"]
+  n1["部署實際值與初始拓撲"]
 ```
 
 #### 版本部署依賴圖跨頁關係
 
 | 來源 | 目標 | 關係 |
 | --- | --- | --- |
+| [部署資訊](部署資訊.md) | [open-4wd-turn](部署資訊/open-4wd-turn.md) | 連結 |
 | [部署資訊](部署資訊.md) | [部署實際值與初始拓撲](部署資訊/部署實際值與初始拓撲.md) | 連結 |
 | [open-4wd-pinning](部署資訊/open-4wd-pinning.md) | [部署實際值與初始拓撲](部署資訊/部署實際值與初始拓撲.md) | 連結 |
+| [open-4wd-signaling](部署資訊/open-4wd-signaling.md) | [open-4wd-turn](部署資訊/open-4wd-turn.md) | 連結 |
+| [open-4wd-signer](部署資訊/open-4wd-signer.md) | [部署實際值與初始拓撲](部署資訊/部署實際值與初始拓撲.md) | 連結 |
+| [open-4wd-turn](部署資訊/open-4wd-turn.md) | [signaling-service](程式架構/signaling-service.md) | 連結 |
+| [open-4wd-turn](部署資訊/open-4wd-turn.md) | [部署資訊](部署資訊.md) | 連結 |
 | [部署實際值與初始拓撲](部署資訊/部署實際值與初始拓撲.md) | [專案生命週期](專案生命週期.md) | 連結 |
 
 ## 資安（6 檔）
@@ -721,7 +734,7 @@ flowchart TB
 | [程式架構/security.md](程式架構/security.md) | impl | Sanitize Worker／P2P 驗簽／CSP・SRI／依賴管控 |
 | [資安規範.md](資安規範.md) | meta | UGC sanitize／簽署／CSP／漏洞流程 |
 
-決策檔 45 筆——見 [decisions/INDEX.md](decisions/INDEX.md)。
+決策檔 46 筆——見 [decisions/INDEX.md](decisions/INDEX.md)。
 
 ```mermaid
 flowchart TB
@@ -991,22 +1004,35 @@ flowchart TB
 | [語系清單](語系清單.md) | [seo](程式架構/seo.md) | 連結 |
 | [語系清單](語系清單.md) | [settings](程式架構/settings.md) | 連結 |
 
-## 治理營運（3 檔）
+## 治理營運（5 檔）
 
 | 檔案 | type | 說明 |
 |---|---|---|
 | [專案生命週期.md](專案生命週期.md) | canon | 專案階段、首次公開候選門檻、跨 repo 發布順序與上線後變更規則 |
 | [流程/治理事件.md](流程/治理事件.md) | flow | economy-config 治理多簽變更 |
 | [程式參數/economy-config.md](程式參數/economy-config.md) | registry | OrbitDB 動態治理 economy config |
+| [程式架構/governance-signer.md](程式架構/governance-signer.md) | impl | 常駐治理簽署工具：信任根、金鑰、單一實例、同步閘、主迴圈、halt、人工釋放、config-update 與打包 |
+| [部署資訊/open-4wd-signer.md](部署資訊/open-4wd-signer.md) | deploy | 治理簽署工具部署 repo 規格（映像引用、k8s／systemd、部署 workflow 與營運程序） |
 
-決策檔 53 筆——見 [decisions/INDEX.md](decisions/INDEX.md)。
+決策檔 54 筆——見 [decisions/INDEX.md](decisions/INDEX.md)。
 
 ```mermaid
 flowchart TB
-  n0["治理事件"]
-  n1["economy-config"]
-  n0 --> n1
-  n1 --> n0
+  n0["專案生命週期"]
+  n1["治理事件"]
+  n2["economy-config"]
+  n3["governance-signer"]
+  n4["open-4wd-signer"]
+  n0 --> n3
+  n1 --> n2
+  n1 --> n3
+  n1 --> n4
+  n2 --> n1
+  n2 --> n3
+  n3 --> n1
+  n3 --> n2
+  n3 --> n4
+  n4 --> n3
 ```
 
 ## 跨域（16 檔）
