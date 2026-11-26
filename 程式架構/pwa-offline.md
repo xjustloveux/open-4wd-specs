@@ -175,7 +175,7 @@ db.createObjectStore("inbox-read-markers", { keyPath: "id" }); // 本機已讀�
 玩家收藏不新增 unified DB object store；它使用 `open4wd-keys` 的 sealed identity container
 `favorites` domain，避免未解鎖時洩漏社交偏好，詳見 [player-favorites.md](player-favorites.md)。
 
-`ledger-admission-outbox` 每列是 exact closed record：`cid / identity / entryBytes / parentHashes / createdAt / byteSize / state / broadcastAttempted / rejectionCode`。`entryBytes` 是已含頂層 proof、準備公開的 canonical final Orbit block，不是裸 event；不含私鑰。每次讀寫都重驗 record、entry bytes、CID、identity、parents 與 byte size；同 CID 唯一，上限 32 筆或 2 MiB，損毀 fail-closed。重啟先由 outbox 恢復 parent protection，再允許 checkpoint eviction；retry 只交回同一組 bytes／CID，不得重新 `db.add`。
+`ledger-admission-outbox` 每列是 exact closed record：`cid / identity / entryBytes / parentHashes / createdAt / byteSize / state / broadcastAttempted / rejectionCode`。`entryBytes` 是已含頂層 proof、準備公開的 canonical final Orbit block，不是裸 event；不含私鑰。每次讀寫都重驗 record、entry bytes、CID、identity、parents 與 byte size；同 CID 唯一，上限 32 筆或 2 MiB，損毀 fail-closed。重啟先由 outbox 恢復 parent protection，再允許 checkpoint eviction；暫時失敗只以同一組 bytes／CID 重試，不得重新 `db.add`；被檢查點切面拒絕（`stale-parent`）時，依 [ledger-admission.md](ledger-admission.md) 〔LEDGER-R-109〕 以同一事件與目前 heads 重新建立條目、重付工作量，新列先持久化再刪舊列，每個寫入意圖最多 3 次；自己已提交、在本執行期成為孤兒的條目同樣重新建立。重新建立不改變本列格式。
 
 schema version 為 `UNIFIED_DB_VERSION=1`，新建資料庫必須包含完整 12-store 名錄。程式不得自動 `deleteDatabase` 或靜默清資料；缺少必要 store 時 fail closed 並要求使用產品內明示的重設流程。`local-parts` 只存非 track 的本機測試資產；組裝車輛 loadout 的唯一權威是目前 profile 中 `open4wd-keys` 的 sealed `garage-loadouts` identity domain。pre-launch 期間若本機 schema 不相容，使用產品內明示重設，不匯入舊資料。
 
