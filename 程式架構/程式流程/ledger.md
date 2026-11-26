@@ -116,7 +116,9 @@ flowchart TD
 
 ```mermaid
 flowchart TD
-    Receive[收到新 heads] --> Merge[合併可達完整 DAG]
+    Receive[收到新 heads] --> Cut{每個 parent 都在檢查點切面內<br/>且時鐘恰為 parent 最大值加 1?}
+    Cut -->|否| Reject[stale-parent 或 clock-mismatch：整批不落盤]
+    Cut -->|是| Merge[合併可達完整 DAG]
     Merge --> Verify[逐事件驗簽與 timeless fold gate]
     Verify --> Order[依 canonical total order replay]
     Order --> Conflict{同一回合 anchor 衝突?}

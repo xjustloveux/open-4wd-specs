@@ -34,6 +34,8 @@ async function createNode(opts: {
     connectionEncrypters: [noise()], // libp2p 3.x 選項名（複數）
     services: {
       identify: identify(),
+      // 協定可能在連線之後才登記（開帳本時才登記 bitswap），由 identify-push 通知既有連線中支援推送的對端
+      identifyPush: identifyPush(),
       ping: ping(), // kad-dht 硬性要求的兄弟服務（peer 存活探測）
       dht: kadDHT({
         protocol: "/open4wd/kad/1.0.0",

@@ -50,7 +50,7 @@ tools/governance-signer/
 | 投票鎖定紀錄               | 重用 `createCheckpointVoteLockStore`，底層為上列 control storage                                   |
 | 准入 outbox                | 持久 Level 版，語意與瀏覽器 IndexedDB 版相同                                                       |
 | 准入計算器                 | 行程內計算，重用 `searchAdmissionNonceBatch`，以 `setImmediate` 分段讓出                            |
-| Orbit                      | 明確 `directory: <資料目錄>/orbitdb`，並傳固定 `orbitId`（第 6 節）                                |
+| Orbit                      | 明確 `directory: <資料目錄>/orbitdb`；固定 `orbitId` 由 `createLedgerStack` 取得，node 埠只轉交（第 6 節） |
 | libp2p                     | 重用 `buildNodeOptions`；transports 為 WebSockets 與 circuit relay 撥出，listen 由設定決定（預設空） |
 | libp2p 身分                | 資料目錄內持久化的隨機 Ed25519，與治理金鑰分開                                                     |
 | `LedgerSigner`             | 治理金鑰；推導全部重用 `src/key-manager`                                                           |
@@ -107,10 +107,11 @@ tools/governance-signer/
 
 ## 6. 資料目錄與單一實例
 
-資料目錄內容：`instance.lock`、`orbit-id`、`libp2p.key`、`halt.json`，以及 `orbitdb/`、`content-blocks/`、
+資料目錄內容：`instance.lock`、`libp2p.key`、`halt.json`，以及 `orbitdb/`、`content-blocks/`、
 `entry-blocks/`、`checkpoint-control/`、`admission-outbox/` 等 Level 儲存子目錄。POSIX 下目錄為 0700、檔案為 0600。
-`orbit-id` 在首次啟動以 `randomUUID` 產生並沿用，使 Orbit identity 在重啟後不變（[ledger.md](ledger.md) 第 10 節的
-`orbitId` 選項）。
+Orbit identity 的固定 id 與瀏覽器相同，由 `createLedgerStack` 存在該鏈的 checkpoint control storage
+（`checkpoint-control/`，鍵 `__ledger_orbit_id_v1__:<chainId>`），每條鏈一個，重啟後不變；動態 genesis 的暫時開庫不帶 id
+（[ledger.md](ledger.md) 第 10 節）。
 
 **〔GSIGN-R-002〕** 同一資料目錄同時只有一個工具行程：`instance.lock` 以獨占建立方式原子寫入持有者的 pid、主機名稱、
 啟動時間與心跳時間，持有期間每 60 秒更新心跳。既有鎖的處理：同主機且 pid 等於本行程 pid、但不是本行程目前持有的鎖
@@ -177,7 +178,8 @@ ReadWriteOnce 資料卷與主迴圈的 foreign-instance 偵測（第 9 節）。
    `rule-epoch-unknown`。工具不以比賽紀錄中參賽者自報的版本判定任何暫停。
 5. 索引顯示本節點自身重複簽署 → halt `self-equivocation`。
 6. foreign-instance：本行程第一次過閘時記下自己已有票的本體為基準；之後索引出現自己的票，且該本體不在基準、
-   不是本行程投的、也不在本機鎖定紀錄中 → halt `foreign-instance`。
+   不是本行程投的、也不在本機鎖定紀錄中 → halt `foreign-instance`。比對以本體 CID 為準：投票條目被檢查點切面拒絕或成為孤兒、
+   由寫入器以同一事件重新建立（[ledger-admission.md](ledger-admission.md) 〔LEDGER-R-109〕）時，條目 CID 不同、本體相同，不觸發。
 7. 本節點不是本代簽署者 → idle。
 8. heads 重送檢查（下文）。
 9. 有可定稿的候選本體 → `finalizeCheckpoint`。
@@ -315,7 +317,10 @@ digest，不打 latest。映像與部署細節見 [部署資訊/open-4wd-signer.
 - 提案者寫入鎖定後、寫出提案前中斷時，主迴圈維持等待並記錄 `locked-without-votable-candidate`（issue 001544）。
 - 只有一個瀏覽器加簽署工具的拓撲下，開房的房間公告因 rooms topic 沒有其他訂閱者而失敗；工具只訂閱帳本 topic，不改變這個
   限制（issue 001550）。
-- 正式部署前，pinning 節點 vendored 的帳本必須接受檢查點控制事件，否則會拒收工具寫出的事件（issue 001488）。
+- 正式部署前，pinning 節點 vendored 的帳本必須接受檢查點控制事件，否則會拒收工具寫出的事件；也必須套用檢查點切面與時鐘規則
+  （[ledger-checkpoint.md](ledger-checkpoint.md) 〔LEDGER-R-045〕、〔LEDGER-R-107〕、〔LEDGER-R-108〕），否則會保留並交換孤兒 heads（issue 001488）。
+- 以空位址（動態 genesis）啟動時，暫時開庫會在內容區塊與 keystore 多留一個不簽任何條目的 Orbit identity；數量隨空位址啟動次數增加
+  （併 issue 001548 觀察）。
 - 簽署者多於一位時無法 `config-update`，直到多人收簽落地（issue 001539）。
 
 ## 18. 跨模組對接

@@ -1237,6 +1237,27 @@
       "testContracts": { "service": "ledger-r-106-service" }
     },
     {
+      "id": "LEDGER-R-107",
+      "kind": "reject",
+      "requiredLayers": ["admission", "service"],
+      "implementationRepos": ["open-4wd"],
+      "testContracts": { "admission": "ledger-r-107-admission", "service": "ledger-r-107-service" }
+    },
+    {
+      "id": "LEDGER-R-108",
+      "kind": "invariant",
+      "requiredLayers": ["service"],
+      "implementationRepos": ["open-4wd"],
+      "testContracts": { "service": "ledger-r-108-service" }
+    },
+    {
+      "id": "LEDGER-R-109",
+      "kind": "behavior",
+      "requiredLayers": ["service"],
+      "implementationRepos": ["open-4wd"],
+      "testContracts": { "service": "ledger-r-109-service" }
+    },
+    {
       "id": "MOD-R-001",
       "kind": "invariant",
       "requiredLayers": ["fold"],
