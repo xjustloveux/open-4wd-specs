@@ -84,10 +84,15 @@ sequenceDiagram
     B->>B: 寫鎖 → 簽本體
     B->>L: ledger-checkpoint-signature（一票）
     L-->>F: 待定稿索引見本體達 quorum
-    F->>F: 組憑證並裁成 quorum 份，journal → pointer → boundary
-    F->>L: ledger-checkpoint-certificate（定稿公告）
+    F->>F: 組憑證並裁成 quorum 份，邊界唯讀驗證 → 存檔
+    F->>F: journal（連同公告待送出）→ pointer → boundary → journal clear
+    F->>L: ledger-checkpoint-certificate（定稿公告，寫入失敗時由帳本依退避重送）
     L-->>P: 採納公告並 pin 本體、狀態與 cold 分區
+    Note over L,P: 公告因切面容量被拒時不落盤，仍送進同一個採納佇列
 ```
+
+定稿的提交順序、公告的重送與採納的來源見 [../ledger-checkpoint.md §3](../ledger-checkpoint.md#3-帳本檢查點ledgercheckpoint演算法)
+（`finalizeCheckpoint` 條、〔LEDGER-R-041〕、〔LEDGER-R-046〕）。
 
 ## 新玩家 Sync 流程
 

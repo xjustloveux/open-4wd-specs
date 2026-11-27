@@ -203,10 +203,10 @@ interface DesyncEvent extends BaseEvent {
 
 ## 10. 客戶端 Storage 與同步安全邊界
 
-**〔LEDGER-R-073〕** OrbitDB log append-only 永久累積；客戶端不必本地保留已被 finalized checkpoint 覆蓋的事件。因此本機對 log 的讀取一律以**本機保留範圍**為界：從 log 自己的 eviction boundary（不含 boundary entry）到目前 heads，尚無 boundary 時才是 genesis 到 heads。目前 heads 是檢查點切面 S 的極大元素；孤兒雖仍在本機條目儲存，但不在保留範圍內（[ledger-checkpoint.md](ledger-checkpoint.md) 〔LEDGER-R-045〕）。event log 埠與 `LedgerApi` 都沒有讀全部事件的專用入口，任何路徑不得假設本機有完整歷史。以空的起點呼叫區間走訪（`entriesBetween` 的起點為空集合、`entriesAfter` 不帶起點、`syncEventsSince` 傳空集合）仍等於從 genesis 走訪：尚無 checkpoint 時的重建與 `deriveStateAt` 即如此讀取；已有 checkpoint 後，走訪經過已被淘汰的 entry 就會拋錯，呼叫端不得依賴它成功。保留範圍的起點取 log 自己的 boundary，不讀 CheckpointStore 的 effective 指標。兩者只在同一個 runtime 內可能不同：sibling 衝突隔離把 effective 退回共同 previous 時，log 的 boundary 不隨之後退，已淘汰的 entry 也不會因此回到本機；重啟時 log 的 boundary 則是以 effective checkpoint 的 `log_head_cids` 重建的（[ledger-checkpoint.md](ledger-checkpoint.md) 〔LEDGER-R-043〕），兩者相同。runtime 使用 wire-compatible 的 bounded Events/Sync adapter，entry fallback 是**專屬本機** IDB blockstore，不是 Helia/Bitswap broker；不得直接換回 stock Sync（stock 路徑會在 raw size admission 前 decode remote entry）：
+**〔LEDGER-R-073〕** OrbitDB log append-only 永久累積；客戶端不必本地保留已被 finalized checkpoint 覆蓋的事件。因此本機對 log 的讀取一律以**本機保留範圍**為界：從 log 自己的 eviction boundary（不含 boundary entry）到目前 heads，尚無 boundary 時才是 genesis 到 heads。目前 heads 是檢查點切面 S 的極大元素；孤兒雖仍在本機條目儲存，但不在保留範圍內（[ledger-checkpoint.md](ledger-checkpoint.md) 〔LEDGER-R-045〕）。event log 埠與 `LedgerApi` 都沒有讀全部事件的專用入口，任何路徑不得假設本機有完整歷史。以空的起點呼叫區間走訪（`entriesBetween` 的起點為空集合、`entriesAfter` 不帶起點、`syncEventsSince` 傳空集合）仍等於從 genesis 走訪：尚無 checkpoint 時的重建與 `deriveStateAt` 即如此讀取；已有 checkpoint 後，走訪經過已被淘汰的 entry 就會拋錯，呼叫端不得依賴它成功。保留範圍的起點取 log 自己的 boundary，不讀 CheckpointStore 的 effective 指標。兩者只在衝突隔離後不同：sibling 衝突隔離把 effective 退回共同 previous 時，log 的 boundary 不隨之後退，已淘汰的 entry 也不會因此回到本機；重啟時 log 的 boundary 以最後一個已採納的 checkpoint（control 的 `latest`）的 `log_head_cids` 重建（[ledger-checkpoint.md](ledger-checkpoint.md) 〔LEDGER-R-040〕、〔LEDGER-R-043〕），沒有衝突隔離時它就是 effective checkpoint，隔離後它不隨 effective 後退。runtime 使用 wire-compatible 的 bounded Events/Sync adapter，entry fallback 是**專屬本機** IDB blockstore，不是 Helia/Bitswap broker；不得直接換回 stock Sync（stock 路徑會在 raw size admission 前 decode remote entry）：
 
 ```typescript
-const LRU_ENTRY_LIMIT = 10000; // protocol-adjacent 固定本機硬上限；不得依裝置動態改共識可得性
+const LRU_ENTRY_LIMIT = 10000; // protocol-adjacent 固定本機硬上限；不得依裝置動態改共識可得性。切面另有業務上限 LEDGER_CUT_BUSINESS_ENTRY_LIMIT（9,000）
 const LRU_HEADS_LIMIT = 64;
 // entryStorage = TraversalBudgetStorage(ComposedStorage(LRUStorage, boundedLocalEntryStorage))
 ```
@@ -219,8 +219,8 @@ const LRU_HEADS_LIMIT = 64;
   entry。CID-keyed entry/content blockstore 仍以 CID 去重，不為相同 bytes 建立鏈別副本。
 - remote head 在 `Entry.decode` 前先過 `256 KiB/head`、每 authenticated libp2p peer `1 MiB + 256 messages / 60s`，最多追蹤 4,096 peer state；另有全來源 `16 MiB + 4,096 messages / 60s` 與等待 queue `4 MiB / 64 messages` 硬上限，source LRU churn 不會重置 global budget。dial/receive 失敗必須 abort/close stream 並釋放 peer state，允許後續重連。
 - remote join 只沿 `next` 因果 parent traversal；`refs` 是 skip-list 查詢捷徑，不決定完整性，故不跟隨，但仍驗 canonical CID、禁止 self/duplicate，且上限 `next=64`、`refs=128`。checkpoint boundary 每次使用前 canonicalize，遇到 boundary 即停止往前抓取。
-- remote join 先完成 canonical Admission proof、shape、access-controller、Orbit identity signature、CID/encode 與 traversal 驗證，再 staged commit entry/index/heads；本機只接受 `commitPrepared(finalEntryBytes, cid)`，同樣在 transaction view 完成後才 commit 三層，禁止 direct `Log.append`／`db.add` 旁路。任一步驟失敗回滾，回滾本身失敗即寫 durable poison、當前與重啟 runtime 都 fail-closed。本機 prepare 以檢查點切面 S 的極大元素為 `next`、時鐘為其最大值加 1，`refs` 固定為空陣列，不分有無 checkpoint boundary；遠端 join 與本機提交都依 [ledger-checkpoint.md](ledger-checkpoint.md) 〔LEDGER-R-045〕、〔LEDGER-R-107〕 判定條目有效性，heads 交換只送出 S 的極大元素。本機提交被切面拒絕時由寫入器以同一事件重新建立條目（[ledger-admission.md](ledger-admission.md) 〔LEDGER-R-109〕）。
-- **〔LEDGER-R-076〕** finalized checkpoint 完整驗簽後先 prepare boundary；content-addressed artifacts 與唯一宣告完成後同步 commit boundary，再寫 latest pointer。latest 失敗即同步 rollback boundary；重試在本次 checkpoint 的 `log_head_cids` 到目前 heads 之間以 checkpoint CID 找既有宣告並復用（本機寫入的宣告以當時的 heads 為 parent，必在這一段），不讀更早的 entry。區間走訪因目前 heads 含有不經過該 `log_head_cids` 的分支而以連續性錯誤拒絕時，這一段無法界定，視為沒有既有宣告並照常寫出宣告；既有宣告若存在就會多出一則，重複的宣告在採納時冪等。這項處理只適用連續性錯誤：走訪因其他原因失敗時（例如走訪經過的 entry 不可得）不視為沒有宣告，本次定稿失敗。新 boundary 必須是舊 boundary 在本地已驗 next 鏈上的單調後繼；驗證、prepare、announcement 或 latest 失敗皆不留下錯誤 eviction boundary。
+- remote join 先完成 canonical Admission proof、shape、access-controller、Orbit identity signature、CID/encode 與 traversal 驗證，再 staged commit entry/index/heads；本機只接受 `commitPrepared(finalEntryBytes, cid)`，同樣在 transaction view 完成後才 commit 三層，禁止 direct `Log.append`／`db.add` 旁路。任一步驟失敗回滾，回滾本身失敗即寫 durable poison、當前與重啟 runtime 都 fail-closed。本機 prepare 以檢查點切面 S 的極大元素為 `next`、時鐘為其最大值加 1，`refs` 固定為空陣列，不分有無 checkpoint boundary；遠端 join 與本機提交都依 [ledger-checkpoint.md](ledger-checkpoint.md) 〔LEDGER-R-045〕、〔LEDGER-R-107〕 判定條目有效性，heads 交換只送出 S 的極大元素。本機提交被切面拒絕時由寫入器以同一事件重新建立條目（[ledger-admission.md](ledger-admission.md) 〔LEDGER-R-109〕）。切面容量判定（業務上限、硬上限與保留批次，[ledger-checkpoint.md](ledger-checkpoint.md) 〔LEDGER-R-045〕、〔LEDGER-R-110〕）排在上述驗證與切面判定之後；遠端 join 以容量為第一個不通過的檢查時整批不落盤，其中的定稿公告交給採納流程（〔LEDGER-R-046〕）。
+- **〔LEDGER-R-076〕** finalized checkpoint 完整驗簽後，定稿與採納都先 prepare boundary（唯讀驗證：新 boundary 必須是舊 boundary 在本地已驗 next 鏈上的單調後繼），失敗時不留下任何持久變更。通過後依序：content-addressed artifacts、本體與憑證存檔 → 邊界推進紀錄（定稿另在同一次 control CAS 把本體加入公告待送出清單）→ latest pointer → commit boundary → 完成推進紀錄 →（定稿）寫宣告 → 重建；順序與 [ledger-checkpoint.md](ledger-checkpoint.md) 的 `finalizeCheckpoint` 條及 〔LEDGER-R-041〕 相同。latest 寫入之前不 commit boundary；commit 之後完成推進紀錄失敗時同步 rollback boundary，推進紀錄留著，之後補做：待送出清單非空時，宣告送出的每一輪在送出前補做（推進紀錄所指的本體已是 latest 而紀錄尚未完成，定稿或採納留下的都算）；另外，定稿端再次定稿時、採納端由同一則宣告再次處理時也補做。清單為空時送出的那一輪不補做：採納端由同一則宣告再次處理或背景重掃收斂，限制是那則宣告未落盤時要等對方再送或重啟。宣告在 boundary 推進之後才寫，寫入失敗不改變定稿結果，本體留在待送出清單由帳本依退避重送。送出前在本機保留範圍（boundary 到目前 heads）找同一 checkpoint CID、且憑證有效的既有宣告（判定見 [ledger-checkpoint.md](ledger-checkpoint.md)「定稿公告的寫入與重送」），有就只清除待送出紀錄，不讀更早的 entry。既有宣告的驗證結果以 entry 為單位記住、記住期間同一 entry 不重驗，每一輪新驗的量有上限（以宣告所帶的簽章份數計），還沒驗到的不算有效、該輪照常寫出宣告；宣告寫入成功而清除紀錄失敗時，在紀錄清除之前，同一執行期之後各輪只重試清除、不再寫出同一 checkpoint 的宣告（上限、清除時機與限制見同一段）。保留範圍因目前 heads 含有不經過 boundary 的分支而以連續性錯誤拒絕時，這一段無法界定，視為沒有既有宣告並照常寫出宣告；既有宣告若存在就會多出一則，重複的宣告在採納時冪等。這項處理只適用連續性錯誤：讀取因其他原因失敗時（例如走訪經過的 entry 不可得）不視為沒有宣告，該輪送出記為失敗、宣告留在待送出清單，定稿結果不變。驗證、prepare 或 latest 失敗皆不留下錯誤 eviction boundary；宣告失敗時 boundary 已正確推進。
 - LRU miss 只查專屬本機 entry IDB；remote ancestor 只能向送出該 head 的 authenticated peer 走有界 entry-fetch protocol，禁止回退到 Helia/Bitswap 任意 provider。peer 離線或 frame/CID 不符即整次 join fail-closed；derived state／cold CID 等一般內容塊才可走 Bitswap/pinning。
 - **〔LEDGER-R-075〕** **Checkpoint + 簽章永遠保留**（獨立 `LevelStorage`、不走 LRU），否則新玩家無法驗 derived state。
 - **〔LEDGER-R-074〕** persistence admission 使用 `open4wd-ledger` custom access-controller：manifest `write:['*']` 只代表 permissionless author，不代表任意 payload。落盤前強制 Orbit identity、operation exact shape、event `64 KiB / depth 16 / 2,048 entries`、**封閉 23 種已實作 event allowlist**、逐型別 exact deep schema／CID／PeerId／ 整數 ／ 容器上限與 stateless intrinsic authorization；unknown 與未啟用 `asset-version-upgrade` 拒絕。match-result／desync／config／arbitration 等簽章容器須實際驗章，不只驗 64-byte 外形。AC reject 時 entry/index/heads 零寫入。live 時效與 state-dependent 業務共識仍由收件/fold 層負責。
@@ -229,7 +229,7 @@ const LRU_HEADS_LIMIT = 64;
 
 永久 log 的零成本合法形狀 ／business no-op 洪水已由 Admission v1 收斂：每個不同 final entry 都要對完整已簽 BaseEntry 支付固定 18–22 bits 工作量，proof、canonical bytes、CID、Orbit identity 與封閉事件 schema 全過後才可 durable write。配合 raw transport 四層 admission、stream pool/timeout、staged atomic commit/poison、128 MiB/10,000 entry quota、checkpoint-only eviction、checkpoint adoption queue/negative cache，攻擊者不能靠換 PeerId、換 topic、重送同一 proof 或送畸形資料取得免費永久寫入。
 
-**〔LEDGER-R-077〕** 這是**成本與損害上限**，不是絕對阻擋大型攻擊者：有足夠 CPU／ 裝置的攻擊者仍可為大量不同 entry 逐筆付費；本機 quota 滿載會 fail-closed，也不會神奇縮小全網歷史。因此保留 transport global budgets、儲存 quota、checkpoint、事件 intrinsic authorization 與 reducer business idempotency；不得因已有 PoW 就移除任一層。若 public 後實測顯示成本不足，只能依 [流程/升版.md §8.4](../流程/升版.md) 推出新 scheme／manifest 與治理 checkpoint 遷移，不得把本機負載、牆鐘 rate limit 或 runtime 自動難度搬入同一 AC 造成 persistence 分叉。
+**〔LEDGER-R-077〕** 這是**成本與損害上限**，不是絕對阻擋大型攻擊者：有足夠 CPU／ 裝置的攻擊者仍可為大量不同 entry 逐筆付費；本機 quota 滿載會 fail-closed，也不會神奇縮小全網歷史。檢查點切面的本機上限分為業務上限與硬上限：超過業務上限後業務 entry 被拒，檢查點提案與投票在兩者之間仍可寫入（[ledger-checkpoint.md](ledger-checkpoint.md) 〔LEDGER-R-110〕），定稿公告被拒時改由採納流程處理（〔LEDGER-R-046〕）；硬上限也滿時 fail-closed 的範圍包含檢查點控制事件（issue 001563），三位以上簽署者時保留額度的涵蓋範圍另有限制（issue 001566）。因此保留 transport global budgets、儲存 quota、checkpoint、事件 intrinsic authorization 與 reducer business idempotency；不得因已有 PoW 就移除任一層。若 public 後實測顯示成本不足，只能依 [流程/升版.md §8.4](../流程/升版.md) 推出新 scheme／manifest 與治理 checkpoint 遷移，不得把本機負載、牆鐘 rate limit 或 runtime 自動難度搬入同一 AC 造成 persistence 分叉。
 
 ## 11. LedgerApi
 
@@ -268,23 +268,33 @@ interface LedgerApi {
   syncFromCheckpoint(): Promise<Result<void>>;
   syncEventsSince(cids: ReadonlyArray<CID>): Promise<Result<number>>; // 完整 multi-head frontier
   getLatestLogHeads(): Promise<ReadonlyArray<CID>>; // 診斷／同步用完整 frontier；空帳本回 []
-  onEvent(handler: (e: LedgerEvent) => void): Unsubscribe;
-  getRecoveryStatus(): LedgerRecoveryStatus; // 自動復原狀態，供介面顯示（ledger-checkpoint.md §4.1）
+  onEvent(handler: (e: LedgerEvent) => void): Unsubscribe; // 同一事件以事件鍵去重，但仍可能重複、跨次送出不保證順序；訂閱者須冪等（ledger-checkpoint.md 〔LEDGER-R-049〕）
+  getRecoveryStatus(): LedgerRecoveryStatus; // 自動復原狀態與定稿公告待送出的情形，供介面顯示（ledger-checkpoint.md §4.1）
 }
 interface LedgerRecoveryStatus {
   phase: "idle" | "ingest-recovery" | "checkpoint-scan-retry";
   attempts: number; // 該階段已失敗並排定下一次重試的重建（啟動掃描為掃描）次數；第一次立即 recovery 的失敗也計入
   lastError: string | null; // 錯誤名稱與訊息的截短摘要，不含事件內容
+  pendingAnnouncement?: LedgerPendingAnnouncementStatus; // 有定稿公告待送出時才存在；與 phase 互不遮蓋
+}
+interface LedgerPendingAnnouncementStatus {
+  count: number; // 待送出筆數（上限 24）
+  oldestCheckpointCid: CID; // 最舊一筆＝目前要送或卡住的那一筆
+  attempts: number; // 連續失敗的送出輪數；任何一輪把清單送完即歸零
+  lastErrorCode: "cut-full" | "announcement-backlog-full" | "certificate-unavailable" | "send-failed" | null;
+  lastError: string | null; // 錯誤名稱與訊息的截短摘要
 }
 ```
 
-檢查點協定方法的型別與錯誤碼見 [interfaces.md §5](interfaces.md#5-ledger)；失敗一律以帶 `code` 的 `CheckpointProtocolError` 回報，規則見 [ledger-checkpoint.md §3](ledger-checkpoint.md)。`getCheckpointCertificate(cid)`（本機保存的憑證）與 `onCheckpointVotingChange(handler)`（待定稿索引改變通知）只在具體類 `Open4wdLedger` 上提供。
+`pendingAnnouncement` 的資料來源是記憶體中的清單快照（[ledger-checkpoint.md](ledger-checkpoint.md) 〔LEDGER-R-040〕）。`lastErrorCode` 是最近一次的錯誤：`cut-full` 為公告因切面容量被拒，`announcement-backlog-full` 為清單已滿而新的定稿被拒，`certificate-unavailable` 為該本體的憑證在本機取不到，`send-failed` 為其他寫入或儲存失敗；清單已滿時前兩者可能交替出現，是否已滿以 `count` 判斷。清單非空而尚無任何一輪失敗時為 null；衝突隔離期間清單保留、欄位照常存在，沒有專屬代碼。
 
-**〔LEDGER-R-078〕** `getDerivedState`、`getMatchRecord`、`getMatchFromPartition`、`getRecentMatchesForPlayer` 共用同一 business-read readiness gate：呼叫前與 state queue drain 後都檢查。startup checkpoint reconciliation 未達 stable watermark 時以 `checkpoint startup reconciliation 尚未完成` 拒絕；durable sibling conflict 時以 `checkpoint sibling conflict：帳本已隔離` 拒絕；ingest recovery 尚未完成時原樣拋出其 ingest error。不得在這三種狀態下回傳 stale／fallback business view；gate 清除後恢復正常讀取。`readEvents`、head、`getRecoveryStatus` 與 sync/checkpoint 診斷面不屬 business view，仍可用於同步與修復；其中沒有讀全部事件的入口（§10）。`readEvents` 讀指定 checkpoint 的 `log_head_cids` 到目前 heads：這組 heads 就是 log 的 boundary 時（一般是最新已採納的 checkpoint），讀到的是本機保留範圍；指定較舊的 checkpoint 時，這一段含 boundary 之前的 entry，本機仍留著就一併回傳，已被淘汰則拋錯、不回傳部分結果。
+檢查點協定方法的型別與錯誤碼見 [interfaces.md §5](interfaces.md#5-ledger)；協定層的拒絕以帶 `code` 的 `CheckpointProtocolError` 回報；儲存與 log 的失敗原樣回傳，其中公告待送出清單已滿時是 `CheckpointAnnouncementBacklogError`（`code` 為 `announcement-backlog-full`）。規則見 [ledger-checkpoint.md §3](ledger-checkpoint.md)。`getCheckpointCertificate(cid)`（本機保存的憑證）與 `onCheckpointVotingChange(handler)`（待定稿索引改變通知）只在具體類 `Open4wdLedger` 上提供。
+
+**〔LEDGER-R-078〕** `getDerivedState`、`getMatchRecord`、`getMatchFromPartition`、`getRecentMatchesForPlayer` 共用同一 business-read readiness gate：呼叫前與 state queue drain 後都檢查。startup checkpoint reconciliation 未達 stable watermark 時以 `checkpoint startup reconciliation 尚未完成` 拒絕；durable sibling conflict 時以 `checkpoint sibling conflict：帳本已隔離` 拒絕；ingest recovery 尚未完成時原樣拋出其 ingest error。不得在這三種狀態下回傳 stale／fallback business view；gate 清除後恢復正常讀取。`open` 回成功不代表 business view 已可讀：啟動掃描超過前景等待上限時 reconciliation 仍在進行；最新 checkpoint 的狀態塊取不到時 runtime 處於 ingest recovery（[ledger-checkpoint.md](ledger-checkpoint.md) 〔LEDGER-R-048〕，此時拋出的 ingest error 帶 code `checkpoint-state-unavailable`）。呼叫端須以 `getRecoveryStatus` 或讀取結果判斷，不得以 `open` 的結果代替。具體類 `Open4wdLedger` 另提供 `onBusinessReady(handler)`：startup reconciliation 達成 stable 時、以及 ingest failure 由成功的重建解除時通知（當下仍被其他條件擋下時不通知，可能重複，訂閱者拋錯不影響帳本）；開庫就在 recovery 的 runtime 恢復時既有 entry 併入 notified baseline、沒有 `onEvent`，持有狀態快照的呼叫端以此重讀。定稿公告待送出與採納的背景重掃不屬 business readiness gate，不影響業務讀寫；前者由 `getRecoveryStatus` 的 `pendingAnnouncement` 回報，後者不反映在 `getRecoveryStatus`。`readEvents`、head、`getRecoveryStatus` 與 sync/checkpoint 診斷面不屬 business view，仍可用於同步與修復；其中沒有讀全部事件的入口（§10）。`readEvents` 讀指定 checkpoint 的 `log_head_cids` 到目前 heads：這組 heads 就是 log 的 boundary 時（一般是最新已採納的 checkpoint），讀到的是本機保留範圍；指定較舊的 checkpoint 時，這一段含 boundary 之前的 entry，本機仍留著就一併回傳，已被淘汰則拋錯、不回傳部分結果。
 
 `deriveStateAt` **純函數**（不改本機 cache、每次產生新 DerivedState object），依目標 `logHeadCids` 分三種情形：
 
-- **目標恰為某個帳本檢查點**：目標的 head 集合與本機檢查點鏈上某個檢查點的 `log_head_cids` 完全相同（不限最新的；比對與順序無關）→ 取**該檢查點自己的** derived_state 塊，驗 CID 與 canonical bytes 後解碼回傳，不 replay 任何 entry。該塊本機沒有時由內容儲存向網路取，取不到回 null。
+- **目標恰為某個帳本檢查點**：目標的 head 集合與本機檢查點鏈上某個檢查點的 `log_head_cids` 完全相同（不限最新的；比對與順序無關）→ 取**該檢查點自己的** derived_state 塊，驗 CID 與 canonical bytes 後解碼回傳，不 replay 任何 entry。鏈上有多個檢查點的 `log_head_cids` 與目標相同時（相鄰檢查點之間沒有新條目），取其中最新的一個。該塊本機沒有時由內容儲存向網路取，取不到回 null。
 - **目標在最新檢查點之後**：載最新檢查點的 derived_state → replay 其 `log_head_cids` 到目標之間的完整 DAG。尚無任何檢查點時，才從 genesis replay 到目標。
 - **其餘目標不支援**：已有檢查點，而目標既不是某個檢查點、也不在最新檢查點之後（例如落在兩個較舊檢查點之間）→ 回 null，不退回 genesis replay。那一段的 entry 依 〔LEDGER-R-073〕 可被本機淘汰，求值結果不得取決於它們是否剛好還在本機。
 
