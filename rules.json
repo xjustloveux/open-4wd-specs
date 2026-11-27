@@ -1,7 +1,7 @@
 {
   "generatedBy": "rules:generate",
   "counts": {
-    "LEDGER": 109,
+    "LEDGER": 110,
     "ECON": 53,
     "MOD": 57,
     "PHYS": 1,
@@ -1087,7 +1087,7 @@
       },
       "anchor": {
         "file": "程式架構/governance-signer.md",
-        "line": 272,
+        "line": 283,
         "excerpt": "瀏覽器 client 不提案、不投票、不釋放鎖定：主 repo `src/` 中帳本核心（`src/ledger/`）與測試輔助（`src/testing/`）"
       },
       "refs": [
@@ -1133,7 +1133,12 @@
         "line": 159,
         "excerpt": "主迴圈、`release-lock`、`config-export` 與 `config-update` 在同步閘通過前不對帳本做任何寫入或定稿。"
       },
-      "refs": []
+      "refs": [
+        {
+          "file": "程式架構/governance-signer.md",
+          "line": 172
+        }
+      ]
     },
     {
       "id": "GSIGN-R-004",
@@ -1149,7 +1154,7 @@
       },
       "anchor": {
         "file": "程式架構/governance-signer.md",
-        "line": 205,
+        "line": 216,
         "excerpt": "偵測到 `self-equivocation`、`foreign-instance`、`conflict`、`lock-store-unavailable`、`"
       },
       "refs": []
@@ -1168,7 +1173,7 @@
       },
       "anchor": {
         "file": "程式架構/governance-signer.md",
-        "line": 191,
+        "line": 201,
         "excerpt": "檢查點協定錯誤碼的處置是封閉對照表，新增錯誤碼時必須同時決定處置：`reconciliation-pending`、"
       },
       "refs": []
@@ -1187,7 +1192,7 @@
       },
       "anchor": {
         "file": "程式架構/governance-signer.md",
-        "line": 221,
+        "line": 232,
         "excerpt": "`release-lock` 只在下列前置全部成立時才釋放並改投，任一不符回退出碼 5：取得實例鎖（常駐實例已停止）；"
       },
       "refs": []
@@ -1206,7 +1211,7 @@
       },
       "anchor": {
         "file": "程式架構/governance-signer.md",
-        "line": 241,
+        "line": 252,
         "excerpt": "`config-update` 只在目前簽署者恰為一位、且就是本節點時寫入：簽署者不是恰好一位回退出碼 5 並說明多人收簽由"
       },
       "refs": [
@@ -1230,13 +1235,13 @@
       },
       "anchor": {
         "file": "程式架構/governance-signer.md",
-        "line": 261,
+        "line": 272,
         "excerpt": "公開開發金鑰只允許出現在 development：部署值的 `stage` 不是 `development` 而 `governanceSigners` 含此 "
       },
       "refs": [
         {
           "file": "部署資訊/open-4wd-signer.md",
-          "line": 138
+          "line": 139
         },
         {
           "file": "部署資訊/部署實際值與初始拓撲.md",
@@ -2017,7 +2022,7 @@
         },
         {
           "file": "程式架構/ledger-checkpoint.md",
-          "line": 230
+          "line": 231
         }
       ]
     },
@@ -2040,8 +2045,16 @@
       },
       "refs": [
         {
+          "file": "程式架構/ledger-admission.md",
+          "line": 165
+        },
+        {
           "file": "程式架構/ledger-checkpoint.md",
           "line": 221
+        },
+        {
+          "file": "程式架構/ledger-checkpoint.md",
+          "line": 223
         }
       ]
     },
@@ -2059,10 +2072,35 @@
       },
       "anchor": {
         "file": "程式架構/ledger-checkpoint.md",
-        "line": 229,
+        "line": 230,
         "excerpt": "- **CheckpointStore control envelope**：`{ version, revision, latest, effective, "
       },
-      "refs": []
+      "refs": [
+        {
+          "file": "程式架構/ledger-admission.md",
+          "line": 165
+        },
+        {
+          "file": "程式架構/ledger-admission.md",
+          "line": 165
+        },
+        {
+          "file": "程式架構/ledger-checkpoint.md",
+          "line": 227
+        },
+        {
+          "file": "程式架構/ledger-checkpoint.md",
+          "line": 233
+        },
+        {
+          "file": "程式架構/ledger.md",
+          "line": 206
+        },
+        {
+          "file": "程式架構/ledger.md",
+          "line": 289
+        }
+      ]
     },
     {
       "id": "LEDGER-R-041",
@@ -2078,13 +2116,45 @@
       },
       "anchor": {
         "file": "程式架構/ledger-checkpoint.md",
-        "line": 230,
+        "line": 231,
         "excerpt": "- **遠端 adoption 與啟動 watermark**：live `ledger-checkpoint-certificate` 公告與 open 時的"
       },
       "refs": [
         {
+          "file": "程式架構/governance-signer.md",
+          "line": 337
+        },
+        {
           "file": "程式架構/ledger-checkpoint.md",
           "line": 220
+        },
+        {
+          "file": "程式架構/ledger-checkpoint.md",
+          "line": 227
+        },
+        {
+          "file": "程式架構/ledger-checkpoint.md",
+          "line": 228
+        },
+        {
+          "file": "程式架構/ledger-checkpoint.md",
+          "line": 228
+        },
+        {
+          "file": "程式架構/ledger-checkpoint.md",
+          "line": 246
+        },
+        {
+          "file": "程式架構/ledger-checkpoint.md",
+          "line": 251
+        },
+        {
+          "file": "程式架構/ledger.md",
+          "line": 223
+        },
+        {
+          "file": "程式架構/程式流程/ledger.md",
+          "line": 95
         }
       ]
     },
@@ -2102,7 +2172,7 @@
       },
       "anchor": {
         "file": "程式架構/ledger-checkpoint.md",
-        "line": 231,
+        "line": 232,
         "excerpt": "- **同 previous sibling quarantine**：衝突以**本體 CID** 判定：若兩個不同本體 CID 都完整有效且 `previou"
       },
       "refs": [
@@ -2112,7 +2182,19 @@
         },
         {
           "file": "程式架構/ledger-checkpoint.md",
-          "line": 230
+          "line": 228
+        },
+        {
+          "file": "程式架構/ledger-checkpoint.md",
+          "line": 231
+        },
+        {
+          "file": "資料系統.md",
+          "line": 350
+        },
+        {
+          "file": "部署資訊/open-4wd-signer.md",
+          "line": 173
         }
       ]
     },
@@ -2130,10 +2212,18 @@
       },
       "anchor": {
         "file": "程式架構/ledger-checkpoint.md",
-        "line": 232,
+        "line": 233,
         "excerpt": "- **crash redo 與 pre-open reconciliation**：跨 Orbit log／CheckpointStore 不宣稱單一 tra"
       },
       "refs": [
+        {
+          "file": "程式架構/ledger-checkpoint.md",
+          "line": 231
+        },
+        {
+          "file": "程式架構/ledger-checkpoint.md",
+          "line": 232
+        },
         {
           "file": "程式架構/ledger.md",
           "line": 206
@@ -2154,7 +2244,7 @@
       },
       "anchor": {
         "file": "程式架構/ledger-checkpoint.md",
-        "line": 240,
+        "line": 241,
         "excerpt": "- Orbit entry 使用獨立 IndexedDB blockstore `open4wd/ledger/entries`；不得與 Helia/Bitsw"
       },
       "refs": []
@@ -2173,13 +2263,17 @@
       },
       "anchor": {
         "file": "程式架構/ledger-checkpoint.md",
-        "line": 242,
+        "line": 243,
         "excerpt": "- **檢查點切面**：條目是否屬於本機 log 視圖，只依 DAG 與最新已採納檢查點 K 判定。切面集合 S ＝ K 的 `log_head_cids`，加"
       },
       "refs": [
         {
+          "file": "程式參數/protocol.md",
+          "line": 222
+        },
+        {
           "file": "程式架構/governance-signer.md",
-          "line": 321
+          "line": 341
         },
         {
           "file": "程式架構/ledger-admission.md",
@@ -2187,7 +2281,11 @@
         },
         {
           "file": "程式架構/ledger-checkpoint.md",
-          "line": 243
+          "line": 244
+        },
+        {
+          "file": "程式架構/ledger-checkpoint.md",
+          "line": 245
         },
         {
           "file": "程式架構/ledger-checkpoint.md",
@@ -2195,11 +2293,23 @@
         },
         {
           "file": "程式架構/ledger-checkpoint.md",
-          "line": 252
+          "line": 248
+        },
+        {
+          "file": "程式架構/ledger-checkpoint.md",
+          "line": 248
+        },
+        {
+          "file": "程式架構/ledger-checkpoint.md",
+          "line": 254
         },
         {
           "file": "程式架構/ledger.md",
           "line": 206
+        },
+        {
+          "file": "程式架構/ledger.md",
+          "line": 222
         },
         {
           "file": "程式架構/ledger.md",
@@ -2225,13 +2335,41 @@
       },
       "anchor": {
         "file": "程式架構/ledger-checkpoint.md",
-        "line": 244,
+        "line": 246,
         "excerpt": "- remote join 與 local `commitPrepared(finalEntryBytes, cid)` 都先經 canonical Admis"
       },
       "refs": [
         {
           "file": "程式架構/ledger-checkpoint.md",
+          "line": 231
+        },
+        {
+          "file": "程式架構/ledger-checkpoint.md",
           "line": 243
+        },
+        {
+          "file": "程式架構/ledger-checkpoint.md",
+          "line": 244
+        },
+        {
+          "file": "程式架構/ledger-checkpoint.md",
+          "line": 245
+        },
+        {
+          "file": "程式架構/ledger-checkpoint.md",
+          "line": 251
+        },
+        {
+          "file": "程式架構/ledger.md",
+          "line": 222
+        },
+        {
+          "file": "程式架構/ledger.md",
+          "line": 232
+        },
+        {
+          "file": "程式架構/程式流程/ledger.md",
+          "line": 95
         }
       ]
     },
@@ -2249,13 +2387,13 @@
       },
       "anchor": {
         "file": "程式架構/ledger-checkpoint.md",
-        "line": 245,
+        "line": 247,
         "excerpt": "- quota eviction 只刪 finalized-checkpoint-covered entry，且呼叫專屬 entry blockstore 的真"
       },
       "refs": [
         {
           "file": "程式架構/ledger-checkpoint.md",
-          "line": 246
+          "line": 248
         }
       ]
     },
@@ -2273,17 +2411,37 @@
       },
       "anchor": {
         "file": "程式架構/ledger-checkpoint.md",
-        "line": 249,
+        "line": 251,
         "excerpt": "- `syncFromCheckpoint`：取 effective latest checkpoint（無則從 genesis/log 重建）；已有 chec"
       },
       "refs": [
         {
-          "file": "程式架構/ledger-checkpoint.md",
-          "line": 230
+          "file": "程式架構/governance-signer.md",
+          "line": 169
         },
         {
           "file": "程式架構/ledger-checkpoint.md",
-          "line": 230
+          "line": 228
+        },
+        {
+          "file": "程式架構/ledger-checkpoint.md",
+          "line": 228
+        },
+        {
+          "file": "程式架構/ledger-checkpoint.md",
+          "line": 231
+        },
+        {
+          "file": "程式架構/ledger-checkpoint.md",
+          "line": 231
+        },
+        {
+          "file": "程式架構/ledger-checkpoint.md",
+          "line": 231
+        },
+        {
+          "file": "程式架構/ledger.md",
+          "line": 293
         }
       ]
     },
@@ -2301,10 +2459,31 @@
       },
       "anchor": {
         "file": "程式架構/ledger-checkpoint.md",
-        "line": 250,
+        "line": 252,
         "excerpt": "- **accepted／pending／notified 分離**：只有 decode 成功、非檢查點控制事件（〔LEDGER-R-100〕）、未來時戳排除、"
       },
-      "refs": []
+      "refs": [
+        {
+          "file": "程式架構/ledger-checkpoint.md",
+          "line": 245
+        },
+        {
+          "file": "程式架構/ledger-checkpoint.md",
+          "line": 249
+        },
+        {
+          "file": "程式架構/ledger-checkpoint.md",
+          "line": 251
+        },
+        {
+          "file": "程式架構/ledger-checkpoint.md",
+          "line": 251
+        },
+        {
+          "file": "程式架構/ledger.md",
+          "line": 271
+        }
+      ]
     },
     {
       "id": "LEDGER-R-050",
@@ -2322,7 +2501,7 @@
       },
       "anchor": {
         "file": "程式架構/ledger-checkpoint.md",
-        "line": 252,
+        "line": 254,
         "excerpt": "- **Orbit multi-head 與 full-DAG fold**：切面 S 內的 sibling 都保留（〔LEDGER-R-045〕），不以 ar"
       },
       "refs": []
@@ -2783,7 +2962,7 @@
       "refs": [
         {
           "file": "程式架構/ledger.md",
-          "line": 289
+          "line": 299
         }
       ]
     },
@@ -2807,7 +2986,7 @@
       "refs": [
         {
           "file": "程式架構/ledger-checkpoint.md",
-          "line": 243
+          "line": 244
         }
       ]
     },
@@ -2845,7 +3024,7 @@
       "anchor": {
         "file": "程式架構/ledger.md",
         "line": 223,
-        "excerpt": "- finalized checkpoint 完整驗簽後先 prepare boundary；content-addressed artifacts 與唯一宣告"
+        "excerpt": "- finalized checkpoint 完整驗簽後，定稿與採納都先 prepare boundary（唯讀驗證：新 boundary 必須是舊 bound"
       },
       "refs": []
     },
@@ -2882,10 +3061,15 @@
       },
       "anchor": {
         "file": "程式架構/ledger.md",
-        "line": 283,
+        "line": 293,
         "excerpt": "`getDerivedState`、`getMatchRecord`、`getMatchFromPartition`、`getRecentMatchesForP"
       },
-      "refs": []
+      "refs": [
+        {
+          "file": "程式架構/governance-signer.md",
+          "line": 171
+        }
+      ]
     },
     {
       "id": "LEDGER-R-079",
@@ -3279,13 +3463,13 @@
       },
       "anchor": {
         "file": "資料系統.md",
-        "line": 354,
+        "line": 356,
         "excerpt": "3. 建新 OrbitDB log（**新位址**）；ordinary genesis 與 rebirth genesis 互斥，rebirth 缺任一 pro"
       },
       "refs": [
         {
           "file": "程式架構/ledger-checkpoint.md",
-          "line": 234
+          "line": 235
         }
       ]
     },
@@ -3320,6 +3504,10 @@
           "line": 222
         },
         {
+          "file": "程式架構/ledger-checkpoint.md",
+          "line": 245
+        },
+        {
           "file": "程式架構/ledger.md",
           "line": 109
         }
@@ -3349,7 +3537,7 @@
         },
         {
           "file": "程式架構/ledger-checkpoint.md",
-          "line": 250
+          "line": 252
         }
       ]
     },
@@ -3427,6 +3615,14 @@
       },
       "refs": [
         {
+          "file": "程式架構/ledger-admission.md",
+          "line": 165
+        },
+        {
+          "file": "程式架構/ledger-admission.md",
+          "line": 165
+        },
+        {
           "file": "程式架構/ledger-checkpoint.md",
           "line": 216
         },
@@ -3460,7 +3656,7 @@
       "refs": [
         {
           "file": "程式架構/governance-signer.md",
-          "line": 225
+          "line": 236
         },
         {
           "file": "程式架構/ledger-checkpoint.md",
@@ -3522,7 +3718,7 @@
       },
       "anchor": {
         "file": "程式架構/ledger-checkpoint.md",
-        "line": 228,
+        "line": 229,
         "excerpt": "- **憑證格式、驗證與保存**：`LedgerCheckpointCertificate` 是 canonical dag-cbor（`checkpoint_"
       },
       "refs": [
@@ -3532,7 +3728,11 @@
         },
         {
           "file": "程式架構/ledger-checkpoint.md",
-          "line": 230
+          "line": 228
+        },
+        {
+          "file": "程式架構/ledger-checkpoint.md",
+          "line": 231
         },
         {
           "file": "程式架構/pinning-service.md",
@@ -3556,13 +3756,13 @@
       },
       "anchor": {
         "file": "程式架構/ledger-checkpoint.md",
-        "line": 243,
+        "line": 244,
         "excerpt": "- **確定性時鐘與 clock id**：條目 `clock.time` 必須恰等於所有 parent 的 `clock.time` 最大值加 1，沒有 pa"
       },
       "refs": [
         {
           "file": "程式架構/governance-signer.md",
-          "line": 321
+          "line": 341
         },
         {
           "file": "程式架構/ledger-admission.md",
@@ -3570,7 +3770,7 @@
         },
         {
           "file": "程式架構/ledger-checkpoint.md",
-          "line": 242
+          "line": 243
         },
         {
           "file": "程式架構/ledger.md",
@@ -3596,13 +3796,17 @@
       },
       "anchor": {
         "file": "程式架構/ledger-checkpoint.md",
-        "line": 246,
+        "line": 248,
         "excerpt": "- **開庫、涵蓋範圍還原與邊界推進套用同一切面規則**：開庫重建逐筆驗 CID、access-controller 與簽章後，以 〔LEDGER-R-045〕"
       },
       "refs": [
         {
           "file": "程式架構/governance-signer.md",
-          "line": 321
+          "line": 341
+        },
+        {
+          "file": "程式架構/ledger-checkpoint.md",
+          "line": 245
         }
       ]
     },
@@ -3630,11 +3834,19 @@
         },
         {
           "file": "程式架構/governance-signer.md",
-          "line": 182
+          "line": 187
         },
         {
           "file": "程式架構/ledger-checkpoint.md",
-          "line": 247
+          "line": 223
+        },
+        {
+          "file": "程式架構/ledger-checkpoint.md",
+          "line": 249
+        },
+        {
+          "file": "程式架構/ledger-checkpoint.md",
+          "line": 252
         },
         {
           "file": "程式架構/ledger.md",
@@ -3643,6 +3855,66 @@
         {
           "file": "程式架構/pwa-offline.md",
           "line": 178
+        }
+      ]
+    },
+    {
+      "id": "LEDGER-R-110",
+      "kind": "reject",
+      "requiredLayers": [
+        "service"
+      ],
+      "implementationRepos": [
+        "open-4wd"
+      ],
+      "testContracts": {
+        "service": "ledger-r-110-service"
+      },
+      "anchor": {
+        "file": "程式架構/ledger-checkpoint.md",
+        "line": 245,
+        "excerpt": "- **檢查點控制事件的保留額度**：一批條目加入後 S 會超過業務上限時（〔LEDGER-R-045〕），只有**保留批次**可以收下，且加入後不得超過硬上限"
+      },
+      "refs": [
+        {
+          "file": "程式參數/protocol.md",
+          "line": 222
+        },
+        {
+          "file": "程式架構/governance-signer.md",
+          "line": 334
+        },
+        {
+          "file": "程式架構/ledger-checkpoint.md",
+          "line": 232
+        },
+        {
+          "file": "程式架構/ledger-checkpoint.md",
+          "line": 243
+        },
+        {
+          "file": "程式架構/ledger-checkpoint.md",
+          "line": 246
+        },
+        {
+          "file": "程式架構/ledger-checkpoint.md",
+          "line": 248
+        },
+        {
+          "file": "程式架構/ledger-checkpoint.md",
+          "line": 252
+        },
+        {
+          "file": "程式架構/ledger.md",
+          "line": 222
+        },
+        {
+          "file": "程式架構/ledger.md",
+          "line": 232
+        },
+        {
+          "file": "部署資訊/open-4wd-signer.md",
+          "line": 203
         }
       ]
     },

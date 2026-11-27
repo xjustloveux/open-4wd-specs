@@ -166,6 +166,11 @@ ReadWriteOnce 資料卷與主迴圈的 foreign-instance 偵測（第 9 節）。
 協定錯誤碼時才帶 `:<code>`）、
 `ledger-recovery-<phase>`。靜默只代表這段時間沒有新內容，不代表已取得網路上全部條目；這是同步閘目前的已知限制。
 
+帳本開啟成功但最新檢查點的狀態塊暫時取不到時（[ledger-checkpoint.md](ledger-checkpoint.md) 〔LEDGER-R-048〕），工具照常啟動：
+同步閘在帳本恢復前不通過（`ledger-recovery-ingest-recovery`），工具不提案、不投票、不定稿、不 halt，`/status` 的 `recovery` 為
+`ingest-recovery`；狀態塊補回後帳本自行恢復，工具以帳本的「業務狀態可讀」通知重讀狀態（[ledger.md](ledger.md) 〔LEDGER-R-078〕）。
+經同步閘的管理指令（〔GSIGN-R-003〕）在恢復前同樣不通過。定稿公告待送出不影響同步閘。
+
 ## 9. 主迴圈
 
 排程為 single-flight：依 `SIGNER_TICK_MS` 定時執行；帳本事件與投票通知 debounce 2 秒後觸發；輪次結束時加 0 到 5 秒
@@ -186,14 +191,20 @@ ReadWriteOnce 資料卷與主迴圈的 foreign-instance 偵測（第 9 節）。
 10. 卡死 → 停止自動提案與投票，等待人工處理（第 11 節）。
 11. 本機有鎖定、鎖定的本體是候選本體，但索引沒有自己的票 → 對鎖定的本體補投（`signCheckpoint`）。鎖定的本體不是候選
     本體時這一步不動作，交由第 12 步；`proposeCheckpoint()` 回 `locked` 時維持等待並記錄 `locked-without-votable-candidate`。
-12. 觸發條件成立或已有候選本體 → `proposeCheckpoint()`（重提案與投票對象由帳本規則決定）。
+12. 觸發條件成立或已有候選本體 → `proposeCheckpoint()`（重提案、鎖定後重送同一本體與投票對象由帳本規則決定）。
+
+未 halt 的每個 tick 在同步閘之前另讀一次 `getRecoveryStatus()`，把復原階段與定稿公告待送出的情形記到對外狀態；公告的情形
+（筆數、最舊一筆、錯誤代碼）改變時記錄一次 `announcement-pending`，清空時記錄 `announcement-delivered`，只有失敗次數增加不重複
+記錄。公告由帳本在背景重送（[ledger-checkpoint.md](ledger-checkpoint.md) `finalizeCheckpoint` 條之後的說明），待送出不使主迴圈
+退避或 halt，phase 不變。
 
 **〔GSIGN-R-005〕** 檢查點協定錯誤碼的處置是封閉對照表，新增錯誤碼時必須同時決定處置：`reconciliation-pending`、
 `ingest-failure`、`state-unavailable` 依 `LEDGER_RECOVERY_RETRY_DELAYS_MS` 退避；`conflict`、`self-equivocation`、
 `lock-store-unavailable` halt；`not-signer` idle；`not-designated`、`trigger-not-met`、`locked`、`unknown-checkpoint`、
 `below-quorum` 等下一次排程、不退避；`stale-previous` 立即重跑一次，連續第二次改為等待；`invalid-checkpoint`、
 `recompute-mismatch` 略過該本體並計數；只屬人工釋放的 `not-stalled`、`stall-too-short`、`release-not-allowed`、
-`confirmation-mismatch` 記錄並退避。非協定例外一律退避，`lastErrorCode` 記 `runtime-error`。
+`confirmation-mismatch` 記錄並退避。非協定例外一律退避、不 halt：其中切面容量拒絕（提案或投票事件寫不進）`lastErrorCode` 記
+`cut-full`，公告待送出清單已滿使定稿被拒時記 `announcement-backlog-full`，其餘記 `runtime-error`。
 
 **heads 重送**：本節點在目前錨已投票（含自己的提案）的候選本體，自首次看到這張票起逾 `SIGNER_REBROADCAST_MS` 仍未
 定稿，就把目前所有 heads 的條目 bytes 重新廣播到 ledger topic；訊息與寫入時的 heads 更新相同，收件端走既有 join 補取
@@ -280,7 +291,9 @@ heads 交換傳出。
 - `/healthz`：行程存活即 200。
 - `/readyz`：phase 為 ready 時 200，否則 503 並附原因碼。
 - `/status`：JSON 狀態，欄位固定為 `phase`、`haltReason`、`notReadyReason`、`governancePeerId`、`profile`、`ledgerAddress`、
-  `deploymentValuesSha256`、`connections`、`latestCheckpointCid`、`round`、`pending`、`recovery`、`lastErrorCode`、`buildInfo`。
+  `deploymentValuesSha256`、`connections`、`latestCheckpointCid`、`round`、`pending`、`recovery`、`pendingAnnouncement`、
+  `lastErrorCode`、`buildInfo`。`pendingAnnouncement` 為 null 或 `{count, oldestCheckpointCid, attempts, lastErrorCode}`
+  （定稿公告待送出的筆數、最舊一筆、連續失敗輪數與最近一次錯誤代碼，不輸出錯誤訊息；代碼見 [ledger.md §11](ledger.md#11-ledgerapi)）。
   輸出逐欄投影，provider 誤帶的其他屬性不會出現。`phase` 為 `starting`、`syncing`、`ready`、`idle`、`halted`、`stopping`
   之一；`buildInfo` 為 `{version, commit, builtAt, ruleEpochs}`。
 
@@ -289,7 +302,7 @@ heads 交換傳出。
 記錄是每筆一行的 JSON（`{ts, level, event, ...}`），低於設定層級的不輸出。主要事件：`key-loaded`、`runtime-started`、
 `libp2p-listening`（`addresses`，預設不監聽時為空陣列）、`health-server-listening`、`loop-state`、`sync-gate-passed`、
 `checkpoint-proposed`、`checkpoint-voted`、`checkpoint-vote-restored`、`checkpoint-finalized`、`checkpoint-skipped`、
-`loop-backoff`、`heads-rebroadcast`、`heads-rebroadcast-failed`、`halted`、`halted-on-start`、`halt-record-corrupt`、
+`loop-backoff`、`heads-rebroadcast`、`heads-rebroadcast-failed`、`announcement-pending`、`announcement-delivered`、`halted`、`halted-on-start`、`halt-record-corrupt`、
 `halt-record-unreadable`、`instance-lock-taken-over`、`instance-lock-lost`、
 `governance-peer-not-in-signers`、`shutdown-requested`、`stopped`。
 
@@ -306,7 +319,8 @@ external 為 `classic-level` 與 `node-datachannel`）。`node-datachannel` 被�
 變數、金鑰或秘密。`version` 取主 repo `package.json`，實際以 commit 與映像 digest 識別。
 
 映像由主 repo `.github/workflows/signer-image.yml` 建置：只手動觸發、repository 變數 `SIGNER_IMAGE_ENABLED` 為 `true` 且在預設
-分支才執行；先跑完整 `test:signer` 並要求 N=4 整合測試通過，再打包、建置單階段 runtime 映像、煙霧測試，推到 GHCR 並輸出
+分支才執行；先跑 `test:signer`（要求 N=4 整合測試通過）與 `test:signer:slow`（依條目數提前觸發的整合測試，不在 `test:signer`
+的預設集合內，要求報告中有測試且全部通過），再打包、建置單階段 runtime 映像、煙霧測試，推到 GHCR 並輸出
 digest，不打 latest。映像與部署細節見 [部署資訊/open-4wd-signer.md](../部署資訊/open-4wd-signer.md)。
 
 ## 17. 已知限制
@@ -314,7 +328,13 @@ digest，不打 latest。映像與部署細節見 [部署資訊/open-4wd-signer.
 - 同步閘以靜默判斷追上網路，尚未與對等節點比對最新檢查點（第 8 節）。
 - 內容區塊沒有 GC，資料目錄隨帳本成長（issue 001548）。
 - 同步層對遺失的 heads 更新沒有保證時效的補送；工具只對自己有票的本體以 heads 重送緩解（issue 001549）。
-- 提案者寫入鎖定後、寫出提案前中斷時，主迴圈維持等待並記錄 `locked-without-votable-candidate`（issue 001544）。
+- 提案者寫入鎖定後、寫出提案前中斷時，下一次 `proposeCheckpoint()` 由內容塊取回同一本體重送；本體塊取不到時主迴圈維持等待並記錄
+  `locked-without-votable-candidate`（issue 001544）。
+- 切面的硬上限也滿時提案與投票事件寫不進，工具以 `cut-full` 退避（issue 001563）；保留額度在三位以上簽署者時的限制見
+  [ledger-checkpoint.md](ledger-checkpoint.md) 〔LEDGER-R-110〕（issue 001566）。
+- 定稿公告待送出清單中最舊一筆的憑證在本機取不到時，帳本每輪都停在那一筆，`pendingAnnouncement` 不會自行清空，目前沒有人工移除的
+  指令（issue 001567）。清單滿 24 筆後新的定稿以 `announcement-backlog-full` 被拒，工具退避、不 halt。
+- 帳本的採納背景重掃不反映在 `/status`（[ledger-checkpoint.md](ledger-checkpoint.md) 〔LEDGER-R-041〕）。
 - 只有一個瀏覽器加簽署工具的拓撲下，開房的房間公告因 rooms topic 沒有其他訂閱者而失敗；工具只訂閱帳本 topic，不改變這個
   限制（issue 001550）。
 - 正式部署前，pinning 節點 vendored 的帳本必須接受檢查點控制事件，否則會拒收工具寫出的事件；也必須套用檢查點切面與時鐘規則
@@ -333,4 +353,4 @@ digest，不打 latest。映像與部署細節見 [部署資訊/open-4wd-signer.
 | [流程/升版.md](../流程/升版.md)                                       | 規則版本與工具同時升級                                                               |
 | [部署資訊/open-4wd-signer.md](../部署資訊/open-4wd-signer.md)          | 映像、k8s／systemd 部署、營運程序                                                    |
 | [部署資訊/部署實際值與初始拓撲.md](../部署資訊/部署實際值與初始拓撲.md) | `governanceSigners` 實際值與開發金鑰                                                 |
-| [toolchain.md](toolchain.md)                                         | `test:signer`、`build:signer`                                                        |
+| [toolchain.md](toolchain.md)                                         | `test:signer`、`test:signer:slow`、`build:signer`                                    |

@@ -3586,6 +3586,23 @@
       "summary": null
     },
     {
+      "id": "decisions/D-20261126-01-定稿先於公告與採納流程補強.md",
+      "type": "decision",
+      "domain": [
+        "共識帳本"
+      ],
+      "summary": null
+    },
+    {
+      "id": "decisions/D-20261126-02-檢查點切面的業務上限與控制事件保留額度.md",
+      "type": "decision",
+      "domain": [
+        "共識帳本",
+        "治理營運"
+      ],
+      "summary": null
+    },
+    {
       "id": "decisions/INDEX.md",
       "type": null,
       "domain": [],
@@ -9065,6 +9082,10 @@
     },
     {
       "from": "decisions/D-20261123-03-帳本讀取以本機保留範圍為界.md",
+      "to": "decisions/D-20261126-01-定稿先於公告與採納流程補強.md"
+    },
+    {
+      "from": "decisions/D-20261123-03-帳本讀取以本機保留範圍為界.md",
       "to": "程式架構/interfaces.md"
     },
     {
@@ -9078,6 +9099,10 @@
     {
       "from": "decisions/D-20261123-04-帳本recovery失敗後依退避重試.md",
       "to": "decisions/D-20261124-06-定稿與採納後的重建失敗計入退避.md"
+    },
+    {
+      "from": "decisions/D-20261123-04-帳本recovery失敗後依退避重試.md",
+      "to": "decisions/D-20261126-01-定稿先於公告與採納流程補強.md"
     },
     {
       "from": "decisions/D-20261123-04-帳本recovery失敗後依退避重試.md",
@@ -9185,6 +9210,14 @@
     },
     {
       "from": "decisions/D-20261124-04-條目有效性以檢查點切面與確定性時鐘判定.md",
+      "to": "decisions/D-20261126-01-定稿先於公告與採納流程補強.md"
+    },
+    {
+      "from": "decisions/D-20261124-04-條目有效性以檢查點切面與確定性時鐘判定.md",
+      "to": "decisions/D-20261126-02-檢查點切面的業務上限與控制事件保留額度.md"
+    },
+    {
+      "from": "decisions/D-20261124-04-條目有效性以檢查點切面與確定性時鐘判定.md",
       "to": "程式架構/ledger-admission.md"
     },
     {
@@ -9202,6 +9235,62 @@
     {
       "from": "decisions/D-20261124-06-定稿與採納後的重建失敗計入退避.md",
       "to": "程式架構/ledger-checkpoint.md"
+    },
+    {
+      "from": "decisions/D-20261126-01-定稿先於公告與採納流程補強.md",
+      "to": "decisions/D-20261123-03-帳本讀取以本機保留範圍為界.md"
+    },
+    {
+      "from": "decisions/D-20261126-01-定稿先於公告與採納流程補強.md",
+      "to": "decisions/D-20261123-04-帳本recovery失敗後依退避重試.md"
+    },
+    {
+      "from": "decisions/D-20261126-01-定稿先於公告與採納流程補強.md",
+      "to": "decisions/D-20261124-04-條目有效性以檢查點切面與確定性時鐘判定.md"
+    },
+    {
+      "from": "decisions/D-20261126-01-定稿先於公告與採納流程補強.md",
+      "to": "程式架構/governance-signer.md"
+    },
+    {
+      "from": "decisions/D-20261126-01-定稿先於公告與採納流程補強.md",
+      "to": "程式架構/ledger-checkpoint.md"
+    },
+    {
+      "from": "decisions/D-20261126-01-定稿先於公告與採納流程補強.md",
+      "to": "程式架構/ledger.md"
+    },
+    {
+      "from": "decisions/D-20261126-01-定稿先於公告與採納流程補強.md",
+      "to": "資料系統.md"
+    },
+    {
+      "from": "decisions/D-20261126-01-定稿先於公告與採納流程補強.md",
+      "to": "部署資訊/open-4wd-signer.md"
+    },
+    {
+      "from": "decisions/D-20261126-02-檢查點切面的業務上限與控制事件保留額度.md",
+      "to": "decisions/D-20261124-04-條目有效性以檢查點切面與確定性時鐘判定.md"
+    },
+    {
+      "from": "decisions/D-20261126-02-檢查點切面的業務上限與控制事件保留額度.md",
+      "to": "decisions/D-20261126-01-定稿先於公告與採納流程補強.md"
+    },
+    {
+      "from": "decisions/D-20261126-02-檢查點切面的業務上限與控制事件保留額度.md",
+      "to": "程式參數/protocol.md"
+    },
+    {
+      "from": "decisions/D-20261126-02-檢查點切面的業務上限與控制事件保留額度.md",
+      "to": "程式架構/ledger-admission.md"
+    },
+    {
+      "from": "decisions/D-20261126-02-檢查點切面的業務上限與控制事件保留額度.md",
+      "to": "程式架構/ledger-checkpoint.md"
+    },
+    {
+      "from": "decisions/D-20261126-02-檢查點切面的業務上限與控制事件保留額度.md",
+      "to": "部署資訊/open-4wd-signer.md"
     },
     {
       "from": "decisions/INDEX.md",
@@ -10890,6 +10979,14 @@
     {
       "from": "decisions/INDEX.md",
       "to": "decisions/D-20261124-06-定稿與採納後的重建失敗計入退避.md"
+    },
+    {
+      "from": "decisions/INDEX.md",
+      "to": "decisions/D-20261126-01-定稿先於公告與採納流程補強.md"
+    },
+    {
+      "from": "decisions/INDEX.md",
+      "to": "decisions/D-20261126-02-檢查點切面的業務上限與控制事件保留額度.md"
     },
     {
       "from": "decisions/INDEX.md",
@@ -15417,6 +15514,10 @@
     },
     {
       "from": "程式架構/程式流程/ledger.md",
+      "to": "程式架構/ledger-checkpoint.md"
+    },
+    {
+      "from": "程式架構/程式流程/ledger.md",
       "to": "程式架構/ledger.md"
     },
     {
@@ -16608,6 +16709,10 @@
       "to": "部署資訊.md"
     },
     {
+      "from": "資料系統.md",
+      "to": "部署資訊/open-4wd-signer.md"
+    },
+    {
       "from": "資產政策.md",
       "to": "材質表.md"
     },
@@ -17081,11 +17186,23 @@
     },
     {
       "from": "部署資訊/open-4wd-signer.md",
+      "to": "流程/治理事件.md"
+    },
+    {
+      "from": "部署資訊/open-4wd-signer.md",
       "to": "程式架構/governance-signer.md"
     },
     {
       "from": "部署資訊/open-4wd-signer.md",
+      "to": "程式架構/ledger-checkpoint.md"
+    },
+    {
+      "from": "部署資訊/open-4wd-signer.md",
       "to": "資安規範.md"
+    },
+    {
+      "from": "部署資訊/open-4wd-signer.md",
+      "to": "資料系統.md"
     },
     {
       "from": "部署資訊/open-4wd-signer.md",

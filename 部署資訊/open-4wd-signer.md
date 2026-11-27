@@ -31,7 +31,8 @@ slug: null
 | 進入點     | `node /app/main.mjs`，預設 `run`                                                                         |
 
 `signer-image.yml` 只有 `workflow_dispatch`，且 repository 變數 `SIGNER_IMAGE_ENABLED` 為 `true`、在預設分支時才執行。
-同一次 dispatch 依序：完整 `test:signer`（N=4 整合測試必須存在且通過）與打包測試 → 以 commit 時間為 `SOURCE_DATE_EPOCH`
+同一次 dispatch 依序：`test:signer`（N=4 整合測試必須存在且通過）、`test:signer:slow`（依條目數提前觸發的整合測試，必須有測試且全部通過）
+與打包測試 → 以 commit 時間為 `SOURCE_DATE_EPOCH`
 打包 → 確認 musl prebuild 存在 → 建置映像 → 唯讀根檔案系統、無網路、`/data` 與 `/tmp` 掛 tmpfs 的煙霧測試（以公開開發金鑰驗 `peer-id`、
 `check --storage-self-test` 載入 LevelDB、`--version`）→ 推送 GHCR → 以 job output 與 step summary 輸出 digest。
 外部 actions 鎖完整 commit SHA，唯一 secret 為 `GITHUB_TOKEN`。
@@ -161,12 +162,27 @@ halt 不會自行解除。依 `/status` 的 `haltReason` 或記錄排除原因�
 | ------------------------ | ---------------------------------------------------------------------------------------------- |
 | `self-equivocation`      | 同一金鑰對同一錨投了兩個本體：金鑰可能在別處運作或外洩；確認只剩一個實例，必要時換金鑰           |
 | `foreign-instance`       | 帳本出現不是本實例寫入的本金鑰投票：停掉其他實例並確認金鑰沒有外洩                             |
-| `conflict`               | 帳本出現檢查點衝突並已隔離：人工調查後才可解除                                                 |
+| `conflict`               | 帳本記錄了同一 previous 的兩個不同檢查點並已隔離：這個狀態沒有解除指令，處置見表後說明         |
 | `lock-store-unavailable` | 投票鎖定紀錄不可用：先修復資料目錄的 `checkpoint-control` 儲存                                  |
 | `rule-epoch-unknown`     | 帳本的規則版本不在本版工具的 rulebook：升級工具                                                |
 | `instance-lock-lost`     | 實例鎖被別的實例接手或刪除：確認只剩一個實例在運作                                             |
 | `halt-record-corrupt`    | `halt.json` 無法解析，原本的原因已無從得知：從記錄的 `halted` 事件查出原因並處理後，以 `clear-halt corrupt` 解除 |
 | `halt-record-unreadable` | `halt.json` 存在但無法讀取（權限不足、不是一般檔案）：修正檔案權限或型別後再執行 `clear-halt`；此時 `clear-halt` 不刪除該檔，回退出碼 4 |
+
+`conflict` 的處置：帳本的衝突隔離寫在檢查點 control 內，重啟後仍是隔離，業務讀寫、提案、投票、定稿與之後的採納全部停止，
+條目傳輸仍在進行以保留證據（[程式架構/ledger-checkpoint.md](../程式架構/ledger-checkpoint.md) 〔LEDGER-R-042〕）。`clear-halt` 只清工具的
+halt 紀錄，不解除帳本的隔離，不得用它讓工具在原鏈上繼續運作。處置步驟：
+
+1. 保留資料目錄，不要刪除或覆寫。
+2. 由衝突證據確認共同 previous、兩個候選檢查點與各自的簽署者，查明是否有同一把金鑰簽了兩份；這樣的金鑰不得進入新鏈的治理名單。
+3. 依 [資料系統.md §19](../資料系統.md) 鏈重生，切點取衝突證據中的共同 previous，或更早的良好檢查點；舊鏈封存。
+
+非 halt 的兩個狀態欄位也需要監看（[程式架構/governance-signer.md](../程式架構/governance-signer.md) 第 15 節）：
+
+- `recovery` 長時間停在 `ingest-recovery`：最新檢查點的狀態塊取不到，確認工具至少連上一個持有該塊的節點（例如 pinning 節點）；
+  不需要重啟，取到後自行恢復。
+- `pendingAnnouncement` 長時間不為 null 或 `count` 持續增加：定稿公告送不出去。`lastErrorCode` 為 `cut-full` 表示本機切面仍在業務上限
+  之上，待之後的檢查點使切面縮小後由帳本重送；`certificate-unavailable` 不會自行恢復（issue 001567）；`count` 到 24 後新的定稿會被拒。
 
 ### 6.5 卡死時的人工釋放
 
@@ -174,15 +190,39 @@ halt 不會自行解除。依 `/status` 的 `haltReason` 或記錄排除原因�
 [程式架構/governance-signer.md](../程式架構/governance-signer.md) 第 11 節。執行前必須逐一聯絡其他簽署者完成確認；
 完成後重新啟動 `run`。
 
-### 6.6 擴編（N=1 → N≥3）
+### 6.6 擴編（候補就位後由一位升到四位）
 
-1. 新成員各自產生治理金鑰並離線備份，交付 PeerId。
-2. 現任簽署者停掉常駐實例，以 `config-export` 取得下一代範本，修改 `governanceSigners`（以及要一併調整的欄位）。
+合法的簽署者名單大小是一位或三位以上；兩位不合法，含兩位名單的設定事件不被帳本接受
+（[流程/治理事件.md](../流程/治理事件.md) 第 4.1 節）。門檻為 `floor(2N/3)+1`：三位時門檻為三，任何一位離線檢查點即停止產生；
+四位時門檻仍為三，是第一個容得下一位離線的大小。擴編因此採候補方式：維持一位簽署者，候補者先就位並閒置，候補湊滿三位後
+由現任一次升到四位；不經過兩位或三位的名單。
+
+擴編前置（未完成不得進行「升到四位」）：
+
+- issue 001566：切面超過業務上限時，三位以上簽署者的檢查點控制事件處理
+  （[程式架構/ledger-checkpoint.md](../程式架構/ledger-checkpoint.md) 〔LEDGER-R-110〕 的限制）。
+- 知悉 issue 001539：擴編到三位以上之後，任何治理設定變更（含再調整名單）都需要多人收簽，該功能落地前無法進行。
+
+候補期（可長期維持，不改變帳本上的名單）：
+
+1. 候補者各自依 6.2 產生治理金鑰並離線備份，交付 PeerId。
+2. 候補者各自部署工具並啟動 `run`。部署值不變；金鑰不在名單內時工具記錄 `governance-peer-not-in-signers`，同步後 `/status` 的
+   `phase` 為 `idle`、`notReadyReason` 為 `not-signer`：不提案、不投票、不定稿，只同步帳本並採納檢查點。
+3. 現任簽署者照常運作。候補者定期確認自己的 `latestCheckpointCid` 跟得上現任。
+
+升到四位（候補滿三位之後）：
+
+1. 上線確認：三位候補的工具都在執行，`latestCheckpointCid` 與現任相同，`phase` 為 `idle`、`notReadyReason` 為 `not-signer`，
+   且與現任及彼此連得上。任何一位未就緒就不進行下一步。
+2. 現任簽署者停掉常駐實例，以 `config-export` 取得下一代範本，把 `governanceSigners` 改為四位（現任加三位候補）。
 3. `config-update --file … --rationale … --dry-run` 核對差異與確認字串，再以 `--confirm` 寫入。
-4. 重新啟動現任簽署者的 `run`；新成員各自部署工具並啟動。名單變更自下一個檢查點才取得檢查點 authority。
-5. 部署值的 `governanceSigners` 是 genesis 信任根，不修改。
+4. 重新啟動現任簽署者的 `run`。config-update 上鏈後的下一個檢查點仍由舊名單（現任一位）提案並定稿，新名單寫進該檢查點；
+   自再下一個檢查點起才由四位負責。現任簽署者必須運作到這個交接檢查點定稿。
+5. 交接檢查點定稿後，確認四位的工具都已離開 `not-signer`，並觀察下一個檢查點由新名單定稿。
+6. 部署值的 `governanceSigners` 是 genesis 信任根，不修改。
 
-擴編到多位之後，任何治理設定調整都需要多人收簽，在 issue 001539 落地前無法進行；擴編前先確認這個限制可接受。
+新名單負責的檢查點需要三位在線並完成覆核才能定稿；候補者未就緒就寫入 config-update 時，檢查點會停止產生，而再調整名單同樣需要
+新名單的門檻（且受 issue 001539 限制）。所以新成員的部署與同步排在 config-update 寫入之前，上線確認不可省略。
 
 ## 7. 耦合點
 

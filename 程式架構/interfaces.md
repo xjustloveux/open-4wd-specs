@@ -466,10 +466,10 @@ export interface Ledger {
   deriveStateAt(logHeadCids: ReadonlyArray<CID>): Promise<DerivedState | null>; // 完整 frontier 純函數；目標須恰為某個檢查點或在最新檢查點之後（ledger.md §11），其餘目標或拉不齊回 null
   getLatestLogHeads(): Promise<ReadonlyArray<CID>>; // 診斷／同步用完整 frontier；空帳本回 []
   onEvent(handler: (event: LedgerEvent) => void): Unsubscribe;
-  getRecoveryStatus(): LedgerRecoveryStatus; // 自動復原狀態（ingest recovery／啟動掃描重試），供介面顯示
-  proposeCheckpoint(): Promise<Result<CheckpointProposeOutcome>>; // 已鎖定回表內得票最多者；未鎖定依票數序覆核並投第一個通過者；無本體通過覆核時須為本輪指定提案者才產生新本體；quorum 1 直接定稿
+  getRecoveryStatus(): LedgerRecoveryStatus; // 自動復原狀態（ingest recovery／啟動掃描重試）與定稿公告待送出的情形，供介面顯示
+  proposeCheckpoint(): Promise<Result<CheckpointProposeOutcome>>; // 已鎖定回表內得票最多者（鎖定的是自己提出而索引未保留的本體時重送同一本體）；未鎖定依票數序覆核並投第一個通過者；無本體通過覆核時須為本輪指定提案者才產生新本體；quorum 1 直接定稿
   signCheckpoint(checkpointCid: CID): Promise<Result<CheckpointSignOutcome>>; // 覆核（便宜檢查後重算比對）並寫入投票事件
-  finalizeCheckpoint(checkpointCid: CID): Promise<Result<CID>>; // 以待定稿表中的票組憑證定稿；已是最新檢查點時冪等成功
+  finalizeCheckpoint(checkpointCid: CID): Promise<Result<CID>>; // 以待定稿表中的票組憑證定稿；成功＝本機已採納並推進邊界，定稿公告可能尚待送出；已是最新檢查點時冪等成功
   getPendingCheckpoints(): Promise<Result<object>>; // 實作層回 PendingCheckpointView（ledger.md §11）
   getCheckpointRound(): Promise<Result<CheckpointRoundSummary>>;
   releaseCheckpointVoteLock(
@@ -485,6 +485,19 @@ export interface LedgerRecoveryStatus {
   phase: "idle" | "ingest-recovery" | "checkpoint-scan-retry";
   attempts: number; // 該階段已失敗並排定下一次重試的重建（啟動掃描為掃描）次數；第一次立即 recovery 的失敗也計入
   lastError: string | null; // 錯誤名稱與訊息的截短摘要，不含事件內容
+  pendingAnnouncement?: LedgerPendingAnnouncementStatus; // 有定稿公告待送出時才存在；與 phase 互不遮蓋（ledger.md §11）
+}
+export type LedgerPendingAnnouncementErrorCode =
+  | "cut-full"
+  | "announcement-backlog-full"
+  | "certificate-unavailable"
+  | "send-failed";
+export interface LedgerPendingAnnouncementStatus {
+  count: number; // 待送出筆數
+  oldestCheckpointCid: CID; // 最舊一筆＝目前要送或卡住的那一筆
+  attempts: number; // 連續失敗的送出輪數；任何一輪把清單送完即歸零
+  lastErrorCode: LedgerPendingAnnouncementErrorCode | null;
+  lastError: string | null; // 錯誤名稱與訊息的截短摘要
 }
 
 export interface CheckpointProposeOutcome {
